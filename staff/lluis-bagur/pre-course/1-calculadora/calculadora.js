@@ -4,11 +4,8 @@ var num1 = 1.2;
 var num2 = 3;
 
 // Son numeros?
- var check1 = "";
- var check2 = "";
-
-check1 = isNaN (num1);
-check2 = isNaN (num2);
+var check1 = isNaN (num1);
+var check2 = isNaN (num2);
 
 
 
