@@ -226,7 +226,7 @@ function bingo() {
                 randDiv.style.display = "none";
                 cardCont.style.display = "none";
                 pointsN.style.display = "none";
-                arrPlayers.push({ name: playerName, puntos: playerPoints, status: status });
+                arrPlayers.push({ name: playerName, points: playerPoints, status: status });
                 results();
             } else {
                 matchN.innerHTML = 'LINEA!!!';
@@ -243,7 +243,7 @@ function bingo() {
                 randDiv.style.display = "none";
                 cardCont.style.display = "none";
                 pointsN.style.display = "none";
-                arrPlayers.push({ name: playerName, puntos: playerPoints, status: status });
+                arrPlayers.push({ name: playerName, points: playerPoints, status: status });
                 results();
             } else {
                 matchN.innerHTML = 'LINEA!!!';
@@ -261,7 +261,7 @@ function bingo() {
                 randDiv.style.display = "none";
                 cardCont.style.display = "none";
                 pointsN.style.display = "none";
-                arrPlayers.push({ name: playerName, puntos: playerPoints, status: status });
+                arrPlayers.push({ name: playerName, points: playerPoints, status: status });
                 results();
             } else {
                 matchN.innerHTML = 'LINEA!!!';
@@ -314,7 +314,7 @@ function results() {
         revArrPlayersSort.forEach(function(obj) {
 
             if (obj.status === 'win') {
-                document.getElementById('ranking').innerHTML += '<tr><td>' + obj.name + '</td><td>' + obj.puntos + '</td></tr>';
+                document.getElementById('ranking').innerHTML += '<tr><td>' + obj.name + '</td><td>' + obj.points + '</td></tr>';
 
             } else if (obj.status === 'loose') {
 
