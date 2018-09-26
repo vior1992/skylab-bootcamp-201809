@@ -1,0 +1,64 @@
+body {
+    background-color: #486090;
+}
+
+.title {
+    font-family: 'Lobster Two', cursive;
+    font-size: 80px;
+    color: white;
+    margin-top: 80px;
+}
+
+label {
+    color: white;
+    font-size: 23px;
+    font-family: 'Lobster Two', cursive;
+}
+
+.btn-warning {
+    color: white;
+}
+
+#startBlock {
+    margin-top: 100px;
+}
+
+.badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 20rem;
+    margin-left: 10px;
+    font-size: 23px;
+}
+
+.badge-primary {
+    color: black;
+    background-color: white;
+}
+
+.alert-light {
+    color: black;
+    background-color: #fefefe;
+    border-color: #fdfdfe;
+}
+
+.badge-pill-rand {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 20rem;
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+.badge-light {
+    font-size: 25px;
+    color: #486090;
+}
+
+.table td,
+.table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color: white;
+}
