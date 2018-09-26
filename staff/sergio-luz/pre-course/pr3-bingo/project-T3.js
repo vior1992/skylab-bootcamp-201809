@@ -132,7 +132,7 @@ function CambiarCarton(){
         	break;
     }
 }
-function ShowCarton(){
+function MostrarCarton(){
 	console.log("Este es tu carton:")
 	console.log(CartonK);
 }
