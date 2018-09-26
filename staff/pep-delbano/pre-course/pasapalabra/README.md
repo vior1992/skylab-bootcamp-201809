@@ -3,7 +3,7 @@
 
 This project is a game made with just **_HTML5_, _CSS3_ y _JS_**. 
 
-![alt=3logos](./html-css-js.jpeg)
+![alt=3logos](https://cdn-images-1.medium.com/max/750/1*pixFq7k28LKsABpDNRCjJw.png)
 
 
 
