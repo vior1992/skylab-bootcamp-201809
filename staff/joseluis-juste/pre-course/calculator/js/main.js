@@ -1,47 +1,45 @@
-var calculator = (function(){
+var calculator = (function () {
 
-	return{
-		error:false,
-		calculated:false,
-		values:[],
-		setValue: function(x){
-			if (this.error){
+	return {
+		error: false,
+		calculated: false,
+		values: [],
+		setValue: function (x) {
+			if (this.error) {
 				this.reset();
 			}
 			this.values.push(x);
 			this.paint();
 		},
-		cleanValues: function(){
+		cleanValues: function () {
 			this.values.length = 0;
 		},
-		reset: function(){
+		reset: function () {
 			this.error = false;
 			this.calculated = false;
 			this.values.length = 0;
 			document.getElementById("screen").innerText = 0;
 		},
-		paint: function(){
+		paint: function () {
 
 			document.getElementById("screen").innerText = this.values.join("");
 		},
-		calculate: function(){
-			try
-			{
+		calculate: function () {
+			try {
 				var result = eval(this.values.join(""));
 				document.getElementById("screen").innerText = result;
 				this.cleanValues();
-				
+
 			}
-			catch(e)
-			{
+			catch (e) {
 				this.values.length = 0;
 				this.setValue("Err.");
 				this.error = true;
 
 			}
-			
+
 		},
-		sqrt: function(){
+		sqrt: function () {
 
 			var val;
 
@@ -49,9 +47,9 @@ var calculator = (function(){
 				val = document.getElementById("screen").innerText
 			else
 				val = this.values.join("");
-			
-			if (isNaN(val)){
-			
+
+			if (isNaN(val)) {
+
 				this.reset();
 				this.setValue("Err.");
 				this.error = true;
@@ -61,42 +59,42 @@ var calculator = (function(){
 			this.cleanValues();
 		}
 	}
-	
+
 })();
 
 
-window.onload = function(){
+window.onload = function () {
 
 	document.getElementById("screen").innerText = 0;
-	
+
 	var buttons = Array.prototype.filter.call(document.getElementsByClassName("button"), x => {
 
-			return x.className.split(" ").find(x => {return x === "no-action"}) === undefined;
+		return x.className.split(" ").find(x => { return x === "no-action" }) === undefined;
 	});
 
-	for(var i in buttons){
+	for (var i in buttons) {
 
-		buttons[i].onclick = function(e){
-			
-			switch(e.target.innerText){
+		buttons[i].onclick = function (e) {
+
+			switch (e.target.innerText) {
 
 				case "c/ca":
 					calculator.reset();
-				break;
+					break;
 				case "=":
 					calculator.calculate();
-				break;
+					break;
 				case "sqrt":
 					calculator.sqrt();
-				break;
+					break;
 				case "x":
 					calculator.setValue("*");
-				break;
+					break;
 				default:
 					calculator.setValue(e.target.innerText);
-				break;
+					break;
 			}
-			
+
 		};
-	}	
+	}
 }
