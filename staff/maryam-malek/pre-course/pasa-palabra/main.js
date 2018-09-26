@@ -1,5 +1,3 @@
-project4.js
-
 //Pasapalabra Game! (Final JS)
 
 //Haz el juego del Pasapalabra, el programa deberá lanzar la definición de una palabra y el usuario deberá adivinar que palabra estamos tratando, por ejemplo:
