@@ -60,7 +60,7 @@ const mainFunction = function () {
   //El usuario visualizará todos los vuelos disponibles de una forma amigable:
   //El vuelo con origen: Barcelona, y destino: Madrid tiene un coste de XXXX€ y no realiza ninguna escala.
   flights.forEach(function(flight){
-    if(flight.scale === true){
+    if(flight.scale){
       numberOfFlightsWithScales++;
       console.log('\tEl vuelo con origen: ' + flight.from + ', y destino: ' + flight.to + ' tiene un coste de ' + flight.cost + '€ y no realiza ninguna escala.');
     } else {
