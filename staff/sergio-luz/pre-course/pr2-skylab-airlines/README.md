@@ -2,7 +2,7 @@
 
 A little project made with javascript
 
-## Caracteristicas generales
+## General characteristics
 
 The program shows the list of flights of the day and their associated information (destination, time, origin, etc.). It shows the average cost of the flights today and which flights will have an scale. 
 ***
