@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<title>Pasapalabra</title>
+<link rel="stylesheet" type=" text/css " href="./css/style.css "/>
+</head>
+<body>
+
+<div class="container">
+
+        <section class="countdown">
+            <span id="time">100 Seconds</span>
+        </section>
+
+
+    <div class="item left">
+       
+        <ul id="list">
+            <li>
+                <div>
+                    <div class="form">
+                        <input id="answer" type="text" placeholder="Pleas enter your name" name="search">
+                        <button id="btn" onclick="pasapalabra.next()">next</button>
+                    </div>
+                    <p id="dynamicQuestion">The name of the participant</p>
+                    <hr>
+                    <p id="user"></p>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="item right">
+        <section class="info">
+            <img src="./img/sky.png">
+            <h1>Bienvenidos al juego de Pasapalabra!</h1>
+            <p>Basado en el exitoso concurso de televisión Pasapalabra de Telecinco, las normas son muy sencillas:</p>
+            <p>Se mostraran unas definiciones por pantalla y el usuario deberá responder con la palabra a la que corresponden. El usuario tiene la opción de decir Pasapalabra y dejar esa definición para mas adelante.</p>
+            <p>Respondiendo "END" puedes terminar el juego en cualquier momento</p>
+            <p>El puntaje de los cinco primeros usuarios se mostrará bajo.</p>
+        </section>
+        <p id="scores" class="scores"></p>
+    </div>
+
+</div>
+   
+
+<script type="application/javascript" src="main.js"></script>
+</body>
+</html>
