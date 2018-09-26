@@ -109,7 +109,7 @@ function CreateCarton(T){	// Durante el primer turno se mostrará un cartón con
 		}
 	}
 	// Mostramos el carton
-	ShowCarton()
+	MostrarCarton()
 	//Preguntamos si quiere este carton
 	Esperar();
 	CambiarCarton();
@@ -198,7 +198,7 @@ function NewTurn(){
 	}
 	Esperar();
 	Puntos--;
-	ShowCarton();
+	MostrarCarton();
 	AskTurn();
 }
 //-//
