@@ -84,10 +84,10 @@ var flights = [ //Variable global Array de objetos vuelos
     
     function menuUser (){
       console.clear()
-      var opcionprecio = prompt("Menú Usuario \n\nBúsqueda por precio.  \n1. Más bajo de:  \n2. Más alto de:  \n3. Igual de: \n\nSi no deseas realizar ningúna busqueda pulsa Cancelar" , "Escribe aquí la opción escogida (1,2 o 3)")
-      if (opcionprecio == "1" || opcionprecio == "2" || opcionprecio == "3"){
+      var opcionPrecio = prompt("Menú Usuario \n\nBúsqueda por precio.  \n1. Más bajo de:  \n2. Más alto de:  \n3. Igual de: \n\nSi no deseas realizar ningúna busqueda pulsa Cancelar" , "Escribe aquí la opción escogida (1,2 o 3)")
+      if (opcionPrecio == "1" || opcionPrecio == "2" || opcionPrecio == "3"){
         var precio = prompt("Precio a comparar con los vuelos:" , "Escribe aquí el precio")
-        switch (opcionprecio){
+        switch (opcionPrecio){
           case "1" :
             flights.forEach(function(obj){
               if (obj.cost < precio){
