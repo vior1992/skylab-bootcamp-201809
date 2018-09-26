@@ -35,7 +35,7 @@ function genCarton(){
 
 
 function endGame(x){
-	var x = false						//checks if 
+	var x = false						//if the IF condition is true, x will change it's value, allowing the endGame condition to run.
 	for (i=0;i<carton.length;i++){
 		if (!isNaN(carton[i])){
 			var x = true
