@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio HTML</title>
+	<style type="text/css">
+		div{
+			margin: 0 auto;
+			margin-bottom: 3em;
+			width: 50%;
+		}
+		ol li ol,
+		ol li ul
+		{
+			margin-top: 2em;
+		}
+		label{
+			display: block;
+		}
+		input,a
+		{
+			display: block;
+		}
+		input[type=radio]{
+			display: inline-block;
+		}
+		form div{
+			margin:0;
+		}
+	</style>
+</head>
+<body>
+<div id="section1">
+	<p><b>PARAGRAPHS</b></p>
+	<p>1.<br>
+	Lorem ipsum dolor sit amet, <b>consectetur adipisicing elit.</b> Sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. 
+	</p>
+	<p>2.<br>
+		Vero, recusandae nam officiis <i>quam aut perferendis quis blanditiis</i> doloremque rem nesciunt. Vel!
+	</p>
+	<p>3.<br>
+	<pre>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+	veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+	commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+	esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</pre>
+	</p>
+	<p>4.<br>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor <u>incididunt ut labore et dolore magna aliqua.</u>
+	</p>
+	<p>5.<br>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor <mark>incididunt ut labore et dolore magna aliqua.</mark> 
+	</p>
+	<p>6.<br>
+	<small>Lorem ipsum dolor sit amet,</small> consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. 
+	</p>	
+</div>
+<div>
+	<p><b>LISTS</b></p>
+	<ol>
+		<li>
+			<ol>
+				<li>Lorem</li>
+				<li>Ipsum</li>
+				<li>Dolor</li>
+				<li>Sit</li>
+				<li>Amet</li>
+			</ol>
+		</li>
+		<li>
+			<ul type="disc">
+				<li>Lorem</li>
+				<li>Ipsum</li>
+				<li>Dolor</li>
+				<li>Sit</li>
+				<li>Amet</li>
+			</ul>
+		</li>
+		<li>
+			<ol type="A">
+				<li>Lorem</li>
+				<li>Ipsum</li>
+				<li>Dolor</li>
+				<li>Sit</li>
+				<li>Amet</li>
+			</ol>
+		</li>
+	</ol>
+</div>
+<div>
+	<p><b>FORMS</b></p>
+	<form method="GET">
+		<label>1.<br>First Name:</label>
+		<input type="text" name="name">
+		<label>2.<br>Second Name:</label>
+		<input type="text" name="second-name">
+		<input type="submit" name="" value="Send name">
+		<label>3.</label>
+		<div>
+			<input type="radio" name="radio" value="Dolor?">Dolor?	
+		</div>
+		<div>
+			<input type="radio" name="radio" value="Sit!">Sit!	
+		</div>
+		<a href="http://www.google.es">4. Go to Google!</a>
+		<a href="">Go to other local html</a>
+		<a href="#section1">Go to other section this document!</a>
+		<input type="button" name="" value="Go to Google by button" onclick="window.location = 'http://www.google.es' "">
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+html {
+  margin: 0;
+  height: 100vh; }
+
+body {
+  margin: 0;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), color-stop(0%, #dbdbdb), to(#fefefe));
+  background: linear-gradient(to bottom, #e2e2e2 0%, #dbdbdb 0%, #fefefe 100%); }
+
+* {
+  overflow: hidden; }
+
+.button {
+  color: white;
+  background: black;
+  width: 44px;
+  height: 32px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+  border-style: outset;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s; }
+  .button:hover {
+    cursor: pointer; }
+  .button:active {
+    -webkit-transform: translatey(5px);
+            transform: translatey(5px); }
+
+.thin-button {
+  width: 42px;
+  height: 26px;
+  line-height: 23px; }
+
+.mas {
+  height: 92%;
+  line-height: 78px; }
+
+.orange {
+  background: #DD8140; }
+
+.line-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin-top: 1em; }
+
+.header {
+  padding: 1em; }
+
+.mark {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.screen {
+  height: auto;
+  background: #7ef9ff;
+  font-family: calculator;
+  text-align: right;
+  font-size: 4em;
+  overflow-x: auto; }
+
+.int-body {
+  padding: 0 0.4em;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  margin-top: 0.9em; }
+
+.ext-body {
+  width: 352px;
+  background: black;
+  margin: 0 auto;
+  padding-bottom: 1em;
+  border-radius: 12px;
+  margin-top: 3em;
+  -webkit-box-shadow: 27px 21px 39px -12px rgba(0, 0, 0, 0.75);
+          box-shadow: 27px 21px 39px -12px rgba(0, 0, 0, 0.75); }
+
+.buttons-body {
+  background: white;
+  text-align: right;
+  padding: 0.7em;
+  -webkit-box-shadow: inset 4px 14px 73px -12px rgba(0, 0, 0, 0.75);
+          box-shadow: inset 4px 14px 73px -12px rgba(0, 0, 0, 0.75); }
+
+.first-row {
+  margin-bottom: 1em; }
+  .first-row div {
+    display: inline-block; }
+    .first-row div:first-child {
+      margin-right: 1em; }
+
+.second-row {
+  margin-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .second-row > div:first-child {
+    margin: 0; }
+
+.third-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  .third-row > div:first-child {
+    width: 78%; }
+    .third-row > div:first-child > div:first-child {
+      margin-top: 0; }
+
+@font-face {
+  font-family: "calculator";
+  src: url("../font/Calculator.ttf") format("truetype"); }

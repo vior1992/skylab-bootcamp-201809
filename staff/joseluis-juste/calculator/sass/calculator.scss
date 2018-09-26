@@ -1,0 +1,86 @@
+.line-buttons{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 1em;
+}
+
+.header{
+	padding: 1em;
+}
+.mark{
+
+	display: flex;
+    justify-content: space-between;
+}
+
+.screen{
+
+	height: auto;
+	background: rgba(126,249,255,1);
+	font-family: calculator;
+	text-align: right;
+    font-size: 4em;
+    overflow-x:auto;
+}
+
+.int-body{
+	padding: 0 0.4em;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	margin-top: 0.9em;
+}
+
+
+.ext-body{
+
+    width: 352px;
+    background: black;
+	margin: 0 auto;
+	padding-bottom: 1em;
+	border-radius: 12px;
+	margin-top: 3em;
+	box-shadow: 27px 21px 39px -12px rgba(0,0,0,0.75);
+}
+
+.buttons-body{
+	
+	background: white;
+	text-align: right;
+	padding: 0.7em;
+	//background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 18%, rgba(209,209,209,1) 43%, rgba(254,254,254,1) 100%);
+	box-shadow: inset 4px 14px 73px -12px rgba(0,0,0,0.75);
+}
+
+.first-row{
+	margin-bottom: 1em;
+	div{
+		display: inline-block;
+		&:first-child{
+			margin-right: 1em;
+		}
+	}
+
+}
+
+.second-row{
+
+	margin-bottom: 1em;
+	display: flex;
+	flex-wrap: wrap;
+	& > div:first-child{
+		margin:0;
+	}
+}
+
+.third-row{
+	display: flex;
+	justify-content: space-between;
+	& > div:first-child{
+		width: 78%;
+		& > div:first-child{
+			margin-top: 0;
+		}
+	}
+}
