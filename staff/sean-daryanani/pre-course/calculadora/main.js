@@ -54,14 +54,14 @@ function hideOperators() {
         operators[1].style.visibility= 'hidden';
         operators[2].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
-        percent.style.visibility = 'hidden'
+        percent.style.visibility = 'hidden';
     }
     else if (currentOperand === '-') {
         operators[0].style.visibility= 'hidden';
         operators[1].style.visibility= 'hidden';
         operators[3].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
-        percent.style.visibility = 'hidden'
+        percent.style.visibility = 'hidden';
         
     }
     else if (currentOperand === '*') {
@@ -69,14 +69,14 @@ function hideOperators() {
         operators[2].style.visibility= 'hidden';
         operators[3].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
-        percent.style.visibility = 'hidden'
+        percent.style.visibility = 'hidden';
     }
     else if (currentOperand === '/') {
         operators[1].style.visibility= 'hidden';
         operators[2].style.visibility= 'hidden';
         operators[3].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
-        percent.style.visibility = 'hidden'
+        percent.style.visibility = 'hidden';
     }
 }
 
