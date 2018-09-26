@@ -1,8 +1,8 @@
 // bingo
 
-var values = [];
-var values2 = [];
-var check = 0;
+var cartonNumbers = [];
+var bingoBalls = [];
+var check = false;
 var p = 1;
 var newNum = 0;
 var rankings = ["Bot Lester: 384 puntos"];
@@ -26,7 +26,7 @@ var carton = [0,
 	0];
 
 function genCarton(){
-	values = [];
+	cartonNumbers = [];
 	for(j=0;j<carton.length;j++){
 		carton[j] = numero()
 	};
@@ -35,10 +35,10 @@ function genCarton(){
 
 
 function endGame(x){
-	var x = 0
+	var x = false						//if the IF condition is true, x will change it's value, allowing the endGame condition to run.
 	for (i=0;i<carton.length;i++){
 		if (!isNaN(carton[i])){
-			var x = 1
+			var x = true
 			return x;
 		}
 	}
@@ -47,8 +47,8 @@ return x};
 function numero2(){
 	do {n = Math.floor((Math.random() * 40) + 1)}
 
-	while (values2.includes(n)===true)
-	values2.push(n)
+	while (bingoBalls.includes(n)===true)
+	bingoBalls.push(n)
 		
  	return n;
 };
@@ -56,15 +56,15 @@ function numero2(){
 function numero(){
 	do {e = Math.floor((Math.random() * 40) + 1)}
 
-	while (values.includes(e)===true)
-	values.push(e)
+	while (cartonNumbers.includes(e)===true)
+	cartonNumbers.push(e)
 
  	return e;
 };
 
 
 function newCarton(){
-	check = 1;
+	check = true;
 	genCarton();
 	console.log(carton);
 	var confirm = prompt("Quieres generar un nuevo carton?").toLowerCase();
@@ -99,8 +99,8 @@ function newTurno(){
 function bingo(){
 console.log(rankings);
 var playerName = prompt("Nombre del jugador?");
-if (check===0){newCarton()}
-	while (endGame()===1){newTurno()}
+if (check===false){newCarton()}
+	while (endGame()===true){newTurno()}
 	console.log("Juego finalizado. Has acabado con una puntuacion de: "+Math.floor(10000/p)+" puntos.");
 	rankings.push(playerName+": "+Math.floor(10000/p)+" puntos");
 	return;};
@@ -108,8 +108,8 @@ if (check===0){newCarton()}
 function nuevoJuego(){
 var preg = prompt("Quieres jugar de nuevo?").toLowerCase();
 if (preg==="si"){
-	check = 0;
-	values2 = [];
+	check = false;
+	bingoBalls = [];
 	p = 1;
 	bingo();
 	}
