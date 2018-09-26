@@ -5,23 +5,41 @@ var name = '', users = [], hit, t0, t1, totalTime, letterindex, questions, nextW
 // timer
 var timerInterval = null;
 
-//enter key response on click
-document.getElementById('response').addEventListener('keyup', function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById('submit').click();
-    }
-});
+function $(myId) {
+    return document.getElementById(myId);
+}
 
-document.getElementById('inputName').addEventListener('keyup', function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById('ajugar').click();
-    }
-});
+//enter key response on click
+function enterResp(listener, myButton) {
+    $(listener).addEventListener('keyup', function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            $(myButton).click();
+        }
+    });
+}
+
+enterResp('response','submit');
+enterResp('inputName','ajugar');
+
+
+// //enter key response on click
+// $('response').addEventListener('keyup', function(event) {
+//     event.preventDefault();
+//     if (event.keyCode === 13) {
+//         $('submit').click();
+//     }
+// });
+
+// $('inputName').addEventListener('keyup', function(event) {
+//     event.preventDefault();
+//     if (event.keyCode === 13) {
+//         $('ajugar').click();
+//     }
+// });
 
 function changeValue() {
-    document.getElementById('timeCounter').innerHTML = 150 - ( ++value );
+    $('timeCounter').innerHTML = 150 - ( ++value );
     if(value === 150){
         timeExpired();
     };
@@ -59,24 +77,24 @@ function startGame() {
     ];
     //initialize counter
     stop(); 
-    document.getElementById('timeCounter').innerHTML = 150;
-    document.getElementById('pointsCounter').innerHTML = 0;
+    $('timeCounter').innerHTML = 150;
+    $('pointsCounter').innerHTML = 0;
     value = 0;
     timerInterval = setInterval(changeValue, 1000);  
     
     //start questions
     letterIndex = 0, nextWord = []; wordsLeft = 0; counter = 0; hit = 0;
     console.time('answer time');
-    name = document.getElementById('inputName').value;
-    document.getElementById('instructions').style.visibility = 'hidden'; 
-    document.getElementById('result').innerHTML = 'EMPEZAMOS! 💪';
+    name = $('inputName').value;
+    $('instructions').style.visibility = 'hidden'; 
+    $('result').innerHTML = 'EMPEZAMOS! 💪';
     presentQuestion();
 };
 
 function presentQuestion() {
     if (questions[letterIndex].status === 0){
-        document.getElementById('questions').innerHTML = questions[letterIndex].question;
-        document.getElementById(questions[letterIndex].letter).style.border = ' white solid 4px';
+        $('questions').innerHTML = questions[letterIndex].question;
+        $(questions[letterIndex].letter).style.border = ' white solid 4px';
         controlKey();
     } else if (counter < questions.length -1){
         letterIndex++;
@@ -88,25 +106,25 @@ function presentQuestion() {
 };
 
 function testResponse() {
-    var word = document.getElementById('response').value;
-    document.getElementById('response').value='';
+    var word = $('response').value;
+    $('response').value='';
     word = word.toLowerCase().trim();
     if (word === questions[letterIndex].answer){
         questions[letterIndex].status = 1;
-        document.getElementById('result').innerHTML = 'CORRECTO! 🤩';
-        document.getElementById(questions[letterIndex].letter).style.background = 'radial-gradient(rgb(63, 247, 87),rgb(34, 116, 45)';
-        document.getElementById(questions[letterIndex].letter).style.border = 'white solid 1px';
+        $('result').innerHTML = 'CORRECTO! 🤩';
+        $(questions[letterIndex].letter).style.background = 'radial-gradient(rgb(63, 247, 87),rgb(34, 116, 45)';
+        $(questions[letterIndex].letter).style.border = 'white solid 1px';
         hit++;
-        document.getElementById('pointsCounter').innerHTML = hit;
+        $('pointsCounter').innerHTML = hit;
     } else if (word === 'pasapalabra'){
         questions[letterIndex].status = 0;
-        document.getElementById('result').innerHTML = 'PASAPALABRA! 🤔';
-        document.getElementById(questions[letterIndex].letter).style.border = 'white solid 1px';
+        $('result').innerHTML = 'PASAPALABRA! 🤔';
+        $(questions[letterIndex].letter).style.border = 'white solid 1px';
     } else {
         questions[letterIndex].status = 2;
-        document.getElementById('result').innerHTML = 'INCORRECTO! 😣';
-        document.getElementById(questions[letterIndex].letter).style.background = 'radial-gradient(rgb(136, 50, 50), rgb(255, 0, 0))';
-        document.getElementById(questions[letterIndex].letter).style.border = 'white solid 1px';
+        $('result').innerHTML = 'INCORRECTO! 😣';
+        $(questions[letterIndex].letter).style.background = 'radial-gradient(rgb(136, 50, 50), rgb(255, 0, 0))';
+        $(questions[letterIndex].letter).style.border = 'white solid 1px';
     };
 
     if (counter < 26) {
@@ -137,17 +155,17 @@ function checkResults(questions) {
 function startAgain(){
     [nextWord, hits, error] = checkResults(questions);
     if (nextWord.length === 0 && hits.length === 27){
-        document.getElementById('questions').innerHTML = 'ENHORABUENA!!! TE LLEVAS EL BOTE!! 🎊 ';
+        $('questions').innerHTML = 'ENHORABUENA!!! TE LLEVAS EL BOTE!! 🎊 ';
         // time counter
         clearInterval(timerInterval);
         OrderRanking();
     } else if (nextWord.length === 0 ){
-        document.getElementById('questions').innerHTML = 'JUEGO FINALIZADO!! Has acertado ' + hits.length + ' palabras y has fallado ' + error.length + ' palabras.';
+        $('questions').innerHTML = 'JUEGO FINALIZADO!! Has acertado ' + hits.length + ' palabras y has fallado ' + error.length + ' palabras.';
        // time counter
         clearInterval(timerInterval);
         OrderRanking();
     } else {
-        document.getElementById('questions').innerHTML = 'Empezamos de nuevo el rosco para las pasapalabras!';
+        $('questions').innerHTML = 'Empezamos de nuevo el rosco para las pasapalabras!';
         letterIndex = 0;
         counter = 0;
         presentQuestion();
@@ -176,7 +194,7 @@ function OrderRanking() {
 };
 
 function showRanking() {
-    document.getElementById('ranking').innerHTML = presentUsers;
+    $('ranking').innerHTML = presentUsers;
     return users; 
 };
 
@@ -193,7 +211,7 @@ function endGame () {
     // time counter
     clearInterval(timerInterval);
     [nextWord, hits, error] = checkResults(questions);
-    document.getElementById('questions').innerHTML  = 'Has acertado ' + hits.length + ' palabras. Nos vemos pronto!';
+    $('questions').innerHTML  = 'Has acertado ' + hits.length + ' palabras. Nos vemos pronto!';
     OrderRanking();
     clearLetter();
     return questions;
@@ -203,35 +221,35 @@ function  timeExpired () {
     // time counter
     clearInterval(timerInterval);
     [nextWord, hits, error] = checkResults(questions);
-    document.getElementById('questions').innerHTML  = 'Lo siento, se acabó tu tiempo!!';
+    $('questions').innerHTML  = 'Lo siento, se acabó tu tiempo!!';
     OrderRanking();
     clearLetter();
     return questions;
 }
 
 function newText() {
-    document.getElementById('ajugar').innerHTML= '¡Suerte! 🦄';
+    $('ajugar').innerHTML= '¡Suerte! 🦄';
 };
 
 function oldText() {
-    document.getElementById('ajugar').innerHTML= '¡A jugar!';
+    $('ajugar').innerHTML= '¡A jugar!';
 };
 
 function showInstru() {
-    document.getElementById('instructions').style.visibility = 'visible'; 
-    document.getElementById('inputName').value = '';
-    document.getElementById('result').innerHTML = '';
-    document.getElementById('result').innerHTML = '';
-    document.getElementById('questions').innerHTML = '';
-    document.getElementById('ranking').innerHTML = '';
-    document.getElementById('timeCounter').innerHTML = 150;
-    document.getElementById('pointsCounter').innerHTML = 0;
+    $('instructions').style.visibility = 'visible'; 
+    $('inputName').value = '';
+    $('result').innerHTML = '';
+    $('result').innerHTML = '';
+    $('questions').innerHTML = '';
+    $('ranking').innerHTML = '';
+    $('timeCounter').innerHTML = 150;
+    $('pointsCounter').innerHTML = 0;
 };
 
 function clearLetter() {
     for(var i = 0; i < questions.length; i++){
-        document.getElementById(questions[i].letter).style.background = 'radial-gradient( rgb(43, 127, 206), rgb(2, 31, 59))';
-        document.getElementById(questions[letterIndex].letter).style.border = 'white solid 1px';
+        $(questions[i].letter).style.background = 'radial-gradient( rgb(43, 127, 206), rgb(2, 31, 59))';
+        $(questions[letterIndex].letter).style.border = 'white solid 1px';
     };
 };
 
