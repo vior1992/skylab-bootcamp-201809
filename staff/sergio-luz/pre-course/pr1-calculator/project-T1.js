@@ -22,7 +22,7 @@ function RealizarOperacion(){
 	do{
 		CaptarDatos();
 		res=PreguntaContinuar();
-	}while(res==="n")
+	}while(res!=="n");
 }
 //-//
 function CaptarDatos(){
