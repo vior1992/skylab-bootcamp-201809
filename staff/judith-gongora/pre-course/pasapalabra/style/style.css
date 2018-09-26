@@ -1,0 +1,464 @@
+@font-face {
+    font-family: "Futura";
+    /*src: url(../font/Futura.ttf) format("truetype");*/
+}
+
+html, body{
+  height: 100%;
+  font-family: "Futura";
+}
+
+html{
+  display:table; width:100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to left top, #757a76, #7e8583, #899090, #969a9d, #a3a5a8);
+  display:table-cell; 
+  text-align:center; 
+  vertical-align:middle;
+}
+
+.contenedor{
+  width: 50%;
+  max-width: 2000px;
+  min-width: 575px;
+  margin: 0 auto;
+  overflow: hidden;
+  /*border: dashed 1px;*/
+  background-image: linear-gradient(to right top, #3f7ad4, #3778da, #2d77e0, #2275e5, #1273eb);
+  /*background-color: #218ef9;*/
+  -webkit-box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.75); /*sombra*/
+  -moz-box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.75);
+  border-radius: 1%; /*redondeo*/
+  text-align:center; 
+}
+
+.hidden {
+  display: none; 
+}
+
+.pasapalabra {
+	min-height: 30em;
+	/*border: dashed 1px;*/
+  display:flex;
+  justify-content: center;
+  padding: 3px;
+  	
+}
+
+.juego {
+  box-sizing: border-box;
+  float:left;
+  margin-bottom:10px;
+  margin-top: 10px;
+  padding:10px;
+  width: 50%;
+  min-width: 40em;
+}
+
+.derecha{
+  box-sizing: border-box;
+  float:left;
+  margin-bottom:10px;
+  padding:10px;
+  width: 50%;
+}
+
+/*media-----------------------------*/
+@media screen and (max-width: 425px) {
+  .contenedor{
+    width: 310px;
+    min-width: 300px;
+  } 
+
+  .pasapalabra {
+    width: 300px;
+    min-width: 290px; 
+  }
+
+  .intro {
+    width: 300px;
+    min-width: 290px;
+  }
+
+  .intro h4{
+    font-size: 14px;
+  }
+
+  .intro p{
+    font-size: 12.5px;
+  }
+
+  .rosco {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    padding: 2.618969263em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+    border-radius: 50%;
+    margin: 0 auto ;
+  }
+
+  .rosco .letra{
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+  }
+
+  .preguntas {
+    width: 230px;
+    margin: 0 auto;
+  }
+
+  .preguntas h1{
+    font-size: 20px;
+  }
+
+  .preguntas h1:after { 
+    content: "\A \A \A \A \A \A";
+    white-space: pre;
+  }
+
+  .preguntas input {
+    padding: .15em .2em;
+    font-weight: 400;
+    line-height: 19px;
+    font-size: 15px;
+  }
+
+  .preguntas input:after {
+    content: "\A \A \A";
+  }
+
+  .pie{
+    font-size: 11px;
+  }
+} 
+
+/*FIN media-----------------------------*/
+
+
+.rosco {
+	position: relative;
+	width: 20em;
+	height: 20em;
+	padding: 2.618969263em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+	/*border: dashed 1px;*/
+	border-radius: 50%;
+	margin: 3em auto ;
+}
+
+.rosco .letra{
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  top: 50%; 
+  left: 50%;
+  margin: -0.7em; 
+  width: 1.3em;
+  height: 1.3em;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: radial-gradient(#0074d9, #004b8d);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 2.1em;
+  color: white;
+  border-style:outset;
+}
+
+.rosco .countdown{
+    z-index: 1;
+    display: block;
+    position: absolute;
+    padding: .5em .5em;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    background-image: radial-gradient(#0074d9, #004b8d);
+    transform: rotate(114deg) translate(19em) rotate(-114deg); 
+}
+
+.rosco .correctas{
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+    top: 50%; 
+    left: 50%;
+    margin: -0.7em; 
+    /* No he encontrado la manera de crear una fórmula para centrarlos. 
+       Según el tamaño de font-size, el parametro margin debe configurarse 
+       para centrar los divs de rosco */
+    width: 1.3em;
+    height: 1.3em;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: radial-gradient(#0074d9, #004b8d);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 2.1em;
+    color: white;
+    transform: rotate(143deg) translate(9.7em) rotate(-143deg); 
+}
+
+.animacion {
+       /*position: absolute;*/
+
+  animation-name: parpadeo;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+
+.rosco .titulo{
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  top: 50%; 
+  left: 50%;
+  margin: -3.2em; /* 1.9em = 3.8em/2 */ /* half the width */
+  width: 18rem;
+	height: 18rem;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 3em;
+	font-weight: bold;
+	color: white;
+
+}
+
+.rosco .acierto { /* .addClass("acierto") */
+    background-image: radial-gradient(#9ee379, #4caf50); 
+}
+.rosco .error { /* .addClass("error") */
+    background-image: radial-gradient(#b9121b, #8e001c); 
+}
+
+#a.letra { transform: rotate(280deg) translate(6.5em) rotate(-280deg); } /* Rota traslada y vuelve a rotar */
+#b.letra { transform: rotate(293.33333333deg) translate(6.5em) rotate(-293.33333333deg); }
+#c.letra { transform: rotate(306.66666667deg) translate(6.5em) rotate(-306.66666667deg); }
+#d.letra { transform: rotate(320deg) translate(6.5em) rotate(-320deg); }
+#e.letra { transform: rotate(333.33333333deg) translate(6.5em) rotate(-333.33333333deg); }
+#f.letra { transform: rotate(346.66666667deg) translate(6.5em) rotate(-346.66666667deg); }
+#g.letra { transform: translate(6.5em);} 
+#h.letra { transform: rotate(13.33333333deg) translate(6.5em) rotate(-13.33333333deg); }
+#i.letra { transform: rotate(26.66666667deg) translate(6.5em) rotate(-26.66666667deg); }
+#j.letra { transform: rotate(40deg) translate(6.5em) rotate(-40deg); }
+#k.letra { transform: rotate(53.33333333deg) translate(6.5em) rotate(-53.33333333deg); }
+#l.letra { transform: rotate(66.66666667deg) translate(6.5em) rotate(-66.66666667deg); }
+#m.letra { transform: rotate(80deg) translate(6.5em) rotate(-80deg); }
+#n.letra { transform: rotate(93.33333333deg) translate(6.5em) rotate(-93.33333333deg); }
+#ñ.letra { transform: rotate(106.66666667deg) translate(6.5em) rotate(-106.66666667deg); }
+#o.letra { transform: rotate(120deg) translate(6.5em) rotate(-120deg); }
+#p.letra { transform: rotate(133.33333333deg) translate(6.5em) rotate(-133.33333333deg); }
+#q.letra { transform: rotate(146.66666667deg) translate(6.5em) rotate(-146.66666667deg); }
+#r.letra { transform: rotate(160deg) translate(6.5em) rotate(-160deg); }
+#s.letra { transform: rotate(173.33333333deg) translate(6.5em) rotate(-173.33333333deg); }
+#t.letra { transform: rotate(186.66666667deg) translate(6.5em) rotate(-186.66666667deg); }
+#u.letra { transform: rotate(200deg) translate(6.5em) rotate(-200deg); }
+#v.letra { transform: rotate(213.33333333deg) translate(6.5em) rotate(-213.33333333deg); }
+#w.letra { transform: rotate(226.66666667deg) translate(6.5em) rotate(-226.66666667deg); }
+#x.letra { transform: rotate(240deg) translate(6.5em) rotate(-240deg); }
+#y.letra { transform: rotate(253.33333333deg) translate(6.5em) rotate(-253.33333333deg); }
+#z.letra { transform: rotate(266.66666667deg) translate(6.5em) rotate(-266.66666667deg); }
+
+/*
+La función CSS rotate()  define una transformación para mover  un elemento alrededor de un punto fijo 
+( tal y como se especifica en la  propiedad transform-origin ) sin deformarlo. La cantidad de movimiento 
+se define mediante un ángulo. Si es positivo, el movimiento serán en el sentido del reloj y, si es negativo, 
+en sentido contrario al movimiento del reloj.
+
+*/
+
+.intro {
+	color: white;
+	position: absolute;
+	width: 500px;
+	/*border: dashed 1px;*/
+	margin: 0 auto;
+	padding: 2.618969263em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+	font-family: Futura;
+  text-align: justify;
+}
+
+
+.preguntas {
+	z-index: 1;
+	color: #fff;
+	position: absolute;
+	width: 300px;
+  /*border: dashed 1px;*/
+  margin: 3.5em auto;
+  padding: 2.618969263em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+	font-family: Futura;
+	vertical-align:middle;
+  text-align: center;
+}
+
+.gracias {
+  z-index: 1;
+  color: #fff;
+  position: absolute;
+  width: 300px;
+  /*border: dashed 1px;*/
+  margin: 8em auto;
+  padding: 2.618969263em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+  font-family: Futura;
+  vertical-align:middle;
+  text-align: center;
+}
+
+.preguntas #finalizar{
+    display: inline-block;
+    padding: .25em .5em;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.6875em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-image: linear-gradient(to right top, #d4d13f, #dad738, #e0dd2f, #e5e424, #ebea12); 
+}
+
+.preguntas #finalizar:hover {
+    color: #0074d9;
+    box-shadow: inset 0 0 0 3px #0074d9;
+}
+
+.preguntas #definicion {
+	font-size: 1em;
+	text-align: center;
+}
+
+.intro a {
+    display: inline-block;
+    padding: .25em .5em;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.6875em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-image: radial-gradient(#0074d9, #004b8d);
+}
+
+.preguntas a {
+    display: inline-block;
+    padding: .25em .5em;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.6875em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-image: radial-gradient(#0074d9, #004b8d);
+}
+
+.gracias a {
+    display: inline-block;
+    padding: .25em .5em;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.6875em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-image: radial-gradient(#0074d9, #004b8d);
+}
+
+.intro a:hover {
+    background: white;
+    color: #0074d9;
+    box-shadow: inset 0 0 0 3px #0074d9;
+}
+
+.gracias a:hover {
+    background: white;
+    color: #0074d9;
+    box-shadow: inset 0 0 0 3px #0074d9;
+}
+
+.preguntas input {
+    display: inline-block;
+    padding: .25em .5em;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    font-weight: 780;
+    line-height: 1em;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+.preguntas a:hover {
+    background: white;
+    color: #0074d9;
+    box-shadow: inset 0 0 0 3px #0074d9;
+}
+
+#enviar {
+    background-image: radial-gradient(#9ee379, #4caf50); 
+}
+
+.pie{
+	width: 85%;
+  max-width: 2000px;
+	margin: 0 auto;
+  overflow: hidden;
+	text-align: center;
+	align-content: center;
+	position: relative;
+  /*background-color: #0074d9;*/
+  color: white;
+  line-height: 2em;
+}
+
+
