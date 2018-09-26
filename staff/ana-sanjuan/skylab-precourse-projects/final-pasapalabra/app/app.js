@@ -78,7 +78,7 @@ function presentQuestion() {
         document.getElementById('questions').innerHTML = questions[letterIndex].question;
         document.getElementById(questions[letterIndex].letter).style.border = ' white solid 4px';
         controlKey();
-    } else if (counter < 26){
+    } else if (counter < questions.length -1){
         letterIndex++;
         counter++;
         presentQuestion();
