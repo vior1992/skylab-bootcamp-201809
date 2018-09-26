@@ -2,37 +2,45 @@
 function bingo(){
 
     var accountTurns = 0;
+
+    var numBingo = [];
     
-    
-    function getRandomNumber(){
-        return Math.floor(Math.random() * 10 +1);
+    function getRandomNumber(carton){
+        let number 
+
+        do { 
+            number = Math.floor(Math.random() * 10 +1);
+            
+        } while (search(number, carton))
+         
     }
-    
+
+    function search(nameKey, myArray){
+        for (var i=0; i < myArray.length; i++) {
+            if (myArray[i].number === nameKey) {
+                return true;
+            }
+        }
+        return false;
+     }
     
     function createCarton(){
+
+        let carton = [];
+
+        for (let i = 1; i < 3; i++) {
         
-        return [
-            { line: 1, id: 1 , number: getRandomNumber() },
-            { line: 1, id: 2 , number: getRandomNumber() },
-            { line: 1, id: 3 , number: getRandomNumber() },
-            { line: 1, id: 4 , number: getRandomNumber() },
-            { line: 1, id: 5 , number: getRandomNumber() },
-            { line: 1, id: 6 , number: getRandomNumber() },
-            { line: 1, id: 7 , number: getRandomNumber() },
-            { line: 1, id: 8 , number: getRandomNumber() },
-            { line: 1, id: 9 , number: getRandomNumber() },
-            { line: 1, id: 10, number: getRandomNumber() },
-            { line: 2, id: 11, number: getRandomNumber() },
-            { line: 2, id: 12, number: getRandomNumber() },
-            { line: 2, id: 13, number: getRandomNumber() },
-            { line: 2, id: 14, number: getRandomNumber() },
-            { line: 2, id: 15, number: getRandomNumber() },
-            { line: 2, id: 16, number: getRandomNumber() },
-            { line: 2, id: 17, number: getRandomNumber() },
-            { line: 2, id: 18, number: getRandomNumber() },
-            { line: 2, id: 19, number: getRandomNumber() },
-            { line: 2, id: 20, number: getRandomNumber() }
-        ]
+            for (let j = 1; j < 11; j++) {
+                carton.push({
+                    line: i, id: (10*i)+j , number: getRandomNumber(carton)
+                });
+                
+            }
+            
+        }
+
+        return carton;
+
     }//Final createCarton
     
     function askTurn(carton){
@@ -79,19 +87,24 @@ function bingo(){
         alert("is BINGO! YOU WIN!")
         rePlay();
     }//Cierre win
+
+   
     
     function newTurn(carton){
         var randomBingoNumber = getRandomNumber();
-    
-        carton.forEach(function(cartonNumber){
+
+         carton.forEach(function(cartonNumber){
             if (randomBingoNumber == cartonNumber.number){
                 cartonNumber.number = 0;
                 console.log("MATCH! ", randomBingoNumber, carton);
                 validateLine(carton,cartonNumber.line);
+                randomNumberList.number = randomBingoNumber;
             }
         })
-        
+            
         askTurn(carton)
+        
+        
     }//cierre de newTurn
     
     function validateLine(carton,line) {
