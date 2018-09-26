@@ -40,7 +40,7 @@ function pasapalabra(){
     console.log(name);
     nuevaRonda();
     
-    return questions
+   
 }
 
     function preguntes (){
