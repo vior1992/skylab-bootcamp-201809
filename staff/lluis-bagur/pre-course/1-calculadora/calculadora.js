@@ -14,7 +14,7 @@ check2 = isNaN (num2);
 
 console.log("Los valores introducidos son: "+num1+" y "+num2);
 
-// hemos comprobado que los dos son numeros (afrimando que no son NaN)
+// hemos comprobado que los dos son numeros (afirmando que no son NaN)
 
 if (check1 === false && check2 === false) {
 
