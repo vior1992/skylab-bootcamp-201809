@@ -49,35 +49,39 @@ function makeVisible() {
 }
 
 function hideOperators() {
-    if (currentOperand === '+') {
+    switch(currentOperand) {
+        case '+':
         operators[0].style.visibility= 'hidden';
         operators[1].style.visibility= 'hidden';
         operators[2].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
         percent.style.visibility = 'hidden';
-    }
-    else if (currentOperand === '-') {
+        break;
+
+        case '-':
         operators[0].style.visibility= 'hidden';
         operators[1].style.visibility= 'hidden';
         operators[3].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
         percent.style.visibility = 'hidden';
-        
-    }
-    else if (currentOperand === '*') {
+        break;
+
+        case '*':
         operators[0].style.visibility= 'hidden';
         operators[2].style.visibility= 'hidden';
         operators[3].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
         percent.style.visibility = 'hidden';
-    }
-    else if (currentOperand === '/') {
+        break;
+
+        case '/': 
         operators[1].style.visibility= 'hidden';
         operators[2].style.visibility= 'hidden';
         operators[3].style.visibility= 'hidden';
         plusMinus.style.visibility = 'hidden';
         percent.style.visibility = 'hidden';
     }
+
 }
 
 function equalsLogic() {
