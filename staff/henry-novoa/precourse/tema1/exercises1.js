@@ -23,7 +23,9 @@ function space(name) {
 
 	console.log("The last name starts in the "+position+" character");
 
-}space(myName)
+}
+
+space(myName);
 
 
 
