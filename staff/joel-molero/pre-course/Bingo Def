@@ -1,0 +1,133 @@
+// bingo
+
+var values = [];
+var values2 = [];
+var check = 0;
+var p = 1;
+var newNum = 0;
+var rankings = ["Bot Lester: 384 puntos"];
+console.log("Rankings: "+rankings);
+
+var carton = [0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	//linea
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0];
+
+function genCarton(){
+	values = [];
+	carton = [];
+	carton = [numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero(),
+	numero()];
+return;
+};
+
+
+
+function endGame(x){
+	var x = 0
+	for (i=0;i<carton.length;i++){
+		if (!isNaN(carton[i])){
+			var x = 1
+			return x;
+		}
+	}
+return x};
+
+function numero2(){
+	do {n = Math.floor((Math.random() * 40) + 1)}
+
+	while (values2.includes(n)===true)
+	values2.push(n)
+		
+ 	return n;
+};
+
+function numero(){
+	do {e = Math.floor((Math.random() * 40) + 1)}
+
+	while (values.includes(e)===true)
+	values.push(e)
+
+ 	return e;
+};
+
+
+function newCarton(){
+	check = 1;
+	genCarton();
+	console.log(carton);
+	var confirm = prompt("Quieres generar un nuevo carton?").toLowerCase();
+	if (confirm==="si"){newCarton()}								
+	else if (confirm==="no"){return;}
+};
+
+
+function newTurno(){
+	newNum = 0;
+	newNum = numero2();
+	var pregunta = prompt("Numero "+newNum+". Lo tienes?").toLowerCase();
+    if (pregunta==="si"){
+    	if (carton.includes(newNum)){
+    		carton.splice(carton.indexOf(newNum), 1, "X");
+    		console.log(carton);
+    		return;}
+    	else {p+=2;
+    	return;}}
+    else if (pregunta==="no"){
+    	if (carton.includes(newNum)){
+    		carton.splice(carton.indexOf(newNum), 1, "X");
+    		console.log(carton);
+    		p+=2;
+    		return;}
+    	else {p++;
+    	return;}}
+};
+
+
+
+function bingo(){
+console.log(rankings);
+var playerName = prompt("Nombre del jugador?");
+if (check===0){newCarton()}
+	while (endGame()===1){newTurno()}
+	console.log("Juego finalizado. Has acabado con una puntuacion de: "+Math.floor(10000/p)+" puntos.");
+	rankings.push(playerName+": "+Math.floor(10000/p)+" puntos");
+	return;};
+	
+function nuevoJuego(){
+var preg = prompt("Quieres jugar de nuevo?").toLowerCase();
+if (preg==="si"){
+	check = 0;
+	values2 = [];
+	p = 1;
+	bingo();
+	}
+else if (preg==="no"){
+	return;
+	}
+};
