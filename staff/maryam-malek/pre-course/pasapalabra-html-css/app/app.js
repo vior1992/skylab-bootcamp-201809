@@ -38,33 +38,18 @@ function pasapalabra(){
     var lletres = [];
    
     console.log(name);
-    //document.getElementById("letters").innerHTML = questions[0].letter + questions[1].letter + questions[2].letter + questions[3].letter + questions[4].letter + questions[5].letter + questions[6].letter + questions[7].letter + questions[8].letter + questions[9].letter + questions[10].letter + questions[11].letter + questions[12].letter + questions[13].letter + questions[14].letter + questions[15].letter+ questions[16].letter + questions[17].letter + questions[18].letter + questions[19].letter + questions[20].letter + questions[21].letter + questions[22].letter + questions[23].letter + questions[24].letter + questions[25].letter;
+    nuevaRonda();
+    
+   
+}
 
     function preguntes (){
         console.log('He entrat a Preguntes()')
         for(var i=0; i<questions.length; i++){
-            
+        
             if(questions[i].status === 0){
                 document.getElementById("enunciado").innerHTML = questions[i].question;
-                var answer = document.getElementById("answer").value
-                if(answer ===questions[i].answer){
-                    questions[i].status = 1;
-                    points++;
-                    respostes++;
-                    aciertos++;
-                    console.log(i + 'correcte')
-                    document.getElementById("comment").innerHTML = ('Correcto! tienes ' + points + ' puntos.');
-                }else if(answer === 'pasapalabra'){
-                    document.getElementById("comment").innerHTML =('Pasamos a la siguiente letra')
-                    console.log(i + 'pasapalabra')
-                }else{
-                    questions[i].status = 2;
-                    points--;
-                    fallos++;
-                    respostes++;
-                    console.log(i+'incorrecte')
-                    document.getElementById("comment").innerHTML =('Incorrecto... Pierdes 1 punto.' + 'Tu puntuación actual es de ' + points + ' puntos.')
-                }
+                
             }else{}
         }
         if(respostes === questions.length){
@@ -77,9 +62,34 @@ function pasapalabra(){
         
     }
 
+    function reviewAnswers(){
+        var answer = document.getElementById("answer").value
+            if(answer ===questions[i].answer){
+                questions[i].status = 1;
+                points++;
+                respostes++;
+                aciertos++;
+                console.log(i + 'correcte')
+                document.getElementById("comment").innerHTML = ('Correcto! tienes ' + points + ' puntos.');
+            }else if(answer === 'pasapalabra'){
+                document.getElementById("comment").innerHTML =('Pasamos a la siguiente letra')
+                console.log(i + 'pasapalabra')
+            }else{
+                questions[i].status = 2;
+                points--;
+                fallos++;
+                respostes++;
+                console.log(i+'incorrecte')
+                document.getElementById("comment").innerHTML =('Incorrecto... Pierdes 1 punto.' + 'Tu puntuación actual es de ' + points + ' puntos.')
+            }
+        nuevaRonda();
+            
+    }
+
     function nuevaRonda(){
         console.log('He entrat a nuevRonda()')
         preguntes();
+        
     }
 
     function showPoints(){
@@ -87,10 +97,7 @@ function pasapalabra(){
         document.getElementById("scoreText").innerHTML =(name + '. ' + aciertos + ' aciertos. ' + points + ' puntos.')
     }
 
-    nuevaRonda();
-    
-    return questions
-}
+
     
 //TE 2 ERRORS IMPORTANTS: ELS BOTONS OK I SHOW POINTS NO FUNCIONEN. NO RECONEIX LA FUNCIÓ QUE HI HA LINKADA. 
 //FA TOT EL FOR SENSE AGAFAR CAP RESPOSTA!

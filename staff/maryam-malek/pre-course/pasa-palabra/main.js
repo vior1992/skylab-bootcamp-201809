@@ -9,10 +9,10 @@
 
 
 var players = [];
-var jugadas = 0;
+var game = 0;
 
 function pasapalabra(){
-	jugadas++;
+	game++;
 	var questions = [
     { letter: "a", answer: "abducir", status: 0, question: "CON LA A. Dicho de una supuesta criatura extraterrestre: Apoderarse de alguien"},
     { letter: "b", answer: "bingo", status: 0, question: "CON LA B. Juego que ha sacado de quicio a todos los 'Skylabers' en las sesiones de precurso"},
@@ -44,12 +44,12 @@ function pasapalabra(){
 ]
 	var name = window.prompt('Por favor introduce tu nombre');
 	window.alert(name + ' Bienvenido al juego del Pasapalabra. INSTRUCCIONS DEL JOC......');
-	var aciertos = 0;
-	var fallos = 0;
+	var success = 0;
+	var failures = 0;
 	var points = 0;
-	var respostes = 0;
-	nuevaRonda();
-	function preguntes (){
+	var answers = 0;
+	newRound();
+	function question (){
 		for(var i=0; i<questions.length; i++){
 			
 			if(questions[i].status === 0){
@@ -57,40 +57,40 @@ function pasapalabra(){
 				if(answer ===questions[i].answer){
 					questions[i].status = 1;
 					points++;
-					respostes++;
-					aciertos++;
+					answers++;
+					success++;
 					window.alert('Correcto! tienes ' + points + ' puntos.');
 				}else if(answer === 'pasapalabra'){
 					window.alert('Pasamos a la siguiente letra')
 				}else{
 					questions[i].status = 2;
 					points--;
-					fallos++;
-					respostes++;
+					failures++;
+					answers++;
 					window.alert('Incorrecto... Pierdes 1 punto.' + 'Tu puntuación actual es de ' + points + ' puntos.')
 				}
 			}else{}
 		}
-		if(respostes === questions.length){
+		if(answers === questions.length){
 			window.alert('Ya has respondido a todas las preguntas... y tu puntuación es de ... ' + points + ' puntos!');	
 			showPoints();
 		}else{
 			window.alert('Vamos a por la siguiente ronda!')
-			nuevaRonda();
+			newRound();
 		}	
 		
 	}
 
-	function nuevaRonda(){
-		preguntes();
+	function newRound(){
+		question();
 	}
 
 	function showPoints(){
-		window.alert(name + '. ' + aciertos + ' aciertos. ' + points + ' puntos.')
+		window.alert(name + '. ' + success + ' success. ' + points + ' puntos.')
 		showRanking();
 	}
-	players[jugadas].name = name;
-	players[jugadas].aciertos = aciertos;
+	players[game].name = name;
+	players[game].success = success;
 	function showRanking(){
 		window.alert(players);
 		var confirmation = window.confirm('Si quieres seguir jugando aprieta OK');
