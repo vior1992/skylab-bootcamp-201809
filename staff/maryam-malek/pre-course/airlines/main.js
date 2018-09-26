@@ -1,5 +1,3 @@
-project2.js
-
 //Skylab Airlines!
 
 //Programa una inferfaz de usuario para una aerolinea (por terminal...). Esta aerolinea dispondrá de 10 vuelos para el dia de hoy, para empezar, estos vuelos estarán declarados de manera global, cuando se llame a la función:
