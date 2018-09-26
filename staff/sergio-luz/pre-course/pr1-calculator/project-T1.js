@@ -18,15 +18,10 @@ function Sistema(){
 }
 //-//
 function RealizarOperacion(){
-	var bool=true;
-	i=0;
-	while (bool==true){
+	var res="";
+	do{
 		CaptarDatos();
-		var res=PreguntaContinuar();
-		if(res=="N"){	
-			break;
-		}
-	}
+	}while(res!=="N");
 }
 //-//
 function CaptarDatos(){
