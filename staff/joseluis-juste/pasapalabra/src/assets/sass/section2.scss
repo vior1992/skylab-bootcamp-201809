@@ -1,0 +1,85 @@
+.section2{
+	background-color: $section2-back-color;
+	width: 888px;
+	.header{
+		& > p{
+			span{
+				color: gold;
+			}
+			//opacity: 0.7;
+			display: inline-block;
+			font-size: 0.7em;
+			color:white;
+			width: 79%;
+			margin: 0;
+	    	text-align: center;
+	    	line-height: 39px;
+	    	margin-left: 1em;
+	    	
+		}
+		& > a{
+			display: inline-block;
+			line-height: 10px;
+			margin-left: 1em;
+			&:hover{
+				cursor:pointer;
+			}
+		}
+	}
+	
+	.grid{
+		padding: 0 0.5em;
+		text-align: center;
+		.last-row{
+			text-align: left;
+			margin-left: 16px;
+		}
+		.card{
+			width:135px;
+			height: 172px;
+			margin-left: 6px;
+			background-color: $card-background-color;
+			border-radius: 8px;
+			margin-bottom: 6px;
+			color: $color-text;
+			text-align: center;
+			font-size: 4em;
+			font-weight: bolder;
+			line-height: 2.8em;
+			display: inline-block;
+			border-style:outset;
+			&:hover{
+				cursor:pointer;
+			}
+			&.inf{
+				cursor:default;
+				border-style:unset;
+				color:white;
+				font-size: 0.7em;
+				padding: 0.2em 0.3em;
+				p{
+					margin:0;
+					line-height: 23px;
+					&:first-child{
+						text-align: left;
+	    				margin-bottom: 0.3em;
+	    				border-bottom: 1px solid #F3764A;
+						span{
+							color: $color-text;
+						    margin-right: 0.5em;
+						}
+					}
+					&.inf-text-card{
+						font-size: 2em;
+						font-family: digital;
+						letter-spacing: 2px;
+					}
+				}
+			}
+			&:nth-child(6n + 1){
+				margin-left: 0;
+			}
+		}
+		
+	}
+}

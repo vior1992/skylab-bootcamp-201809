@@ -1,0 +1,57 @@
+html {
+  margin: 0;
+  height: 100vh; }
+
+body {
+  margin: 0; }
+
+table {
+  border: 1px solid black; }
+  table td, table th {
+    border: 1px solid black; }
+
+section {
+  overflow: hidden; }
+
+p {
+  margin-bottom: 0; }
+
+form input[type=submit] {
+  margin-top: 1em; }
+
+a {
+  color: blue; }
+
+.wrapper {
+  width: 37%;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 0 3em 1em 3em; }
+
+.logo {
+  margin-top: 1em; }
+  .logo div {
+    width: 277px;
+    height: 144px; }
+
+.about span {
+  color: #FAA62F; }
+
+.sign-up .group-field {
+  margin-bottom: 0.5em; }
+
+footer {
+  overflow: hidden; }
+  footer ul {
+    padding-left: 0; }
+    footer ul li {
+      display: inline-block;
+      padding-right: 3px;
+      padding-left: 6px;
+      border-left: 1px solid blue; }
+      footer ul li a {
+        display: block; }
+      footer ul li:first-child {
+        border-left: 0;
+        padding-left: 0px;
+        padding-right: 3px; }

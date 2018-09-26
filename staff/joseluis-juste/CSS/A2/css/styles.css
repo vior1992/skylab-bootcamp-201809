@@ -1,0 +1,217 @@
+html {
+  margin: 0;
+  height: 100vh; }
+
+body {
+  margin: 0; }
+
+a {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  width: 105px;
+  height: 38px;
+  text-align: center;
+  line-height: 36px;
+  border-radius: 3px;
+  color: white;
+  font-weight: 300; }
+
+.group {
+  overflow: hidden; }
+  .group div {
+    width: 38%;
+    margin: 0 auto;
+    margin-top: 2em; }
+
+.group1 div:first-child {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .group1 div:first-child a:nth-child(1) {
+    background-color: #EAEAEA;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #000000; }
+  .group1 div:first-child a:nth-child(2) {
+    background-color: #5C9DED;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white; }
+  .group1 div:first-child a:nth-child(3) {
+    background-color: #42CB6E;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white; }
+  .group1 div:first-child a:nth-child(4) {
+    background-color: #4EC2E8;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white; }
+  .group1 div:first-child a:nth-child(5) {
+    background-color: #FCCE54;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white; }
+  .group1 div:first-child a:nth-child(6) {
+    background-color: #ED5463;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white; }
+.group1 div:last-of-type {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .group1 div:last-of-type a:nth-child(1) {
+    border: 1px solid rgba(181, 171, 172, 0.7);
+    color: rgba(181, 171, 172, 0.7); }
+  .group1 div:last-of-type a:nth-child(2) {
+    border: 1px solid #5C9DED;
+    color: #5C9DED; }
+  .group1 div:last-of-type a:nth-child(3) {
+    border: 1px solid #42CB6E;
+    color: #42CB6E; }
+  .group1 div:last-of-type a:nth-child(4) {
+    border: 1px solid #4EC2E8;
+    color: #4EC2E8; }
+  .group1 div:last-of-type a:nth-child(5) {
+    border: 1px solid #FCCE54;
+    color: #FCCE54; }
+  .group1 div:last-of-type a:nth-child(6) {
+    border: 1px solid #ED5463;
+    color: #ED5463; }
+
+.group2 div:first-child {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .group2 div:first-child a:nth-child(1) {
+    background-color: #EAEAEA;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #000000;
+    border-radius: 22px; }
+  .group2 div:first-child a:nth-child(2) {
+    background-color: #5C9DED;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 22px; }
+  .group2 div:first-child a:nth-child(3) {
+    background-color: #42CB6E;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 22px; }
+  .group2 div:first-child a:nth-child(4) {
+    background-color: #4EC2E8;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 22px; }
+  .group2 div:first-child a:nth-child(5) {
+    background-color: #FCCE54;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 22px; }
+  .group2 div:first-child a:nth-child(6) {
+    background-color: #ED5463;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 22px; }
+.group2 div:last-of-type {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .group2 div:last-of-type a:nth-child(1) {
+    border: 1px solid rgba(181, 171, 172, 0.7);
+    color: rgba(181, 171, 172, 0.7);
+    border-radius: 22px; }
+  .group2 div:last-of-type a:nth-child(2) {
+    border: 1px solid #5C9DED;
+    color: #5C9DED;
+    border-radius: 22px; }
+  .group2 div:last-of-type a:nth-child(3) {
+    border: 1px solid #42CB6E;
+    color: #42CB6E;
+    border-radius: 22px; }
+  .group2 div:last-of-type a:nth-child(4) {
+    border: 1px solid #4EC2E8;
+    color: #4EC2E8;
+    border-radius: 22px; }
+  .group2 div:last-of-type a:nth-child(5) {
+    border: 1px solid #FCCE54;
+    color: #FCCE54;
+    border-radius: 22px; }
+  .group2 div:last-of-type a:nth-child(6) {
+    border: 1px solid #ED5463;
+    color: #ED5463;
+    border-radius: 22px; }
+
+.group3 div:first-child {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .group3 div:first-child a:nth-child(1) {
+    background-color: #EAEAEA;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #000000;
+    border-radius: 22px; }
+  .group3 div:first-child a:nth-child(2) {
+    background-color: #5C9DED;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 22px; }
+  .group3 div:first-child a:nth-child(3) {
+    background-color: #42CB6E;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 22px; }
+  .group3 div:first-child a {
+    width: 85px;
+    line-height: 25px;
+    height: 29px; }
+  .group3 div:first-child a:nth-child(n + 2) {
+    margin-left: 15px; }
+
+.group4 div {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .group4 div a:nth-child(1) {
+    border: 1px solid #4EC2E8;
+    color: white;
+    border-radius: 15px;
+    background-color: #4EC2E8;
+    font-size: 2em;
+    width: 144px;
+    height: 67px;
+    line-height: 61px; }
+  .group4 div a:nth-child(2) {
+    border: 1px solid #FCCE54;
+    color: white;
+    border-radius: 15px;
+    background-color: #FCCE54;
+    font-size: 2em;
+    width: 144px;
+    height: 67px;
+    line-height: 61px; }
+  .group4 div a:nth-child(3) {
+    border: 1px solid #ED5463;
+    color: white;
+    border-radius: 15px;
+    background-color: #ED5463;
+    font-size: 2em;
+    width: 144px;
+    height: 67px;
+    line-height: 61px; }
+  .group4 div a:nth-child(n + 2) {
+    margin-left: 15px; }
