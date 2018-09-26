@@ -23,7 +23,7 @@ function RealizarOperacion(){
 	while (bool==true){
 		CaptarDatos();
 		var res=PreguntaContinuar();
-		if(res=="N"){	
+		if(res=="n"){	
 			break;
 		}
 	}
