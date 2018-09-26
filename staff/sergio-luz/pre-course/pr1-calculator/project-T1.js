@@ -18,9 +18,10 @@ function Sistema(){
 }
 //-//
 function RealizarOperacion(){
-	var res="";
+	var res=PreguntaContinuar();
 	do{
 		CaptarDatos();
+		res=PreguntaContinuar();
 	}while(res!=="N");
 }
 //-//
