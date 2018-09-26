@@ -1,0 +1,53 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<h1>Cuenta atras para redireccionar</h1>
+<div id="click" onclick="mastexto2()">click me to see instructions!</div>
+
+<h2 id='CuentaAtras'>4</h2>
+<p id="text">Hola, bienvenido!</p>
+<button id="start" onclick="start()">Start</button>
+<button id="stop" onclick="stop()">Stop</button>
+
+
+
+<script language="JavaScript">
+
+
+  function mastexto2() {
+  var newtext2 = "Bienvenido a Pasapalabra! <br /> <br />Tienes 140 segundos para contestar, pudiendo parar y reanudar cuando quieras clicando los botones Stop y Start. <br /> En las preguntas que no sepas puedes escribir 'pasapalabra', o usar tecla 'espacio' 2 veces, para dejarla para la siguiente ronda.";
+  document.getElementById("text").innerHTML = newtext2;
+  document.getElementById("click").style.visibility = "hidden";
+}
+
+
+/* Determinamos el tiempo total en segundos */
+var totalTiempo=4;
+var t;
+/* Determinamos la url donde redireccionar */
+
+function updateReloj() {
+  document.getElementById('CuentaAtras').innerHTML = totalTiempo;
+  totalTiempo-=1;
+  t = setTimeout(updateReloj, 1000);
+
+      if(totalTiempo<=0) {
+        totalTiempo = 0;
+        document.getElementById("text").innerHTML = "Se acabó el tiempo!!";
+      }
+}
+
+function start() {
+  updateReloj()
+}
+
+function stop() {
+  clearTimeout(t);
+}
+
+</script>
+</body>
+</html>
