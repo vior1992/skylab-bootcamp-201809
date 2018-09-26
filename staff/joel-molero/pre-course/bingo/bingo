@@ -43,7 +43,6 @@ function genCarton(){
 	numero(),
 	numero(),
 	numero()];
-return;
 };
 
 
@@ -82,8 +81,8 @@ function newCarton(){
 	genCarton();
 	console.log(carton);
 	var confirm = prompt("Quieres generar un nuevo carton?").toLowerCase();
-	if (confirm==="si"){newCarton()}								
-	else if (confirm==="no"){return;}
+	if (confirm==="si"||confirm==="yes"){newCarton()}					
+	else if (confirm==="no"){;}
 };
 
 
@@ -91,7 +90,7 @@ function newTurno(){
 	newNum = 0;
 	newNum = numero2();
 	var pregunta = prompt("Numero "+newNum+". Lo tienes?").toLowerCase();
-    if (pregunta==="si"){
+    if (pregunta==="si"||confirm==="yes"){
     	if (carton.includes(newNum)){
     		carton.splice(carton.indexOf(newNum), 1, "X");
     		console.log(carton);
