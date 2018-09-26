@@ -1,0 +1,33 @@
+{
+    "name": "skylab-precurs",
+    "version": "4.2.3",
+    "description": "Precurs Skylab",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/skylablogo.icns --prune=true --out=release-builds",
+        "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/skylablogo.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Skylab Precurs\"",
+        "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/skylablogo.png --prune=true --out=release-builds"
+    },
+    "keywords": [
+        "skylab",
+        "precurs"
+    ],
+    "author": "Aleix Caminal",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aleixcam/skylab-precurs"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "bootstrap": "^4.1.1",
+        "electron": "^2.0.3",
+        "jquery": "^3.3.1",
+        "popper.js": "^1.14.3",
+        "xmlhttprequest": "^1.8.0",
+        "electron-default-menu": "^1.0.0"
+    },
+    "devDependencies": {
+        "electron-packager": "^12.1.2"
+    }
+}

@@ -1,0 +1,76 @@
+<div id="bingo" class="container">
+    <div class="tab-content">
+        <div id="step1" class="tab-pane fade show active" role="tabpanel">
+            <div class="row">
+                <div class="col">
+                    <div class="pb-2 mt-4 mb-2 border-bottom">
+                        <h2>Bingo</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <form id="bingo_form">
+                        <div class="form-group">
+                            <label for="username">Nom del jugador</label>
+                            <input id="username" type="text" class="form-control" name="username">
+                        </div>
+                        <h4>Normes de puntuació:</h4>
+                        <ul>
+                            <li>Per cada casella els punts seran 15 entre el número de torns sense cap casella nova</li>
+                            <li>Per cada linia els punts seran 5000 entre el número de torns sense cap linia nova</li>
+                            <li>Bingo! donará 50000 punts entre el número de torns de duració del joc</li>
+                        </ul>
+                        <button class="btn btn-primary float-right" type="submit">Continuar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="step2" class="tab-pane fade" role="tabpanel">
+            <div class="row">
+                <div class="col">
+                    <div id="bingo_ball"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div id="card_confirm" class="form-group d-none">
+                        <label>T'agrada aquesta carta?</label>
+                        <button class="btn btn-outline-danger btn-block" onclick="newCard()">No...</button>
+                        <button class="btn btn-outline-success btn-block" onclick="startGame()">Sí!</button>
+                    </div>
+                    <div id="bingo_card"></div>
+                    <div id="bingo_turn"></div>
+                    <div id="bingo_shoutout"></div>
+                    <div id="ball_confirm" class="form-group d-none">
+                        <label>Vols continuar?</label>
+                        <button class="btn btn-outline-danger btn-block" onclick="loadBody('bingo')">No</button>
+                        <button class="btn btn-outline-success btn-block" onclick="newTurn()">Següent bola</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="step3" class="tab-pane fade" role="tabpanel">
+            <div class="row">
+                <div class="col">
+                    <div class="pb-2 mt-4 mb-2 border-bottom">
+                        <h2>Bingo</h2>
+                    </div>
+                </div>
+            </div>
+
+            <h1 id="bingo_score"></h1><br>
+            <div id="bingo_scoreboard"></div>
+            <div id="bingo_confirm" class="form-group">
+                <label>Vols tornar a jugar?</label>
+                <button class="btn btn-outline-danger btn-block" onclick="loadBody('bingo')">No</button>
+                <button class="btn btn-outline-success btn-block" onclick="changeTab(3, 2, function(){newGame()})">Sí</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>script('bingo');</script>

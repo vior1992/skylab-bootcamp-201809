@@ -1,0 +1,367 @@
+
+/********************************************************************************/
+/**** FONTS *********************************************************************/
+/********************************************************************************/
+
+@font-face {
+    font-family: 'Final Frontier Old Style';
+    src: url('src://common/fonts/Final Frontier Old Style.ttf');
+}
+
+/********************************************************************************/
+/**** RENDERER ******************************************************************/
+/********************************************************************************/
+
+#sidenav_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100%;
+}
+
+#sidenav_wrapper .sidenav {
+    width: auto;
+    height: 100%;
+    padding: 10px;
+    background-color: #333;
+    overflow-y: scroll;
+}
+
+#sidenav_wrapper .sidenav button {
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 50%;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#sidenav_wrapper .sidenav button:hover,
+#sidenav_wrapper .sidenav button.active {
+    transition: all .2s ease;
+    border-radius: 15px;
+}
+
+#sidenav_wrapper .sidenav button:focus {
+    outline: none;
+}
+
+#content_renderer {
+    position: fixed;
+    top: 0;
+    left: 80px;
+    overflow-x: auto;
+    width: calc(100% - 80px);
+    height: 100%;
+    padding-bottom: 15px;
+}
+
+
+/********************************************************************************/
+/**** HOME **********************************************************************/
+/********************************************************************************/
+
+#home {
+    font-family: "overlook", "Open Sans", Arial, sans-serif;
+}
+
+#home img {
+    width: 200px;
+}
+
+#home h1 {
+    font-size: 86px;
+    text-transform: uppercase;
+}
+
+#home h1 span {
+    color: #0791d0;
+}
+
+#home p {
+    margin: -24px 0 0 0;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+/********************************************************************************/
+/**** AIRLINE *******************************************************************/
+/********************************************************************************/
+
+#airline #airline_cost {
+    position: absolute;
+    bottom: 60px;
+    right: 60px;
+}
+
+
+/********************************************************************************/
+/**** BINGO *********************************************************************/
+/********************************************************************************/
+
+#bingo #bingo_ball .ball {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 15px auto 5px;
+    background-color: #eaeaea;
+    border-radius: 50%;
+    box-shadow: inset -15px -15px 30px rgba(0, 0, 0, .5);
+    text-align: center;
+    line-height: 80px;
+    font-size: 40px;
+}
+
+#bingo #bingo_card table {
+    width: 100%;
+    max-width: 512px;
+    margin: 5px auto 15px;
+    border: 2px solid #000;
+    font-family: "Arial Black";
+}
+
+#bingo #bingo_card table thead tr th {
+    background-color: #000;
+    color: #FFF;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    text-indent: 15px;
+    letter-spacing: 15px;
+}
+
+#bingo #bingo_card table tbody tr td {
+    width: 20%;
+    position: relative;
+    vertical-align: middle;
+}
+
+#bingo #bingo_card table tbody tr td:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+
+#bingo #bingo_card table tbody tr td span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 4em;
+    border: 2px solid #000;
+}
+
+#bingo #bingo_shoutout {
+    margin: 10px 0;
+    text-align: center;
+    text-indent: 20px;
+    letter-spacing: 20px;
+    font-family: "Arial Black";
+    font-size: 52px;
+}
+
+
+/********************************************************************************/
+/**** ALPHABET ******************************************************************/
+/********************************************************************************/
+
+#alphabet #alphabet_form input,
+#alphabet #alphabet_form button,
+#alphabet #alphabet_circle .letter,
+#alphabet #alphabet_timer,
+#alphabet #alphabet_hits,
+#alphabet #alphabet_question label,
+#alphabet #alphabet_question input {
+    font-family: 'Arial Black';
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#alphabet #alphabet_form button,
+#alphabet #alphabet_circle .letter,
+#alphabet #alphabet_timer,
+#alphabet #alphabet_hits,
+#alphabet #alphabet_question label {
+    background-color: #1E90FF;
+    box-shadow: inset 0 5px 20px rgba(0, 0, 0, .5);
+    border-radius: 50%;
+    border: 2px solid #FFF;
+    color: #FFF;
+    transition: all .2s linear;
+}
+
+#alphabet.in-game {
+    height: 100vh;
+    background-image: url('src://common/img/spock.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    max-width: none;
+    margin-bottom: -15px;
+}
+
+#alphabet.in-game .tab-pane {
+    height: 100vh;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#alphabet .title {
+    margin: 20px 0 0;
+    color: #2B53A7;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 72px;
+    font-family: 'Final Frontier Old Style', 'Arial Black';
+}
+
+#alphabet .title span {
+    color: #C1C730;
+}
+
+#alphabet .intro {
+    font-weight: bold;
+}
+
+#alphabet .outro {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#alphabet #alphabet_form input,
+#alphabet #alphabet_form button {
+    height: 80px;
+    border-radius: 0;
+    font-size: 20px;
+}
+
+#alphabet #alphabet_form input {
+    width: 240px;
+    padding: 0.75rem 1.25rem 0.75rem 1.75rem;
+    border: #2B53A7 solid;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    text-align: right;
+    text-transform: none;
+}
+
+#alphabet #alphabet_form input.is-invalid {
+    border-color: #D82727;
+}
+
+#alphabet #alphabet_form button {
+    padding: 0.75rem 1.75rem 0.75rem 1.25rem;
+    border: 0;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    transition: all .4s linear;
+}
+
+#alphabet #alphabet_form button:hover {
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+#alphabet #alphabet_circle {
+    position: relative;
+    width: 85vh;
+    height: 85vh;
+    margin: 0 auto;
+    transform: rotate(-90deg);
+}
+
+#alphabet #alphabet_circle > * {
+    position: absolute;
+}
+
+#alphabet  #alphabet_circle .letter {
+    width: 36px;
+    height: 36px;
+    line-height: 32px;
+    font-size: 18px;
+    transform: rotate(90deg);
+}
+
+#alphabet #alphabet_form button:hover,
+#alphabet  #alphabet_circle .letter.active {
+    background-color: #00376C;
+}
+
+#alphabet  #alphabet_circle .letter.hit {
+    background-color: #00D800;
+}
+
+#alphabet  #alphabet_circle .letter.fail {
+    background-color: #D82727;
+}
+
+#alphabet #alphabet_timer,
+#alphabet #alphabet_hits,
+#alphabet #alphabet_question {
+    position: absolute;
+    bottom: 20px;
+    height: 80px;
+}
+
+#alphabet #alphabet_timer,
+#alphabet #alphabet_hits {
+    width: 80px;
+    line-height: 76px;
+    font-size: 26px;
+}
+
+#alphabet #alphabet_timer{
+    left: 20px;
+}
+
+#alphabet #alphabet_hits {
+    right: 20px;
+}
+
+#alphabet #alphabet_question {
+    width: calc(100% - 240px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+#alphabet #alphabet_question label,
+#alphabet #alphabet_question input {
+    height: 40px;
+    margin: 0;
+    border-radius: 0;
+}
+
+#alphabet #alphabet_question label {
+    display: flex;
+    padding: 0 1.5rem;
+    border-bottom: 0;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    font-size: 13px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+#alphabet #alphabet_question input {
+    padding: .375rem 1.5rem;
+    border: 0;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    font-size: 20px;
+}
+
+#alphabet #alphabet_form input:focus,
+#alphabet #alphabet_form button:focus,
+#alphabet #alphabet_question input:focus {
+    outline: none;
+}

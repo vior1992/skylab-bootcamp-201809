@@ -1,0 +1,72 @@
+<div id="alphabet" class="container">
+    <div class="row">
+        <div class="col">
+            <div class="tab-content">
+                <div id="step1" class="tab-pane fade show active" role="tabpanel">
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="title">Memory Alpha<span>bet</span></h2>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col col-md-10 col-lg-8">
+                            <p class="intro">
+                                Space: the final frontier. These are the voyages of the Star Trek universe.
+                                Your three-minute mission: to test your acknowledgement about strange new worlds, new life and new civilizations.
+                            </p>
+                            <p>
+                                Welcome to Memory Alphabet, a game based on a famous television contest.
+                                Rules are simple: you will be given a letter and definition and you will have to answer the word that corresponds to it.
+                            <p>
+                            </p>
+                                There are a few commands that you can use: answer 'pasapalabra' or leave the input empty to skip a word and answer it later,
+                                answer 'end' and the game will end but it will not count in the ranking.
+                            <p>
+                            </p>
+                                You have three minutes to complete the questionary.
+                            </p>
+                            <p class="outro"><i>...to boldly go where no one has gone before.</i></p>
+                        </div>
+                    </div>
+
+                    <form id="alphabet_form" class="form-inline justify-content-center">
+                        <div class="input-group">
+                            <input id="username" type="text" name="username" placeholder="Captain's name">
+                            <div class="input-group-append">
+                                <button type="submit">Start</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="step2" class="tab-pane fade" role="tabpanel">
+                    <div id='alphabet_circle'></div>
+                    <div id="alphabet_timer"></div>
+                    <div id="alphabet_question" class="form-group">
+                        <label for="answer"></label>
+                        <input id="answer" type="text" class="form-control" name="answer">
+                    </div>
+                    <div id="alphabet_hits"></div>
+                </div>
+
+                <div id="step3" class="tab-pane fade" role="tabpanel">
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="title">Captain's log</h2>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col col-md-10 col-lg-6">
+                            <div id='alphabet_results'></div><br>
+                            <div id="alphabet_scoreboard"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>script('alphabet');</script>
