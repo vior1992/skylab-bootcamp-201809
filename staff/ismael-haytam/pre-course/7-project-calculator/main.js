@@ -26,8 +26,8 @@ function pressed(key) {
 
     if (key === '=') {
         if (incompleteOperation) return;
-        let TotalSigns = signs.filter(sign => operation.indexOf(sign) !== -1).length;
-        if (TotalSigns === 0) return print(Math.sqrt(operation));
+        let totalSigns = signs.filter(sign => operation.indexOf(sign) !== -1).length;
+        if (totalSigns === 0) return print(Math.sqrt(operation));
         return print(eval(operation));
     }
     

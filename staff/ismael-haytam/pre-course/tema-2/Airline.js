@@ -9,7 +9,7 @@
     los ultimos 5 vuelos... muestra al usuario sus destinos
 */
 
-function Flights(flights) {
+function Airline(flights) {
 
     this.flights = flights;
 
@@ -63,7 +63,7 @@ let flightsInfo = [
     {id: 9, to: "Tel-Aviv", from: "Madrid", cost: 150,scale: false}
 ];
 
-let flights = new Flights(flightsInfo);
+let flights = new Airline(flightsInfo);
 
 flights.clientName();
 flights.information();

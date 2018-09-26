@@ -123,8 +123,8 @@ separateSurnameBySlash('Ismael Haytam Tanane');
 
 function positionOfEachLetterOfTheName (fullName) {
     let result = [];
-    fullName = fullName.replace('Tanane', '');
-    fullName.split(' ').join('').toUpperCase().split('').forEach((l, i) => result.push(`${i + 1}º ${l}`));
+    let name = fullName.replace('Tanane', '');
+    name.split(' ').join('').toUpperCase().split('').forEach((l, i) => result.push(`${i + 1}º ${l}`));
     return console.log(result.join(', '));
 }
 
@@ -282,7 +282,7 @@ showUnreperited('Ismael Haytam Tanane');
 
 // a) Que hora es? Declara la hora como número y devuelvela como String
 
-let currentTime = (time) => console.log(`I'ts ${time.toString()} of morning`);
+let currentTime = time => console.log(`I'ts ${time.toString()} of morning`);
 
 currentTime(10.45);
 
@@ -292,7 +292,7 @@ currentTime(10.45);
 
 // b) Nono, que hora exactamente? Dime la hora sin minutos!
 
-let justHour = (time) => console.log(`I'ts ${parseInt(time)} of morning`);
+let justHour = time => console.log(`I'ts ${parseInt(time)} of morning`);
 
 justHour(10.45);
 
@@ -302,7 +302,7 @@ justHour(10.45);
 
 // c) Ahora, declara tu hora y muéstrala redondeada.
 
-let currentHour = (date) => console.log(Math.round(Number(`${date.getHours()}.${date.getMinutes()}`)));
+let currentHour = date => console.log(Math.round(Number(`${date.getHours()}.${date.getMinutes()}`)));
 
 currentHour(new Date());
 
