@@ -42,7 +42,7 @@ function airlinesGeneral(){
 				var scaleMessage = "doesn't make any scale."
 			}
 			
-			console.log("The flight with origin: " + flights[i].from + ' to: ' + flights[i].to + ' costs: ' + flights[i].cost + '€ and ' + scaleMessage)
+			console.log("The flight with origin: " + flights[i].from + " to: " + flights[i].to + " costs: " + flights[i].cost + "€ and " + scaleMessage)
 		}
 	}
 
@@ -65,7 +65,7 @@ function airlinesGeneral(){
 		console.log('Next flights are the ones with scales:')
 		for (var i=0; i<flights.length; i++){
 			if(flights[i].scale == true){
-			    console.log("The flight with origin: " + flights[i].from + ' to: ' + flights[i].to + ' and cost: ' + flights[i].cost + '€.')	
+			    console.log("The flight with origin: " + flights[i].from + " to: " + flights[i].to + " and cost: " + flights[i].cost + "€.")	
 			}
 		}
 	}
@@ -80,7 +80,7 @@ function airlinesGeneral(){
 				var scaleMessage = "doesn't make any scale."
 			}
 			
-			console.log("The flight with origin: " + flights[i].from + ' to: ' + flights[i].to + ' costs: ' + flights[i].cost + '€ and ' + scaleMessage)
+			console.log("The flight with origin: " + flights[i].from + " to: " + flights[i].to + " costs: " + flights[i].cost + "€ and " + scaleMessage)
 		}
 	}
 	showLastsFlights(flights);

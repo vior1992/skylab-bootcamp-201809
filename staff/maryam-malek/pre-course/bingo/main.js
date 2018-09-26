@@ -72,10 +72,10 @@ function bingoGame(){
 	function askTurn(){
         var xCounter = 0;
         for(var i = 0; i< bingoCard.length; i++){
-            if(bingoCard[i].matched === false){
+            if(!bingoCard[i].matched){
                 var confirmation = confirm('Do you want to continue playing?')
                 //var tx;
-                if(confirmation === true){
+                if(confirmation){
                     newTurn();
                 }else{
                     //tx = "Ok, so let's see you in another ocasion!"
@@ -91,7 +91,7 @@ function bingoGame(){
             if(xCounter === bingoCard.length){
                 var newGame = confirm("You've finished your scoreboard! YOU WIN!!" + '\n' + 'Do you want to play again?')
                 //var txt;
-                if(newGame === true){
+                if(newGame){
                     bingoGame();
                 }else{
                     //txt = "Ok, so let's see you in another ocasion!"
@@ -103,7 +103,7 @@ function bingoGame(){
             }else if(xCounter === (bingoCard.length)/2){
                 if((bingoCard[0].matched && bingoCard[1].matched && bingoCard[2].matched && bingoCard[3].matched && bingoCard[4].matched) || (bingoCard[5].matched && bingoCard[6].matched && bingoCard[7].matched && bingoCard[8].matched && bingoCard[9].matched)){
                     var newLine = confirm("LINE!!! You are so lucky!" + '\n' + 'Do you want to continue playing?')
-                    if(newGame === true){
+                    if(newGame){
                     askTurn();
                     }else{
                         window.close();
