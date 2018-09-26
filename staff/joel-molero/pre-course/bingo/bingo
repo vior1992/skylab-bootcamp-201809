@@ -27,22 +27,9 @@ var carton = [0,
 
 function genCarton(){
 	values = [];
-	carton = [];
-	carton = [numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero(),
-	numero()];
+	for(j=0;j<carton.length;j++){
+		carton[j] = numero()
+	};
 };
 
 
