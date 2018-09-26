@@ -217,7 +217,7 @@ function bingo() {
 
         if (areArrsMatch(line, card15) && countA !== 0) {
             countA = 0;
-            if (countB == 0 && countC == 0) {
+            if (countB === 0 && countC === 0) {
 
                 matchN.innerHTML = 'BINGO!!!';
                 status = 'win';
@@ -235,7 +235,7 @@ function bingo() {
 
         } else if (areArrsMatch(line, card510) && countB !== 0) {
             countB = 0;
-            if (countA == 0 && countC == 0) {
+            if (countA === 0 && countC === 0) {
 
                 matchN.innerHTML = 'BINGO!!!';
                 status = 'win';
@@ -252,7 +252,7 @@ function bingo() {
         } else if (areArrsMatch(line, card1015) && countC !== 0) {
 
             countC = 0;
-            if (countB == 0 && countA == 0) {
+            if (countB === 0 && countA === 0) {
 
                 matchN.innerHTML = 'BINGO!!!';
                 status = 'win';
