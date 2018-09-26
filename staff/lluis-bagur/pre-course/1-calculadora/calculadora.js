@@ -15,15 +15,12 @@ console.log("Los valores introducidos son: "+num1+" y "+num2);
 
 if (check1 === false && check2 === false) {
 
-	if (num1 === undefined || num2 === undefined){ //Comprobamos que uno de los dos esté en blanco
-
-			if (num1 === undefined) {	// si es el num1 mostrar raiz cuadrada de num2
-
-				console.log("Esta es la raiz quadrada de " + num2 + " = " + Math.sqrt(num2));
-			}
-			else {				// si es del num2 mostrar raiz cuadrada de num1
-				console.log("Esta es la raiz quadrada de " + num1 + " = " + Math.sqrt(num1));
-			}	
+		if (num1 === undefined) {	// si es el num1 mostrar raiz cuadrada de num2
+			console.log("Esta es la raiz quadrada de " + num2 + " = " + Math.sqrt(num2));
+		}
+		else if(num2 === undefined) {				// si es del num2 mostrar raiz cuadrada de num1
+			console.log("Esta es la raiz quadrada de " + num1 + " = " + Math.sqrt(num1));
+		}	
 
 	}
 
