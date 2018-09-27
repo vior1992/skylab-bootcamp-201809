@@ -1,0 +1,57 @@
+/* Mobile first */
+
+body{
+    background-color: lightblue;
+    
+}
+
+
+h1,h2,h3{
+    text-decoration: underline;
+}
+
+h1, h2, h3{
+    display: flex;
+    justify-content: center;
+}
+.name{
+    display: flex;
+    justify-content: center;
+}
+
+address{
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+
+
+/*DESKTOP*/
+@media screen and (min-width: 768px){ 
+
+
+
+body{
+    background-color: orange;
+    }
+.info{
+    display: grid;
+    grid-template-columns: 30%;
+    z-index: -1;
+}
+.experience{
+    position: absolute;
+    top: 15%;
+    left: 10%;
+   
+
+    }
+
+}
