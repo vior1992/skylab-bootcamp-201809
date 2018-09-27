@@ -1,0 +1,77 @@
+
+* {
+    box-sizing: border-box;
+}
+/* Remove outline shadow when button click */
+.btn:focus, .btn:active, .btn.active, .btn:focus:active {
+    background-image: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+h1 {
+    font-size: 3em;
+    color: steelblue;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 200px auto 0 auto;
+    width: 30%;
+    text-align: center;
+
+}
+
+.show {
+    background: url('divzero.gif');
+}
+
+
+#container {
+    width: 30%;
+    max-width: 200px;
+    margin: 25px auto;
+    border: 1px solid black;
+
+}
+
+
+
+
+#container form input {
+    width: 100%;
+    height: 50px;
+    margin-left: 0;
+    background-color: black;
+    color: white;
+}
+
+#container #buttons {
+    font-size: 0
+}
+
+
+
+#container #buttons button {
+    width: 25%;
+    height: 40px;
+    transition: hover 0.3s;
+}
+
+button:hover {
+    background-color: steelblue !important; 
+    
+}
+
+
+
+
+.selected {
+    background-color: rgb(7, 139, 18) !important; 
+}
+
+
+#container #buttons .operator, .sqrt{
+    background-color: rgb(255, 153, 0); 
+
+} 
+
