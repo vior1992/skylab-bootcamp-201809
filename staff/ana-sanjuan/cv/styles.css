@@ -1,0 +1,19 @@
+body {
+    box-sizing: border-box;
+    margin: 5%
+}
+
+section {
+    margin: 10% 2%;
+    border: solid 5px rgb(176, 177, 176);
+    padding: 5%;
+}
+
+header {
+    text-align: left;
+}
+
+#picture {
+    display: float;
+    float: right;
+}
