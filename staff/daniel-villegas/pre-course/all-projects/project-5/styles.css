@@ -1,0 +1,349 @@
+* {
+
+	font-family: 'Gamja Flower', cursive;
+}
+
+body {
+
+	background-image: url("simpson.jpg"); 
+	background-attachment: fixed;
+	background-position: center center;
+	background-size: cover;
+}
+
+#title {
+
+	background-image: url("nube.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+    background-size: auto;
+    border-radius: 100px;
+	border: 2px transparent;
+	font-size: 76px;
+	text-align: center;
+	color: #ffe600;
+	background-color: rgba(255,255,255,0.5);
+    font-family: 'Gamja Flower', cursive;
+	
+}
+
+#buttons {
+
+	margin-top: 2.5%;
+	margin-left: 44%;
+	text-align: center;
+	border-right: 100%;
+	display: inline-block;
+}
+
+.play {
+
+    border-radius: 12px;
+    background-color: #00cc44;
+    opacity: 0.8;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+	border-radius: 100px;
+	border: 2px solid white;
+	font-size: 34px;
+	
+}
+
+.cancel {
+
+	border-radius: 12px;
+    background-color: #cc0000;
+    opacity: 0.8;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+	border-radius: 100px;
+	border: 2px solid white;
+	font-size: 34px;
+  
+}
+
+#questions {
+
+	background-color: black;
+	opacity: 0.8;
+	margin-top: 5%;
+	border-radius: 10px;
+	border: 2px solid white;
+	text-align: center;
+	color: white;
+	font-size: 26px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+#answerDiv {
+
+	text-align: center;
+	font-size: 21px;
+	
+}
+
+#answer {
+
+	display: inline-block;
+	font-size: 21px;
+	margin-top: 5%;
+    margin-left: 5%;
+	
+}
+
+#ButtonAnswer {
+	
+	display: inline-block;
+	font-size: 21px;
+	
+}
+
+#info {
+
+	margin-left: 10%;
+	margin-top: 2.5%;
+	display: inline-block;
+	text-align: center;
+	font-size: 35px;
+}
+
+#time {
+
+	background-image: url("nube.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: inline-block;
+	width: 250px;
+	height: 44px;
+    border-radius: 10px;
+	border: 2px solid white;
+	color: white;
+
+}
+
+
+#winLoseForanswer {
+
+	display: inline-block;
+	text-align: center;
+	font-size: 35px;
+	
+}
+
+#wins {
+
+	background-image: url("nube.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: inline-block;
+	width: 250px;
+	height: 44px;
+    border-radius: 10px;
+	border: 2px solid white;
+	color: white;
+	
+}
+
+#fails {
+
+	background-image: url("nube.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: inline-block;
+	width: 250px;
+	height: 44px;
+    border-radius: 10px;
+	border: 2px solid white;
+	color: white;
+	
+}
+
+#forAnswer {
+
+	background-image: url("nube.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: inline-block;
+	width: 250px;
+	height: 44px;
+    border-radius: 10px;
+	border: 2px solid white;
+	color: white;
+	
+}
+
+#globalLetters1 {
+
+	background-image: url("nubeInvertida.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+    border-radius: 100px;
+	border: 2px transparent;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 30px;
+	margin-right: 30px;
+
+}
+
+#globalLetters2 {
+
+	background-image: url("nube.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+    border-radius: 100px;
+	border: 2px transparent;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 30px;
+	margin-right: 30px;
+
+}
+
+
+.letters {
+
+	background-image: url("rosquilla.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+    background-size: 100px 80px;
+	width: 50px;
+	height: 40px;
+	border-radius: 100px;
+	border: 2px transparent;
+	text-align: auto;
+	margin-left: 5px;
+	display: inline-block;
+	font-size: 40px;
+	color: solid black;
+}
+
+#version {
+
+	background-image: url("nube.jpg");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: inline-block;
+	margin-top: 10%;
+	font-size: 15px;
+	border-radius: 100px;
+	border: 2px transparent;
+}
+
+#a {
+	background = ;
+}
+
+#b {
+	background = ;
+}
+
+#c {
+	background = ;
+}
+
+#d {
+	background = ;
+}
+
+#e {
+	background = ;
+}
+
+#f {
+	background = ;
+}
+
+#g {
+	background = ;
+}
+
+#h {
+	background = ;
+}
+
+#i {
+	background = ;
+}
+
+#j {
+	background = ;
+}
+
+#k {
+	background = ;
+}
+
+#l {
+	background = ;
+}
+
+#m {
+	background = ;
+}
+
+#n {
+	background = ;
+}
+
+#enye {
+	background = ;
+}
+
+#o {
+	background = ;
+}
+
+#p {
+	background = ;
+}
+
+#q {
+	background = ;
+}
+
+#r {
+	background = ;
+}
+
+#s {
+	background = ;
+}
+
+#t {
+	background = ;
+}
+
+#u {
+	background = ;
+}
+
+#v {
+	background = ;
+}
+
+#w {
+	background = ;
+}
+
+#x {
+	background = ;
+}
+
+#y {
+	background = ;
+}
+
+#z {
+	background = ;
+}

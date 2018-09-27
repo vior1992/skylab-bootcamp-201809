@@ -1,0 +1,39 @@
+html{
+	margin:0;
+	height: 100vh;
+}
+body{
+	margin:0;
+}
+
+
+.grid{
+
+	display:flex;
+	margin:0 auto;
+	justify-content: space-between;
+	background:black;
+	padding:1em;
+	width: 45%;
+	flex-wrap:wrap;
+	margin-top:2em;
+}
+
+.cuadrado{
+
+	background: #F9F9F9;
+	padding:5px;
+	&:nth-child(n + 6){
+		margin-top:1.4em;
+	}
+	.interior{
+
+		width: 150px;
+		height: 150px;
+		background:#CCCCCC;
+		text-align: center;
+    	line-height: 144px;
+    	color: rgba(156,156,156,0.9);
+    	font-weigth:bold;
+	}
+}

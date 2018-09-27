@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Pasapalabra</title>
+	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div id="title">
+		<div>Pasapalabra: The Simpsons edition</div>
+	</div>
+
+	<div>
+		<p id="questions">
+      	</p>		
+    </div>
+
+    <div id="answerDiv">
+    	<input type="text" id="answer" value="Escribe una respuesta">
+    	<button onclick="writeAnswer(answer.value); wroteAnswer(); sendAnswer(); checkQuestionsAnswer()" id="buttonAnswer">
+		Respuesta
+		</button>
+    </div>
+
+	<div id="globalLetters1">
+
+	    <div id="a" class="letters">A</div>
+	    <div id="b" class="letters">B</div>
+	    <div id="c" class="letters">C</div>
+	    <div id="d" class="letters">D</div>
+	    <div id="e" class="letters">E</div>
+	    <div id="f" class="letters">F</div>
+	    <div id="g" class="letters">G</div>
+	    <div id="h" class="letters">H</div>
+	    <div id="i" class="letters">I</div>
+	    <div id="j" class="letters">J</div>
+	    <div id="k" class="letters">K</div>
+	    <div id="l" class="letters">L</div>
+	    <div id="m" class="letters">M</div>
+	    <div id="n" class="letters">N</div>
+	    <div id="enye" class="letters">Ñ</div>
+
+	 </div>
+
+	 <div id="globalLetters2">
+
+	    <div id="o" class="letters">O</div>
+	    <div id="p" class="letters">P</div>
+	    <div id="q" class="letters">Q</div>
+	    <div id="r" class="letters">R</div>
+	    <div id="s" class="letters">S</div>
+	    <div id="t" class="letters">T</div>
+	    <div id="u" class="letters">U</div>
+	    <div id="v" class="letters">V</div>
+	    <div id="w" class="letters">W</div>
+	    <div id="x" class="letters">X</div>
+	    <div id="y" class="letters">Y</div>
+	    <div id="z" class="letters">Z</div>
+
+	</div>
+
+	<div id="buttons">
+		<button onclick="startGame()" class="play">PLAY</button>
+		<button onclick="stop()" class="cancel">STOP</button>
+	</div>
+
+    
+	<div id="info">
+  		<div id="time">
+  			<div id="clock">Tiempo</div>
+  		</div>
+
+  		<div id="winLoseForanswer">
+  			<div id="wins"></div>
+  			<div id="fails"></div>
+  			<div id="forAnswer"></div>
+		</div>
+	</div>
+
+	<div>
+		<div id="version"> Version 1.0 VIOR </div>
+	</div>	
+		
+	<script type="text/javascript" src="./scripts.js"></script>
+	<script src="./scripts.js"></script>
+
+</body>
+
+</html>

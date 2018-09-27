@@ -1,0 +1,85 @@
+html {
+  margin: 0;
+  height: 100vh;
+  background: #222244; }
+
+body {
+  margin: 0;
+  height: 100vh; }
+
+* {
+  overflow: hidden; }
+
+nav {
+  background: #444466; }
+  nav div:first-child {
+    padding: 2em 0; }
+    nav div:first-child div {
+      display: inline-block;
+      margin-left: 4em;
+      margin-right: 1em;
+      padding: 0;
+      vertical-align: top; }
+    nav div:first-child h1 {
+      display: inline-block;
+      margin: 0;
+      color: white;
+      font-size: 5em; }
+
+.wrapper {
+  margin: 0 auto;
+  width: 865px;
+  margin-top: 2em;
+  border-radius: 2em; }
+
+main {
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start; }
+  main aside {
+    width: 22%;
+    text-align: center; }
+    main aside p {
+      text-align: justify;
+      margin: 0;
+      width: 80%;
+      margin-left: 2em;
+      font-size: 0.8em;
+      color: #72666E; }
+    main aside ul {
+      padding: 0;
+      text-align: left;
+      color: #72666E; }
+      main aside ul li {
+        padding: 0.5em 0;
+        border-bottom-style: dotted;
+        border-bottom-width: 1px;
+        border-bottom-color: #72666E; }
+        main aside ul li a {
+          text-decoration: none;
+          display: block;
+          padding-left: 1.5em;
+          color: #72666E; }
+  main section {
+    width: 60%;
+    margin-left: 1.5em;
+    color: #664444;
+    margin-top: 1em; }
+    main section p {
+      text-align: justify; }
+    main section h2 {
+      color: #443333;
+      font-wight: bold; }
+
+footer {
+  background: #664444;
+  height: 80px; }
+  footer p {
+    color: white;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 44px; }

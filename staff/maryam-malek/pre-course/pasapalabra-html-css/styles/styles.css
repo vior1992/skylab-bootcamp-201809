@@ -1,0 +1,97 @@
+*{
+	font-family: 'Kosugi Maru', sans-serif;
+
+
+}
+header, footer {
+  text-align: center;
+  height: 90px;
+  background-color: lightskyblue;
+  border: 3px solid black;
+  margin:0;
+}
+#headerTitle {
+  text-align: center;
+  color: steelblue;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+button {
+  width: 150px;
+  height: 25px;
+  margin: 30px 10% 0 20px;
+  letter-spacing: 0.6px;
+  font-size: 15px;
+  color: midnightblue;
+  background-color: grey;
+  border-radius: 3.2px;
+  border: solid 2px black;
+  
+}
+input {
+  width: 220px;
+  height: 37px;
+  border-radius: 3.2px;
+  border: solid 0.8px mediumslateblue;
+  background-color: mediumturquoise;
+  display: block;
+  margin: auto;
+  margin-left: 20px;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: white;
+}
+#instruction {
+  background-color: mediumturquoise;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color:white; 
+}
+#instructions{
+  width: 500px;
+  height: 200px;
+  margin-left: 210px;
+}
+#enterName{
+  width:200px;
+  height: 200px;
+  margin: auto;
+
+}
+#game {
+  background-color: orange;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color:white;
+  
+}
+#score {
+  background-color: mediumturquoise;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color:white;
+  
+}
+li{
+  border: 0.5px solid coral;
+  border-radius: 100%;
+  align-content: left;
+  padding: 3px 4px 3px 4px;
+  margin-right: 97%;
+
+
+}
+#name{
+  background-color: orange;
+}
+#comment, #enunciado, #scoreText{
+  font-size: 15px;
+  padding-left: 30px;
+
+}
+
+
