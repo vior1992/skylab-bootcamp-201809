@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="stylescalculadora.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> <!--para poder poner signos-->
+<title>Calculator</title>
+
+
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <h1>Calculator</h1>
+    </header>
+
+    <label class="calculadora"name="calculadora">
+
+    <input class="resultado" type="text" name="resultado">
+
+      <input class="operator" type="button" id="C" value="C" onclick="document.calculadora.reset()">
+      <button class="operator" type="button" onclick="back()"><i class="material-icons">arrow_back</i></button>
+      <input class="operator" type="button" value="/" onclick="insert('/')">
+      <input class="number" type="button" value="7" onclick="insert(7)">
+      <input class="number" type="button" value="8" onclick="insert(8)">
+      <input class="number" type="button" value="9" onclick="insert(9)">
+      <input class="operator" type="button" value="+" onclick="insert('+')">
+      <input class="number" type="button" value="4" onclick="insert(4)">
+      <input class="number" type="button" value="5" onclick="insert(5)">
+      <input class="number" type="button" value="6" onclick="insert(6)">
+      <input class="operator" type="button" value="-" onclick="insert('-')">
+      <input class="number" type="button" value="1" onclick="insert(1)">
+      <input class="number" type="button" value="2" onclick="insert(2)">
+      <input class="number" type="button" value="3" onclick="insert(3)">
+      <input class="operator" type="button" value="x" onclick="insert('x')">
+      <input class="number" type="button" value="0" onclick="insert(0)">
+      <input class="operator" type="button" value="." onclick="insert('.')">
+      <input class="operator" type="button" id="igual" value="=" onclick="equal()">
+
+    </label> <!--calculadora-->
+
+</div> <!--page-->
+  <script type="text/javascript" src="main.js"></script>
+  </body>
+  </html>
