@@ -62,7 +62,7 @@ section h2 {
 
 .work h4 {
     width: 100%;
-    background: rgb(214, 212, 212);
+    background: rgb(188, 229, 245);
     border-radius: 10px;
 }
 
@@ -70,9 +70,21 @@ section h2 {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+    align-items: center;
 }
 
+.programming {
+    border: 1px solid rgb(98, 195, 233);
+    border-radius: 5px;
+    width: 50%;
+}
 
+.data {
+    border: 1px solid rgb(98, 195, 233);
+    margin-top: 10px;
+    width: 50%;
+    border-radius: 5px;
+}
 
 .skills p {
     text-align: center;
@@ -110,15 +122,16 @@ section h2 {
 
 .subject {
     flex:1;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(188, 229, 245);
 }
 
 .add-info {
     flex:1;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(188, 229, 245);
 }
 
 @media only screen and (min-width: 900px) {
+    
     .container {
         display: flex;
         margin: auto;
@@ -151,7 +164,7 @@ section h2 {
 
     .work h4 {
         width: 60%;
-        background: rgb(243, 156, 125);
+        background: rgb(236, 180, 160);
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
     }
@@ -163,20 +176,34 @@ section h2 {
 
     .programming {
         width: 40%;
-        border: 1px solid black;
+        border: 1px solid rgb(236, 180, 160);
         border-radius: 10px;
     }
     
     .data {
         width: 40%;
-        border: 1px solid black;
+        border: 1px solid rgb(236, 180, 160);
         border-radius: 10px;
     }
 
+    .projects ul {
+        display: flex;
+    }
+
+    .projects ul li {
+        list-style: none;
+    }
+    
     address {
         width: 100%;
     }
 
- 
+    .subject {
+        border-bottom: 1px solid rgb(243, 156, 125);
+    }
+    
+    .add-info {
+        border-bottom: 1px solid rgb(243, 156, 125);
+    }
 
 }
