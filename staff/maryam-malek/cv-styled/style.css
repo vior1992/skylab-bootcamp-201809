@@ -1,0 +1,44 @@
+body {
+    background-color: grey;
+    box-sizing: border-box;
+}
+main {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr 1fr; 
+}
+#studies {
+    grid-area: 1 / 2 / 2 / span 2;
+    text-align: justify;
+    border: 5px dotted rgb(247, 245, 245);
+
+}
+#experience {
+    grid-area: 2 / 2 / 3 / 4;
+    text-align: justify;
+    border: 5px dotted silver;
+    
+}
+#abilities {
+    grid-area: 3 / 2 / 4 / 4;
+    text-align: justify;
+    border: 5px dotted rgb(100, 100, 100);
+
+}
+header {
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+.personal-info {
+    justify-content: flex-start;
+}
+#image {
+    justify-content: flex-end;  
+    max-width: 40%;
+    max-height: 70%;
+}
+img {
+    max-width: 90%;
+    max-height: 90%;
+}
