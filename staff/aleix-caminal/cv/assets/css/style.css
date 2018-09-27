@@ -1,0 +1,22 @@
+body {
+    padding: 1.25rem;
+    font-family: TT Commons,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue
+}
+
+header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 2.5rem;
+    height: 12rem;
+}
+
+header aside .profile {
+    width: 12rem;
+    height: 12rem;
+    overflow: hidden;
+    border-radius: 20px;
+    background-image: url('../img/profile.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
