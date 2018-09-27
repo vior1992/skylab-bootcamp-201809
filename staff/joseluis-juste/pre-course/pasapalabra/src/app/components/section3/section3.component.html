@@ -1,0 +1,103 @@
+<div class="section3">
+	<div class="buttons">
+		<div>
+			<div class="button">
+				<div class="letter">A</div>
+			</div>
+			<div class="button">
+				<div class="letter">B</div>
+			</div>
+			<div class="button">
+				<div class="letter">C</div>
+			</div>
+			<div class="button">
+				<div class="letter">D</div>
+			</div>
+			<div class="button">
+				<div class="letter">E</div>
+			</div>
+			<div class="button">
+				<div class="letter">F</div>
+			</div>
+			<div class="button">
+				<div class="letter">G</div>
+			</div>
+			<div class="button">
+				<div class="letter">H</div>
+			</div>
+			<div class="button">
+				<div class="letter" style="left:17px">I</div>
+			</div>
+			<div class="button">
+				<div class="letter">J</div>
+			</div>
+			<div class="button">
+				<div class="letter">K</div>
+			</div>
+			<div class="button">
+				<div class="letter">L</div>
+			</div>
+			<div class="button">
+				<div class="letter">M</div>
+			</div>
+			<div class="button">
+				<div class="letter">N</div>
+			</div>
+		</div>
+		<div>
+			<div class="button">
+				<div class="letter">Ñ</div>
+			</div>
+			<div class="button">
+				<div class="letter">O</div>
+			</div>
+			<div class="button">
+				<div class="letter">P</div>
+			</div>
+			<div class="button">
+				<div class="letter">Q</div>
+			</div>
+			<div class="button">
+				<div class="letter">R</div>
+			</div>
+			<div class="button">
+				<div class="letter">S</div>
+			</div>
+			<div class="button">
+				<div class="letter">T</div>
+			</div>
+			<div class="button">
+				<div class="letter">U</div>
+			</div>
+			<div class="button">
+				<div class="letter">V</div>
+			</div>
+			<div class="button">
+				<div class="letter" style="left:12px">W</div>
+			</div>
+			<div class="button">
+				<div class="letter">X</div>
+			</div>
+			<div class="button">
+				<div class="letter">Y</div>
+			</div>
+			<div class="button">
+				<div class="letter">Z</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="question">
+		<p>
+			<span>{{actualQuestionFirstpart}}</span>{{actualQuestionSecondpart}}
+		</p>
+	</div>
+	<div class="control-panel">
+		<input id="palabra" type="text" name="" placeholder="Escribe tu respuesta" [(ngModel)]="answer">
+		<div class="p-button" (click)="ok()" *ngIf="showButtons">OK</div>
+		<div class="p-button" (click)="pasaPalabra()" *ngIf="showButtons">PASAPALABRA</div>
+		<div class="p-button" (click)="stop()" *ngIf="showButtons">STOP</div>
+	</div>
+	<div class="result">Has acertado {{aciertos}} palabra/as y has cometido {{errores}} error/es</div>
+	<div class="result" style="color:red" [ngClass]="{'won': won}">{{result}}</div>
+</div>

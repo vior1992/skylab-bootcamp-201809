@@ -1,0 +1,55 @@
+.wrapper{
+	margin: 0 auto;
+	width: 865px;
+	margin-top: 2em;
+	border-radius: 2em;
+}
+
+main{
+	background: white;
+	display: flex;
+	justify-content: start;
+	aside{
+		width: 22%;
+		text-align: center;
+		p{
+			text-align: justify;
+			margin: 0;
+			width:80%;
+			margin-left: 2em;
+			font-size: 0.8em;
+			color: $texto;
+		}
+		ul{
+			//margin: 0 0 0 1.5em;;
+			padding: 0;
+			text-align:left;
+			color: $texto;
+			li{
+				padding: 0.5em 0;
+				border-bottom-style:dotted;
+				border-bottom-width: 1px;
+				border-bottom-color: $texto;
+				a{
+					text-decoration:none;
+					display: block;
+					padding-left: 1.5em;
+					color: $texto;
+				}
+			}
+		}
+	}
+	section{
+		width: 60%;
+		margin-left: 1.5em;
+		color: $footer;
+		margin-top: 1em;
+		p{
+			text-align: justify;
+		}
+		h2{
+			color: $h2;
+			font-wight: bold;
+		}
+	}
+}

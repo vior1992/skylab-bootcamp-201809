@@ -1,0 +1,109 @@
+<div id="airline" class="container">
+    <div class="row">
+        <div class="col">
+            <div class="pb-2 mt-4 mb-2 border-bottom">
+                <h2>Skylab Airlines</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="tab-content">
+                <div id="step1" class="tab-pane fade show active" role="tabpanel">
+                    <form id="airline_form">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="username">Nom d'usuari</label>
+                                <input id="username" type="text" class="form-control" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Ets un usuari o un administrador?</label>
+                                <div id="role" class="btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-outline-info btn-block active">
+                                        <input type="radio" name="role" value="user" checked> Usuari
+                                    </label>
+                                    <label class="btn btn-outline-info btn-block">
+                                        <input type="radio" name="role" value="admin"> Administrador
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary float-right" type="submit">Continuar</button>
+                    </form>
+                </div>
+
+                <div id="step2" class="tab-pane fade" role="tabpanel">
+                    <div class="container">
+                        <div class="row my-3">
+                            <div class="col">
+                                <h4 id="airline_welcome"></h4>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <button id="airline_new" type="button" class="btn btn-success btn-block d-none">Nou vol</button>
+                            </div>
+                            <div class="col">
+                                <label for="type" class="col-form-label float-right">Filtrar per preu</label>
+                            </div>
+                            <div class="form-group col mb-0">
+                                <select id="airline_filter_type" class="form-control">
+                                    <option value="0" selected>Exactament</option>
+                                    <option value="1">Major de</option>
+                                    <option value="2">Menor de</option>
+                                </select>
+                            </div>
+                            <div class="input-group col mb-0">
+                                <input id="airline_filter_value" type="number" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="airline_table" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Origen</th>
+                                    <th>Destinació</th>
+                                    <th>Preu</th>
+                                    <th>Escales</th>
+                                    <th>Accions</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="card-deck">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Els vols tenen un cost mitjà de:</h5>
+                                            <h1 id="airline_cost" class="card-text"></h1>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Els últims vols del dia tenen les següents destinacions:</h5>
+                                        </div>
+                                        <ul id="airline_latest" class="list-group list-group-flush"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <button class="btn btn-danger float-right" onclick="changeTab(2, 1)">Sortir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>script('airline');</script>

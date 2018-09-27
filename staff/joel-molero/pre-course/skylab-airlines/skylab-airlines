@@ -1,0 +1,160 @@
+var flights = [
+{id: 00, to: "New York", from: "Barcelona", cost: 700,scale: false},
+{id: 01, to: "Los Angeles", from: "Madrid", cost: 1100,scale: true},
+{id: 02, to: "Paris", from: "Barcelona", cost: 210,scale: false},
+{id: 03, to: "Roma", from: "Barcelona", cost: 150,scale: false},
+{id: 04, to: "London", from: "Madrid", cost: 200,scale: false},
+{id: 05, to: "Madrid", from: "Barcelona", cost: 90,scale: false},
+{id: 06, to: "Tokyo", from: "Madrid", cost: 1500,scale: true},
+{id: 07, to: "Shangai", from: "Barcelona", cost: 800,scale: true},
+{id: 08, to: "Sydney", from: "Barcelona", cost: 150,scale: true},
+{id: 09, to: "Tel-Aviv", from: "Madrid", cost: 150,scale: false}
+];
+var user = prompt("Introduzca nombre de usuario");
+var pass = prompt("Introduzca contraseña (dejar en blanco si es USER)");
+var values = []
+for (var i=0;i<flights.length;i++){
+	values.push(flights[i].id);
+}
+
+
+
+
+//admin
+
+
+
+
+
+if (user==="admin"&&pass==="admin"){
+
+console.log("Bienvenido, Admin");
+
+
+function addFlight(){
+var id2 = prompt("Introduzca datos","id");
+var to1 = prompt("Introduzca datos","to");
+var from1 = prompt("Introduzca datos","from");
+var cost2 = prompt("Introduzca datos","cost");
+var scale2 = prompt("Introduzca datos","scale");
+var id1 = Number(id2);
+var cost1 = Number(cost2);
+var scale1 = Boolean(scale2);
+
+if(values.includes(id1)){
+console.log("Id ya existente");
+return;
+}
+
+if(Object.keys(flights).length===15){
+alert("Numero maximo de vuelos alcanzado");
+return;
+}
+
+adFlight(id1, to1, from1, cost1, scale1);
+
+function cons(id, to, from, cost, scale) {
+    this.id = id;
+    this.to = to;
+    this.from = from;
+    this.cost = cost;
+    this.scale = scale;
+};
+
+
+function adFlight(id, to, from, cost, scale){
+var newFlight = new cons (id, to, from, cost, scale);
+flights.push(newFlight);
+updateValues();
+console.log(flights)}};
+
+function updateValues(){
+	values = [];
+for (var i=0;i<flights.length;i++){
+	values.push(flights[i].id)
+}
+}
+
+function delFlight(id){
+flights.splice(id, 1);
+updateValues();
+};
+
+}
+
+
+
+
+
+
+//user
+
+
+
+
+
+
+
+else {
+console.log("Bienvenido, "+user+".")
+
+
+var media2 = [0];
+for (x=0;x<flights.length;x++){
+media2.push(flights[x].cost)
+var escala;
+if (flights[x].scale === true){
+escala = " y hace escala."}
+else {escala = " y no hace escala."}
+console.log("El vuelo a "+flights[x].to+" desde "+flights[x].from+" cuesta "+flights[x].cost+escala+" "+"Id numero: "+flights[x].id)};
+// Hacer media
+var media1 = media2.reduce(function(a, b) { return a + b; }, 0);
+var media = media1/x
+
+
+
+}
+
+function last5() {
+	for (j=flights.length-5;j<flights.length;j++){
+	console.log(flights[j].to) 
+	}
+};
+
+function precioAsc() {
+	flights.sort(precioAsc1);
+	vuelos();
+}
+
+function precioAsc1(a,b) {
+  if (a.cost < b.cost)
+    return -1;
+  if (a.cost > b.cost)
+    return 1;
+  return 0;
+};
+
+function precioDesc() {
+	flights.sort(precioAsc1);
+	flights.reverse();
+	vuelos();
+};
+
+function buscarPrecio(cost) {
+	for (x=0;x<flights.length;x++){
+	if (flights[x].cost===cost){
+	console.log("El vuelo a "+flights[x].to+" desde "+flights[x].from+" cuesta "+flights[x].cost+escala+" "+"Id numero: "+flights[x].id)
+	}
+	
+}};
+
+function comprar(id){
+	if (values.includes(id)){
+	console.log("Gracias por su compra, vuelva pronto.");}
+	else {console.log("error");}
+};
+
+function vuelos(){
+	for (x=0;x<flights.length;x++){
+	console.log("El vuelo a "+flights[x].to+" desde "+flights[x].from+" cuesta "+flights[x].cost+escala+" "+"Id numero: "+flights[x].id)}
+};

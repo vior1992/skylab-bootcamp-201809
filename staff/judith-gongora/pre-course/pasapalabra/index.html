@@ -1,0 +1,74 @@
+<!DOCTYPE html> <!-- Declaración del tipo de documento -->
+<html>
+<meta charset="utf-8">   <!-- se utiliza para especificar la codificación de caracteres utilizada en el documento -->
+<head>
+	<title>Pasapalabra</title> 
+	<script type="text/javascript" src="app/pasapalabra.js"></script> <!-- Script para enlazar el documento Javascript -->
+  	<link href="style/style.css" type="text/css" rel="stylesheet"> <!-- Una hoja de estilo externa puede ser enlazada a un documento HTML mediante el elemento LINK -->
+</head>
+<body>
+	<div class="contenedor"> <!-- Contenedor de todo el body -->
+		<div class="pasapalabra"> <!-- Contenedor de la capa del juego -->
+			<div class="juego"> <!-- Contenedor del rosco -->
+				<div id="rosco" class="rosco hidden">  <!-- Contenedor de las letras que componen el rosco -->
+					<div id="a" class="letra">A</div> 
+					<div id="b" class="letra">B</div>
+					<div id="c" class="letra">C</div>
+					<div id="d" class="letra">D</div>
+					<div id="e" class="letra">E</div>
+					<div id="f" class="letra">F</div>
+					<div id="g" class="letra">G</div>
+					<div id="h" class="letra">H</div>
+					<div id="i" class="letra">I</div>
+					<div id="j" class="letra">J</div>
+					<div id="k" class="letra">K</div>
+					<div id="l" class="letra">L</div>
+					<div id="m" class="letra">M</div>
+					<div id="n" class="letra">N</div>
+					<div id="ñ" class="letra">Ñ</div>
+					<div id="o" class="letra">O</div>
+					<div id="p" class="letra">P</div>
+					<div id="q" class="letra">Q</div>
+					<div id="r" class="letra">R</div>
+					<div id="s" class="letra">S</div>
+					<div id="t" class="letra">T</div>
+					<div id="u" class="letra">U</div>
+					<div id="v" class="letra">V</div>
+					<div id="w" class="letra">W</div>
+					<div id="x" class="letra">X</div>
+					<div id="y" class="letra">Y</div>
+					<div id="z" class="letra">Z</div>
+
+					<div id="countdown" class="countdown">130</div> <!-- Contenedor con el tiempo de juego -->
+					<div id="correctas" class="correctas">0</div> <!-- Contenedor con los aciertos -->
+				</div>	
+			</div>
+			<div id="texto1" class="intro"> <!-- Contenedor de la introducción -->
+					<h4>Bienvenidos al juego de Pasapalabra de Skylab Coders Academy!</h4>
+					<p>Este juego consiste en acertar las veintisiete palabras, cada una de las cuales se corresponde con una letra del rosco para la que se ofrece una definición. </p>
+					<p>Los aciertos se reflejarán en las letras mediante en color verde, mientras que los fallos se mostrarán en color rojo. Las cuestiones no respondidas o "pasapalabra" se mostrarán en color azul.</p>
+					<p>Dispones de 130 segundos. El programa es sensible a la acentuación, así que fijate bien.</p>
+					<a onclick="nuevoJuego()">Jugar</a> <!-- Link que simula un botón para comenzar a jugar -->
+				</div>
+				<div id="texto2" class="preguntas hidden"> <!-- Contenedor de las preguntas y los botones del juego -->
+					<h1 id="comienzo"></h1> <!-- Cabecera de la definición -->
+					<p id="definicion"> <!-- Parrafo que contiene la definición -->
+					</p>
+					<input type="text" name="respuesta" id="respuesta" placeholder="Introduce tu respuesta" autofocus onkeypress="saltar(event)"></input> <br> <br> <!-- Input para responder -->
+					<a id="enviar" onclick="comprobar()">Enviar</a> <a onclick="pasarPregunta()">Pasapalabra</a> <!-- Links simulado botones para enviar respuesta o pasar -->
+					</br></br>
+					<a id="finalizar" onclick="finalDePartida()">FIN</a> <!-- Link que simula un botón para finalizar el juego -->
+				</div>
+				<div id="texto3" class="gracias hidden"> <!-- Contenedor del texto de finalización de partida -->
+					<h4 id="fin">Gracias por jugar a Pasapalabra!</h4> <!-- Cabecera  agradecimiento -->
+					<p id="resultado"></p></br> <!-- Parrafo con los resultados obtenidos -->
+					<a onclick="location.reload()">Volver a jugar</a> <!-- Link que simula un botón para comenzar a jugar de nuevo-->
+				</div>			
+		</div>
+		<div class="pie"><!-- Contenedor de la capa pie -->
+			Ejercicio realizado para SkyLab por Judith Góngora
+		</div>
+	</div>
+		
+</body>
+</html>
