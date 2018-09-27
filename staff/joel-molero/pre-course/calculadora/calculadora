@@ -1,0 +1,65 @@
+function calculator() {
+var args = [].slice.call(arguments);
+args=args.slice(1);
+	if (arguments.length > 1) {
+	var resultados = [];
+    
+		if (arguments[0] === 0&&args.some(function (number){
+			return number === 0;})
+        ){
+ 
+		resultados.push("La suma da: "+parseFloat(sumar(arguments)).toFixed(3),"La resta da: "+parseFloat(restar(arguments)).toFixed(3),"La multiplicacion da: "+multiplicar(arguments),"La division da: Indeterminacion");
+		return resultados
+		}
+	resultados.push("La suma da: "+parseFloat(sumar(arguments)).toFixed(3),"La resta da: "+parseFloat(restar(arguments)).toFixed(3),"La multiplicacion da: "+parseFloat(multiplicar(arguments)).toFixed(3),"La division da: "+parseFloat(dividir(arguments)).toFixed(3));
+	return resultados;
+	}
+
+	if (arguments.length === 1&&arguments[0]>=0) {
+	return "La raiz da: "+parseFloat(raiz(arguments[0])).toFixed(3);
+	}
+
+}
+
+
+// Funciones de operaciones
+
+
+function sumar(numeros) {
+var resultado = 0;
+for (n in numeros){
+	resultado += numeros[n]
+	}
+	return resultado
+}
+
+
+function restar(numeros) {
+var resultado = numeros[0];
+for (var n = 1;n<numeros.length;n++){
+	resultado -= numeros[n]
+	}
+	return resultado
+}
+
+
+function multiplicar(numeros) {
+var resultado = numeros[0];
+for (var n = 1;n<numeros.length;n++){
+	resultado *= numeros[n]
+	}
+	return resultado
+}
+
+
+function dividir(numeros) {
+var resultado = numeros[0];
+for (var n = 1;n<numeros.length;n++){
+	resultado /= numeros[n]
+	}
+	return resultado
+}
+
+function raiz(k){
+	return k**0.5;
+};

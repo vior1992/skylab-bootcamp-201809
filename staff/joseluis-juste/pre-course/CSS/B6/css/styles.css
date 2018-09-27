@@ -1,0 +1,154 @@
+html {
+  margin: 0;
+  height: 100vh;
+  font-family: arial; }
+
+body {
+  margin: 0;
+  height: 100vh; }
+
+p {
+  margin: 0; }
+
+* {
+  overflow: hidden; }
+
+nav {
+  height: 130px;
+  background: green; }
+  nav > div:first-child {
+    background-image: url("../img/nav.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 60%; }
+  nav > div:last-child {
+    height: 40%;
+    background: black; }
+    nav > div:last-child ul {
+      margin: 0;
+      padding: 0;
+      padding-top: 20px;
+      margin-left: 2em; }
+      nav > div:last-child ul li {
+        display: inline-block;
+        padding: 0.4em;
+        background: white;
+        margin-left: 0.5em;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-top: 4px solid #75AB00; }
+        nav > div:last-child ul li a {
+          text-decoration: none;
+          display: block;
+          color: black;
+          font-weight: bold;
+          font-size: 0.8em; }
+
+.wrapper {
+  margin: 0 auto;
+  width: 1024px;
+  margin-top: 2em; }
+
+main {
+  padding: 0 3em;
+  margin-top: 1em;
+  font-size: 0.8em; }
+  main section:first-child div {
+    background-image: url("../img/pic8.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 161px; }
+    main section:first-child div p {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-weight: bold;
+      padding: 0.4em 0.2em;
+      font-size: 2em; }
+  main section:nth-child(2) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+    main section:nth-child(2) article {
+      margin-top: 0.5em;
+      width: 81%; }
+      main section:nth-child(2) article p {
+        padding-top: 2.5em;
+        padding-bottom: 2.5em;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        margin-top: 3em; }
+      main section:nth-child(2) article > div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between; }
+        main section:nth-child(2) article > div > div {
+          border-left: 1px solid black;
+          width: 30%;
+          padding-left: 2.5%; }
+          main section:nth-child(2) article > div > div:first-child {
+            border-left: 0;
+            padding-left: 0; }
+          main section:nth-child(2) article > div > div .icon-titles {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: start;
+                -ms-flex-pack: start;
+                    justify-content: start; }
+            main section:nth-child(2) article > div > div .icon-titles div:nth-child(2) {
+              margin-left: 0.2em;
+              font-size: 1.7em;
+              font-weight: bold;
+              margin-top: 0.2em; }
+
+aside {
+  width: 16%;
+  margin-top: 2.3em;
+  font-size: 0.9em; }
+  aside a {
+    text-decoration: none; }
+  aside form {
+    border-bottom: 1px solid black;
+    padding-bottom: 1em; }
+    aside form p {
+      color: brown;
+      margin-bottom: 0.2em; }
+    aside form a {
+      display: block;
+      text-align: right;
+      font-size: 0.9em;
+      margin-top: 0.2em; }
+      aside form a:hover {
+        color: black; }
+    aside form select {
+      display: block;
+      width: 100%; }
+  aside ul {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 0;
+    margin-top: 1.5em; }
+    aside ul span {
+      color: brown;
+      padding-bottom: 0.7em;
+      display: block; }
+    aside ul li {
+      padding: 0.5em 0; }
+      aside ul li a {
+        display: block;
+        text-decoration: none; }
+        aside ul li a:hover {
+          color: black; }
+  aside ul + p {
+    margin: 1em 0;
+    color: brown; }
+  aside p + a:hover {
+    color: black; }
