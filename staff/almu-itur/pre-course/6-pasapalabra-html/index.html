@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Pasapalabra</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.sound.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="styles/styles.css">
+	</head>
+<body>
+	<header>
+		<h1>PASAPALABRA</h1><h3>/*Coders edition*/</h3>
+	</header>
+
+	<main>
+		<div class="questions">
+			<h2 id="pregunta">Pregunta</h2>
+			<p id="animation"></p>
+			<p id="question"></p>
+		</div>
+
+
+		<div class="answers">
+			<input type="text" id="answer" onclick="this.value='';">
+			<button id="checkWord" onclick="checkWord()">Send</button><button id="passWord" onclick="passWord()">Pasapalabra</button><button id="endGame" onclick="endGame();">End Game</button>
+			<p id="correctIncorrect"></p>
+			<p id="infoAnswer"></p>
+			
+		</div>
+
+		<div class="infoGame">
+			<p id="timer">130</p>
+			<p id="doings">0</p>
+		</div>
+
+		<div class="donut">
+			
+			<p class="letterRounded" id="a">A</p>
+			<p class="letterRounded" id="b">B</p>
+			<p class="letterRounded" id="c">C</p>
+			<p class="letterRounded" id="d">D</p>
+			<p class="letterRounded" id="e">E</p>
+			<p class="letterRounded" id="f">F</p>
+			<p class="letterRounded" id="g">G</p>
+			<p class="letterRounded" id="h">H</p>
+			<p class="letterRounded" id="i">I</p>
+			<p class="letterRounded" id="j">J</p>
+			<p class="letterRounded" id="k">K</p>
+			<p class="letterRounded" id="l">L</p>
+			<p class="letterRounded" id="m">M</p>
+			<p class="letterRounded" id="n">N</p>
+			<p class="letterRounded" id="ñ">Ñ</p>
+			<p class="letterRounded" id="o">O</p>
+			<p class="letterRounded" id="p">P</p>
+			<p class="letterRounded" id="q">Q</p>
+			<p class="letterRounded" id="r">R</p>
+			<p class="letterRounded" id="s">S</p>
+			<p class="letterRounded" id="t">T</p>
+			<p class="letterRounded" id="u">U</p>
+			<p class="letterRounded" id="v">V</p>
+			<p class="letterRounded" id="w">W</p>
+			<p class="letterRounded" id="x">X</p>
+			<p class="letterRounded" id="y">Y</p>
+			<p class="letterRounded" id="z">Z</p>
+			
+		</div>
+
+		<div></div>
+		
+		
+		<div class="result">
+			<p id="displayResults"></p>
+			<button id="restart" onclick="reset()">VOLVER A JUGAR</button><button id="end" onclick="exitProgram()">EXIT</button>
+
+		</div>
+
+		<div class="ranking">
+			
+			<table id="tableResults">
+				<thead>
+					<tr>
+						<th>Ranking</th>
+						<th>Coder</th>
+						<th>Score</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td id="firstName"></td>
+						<td id="firstDoings"></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td id="secondName"></td>
+						<td id="secondDoings"></td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td id="thirdName"></td>
+						<td id="thirdDoings"></td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td id="forthName"></td>
+						<td id="forthDoings"></td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td id="fithName"></td>
+						<td id="fithDoings"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="intro">
+			<p id="textIntro">Pasapalabra Coders Edition's instructions: <br><br>1. Read the question on the upper left part of the screen. <br>2. Write your answer below (blue space provided). <br>3. Click "Send" - or "Pasapalabra" if you do not know the answer.<br><br>You only have 130 seconds! Ready? Please enter your name and click Play. Good luck! <br><br> 
+			<input  id="name" type="text" placeholder="nameUser" onclick="this.value='';">
+			<button id="comenzar" onclick="start()">PLAY</button>
+		</div>
+		<div>
+			<!-- <video id="demo" width="460" height="320" controls><source src="videodemo.mp4" type="video/mp4">Video not supported</video> -->
+		</div>
+	
+	</main>
+
+	<footer>
+        <p>Made by Almu for Skylab's pre-course in September 2018.</p>
+     </footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="app/app.js"></script>
+</body>
+</html>

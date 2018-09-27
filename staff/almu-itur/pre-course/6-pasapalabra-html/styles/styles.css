@@ -1,0 +1,375 @@
+* {
+	font-family: 'Raleway', sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+header {
+	width: 85%;
+	margin: 0 auto;
+}
+
+h1 {
+	
+	font-size: 26px;
+	color: white;
+	text-align: center;
+	background-color: #63cbd3;
+	padding: 15px;
+}
+
+h2, #correctIncorrect {
+	position: relative;
+	width: 80%;
+	font-size: 18px;
+	font-weight: bold;
+	color: #666;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+h3 {
+	position: absolute;
+	font-size: 14px;
+	color: white;
+	margin-left: 10px;
+	right: 420px;
+	bottom: 512px;
+	z-index: 5;
+}
+
+#infoAnswer {
+	position: relative;
+	width: 80%;
+	font-size: 16px;
+	color: #666;
+	margin-left: 20px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#checkWord, #endGame {
+	visibility: hidden;
+	position: relative;
+	width: 1fr;
+	color: #666;
+	background-color: #d8d8d8;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 20px;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+#passWord {
+	visibility: hidden;
+	position: relative;
+	width: 1fr;
+	color: white;
+	background-color: orange;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 20px;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+body {
+	position: relative;
+	background-color: #dee5ec;
+}
+
+main {
+	position: relative;
+	background-color: white;
+	margin: 0 auto;
+	width: 85%;
+	display: grid;
+	grid-template-columns: 350px 150px 500px;
+	grid-template-rows: 200px 250px;
+	overflow: hidden;
+	grid-auto-flow: column;
+}
+
+#question, #infoAnswer {
+	visibility: hidden;
+	position: relative;
+	width: 80%;
+	margin-left: 20px;
+	margin-top: 10px;
+	color: #666;
+}
+
+#answer {
+	visibility: hidden;
+	position: relative;
+	width: 80%;
+	color: #666;
+	background-color: #63cbd3;
+	border-radius: 5px;
+	margin-top: 30px;
+	margin-left: 20px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.infoGame {
+	visibility: hidden;
+	position: relative;
+	margin-top: 30px;
+}
+
+#timer {
+	visibility: hidden;
+	position: relative;
+	height: 36px;
+  	color: white;
+  	font-weight: bold;
+  	text-align: center;
+	margin: 10px;
+	padding: 10px;
+	line-height: 36px;
+	background-color: #63cbd3;
+}
+
+#doings {
+	visibility: hidden;
+	position: relative;
+	border-radius: 50%;
+	width: 36px;
+  	height: 36px;
+  	color: #666;
+  	border: 2px solid #63cbd3;
+  	text-align: center;
+  	margin: 0 auto;
+	padding: 8px;
+	line-height: 36px;
+	font-weight: bold;
+}
+
+.donut {
+	visibility: hidden;
+	position: relative;
+	grid-area: 1 / 3 / 2 / 3;
+	margin-left: 45px;
+	margin-top: 30px;
+}
+
+.letterRounded {
+	visibility: hidden;
+	position: relative;
+	display: inline-block;
+	border-radius: 100%;
+	width: 36px;
+  	height: 36px;
+	color: #666;
+	background-color: #d8d8d8;
+	text-align: center;
+	margin: 5px;
+	padding: 10px;
+	font-weight: bold;
+	line-height: 36px;
+	
+}
+
+.red {
+	position: relative;
+	display: inline-block;
+	border-radius: 100%;
+	width: 36px;
+  	height: 36px;
+	color: white;
+	background-color: red;
+	text-align: center;
+	margin: 5px;
+	padding: 10px;
+	font-weight: bold;
+	line-height: 36px;
+}
+
+.green {
+	position: relative;
+	display: inline-block;
+	border-radius: 100%;
+	width: 36px;
+  	height: 36px;
+	color: white;
+	background-color: green;
+	text-align: center;
+	margin: 5px;
+	padding: 10px;
+	font-weight: bold;
+	line-height: 36px;
+}
+
+#textIntro {
+	visibility: visible;
+	position: relative;
+	bottom: 150px;
+	right: 950px;
+	width: 480px;
+	z-index: 3;
+}
+
+#demo {
+	visibility: visible;
+	position: relative;
+	right: 900px;
+	top: 40px;
+}
+
+#pregunta {
+	visibility: hidden;
+}
+
+#name {
+	visibility: visible;
+	position: relative;
+	color: #666;
+	background-color: #d8d8d8;
+	border-radius: 5px;
+	bottom: 20px;
+	left: 30px;
+	font-weight: bold;
+	padding: 10px;
+	width: 300px;
+	z-index: 6;
+}
+
+#comenzar {
+	visibility: visible;
+	position: relative;
+	top: 30px;
+	right: 200px;
+	width: 100px;
+	color: white;
+	background-color: #63cbd3;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 20px;
+	margin-top: 20px;
+	padding: 10px;
+	z-index: 6;
+}
+
+.highlight {
+	position: relative;
+	display: inline-block;
+	border-radius: 100%;
+	width: 36px;
+  	height: 36px;
+	color: #d8d8d8;
+	background-color: #666;
+	text-align: center;
+	margin: 5px;
+	padding: 10px;
+	font-weight: bold;
+	line-height: 36px;
+}
+
+#displayResults {
+	visibility: hidden;
+	position: relative;
+	bottom: 180px;
+	right: 430px;
+	background-color: white;
+	z-index: 5;
+	font-weight: bold;
+	width: 300px;
+}
+
+.result p {
+	
+	color: #666;
+	border: 2px dotted #63cbd3;
+	border-radius: 5px;
+	text-align: center;
+	margin-top: 100px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding: 20px;
+
+}
+
+#tableResults {
+	visibility: hidden;
+	position: relative;
+	top: 100px;
+	right: 500px;
+	font-size: 16px;
+	border-collapse: collapse;
+	border-style: hidden;
+	margin: 0 auto;
+	text-align: center;
+	background-color: white;
+}
+
+#restart {
+	visibility: hidden;
+	position: relative;
+	bottom: 170px;
+	right: 400px;
+	width: 1fr;
+	color: white;
+	background-color: #63cbd3;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 20px;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+#end {
+	visibility: hidden;
+	bottom: 170px;
+	right: 370px;
+	position: relative;
+	width: 1fr;
+	color: #666;
+	background-color: #d8d8d8;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 20px;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+#animation {
+	position: relative;
+	visibility: visible;
+	top: 10px;
+	left: 120px;
+	width: 500px;
+	font-size: 60px;
+}
+
+
+th {
+	background-color: #63cbd3;
+	font-weight: bold;
+	color: white;
+	padding: 8px;
+}
+
+td {
+	border-top: 2px solid #63cbd3;
+	color: #63cbd3;
+	padding: 8px;
+}
+
+footer {
+	background-color: #63cbd3;
+	width: 85%;
+	margin: 0 auto;
+}
+
+footer p {
+	font-size: 14px;
+	padding: 14px;
+	color: white;
+}

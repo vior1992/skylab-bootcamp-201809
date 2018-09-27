@@ -1,0 +1,23 @@
+nav{
+
+	div{
+		background: black;
+		padding-left: 2em;
+		padding-right: 4em;
+		display: inline-block;
+		margin-top: 3em;
+		margin-bottom: 2em;
+		h1{
+			color: white;
+			text-transform: uppercase;
+			margin-bottom: 0;
+			span{
+				color: $salmon;
+			}
+		}
+		p{
+			color: white;
+			margin-top: 2px;
+		}
+	}
+}

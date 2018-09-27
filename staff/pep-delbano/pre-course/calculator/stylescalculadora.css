@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 18px;
+  font-family: Helvetica,Arial,sans-serif;
+  background-color: /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f8ffe8+0,e3f5ab+41,b7df2d+100 */
+background: #f8ffe8; /* Old browsers */
+background: -moz-linear-gradient(top, #f8ffe8 0%, #e3f5ab 41%, #b7df2d 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #f8ffe8 0%,#e3f5ab 41%,#b7df2d 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 41%,#b7df2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#b7df2d',GradientType=0 ); /* IE6-9 */
+}
+
+.page {
+  width: 700px;
+}
+
+header {
+  width: 70%;
+  margin: auto; /*para centrar dcha izda*/
+  margin: 30px 0 80px 0;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  text-shadow: 3px 2px 6px white;
+  color: rgb(43, 43, 12);
+  background-color:  rgba(183, 233, 72, 0.4);
+  border: 3px solid rgb(106, 124, 35);
+  border-radius: 10px;
+  box-shadow: 0 0 8px 2px  rgb(106, 124, 35);
+}
+
+.calculadora {
+  margin: auto;
+  border: 1px dotted black;
+  background-color: rgb(56, 52, 51);
+  width: 450px;
+  height: 550px;
+}
+
+.teclas {
+  width: 450px;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.number, .operator, button {
+  width: 90px;
+  height: 60px;
+  padding: 15px 0 15px 0;
+  margin: 10px;
+  float: left;
+  background-color: rgb(218, 230, 225);
+  border-style: inset; /*así parecen botones*/
+  box-shadow: 3px 3px 3px black;
+  text-align: center;
+  font-size: 25px;
+}
+
+.operator, button {
+  border-style: outset;
+  background-color:  rgb(134, 142, 138);
+
+}
+
+.number:hover, .operator:hover {
+  background-color: rgba(206, 212, 244, 0.8);
+  border-style: solid;
+}
+
+#C, #igual {
+  width: 200px;
+}
+
+.resultado {
+  width: 100%;
+  height: 100px;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 50px;
+
+  font-size: 30px;
+  color: rgb(37, 35, 36);
+  text-align: center;
+
+  border: 5px solid white;
+  box-shadow: 0 0 8px 2px  gray;
+	background-color: rgb(70, 180, 175);
+}

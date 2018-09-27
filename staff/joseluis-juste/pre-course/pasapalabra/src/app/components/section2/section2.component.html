@@ -1,0 +1,48 @@
+<div class="section2">
+	<div class="header">
+		<p><span>>> tip</span>: Puedes pulsar sobre cualquier tarjeta e intentar adivinar la palabra. Corre, porque el tiempo
+		cuenta desde la primera tarjeta que giras!</p>
+		<a (click)="newGame$()"><img src="assets/img/img4.jpg"></a>
+	</div>
+	<div class="grid">
+		<div class="card inf">
+			<p><span>>></span> Hola Jose</p>
+			<p>-Acertadas-</p>
+			<p class="inf-text-card">{{aciertos | formatnumber}}</p>
+			<p>-Falladas-</p>
+			<p class="inf-text-card">{{errores | formatnumber}}</p>
+			<p>-Tiempo-</p>
+			<p class="inf-text-card" [ngClass]="{'few_time': minutes === 1 && seconds >=30, 'blink': minutes === 1 && seconds >= 30}">00 : {{minutes | formatnumber}} : {{seconds | formatnumber}}</p>
+		</div>
+		<div class="card">A</div>
+		<div class="card">B</div>
+		<div class="card">C</div>
+		<div class="card">D</div>
+		<div class="card">E</div>
+		<div class="card">F</div>
+		<div class="card">G</div>
+		<div class="card">H</div>
+		<div class="card">I</div>
+		<div class="card">J</div>
+		<div class="card">K</div>
+		<div class="card">L</div>
+		<div class="card">M</div>
+		<div class="card">N</div>
+		<div class="card">Ñ</div>
+		<div class="card">O</div>
+		<div class="card">P</div>
+		<div class="card">Q</div>
+		<div class="card">R</div>
+		<div class="card">S</div>
+		<div class="card">T</div>
+		<div class="card">U</div>
+		<div class="card">V</div>
+		<div class="last-row">
+			<div class="card">W</div>
+			<div class="card">X</div>
+			<div class="card">Y</div>
+			<div class="card">Z</div>
+		</div>
+		
+	</div>
+</div>
