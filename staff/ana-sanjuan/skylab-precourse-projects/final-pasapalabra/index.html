@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href='styles/styles.css' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+</head>
+<body>
+    <h1>pasapalabra</h1>
+    <div id='instructions'>
+        <p> Intrucciones: Tu tarea consiste en introducir las palabras que respondan a la definición presentada por pantalla. Si respondes Pasapalabra, esa definición se volverá a preguntar en la siguiente ronda.
+            Tienes un máximo de 150 segundos y puedes usar la tecla enter para enviar tus respuestas. El programa es sensible a la acentuación, así que vigila tu ortografía.</p>
+        <p id='introName'>Antes de empezar a jugar, por favor introduce tu nombre: </p>
+        <input id='inputName' type='text' placeholder='Ada Lovelace'>
+        <button id='ajugar' value='¡A jugar!' onmouseover='newText()' onmouseout='oldText()' onclick='startGame()'>¡A jugar!
+    </div>
+    
+    <div id='game'>
+        <div id='letters'>
+            
+            <h2 id='a'>A</h2>
+            <h2 id='b'>B</h2>
+            <h2 id='c'>C</h2>
+            <h2 id='d'>D</h2>
+            <h2 id='e'>E</h2>
+            <h2 id='f'>F</h2>
+            <h2 id='g'>G</h2>
+            <h2 id='h'>H</h2>
+            <h2 id='i'>I</h2>
+            <h2 id='j'>J</h2>
+            <h2 id='k'>K</h2>
+            <h2 id='l'>L</h2>
+            <h2 id='m'>M</h2>
+            <h2 id='n'>N</h2>
+            <h2 id='ñ'>Ñ</h2>
+            <h2 id='o'>O</h2>
+            <h2 id='p'>P</h2>
+            <h2 id='q'>Q</h2>
+            <h2 id='r'>R</h2>
+            <h2 id='s'>S</h2>
+            <h2 id='t'>T</h2>
+            <h2 id='u'>U</h2>
+            <h2 id='v'>V</h2>
+            <h2 id='w'>W</h2>
+            <h2 id='x'>X</h2>
+            <h2 id='y'>Y</h2>
+            <h2 id='z'>Z</h2>
+        </div>
+
+        <hr>
+            
+        <div id='Container'>
+            <div id='questionsContainer'>
+                <p id='questions'>  </p>
+            </div>
+            <div id='responseBox'>
+                <div id='counters'>
+                    <p id="timeCounter">150</p>
+                    <p id="pointsCounter">0</p>
+                </div>
+                <div id='responseContainer'>
+                    <input id='response' type='text' placeholder='Respuesta aquí'>
+                    <input onclick='testResponse()' id='submit' type='button' value='Enviar' >
+                    <h3 id='result'> </h3>
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div id='rankingContainer'>
+        <input onclick='showInstru()' id='newGame' type='button' value='Nuevo juego'>
+        <input onclick='endGame()' id='submit2' type='button' value='Salir del juego'> 
+        <input onclick='showRanking()' id='seeRanking' type='button'  value='¡Mira el ranking!'>
+        <ol id='ranking'>
+            
+        </ol> 
+        
+    </div>
+
+    <script  src='app/app.js' type='text/javascript'></script>
+    
+</body>
+</html>

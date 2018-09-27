@@ -1,0 +1,168 @@
+body {
+    background:  rgb(45, 109, 170); 
+    color: rgb(214, 227, 240); 
+    font-size: 18px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+/* intrunctions*/
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(214, 227, 240);  
+}
+
+#instructions {
+    width: 90%;
+    margin: 0% 5% 0% 5%;
+    font-size: 17px;
+}
+
+#introName {
+    display: inline-block;
+    padding-right: 5%;
+    color: rgb(214, 227, 240);
+}
+
+/*game*/
+#game {
+    width: 90%;
+    position: relative;
+    margin: 1% auto;
+    border: solid rgb(2, 28, 53)  3px;
+    border-radius: 15px;
+}
+
+#letters {
+    width: 90%;
+    position: relative;
+    margin: 2% auto;
+}
+
+h2 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    background: radial-gradient( rgb(43, 127, 206), rgb(2, 31, 59));
+    border: white solid 1px;
+    border-radius: 100%;
+    text-align: center;
+    color: white;
+    font-size: 25px; 
+}
+
+hr {
+    border: solid rgb(2, 28, 53)  1.5px;
+}
+
+#Container {
+    width: 90%;
+    position: relative;
+    margin: 0% auto;
+}
+
+#questionsContainer {
+    height: 60px;
+}
+
+#responseContainer {
+    width: 75%;
+    display: inline-block;
+    position: relative;
+    left: 12%;
+    bottom: 63px;
+    height: 20px;
+    padding-top: 10%;
+}
+
+input, button, #response, #submit, #newGame{
+    color: rgb(2, 28, 53); 
+    background-color:rgb(214, 227, 240);  
+    border-radius: 3px;
+    font-size: 12px;
+    height: 25px;
+    margin-right: 1%;
+}
+
+button, #submit {
+    width: 80px;
+    height: 30px;
+}
+
+#submit2, #seeRanking, #newGame {
+    height: 30px;
+}
+
+#response, #submit{
+    display: inline-block; 
+}
+
+#responseBox {
+    width: 90%;
+}
+
+#responseContainer {
+    position: relative;
+    bottom: 0%;
+}
+
+#counters {
+    width: 40px;
+    left: 70px;
+    display: inline-block;
+}
+
+h3 {
+    display: inline-block;
+    margin-left: 5%;
+    font-size: 18px;
+}
+
+#timeCounter {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: radial-gradient( rgb(43, 127, 206), rgb(2, 31, 59));
+    border: white solid 1px;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+
+#pointsCounter {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background: radial-gradient( rgb(43, 127, 206), rgb(2, 31, 59));
+    border: white solid 1px;
+    text-align: center;
+    padding-top: 5%;
+    color: white;
+    font-size: 25px;
+    left: 15%;
+}
+
+#questions {
+    color: rgb(214, 227, 240);
+}
+
+#rankingContainer {
+    width: 95%;
+    color: rgb(2, 28, 53);  
+    margin: 2% 5%;
+}
+
+#ranking {
+    color: rgb(214, 227, 240);
+}
+
+#submit2, #newGame {
+    float: right; 
+    margin-right: 5%;
+}
+
+#ajugar {
+    width: 90px;
+}

@@ -17,13 +17,14 @@ Per executar la aplicació, has de seguir les següents instruccions depenent de
 
 #### MacOS
 
-* Descarrega el directori [release-builds/skylab-precurs-darwin-x64](https://github.com/aleixcam/skylab-precurs/tree/master/release-builds/skylab-precurs-darwin-x64)
-* Mou el .app a la carpeta 'Applicacions' del Mac
+* Descarrega el zip [release-builds/skylab-precurs-darwin-x64.zip](https://github.com/aleixcam/skylab-precurs/tree/master/release-builds/skylab-precurs-darwin-x64.zip)
+* Descomprimeix i mou el .app a la carpeta 'Applicacions' del Mac
 * Ja pots executar-ho
 
 #### Linux
 
-* Descarrega el directori [release-builds/skylab-precurs-linux-x64](https://github.com/aleixcam/skylab-precurs/tree/master/release-builds/skylab-precurs-linux-x64)
+* Descarrega el zip [release-builds/skylab-precurs-linux-x64.zip](https://github.com/aleixcam/skylab-precurs/tree/master/release-builds/skylab-precurs-linux-x64.zip)
+* Descomprimeix el zip
 * Sincerament, no ho se
 
 #### Windows
