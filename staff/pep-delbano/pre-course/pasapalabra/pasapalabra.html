@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylespasapalabra.css"/>
+    <title>Pasapalabra HTML-CSS-JS</title>
+  </head>
+  <body>
+    <div class="page">
+      <header><h1>PASAPALABRA</h1></header>
+
+      <div id="instrucciones" class="instrucciones">
+        <h2>Instrucciones</h2>
+        <p class="text" id="text">Bienvenido al juego de Pasapalabra! <br /> <br /> Tienes 120 segundos para contestar. Pulsa <b>START para empezar</b>, y para reiniciar el juego pulsa RESET. </p>
+        <div id="puntos" onclick="mastexto()"> . . .
+        </div>
+        <br/><button id='ok'>OK</button>
+      </div>
+
+      <div id="cuadropreguntas" class="cuadropreguntas">
+        <h2 id="preg">Pregunta</h2>
+        <p class="text" id="pregunta"></p>
+          <button id="start">START</button>
+          <button id="reset" onClick="window.location.reload()">RESET</button><br/>
+        <input id="respuesta" class="respuesta" type="text" disabled="disabled" onkeypress="enter(event)" placeholder="Escribe tu respuesta" autofocus/><br>
+      <button id="pasapalabra" disabled="disabled">PASAPALABRA</button>
+      <button id="aceptar" disabled="disabled">ACEPTAR</button><br>
+      <p id="comment"></p>
+      <br/><button id='okp'>OK</button>
+    </div>
+
+    <div id="tiempo" class="cronometro">
+      <h3 id="cron">120</h3>
+    </div>
+
+    <div id="abecedario" class="abecedario">
+      <button id="A" class="letra">A</button>
+      <button id="B" class="letra">B</button>
+      <button id="C" class="letra">C</button>
+      <button id="D" class="letra">D</button>
+      <button id="E" class="letra">E</button>
+      <button id="F" class="letra">F</button>
+      <button id="G" class="letra">G</button>
+      <button id="H" class="letra">H</button>
+      <button id="I" class="letra">I</button>
+      <button id="J" class="letra">J</button>
+      <button id="K" class="letra">K</button>
+      <button id="L" class="letra">L</button>
+      <button id="M" class="letra">M</button>
+      <button id="N" class="letra">N</button>
+      <button id="Ñ" class="letra">Ñ</button>
+      <button id="O" class="letra">O</button>
+      <button id="P" class="letra">P</button>
+      <button id="Q" class="letra">Q</button>
+      <button id="R" class="letra">R</button>
+      <button id="S" class="letra">S</button>
+      <button id="T" class="letra">T</button>
+      <button id="U" class="letra">U</button>
+      <button id="V" class="letra">V</button>
+      <button id="W" class="letra">W</button>
+      <button id="X" class="letra">X</button>
+      <button id="Y" class="letra">Y</button>
+      <button id="Z" class="letra">Z</button>
+    </div>
+
+    <div id="resultadofinal" class="resultadofinal">
+      <h2>Resultados</h2>
+      <br><br><p class="textres" id="resultfinal"></p><br><br>
+      <button id='okpreg'>OK</button>
+    </div>
+
+    <div id="nombre" class="nombre">
+      <h2>Guardar partida</h2>
+       <p class="text" id="nombretext">Por favor, escribe tu nombre para entrar en nuestro Ranking</p>
+       <input id="usern" class="usern" type="text" onkeypress="nombre(event)" placeholder="Escribe tu nombre" autofocus/><br>
+    </div>
+
+
+      <div id="ranking" class="ranking">
+        <h2>Ranking</h2>
+        <p id="rank"></p><br />
+        <button id="newgame" onClick="window.location.reload()">NEW GAME</button><br/>
+      </div>
+    </div>
+    <script src="mainpasapalabra.js"></script>
+  </body>
+</html>

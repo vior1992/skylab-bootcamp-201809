@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+</head>
+
+<body>
+
+	<div id="cabecera">
+		<h1>CALCULADORA</h1>
+		<p>Esta calculadora mostrará las cuatro operaciones básicas de dos números introducidos por el usuario. Si solo se introduce un número mostrará la raiz cuadrada del mismo. Introduzca los números y haga click en "A calcular!"</p>
+	</div>
+		
+	<div id="calculadora">
+		<form>
+			Numero1: <input id="num1" name="numero 1" type="text"><br>
+			Numero2: <input id="num2" name="numero 2" type="text"><br>
+			<input type="button" onclick="calculator()" value="A calcular!">
+			<p id="excepciones"></p>
+		</form>
+
+	</div>
+
+	<div id="resultados">
+		Suma: <p class="resultado" id="suma" ></p><br>
+		Resta: <p class="resultado" id="resta"></p><br>
+		Multiplicación: <p class="resultado" id="multiplicacion"></p><br>
+		División: <p class="resultado" id="division"></p><br>
+		<br><br>
+		Raiz cuadrada: <p class="resultado" id="raiz"></p><br>
+	</div>
+
+
+	<footer>All rights reserved.</footer>
+
+	<script type="text/javascript" src="main.js"></script>
+
+</body>

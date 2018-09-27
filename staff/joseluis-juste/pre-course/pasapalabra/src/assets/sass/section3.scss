@@ -1,0 +1,96 @@
+.section3{
+	width: 812px;
+	.buttons{
+		& > div:first-child{
+			margin-bottom: 2em;
+			text-align: center;
+		}
+		& > div:last-child{
+			text-align: center;
+		}
+		.button{
+			position:relative;
+			width: 40px;
+			height: 40px;
+			background: linear-gradient(110deg, blue,lightblue);
+			border-radius: 50%;
+			color: black;
+			display:inline-block;
+			margin-left: 1em;
+			.letter{
+				position:absolute;
+				color:black;
+				font-weight: bold;
+				top: 12px;
+    			left: 14px;
+			}
+			&:before{
+				position:absolute;
+				content:"";
+				left: 5px;
+    			top: 5px;
+				background-color: $section3-button-int;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+			}
+		}
+	}
+	.question{
+		background-color: $background-color;
+		text-align: center;
+		color: white;
+		border-top: 2px solid blue;
+		font-size: 1.7em;
+		font-family: Gloria Hallelujah;
+		margin-top: 2.5em;
+		span{
+			text-transform: uppercase;
+		}
+		p{
+			padding: 0 0.5em;
+		}
+	}
+	.control-panel{
+		margin-top: 1em;
+		text-align:center;
+		overflow: hidden;
+		input{
+			display:inline-block;
+			font-family: Gloria Hallelujah;
+			padding: 0.3em;
+			font-size: 1em;
+			border: 2px solid #00BDFF;
+			border-radius: 2px;
+		    width: 24em;
+
+		}
+		div{
+			display: inline-block;
+		}
+		.p-button{
+			background-color: #00BDFF;
+			border-radius: 8px;
+			border: 3px solid blue;
+			padding: 0.3em 0.6em;
+			color: white;
+			margin-top: 0.3em;
+			vertical-align: top;
+			font-family: Gloria Hallelujah;
+			line-height: 19px;
+			cursor: pointer;
+			margin-left: 1em;
+			&:last-child{
+				background-color: #F09400;
+			}
+		
+		}
+	}
+	.result{
+		margin-top: 1em;
+		font-weight: bold;
+		text-align: center;
+		font-size: 2em;
+		font-family: Gloria Hallelujah;
+	}
+}

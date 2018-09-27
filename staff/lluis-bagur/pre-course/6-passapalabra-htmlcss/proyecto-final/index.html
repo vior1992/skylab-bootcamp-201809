@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pasapalabra</title>
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+	<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+	<div id="cuerpo">
+	<h1 id= "title"></h1>
+
+		<div id="menu">
+			<p id="titulo1"><span style="color:white">PASAPALABRA</span></p>
+			<button id="new_game" class="btn_menu" onclick="User()">Nueva partida</button><br>
+			<button id="ranking" class="btn_menu" onclick="ranking()">Clasificación</button><br>		
+			<div id="name_intro">
+				<input id="usuario" type="text" placeholder="Nombre...">
+				<button id="ok_menu" class="ok_btn_menu" onclick="User()">enviar</button>
+				
+				
+		</div>
+
+
+		<div id="juego">
+		<header>
+			<p id="menu_title"><span style="color:white">PASAPALABRA</span></p>
+		</header>
+		<div id="globalLetters">
+			<span class="letters">A<span class="results"></span></span>
+			<span class="letters">B<span class="results"></span></span>
+			<span class="letters">C<span class="results"></span></span>
+			<span class="letters">D<span class="results"></span></span>
+			<span class="letters">E<span class="results"></span></span>
+			<span class="letters">F<span class="results"></span></span>
+			<span class="letters">G<span class="results"></span></span>
+			<span class="letters">H<span class="results"></span></span>
+			<span class="letters">I<span class="results"></span></span>
+			<span class="letters">J<span class="results"></span></span>
+			<span class="letters">K<span class="results"></span></span>
+			<span class="letters">L<span class="results"></span></span>
+			<span class="letters">M<span class="results"></span></span>
+			<span class="letters">N<span class="results"></span></span>
+			<span class="letters">Ñ<span class="results"></span></span>
+			<span class="letters">O<span class="results"></span></span>
+			<span class="letters">P<span class="results"></span></span>
+			<span class="letters">Q<span class="results"></span></span>
+			<span class="letters">R<span class="results"></span></span>
+			<span class="letters">S<span class="results"></span></span>
+			<span class="letters">T<span class="results"></span></span>
+			<span class="letters">U<span class="results"></span></span>
+			<span class="letters">V<span class="results"></span></span>
+			<span class="letters">W<span class="results"></span></span>
+			<span class="letters">X<span class="results"></span></span>
+			<span class="letters">Y<span class="results"></span></span>
+			<span class="letters">Z<span class="results"></span></span>
+		</div>
+
+
+		<p id="game_questions">Skylab Coders Academy</p>
+		<div id="user_btn">
+			<button id="correct" class="results_panel">Aciertos</button>
+			<button id="incorrect" class="results_panel">Errores</button>
+			<input id="answer" type="text" placeholder="Dispara aquí tu respuesta!!">
+			<button id="ok" class="btn_game" onclick="answerAnalyzer()">OK</button>
+			<button id="pasapalabra" class="btn_game" onclick="userPasapalabra()">PASAPALABRA</button>
+			<button id="stop" class="btn_game" onclick="endGame()">Salir del juego</button>
+		</div> 
+
+
+	</div>
+
+	</div>
+	<script src="app/app.js"></script>
+</body>
+</html>

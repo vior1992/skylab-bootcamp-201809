@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pasapalabra</title>
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+</head>
+
+<body>
+
+	<div><h1 id="pagetitle">PASAPALABRA</h1></div>
+
+	<div><p id="playername">NOMBRE JUGADOR</p></div>
+
+	<div><p id="timer">TIEMPO</p></div>
+
+	<div id="inicios">
+		<p id="instrucciones"><b>Instrucciones:</b> Escriba el nombre del jugador y pulse en "A Jugar!"" para comenzar la partida. Cuando aparezca la definición escriba la respuesta y pulse enter o en el botón "Responder". Si quiere pasar de palabra escriba pasapalabra. Si quiere terminar el juego pulse el boton "Abandonar", pero el progreso no será guardado.</p>
+		JUGADOR: <input id="jugador"><br>
+		<input id="bjugador" type="button" onclick="inicio()" value="A jugaaaaar!!">
+	</div>
+
+	<div id="ranking">
+		<h1>RANKING</h1>
+		<table id="rankinglist" style="width:100%">
+  			<tr>
+    			<th>Jugador</th>
+    			<th>Puntuación</th> 
+    		</tr>
+  		</table>
+	</div>
+
+	<div id="letras"><div>
+		<p class="letra" id="a">A</p><p class="letra" id="b">B</p><p class="letra" id="c">C</p><p class="letra" id="d">D</p><p class="letra" id="e">E</p><p class="letra" id="f">F</p><p class="letra" id="g">G</p><p class="letra" id="h"">H</p><p class="letra" id="i">I</p><p class="letra" id="j">J</p><p class="letra" id="k">K</p><p class="letra" id="l">L</p><p class="letra" id="m">M</p><p class="letra" id="n">N</p><p class="letra" id="ñ">Ñ</p><p class="letra" id="o">O</p><p class="letra" id="p">P</p><p class="letra" id="q">Q</p><p class="letra" id="r">R</p><p class="letra" id="s">S</p><p class="letra" id="t">T</p><p class="letra" id="u">U</p><p class="letra" id="v">V</p><p class="letra" id="w">W</p><p class="letra" id="x">X</p><p class="letra" id="y">Y</p><p class="letra" id="z">Z</p>
+	</div>
+
+	<div id="definiciones">
+		DEFINICION:  <p id="definicion"></p>
+	</div>
+
+	<div id="respuestas">
+		RESPUESTA:  <input id="respuesta" onkeypress="deletec()" onfocus="this.value=''" disabled=true>
+		<input id="brespuesta" type="button" onclick="round()" value="Responder" disabled=true>
+		<input id="babort" type="button" onclick="abort()" value="Abandonar" disabled=true>
+	</div>
+
+	<div id="recuento">
+		<p id="correcta"></p>
+		<p id="info"></p>
+	</div>
+
+	<script type="text/javascript" src="main.js"></script>
+</body>

@@ -1,0 +1,69 @@
+* {
+    font-family: 'Ranga', cursive;   
+}
+
+h1 {
+    text-align: center;
+    font-size: 70px;
+    margin: 5% 5%;
+    letter-spacing: 2px;
+}
+
+#calculator {
+    background-color: rgb(48, 110, 192);
+    width: 250px; 
+    height: 400px;
+    margin: 0 auto;
+    padding: 5% 10% 5% 10%;
+    border: black solid 2px;
+    border-radius: 10px;
+}
+
+#n1, #n2 {
+    width: 76px;
+    height: 30px;
+    font-size: 18px;
+    margin: 1%;
+    border: black solid 1px;
+}
+
+#calculate {
+    width: 170px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: rgb(55, 197, 197);
+    letter-spacing: 1px;
+    border: black dotted 2px;
+}
+
+#calculateSubs, #calculateSum, #calculateMult, #calculateDivi {
+    
+    width: 50px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: rgb(153, 85, 218);
+    color: white;
+    letter-spacing: 1px;
+    border: black dotted 2px;
+    margin: 2% 0% 2% 2%;
+}
+
+#resultSubs, #resultSum, #resultMult, #resultDivi {
+    color: black;
+    font-size : 20px;
+    background-color: white;
+    width: 50px;
+    height: 38px;
+    text-align: center;
+    border: black solid 1px;
+    float: right;
+    margin: 2% 45% 2% 5%;
+}
+
+#inputP {
+    color:white;
+    font-size: 20px;
+    letter-spacing: 1px;
+}

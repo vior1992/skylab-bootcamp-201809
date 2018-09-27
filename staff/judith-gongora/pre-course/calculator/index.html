@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Calculadora</title>
+  <script type="text/javascript" src="app/calculadora.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+  <link href="style/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+  <ul class="titulo">
+    <li><img src="img/logo.png" height="50px;"></li>
+    <li>Calculadora</li>
+    
+  </ul>
+
+ <table>
+   <thead>
+    <tr>
+      <th colspan="4" id="res">0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="fila1">
+      <td colspan="3" id="ac" onclick="borrar()">AC</td>
+      <td class="signos" onclick="funcion(4)">&divide;</td>
+    </tr>
+     <tr>
+      <td onclick="almacenar('7')">7</td>
+      <td onclick="almacenar('8')">8</td>
+      <td onclick="almacenar('9')">9</td>
+      <td class="signos" onclick="funcion(3)">x</td>
+    </tr>
+    <tr>
+      <td onclick="almacenar('4')">4</td>
+      <td onclick="almacenar('5')">5</td>
+      <td onclick="almacenar('6')">6</td>
+      <td class="signos" onclick="funcion(2)">-</td>
+    </tr>
+    <tr>
+      <td onclick="almacenar('1')">1</td>
+      <td onclick="almacenar('2')">2</td>
+      <td onclick="almacenar('3')">3</td>
+      <td class="signos" onclick="funcion(1)">+</td>
+    </tr>
+    <tr>
+      <td colspan="2" onclick="almacenar('0')">0</td>
+      <td onclick="almacenar('.')">,</td>
+      <td class="signos" onclick="funcion(5)">=</td>
+    </tr>
+  </tbody>
+</table>
+<p>Ejercicio realizado para SkyLab por Judith Góngora</p>
+</body>
+</html>
