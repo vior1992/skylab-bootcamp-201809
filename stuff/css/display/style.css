@@ -1,0 +1,8 @@
+.box {
+    background-color: skyblue !important;
+    width: 100px;
+    height: 100px;
+    color: white;
+    /* display: inline-block; */
+    display: inline;
+}
