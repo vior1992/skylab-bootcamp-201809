@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+}
+
+/* FORMAT HEADER  */
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-bottom: 1px solid gray;
+    background-color: rgb(98, 195, 233);
+    color: white;
+}
+
+main {
+    width: 100%;
+}
+
+.user-image-container h1 {
+    font-size: 1.3rem;
+
+}
+
+.user-image-container h1 span {
+    font-weight: 100;
+    color: black;
+    font-size: 1.3rem
+}
+
+
+
+.user-image-container {
+    width: 50%;
+    padding: 5px;
+}
+
+address{
+    width: 35%;
+    height: 40%;
+    align-self: center;  
+    font-size: 0.9rem;
+    font-style: italic;    
+    word-wrap: break-word
+
+}
+
+p > span {
+    color: black;
+}
+
+/* FORMAT MAIN SECTION  */
+
+section h2 {
+    width: 100%;
+    background: rgb(98, 195, 233);
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.work h4 {
+    width: 100%;
+    background: rgb(214, 212, 212);
+    border-radius: 10px;
+}
+
+.skills {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+
+
+.skills p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.skills ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+
+
+}
+
+.skills ul li {
+    width: 100%;
+    text-align: center;
+    align-content: space-around;
+    
+}
+
+.work {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.degree {
+    display: flex;
+
+}
+
+.subject {
+    flex:1;
+    border-bottom: 1px solid gray;
+}
+
+.add-info {
+    flex:1;
+    border-bottom: 1px solid gray;
+}
+
+@media only screen and (min-width: 900px) {
+    .container {
+        display: flex;
+        margin: auto;
+        width: 80%;
+    }
+
+    header {
+        flex: 0.2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: rgb(161, 203, 223);
+    }
+
+     .user-image-container {
+        width: 100%;
+    }
+
+    main {
+        width: 100%;
+        background: rgb(236, 219, 222);
+    }
+
+    section h2 {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        background: rgb(243, 156, 125);
+
+    }    
+
+    .work h4 {
+        width: 60%;
+        background: rgb(243, 156, 125);
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .skills {
+        flex-direction: row;
+   
+    }    
+
+    .programming {
+        width: 40%;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+    
+    .data {
+        width: 40%;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+
+    address {
+        width: 100%;
+    }
+
+ 
+
+}
