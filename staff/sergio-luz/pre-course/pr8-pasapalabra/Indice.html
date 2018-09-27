@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Pasapalabra</title>
+</head>
+<body>					        	
+	 <!-- dentro del "body" -->
+	<p class="title">PASAPALABRA</p>
+	 <!-- dentro del "body" -->
+
+	 
+	<div>
+		<div class="tableroLetras">
+			<table class="tabla">			        
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> A</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> B</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> C</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> D</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> E</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> F</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> G</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> H</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> I</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> J</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> K</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> L</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> M</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> N</div></div></th>
+			</table>
+			<table class="tabla segunda">			        
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> Ñ</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> O</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> P</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> Q</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> R</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> S</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> T</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> U</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> V</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> W</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> X</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> Y</div></div></th>
+				<th><div id="js--letra" class="circle centrado "><div class="centrado"> Z</div></div></th>
+			</table>
+    	</div>
+    </div>
+
+	<div class="ContenedorPregunta">
+		<div class="EmpezarJuego" id="js--EmpezarJuego">
+			<a id="js--nuevoJuego" class="btn"><i class="icon-play"></i></a>
+		</div>
+
+		<div class="hidden" id="js--ContenedorBotones">
+			<div style="height: 120px"><p id="js--Pregunta"></p></div>
+			<div>
+				<input id="js--Respuesta" type="text" name="respuesta" placeholder="Introduce tu respuesta">	
+				<input type="button" value="Enviar" class="botones" id="js--Enviar">
+				<input type="button" value="Pasapalabra" class="botones" id="js--Pasapalabra">
+				<input type="button" value="Salir" class="botones" id="js--Salir">
+			</div>		
+		</div>
+		<div class="hidden" id="js--PanelNombre">
+			<div style="height: 80px"><p>Has entrado en el Ranking! Introduce tu nombre:</p></div>
+			<div >
+				<input id="js--Nombre" type="text" name="respuesta" placeholder="Introduce tu respuesta"">	
+				<input type="button" value="Ok" class="botones" id="js--Ok">
+			</div>		
+		</div>
+
+		<div class="hidden" id="js--ContenedorRanking">
+			<p id="js--EntrasteEnRanking">¡¡Entraste en ranking!!</p>
+			<h3 id="js--TituloRanking">🏆🏆🏆El Ranking de los jugadores es el siguiente🏆🏆🏆</h3>	
+			<div id="resultadosRanking">
+				
+			</div>		
+		</div>
+
+	</div>
+
+
+	<div class="izquierda">
+		<p>Puntos:</p>	
+		<div >
+		<p class="Puntos">0</p>		
+		</div>
+	</div>
+
+	<div class="derecha">
+		<p>Tiempo restante:</p>	
+		<div >
+		<p class="Tiempo">130s</p>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="Javascript/JS-PR8.js"></script>
+</body>
+</html>
