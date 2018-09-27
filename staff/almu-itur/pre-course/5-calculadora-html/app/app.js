@@ -6,9 +6,9 @@ function calculator () {
   	var error = false;
 
   	var operations = [n1 + n2, n1 - n2, n1 * n2, n1 / n2];
-	var resultsRounded = operations.map(function(numberVar) {
-       	if (!Number.isInteger(numberVar)) {
-        	numberVar = numberVar.toFixed(2);
+	var resultsRounded = operations.map(function(number) {
+       	if (!Number.isInteger(number)) {
+        	numberVar = number.toFixed(2);
       	}
       	return numberVar;
     	});
