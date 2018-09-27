@@ -8,6 +8,7 @@ function calculator () {
   	var operations = [n1 + n2, n1 - n2, n1 * n2, n1 / n2];
 	var resultsRounded = operations.map(function(number) {
        	if (!Number.isInteger(number)) {
+
         	var numberVar = number.toFixed(2);
       	}
       	return numberVar;

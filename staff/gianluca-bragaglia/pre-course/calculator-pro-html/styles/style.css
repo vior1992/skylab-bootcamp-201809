@@ -1,0 +1,27 @@
+#quest{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+#titol {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px; 
+    margin-left: 18px;
+}
+
+.jumbotron {
+    background-color: #ffc107;
+}
+
+li {
+    margin-top: 20px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+}

@@ -1,0 +1,56 @@
+/*colores form*/
+html {
+  height: 100vh;
+  margin: 0; }
+
+body {
+  margin: 0; }
+
+h3 {
+  margin: 0; }
+
+.my-form {
+  background-color: #F2F2F2;
+  margin: 0 auto;
+  width: 463px;
+  padding: 6px 6px 0 6px;
+  margin-top: 3em;
+  overflow: auto; }
+  .my-form .l-data-form-container {
+    background-color: #DEDBD2;
+    min-height: 100%; }
+  .my-form .group-field {
+    margin-top: 1em;
+    margin-left: 10px; }
+    .my-form .group-field label {
+      width: 9em;
+      display: inline-block; }
+  .my-form h3 {
+    margin-left: 10px; }
+  .my-form hr {
+    margin-top: 19px;
+    margin-bottom: 9px; }
+    .my-form hr:first-of-type {
+      margin-top: 0px; }
+    .my-form hr:last-of-type {
+      margin-bottom: 0px; }
+  .my-form a {
+    display: block;
+    width: 169px;
+    height: 28px;
+    background: #9A8F76;
+    margin: 20px auto;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    line-height: 25px;
+    -webkit-box-shadow: 0 17px 10px -10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 17px 10px -10px rgba(0, 0, 0, 0.4);
+    -webkit-transition: all ease-in-out 300ms;
+    transition: all ease-in-out 300ms; }
+    .my-form a:hover {
+      -webkit-transform: translate(0, -10px);
+              transform: translate(0, -10px);
+      -webkit-box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
+              box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2); }

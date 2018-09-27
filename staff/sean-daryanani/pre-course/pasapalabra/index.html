@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pasapalabra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+
+</head>
+<body>
+    <div class="total">
+    <header>
+            <div class="title-wrapper">
+                    <h3 class="title">&#x26BD; Pasapalabra &#x26BD; </h3> 
+            </div>
+    </header>
+    <div class="game-wrapper">
+        <ul class="circle-wrapper">
+		        <li class="item"><span>A</span></li>
+		        <li class="item"><span>B</span></li>
+		        <li class="item"><span>C</span></li>
+		        <li class="item"><span>D</span></li>
+		        <li class="item"><span>E</span></li>
+		        <li class="item"><span>F</span></li>
+		        <li class="item"><span>G</span></li>
+		        <li class="item"><span>H</span></li>
+		        <li class="item"><span>I</span></li>
+		        <li class="item"><span>J</span></li>
+		        <li class="item"><span>K</span></li>
+		        <li class="item"><span>L</span></li>
+		        <li class="item"><span>M</span></li>
+				<li class="item"><span>N</span></li>
+		        <li class="item"><span>O</span></li>
+		        <li class="item"><span>P</span></li>
+		        <li class="item"><span>Q</span></li>
+		        <li class="item"><span>R</span></li>
+		        <li class="item"><span>S</span></li>
+		        <li class="item"><span>T</span></li>
+		        <li class="item"><span>U</span></li>
+		        <li class="item"><span>V</span></li>
+		        <li class="item"><span>W</span></li>
+		        <li class="item"><span>X</span></li>
+                <li class="item"><span>Y</span></li>
+                <li class="item"><span>Z</span></li>
+                
+        </ul>
+        <div class="game-over-message">
+            <h1>FIN DEL JUEGO!</h1>
+            <h2>Play Again</h2>
+        </div>
+        <div class="score-container">
+            <div class="seconds">
+                <span>120</span>
+            </div>
+            <div class="points">
+                <span>0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-side"> 
+        <div class="reglas intro-text">
+            <h3>Bienvenidos al juego de Pasapalabra!</h3>
+            <ul>
+                <li>En este juego de pasapalabra podrás poner a aprueba tus conocimientos futbolísticos</li>
+                <li>Se mostraran una serie de preguntas y deberás intentar acertar el máximo número de palabras</li>
+                <li>Si no sabes la respuesta a una pregunta podrás contestar "Pasapalabra" para pasar a la siguiente pregunta</li>
+                <li>El juego finaliza cuando se acabe el tiempo o hayas contestado a todas las preguntas</li>
+            </ul>   
+            <div class="name-input">
+                <input type="text" placeholder="Introduce tu nombre" required> <p id="enter-name"></p>
+            </div>       
+            <div class="jugar-button">
+                <span>Jugar</span>
+            </div>
+        </div>
+
+        <div class="reglas" id="preguntas">
+            <i class="fas fa-sync-alt"></i>
+            <i class="fas fa-ban"></i>
+            <p id="empieza-por">xxxxxxxx</p>
+            <p id="question">xxxxxxxxx</p>
+            
+                <input type="text" placeholder="Introduce tu respuesta">
+                <button type="button">Enviar</button>
+                <button type="button">Pasapalabra</button>
+                <img id="siuu" src="img/correctimage.jpg" alt="" width="200px" height="150px">
+                <audio id="audio" src="audio/correct2.mp3" ></audio>
+                <img id="nooo" src="img/incorrectimage.jpeg" alt="" width="200px" height="150px">
+                </div>
+            
+        </div>
+    
+
+    <footer>
+        <p>Made by Sean Daryanani &#x1F919;</p>
+    </footer>
+</div>
+    
+
+
+
+
+
+    <script type="text/javascript" src="app/main.js"></script>
+</body>
+</html>
