@@ -2,9 +2,18 @@ header{
     padding:10px;
     text-align:center;
 }
+img{
+    width: 150px;
+    height:150px;
+}
+
+footer{
+    text-align:center;
+    font-size:75%;
+}
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows: auto;
     padding: 10px;
     width: auto;
@@ -29,6 +38,7 @@ header{
     .item3 {
         grid-column-start: 1;
         grid-column-end: 2;
+        text-justify: auto;
     }
     .item4 {
         grid-column-start: 2;
