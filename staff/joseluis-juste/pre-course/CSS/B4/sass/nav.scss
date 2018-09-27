@@ -1,0 +1,22 @@
+nav{
+	background: $header;
+	
+	div:first-child{
+		padding: 2em 0;
+		div{
+			display: inline-block;
+			margin-left: 4em;
+			margin-right: 1em;
+			padding: 0;
+			vertical-align: top;
+		}
+		h1{
+			display: inline-block;
+			margin: 0;
+			color:white;
+			font-size: 5em;
+			
+		}
+		
+	}
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>EJERCICIOS CSS APARTADO B1</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+<div class="wrapper">
+	<header class="logo">
+		<div>
+			<img src="img/logo.jpg">
+		</div>
+	</header>
+	<section class="about">
+		<h2>About</h2>
+		<article>Lorem ipsum dolor sit amet, consectetur <span>adipisicing elit, sed do eiusmod</span>
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure <span>dolor in reprehenderit in voluptate</span> velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui <span>officia deserunt mollit animid</span> est laborum.</article>
+	</section>
+	<section class="locations">
+		<h2>Our Locations</h2>
+		<ul>
+			<li>USA
+				<ul>
+					<li><a href="">New York</a></li>
+					<li><a href="">Columbus</a></li>
+					<li><a href="">Austin</a></li>
+					<li><a href="">Philly</a></li>
+				</ul>
+			</li>
+			<li>
+				WORLD
+				<ul>
+					<li><a href="">Ottawa</a></li>
+					<li><a href="">Sydeny</a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section class="classes">
+		<h2>Upcoming Classes</h2>
+		<article class="table-classes">
+			<table>
+				<thead>
+					<th>Location</th>
+					<th>Topic</th>	
+				</thead>
+				<tbody>
+					<tr>
+						<td>New York</td>
+						<td>Javascript & jQuery</td>
+					</tr>
+					<tr>
+						<td>San Francisco</td>
+						<td>HTML & CSS</td>
+					</tr>
+				</tbody>	
+			</table>
+		</article>
+	</section>
+	<section class="sign-up">
+		<h2>Sign Up!</h2>
+		<form>
+			<div class="group-field">
+				<label for="name">Name:</label>
+				<input type="text" name="name">
+			</div>
+			<div class="group-field">
+				<label for="name">Email:</label>
+				<input type="text" name="email">
+			</div>
+			<div class="group-field">
+				<label for="name">Location:</label>
+				<select>
+					<option selected>San Francisco</option>
+					<option>New York</option>
+					<option>Miami</option>
+				</select>
+			</div>
+			<div class="group-field">
+				 <fieldset>
+				 	<legend>Gender:</legend>
+				 	Female<input type="radio" name="gender" value="female">
+					Male<input type="radio" name="gender" value="male">
+				 </fieldset>
+				
+			</div>
+			<div class="group-field">
+				<p>Experience:</p>
+				<textarea cols="50" rows="5"></textarea>
+			</div>
+			<div class="group-field">
+				<input type="submit" value="Sign Up">
+			</div>
+		</form>
+	</section>
+	<footer>
+		<ul>
+			<li><a href="">Twitter</a></li>
+			<li><a href="">Facebook</a></li>
+			<li><a href="">Flickr</a></li>
+		</ul>
+	</footer>
+</div>
+</body>
+</html>

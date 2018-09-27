@@ -1,0 +1,123 @@
+$boton-gris: #EAEAEA;
+$boton-azul: #5C9DED;
+$boton-verde: #42CB6E;
+$boton-azul-claro: #4EC2E8;
+$boton-salmon: #FCCE54;
+$boton-rosado: #ED5463;
+
+@mixin mix($child, $rounded:0, $last_row:0)
+{
+	$color_texto: #000000;
+	$color_fondo: #000000;
+	$color_borde: #000000;
+
+	@if $child == 1{
+
+		$color_fondo: $boton-gris;
+		$color_borde: rgba(0,0,0,0.1);
+
+	}@else if $child == 2{
+
+		$color_fondo: $boton-azul;
+		$color_texto: white;
+		$color_borde: rgba(0,0,0,0.1);
+
+	}@else if $child == 3{
+
+		$color_fondo: $boton-verde;
+		$color_texto: white;
+		$color_borde: rgba(0,0,0,0.1);
+		
+	}@else if $child == 4{
+
+		$color_fondo: $boton-azul-claro;
+		$color_texto: white;
+		$color_borde: rgba(0,0,0,0.1);
+		
+	}@else if $child == 5{
+
+		$color_fondo: $boton-salmon;
+		$color_texto: white;
+		$color_borde: rgba(0,0,0,0.1);
+		
+	}@else if $child == 6{
+
+		$color_fondo: $boton-rosado;
+		$color_texto: white;
+		$color_borde: rgba(0,0,0,0.1);
+		
+	}@else if $child == 7{
+
+		$color_texto: rgba(181,171,172,0.7);
+		$color_borde: rgba(181,171,172,0.7);
+		
+	}@else if $child == 8{
+
+		$color_texto: $boton-azul;
+		$color_borde: $boton-azul;
+		
+	}@else if $child == 9{
+
+		$color_texto: $boton-verde;
+		$color_borde: $boton-verde;
+		
+	}@else if $child == 10{
+
+		$color_texto: $boton-azul-claro;
+		$color_borde: $boton-azul-claro;
+		
+	}@else if $child == 11{
+
+		$color_texto: $boton-salmon;
+		$color_borde: $boton-salmon;
+		
+	}@else if $child == 12{
+
+		$color_texto: $boton-rosado;
+		$color_borde: $boton-rosado;
+		
+	}
+	@if $child > 6{
+	
+		@if $last_row == 1{
+
+			a:nth-child(#{$child - 9}){
+		
+				border: 1px solid $color_borde;
+				color: white;
+				border-radius: 15px;
+				background-color: $color_borde;
+				font-size: 2em;
+			    width: 144px;
+			    height: 67px;
+			    line-height: 61px;
+			}
+
+		}@else{
+			a:nth-child(#{$child - 6}){
+		
+				border: 1px solid $color_borde;
+				color: $color_texto;
+				@if $rounded == 1{
+
+					border-radius: 22px;
+				}
+			}
+
+		}
+		
+	}@else{
+		a:nth-child(#{$child}){
+		
+			background-color: $color_fondo;
+			border: 1px solid $color_borde;
+			color: $color_texto;
+			@if $rounded == 1{
+
+				border-radius: 22px;
+			}
+		}
+	}
+	
+	
+}

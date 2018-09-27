@@ -1,0 +1,119 @@
+@import 'mixins';
+
+html{
+	margin:0;
+	height: 100vh;
+}
+body{
+	margin:0;
+}
+a{
+	text-decoration:none;
+	display:block;
+	text-align:center;
+	width: 105px;
+    height: 38px;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 3px;
+    color: white;
+    font-weight: 300;
+
+}
+
+.group{
+	overflow:hidden;
+	div{
+		width:38%;
+		margin: 0 auto;
+		margin-top:2em;
+		
+	}
+}
+
+.group1{
+
+	
+	div:first-child{
+		justify-content:space-between;
+		display:flex;
+		
+		@include mix(1);
+		@include mix(2);
+		@include mix(3);
+		@include mix(4);
+		@include mix(5);
+		@include mix(6);
+	}
+	div:last-of-type{
+		justify-content:space-between;
+		display:flex;
+
+		@include mix(7);
+		@include mix(8);
+		@include mix(9);
+		@include mix(10);
+		@include mix(11);
+		@include mix(12);
+	}
+
+}
+
+.group2{
+
+	div:first-child{
+		justify-content:space-between;
+		display:flex;
+		@include mix(1,1);
+		@include mix(2,1);
+		@include mix(3,1);
+		@include mix(4,1);
+		@include mix(5,1);
+		@include mix(6,1);
+	}
+	div:last-of-type{
+		justify-content:space-between;
+		display:flex;
+		@include mix(7,1);
+		@include mix(8,1);
+		@include mix(9,1);
+		@include mix(10,1);
+		@include mix(11,1);
+		@include mix(12,1);
+	}
+
+}
+
+.group3{
+
+	div:first-child{
+		justify-content:start;
+		display:flex;
+		@include mix(1,1);
+		@include mix(2,1);
+		@include mix(3,1);
+		a{
+			width: 85px;
+		    line-height: 25px;
+		    height: 29px;
+		}
+		a:nth-child(n + 2){
+			margin-left:15px;
+		}
+	}
+}
+
+.group4{
+
+	div{
+		justify-content:start;
+		display:flex;
+		@include mix(10,1,1);
+		@include mix(11,1,1);
+		@include mix(12,1,1);
+		a:nth-child(n + 2){
+			margin-left:15px;
+		}
+	}
+}
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type=" text/css " href="./css/style.css " />   
+    <script src="main.js"></script> 
+    <title>Calculadora</title>
+</head>
+<body>
+<div class="container">
+        <div class="item">
+            <div id="screen"></div>
+            <button onclick="pressed('C')" class="papaya">C</button>
+        </div>
+        <div class="item">
+            <button onclick="pressed('7')" class="gris">7</button>
+            <button onclick="pressed('8')" class="gris">8</button>
+            <button onclick="pressed('9')" class="gris">9</button>
+            <button onclick="pressed('+')" class="blush">+</button>
+        </div>
+        <div class="item">
+            <button onclick="pressed('4')" class="gris">4</button>
+            <button onclick="pressed('5')" class="gris">5</button>
+            <button onclick="pressed('6')" class="gris">6</button>
+            <button onclick="pressed('-')" class="blush">-</button>
+        </div>
+        <div class="item">
+            <button onclick="pressed('1')" class="gris">1</button>
+            <button onclick="pressed('2')" class="gris">2</button>
+            <button onclick="pressed('3')" class="gris">3</button>
+            <button onclick="pressed('/')" class="blush">/</button>
+        </div>
+        <div class="item">
+            <button onclick="pressed('0')" class="gris">0</button>
+            <button onclick="pressed(',')" class="gris">,</button>
+            <button id="calculate" onclick="pressed('=')" class="aqua">=</button>
+            <button onclick="pressed('*')" class="blush">*</button>
+        </div>
+    </div>
+</body>
+</html>
