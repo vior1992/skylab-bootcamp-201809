@@ -1,0 +1,52 @@
+*{
+	font-family: 'Indie Flower';
+
+
+}
+header {
+  text-align: center;
+  height: 90px;
+  background-image: url("https://previews.123rf.com/images/worldion/worldion1804/worldion180400041/99079100-vector-seamless-pattern-modern-ornament-in-blue-background-geometrical-abstract-print-for-textile-an.jpg" );
+  border: 3px solid black;
+  margin:0;
+}
+#headerTitle {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+button {
+  width: 150px;
+  height: 25px;
+  margin: 30px 10% 0 20px;
+  letter-spacing: 0.6px;
+  font-size: 15px;
+  color: midnightblue;
+  background-color: inherit;
+  border-radius: 3.2px;
+  border: solid 0.8px mediumslateblue;
+  
+}
+input {
+  width: 220px;
+  height: 37px;
+  border-radius: 3.2px;
+  border: solid 0.8px mediumslateblue;
+  background-color: darkcyan;
+  display: block;
+  margin: auto;
+  margin-left: 20px;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: white;
+}
+#calculator {
+  background-color: mediumturquoise;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color:white;
+  
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"> 
+  <title id="title">Pasapalabra Game</title>
+  <link id="css" rel="stylesheet" type="text/css" href="styles/styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+  <h1 id="headerTitle">PASAPALABRA</h1>
+  </header>
+  <div id=instruction>
+    <p id="instructions">Bienvenido al juego del Pasapalabra. INSTRUCCIONS DEL JOC...... Por favor introduce tu nombre</p>
+    <div id=enterName>
+    <input type="text" placeholder= "Nombre" id="name">
+    <button onclick="pasapalabra()" id="play">JUGAR!</button>
+    </div>
+  </div>
+  <div id="game">
+    <ul id="letters"> 
+            <li class="item">A</li>
+            <li class="item">B</li>
+            <li class="item">C</li>
+            <li class="item">D</li>
+            <li class="item">E</li>
+            <li class="item">F</li>
+            <li class="item">G</li>
+            <li class="item">H</li>
+            <li class="item">I</li>
+            <li class="item">J</li>
+            <li class="item">L</li>
+            <li class="item">M</li>
+            <li class="item">N</li>
+            <li class="item">Ñ</li>
+            <li class="item">O</li>
+            <li class="item">P</li>
+            <li class="item">Q</li>
+            <li class="item">R</li>
+            <li class="item">S</li>
+            <li class="item">T</li>
+            <li class="item">U</li>
+            <li class="item">V</li>
+            <li class="item">X</li>
+            <li class="item">Y</li>
+            <li class="item">Z</li>
+    </ul>
+    <h1 id="enunciado">
+    </h1>
+	  <input type="text" placeholder= "Respuesta" id="answer">
+	  <button onclick="reviewAnswers()" id="seguir">OK</button>
+      <h1 id="comment">
+      </h1>
+  </div>
+  <div id="score">
+    <h1 id=scoreText></h1>
+    <button onclick="showPoints()" id="showPoints">SHOW POINTS</button>
+  </div>
+
+  <script src="app/app.js"></script>
+</body>
+<footer>
+  <h1 id="headerTitle">PASAPALABRA</h1>
+</footer>
+</html>
