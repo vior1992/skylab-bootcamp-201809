@@ -1,0 +1,9 @@
+.box {
+    background-color: orange;
+}
+
+.custom-box {
+    background-color: plum;
+    width: inherit;
+    height: inherit;
+}
