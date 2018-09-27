@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculadora</title>
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+	<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+	<div id="cuerpo">
+	<h1 id= "title"></h1>
+
+
+			<table class="calculadora">
+		<tr>
+		  <td colspan="4"><span id="resultado"></span></td>
+		</tr>
+		<tr>
+		  <td><button id="siete" onclick="fsiete()">7</button></td><td><button id="ocho" onclick="focho()">8</button></td><td><button id="nueve" onclick="fnueve()">9</button></td><td><button id="division" onclick="fdivi()">/</button></td>
+		</tr>
+		<tr>
+		  <td><button id="cuatro"onclick="fcuatro()">4</button></td><td><button id="cinco"onclick="fcinco()">5</button></td><td><button id="seis" onclick="fseis()">6</button></td><td><button id="multiplicacion" onclick="fmulti()">x</button></td>
+		</tr>
+		<tr>
+		  <td><button id="uno" onclick="funo()">1</button></td><td><button id="dos" onclick="fdos()">2</button></td><td><button id="tres" onclick="ftres()">3</button></td><td><button id="resta" onclick="fresta()">-</button></td>
+		</tr>
+		<tr>
+		  <td><button id="igual" onclick="figual()">=</button></td><td><button id="coma" onclick="fcoma()">.</button></td><td><button id="cero" onclick="fcero()">0</button></td><td><button id="suma" onclick="fsuma()">+</button></td>
+		</tr>
+		<td></td><td></td><td></td><td><button id="reset" onclick="freset()">C</button></td>
+		</table>
+
+
+	</div>
+	<script src="app/app.js"></script>
+</body>
+</html>
