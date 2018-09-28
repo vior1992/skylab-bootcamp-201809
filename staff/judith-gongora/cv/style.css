@@ -18,9 +18,9 @@ div {
     /* border: 1px solid #666; */
 }
 
-.header{
+.main__all{
     border: solid rgb(83, 82, 82);
-    border-width: 8px 0 0 0;
+    border-width: 20px 0 0 0;
 }
 
 img{
@@ -29,8 +29,6 @@ img{
 }
 
 footer {
-    background-color:rgb(83, 82, 82);
-    color: #ffffff;
     text-align: left;
     font-size: 12px;
     padding: 5px;
@@ -60,8 +58,17 @@ address{
 }
 
 @media screen and (min-width: 768px) {
+    main{
+        display: flex;
+        justify-content: center;  
+    }
+
+    .main__all{
+        width: 90%;
+    }
+
     .title{
-        text-align: right;
+        text-align: center;
         margin-right: 10px; 
     }
 
@@ -123,31 +130,6 @@ address{
         width: 45%;
     }
 
-    /* .group1{
-        grid-column-start: 3;
-        display: grid;
-        grid-template-rows: 33% 33% 34%;
-        grid-template-columns: 100%;
-        padding: 5px;
-   
-    }
-    .group2{
-        grid-column-start: 4;
-        display: grid;
-        grid-template-rows: 33% 33% 34%;
-        grid-template-columns: 100%;
-        padding-left: 30%;
-        padding-right: 10%;
-        
-    }
-    .group3{
-        grid-column-start: 5;
-        display: grid;
-        grid-template-rows: 33% 33% 34%;
-        grid-template-columns: 100%;
-        padding: 5px;
-        
-    } */
     section.education{
         display: grid;
         /* grid-template-columns: 2.5% 25% 23% 23% 24% 2.5%; */
@@ -171,6 +153,19 @@ address{
 
     [class*="-group"]{
         text-align: center; 
+    }
+    footer{
+        display: flex; 
+        justify-content: center;
+    }
+    footer > div {
+        width: 90%;
+        background-color:rgb(83, 82, 82);
+        color: #ffffff;
+        height: 20px;   
+        align-items: center;
+        justify-content: center; 
+        display: flex;
     }
 }
 
