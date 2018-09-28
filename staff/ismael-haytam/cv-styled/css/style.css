@@ -1,0 +1,132 @@
+body {
+    background: white;
+    color: darkslategray;
+}
+
+/* Header -------------------------- */
+
+header {
+    display: flex;
+    justify-content: space-around;
+}
+
+#profile {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+hr {
+    width: 100%;
+    height: 2px;
+    border: 0;
+    background: lightslategray;
+}
+
+/* Skills -------------------------- */
+
+.info {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.circle {
+    --deg: calc(var(--percent)/100 * 180);
+    --size: 100px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: linear-gradient(0deg, var(--s-color) 50%, lavender 50%);
+    transform: rotate(var(--deg));
+}
+
+.circle::before {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    padding: 5%;
+    content: attr(data-tecno);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--p-color) content-box;
+    box-sizing: border-box;
+    transform: rotate(calc(var(--deg) * (-1)));
+}
+
+.circle::after {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    content: attr(data-percent);
+    font-weight: bold;
+    text-align: center;
+    line-height: 80px;
+    background: linear-gradient(transparent 50%, white 50%);
+    transform: rotate(calc(var(--deg) * (-1)));    
+}
+
+/* Frameworks -------------------------- */
+
+.bar {
+    background: lavender;
+    height: 20px;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, .3);
+}
+
+.bar::after {
+    position: absolute;
+    width: calc(var(--percent) - 20px);
+    line-height: 10px;
+    content: attr(data-framework);
+    color: white;
+    font-weight: bold;
+    padding: 5px 0 5px 20px;
+    border-radius: 10px;
+    background: var(--bar-color);
+}
+
+/* Db -------------------------- */
+
+.db {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.db > li {
+    background: turquoise;
+    line-height: 35px;
+    padding: 0 10px;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+/* Media -------------------------- */
+
+
+@media screen and (min-width: 592px) {
+    body {
+      background-color: white;
+    }
+    .card {
+        width: 25%;
+        height: 150px;
+        box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, .2);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+    .circle {
+        --size: 120px;
+    }
+  }
