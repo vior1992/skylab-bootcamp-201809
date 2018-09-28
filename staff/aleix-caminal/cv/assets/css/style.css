@@ -1,6 +1,6 @@
 body {
     display: grid;
-    grid-template: auto auto / 75% 25%;
+    grid-template: auto auto / 1fr 260px;
     grid-gap: 1.25rem;
     padding: 1.25rem;
     font-family: TT Commons,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue
@@ -15,9 +15,14 @@ body > header {
     display: grid;
     grid-column: 1;
     grid-row: 1;
-    grid-template-columns: auto 1fr;
+    grid-template: auto / auto 1fr;
     grid-gap: 2.5rem;
-    height: 12rem;
+    height: auto;
+}
+
+header aside {
+    grid-column: 1;
+    grid-row: 1;
 }
 
 header aside .profile {
@@ -32,6 +37,8 @@ header aside .profile {
 }
 
 header address {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -120,4 +127,42 @@ body > aside {
   border-radius: 5px;
   background-color: #2196f3;
   overflow: hidden;
+}
+
+@media (max-width: 720px) {
+    body {
+        grid-template: auto auto auto / auto;
+    }
+
+    body > aside {
+        grid-column: 1;
+        grid-row: 3;
+        margin-top: -2rem;
+    }
+}
+
+@media (max-width: 540px) {
+    body > header {
+        grid-template: auto 1fr / 1fr;
+        grid-gap: 0.5rem;
+    }
+
+    header aside .profile {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    header address {
+        grid-column: 1;
+        grid-row: 2;
+        margin: 0;
+    }
+
+    header address .contact .name {
+        margin: 0;
+    }
+
+    header address .city {
+        margin: 1rem 0 0 0;
+    }
 }
