@@ -60,6 +60,11 @@ footer{
         grid-column-end: 11;
     }
 
+    .item5{
+        grid-column-start:2;
+        grid-column-end:4;
+    }
+
     .leftcontainer{
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
@@ -98,4 +103,10 @@ footer{
     grid-column-end: 4;*/
     border: 1px solid black;
 
+  }
+
+  .item5{
+      border: 1px solid black;
+      border-radius:10px;
+      background-color: rgb(240, 235, 221) ;
   }
