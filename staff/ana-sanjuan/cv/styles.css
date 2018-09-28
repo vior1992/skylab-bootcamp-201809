@@ -1,16 +1,18 @@
 body {
     box-sizing: border-box;
-    margin: 5%
+    margin: 5%;
+    background-color: rgb(210, 212, 230);
 }
 
 section {
-    margin: 10% 2%;
+    margin: 5% 2%;
     border: solid 5px  rgb(51, 84, 230);
     padding: 5%;
+    background-color: white;
 }
 
 header {
-    text-align: left;
+    text-align: right;
 }
 
 #picture {
@@ -22,11 +24,23 @@ h1, h2 {
     color: rgb(51, 84, 230);
 }
 
+footer {
+    margin-left: 3%;
+}
+
+
+ul {
+    list-style-type: none;
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) { 
     body {
-        background-color: rgb(164, 204, 230);
+        background-color: rgb(210, 222, 230);
+    }
+
+    section {
+        background-color: white;
     }
 
     .container {
