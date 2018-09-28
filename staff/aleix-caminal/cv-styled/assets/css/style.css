@@ -1,0 +1,168 @@
+body {
+    display: grid;
+    grid-template: auto auto / 1fr 260px;
+    grid-gap: 1.25rem;
+    padding: 1.25rem;
+    font-family: TT Commons,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue
+}
+
+*.text-hl,
+time {
+    color: #2196f3;
+}
+
+body > header {
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    grid-template: auto / auto 1fr;
+    grid-gap: 2.5rem;
+    height: auto;
+}
+
+header aside {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+header aside .profile {
+    width: 12rem;
+    height: 12rem;
+    overflow: hidden;
+    border-radius: 20px;
+    background-image: url('../img/profile.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header address {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+    font-style: normal;
+}
+
+header address p {
+    margin: 0;
+    font-size: 20px;
+}
+
+header address .contact .name {
+    font-size: 40px;
+    margin: 0 0 0.5rem 0;
+}
+
+
+header address .city {
+    text-transform: uppercase;
+    color: #888;
+}
+
+body > main {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+section {
+    margin: 0.75rem 0 2rem;
+    border-left: 2px solid #333;
+    padding-left: 2rem;
+}
+
+section .title {
+    margin: 0;
+}
+
+section > .title {
+    font-size: 28px;
+}
+
+section > section > .title {
+    font-size: 24px;
+}
+
+section > section > section > .title {
+    font-size: 20px;
+}
+
+#education > section > .title,
+section.job > .title {
+    margin-bottom: 0.25rem;
+}
+
+body > aside {
+    grid-column: 2;
+    grid-row: 1 / 3;
+}
+
+#skills .skill {
+    font-size: 18px;
+    margin: 1rem 0;
+}
+
+#skills .skill label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+#details address {
+    font-style: normal;
+    font-size: 18px;
+}
+
+.skill-bar {
+    width: 100%;
+	height: 10px;
+	background: #ddd;
+	border-radius: 5px;
+}
+
+.skill-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #2196f3;
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+    body {
+        grid-template: auto auto auto / auto;
+    }
+
+    body > aside {
+        grid-column: 1;
+        grid-row: 3;
+        margin-top: -2rem;
+    }
+}
+
+@media (max-width: 540px) {
+    body > header {
+        grid-template: auto 1fr / 1fr;
+        grid-gap: 0.5rem;
+    }
+
+    header aside .profile {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    header address {
+        grid-column: 1;
+        grid-row: 2;
+        margin: 0;
+    }
+
+    header address .contact .name {
+        margin: 0;
+    }
+
+    header address .city {
+        margin: 1rem 0 0 0;
+    }
+}
