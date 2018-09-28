@@ -22,7 +22,7 @@ table tr:not(:first-child) td{
 section{
 
     margin-bottom: 20px;
-    padding: 0 5px;
+    padding: 0 10px;
     box-shadow: 13px 9px 26px -5px rgba(0,0,0,0.73);
     background-color: #fffacd;
 }
@@ -101,6 +101,9 @@ section{
 }
 
 @media screen and (min-device-width: 1024px){
+    section{
+        padding: 0 21px;
+    }
     .main .personal-inf{
         width: 100%;
     }
