@@ -192,6 +192,8 @@ section h2 {
 
     .projects ul li {
         list-style: none;
+        margin-left: 20px;
+
     }
     
     address {
