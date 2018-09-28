@@ -11,16 +11,16 @@ I hope you enjoy them!
 ## Projects
 
 
-|   Lesson   |   Project     | Status |    |
-|   ------   |   -------     | -----   |----|
-| Lesson 1   |  Calculator   |  x |Methods Js|
-| Lesson 2   |  Airlines     |  x |Objects Js |
-| Lesson 3   |  Bingo        |  |Functions Js |
-| Lesson 4   | Pasapalabra   |  |Challenges Js |
-| Lesson 5   |               |  | HTML|
-| Lesson 6   |               | | CSS|
-| Lesson 7   | Calculator    | x |Js-native, HTML, CSS|
-| Lesson 8   | Pasapalabra   | x |Final Project|
+|   Lesson   |   Project     | Status   | Topics              |
+|   ------   |   -------     | -----    |--------------------|
+| Lesson 1   |  Calculator   |  x       |Methods Js          |
+| Lesson 2   |  Airlines     |  x       |Objects Js          |
+| Lesson 3   |  Bingo        |  x       |Functions Js        |
+| Lesson 4   | Pasapalabra   |  x       |Challenges Js       |
+| Lesson 5   |               |          | HTML               |
+| Lesson 6   |               |          | CSS                |
+| Lesson 7   | Calculator    |  x       |Js-native, HTML, CSS|
+| Lesson 8   | Pasapalabra   |  x       |Final Project       |
 
 
 
