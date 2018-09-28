@@ -27,6 +27,16 @@ section{
     background-color: #fffacd;
 }
 
+.header-personal-img {
+    width: 100px;
+    height: 100px;
+   
+}
+.header-personal-img img{
+    width: 100%;
+    height: auto;
+   
+}
 
 .row-title{
     display: block;
@@ -126,11 +136,7 @@ section{
         height: 200px;
         width: 200px;
     }
-    .header-personal-img img{
-        width: 200px;
-        height: 200px;
-       
-    }
+   
     .related-skills{
         position: absolute;
         z-index: 1000;
