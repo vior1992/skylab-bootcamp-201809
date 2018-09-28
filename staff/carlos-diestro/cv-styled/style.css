@@ -1,33 +1,39 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
+  background-color: #fdfdfd;
   color: #0a0a0a;
   margin: 0;
   padding: 0;
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 h2 {
-  font-size: 1.2em
+  font-size: 1.5em
 }
 
 h3 {
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 p {
-  margin: 0.5em 0;
+  margin: 0.3em 0;
   line-height: 1.4em;
+}
+
+a {
+  color: #0063f7;
 }
 
 main {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 1em auto;
   padding: 1em 1.2em; 
-  background-color: #f7f7f7;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
 
 header {
@@ -35,32 +41,8 @@ header {
   grid-template-columns: 90px;
 }
 
-header .name {
-  margin-left: 1em;
-}
-
-header h1 {
-  margin: 0.5em 0;
-}
-
-header h3 {
-  margin: 0.5em 0;
-}
-
-header .contact {
-  margin: 1em 0;
-}
-
-address a {
-  color: #0063f7;
-}
-
 section h2 {
-  margin: 1em 0 0.5em;
-}
-
-.skills ul li {
-  margin: 0.5em 0;
+  margin: 2rem 0 1rem;
 }
 
 footer {
@@ -68,10 +50,35 @@ footer {
   padding: 1em 0 0;
 }
 
+.name {
+  margin-left: 1em;
+}
+
+.name h1 {
+  margin: 0.5rem 0;
+}
+
+.name h3 {
+  margin: 0.5rem 0;
+}
+
+.contact {
+  margin: 1em 0;
+  line-height: 1.4em;
+}
+
+.skills ul li {
+  margin: 0.5em 0;
+}
+
 .grid-item {
   display: grid;
   align-items: center;
   grid-template-columns: 2fr 1fr;
+}
+
+.grid-item time {
+  text-align: right;
 }
 
 .item-1 {
