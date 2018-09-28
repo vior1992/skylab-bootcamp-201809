@@ -4,49 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles.css">
     <title>Nicola's CV</title>
 </head>
-<body>
-    <header><h1>CURRICULUM VITAE</h1></header>
-    <img src="https://4.bp.blogspot.com/-Hw_ZYszymn8/UUuXmfD9obI/AAAAAAAABbg/acWFBmhj1d4/s1600/TESLA.jpg" alt="Nikola Tesla portrait pic">
-    <dl>
-        <dt><h2>Personal data</h2></dt> <!--defines terms-->
-            <dt><b>Name: </b>Nikola Tesla</dt>
-            <dt><b>Email: </b>nicolatesla@gmail.com</dt>
-            <dt><b>DOB: </b>1989</dt>
-            <dt><b>Address: </b>C/ ThunderPower 12, Barcelona, Spain</dt>
-    </dl><br>
-    <dl>
-        <dt><h2>Studies</h2></dt> <!--defines terms-->
-        <dt><b>Fisics degree:</b> Superior Politecnic School at Graz </dt>
-        <dd></dd>
-        <dt><b>Electrician degree: </b>UAB</dt>
-        <dd></dd>
-    </dl><br>
-    <dl>
-        <dt><h2>Work experience</h2></dt> 
-        <dd>Hungary telegraph company</dd> 
-        <dd>Edison's telegraph company</dd>
-        <dd>Self employed</dd>  
-    </dl><br>
-    <dl>
-        <dt><h2>Inventions</h2></dt> 
-        <dt><b>Recognized Inventions</b></dt> 
-        <dd>The Tesla Coil</dd>
-        <dd>The Magnifying Transmitter</dd>
-        <dd>The Tesla Turbine</dd>
-        <dd>Shadowgraphs</dd>
-        <dd>Radio</dd>
-        <dd>Neon Lamps</dd> 
-        <dd>Alternating current</dd>
-        <dd>The Adams Power Plant Transformer House</dd><br>
-        <dt><b>Inventions that never got built</b></dt> 
-        <dd>Earthquake Machine</dd>
-        <dd>Thought Camera</dd>
-        <dd>Wireless Energy</dd>
-        <dd>Artificial Tidal Wave</dd>
-        <dd>Electric-Powered Supersonic Airship</dd>
-    </dl>
+<body class="grid-container">
+    <header class="header"><h1>CURRICULUM VITAE</h1></header>
+    <img class="image" src="https://4.bp.blogspot.com/-Hw_ZYszymn8/UUuXmfD9obI/AAAAAAAABbg/acWFBmhj1d4/s1600/TESLA.jpg" alt="Nikola Tesla portrait pic">
+    <aside class="leftside">
+        <h2>Personal data</h2> 
+            <p><b>Name:</b> Nikola Tesla</p>
+            <p><b>Email:</b> nicolatesla@gmail.com</p>
+            <p><b>DOB:</b> 1989</p>
+            <p><b>Address:</b> C/ ThunderPower 12, Barcelona, Spain</p>
+    </aside><br>
+
+    <aside class="rightside1">
+        <h2>Studies</h2> 
+        <p><b>Fisics degree:</b> Superior Politecnic School at Graz </p>
+        <p><b>Electrician degree: </b>UAB</p>
+        
+    </aside><br>
+
+    <aside class="rightside2">
+        <h2>Work experience</h2> 
+        <p>Hungary telegraph company </p>
+        <p>Edison's telegraph company</p>
+        <p>Self employed  </p>
+    </aside><br>
+
+    <main class="inventions">
+        <h2>Recognized Inventions</h2> 
+        <ul>
+            <li>The Tesla Coil</li>
+            <li>The Magnifying Transmitter</li>
+            <li>The Tesla Turbine</li>
+            <li>Shadowgraphs</li>
+            <li>Radio</li>
+            <li>Neon Lamps </li>
+            <li>Alternating current</li>
+            <li>The Adams Power Plant Transformer House</li>
+        </ul>
+    </main>
+    
+    <footer class="neverBuilt">
+        <h2>Inventions that never got built</h2>
+        <ul>
+            <li><h3></h3></li>
+            <li>Earthquake Machine</li>
+            <li>Thought Camera</li>
+            <li>Wireless Energy</li>
+            <li>Artificial Tidal Wave</li>
+            <li>Electric-Powered Supersonic Airship</li>
+        </ul>
+    </footer>
 </body>
 </html>
 
