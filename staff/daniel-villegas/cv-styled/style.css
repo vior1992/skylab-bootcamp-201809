@@ -80,13 +80,14 @@ footer {
 .pic {
     background-image: url("https://i.pinimg.com/564x/d6/c4/b7/d6c4b72aaeb98e1d54fbce780f1ce785.jpg");
     background-position: center; 
-    background-position: center; 
     background-size: cover;
+    background-repeat: no-repeat;
     height: 150px;
     width: 150px;
     position: relative;
-    border: 6px solid red;
-    border-radius: 10px;
+    border: 1px solid transparent;
+    border-radius: 100px;
+
 }
 
 a.foot {
