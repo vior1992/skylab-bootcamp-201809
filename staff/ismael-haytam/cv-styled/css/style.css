@@ -1,27 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Bai+Jamjuree');
+
 body {
-    background: white;
+    background-color: #fafafa;
+    font-family: 'Bai Jamjuree', sans-serif;
     color: darkslategray;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header -------------------------- */
+
+.container {
+    padding: 20px;
 }
 
 /* Header -------------------------- */
 
 header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background: #455A64;
+    color: white;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
-#profile {
+.profile {
     height: 70px;
     width: 70px;
     border-radius: 50%;
 }
 
-hr {
-    width: 100%;
-    height: 2px;
-    border: 0;
-    background: lightslategray;
+/* About -------------------------- */
+
+.about {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: justify;
 }
+
 
 /* Skills -------------------------- */
 
@@ -46,14 +66,15 @@ hr {
     position: absolute;
     width: var(--size);
     height: var(--size);
-    padding: 5%;
+    padding: 3%;
     content: attr(data-tecno);
     font-weight: bold;
     text-align: center;
     border-radius: 50%;
-    background: var(--p-color) content-box;
+    background: Cornsilk content-box;
     box-sizing: border-box;
     transform: rotate(calc(var(--deg) * (-1)));
+    line-height: 30px;
 }
 
 .circle::after {
@@ -63,26 +84,33 @@ hr {
     content: attr(data-percent);
     font-weight: bold;
     text-align: center;
+    background-image: linear-gradient(transparent, Cornsilk 60%);
+    transform: rotate(calc(var(--deg) * (-1)));  
     line-height: 80px;
-    background: linear-gradient(transparent 50%, white 50%);
-    transform: rotate(calc(var(--deg) * (-1)));    
 }
 
 /* Frameworks -------------------------- */
 
+.bars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .bar {
-    background: lavender;
+    background: whitesmoke;
     height: 20px;
-    width: 100%;
+    width: calc(100% - 40px);
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .3);
 }
 
 .bar::after {
     position: absolute;
-    width: calc(var(--percent) - 20px);
-    line-height: 10px;
+    width: calc(var(--percent) - 115px);
+    line-height: 11px;
     content: attr(data-framework);
     color: white;
     font-weight: bold;
@@ -98,28 +126,56 @@ hr {
     padding: 0;
     list-style: none;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
     margin-bottom: 30px;
 }
 
 .db > li {
-    background: turquoise;
+    background: whitesmoke;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);    
     line-height: 35px;
-    padding: 0 10px;
+    width: 100%;
+    margin-bottom: 20px;
     font-weight: bold;
     border-radius: 15px;
+    text-align: center;
+}
+
+/* Experience -------------------------- */
+
+.experience {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.grid {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);    
+}
+
+/* Colors -------------------------- */
+
+.gris {
+    background: #fafafa;
+}
+
+.cornsilk {
+    background: Cornsilk;
 }
 
 /* Media -------------------------- */
 
 
 @media screen and (min-width: 592px) {
-    body {
-      background-color: white;
-    }
     .card {
         width: 25%;
         height: 150px;
+        background: white;
         box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, .2);
         border-radius: 10px;
         display: flex;
@@ -128,5 +184,27 @@ hr {
     }
     .circle {
         --size: 120px;
+    }
+    .circle::before {
+        line-height: 40px;
+    }
+    .circle::after {
+        line-height: 100px;
+        background-image: linear-gradient(transparent, white 50%);
+    }
+    
+    .db {
+        flex-wrap: nowrap;
+    }
+    .db > li {
+        margin: 10px;
+    }
+    .experience {
+        flex-wrap: wrap;
+    }
+    .grid {
+        background: white;
+        margin: 10px;
+        max-width: 40%;
     }
   }
