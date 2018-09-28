@@ -6,15 +6,34 @@ body {
     font-family: TT Commons,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue
 }
 
-*.text--hl,
-time {
+.text--hl, time, a {
     color: #2196f3;
+}
+
+a {
     text-decoration: none;
     transition: all .4s;
 }
 
-a.text--hl:hover {
+a:hover {
     color: #0a6ebd;
+    transition: all .2s;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    border-radius: 1.5rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    background-color: #2196f3;
+    color: #fff;
+    transition: all .4s;
+}
+
+.button:hover {
+    color: #fff;
+    background-color: #0a6ebd;
     transition: all .2s;
 }
 
@@ -136,10 +155,10 @@ body > aside {
 
 @media (max-width: 720px) {
     body {
-        grid-template: auto auto auto / auto;
+        grid-template: auto auto auto / 1fr;
     }
 
-    .profile {
+    body > aside {
         grid-column: 1;
         grid-row: 3;
         margin-top: -2rem;
