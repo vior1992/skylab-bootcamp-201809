@@ -1,7 +1,19 @@
-header {
+container {
     display: grid;
-    border: 1px solid blue;
-    
+    grid-template-rows: auto 20% 20% 20% 20%;
+    grid-template-columns: 1fr;
+}
+
+
+
+h2 {
+    display: grid;
+    grid-column: span;
+}
+
+header {
+    display: grid;   
+    grid-template-columns: 60px 1fr;
 }
 
 #profile-picture {
@@ -9,13 +21,20 @@ header {
 }
 
 #education{
-    border: 1px solid red;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 #experience{
-    border: 1px solid red;
 }
 
 #skills{
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+#studies {
+    display: grid;
+    grid-auto-flow: column;
 }
