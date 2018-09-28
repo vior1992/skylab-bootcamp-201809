@@ -8,8 +8,8 @@ body {
     color:#212121;
 }
 
-section {
-    margin: 5% 2%;
+.section {
+    margin: 4% 2%;
     box-shadow: 10px 10px 5px 2px #0097A7;
     padding: 3%;
     background-color: #00BCD4;
@@ -20,7 +20,7 @@ header {
     text-align: right;
 }
 
-.intro {
+.introduction {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -32,10 +32,11 @@ header {
     margin: 2%;
 }
 
-h1, footer {
+.header__title, .footer__text {
     color: #0097A7;
 }
-h2 {
+
+.section__title {
     padding: 0%;
     color:  #CDDC39;
 }
@@ -44,50 +45,35 @@ footer {
     margin-left: 3%;
 }
 
-
-ul {
+.section__ulist {
     list-style-type: none;
-}
-
-.star{
-    margin:0;
-    padding:0;
-
+    margin: 0;
+    padding: 2%;
 }
 
 .checked {
     color: yellow;
 }
 
-
-table {
-    text-align: center;
-    width: 80%;
-}
-
-.experience__item{
+.div__item{
     border-radius: 10px;
     background-color: #CDDC39;
-    margin: 2% 0%;
+    margin: 1% 0%;
     color:#212121;
     padding-left: 2%;
-    padding-right: 2%;
+    padding-right: 1%;
 }
 
 
 /* Medium devices (landscape tablets, 768px and up)*/
 @media only screen and (min-width: 768px) {
 
-    body {
-        background-color:rgb(186, 185, 226);
-    }
-
-    .container {
+    .first-row {
         display: flex;
         justify-content: space-between;  
     }
 
-    .container-big {
+    .nd-row {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -101,24 +87,24 @@ table {
         flex: 50%;
     } 
 
-    .hobbies{
-       min-width: 30%;
+    .hobbies {
+       min-width: 28%;
     }
 
+    .education {
+        min-width: 30%;
+    }
 } 
 
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) { 
-    body {
-        background-color: rgb(210, 222, 230);
-    }
-    .container {
+    .first-row {
         display: flex;
         justify-content: space-between; 
     }
 
-    .container-big {
+    .nd-row {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;  
