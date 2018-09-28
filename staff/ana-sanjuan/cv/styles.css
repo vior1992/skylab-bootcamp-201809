@@ -6,9 +6,10 @@ body {
 
 section {
     margin: 5% 2%;
-    border: solid 5px  rgb(51, 84, 230);
+    box-shadow: 10px 10px 5px 2px rgb(57, 88, 223);
     padding: 5%;
     background-color: white;
+    border-radius: 4px;
 }
 
 header {
@@ -44,17 +45,34 @@ ul {
     body {
         background-color: rgb(210, 222, 230);
     }
-
-    section {
-        background-color: white;
-    }
-
     .container {
         display: flex;
-
+        justify-content: space-between;
+        width: 100%;
+    }
+    .container-big {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
 }
 
 
+/* Medium devices (landscape tablets, 768px and up)*/
+@media only screen and (min-width: 768px) {
+
+    body {
+        background-color: rgb(214, 210, 230);
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+    }
+
+    #references{
+        min-height: 400px;
+    }
+} 
 
 
