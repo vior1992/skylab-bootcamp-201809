@@ -1,0 +1,21 @@
+header {
+    display: grid;
+    border: 1px solid blue;
+    
+}
+
+#profile-picture {
+    width: 60px;
+}
+
+#education{
+    border: 1px solid red;
+}
+
+#experience{
+    border: 1px solid red;
+}
+
+#skills{
+    border: 1px solid red;
+}
