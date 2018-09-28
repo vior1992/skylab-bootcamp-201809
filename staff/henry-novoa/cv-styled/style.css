@@ -1,33 +1,31 @@
+/*Mobile first*/
 body{
-    background-color: lightblue;
-    
-}
-
-
-h1,h2,h3{
-    text-decoration: underline;
-}
-
-h1, h2, h3{
     display: flex;
-    justify-content: center;
-}
-.name{
-    display: flex;
-    justify-content: center;
-}
-
-address{
-    display: flex;
-    justify-content: center;
-}
-
-ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-  }
+
+
+}
+
+.box{
+    border-style: solid;
+    border-width: 5px;
+}
+
+.info{
+    background-color: greenyellow;
+}
+
+.education{
+    background-color: skyblue;
+}
+
+.experience{
+    background-color: pink;
+}
+
+.language{
+    background-color: purple;
+}
 
 
 
@@ -37,50 +35,17 @@ ul {
 
 
 body{
-    background-color: orange;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     }
-
-header{
-    grid-column: 1;
-    grid-column-end: 3;
-
-}    
-
-
-
-.info{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3; 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-}
-address{
-    grid-column-start: 2;
-    grid-row-start: 2;
-    
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
 }
 
-.experience{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4; 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    
-}
-
-.workExperience{
-    grid-column:1 / 2 span;
-    grid-row: 1;
-}
 
 
 
