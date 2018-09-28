@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: left;
+}
+
+.grid-container { /*phone size*/
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "header"
+    "image"
+    "lefty"
+    "right1"
+    "centered"
+    "right2"    
+    "foot";
+}
+
+@media (min-width: 500px) { /*tablet size*/
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "header image"
+        "lefty right1"
+        "centered right2"    
+        "foot foot";
+    } 
+}
+
+
+@media (min-width: 750px) { /*desktop size*/
+    .grid-container {  
+        display: grid;
+        grid-template-columns: 1fr, 3fr, 2fr;
+        grid-auto-rows: minmax(100px, auto auto auto);
+        grid-gap: 15px;
+        grid-template-areas:
+        "header header image"
+        "lefty centered right1"
+        "lefty centered right2"    
+        "foot foot foot"; 
+    }
+}
+
+
+.grid-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    grid-area: header;
+    width: 100%;
+    background-color: hsl(183, 69%, 87%);
+    padding: 20px;
+}
+
+.image {
+    grid-area: image;
+    display: inline-block;
+    border-radius: 55%;
+    min-width: 100px;
+}
+
+.leftside {
+    grid-area: lefty;
+    background-color: hsl(183, 69%, 87%);
+    padding: 10px;
+    width: 100%;
+}
+
+.rightside1 {
+    grid-area: right1;
+    background-color: hsl(183, 69%, 87%);
+    padding: 10px;
+    width: 95%;
+}
+
+.rightside2 {
+    grid-area: right2;
+    background-color: hsl(183, 69%, 87%);
+    padding: 10px;
+    width: 100%;
+}
+
+.inventions {
+    grid-area: centered;
+    background-color: hsl(183, 69%, 87%);
+    padding: 10px;
+    width: 90%;
+}
+
+.neverBuilt {
+    grid-area: foot;
+    background-color: hsl(183, 69%, 87%);
+    padding: 10px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 35px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+h2 {
+    font-size: 20px;
+}
