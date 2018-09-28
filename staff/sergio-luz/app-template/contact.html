@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>contact</title>
+</head>
+
+<body>
+    <header>
+        <h1>Contact</h1>
+    </header>
+    <nav class="topnav" id="myTopnav">
+        <ul>
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="login.html" class="active">Login</a></li>
+            <li><a href="register.html" class="active">Register</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="news.html" class="active">News</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="profile.html" class="active">Profile</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h1>Contact Form</h1>
+
+        <section class="container">
+            <form action="/action_page.php">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="australia">Australia</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">USA</option>
+                </select>
+
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+    </section>
+</body>
+
+</html>
