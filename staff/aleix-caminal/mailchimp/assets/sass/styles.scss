@@ -13,7 +13,7 @@ body {
     margin: 0;
 }
 
-.header {
+header {
     background-color: #00bdd1;
     padding: 1rem $padding-width;
 
@@ -98,6 +98,64 @@ body {
 
             &__button {
                 @include button(#f30);
+            }
+        }
+    }
+}
+
+main {
+    background-image: url('../img/noisepattern.png');
+    padding: 0 $padding-width;
+    border-top: 1px solid #fff;
+
+    .main {
+        display: grid;
+        grid-template: auto auto / 4fr 4fr 4fr 4fr;
+        grid-gap: 1rem 2rem;
+        margin-top: -3rem;
+        padding: 1.5rem 2rem 3rem;
+        background-color: #f0f0f0;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+
+        &__title {
+            grid-column: 1 / 5;
+            margin: 0;
+        }
+
+        .article {
+            display: grid;
+            grid-row: auto auto auto auto;
+            grid-gap: 1.25rem;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 auto;
+            border-top: 1px solid #b8b8b8;
+
+            &__image {
+                width: 100%;
+                height: auto;
+            }
+
+            &__title {
+                small {
+                    font-size: 16px;
+                }
+
+                h1 {
+                    font-size: 22px;
+                    margin: 0;
+                }
+            }
+
+            &__text {
+                margin: 0;
+            }
+
+            &__button {
+                @include button(#333);
+                padding: 0.5rem 1.25rem;
+                text-align: left;
             }
         }
     }

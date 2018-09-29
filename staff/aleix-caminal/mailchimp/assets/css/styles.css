@@ -2,30 +2,30 @@ body {
   margin: 0;
 }
 
-.header {
+header {
   background-color: #00bdd1;
   padding: 1rem 3rem;
 }
-.header .login {
+header .login {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
-.header .login__link {
+header .login__link {
   padding: 0.75rem;
   text-decoration: none;
   color: #fff;
 }
-.header .nav {
+header .nav {
   display: flex;
   justify-content: space-between;
 }
-.header .nav .menu {
+header .nav .menu {
   display: grid;
   grid-template-columns: 120px 1fr;
   grid-gap: 20px;
 }
-.header .nav .menu__button {
+header .nav .menu__button {
   grid-column: 1;
   padding: 1rem;
   border: none;
@@ -34,7 +34,7 @@ body {
   color: #fff;
   cursor: pointer;
 }
-.header .nav .menu__list {
+header .nav .menu__list {
   grid-column: 2;
   display: flex;
   align-items: center;
@@ -44,47 +44,100 @@ body {
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.header .nav .menu__list li {
+header .nav .menu__list li {
   border-right: 1px solid rgba(220, 220, 220, 0.8);
 }
-.header .nav .menu__list li a {
+header .nav .menu__list li a {
   display: block;
   padding: 1rem;
   color: #333;
   text-decoration: none;
 }
-.header .nav .menu__list li:last-child {
+header .nav .menu__list li:last-child {
   display: block;
   padding: 1rem;
   border: none;
 }
-.header .intro {
+header .intro {
   display: grid;
   grid-template-columns: 50% 50%;
   margin: 1rem 0 2rem;
 }
-.header .intro__image {
+header .intro__image {
   grid-column: 1;
 }
-.header .intro .copy {
+header .intro .copy {
   grid-column: 2;
 }
-.header .intro .copy__title {
+header .intro .copy__title {
   margin: 0;
   color: #fff;
   font-size: 100px;
 }
-.header .intro .copy__text {
+header .intro .copy__text {
   margin: 1rem 0;
   color: rgba(80, 80, 80, 0.9);
 }
-.header .intro .copy__button {
+header .intro .copy__button {
   padding: 1rem;
   border: none;
   border-radius: 8px;
   background-color: #f30;
   color: #fff;
   cursor: pointer;
+}
+
+main {
+  background-image: url("../img/noisepattern.png");
+  padding: 0 3rem;
+  border-top: 1px solid #fff;
+}
+main .main {
+  display: grid;
+  grid-template: auto auto/4fr 4fr 4fr 4fr;
+  grid-gap: 1rem 2rem;
+  margin-top: -3rem;
+  padding: 1.5rem 2rem 3rem;
+  background-color: #f0f0f0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+main .main__title {
+  grid-column: 1/5;
+  margin: 0;
+}
+main .main .article {
+  display: grid;
+  grid-row: auto auto auto auto;
+  grid-gap: 1.25rem;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  border-top: 1px solid #b8b8b8;
+}
+main .main .article__image {
+  width: 100%;
+  height: auto;
+}
+main .main .article__title small {
+  font-size: 16px;
+}
+main .main .article__title h1 {
+  font-size: 22px;
+  margin: 0;
+}
+main .main .article__text {
+  margin: 0;
+}
+main .main .article__button {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem 1.25rem;
+  text-align: left;
 }
 
 /*# sourceMappingURL=styles.css.map */
