@@ -3,6 +3,7 @@ body {
   background-color: #cccccc;
   margin: 0;
   padding-top: 0;
+  padding-bottom: 0;
 }
 
 p, main .news-content .news-content__flex-container .p__main, .main-content .p--main-content {
@@ -36,8 +37,6 @@ header {
 
 .header-container {
   width: 85%;
-  border-left: 2px solid #cccccc;
-  border-right: 2px solid #cccccc;
   margin: auto;
   padding-top: 20px;
 }
@@ -46,7 +45,7 @@ header {
   margin-top: 40px;
   margin-left: 30px;
 }
-.header-container__button, .main-content .header-container__button--main-content {
+.header-container__button, main .news-content .news-content__flex-container .header-container__button--learn, .main-content .header-container__button--main-content {
   height: 50px;
   padding-left: 35px;
   padding-right: 35px;
@@ -98,7 +97,6 @@ header {
   display: flex;
   margin-top: 30px;
   margin-left: 50px;
-  width: 460px;
 }
 .main-content__text {
   margin-left: 40px;
@@ -120,12 +118,14 @@ header {
 main {
   background-color: #FFF;
   width: 85%;
+  height: 550px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-top: -50px;
   margin-left: 94px;
-  position: absolute;
+  width: 85%;
   z-index: 1000;
+  position: relative;
 }
 main .news-content {
   font-family: Arial Black;
@@ -135,6 +135,7 @@ main .news-content {
 main .news-content .news-content__flex-container {
   display: flex;
   width: 100%;
+  margin-top: 30px;
   justify-content: space-between;
   align-items: center;
 }
@@ -147,6 +148,45 @@ main .news-content .news-content__flex-container h3 {
 main .news-content .news-content__flex-container .p__main {
   font-size: 14px;
   margin-top: -10px;
+}
+main .news-content .news-content__flex-container .header-container__button--learn {
+  margin-left: 0px;
+  padding-left: 15px;
+  padding-right: 120px;
+  height: 30px;
+  border-radius: 4px;
+  font-weight: 400;
+}
+
+footer {
+  background-color: #000;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+footer .footer-container {
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+  justify-content: space-around;
+  align-items: top;
+}
+footer .footer-container__title-item {
+  color: #fff;
+  font-family: "Open Sans";
+}
+footer .footer-container__list {
+  list-style: none;
+  padding-left: 0px;
+  margin-top: -15px;
+}
+footer .footer-container__list .footer-container__link, footer .footer-container__list .copy {
+  text-decoration: none;
+  color: gray;
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 25px;
 }
 
 /*# sourceMappingURL=style.css.map */
