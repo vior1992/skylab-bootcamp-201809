@@ -1,0 +1,50 @@
+.header
+    background-color: skyblue
+    display: grid
+    grid-template: auto auto auto auto / 1fr 1fr 1fr 1fr 1fr 1fr 
+    padding: 1% 10%
+    &__button
+        border-radius: 15px
+        background-color: black
+        color: white
+        width: 15em
+        height: 4.5em
+        &--top
+            grid-area: 2 / 2 / 3 / 3 
+        &--main
+            background-color: red
+    &__nav
+        border-radius: 15px
+        background-color: silver
+        border: 2px solid silver
+        grid-area: 2 / 3 / 3 / 7
+        height: 2em
+        display: grid
+        grid-template-rows: 19% 1fr 2%
+        width: max-content
+
+    &__login
+        grid-area: 1 / 1 / 2 / 6
+        color: white
+        font-weight: bold
+    &__image--logo
+        width: 14em
+        height: 4.5em
+        grid-area: 2 / 1 / 3 / 3
+    &__image--monkey
+        grid-area: 3 / 1 / 4 / 4
+    &__text
+        display: block
+        height: min-content
+    &__info
+        grid-area: 3 / 4 / 5 / 7
+
+
+.nav__element
+    border-right: 2px solid white
+    font-weight: bold
+    grid-area: 2
+
+    &--input
+        display: inline
+        grid-area: 2
