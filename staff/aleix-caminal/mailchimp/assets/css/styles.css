@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: #00bdd1;
+  padding: 1rem 3rem;
+}
+.header .login {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.header .login__link {
+  padding: 0.75rem;
+  text-decoration: none;
+  color: #fff;
+}
+.header .nav {
+  display: flex;
+  justify-content: space-between;
+}
+.header .nav .menu {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  grid-gap: 20px;
+}
+.header .nav .menu__button {
+  grid-column: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+.header .nav .menu__list {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.header .nav .menu__list li {
+  border-right: 1px solid rgba(220, 220, 220, 0.8);
+}
+.header .nav .menu__list li a {
+  display: block;
+  padding: 1rem;
+  color: #333;
+  text-decoration: none;
+}
+.header .nav .menu__list li:last-child {
+  display: block;
+  padding: 1rem;
+  border: none;
+}
+.header .intro {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 1rem 0 2rem;
+}
+.header .intro__image {
+  grid-column: 1;
+}
+.header .intro .copy {
+  grid-column: 2;
+}
+.header .intro .copy__title {
+  margin: 0;
+  color: #fff;
+  font-size: 100px;
+}
+.header .intro .copy__text {
+  margin: 1rem 0;
+  color: rgba(80, 80, 80, 0.9);
+}
+.header .intro .copy__button {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #f30;
+  color: #fff;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=styles.css.map */

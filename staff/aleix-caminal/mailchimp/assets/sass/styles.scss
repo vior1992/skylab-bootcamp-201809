@@ -1,0 +1,104 @@
+$padding-width: 3rem;
+
+@mixin button($color) {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: $color;
+    color: #fff;
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+}
+
+.header {
+    background-color: #00bdd1;
+    padding: 1rem $padding-width;
+
+    .login {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        &__link {
+            padding: 0.75rem;
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+
+        .menu {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            grid-gap: 20px;
+
+            &__button {
+                grid-column: 1;
+                @include button(#333);
+            }
+
+            &__list {
+                grid-column: 2;
+                display: flex;
+                align-items: center;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                border-radius: 12px;
+                background-color: rgba(255, 255, 255, .8);
+
+                li {
+                    border-right: 1px solid rgba(220, 220, 220, .8);
+
+                    a {
+                        display: block;
+                        padding: 1rem;
+                        color: #333;
+                        text-decoration: none;
+                    }
+
+                    &:last-child {
+                        display: block;
+                        padding: 1rem;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .intro {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin: 1rem 0 2rem;
+
+        &__image {
+            grid-column: 1;
+        }
+
+        .copy {
+            grid-column: 2;
+
+            &__title {
+                margin: 0;
+                color: #fff;
+                font-size: 100px;
+            }
+
+            &__text {
+                margin: 1rem 0;
+                color: rgba(80, 80, 80, .9);
+            }
+
+            &__button {
+                @include button(#f30);
+            }
+        }
+    }
+}
