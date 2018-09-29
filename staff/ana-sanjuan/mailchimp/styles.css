@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
+.upperheader__mailchimp, .upperheader__nav__ulist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2% 5%;
+}
+
+.upperheader__button, .lowerheader__button {
+  border-radius: 10%;
+  border: none;
+  height: 50px;
+  text-shadow: 1px 1px 5px black;
+}
+
+body {
+  font-family: 'PT Sans';
+}
+
+header {
+  background-color: #45BDD4;
+}
+
+.upperheader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0% 5%;
+}
+
+.upperheader__mailchimp {
+  -webkit-box-flex: 20%;
+      -ms-flex: 20%;
+          flex: 20%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 7%;
+}
+
+.upperheader__button {
+  background-color: #50514B;
+  color: #DDDDDF;
+  width: 120px;
+  font-size: 12px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#50514B), to(#3F3F37));
+  background-image: linear-gradient(#50514B, #3F3F37);
+}
+
+.upperheader__nav-container {
+  -webkit-box-flex: 80%;
+      -ms-flex: 80%;
+          flex: 80%;
+}
+
+.upperheader__p {
+  display: block;
+  text-align: right;
+  margin-right: 5%;
+  margin-top: 4%;
+  margin-bottom: 1%;
+  color: white;
+}
+
+.upperheader__nav__ulist {
+  background-color: #CFEEF4;
+  list-style-type: none;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-right: #C3DEE3 1px solid;
+  margin-top: 2.5%;
+  border-radius: 2%;
+  border: none;
+  height: 50px;
+  text-shadow: 2px 2px 5px white;
+}
+
+.lowerheader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 5%;
+}
+
+.lowerheader__monkey {
+  -webkit-box-flex: 40%;
+      -ms-flex: 40%;
+          flex: 40%;
+  margin: 0;
+}
+
+.lowerheader__text {
+  -webkit-box-flex: 60%;
+      -ms-flex: 60%;
+          flex: 60%;
+  color: #11758C;
+  margin-right: 5%;
+}
+
+.lowerheader__button {
+  background-color: #EA5C41;
+  color: #F7F0E4;
+  width: 200px;
+  font-size: 16px;
+}
+/*# sourceMappingURL=styles.css.map */
