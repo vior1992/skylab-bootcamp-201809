@@ -1,3 +1,169 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,800')
+
+$font: 'Open Sans'
+  
 body
-    background-color: #ccc
-    padding: 10px
+    background-color: #cccccc
+    margin: 0
+    padding-top: 0
+
+p
+    font-family: $font
+    font-weight: 400
+ 
+header
+    background-color: #47bdd5
+
+.flex-container
+    display: flex
+    width: 100%
+    
+
+.header-container-login
+    width: 94%
+
+.header__login
+        height: 20px
+        font-family: $font
+        font-weight: 800
+        text-decoration: none
+        float: right
+        color: #ffffff
+        font-size: 0.8em
+        margin-top: 20px
+
+.header-container
+    width: 85%
+    border-left: 2px solid #cccccc
+    border-right: 2px solid #cccccc
+    margin: auto
+    padding-top: 20px
+    
+    &__logo
+        height: 47px
+        margin-top: 40px
+        margin-left: 30px
+
+        
+    
+    &__button    
+        height: 50px
+        padding-left: 35px
+        padding-right: 35px
+        border-radius: 7px
+        background-color: #222220
+        color: #ffffff
+        font-family: $font
+        font-weight: 800
+        font-size: 0.8em
+        border: none
+        margin-top: 35px
+        margin-left: 50px
+
+    .nav 
+        margin-top: 51px
+        padding-left: 15px
+
+    .nav__item
+        display: inline
+        font-family: $font
+        font-weight: 800
+        font-size: 0.8em
+        background-color: #d1eef4
+        padding: 16px 15px 
+        border-right: 1px solid #b9d2d7
+    
+    .nav__item--first
+        @extend .nav__item
+        border-top-left-radius: 7px
+        border-bottom-left-radius: 7px
+
+    .nav__item a 
+        text-decoration: none
+        color: #3e3e36
+
+    .nav__search-item-container
+
+        background-color: #d1eef4
+        padding: 15px 15px
+        height: 20px
+        margin-top: 35px
+        margin-left: -4px
+        border-top-right-radius: 7px
+        border-bottom-right-radius: 7px 
+        
+        
+        .nav__search-item
+            
+            width: 150px
+    
+.main-content
+    display: flex
+    margin-top: 30px 
+    margin-left: 50px
+    width: 460px 
+
+    &__text
+        margin-left: 40px
+        margin-top: 40px
+    
+    .p--main-content
+        @extend p
+        color: #4c7279
+        font-weight: 600
+        font-size: 0.87em
+    
+    .header-container__button--main-content
+        @extend .header-container__button
+        padding-left: 60px
+        padding-right: 60px
+        background-color: #e95c41
+        margin-left: 0
+        margin-top: 0
+
+main
+    background-color: #FFF
+    width: 85%
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
+    margin-top: -50px
+    margin-left: 94px
+    position: absolute
+    z-index:1000
+    .news-content 
+        font-family: Arial Black
+        margin-left: 20px
+        margin-right: 20px
+
+        .news-content__flex-container
+            display: flex
+            width: 100%
+            justify-content: space-between
+            align-items: center
+
+            .news-content__flex-container__item
+                width: 210px
+
+            h3
+                margin-top: -25px
+
+            .p__main
+                @extend p
+                font-size: 14px
+                margin-top: -10px
+                    
+                
+
+
+
+
+
+    
+
+
+     
+
+
+
+
+
