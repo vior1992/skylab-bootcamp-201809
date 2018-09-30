@@ -30,6 +30,7 @@
 }
 .header__image {
   max-width: 90%;
+  padding-top: 5%;
 }
 .header__image--logo {
   width: 14em;
@@ -88,6 +89,9 @@
   background-color: #49bed5;
   max-width: 100%;
   background-image: url("./images/noisepattern.png");
+  background-position-y: 3.5em;
+  background-repeat: repeat-x;
+  background-size: contain;
 }
 .div__main__image {
   width: 100%;
