@@ -5,7 +5,6 @@ body {
     font-family: 'Bai Jamjuree', sans-serif;
     color: darkslategray;
     margin: 0;
-    padding: 0;
 }
 
 /* Header -------------------------- */
@@ -36,6 +35,7 @@ header {
 /* About -------------------------- */
 
 .about {
+    background: beige;
     padding: 20px;
     font-size: 20px;
     font-weight: bold;
@@ -176,7 +176,7 @@ header {
         width: 25%;
         height: 150px;
         background: white;
-        box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, .2);
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);    
         border-radius: 10px;
         display: flex;
         justify-content: center;
@@ -207,4 +207,20 @@ header {
         margin: 10px;
         max-width: 40%;
     }
+  }
+
+  @media screen and (min-width: 992px) {
+      body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .app {
+        position: relative;
+        width: 950px;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);            
+      }
+      header {
+          width: 950px;
+      }
   }
