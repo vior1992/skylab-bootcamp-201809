@@ -1,16 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Sans");
-.upperheader__mailchimp, .upperheader__nav__ulist {
+.upperheader__logo, .upperheader__nav__ulist {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0% 5%;
+  margin: 0% 3%;
 }
 
 .upperheader__button, .lowerheader__button {
-  border-radius: 10%;
+  border-radius: 10px;
   border: none;
   height: 50px;
   text-shadow: 1px 1px 5px black;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, 0)), color-stop(51%, rgba(255, 255, 255, 0.09)));
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.09) 51%);
+  -webkit-box-shadow: 0px 1px 1px #3E3E37, 0px -1px 1px #3E3E37 open;
+          box-shadow: 0px 1px 1px #3E3E37, 0px -1px 1px #3E3E37 open;
 }
 
 body {
@@ -19,7 +23,7 @@ body {
 }
 
 .container-all {
-  margin: 0 10%;
+  margin: 0 11%;
 }
 
 header {
@@ -30,40 +34,37 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0% 3% 1% 3%;
+  margin: 1% 5% 1% 5%;
 }
 
-.upperheader__mailchimp {
-  -webkit-box-flex: 20%;
-      -ms-flex: 20%;
-          flex: 20%;
+.upperheader__logo {
+  -webkit-box-flex: 30%;
+      -ms-flex: 30%;
+          flex: 30%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 6%;
+  margin: 4% 0% 0% 2%;
 }
 
 .upperheader__button {
-  background-color: #50514B;
+  background-color: #3F3F37;
   color: #DDDDDF;
   width: 120px;
   font-size: 12px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#50514B), to(#3F3F37));
-  background-image: linear-gradient(#50514B, #3F3F37);
 }
 
 .upperheader__nav-container {
-  -webkit-box-flex: 80%;
-      -ms-flex: 80%;
-          flex: 80%;
+  -webkit-box-flex: 55%;
+      -ms-flex: 55%;
+          flex: 55%;
+  margin: 0% 2% 0% 0%;
 }
 
 .upperheader__p {
   display: block;
   text-align: right;
-  margin-right: 5%;
-  margin-top: 4%;
-  margin-bottom: 1%;
+  margin: 2% 7% 0% 2%;
   color: white;
 }
 
@@ -76,15 +77,15 @@ header {
       -ms-flex-align: center;
           align-items: center;
   border-right: #C3DEE3 1px solid;
-  margin-top: 2.5%;
-  border-radius: 2%;
+  margin-top: 1.1%;
+  border-radius: 10px;
   border: none;
   height: 50px;
   text-shadow: 2px 2px 5px white;
 }
 
-.upperheader__input::after {
-  content: url(mailchimp/images/search.png);
+.upperheader__input {
+  background: white url(mailchimp/images/search.png) right no-repeat;
 }
 
 .lowerheader {
@@ -92,21 +93,24 @@ header {
   display: -ms-flexbox;
   display: flex;
   margin: 0 5%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.lowerheader__monkey {
-  -webkit-box-flex: 40%;
-      -ms-flex: 40%;
-          flex: 40%;
-  margin: 0;
+.lowerheader__image {
+  -webkit-box-flex: 50%;
+      -ms-flex: 50%;
+          flex: 50%;
+  margin: 0 0 4% 5%;
 }
 
 .lowerheader__text {
-  -webkit-box-flex: 60%;
-      -ms-flex: 60%;
-          flex: 60%;
+  -webkit-box-flex: 40%;
+      -ms-flex: 40%;
+          flex: 40%;
   color: #11758C;
   margin-right: 5%;
+  margin-top: 3%;
 }
 
 .lowerheader__button {
@@ -121,11 +125,19 @@ main {
 }
 
 .container-main {
-  margin: 0% 5%;
+  margin: 0% 8% 0% 5%;
   background-color: #F0F0F0;
   position: relative;
   bottom: 50px;
   height: 150%;
+  width: 90%;
+  border-radius: 1%;
+}
+
+.container-main h2 {
+  padding: 3% 0 0 1%;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .main-section {
@@ -134,8 +146,16 @@ main {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  margin: 0% 3%;
+  margin: 2% 3%;
   height: 500px;
+}
+
+.main-section h5 {
+  margin: 15% 0 0 0;
+}
+
+.main-section h3 {
+  margin: 3;
 }
 
 .main-section__heading {
@@ -148,6 +168,10 @@ main {
   width: 100%;
   height: 30px;
   color: white;
+  text-align: left;
+  border-radius: 5px;
+  background: #3E3E36 url(mailchimp/images/horizonal_arrow.png) right no-repeat;
+  padding-righ: 5%;
 }
 
 .main-section__news {
@@ -174,6 +198,16 @@ footer {
   margin: 10% 3%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+.upper-footer h4 {
+  color: white;
+  margin-left: 25%;
+  margin-bottom: 0%;
+}
+
+.upper-footer ul {
+  list-style-type: none;
 }
 
 .lower-footer {

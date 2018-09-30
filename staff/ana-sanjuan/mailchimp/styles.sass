@@ -1,63 +1,66 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans')
-//variables with sass $primary-color: #333;
-//mixins similar to variables 
-// inheritance with extend %message-shared {...}
-//
+// SASS allows
+//  variables with sass $primary-color: #333;
+//  mixins similar to functions 
+//  inheritance with extend %message-shared {...}
+//  nesting (is it better nest or specify at the bem way?
+
+$header-blue: #45BDD4
 
 //inheritance
 
 %flex-shared  
     display: flex
-    margin: 0% 5%
+    margin: 0% 3%
      
 %header-button
-    border-radius: 10%
+    border-radius: 10px
     border: none
     height: 50px
     text-shadow: 1px 1px 5px black
+    background-image: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.09) 51%)
+    box-shadow: 0px 1px 1px #3E3E37, 0px -1px 1px #3E3E37 open
     
 body  
     font-family: 'PT Sans'
     background-color: black
 
 .container-all
-    margin: 0 10%
+    margin: 0 11%
 
 // header section    
 header
-    background-color: #45BDD4
+    background-color: $header-blue
    
 
 // upperheader
 .upperheader
     display: flex
-    margin: 0% 3% 1% 3%
+    margin: 1% 5% 1% 5%
 
-.upperheader__mailchimp
+.upperheader__logo
     @extend %flex-shared 
-    flex: 20%
+    flex: 30%
     justify-content: space-between
-    margin-top: 6%
+    margin: 4% 0% 0% 2%
     
 
 .upperheader__button
     @extend %header-button
-    background-color: #50514B
+    background-color: #3F3F37
     color: #DDDDDF
     width: 120px
     font-size: 12px
-    background-image: linear-gradient(#50514B, #3F3F37)
-
 
 .upperheader__nav-container
-    flex: 80%
+    flex: 55%
+    margin: 0% 2% 0% 0%
+
 
 .upperheader__p
     display: block
     text-align: right
-    margin-right: 5%
-    margin-top: 4%
-    margin-bottom: 1%
+    margin: 2% 7% 0% 2%
     color: white
 
 .upperheader__nav__ulist
@@ -67,28 +70,30 @@ header
     justify-content: space-around
     align-items: center
     border-right: #C3DEE3 1px solid
-    margin-top: 2.5% 
-    border-radius: 2%
+    margin-top: 1.1% 
+    border-radius: 10px
     border: none
     height: 50px
     text-shadow: 2px 2px 5px white
 
-.upperheader__input::after
-    content: url(mailchimp/images/search.png)
+.upperheader__input
+    background:  white url(mailchimp/images/search.png) right no-repeat
 
 //lower header
 .lowerheader
     display: flex
     margin: 0 5%
+    justify-content: space-around
 
-.lowerheader__monkey
-    flex: 40%
-    margin: 0
+.lowerheader__image
+    flex: 50%
+    margin: 0 0 4% 5%
 
 .lowerheader__text
-    flex: 60%
+    flex: 40%
     color: #11758C
     margin-right: 5%
+    margin-top: 3%
 
 .lowerheader__button
     @extend %header-button
@@ -99,23 +104,32 @@ header
 
 //main
 
-
 main 
     background-image: url("mailchimp/images/noisepattern.png")
-    
 
 .container-main
-    margin: 0% 5%
+    margin: 0% 8% 0% 5%
     background-color: #F0F0F0
     position: relative
     bottom: 50px
     height: 150%
+    width: 90%
+    border-radius: 1%
+    h2 
+        padding: 3% 0 0 1%
+        font-size: 30px
+        font-weight: bold
 
 .main-section
     display: flex
     justify-content: space-around
-    margin: 0% 3%
+    margin: 2% 3%
     height: 500px
+    h5 
+        margin: 15% 0 0 0
+       
+    h3 
+        margin: 3
 
 .main-section__heading
     margin: 0% 3% 2% 3%
@@ -126,6 +140,10 @@ main
     width: 100%
     height: 30px
     color: white
+    text-align: left
+    border-radius: 5px
+    background:  #3E3E36 url(mailchimp/images/horizonal_arrow.png) right no-repeat
+    padding-righ: 5%
 
 .main-section__news
     width: 22%
@@ -148,8 +166,15 @@ footer
     display: flex
     margin: 10% 3%
     justify-content: space-around
-
+    h4 
+        color: white
+        margin-left: 25%
+        margin-bottom: 0%
+    ul
+        list-style-type: none
 .lower-footer
     text-align: center
     height: 200px
+
+
     
