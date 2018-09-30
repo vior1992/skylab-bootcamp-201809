@@ -35,6 +35,8 @@ header .nav .menu__button {
   border-radius: 8px;
   background-color: #3f3f38;
   color: #fff;
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
 }
 header .nav .menu__list {
@@ -97,6 +99,8 @@ header .intro .copy__button {
   border-radius: 8px;
   background-color: #e95c41;
   color: #fff;
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -154,9 +158,13 @@ main .main .article__button {
   border-radius: 8px;
   background-color: #3f3f38;
   color: #fff;
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1.5rem;
   text-align: left;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .footer {
@@ -165,6 +173,7 @@ main .main .article__button {
   grid-gap: 1rem 2rem;
   padding: 1rem 5rem 10rem;
   background-image: url("../img/bg_home.png");
+  border-top: 1px solid #888;
 }
 .footer__list {
   list-style-type: none;

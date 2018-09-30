@@ -10,6 +10,8 @@ $color-secondary: #787975;
     border-radius: 8px;
     background-color: $color;
     color: $color-title;
+    font-size: 12px;
+    font-weight: 600;
     cursor: pointer;
 }
 
@@ -177,8 +179,10 @@ main {
 
             &__button {
                 @include button($color-primary);
-                padding: 0.5rem 1.25rem;
+                padding: 0.5rem 1.5rem;
                 text-align: left;
+                font-size: 14px;
+                font-weight: 500;
             }
         }
     }
@@ -190,6 +194,7 @@ main {
     grid-gap: 1rem $gap-width;
     padding: 1rem $padding-width + $gap-width 10rem;
     background-image: url('../img/bg_home.png');
+    border-top: 1px solid #888;
 
     &__list {
         list-style-type: none;
