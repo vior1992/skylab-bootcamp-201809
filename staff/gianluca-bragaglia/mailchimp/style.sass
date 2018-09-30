@@ -93,8 +93,15 @@ header
         
         
         .nav__search-item
-            
             width: 150px
+            background-image: url('./images/search.png')
+            background-repeat: no-repeat
+            background-position-x: 140px
+            background-position-y: 6px
+            border: none
+            border-radius: 3px
+            padding: 5px
+            
     
 .main-content
     display: flex
@@ -162,13 +169,18 @@ main
                 height: 30px
                 border-radius: 4px
                 font-weight: 400
+                background-image: url('./images/arrows.png')
+                background-repeat: no-repeat
+                background-position-x: 180px
+                background-position-y: 10px
 
 
 footer
     background-color: #000
     left: 0
     bottom: 0
-    width: 100%     
+    width: 100% 
+    
 
     .footer-container
         display: flex
@@ -193,9 +205,16 @@ footer
             font-weight: 400
             font-size: 12px
             margin-bottom: 25px
+
+    .footer__box
+        text-align: center
+
+        .footer__box__copy
+                color: gray
+                font-family: $font
+                font-size: 12px   
+            
         
-        .copy
-            @extend .footer-container__link
             
 
 
