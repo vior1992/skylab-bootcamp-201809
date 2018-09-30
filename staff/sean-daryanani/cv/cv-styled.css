@@ -117,7 +117,6 @@ section h2 {
 
 .degree {
     display: flex;
-
 }
 
 .subject {
@@ -139,7 +138,7 @@ section h2 {
     }
 
     header {
-        flex: 0.2;
+        flex: 0.3;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
