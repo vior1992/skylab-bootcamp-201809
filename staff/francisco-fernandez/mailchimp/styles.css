@@ -21,6 +21,16 @@ body {
 header {
   background-color: #45BCD2; }
 
+.header__login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 92%;
+  padding: 10px 0px; }
+
 .header__section1_div2_nav--menu__option {
   display: inline-block; }
 
@@ -92,16 +102,40 @@ header {
   padding: 3px 8px;
   border-right: 1px solid grey; }
 
+.header__section2__button {
+  background-color: #E95C41;
+  color: white;
+  padding: 15px 60px;
+  border-radius: 7px;
+  text-align: center;
+  line-height: 48px; }
+
 main {
-  background-color: #F0F0F0; }
+  background-image: url("./images/noisepattern.png"); }
+
+.main__container {
+  background-color: #F0F0F0;
+  padding-top: 10px;
+  width: 1000px;
+  margin-left: 50px; }
+
+.main__header__title {
+  margin-left: 50px; }
 
 .main__news {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
 
+.main__news_block {
+  margin-left: 30px; }
+
+.main__news__block__descrip {
+  width: 200px; }
+
 footer {
-  background-color: #191814; }
+  background-color: #191814;
+  padding-top: 25px; }
 
 .footer__links {
   display: -webkit-box;
@@ -110,4 +144,18 @@ footer {
 
 .footer__links__list {
   color: #7C7B77;
-  width: 25%; }
+  width: 25%;
+  margin-left: 40px; }
+
+.list_title {
+  color: white;
+  font-style: bold; }
+
+.footer__copyright_descrip {
+  text-align: center;
+  margin-top: 100px;
+  padding-bottom: 350px;
+  color: #7C7B77; }
+
+ul {
+  list-style-type: none; }
