@@ -1,4 +1,5 @@
 $padding-width: 3rem;
+$gap-width: 2rem;
 
 @mixin button($color) {
     padding: 1rem;
@@ -111,9 +112,9 @@ main {
     .main {
         display: grid;
         grid-template: auto auto / 4fr 4fr 4fr 4fr;
-        grid-gap: 1rem 2rem;
+        grid-gap: 1rem $gap-width;
         margin-top: -3rem;
-        padding: 1.5rem 2rem 3rem;
+        padding: 1.5rem $gap-width 3rem;
         background-color: #f0f0f0;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
@@ -158,5 +159,35 @@ main {
                 text-align: left;
             }
         }
+    }
+}
+
+.footer {
+    display: grid;
+    grid-template: auto auto / 4fr 4fr 4fr 4fr;
+    grid-gap: 1rem $gap-width;
+    padding: 1rem $padding-width + $gap-width 10rem;
+    background-image: url('../img/bg_home.png');
+
+    &__list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        &--title {
+            color: #fff;
+            padding: .5rem 0;
+        }
+
+        li a {
+            color: #ccc;
+        }
+    }
+
+    &__text {
+        grid-column: 1 / 5;
+        margin: 0;
+        text-align: center;
+        color: #ccc;
     }
 }

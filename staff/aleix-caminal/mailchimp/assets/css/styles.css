@@ -140,4 +140,30 @@ main .main .article__button {
   text-align: left;
 }
 
+.footer {
+  display: grid;
+  grid-template: auto auto/4fr 4fr 4fr 4fr;
+  grid-gap: 1rem 2rem;
+  padding: 1rem 5rem 10rem;
+  background-image: url("../img/bg_home.png");
+}
+.footer__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.footer__list--title {
+  color: #fff;
+  padding: 0.5rem 0;
+}
+.footer__list li a {
+  color: #ccc;
+}
+.footer__text {
+  grid-column: 1/5;
+  margin: 0;
+  text-align: center;
+  color: #ccc;
+}
+
 /*# sourceMappingURL=styles.css.map */
