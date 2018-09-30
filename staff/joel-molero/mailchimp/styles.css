@@ -33,4 +33,13 @@ main {
 footer {
     display:flex;
     align-content: space-between;
+    background-color: black;
+}
+
+section {
+    flex-wrap: wrap;
+}
+
+.footertitle {
+    color: white;
 }
