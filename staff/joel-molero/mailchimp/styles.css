@@ -1,0 +1,36 @@
+header {
+    background-color: rgb(74, 189, 210);
+}
+
+.li {
+    display: inline;
+}
+
+.search {
+    display: inline;
+}
+
+
+.topbar {
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+}
+
+main {
+    background-color: #CFD3D2;
+}
+
+.title-img {
+    display:flex;
+}
+
+.menu {
+    display:flex;
+    align-content: space-around;
+}
+
+footer {
+    display:flex;
+    align-content: space-between;
+}
