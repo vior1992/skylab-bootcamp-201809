@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 }
 
 header {
@@ -15,6 +16,8 @@ header .login__link {
   padding: 0.75rem;
   text-decoration: none;
   color: #fff;
+  font-size: 14px;
+  font-weight: 700;
 }
 header .nav {
   display: flex;
@@ -30,7 +33,7 @@ header .nav .menu__button {
   padding: 1rem;
   border: none;
   border-radius: 8px;
-  background-color: #333;
+  background-color: #3f3f38;
   color: #fff;
   cursor: pointer;
 }
@@ -42,21 +45,28 @@ header .nav .menu__list {
   margin: 0;
   padding: 0;
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.75);
+  overflow: hidden;
 }
 header .nav .menu__list li {
-  border-right: 1px solid rgba(220, 220, 220, 0.8);
-}
-header .nav .menu__list li a {
-  display: block;
-  padding: 1rem;
-  color: #333;
-  text-decoration: none;
+  border-right: 1px solid rgba(220, 220, 220, 0.75);
 }
 header .nav .menu__list li:last-child {
   display: block;
   padding: 1rem;
   border: none;
+}
+header .nav .menu__list li a {
+  display: block;
+  padding: 1rem;
+  color: #3f3f38;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.2s linear;
+}
+header .nav .menu__list li a:hover {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 header .intro {
   display: grid;
@@ -72,17 +82,20 @@ header .intro .copy {
 header .intro .copy__title {
   margin: 0;
   color: #fff;
-  font-size: 100px;
+  font-size: 90px;
+  font-weight: 700;
+  letter-spacing: -5px;
+  line-height: 80px;
 }
 header .intro .copy__text {
   margin: 1rem 0;
-  color: rgba(80, 80, 80, 0.9);
+  color: #006577;
 }
 header .intro .copy__button {
   padding: 1rem;
   border: none;
   border-radius: 8px;
-  background-color: #f30;
+  background-color: #e95c41;
   color: #fff;
   cursor: pointer;
 }
@@ -119,8 +132,12 @@ main .main .article__image {
   width: 100%;
   height: auto;
 }
+main .main .article__title {
+  color: #3f3f38;
+}
 main .main .article__title small {
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 700;
 }
 main .main .article__title h1 {
   font-size: 22px;
@@ -128,12 +145,14 @@ main .main .article__title h1 {
 }
 main .main .article__text {
   margin: 0;
+  font-size: 14px;
+  color: #787975;
 }
 main .main .article__button {
   padding: 1rem;
   border: none;
   border-radius: 8px;
-  background-color: #333;
+  background-color: #3f3f38;
   color: #fff;
   cursor: pointer;
   padding: 0.5rem 1.25rem;
@@ -154,16 +173,22 @@ main .main .article__button {
 }
 .footer__list--title {
   color: #fff;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0.25rem;
+}
+.footer__list li {
+  margin: 0.25rem 0;
 }
 .footer__list li a {
-  color: #ccc;
+  color: #787975;
+  text-decoration: none;
+  font-size: 14px;
 }
 .footer__text {
   grid-column: 1/5;
-  margin: 0;
+  margin: 80px 0;
   text-align: center;
-  color: #ccc;
+  color: #787975;
+  font-size: 14px;
 }
 
 /*# sourceMappingURL=styles.css.map */

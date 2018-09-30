@@ -1,17 +1,21 @@
 $padding-width: 3rem;
 $gap-width: 2rem;
+$color-title: #fff;
+$color-primary: #3f3f38;
+$color-secondary: #787975;
 
 @mixin button($color) {
     padding: 1rem;
     border: none;
     border-radius: 8px;
     background-color: $color;
-    color: #fff;
+    color: $color-title;
     cursor: pointer;
 }
 
 body {
     margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 }
 
 header {
@@ -26,7 +30,9 @@ header {
         &__link {
             padding: 0.75rem;
             text-decoration: none;
-            color: #fff;
+            color: $color-title;
+            font-size: 14px;
+            font-weight: 700;
         }
     }
 
@@ -41,7 +47,7 @@ header {
 
             &__button {
                 grid-column: 1;
-                @include button(#333);
+                @include button($color-primary);
             }
 
             &__list {
@@ -52,22 +58,30 @@ header {
                 margin: 0;
                 padding: 0;
                 border-radius: 12px;
-                background-color: rgba(255, 255, 255, .8);
+                background-color: rgba(255, 255, 255, .75);
+                overflow: hidden;
 
                 li {
-                    border-right: 1px solid rgba(220, 220, 220, .8);
-
-                    a {
-                        display: block;
-                        padding: 1rem;
-                        color: #333;
-                        text-decoration: none;
-                    }
+                    border-right: 1px solid rgba(220, 220, 220, .75);
 
                     &:last-child {
                         display: block;
                         padding: 1rem;
                         border: none;
+                    }
+
+                    a {
+                        display: block;
+                        padding: 1rem;
+                        color: $color-primary;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 700;
+                        transition: background .2s linear;
+
+                        &:hover {
+                            background-color: rgba(255, 255, 255, .9);
+                        }
                     }
                 }
             }
@@ -88,17 +102,20 @@ header {
 
             &__title {
                 margin: 0;
-                color: #fff;
-                font-size: 100px;
+                color: $color-title;
+                font-size: 90px;
+                font-weight: 700;
+                letter-spacing: -5px;
+                line-height: 80px;
             }
 
             &__text {
                 margin: 1rem 0;
-                color: rgba(80, 80, 80, .9);
+                color: #006577;
             }
 
             &__button {
-                @include button(#f30);
+                @include button(#e95c41);
             }
         }
     }
@@ -139,8 +156,11 @@ main {
             }
 
             &__title {
+                color: $color-primary;
+
                 small {
-                    font-size: 16px;
+                    font-size: 14px;
+                    font-weight: 700;
                 }
 
                 h1 {
@@ -151,10 +171,12 @@ main {
 
             &__text {
                 margin: 0;
+                font-size: 14px;
+                color: $color-secondary;
             }
 
             &__button {
-                @include button(#333);
+                @include button($color-primary);
                 padding: 0.5rem 1.25rem;
                 text-align: left;
             }
@@ -175,19 +197,26 @@ main {
         padding: 0;
 
         &--title {
-            color: #fff;
-            padding: .5rem 0;
+            color: $color-title;
+            padding: .5rem 0 .25rem;
         }
 
-        li a {
-            color: #ccc;
+        li {
+            margin: .25rem 0;
+
+            a {
+               color: $color-secondary;
+               text-decoration: none;
+               font-size: 14px;
+           }
         }
     }
 
     &__text {
         grid-column: 1 / 5;
-        margin: 0;
+        margin: 80px 0;
         text-align: center;
-        color: #ccc;
+        color: $color-secondary;
+        font-size: 14px;
     }
 }
