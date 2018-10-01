@@ -2,7 +2,8 @@
 body {
     background: rgb(98, 185, 219);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     font-family: 'Ubuntu', sans-serif;
     height: 100vh;
     margin: 0;
@@ -43,9 +44,9 @@ header {
             border-radius: 7px;
             border: 1px solid #df500d;
             color: white;
-            font-weight: bold;
+            font-size: 1.1em;
             cursor: pointer;
-            background: #df500d;
+            background: #f14c36;
             outline: 0;
             &::before {
                 position: absolute;
@@ -62,8 +63,8 @@ header {
 }
 
 .container {
-    width: 65%;
-    height: 100%;
+    width: 980px;
+    height: 1000px;
     margin-top: 20px;
 }
 
@@ -94,7 +95,7 @@ header {
         color: white;
         font-weight: bold;
         cursor: pointer;
-        background: #181717;
+        background: #2c2b2b;
         outline: 0;
         &::before {
             position: absolute;
@@ -108,7 +109,7 @@ header {
         }
     }
     ul {
-        background-color: rgba(255, 255, 255, .6);
+        background-color: #d1eef5;
         width: 65%;
         line-height: 50px;
         list-style: none;
@@ -128,8 +129,8 @@ header {
             }
             input {
                 border-radius: 5px;
-                border: 1px solid #424242;
-                height: 20px;
+                border: 1px solid gainsboro;
+                height: 25px;
                 outline: 0;
                 padding-left: 5px;
                 background-image: url("../images/search.png");
@@ -182,3 +183,38 @@ section {
         }
     }
 }
+
+footer {
+    background: #181717;
+    width: 100%;
+    min-height: 400px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .info {
+        width: 980px;
+        display: flex;
+        justify-content: space-around;
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            a {
+                text-decoration: none;
+                color: rgb(139, 139, 139);
+                font-size: .8em;
+            }
+        }
+    }
+    .copy {
+        p {
+            margin-top: 80px;
+            color: rgb(139, 139, 139);
+            font-size: .9em;
+            text-align: center;
+
+        }
+    }
+}
+
