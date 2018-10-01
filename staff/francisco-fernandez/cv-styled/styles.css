@@ -1,3 +1,7 @@
+body{
+    font-family: 'K2D';
+    background-color: #f4efef;
+}
 header{
     padding:10px;
     text-align:center;
@@ -34,8 +38,7 @@ footer{
 
   /* For mobile phones: */
     [class*="item"] {
-        grid-column-start: 2;
-        grid-column-end: 12;
+        grid-column: 2 / 12;
 }
 
 
@@ -43,31 +46,25 @@ footer{
     /* For desktop: */
     
     .item1 {
-        grid-column-start: 2;
-        grid-column-end: 10;
+        grid-column: 2 / 10;
     }
     .item2 {
-        grid-column-start: 10;
-        grid-column-end: 11;
+        grid-column: 10 / 11;
     }
     .item3 {
-        grid-column-start: 2;
-        grid-column-end: 4;
+        grid-column: 2 / 4;
         text-justify: auto;
     }
     .item4 {
-        grid-column-start: 4;
-        grid-column-end: 11;
+        grid-column: 4 / 11;
     }
 
     .item5{
-        grid-column-start:2;
-        grid-column-end:6;
+        grid-column: 2 / 6;
     }
 
     .item6{
-        grid-column-start:7;
-        grid-column-end:11;
+        grid-column: 7 / 11;
     }
 
     .leftcontainer{
