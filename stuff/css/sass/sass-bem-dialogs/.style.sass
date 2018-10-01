@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400')
+
+$dialog__background-color: silver
+$dialog__border-color: gray
+$dialog__title__color: gray
+    
+$alert__background-color: #DEF2FC
+$alert__border-color: #4BC9F3
+$alert__title__color: #177CBF
+$alert__background-color--danger: #FCDCCD
+$alert__border-color--danger: #EA2631
+$alert__title__color--danger: #ED4C44    
+
+.dialog
+    background-color: $dialog__background-color
+    padding: 20px
+    border-radius: 15px
+    border: 5px solid $dialog__border-color
+    font-family: Roboto
+    font-weight: bold
+
+    &__title
+        color: $dialog__title__color
+
+.alert
+    @extend .dialog
+
+    background-color: $alert__background-color
+    border-color: $alert__border-color
+
+    &__title
+        color: $alert__title__color
+    
+    &__button
+        padding: 10px
+        border-radius: 10px
+
+    &--danger
+        background-color: $alert__background-color--danger
+        border-color: $alert__border-color--danger
+
+        h2
+            color: $alert__title__color--danger
+
+.confirm
+    @extend .alert
+
+    &__title
+        color: $alert__title__color
+    
+    &__button
+        padding: 10px
+        border-radius: 10px
+
+        &--accept
+            background-color: darkgray
+

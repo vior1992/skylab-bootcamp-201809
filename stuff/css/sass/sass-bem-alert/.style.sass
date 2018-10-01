@@ -1,0 +1,26 @@
+$alert__background-color: #DEF2FC
+$alert__border-color: #4BC9F3
+$alert__title__color: #177CBF
+$alert__background-color--danger: #FCDCCD
+$alert__border-color--danger: #EA2631
+$alert__title__color--danger: #ED4C44
+    
+@import url('https://fonts.googleapis.com/css?family=Roboto:400')
+    
+.alert
+    background-color: $alert__background-color
+    padding: 20px
+    border-radius: 15px
+    border: 5px solid $alert__border-color
+    font-family: Roboto
+    font-weight: bold
+
+    &__title
+        color: $alert__title__color
+
+    &--danger
+        background-color: $alert__background-color--danger
+        border-color: $alert__border-color--danger
+
+        h2
+            color: $alert__title__color--danger
