@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400");
+.alert {
+  background-color: #DEF2FC;
+  padding: 20px;
+  border-radius: 15px;
+  border: 5px solid #4BC9F3;
+  font-family: Roboto;
+  font-weight: bold;
+}
+
+.alert__title {
+  color: #177CBF;
+}
+
+.alert--danger {
+  background-color: #FCDCCD;
+  border-color: #EA2631;
+}
+
+.alert--danger h2 {
+  color: #ED4C44;
+}
+
+/*# sourceMappingURL=style.css.map */
