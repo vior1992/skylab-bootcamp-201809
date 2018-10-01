@@ -1,0 +1,176 @@
+body {
+  background: #e9e9e9;
+}
+
+/* Only Flex  */
+/* .container {
+  width: 500px;
+  height: 200px;
+  background: #fff;
+  padding: 10px;
+  border: 10px solid grey;
+  margin: 20px;
+  display: flex;
+}
+
+.element {
+  color: #fff;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  background: royalblue;
+  text-align: center;
+} */
+
+/* Flex Direction (row, column, row-reverse, column-reverse) */
+
+/* .container {
+  width: 500px;
+  height: 200px;
+  background: #fff;
+  padding: 10px;
+  border: 10px solid grey;
+  margin: 20px;
+  display: flex;
+  flex-direction: column; -> comment
+  flex-direction: row;
+}
+
+.element {
+  color: #fff;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  background: royalblue;
+  text-align: center;
+} */
+
+/* Flex Wrap (wrap, nowrap) with Directions  */
+
+/* .container {
+  width: 500px;
+  height: 200px;
+  background: #fff;
+  padding: 10px;
+  border: 10px solid grey;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-wrap: wrap-reverse; -> comment
+}
+
+.element {
+  color: #fff;
+  margin: 5px;
+  width: 200px;
+  height: 50px;
+  background: royalblue;
+  text-align: center;
+} */
+
+/* Flex Flow (wrap, nowrap) with Directions  */
+
+/* .container {
+  width: 500px;
+  height: 200px;
+  background: #fff;
+  padding: 10px;
+  border: 10px solid grey;
+  margin: 20px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.element {
+  color: #fff;
+  margin: 5px;
+  width: 200px;
+  height: 50px;
+  background: royalblue;
+  text-align: center;
+} */
+
+/* Justify content  */
+
+/* .container {
+  width: 500px;
+  height: 200px;
+  background: #fff;
+  padding: 10px;
+  border: 10px solid grey;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  justify-content: flex-end; -> comment
+  justify-content: space-around; -> comment
+  justify-content: space-between; -> comment
+}
+
+.element {
+  color: #fff;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  background: royalblue;
+  text-align: center;
+} */
+
+/* align items with justify  */
+
+/* .container {
+  width: 500px;
+  height: 200px;
+  background: #fff;
+  padding: 10px;
+  border: 10px solid grey;
+  margin: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  justify-content: flex-end; -> comment
+  justify-content: space-around; -> comment
+  justify-content: space-between; -> comment
+  align-items: center;
+  align-items: flex-end; -> comment
+  align-items: flex-start; -> comment
+}
+
+.element {
+  color: #fff;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  background: royalblue;
+  text-align: center;
+} */
+
+/* Align content with justify  */
+
+/* .container {
+  width: 500px;
+  height: 200px;
+  background: #fff;
+  padding: 10px;
+  border: 10px solid grey;
+  margin: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  justify-content: flex-end; -> comment
+  justify-content: space-around; -> comment
+  justify-content: space-between; -> comment
+  align-content: center;
+  align-content: flex-end; -> comment
+  align-content: space-around; -> comment
+  align-content: space-between; -> comment
+}
+
+.element {
+  color: #fff;
+  margin: 5px;
+  width: 200px;
+  height: 50px;
+  background: royalblue;
+  text-align: center;
+} */
