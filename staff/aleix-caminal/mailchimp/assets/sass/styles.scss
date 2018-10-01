@@ -13,6 +13,8 @@ $color-secondary: #787975;
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
+    box-shadow: 0 1px 0 darken($color, 25%), 0px -1px 0 darken($color, 25%);
+    background-image: linear-gradient(rgba(255,255,255,0.1) 49%, rgba(0,0,0,0) 51%);
 }
 
 body {
@@ -30,7 +32,7 @@ header {
         width: 100%;
 
         &__link {
-            padding: 0.75rem;
+            padding: .75rem;
             text-decoration: none;
             color: $color-title;
             font-size: 14px;
@@ -41,6 +43,11 @@ header {
     .nav {
         display: flex;
         justify-content: space-between;
+
+        &__logo {
+            height: 100%;
+            width: auto;
+        }
 
         .menu {
             display: grid;
@@ -67,9 +74,8 @@ header {
                     border-right: 1px solid rgba(220, 220, 220, .75);
 
                     &:last-child {
-                        display: block;
-                        padding: 1rem;
                         border: none;
+                        padding: .75rem;
                     }
 
                     a {
@@ -85,6 +91,18 @@ header {
                             background-color: rgba(255, 255, 255, .9);
                         }
                     }
+
+                    input {
+                        height: 1.5rem;
+                        padding: .25rem;
+                        border: 1px solid #ccc;
+                        border-radius: .25rem;
+                        font-size: 12px;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
                 }
             }
         }
@@ -97,6 +115,7 @@ header {
 
         &__image {
             grid-column: 1;
+            margin: 0 auto -1px;
         }
 
         .copy {
@@ -118,6 +137,7 @@ header {
 
             &__button {
                 @include button(#e95c41);
+                padding: 1rem 3rem;
             }
         }
     }
@@ -179,10 +199,12 @@ main {
 
             &__button {
                 @include button($color-primary);
-                padding: 0.5rem 1.5rem;
+                padding: .5rem 1.5rem;
                 text-align: left;
                 font-size: 14px;
                 font-weight: 500;
+                box-shadow: none;
+                background-image: none;
             }
         }
     }

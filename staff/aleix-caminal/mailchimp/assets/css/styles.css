@@ -23,6 +23,10 @@ header .nav {
   display: flex;
   justify-content: space-between;
 }
+header .nav__logo {
+  height: 100%;
+  width: auto;
+}
 header .nav .menu {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -38,6 +42,8 @@ header .nav .menu__button {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 1px 0 black, 0px -1px 0 black;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 49%, rgba(0, 0, 0, 0) 51%);
 }
 header .nav .menu__list {
   grid-column: 2;
@@ -54,9 +60,8 @@ header .nav .menu__list li {
   border-right: 1px solid rgba(220, 220, 220, 0.75);
 }
 header .nav .menu__list li:last-child {
-  display: block;
-  padding: 1rem;
   border: none;
+  padding: 0.75rem;
 }
 header .nav .menu__list li a {
   display: block;
@@ -70,6 +75,16 @@ header .nav .menu__list li a {
 header .nav .menu__list li a:hover {
   background-color: rgba(255, 255, 255, 0.9);
 }
+header .nav .menu__list li input {
+  height: 1.5rem;
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 12px;
+}
+header .nav .menu__list li input:focus {
+  outline: none;
+}
 header .intro {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -77,6 +92,7 @@ header .intro {
 }
 header .intro__image {
   grid-column: 1;
+  margin: 0 auto -1px;
 }
 header .intro .copy {
   grid-column: 2;
@@ -102,6 +118,9 @@ header .intro .copy__button {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 1px 0 #992712, 0px -1px 0 #992712;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 49%, rgba(0, 0, 0, 0) 51%);
+  padding: 1rem 3rem;
 }
 
 main {
@@ -161,10 +180,14 @@ main .main .article__button {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 1px 0 black, 0px -1px 0 black;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 49%, rgba(0, 0, 0, 0) 51%);
   padding: 0.5rem 1.5rem;
   text-align: left;
   font-size: 14px;
   font-weight: 500;
+  box-shadow: none;
+  background-image: none;
 }
 
 .footer {
