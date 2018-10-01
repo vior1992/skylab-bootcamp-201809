@@ -1,0 +1,186 @@
+* {
+    font-family: Verdana, Arial;
+    margin: 0px;
+	padding: 0px;
+}
+
+h1 {
+    color: white;
+    font-size: 4.5em;
+    padding-top: 0.25em; 
+}
+
+.navigation {
+    background-color: rgb(71, 189, 213);
+    height: 5%;
+}
+
+.container-header {
+    display: grid;
+    width: 95%;
+}
+
+.login {
+    color: white;
+    size: 0.5em; 
+    width: 95%;
+    text-align: right;   
+}
+
+.navbar {
+    display: inline-block;
+    list-style: none;
+}
+.signupbutton {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    background-color: grey;
+    border-radius: 10%;
+}
+
+.pricing {
+    grid-column: 3 / span 1;
+}
+
+.features {
+    grid-column: 4 / span 1;
+}
+
+.resources {
+    grid-column: 5 / span 1;
+}
+
+.support {
+    grid-column: 6 / span 1;
+}
+
+.blog {
+    grid-column: 7 / span 1;
+}
+
+.searchbar {
+    grid-column: 9 / span 1;
+}
+
+main {
+    background-color: rgb(206, 210, 209);
+}
+
+.container-1 {
+    height:25%;
+    display: grid;
+    grid-template-columns: 10% 1fr 1fr 10%;
+    background-color: rgb(71, 189, 213); 
+}
+
+.main-image {
+    justify-self: right;
+    grid-column: 2 / span 1;
+}
+
+.main-info {
+    grid-column: 3 /span 1;
+}
+
+.main-info-text {
+    font-size: 0.93em;
+    color: rgba(94, 94, 94, 0.911);
+}
+
+.main-info-button {
+    margin-top: 1em;
+    color: white;
+    text-align: center;
+    justify-self: center;
+    padding: 1em;
+    margin: 3em / 2em;
+    background-color: rgb(233, 92, 65);
+    border-radius: 10%;
+}
+
+.container-2 {
+    display: grid;
+    height: 30%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: white;
+    margin: 0 2.5%;
+}
+
+.container-2-title {
+    width: 95%;
+    padding-top: 1em;
+    align-self: center;
+    font-size: 1.5em;
+    padding-left: 1em;
+    border-radius: 10%;
+}
+
+.feature1 {
+    grid-column: 1 / span 1;
+    padding-left: 1em;
+}
+
+.feature2 {
+    grid-column: 2 / span 1;
+}
+
+.feature3 {
+    grid-column: 3 / span 1;
+}
+
+.feature4 {
+    grid-column: 4 / span 1;
+}
+
+.container-2-button {
+    color: white;
+    background: darkslategrey;
+}
+
+footer {
+    height: 40%;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.507);
+    font-size: 0.80em;
+}
+
+.container-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+}
+
+.highlighted-footer {
+    padding-top: 1.6em;
+    font-weight: bold;
+    color: white;
+}
+
+.col1 {
+    grid-column: 1 / span 1;
+    padding-left: 1.6em;
+}
+
+.col2 {
+    grid-column: 2 / span 1;
+}
+
+.col3 {
+    grid-column: 3 / span 1;
+}
+
+.col4 {
+    grid-column: 4 / span 1;
+}
+
+.copyright-footer {
+    justify-self: center;
+    align-self: center;
+    grid-column: 1 / span 4;
+}
+
+.blank-space {
+    color: black;
+}
