@@ -16,6 +16,7 @@ body {
     border-radius: 10px;
 }
 
+
 header {
     text-align: right;
 }
@@ -24,8 +25,17 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-left:auto;
-    margin-right: auto;
+    margin: 0 auto;
+}
+
+.introduction__list{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    
+}
+.introduction__list li {
+    display: inline;
 }
 
 .intro__container{
