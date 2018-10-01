@@ -95,8 +95,8 @@ section {
 }
 
 .monkey {
-  max-width: 50%;
-  max-height: 50%;
+  height: 500px;
+  padding-left: 150px;
 }
 
 .images img {
