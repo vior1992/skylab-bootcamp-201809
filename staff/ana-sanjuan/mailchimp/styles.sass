@@ -20,6 +20,8 @@ $header-blue: #45BDD4
     text-shadow: 1px 1px 5px black
     background-image: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.09) 51%)
     box-shadow: 0px 1px 1px #3E3E37, 0px -1px 1px #3E3E37 open
+    cursor: pointer
+    outline: 0
     
 body  
     font-family: 'PT Sans'
@@ -75,6 +77,20 @@ header
     border: none
     height: 50px
     text-shadow: 2px 2px 5px white
+    justify-content: flex-end
+
+    li 
+        border-right: 1px rgb(128, 148, 150) solid
+        height: 50px
+        line-height: 50px
+        text-align: center
+        padding-left: 5px
+        padding-right: 20px
+        text-align: left
+        font-size: 15px
+    li:last-child
+        border: none
+            
 
 .upperheader__input
     background:  white url(mailchimp/images/search.png) right no-repeat
@@ -129,7 +145,7 @@ main
         margin: 15% 0 0 0
        
     h3 
-        margin: 3
+        margin: 3%
 
 .main-section__heading
     margin: 0% 3% 2% 3%
@@ -142,7 +158,8 @@ main
     color: white
     text-align: left
     border-radius: 5px
-    background:  #3E3E36 url(mailchimp/images/horizonal_arrow.png) right no-repeat
+    background:  #3E3E36 url(mailchimp/images/horizonal_arrow.png) left no-repeat
+    background-position: 90% 8px
     padding-righ: 5%
 
 .main-section__news
@@ -168,10 +185,11 @@ footer
     justify-content: space-around
     h4 
         color: white
-        margin-left: 25%
+        margin-left: 26%
         margin-bottom: 0%
     ul
         list-style-type: none
+        margin-top: 3%
 .lower-footer
     text-align: center
     height: 200px

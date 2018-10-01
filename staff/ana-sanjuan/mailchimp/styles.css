@@ -15,6 +15,8 @@
   background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.09) 51%);
   -webkit-box-shadow: 0px 1px 1px #3E3E37, 0px -1px 1px #3E3E37 open;
           box-shadow: 0px 1px 1px #3E3E37, 0px -1px 1px #3E3E37 open;
+  cursor: pointer;
+  outline: 0;
 }
 
 body {
@@ -82,6 +84,24 @@ header {
   border: none;
   height: 50px;
   text-shadow: 2px 2px 5px white;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.upperheader__nav__ulist li {
+  border-right: 1px #809496 solid;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 20px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.upperheader__nav__ulist li:last-child {
+  border: none;
 }
 
 .upperheader__input {
@@ -155,7 +175,7 @@ main {
 }
 
 .main-section h3 {
-  margin: 3;
+  margin: 3%;
 }
 
 .main-section__heading {
@@ -170,7 +190,8 @@ main {
   color: white;
   text-align: left;
   border-radius: 5px;
-  background: #3E3E36 url(mailchimp/images/horizonal_arrow.png) right no-repeat;
+  background: #3E3E36 url(mailchimp/images/horizonal_arrow.png) left no-repeat;
+  background-position: 90% 8px;
   padding-righ: 5%;
 }
 
@@ -202,12 +223,13 @@ footer {
 
 .upper-footer h4 {
   color: white;
-  margin-left: 25%;
+  margin-left: 26%;
   margin-bottom: 0%;
 }
 
 .upper-footer ul {
   list-style-type: none;
+  margin-top: 3%;
 }
 
 .lower-footer {
