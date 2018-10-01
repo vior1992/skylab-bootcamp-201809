@@ -1,4 +1,3 @@
-$font-stack: TT Commons,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue;
 $color-primary: #2196f3;
 
 body {
@@ -6,7 +5,7 @@ body {
     grid-template: auto auto / 1fr 260px;
     grid-gap: 1.25rem;
     padding: 1.25rem;
-    font-family: $font-stack;
+    font-family: TT Commons, Roboto, Oxygen, 'Helvetica Neue', sans-serif;
 
     & > header {
         display: grid;
