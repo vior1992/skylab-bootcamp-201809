@@ -137,6 +137,7 @@ main .main {
   background-color: #f0f0f0;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 main .main__title {
   grid-column: 1/5;
@@ -196,7 +197,7 @@ main .main .article__button {
   grid-gap: 1rem 2rem;
   padding: 1rem 5rem 10rem;
   background-image: url("../img/bg_home.png");
-  border-top: 1px solid #888;
+  border-top: 1px solid #000;
 }
 .footer__list {
   list-style-type: none;

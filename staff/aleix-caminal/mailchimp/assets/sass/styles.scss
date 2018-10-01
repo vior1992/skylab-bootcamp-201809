@@ -157,6 +157,7 @@ main {
         background-color: #f0f0f0;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
 
         &__title {
             grid-column: 1 / 5;
@@ -216,7 +217,7 @@ main {
     grid-gap: 1rem $gap-width;
     padding: 1rem $padding-width + $gap-width 10rem;
     background-image: url('../img/bg_home.png');
-    border-top: 1px solid #888;
+    border-top: 1px solid #000;
 
     &__list {
         list-style-type: none;
