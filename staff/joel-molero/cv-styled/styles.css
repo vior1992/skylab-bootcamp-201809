@@ -6,9 +6,6 @@ header {
     text-align: center;
 }
 
-main {
-
-}
 
 address {
     display: block;
@@ -18,12 +15,17 @@ address {
     text-shadow: 1px 0 0 rgb(255,255,255), -1px 0 0 rgb(255,255,255), 0 1px 0 rgb(255,255,255), 0 -1px 0 rgb(255,255,255), 0.5px 0.5px rgb(255,255,255), -0.5px -0.5px 0 rgb(255,255,255), 0.5px -0.5px 0 rgb(255,255,255), -0.5px 0.5px 0 #fff;
 }
 
+
+
 body{
     background-color: #f7f4e3;
 }
 
 section.working {
     display: flex;
+    padding: 20px;
+    border: solid 2px #f9c4aa;
+    background-color: #dbd8c3;
 }
 
 h1.nombre {
@@ -41,3 +43,9 @@ h1.title {
 
 }
 
+@media only screen and (max-width: 600px) {
+    .working {
+        display: flex;
+        flex-direction: column;
+    }
+}
