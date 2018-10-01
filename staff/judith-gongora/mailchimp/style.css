@@ -3,6 +3,10 @@ html {
   font-family: Helvetica Neue;
 }
 
+body {
+  margin: 0;
+}
+
 .header {
   font-weight: bold;
   font-size: 12px;
@@ -147,6 +151,11 @@ html {
   display: flex;
   justify-content: center;
 }
+.header__menu__nav--burger ul hr {
+  height: 45px;
+  width: 0.5px;
+  color: #e6e5e5;
+}
 @media (max-width: 1023px) {
   .header__menu__nav--burger ul {
     position: absolute;
@@ -188,6 +197,7 @@ html {
 .header__menu__nav__search {
   display: flex;
   justify-content: center;
+  align-items: center;
   border: 1px solid #ced2d1;
 }
 @media (max-width: 1023px) {
@@ -206,11 +216,10 @@ html {
   border-radius: 5px;
 }
 .header__menu__nav__search__search__icon {
-  width: 20px;
+  height: 20px;
   background-color: white;
   display: flex;
   align-items: center;
-  justify-content: cente;
 }
 .header__menu__nav__search__search__icon:hover {
   cursor: pointer;
@@ -305,12 +314,13 @@ main .main__new__block__content {
   }
 }
 main .main__new__block__content__group {
+  margin-top: 10px;
   padding: 5px;
   width: 210px;
   font-size: 13px;
 }
 main .main__new__block__content__group img {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 main .main__new__block__content__group h2 {
   margin-top: -15px;
@@ -320,7 +330,8 @@ main .main__new__block__content__group__figure {
 }
 main .main__new__block__content__group__more {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   background-color: #191814;
   color: white;
   letter-spacing: 1.2px;
@@ -333,10 +344,10 @@ main .main__new__block__content__group__more:hover {
 main .main__new__block__content__group__more p {
   margin: 0;
   padding: 5px;
+  margin-left: 10px;
 }
-main .main__new__block__content__group__more div {
-  display: flex;
-  align-content: center;
+main .main__new__block__content__group__more img {
+  margin-right: 10px;
 }
 
 footer {

@@ -1,6 +1,8 @@
 html 
     background-color: #46bdd5
     font-family: Helvetica Neue 
+body 
+    margin: 0
 
 .header
     font-weight: bold
@@ -114,6 +116,10 @@ html
                     margin-left: -40px
                     display: flex
                     justify-content: center
+                    hr
+                        height: 45px
+                        width: 0.5px   
+                        color: #e6e5e5    
                     @media (max-width: 1023px)
                         position: absolute
                         width: 70px
@@ -149,6 +155,7 @@ html
             &__search
                 display: flex
                 justify-content: center
+                align-items: center
                 border: 1px solid #ced2d1
                 @media (max-width: 1023px)
                     visibility: hidden
@@ -159,11 +166,10 @@ html
                     border: none
                     border-radius: 5px
                 &__search__icon
-                    width: 20px
+                    height: 20px
                     background-color: white
                     display: flex
                     align-items: center
-                    justify-content: cente
                     &:hover
                         cursor: pointer
 main 
@@ -210,6 +216,7 @@ main
                 width: 200px
                 padding: 17px
                 cursor: pointer
+                
                 // text-shadow: 1px
 
     hr 
@@ -237,18 +244,20 @@ main
                 @media (min-width: 1024px)
                     width: 1000px
                 &__group
+                    margin-top: 10px
                     padding: 5px
                     width: 210px
                     font-size: 13px
                     img 
-                        margin-top: 20px
+                        margin-top: 0px
                     h2 
                         margin-top: -15px
                     &__figure
                         font-weight: bold
                     &__more
                         display: flex
-                        justify-content: center
+                        justify-content: space-between
+                        align-items: center
                         background-color: #191814
                         color: white
                         letter-spacing: 1.2px
@@ -259,9 +268,9 @@ main
                         p 
                             margin: 0 
                             padding: 5px
-                        div
-                            display: flex
-                            align-content: center
+                            margin-left: 10px
+                        img
+                            margin-right: 10px
                         
 
 footer 
