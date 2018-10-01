@@ -98,12 +98,23 @@ main {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.main__news__banner__coffee, .main__news__banner__finger, .main__news__banner__wrap {
+.main__news__banner__coffee, .main__news__banner__finger, .main__news__banner__wrap, .main__news__banner__phone {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.main__news__banner__button {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
 }
 
 .footer__1sthalf {
