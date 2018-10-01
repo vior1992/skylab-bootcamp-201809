@@ -4,67 +4,98 @@
 	padding: 0px;
 }
 
-h1 {
-    color: white;
-    font-size: 4.5em;
-    padding-top: 0.25em; 
-}
-
 .navigation {
     background-color: rgb(71, 189, 213);
     height: 5%;
 }
 
-.container-header {
-    display: grid;
-    width: 95%;
-}
-
 .login {
+    width: 95%;
     color: white;
     size: 0.5em; 
+    text-align: right; 
+    padding: 1em 0;  
+}
+
+.container-header {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-end;
     width: 95%;
-    text-align: right;   
+    flex: 1;
+    margin-bottom: 0.5em;
+    font-size: 0.8em;
+}
+
+.image-logo {
+    margin-right: 4em;
 }
 
 .navbar {
-    display: inline-block;
+    display: flex;
     list-style: none;
 }
+
 .signupbutton {
     display: inline-block;
     color: white;
     text-align: center;
-    background-color: grey;
+    background-color: rgb(59, 58, 58);
     border-radius: 10%;
+    padding: 1em;
+    margin-left: 2em;
+    margin-right: 1em;
+    border: none;
 }
 
 .pricing {
-    grid-column: 3 / span 1;
+    background-color: rgb(125, 218, 247);
+    padding: 1em;
+    border-right: 1px solid rgb(21, 21, 90);
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
 }
 
 .features {
-    grid-column: 4 / span 1;
+    background-color: rgb(125, 218, 247);
+    padding: 1em;
+    border-right: 1px solid rgb(21, 21, 90);
 }
 
 .resources {
-    grid-column: 5 / span 1;
+    background-color: rgb(125, 218, 247);
+    padding: 1em;
+    border-right: 1px solid rgb(21, 21, 90);
 }
 
 .support {
-    grid-column: 6 / span 1;
+    background-color: rgb(125, 218, 247);
+    padding: 1em;
+    border-right: 1px solid rgb(21, 21, 90);
 }
 
 .blog {
-    grid-column: 7 / span 1;
+    background-color: rgb(125, 218, 247);
+    padding: 1em;
+    border-right: 1px solid rgb(21, 21, 90);
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
 }
 
-.searchbar {
-    grid-column: 9 / span 1;
+.search-input {
+    margin-left: 2em;
+    margin-top: 0.5em;
 }
 
 main {
     background-color: rgb(206, 210, 209);
+}
+
+h1 {
+    color: white;
+    font-size: 4.5em;
+    padding-top: 0.25em; 
 }
 
 .container-1 {
@@ -100,25 +131,29 @@ main {
 }
 
 .container-2 {
+    position: relative;
     display: grid;
     height: 30%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     background-color: white;
-    margin: 0 2.5%;
+    margin: -2em 2.5% 0 2.5%;
+    border-top-left-radius: 1%;
+    border-top-right-radius: 1%;
 }
 
 .container-2-title {
     width: 95%;
     padding-top: 1em;
+    padding-bottom: 1em;
     align-self: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     padding-left: 1em;
-    border-radius: 10%;
 }
 
 .feature1 {
     grid-column: 1 / span 1;
     padding-left: 1em;
+    font-size: 0.8em;
 }
 
 .feature2 {
