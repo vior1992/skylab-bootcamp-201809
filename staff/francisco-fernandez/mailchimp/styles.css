@@ -5,8 +5,7 @@ body {
   margin: 0px; }
 
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 ul {
   margin: 0; }
@@ -26,12 +25,8 @@ header {
   padding-bottom: 25px; }
 
 .header__login {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
   width: 88%;
   padding: 10px 0px; }
 
@@ -42,19 +37,13 @@ header {
   color: white; }
 
 .header__section1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex; }
 
 .header__section2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-top: 25px; }
 
 .header__section2__div1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 50%; }
 
@@ -62,20 +51,14 @@ header {
   padding-left: 100px; }
 
 .header__section2__div2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 50%; }
 
 .header__section1__div1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 40%; }
 
 .header__section1__div2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 60%; }
 
@@ -140,8 +123,6 @@ main {
   margin-left: 50px; }
 
 .main__news {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   padding-bottom: 50px; }
 
@@ -149,8 +130,6 @@ main {
   margin-left: 30px; }
 
 .main__news__block__button {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   background-color: #3F3F37;
   border-radius: 2px;
@@ -159,8 +138,6 @@ main {
   padding: 5px 5px 5px 20px; }
 
 .main__news__block__arrow {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   padding: 2px 5px 2px 90px; }
 
@@ -170,13 +147,9 @@ main {
 
 footer {
   background-color: #191814;
-  padding-top: 25px;
-  width: 1100px;
-  margin-left: 125px; }
+  padding-top: 25px; }
 
 .footer__links {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex; }
 
 .footer__links__list {
@@ -196,3 +169,5 @@ footer {
 
 ul {
   list-style-type: none; }
+
+/*# sourceMappingURL=styles.css.map */
