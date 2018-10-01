@@ -197,34 +197,39 @@
     margin-left: 20px;
 }
 
-.h1{
+.h1 {
     font-size: 35px;
 }
-.h3{
+
+.h3 {
     font-size: 20px;
     margin-top: 10px;
 }
-.h4{
+
+.h4 {
     font-size: 16px;
-    margin-bottom:0px;
+    margin-bottom: 0px;
 }
-.p{
+
+.p {
     font-size: 11px;
 }
+
 .box__main__container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.main__items__container{
+.main__items__container {
     width: 175px;
     flex-direction: column;
 }
 
-.main__items__container__item{
+.main__items__container__item {
     width: 100%;
 }
+
 .button--main-learn-more {
     width: 20%;
     height: 2em;
@@ -232,7 +237,7 @@
     padding-top: 0px;
 }
 
-.box__footer{
+.box__footer {
     grid-column: 2/12;
     grid-row-start: 19;
     grid-row-end: 30;
@@ -241,29 +246,85 @@
     line-height: 0.95em;
     letter-spacing: -0.03em;
     padding-left: 20px;
-    justify-self: center;
+    /* justify-self: center; */
 }
 
-.box__footer__first-container{
+.box__footer__first-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 20px;
 }
-.p--white{
+
+.p--white {
     color: white;
 }
-.p--bold{
+
+.p--bold {
     font-weight: bold;
 }
-.p--grey{
-    color:grey;
+
+.p--grey {
+    color: grey;
 }
-.div__footer--column{
+
+.div__footer--column {
     width: 26%;
 }
-.div__footer__second-container{
+
+.div__footer__second-container {}
+
+.p--center {
+    text-align: center;
 }
-.p--center{
-    text-align:center;
-}
+
+@media (max-width: 1024px) {
+    * {
+        font-size: 10px;
+    }
+
+    .logo {
+        width: 100px;
+        margin-left: 30px;
+    }
+
+    .button {
+        height: 3em;
+        min-width: 100px;
+    }
+
+    .title{
+        font-size: 55px;
+    }
+    .box__main--text{
+    line-height: 1.5em;
+    }
+    .h1 {
+        font-size: 25px;
+    }
+    
+    .h3 {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+    
+    .h4 {
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+    .main__items__container{
+        width: 130px;
+    }
+    .div__footer--column{
+        width: 26%;
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        padding-left: 40px;
+    }
+    .box__footer__first-container{
+        padding: 0px;
+    }
+    .box__footer{
+        padding: 0px;
+    }
