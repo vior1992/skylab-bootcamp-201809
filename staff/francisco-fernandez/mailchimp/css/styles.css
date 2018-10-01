@@ -1,78 +1,173 @@
-/*
-Error: Invalid CSS after "margin:": expected pseudoclass or pseudoelement, was "0"
-        on line 4 of C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\mailchimp\sass\reset.sass
-        from line 1 of C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\mailchimp\sass\styles.sass
+html, body {
+  height: 100vh; }
 
-1: @import "reset"
-2: @import "colors"
+body {
+  margin: 0px; }
 
-Backtrace:
-C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\mailchimp\sass\reset.sass:4
-C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\mailchimp\sass\styles.sass:1
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1278:in `expected'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1208:in `expected'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1203:in `tok!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/static_parser.rb:285:in `pseudo'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/static_parser.rb:166:in `simple_selector_sequence'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/static_parser.rb:111:in `selector'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/static_parser.rb:86:in `selector_comma_sequence'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1186:in `expr!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/static_parser.rb:20:in `parse_selector'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:329:in `block (2 levels) in visit_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:329:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:329:in `block in visit_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:88:in `block in with_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:88:in `with_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:326:in `visit_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
-C:/Program Files (x86)/Koala/bin/sass:22:in `load'
-C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"margin:\": expected pseudoclass or pseudoelement, was \"0\"\A         on line 4 of C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\mailchimp\sass\reset.sass\A         from line 1 of C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\mailchimp\sass\styles.sass\A \A 1: @import \"reset\"\A 2: @import \"colors\""; }
+* {
+  box-sizing: border-box; }
+
+ul {
+  margin: 0; }
+
+.wrap {
+  margin: 0 auto;
+  width: 1100px; }
+
+body {
+  background-color: #0E0E0E;
+  font-family: "Open Sans";
+  font-size: 12px;
+  font-weight: 900; }
+
+header {
+  background-color: #45BCD2;
+  padding-bottom: 25px; }
+
+.header__login {
+  display: flex;
+  justify-content: flex-end;
+  width: 88%;
+  padding: 10px 0px; }
+
+.header__section1_div2_nav--menu__option {
+  display: inline-block; }
+
+.header__login {
+  color: white; }
+
+.header__section1 {
+  display: flex; }
+
+.header__section2 {
+  display: flex;
+  margin-top: 25px; }
+
+.header__section2__div1 {
+  display: flex;
+  width: 50%; }
+
+.header__section2_div1_img {
+  padding-left: 100px; }
+
+.header__section2__div2 {
+  display: flex;
+  width: 50%; }
+
+.header__section1__div1 {
+  display: flex;
+  width: 40%; }
+
+.header__section1__div2 {
+  display: flex;
+  width: 60%; }
+
+.header__section1__mainlogo {
+  margin-left: 100px; }
+
+.header__section2__div2__parag {
+  width: 500px; }
+
+.signup-button {
+  background-color: #3F3F37;
+  text-align: center;
+  line-height: 48px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+  border-radius: 7px;
+  margin-left: 30px; }
+
+.header__section1__div2_nav--menu {
+  padding-left: 0px; }
+
+.header__section1__div2__nav {
+  background-color: #D1EEF4;
+  border-radius: 7px;
+  text-align: center;
+  line-height: 48px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 30px; }
+
+.header__section1_div2_nav--menu__option {
+  padding: 3px 8px;
+  border-right: 1px solid grey; }
+
+.header__section2__button {
+  background-color: #E95C41;
+  color: white;
+  padding: 15px 60px;
+  border-radius: 7px;
+  text-align: center;
+  line-height: 48px; }
+
+main {
+  background-image: url("./images/noisepattern.png"); }
+
+.main__container {
+  background-color: #F0F0F0;
+  padding-top: 10px;
+  width: 1000px;
+  margin-left: 50px; }
+
+.main__header {
+  position: relative;
+  margin-top: -50px;
+  padding-top: 10px;
+  padding-bottom: 25px;
+  background-color: #F0F0F0;
+  border-radius: 7px 7px 0px 0px; }
+
+.main__header__title {
+  margin-left: 50px; }
+
+.main__news {
+  display: flex;
+  padding-bottom: 50px; }
+
+.main__news_block {
+  margin-left: 30px; }
+
+.main__news__block__button {
+  display: inline-flex;
+  background-color: #3F3F37;
+  border-radius: 2px;
+  width: 100%;
+  color: white;
+  padding: 5px 5px 5px 20px; }
+
+.main__news__block__arrow {
+  display: inline-flex;
+  padding: 2px 5px 2px 90px; }
+
+.main__news__block__descrip {
+  width: 200px;
+  height: 80px; }
+
+footer {
+  background-color: #191814;
+  padding-top: 25px; }
+
+.footer__links {
+  display: flex; }
+
+.footer__links__list {
+  color: #7C7B77;
+  width: 25%;
+  margin-left: 40px; }
+
+.list_title {
+  color: white;
+  font-style: bold; }
+
+.footer__copyright_descrip {
+  text-align: center;
+  margin-top: 100px;
+  padding-bottom: 350px;
+  color: #7C7B77; }
+
+ul {
+  list-style-type: none; }
+
+/*# sourceMappingURL=styles.css.map */
