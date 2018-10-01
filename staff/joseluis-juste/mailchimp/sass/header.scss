@@ -33,6 +33,17 @@
                     height: 35px;
                     background-color: $nav__background-color;
                     border-radius: 7px;
+                    position: relative;
+                    &::after{
+                        display: block;
+                        content: "";
+                        background-image: url(./img/search.png);
+                        width: 12px;
+                        height: 12px;
+                        position: absolute;
+                        right: 18px;
+                        top: 12px;
+                    }
                     & .header__section1__div1__nav__menu{
 
                         list-style: none;
@@ -51,12 +62,15 @@
                                 padding-top: 8px;
                                 & input{
                                     border:0;
+                                    position: relative;
                                     border-radius: 5px;
                                     transition: border 0.1s linear;
+                                    padding: 3px;
                                     &:hover{
-                                        border:1px solid tomato;
-                                        cursor:pointer;
+                                      cursor:pointer;
                                     }
+                                   
+                                   
                                 }
                             }
                             a{
