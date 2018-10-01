@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,6 +19,10 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
 }
 
 .header {
@@ -51,7 +56,7 @@ body {
   border: 1px solid #42433e;
   flex: 0 0 10%;
 }
-.header .row_2 nav {
+.header .row_2 .main-menu {
   flex: 0 0 50%;
   display: flex;
   justify-content: space-between;
@@ -59,22 +64,22 @@ body {
   background-color: #c9ebf3;
   border-radius: 1rem;
 }
-.header .row_2 nav ul {
+.header .row_2 .main-menu__list {
   padding: 1.5rem;
   flex: 1;
   justify-content: space-between;
   display: flex;
   list-style: none;
 }
-.header .row_2 nav ul a {
+.header .row_2 .main-menu__list__links {
   text-decoration: none;
   color: black;
 }
-.header .row_2 nav form input {
+.header .row_2 .main-menu .search__input {
   height: 2.5rem;
   border-radius: 0.7rem;
 }
-.header .row_2 nav form img {
+.header .row_2 .main-menu .search__icon {
   transform: translate(-2.5rem, 0.5rem);
 }
 .header .row_3 {
@@ -89,6 +94,7 @@ body {
   left: 55%;
   position: absolute;
   width: 30%;
+  color: #464545;
 }
 .header .row_3 .text-container img {
   margin-bottom: 1rem;
@@ -142,6 +148,7 @@ body {
 }
 .main .new .news-container__article .description {
   font-size: 1.2rem;
+  color: gray;
 }
 .main .new .news-container__article .learn {
   margin-top: 4.3rem;
