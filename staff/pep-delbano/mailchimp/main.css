@@ -1,0 +1,98 @@
+* {
+  margin: 0 auto;
+  font-family: Arial; }
+
+.log-in {
+  color: white;
+  float: right;
+  padding: 10px; }
+
+.upperHeader {
+  display: inline;
+  height: 25px; }
+  .upperHeader .nav--btn {
+    color: white;
+    padding: 10px;
+    background: #403a32;
+    border: none;
+    border-radius: 5px; }
+  .upperHeader .navBar {
+    background-color: blueNav;
+    list-style-type: none;
+    display: block;
+    padding: 8px;
+    color: #403a32; }
+    .upperHeader .navBar li {
+      float: left;
+      border-right: 1px solid #403a32; }
+    .upperHeader .navBar li:last-child {
+      border-right: none; }
+      .upperHeader .navBar li:last-child a {
+        text-decoration: none;
+        color: #403a32;
+        text-align: center;
+        padding: 15px 15px;
+        border-radius: 5px; }
+    .upperHeader .navBar .input--search {
+      width: 20px;
+      position: relative; }
+      .upperHeader .navBar .input--search .btn-lupa {
+        position: absolute;
+        z-index: 10;
+        border: none;
+        background: transparent; }
+
+.underHeader {
+  display: block; }
+
+.background--color__blue {
+  background-color: #44bdd2;
+  display: block;
+  height: 500px;
+  width: 100%;
+  padding: 15px; }
+
+.background--color__silver {
+  background-color: #cdcfcf;
+  position: relative;
+  display: block;
+  height: 500px;
+  width: 100%;
+  padding: 15px; }
+
+.background-color__black {
+  background-color: #1d1a1a;
+  position: fixed;
+  height: 300px;
+  width: 100%;
+  padding: 15px; }
+  .background-color__black .black--list {
+    list-style-type: none;
+    text-decoration: none;
+    color: #564a3e; }
+    .background-color__black .black--list h4 {
+      color: white; }
+
+.btn__red {
+  background-color: #ea4d41;
+  padding: 10px;
+  margin: 20px auto; }
+
+.window--float {
+  background-color: #f0f0f0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: -20px; }
+  .window--float .window--sections {
+    display: inline-block; }
+  .window--float h1 {
+    font-size: 30px;
+    float: left;
+    display: block; }
+  .window--float .window--img {
+    width: 30px; }
+
+/*# sourceMappingURL=main.css.map */

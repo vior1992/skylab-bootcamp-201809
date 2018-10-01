@@ -1,0 +1,113 @@
+$blueBackground: rgb(68, 189, 210)
+$blueNav: rgb(207, 237, 245)
+$redBtnUp: rgb(226, 107, 76)
+$redBtnUnder: rgb(235, 93, 71)
+$BtnSignUpUp: rgb(86, 74, 62)
+$BtnSignUpUnder: rgb(64, 58, 50)
+$backgroundWindow: rgb(240, 240, 240)
+$grayBackground: rgb(205, 207, 207)
+$blackBackground: #1d1a1a
+
+*
+    margin: 0 auto
+    font-family: Arial
+
+
+.log-in
+    color: white
+    float: right
+    padding: 10px
+
+.upperHeader
+    display: inline
+    height: 25px
+    .nav--btn
+        color: white
+        padding: 10px
+        background: rgb(64, 58, 50)
+        border: none
+        border-radius: 5px
+        box-shadow: inset 0px 25px rgb(64, 58, 50)
+    .navBar
+        ul
+        background-color: blueNav
+        list-style-type: none
+        display: block
+        padding: 8px
+        color: rgb(64, 58, 50)
+        border-radius: 5px
+        li
+            float: left
+            border-right: 1px solid rgb(64, 58, 50)
+        li:last-child 
+            border-right: none
+            a
+                text-decoration: none
+                color: rgb(64, 58, 50)
+                text-align: center
+                padding: 15px 15px
+                border-radius: 5px
+        .input--search
+            width: 20px
+            position: relative
+            .btn-lupa
+                position: absolute
+                z-index: 10
+                border: none
+                background: transparent
+
+.underHeader
+    display: flex
+
+
+.background--color__blue
+    background-color: $blueBackground
+    display: block
+    height: 500px
+    width: 100%
+    padding: 15px
+
+.background--color__silver
+    background-color: $grayBackground
+    position: relative
+    display: block
+    height: 500px
+    width: 100%
+    padding: 15px
+
+.background-color__black
+    background-color: $blackBackground
+    position: fixed
+    height: 300px
+    width: 100%
+    padding: 15px
+    .black--list
+        list-style-type: none
+        text-decoration: none
+        color: $BtnSignUpUp
+        h4
+            color: white
+
+
+.btn__red
+    background-color: rgb(234, 77, 65)
+    padding: 10px
+    margin: 20px auto
+
+.window--float
+    background-color: $backgroundWindow
+    justify-content: center
+    align-items: center
+    display: flex
+    border-radius: 10px
+    padding: 10px
+    margin-top: -20px
+    .window--sections
+        display: inline-block
+    h1
+        font-size: 30px
+        float: left
+        display: block
+    .window--img
+        width: 30px
+    
