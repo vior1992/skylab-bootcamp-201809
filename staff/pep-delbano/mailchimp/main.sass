@@ -1,3 +1,7 @@
+/*cd Desktop\CMDER\bootcamp\collab\skylab-bootcamp-201809\staff\pep-delbano\mailchimp
+    sass --watch main.sass:main.css*/
+
+/*Variables*/
 $blueBackground: rgb(68, 189, 210)
 $blueNav: rgb(207, 237, 245)
 $redBtnUp: rgb(226, 107, 76)
@@ -19,51 +23,76 @@ $blackBackground: #1d1a1a
     padding: 10px
 
 .upperHeader
-    display: inline
     height: 25px
     .nav--btn
+        display: inline-block
         color: white
         padding: 10px
         background: rgb(64, 58, 50)
         border: none
         border-radius: 5px
-        box-shadow: inset 0px 25px rgb(64, 58, 50)
+        box-shadow: inset 0 25px 0 rgb(64, 58, 50)
+        margin: 0 10px
     .navBar
-        ul
-        background-color: blueNav
-        list-style-type: none
-        display: block
-        padding: 8px
-        color: rgb(64, 58, 50)
+        display: inline-block
+        display: flex
+        flex-wrap: nowrap
+        padding: 5px
         border-radius: 5px
+        background-color: $blueNav
+        width: 400px
+
+        ul
+        list-style: none
+        overflow: hidden
+        color: rgb(64, 58, 50)
+
         li
+            width: 100px
+            margin: 10px
+            text-align: center
+            line-height: 75px
+            font-size: 30px
             float: left
             border-right: 1px solid rgb(64, 58, 50)
         li:last-child 
             border-right: none
-            a
-                text-decoration: none
-                color: rgb(64, 58, 50)
-                text-align: center
-                padding: 15px 15px
-                border-radius: 5px
+        a
+            display: block
+            text-decoration: none
+            color: rgb(64, 58, 50)
+            padding: 15px
+            border-radius: 5px
+
         .input--search
-            width: 20px
+            display: inline-block
+            width: 20%
             position: relative
-            .btn-lupa
+            .glyphicon-search
                 position: absolute
                 z-index: 10
                 border: none
                 background: transparent
+                
 
 .underHeader
     display: flex
-
+    flex-wrap: nowrap
+    .mainPictureMonkey
+        width: 50%
+    .img--title
+        width: 50%
+    p
+        color: blue
+       
+    .btn__red
+        display: block
+       
 
 .background--color__blue
     background-color: $blueBackground
     display: block
-    height: 500px
+    height: 800px
     width: 100%
     padding: 15px
 
@@ -96,18 +125,18 @@ $blackBackground: #1d1a1a
 
 .window--float
     background-color: $backgroundWindow
-    justify-content: center
-    align-items: center
     display: flex
     border-radius: 10px
     padding: 10px
-    margin-top: -20px
+    margin: -50px 30px 10px 30px
+
     .window--sections
         display: inline-block
+        margin: 5px
     h1
-        font-size: 30px
-        float: left
-        display: block
+        font-size: 50px
+        margin: 5px
+
     .window--img
-        width: 30px
+        width: 200px
     

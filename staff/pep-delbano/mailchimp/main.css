@@ -1,3 +1,6 @@
+/*cd Desktop\CMDER\bootcamp\collab\skylab-bootcamp-201809\staff\pep-delbano\mailchimp
+ * sass --watch main.sass:main.css */
+/*Variables */
 * {
   margin: 0 auto;
   font-family: Arial; }
@@ -8,47 +11,69 @@
   padding: 10px; }
 
 .upperHeader {
-  display: inline;
   height: 25px; }
   .upperHeader .nav--btn {
+    display: inline-block;
     color: white;
     padding: 10px;
     background: #403a32;
     border: none;
-    border-radius: 5px; }
+    border-radius: 5px;
+    box-shadow: inset 0 25px 0 #403a32;
+    margin: 0 10px; }
   .upperHeader .navBar {
-    background-color: blueNav;
-    list-style-type: none;
-    display: block;
-    padding: 8px;
+    display: inline-block;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #cfedf5;
+    width: 400px;
+    list-style: none;
+    overflow: hidden;
     color: #403a32; }
     .upperHeader .navBar li {
+      width: 100px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
       float: left;
       border-right: 1px solid #403a32; }
     .upperHeader .navBar li:last-child {
       border-right: none; }
-      .upperHeader .navBar li:last-child a {
-        text-decoration: none;
-        color: #403a32;
-        text-align: center;
-        padding: 15px 15px;
-        border-radius: 5px; }
+    .upperHeader .navBar a {
+      display: block;
+      text-decoration: none;
+      color: #403a32;
+      padding: 15px;
+      border-radius: 5px; }
     .upperHeader .navBar .input--search {
-      width: 20px;
+      display: inline-block;
+      width: 20%;
       position: relative; }
-      .upperHeader .navBar .input--search .btn-lupa {
+      .upperHeader .navBar .input--search .glyphicon-search {
         position: absolute;
         z-index: 10;
         border: none;
         background: transparent; }
 
 .underHeader {
-  display: block; }
+  display: flex;
+  flex-wrap: nowrap; }
+  .underHeader .mainPictureMonkey {
+    width: 50%; }
+  .underHeader .img--title {
+    width: 50%; }
+  .underHeader p {
+    color: blue; }
+  .underHeader .btn__red {
+    display: block; }
 
 .background--color__blue {
   background-color: #44bdd2;
   display: block;
-  height: 500px;
+  height: 800px;
   width: 100%;
   padding: 15px; }
 
@@ -80,19 +105,17 @@
 
 .window--float {
   background-color: #f0f0f0;
-  justify-content: center;
-  align-items: center;
   display: flex;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 10px;
-  margin-top: -20px; }
+  margin: -50px 30px 10px 30px; }
   .window--float .window--sections {
-    display: inline-block; }
+    display: inline-block;
+    margin: 5px; }
   .window--float h1 {
-    font-size: 30px;
-    float: left;
-    display: block; }
+    font-size: 50px;
+    margin: 5px; }
   .window--float .window--img {
-    width: 30px; }
+    width: 200px; }
 
 /*# sourceMappingURL=main.css.map */
