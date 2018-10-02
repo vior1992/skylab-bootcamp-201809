@@ -1,15 +1,13 @@
-var btn = document.querySelector('#map');
+var btn = document.querySelector('#each');
 var arr = [1, 2, 3];
 
 btn.addEventListener('click', function() {
-    let res = map(arr, function(num) {
-        return num * 2;
+    let res = forEach(arr, function(num) {
+        console.log(num * 2);
     });
-
-    console.log(res);
 });
 
-function map(arr, callback) {
+function forEach(arr, callback) {
     let result = [];
     for (var i in arr) {
         result.push(callback(arr[i]));
