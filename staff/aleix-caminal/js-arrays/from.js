@@ -10,7 +10,7 @@ document.querySelector('#from').addEventListener('click', function() {
 });
 
 function from(arr, callback) {
-    let result = [];
+    var result = [];
     for (var i = 0; i < arr.length; i++) {
         if (typeof callback == "function") {
             result[i] = callback(arr[i]);

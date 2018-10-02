@@ -4,7 +4,7 @@ document.querySelector('#join').addEventListener('click', function() {
 });
 
 function join(arr, separator) {
-    let result = arr[0];
+    var result = arr[0];
     for (var i = 1; i < arr.length; i++) {
         result += separator + arr[i];
     }

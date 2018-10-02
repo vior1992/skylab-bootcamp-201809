@@ -1,6 +1,6 @@
 document.querySelector('#map').addEventListener('click', function() {
     var arr = [1, 2, 3];
-    let res = map(arr, function(num) {
+    var res = map(arr, function(num) {
         return num * 2;
     });
 
@@ -8,7 +8,7 @@ document.querySelector('#map').addEventListener('click', function() {
 });
 
 function map(arr, callback) {
-    let result = [];
+    var result = [];
     for (var i = 0; i < arr.length; i++) {
         result[i] = callback(arr[i]);
     }

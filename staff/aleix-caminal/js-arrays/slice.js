@@ -6,7 +6,7 @@ document.querySelector('#slice').addEventListener('click', function() {
 });
 
 function slice(arr, begin, end) {
-    let result = [];
+    var result = [];
     for (var i = begin; i < (end ? end : arr.length); i++) {
         result[result.length] = arr[i];
     }

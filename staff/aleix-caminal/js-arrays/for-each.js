@@ -6,7 +6,7 @@ document.querySelector('#for-each').addEventListener('click', function() {
 });
 
 function forEach(arr, callback) {
-    let result = [];
+    var result = [];
     for (var i = 0; i < arr.length; i++) {
         result[i] = callback(arr[i]);
     }
