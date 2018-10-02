@@ -6,9 +6,9 @@ document.querySelector('#splice').addEventListener('click', function() {
 });
 
 function splice(arr, start, count) {
-    var result = []
+    var removed = []
     for (var i = start; i < start + count; i++) {
-        result[result.length] = arr[i];
+        removed[removed.length] = arr[i];
     }
-    return result;
+    return removed;
 }
