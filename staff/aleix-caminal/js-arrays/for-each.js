@@ -10,7 +10,7 @@ btn.addEventListener('click', function() {
 function forEach(arr, callback) {
     let result = [];
     for (var i = 0; i < arr.length; i++) {
-        result.push(callback(arr[i]));
+        result[i] = callback(arr[i]);
     }
     return result;
 }

@@ -10,7 +10,7 @@ function concat() {
     let result = [];
     for (var i = 0; i < arguments.length; i++) {
         for (var j = 0; j < arguments[i].length; j++) {
-            result.push(arguments[i][j]);
+            result[j + (arguments[i].length * i)] = arguments[i][j];
         }
     }
     return result;
