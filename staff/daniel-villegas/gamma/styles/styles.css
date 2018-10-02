@@ -12,6 +12,41 @@
       -ms-flex-direction: column;
           flex-direction: column; }
 
+.head {
+  background-color: grey; }
+
+.head__up {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: grey;
+  color: green; }
+
+.head__down {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  margin-left: 50px;
+  margin-right: 50px; }
+
+.down__title {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+
+.down__title--life {
+  color: green; }
+
+.down__pics {
+  width: 250px;
+  height: 60px; }
+
 @media screen and (min-width: 400px) {
   background-color: green; }
 @media screen and (min-width: 800px) {
