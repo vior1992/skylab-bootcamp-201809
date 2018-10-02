@@ -1,3 +1,16 @@
-var arr = [1,2,3,4,5];
-reverse(arr);
+// reverse.demo.js
+
+console.log('DEMO reverse');
+
+var arr = ['one', 'two', 'three'];
+
+var reversed = reverse(arr);
+
+console.log(reversed);
+// ['three', 'two', 'one']
+
 console.log(arr);
+// ['three', 'two', 'one']
+
+console.log(arr === reversed);
+// true

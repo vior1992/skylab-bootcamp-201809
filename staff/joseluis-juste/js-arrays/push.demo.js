@@ -1,7 +1,9 @@
-var arr = [];
+// push.demo.js
 
-console.log(push(arr,1,2,3,4,5,6));
+console.log('DEMO push');
 
-console.log(push(arr,7,8,9,10,11,12));
+var arr = [1, 2, 3];
 
-console.log(push(arr,'banana','apple'));
+push(arr, 4);
+
+console.log(arr); // [1, 2, 3, 4]

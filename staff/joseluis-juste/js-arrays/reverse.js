@@ -19,4 +19,5 @@ function reverse(arr){
                 break;
         }
     }
+    return arr;
 }

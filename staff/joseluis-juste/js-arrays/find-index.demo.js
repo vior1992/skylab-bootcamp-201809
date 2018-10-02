@@ -1,1 +1,9 @@
-console.log(findIndex([1,2,3], (el) => {return el > 2}));
+// find-index.demo.js
+
+console.log('DEMO findIndex');
+
+var arr = [5, 12, 8, 130, 44];
+
+var res = findIndex(arr, function(num) { return num > 13; });
+
+console.log(res); // 3
