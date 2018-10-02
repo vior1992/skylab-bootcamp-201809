@@ -1,15 +1,13 @@
-var btn = document.querySelector('#map');
+var btn = document.querySelector('#concat');
 var arr = [1, 2, 3];
 
 btn.addEventListener('click', function() {
-    let res = map(arr, function(num) {
-        return num * 2;
+    let res = concat(arr, function(num) {
+        console.log(num * 2);
     });
-
-    console.log(res);
 });
 
-function map(arr, callback) {
+function concat(arr, callback) {
     let result = [];
     for (var i = 0; i < arr.length; i++) {
         result.push(callback(arr[i]));
