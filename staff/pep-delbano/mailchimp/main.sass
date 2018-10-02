@@ -16,39 +16,41 @@ $blackBackground: #1d1a1a
     margin: 0 auto
     font-family: Arial
 
+    /*upper section*/
 .background--color__blue
     background-color: $blueBackground
     display: block
     width: 100%
+    padding-bottom: 2%
 
 .blue--margins
-    margin-right: 20%
-    margin-left: 20%
+    padding: 15px 0 35px 0
+    margin-right: 10%
+    margin-left: 10%
 
 .log-in
     display: flex
-    color: white
     justify-content: flex-end
-    margin-right: 10%
+    color: white
 
 .upperHeader
     display: flex
-    justify-content: space-between
-    margin-right: 10%
-    margin-left: 10%
+    justify-content: flex-end  //no funciona?!
     height: 40px
+    margin: 0px 10px 15px 0
       
     .nav--btn
-        color: white
         background: $BtnSignUpUp
+        box-shadow: inset 0 -25px 0 $BtnSignUpUnder
+        color: white
         border: none
         border-radius: 5px
-        box-shadow: inset 0 -25px 0 $BtnSignUpUnder
+        padding: 10px 10px
         
 
     .navBar
-        border-radius: 7px
         background-color: $blueNav
+        border-radius: 7px
 
         ul
             display: flex
@@ -58,8 +60,9 @@ $blackBackground: #1d1a1a
         li
             align-self: center
             list-style-type: none
-            padding: 3px 15px
             border-right: 1px solid rgb(64, 58, 50)
+            padding: 3px 15px
+        
         li:last-child 
             border-right: none
         a
@@ -72,10 +75,12 @@ $blackBackground: #1d1a1a
 
         .input--search
             display: inline-block
-            width: 35%
             position: relative
+            margin: 5px
+            width: 35%
             
             .glyphicon-search
+                margin-left: -10%
                 position: absolute
                 z-index: 10
                 border: none
@@ -86,91 +91,101 @@ $blackBackground: #1d1a1a
     display: flex
     flex-direction: row
     align-content: space-between
+    margin: 0 10%
+
 
     .mainPictureMonkey
         width: 45%
+        margin-bottom: 10px
     
     .right
         flex-direction: column
-        width: 45%
+        width: 55%
         margin-top: 40px
-        align-content: space-between
+        justify-content: left
+    
+    .img--title
+        margin-left: 0
         
-
     p
-        margin-top: 14px
+        margin: 20px 0
         color: $BtnSignUpUnder
        
     .btn__red
-        color: white
-        width: 60%
         background: $redBtnUp
+        box-shadow: inset 0 -25px 0 $redBtnUnder
+        color: white
+        width: 50%
+        padding: 15px 10px
         border: none
         border-radius: 5px
-        box-shadow: inset 0 -25px 0 $redBtnUnder
        
 
 
-
+    /*middle section*/
 .background--color__silver
     display: block
     background-color: $grayBackground
     position: relative
     width: 100%
-    padding: 15px
-
-
-
-.btn__red
-    background-color: rgb(234, 77, 65)
-    padding: 10px
-    margin: 20px auto
 
 .window
     background-color: $backgroundWindow
-    display: flex
-    border-radius: 10px
-    padding: 10px
-    margin-right: 10%
-    margin-left: 10%
-    margin-top: -2%
+    border-radius: 15px
+    padding: 5px 15px
+    margin: -5% 7% 0 7%
     
     .window--header
-        display: block
+        display: flex
+        flex-direction: row
+
+        h1  //no funcionan sus estilos ¿?
         font-size: 40px
+        font-weight: 900
         margin: 5px
 
     .window--columns
         display: flex
+        flex-direction: row
 
     .window--sections
-        display: flex
-        flex-wrap: wrap
-        flex-direction: column
-        margin: 5px
-        width: 22%
         color: $BtnSignUpUnder
+        margin: 15px
+        width: 22%
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
 
     .window--img
         width: 100%
     
     h3
         font-size: 12px
-        font-weight: 700
+        font-weight: 800
+        margin-left: 0
 
     h2
         font-size: 20px
         font-weight: 700
+        margin-left: 0
     p
         font-size: 14px
+        margin-left: 0
 
     a
         background-color: $BtnSignUpUnder
-        font-size: 14px
-        width: 100%
+        border-radius: 5px
         color: white
-        align-self: flex-end
+        font-size: 14px
+        padding: 5px
+        width: 100%
+        margin-left: 0
+        // align-self: flex-end
+        margin-bottom: 0
 
+
+
+    /*last section*/
 .background-color__black
     background-color: $blackBackground
     width: 100%
@@ -197,3 +212,18 @@ $blackBackground: #1d1a1a
     footer p
         padding: 20px
         text-align: center
+
+
+
+/*  Remember:
+
+ Use DISPLAY: flex; to create a flex container.
+ Use JUSTIFY-CONTENT to define the horizontal alignment of items.
+ Use ALIGN-ITEMS to define the vertical alignment of items.
+ Use FLEX-DIRECTION if you need columns instead of rows.
+ Use ROW-REVERSE or COLUMN-REVERSE values to flip item order.
+ Use ORDER to customize the order of individual elements.
+ Use ALIGN-SELF to vertically align individual items.
+ Use FLEX to create flexible boxes that can stretch and shrink.
+ 
+  */
