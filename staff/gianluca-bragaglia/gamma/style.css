@@ -1,5 +1,31 @@
-header {
+@import url("https://fonts.googleapis.com/css?family=Scada:400,700");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, sans-serif;
   background-color: #f8f8f8;
+}
+
+.header {
+  width: 80%;
+  margin: auto;
+}
+
+main {
+  margin-top: 30px;
+}
+
+.container-first {
+  display: flex;
+  background-image: url("./images/site_showcase_bg.jpg");
+  background-repeat: no-repeat;
+  height: 500px;
+}
+.container-first__content, .container-first__content--right {
+  display: flex;
+}
+.container-first__content--right {
+  margin-top: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
