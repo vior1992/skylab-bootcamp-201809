@@ -9,13 +9,13 @@ document.querySelector('#from').addEventListener('click', function() {
     console.log(a === b);
 });
 
-function from(str, callback = null) {
+function from(arr, callback) {
     let result = [];
-    for (var i = 0; i < str.length; i++) {
+    for (var i = 0; i < arr.length; i++) {
         if (typeof callback == "function") {
-            result[i] = callback(str[i]);
+            result[i] = callback(arr[i]);
         } else {
-            result[i] = str[i];
+            result[i] = arr[i];
         }
     }
     return result;
