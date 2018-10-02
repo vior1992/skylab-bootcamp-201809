@@ -1,4 +1,4 @@
-document.querySelector('#array').addEventListener('click', function() {
+document.querySelector('#is-array').addEventListener('click', function() {
     console.log(isArray([1, 2, 3]));
     console.log(isArray({foo: 123}));
     console.log(isArray('foobar'));

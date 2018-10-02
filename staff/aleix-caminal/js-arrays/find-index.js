@@ -1,4 +1,4 @@
-document.querySelector('#find').addEventListener('click', function() {
+document.querySelector('#find-index').addEventListener('click', function() {
     var arr = [5, 12, 8, 130, 44];
     let res = findIndex(arr, function(num) {
         return num > 13;

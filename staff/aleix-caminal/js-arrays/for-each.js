@@ -1,4 +1,4 @@
-document.querySelector('#each').addEventListener('click', function() {
+document.querySelector('#for-each').addEventListener('click', function() {
     var arr = [1, 2, 3];
     forEach(arr, function(num) {
         console.log(num * 2);
