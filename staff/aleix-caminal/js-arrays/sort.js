@@ -1,9 +1,9 @@
 document.querySelector('#sort').addEventListener('click', function() {
     var months = ['March', 'Jan', 'Feb', 'Dec'];
-    sort(months)
+    console.log(sort(months));
     console.log(months);
     var nums = [1, 30, 4, 21];
-    sort(nums)
+    console.log(sort(nums));
     console.log(nums);
 });
 
@@ -20,4 +20,5 @@ function sort(arr) {
         arr[i] = arr[min];
         arr[min] = sorted;
     }
+    return arr;
 }
