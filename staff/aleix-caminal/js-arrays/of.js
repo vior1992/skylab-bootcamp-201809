@@ -4,10 +4,10 @@ document.querySelector('#of').addEventListener('click', function() {
     of(undefined);
 });
 
-function of() {
+function of(...elems) {
     var result = [];
-    for (var i = 0; i < arguments.length; i++) {
-        result[result.length] = arguments[i];
+    for (var i = 0; i < elems.length; i++) {
+        result[result.length] = elems[i];
     }
     console.log(result);
 }
