@@ -1,7 +1,5 @@
-var btn = document.querySelector('#index');
-var arr = ['ant', 'bison', 'camel', 'duck', 'bison'];
-
-btn.addEventListener('click', function() {
+document.querySelector('#index').addEventListener('click', function() {
+    var arr = ['ant', 'bison', 'camel', 'duck', 'bison'];
     console.log(indexOf(arr, 'bison'));
 });
 

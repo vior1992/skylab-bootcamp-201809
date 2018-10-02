@@ -1,8 +1,6 @@
-var btn = document.querySelector('#concat');
-var arr = [1, 2, 3];
-var arr2 = [4, 5, 6];
-
-btn.addEventListener('click', function() {
+document.querySelector('#concat').addEventListener('click', function() {
+    var arr = [1, 2, 3];
+    var arr2 = [4, 5, 6];
     console.log(concat(arr, arr2));
 });
 

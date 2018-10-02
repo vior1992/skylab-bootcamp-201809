@@ -1,7 +1,5 @@
-var btn = document.querySelector('#join');
-var arr = [1, 2, 3];
-
-btn.addEventListener('click', function() {
+document.querySelector('#join').addEventListener('click', function() {
+    var arr = [1, 2, 3];
     console.log(join(arr, '-'));
 });
 

@@ -1,7 +1,5 @@
-var btn = document.querySelector('#map');
-var arr = [1, 2, 3];
-
-btn.addEventListener('click', function() {
+document.querySelector('#map').addEventListener('click', function() {
+    var arr = [1, 2, 3];
     let res = map(arr, function(num) {
         return num * 2;
     });

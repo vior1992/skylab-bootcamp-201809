@@ -1,8 +1,6 @@
-var btn = document.querySelector('#each');
-var arr = [1, 2, 3];
-
-btn.addEventListener('click', function() {
-    let res = forEach(arr, function(num) {
+document.querySelector('#each').addEventListener('click', function() {
+    var arr = [1, 2, 3];
+    forEach(arr, function(num) {
         console.log(num * 2);
     });
 });
