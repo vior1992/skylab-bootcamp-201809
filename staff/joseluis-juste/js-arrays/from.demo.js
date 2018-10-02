@@ -1,0 +1,1 @@
+console.log(from([1,2,3], function(x) { return x + x; }));

@@ -1,0 +1,1 @@
+console.log(findIndex([1,2,3], (el) => {return el > 2}));

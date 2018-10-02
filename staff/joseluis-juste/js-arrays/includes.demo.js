@@ -1,0 +1,1 @@
+console.log(includes(['ant', 'bison', 'camel', 'duck', 'bison', 'cat', 'dog', 'bat'], 'ducks'));
