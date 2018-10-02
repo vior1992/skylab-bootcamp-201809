@@ -1,10 +1,9 @@
 function reverse(arr) {
-    var result = [];
-    result = arr;
-    counter = 0;
+    var original = [], counter = 0;
+    for (var i = 0; i <arr.length; i++) original[i] = arr[i];
     for (var i = arr.length-1; i >= 0; i--){
-        result[counter] = arr[i];
+        arr[counter] = original[i];
         counter++;
     }
-    return result;
+    return arr;
 }
