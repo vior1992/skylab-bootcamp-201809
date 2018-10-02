@@ -1,10 +1,10 @@
-var array = [1,2,3]
-
 function forEach (arr, num) {
-    for(var i= 0; i<arr.length; i++) {
-        console.log(arr[i] * num);
+    var result = '';
+        for(var i= 0; i<arr.length; i++) {
+           result = arr[i] * num;
+            console.log(result);
+        }
     }
-}
-
-forEach(array, 2);
+    
+    forEach([1,2,3], 2);
 

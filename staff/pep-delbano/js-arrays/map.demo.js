@@ -1,11 +1,15 @@
-var array = [1,2,3];
-var emptyarr = [];
+/*var arr = [1, 2, 3];
 
+var res = map(arr, function(num) { return num * 2; })
+
+console.log(res); // [2, 4, 6] */
 function map (arr, num) {
+	var array = [];
     for(var i= 0; i<arr.length; i++) {
-    emptyarr += arr[i]*num;
-    console.log(emptyarr);
+   		array[array.length] = arr[i]*num;
     }
+	console.log(array);
 }
 
-map(array, 2);
+map([1,2,3], 2);
+
