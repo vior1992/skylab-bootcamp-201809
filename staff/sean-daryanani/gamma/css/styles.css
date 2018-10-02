@@ -206,4 +206,71 @@ body {
   color: white;
 }
 
+.title {
+  padding: 20px;
+  background-color: #1aa08d;
+}
+.title__contactus {
+  font-size: 30px;
+  color: white;
+}
+
+.main-form {
+  padding: 10px;
+}
+@media only screen and (min-width: 900px) {
+  .main-form {
+    padding: 10px 10%;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .main-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0;
+}
+@media only screen and (min-width: 1400px) {
+  .contact-form {
+    width: 30%;
+  }
+}
+.contact-form__label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.contact-form__input {
+  border: 1px solid #ddd8d8;
+  flex: 0 0 100%;
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.contact-form__button {
+  border: 1px solid #ddd8d8;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.product-contact {
+  border: 1px solid #ddd8d8;
+}
+@media only screen and (min-width: 1400px) {
+  .product-contact {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
