@@ -1,9 +1,24 @@
 
 function sort(arr) {
     var result = [];
-    for (var i = 0; i < arr.length; i++){
-        for (var j = 0; j < arr.length; j++){
-            result[i] = (arr[i][0] < arr[j][0])? arr[i] : arr[j];
-        }
-    }
+  
 }
+
+
+console.log('DEMO sort');
+
+var months = ['March', 'Jan', 'Feb', 'Dec'];
+
+console.log(sort(months));
+// ["Dec", "Feb", "Jan", "March"]
+
+console.log(months);
+// ['March', 'Jan', 'Feb', 'Dec']
+
+var nums = [1, 30, 4, 21];
+
+console.log(sort(nums));
+// [1, 21, 30, 4]
+
+console.log(nums);
+// [1, 30, 4, 21]
