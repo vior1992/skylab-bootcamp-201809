@@ -1,13 +1,9 @@
-document.querySelector('#of').addEventListener('click', function() {
-    of(7);
-    of(1, 2, 3);
-    of(undefined);
+document.querySelector('#reduce').addEventListener('click', function() {
+    var nums = [1, 2, 3];
+    console.log(unshift(nums, 4, 5));
+    console.log(nums);
 });
 
-function of() {
-    var result = [];
-    for (var i = 0; i < arguments.length; i++) {
-        result[result.length] = arguments[i];
-    }
-    console.log(result);
+function reduce(arr, elems) {
+    return arr;
 }
