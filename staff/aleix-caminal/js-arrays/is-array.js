@@ -6,5 +6,5 @@ document.querySelector('#array').addEventListener('click', function() {
 });
 
 function isArray(arr) {
-    return !!arr && arr.constructor === Array;
+    return arr instanceof Array;
 }
