@@ -1,0 +1,1 @@
+console.log(indexOf(['apple', 'banana', 'orange'], 'banana'));
