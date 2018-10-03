@@ -1,14 +1,21 @@
-function from(arr){
+function from(arr, callback){
     var output = [];
-    var i = 0;
-    for(var p in arr){
+    
+    if (typeof arr[Symbol.iterator] !== 'function') throw Error('object is not iterable');
 
-        if (arguments[1] instanceof Function){
-            output[i] = arguments[1](arr[p]);
+    if (!(arr instanceof Array)) throw Error('array is not valid');
+
+    for(var i = 0; i < arr.length;i++){
+
+        if (callback !== undefined){
+            if (!callback instanceof Function) throw Error('callback is not a function');
+            output[i] = callback(arr[i], i);
         }else{
-            output[i] = arr[p];
+            output[i] = arr[i];
         }
-        i++;
+       
     }
+    if (output.some(function(x,i,arr){ return !x})) throw Error('Empty value found in array');
+
     return output;
 }
