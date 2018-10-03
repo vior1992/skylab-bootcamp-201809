@@ -1,5 +1,5 @@
-function slice () {
-    
+function splice () {
+
     if(arguments.length>3){
         return 'Please insert the correct amount of arguments';
     }
@@ -29,9 +29,10 @@ function slice () {
 
         }
 
-        return newArray;
-
     } else {
         return 'Please insert a valid array';
     }
+
+    return removed;
 }
+
