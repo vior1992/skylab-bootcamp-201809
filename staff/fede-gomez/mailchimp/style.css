@@ -4,7 +4,6 @@ body {
 
 .container {
     display: flex;
-    border: 1px solid red;
     flex-direction: column;
     justify-content: center;
 }
@@ -35,7 +34,6 @@ body {
 .header__main-content {
     display: flex;
     flex-wrap: nowrap;
-    border: 1px dotted yellow;
     padding: 10px;
 }
 
@@ -59,7 +57,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px dotted blue;
     /* height: 75%; */
 }
 
@@ -68,13 +65,11 @@ body {
 }
 
 .header__nav__sign-up-button {
-    border: 1px solid darkgray;
     border-radius: 8px;
 }
 
 .header__nav__main-nav-bar {
     display: flex;
-    border: 1px solid darkgray;
     border-radius: 8px;
     padding: 1px;
     align-items: center;
