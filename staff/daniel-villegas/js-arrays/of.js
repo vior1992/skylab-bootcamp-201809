@@ -1,7 +1,13 @@
-// of.demo.js
+// of.js
 
-console.log('DEMO of');
-
-of(7); // [7] 
-of(1, 2, 3); // [1, 2, 3]
-of(undefined); // [undefined]
+function of(elems) {
+    var result = [];
+    console.log(elems());
+    
+    
+    for (var i = 0; i < 1; i++) {
+       
+    }
+    
+    
+}
