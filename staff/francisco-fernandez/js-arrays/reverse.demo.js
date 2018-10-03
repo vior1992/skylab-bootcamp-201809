@@ -2,7 +2,7 @@
 
 console.log('DEMO reverse');
 
-var arr = ['one', 'two', 'three'];
+var arr = [,,,,1,];
 
 reverse(arr);
 
