@@ -1,7 +1,6 @@
 function unshift (arr){
     var newArray = [];
     var j=0;
-    debugger
     if(arguments.length>1){
     for(var i=1;i<arguments.length;i++){
         newArray[i-1]=arguments[i];
