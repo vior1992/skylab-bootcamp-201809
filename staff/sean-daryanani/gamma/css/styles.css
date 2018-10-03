@@ -190,6 +190,11 @@ body {
     left: 50%;
   }
 }
+@media only screen and (min-width: 580px) {
+  .footer__copyright {
+    left: 70%;
+  }
+}
 
 .footer-nav__list {
   position: absolute;
@@ -227,7 +232,7 @@ body {
   .main-form {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 500px;
   }
@@ -242,7 +247,7 @@ body {
 }
 @media only screen and (min-width: 1400px) {
   .contact-form {
-    width: 30%;
+    width: 70%;
   }
 }
 .contact-form__label {
@@ -255,6 +260,7 @@ body {
   width: 100%;
   margin-bottom: 5px;
   border-radius: 5px;
+  height: 30px;
 }
 .contact-form__button {
   border: 1px solid #ddd8d8;
