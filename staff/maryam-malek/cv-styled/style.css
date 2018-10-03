@@ -4,7 +4,7 @@ body {
 }
 .main {
     display: grid;
-    grid-template: 1fr 1fr 1fr / 10% 1fr 1fr 10%; 
+    grid-template: repeat(3, 1fr) / 10% 1fr 1fr 10%; 
 }
 .section {
     text-align: justify;
@@ -94,7 +94,7 @@ body {
 @media (min-width: 600px) {
     .header {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
     }
     .personal-info {
         grid-column: 1;
