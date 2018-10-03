@@ -1,0 +1,237 @@
+
+	*{
+	font-family: 'Nanum Gothic', sans-serif;
+	}
+
+        .header1{               
+        width: 100%;
+        height: 20%;
+        max-height: 200px;
+        background-color: teal;
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: black;
+        align-items: center;
+        }
+            
+        .header__name{
+        display: flex;
+        justify-content: center;
+        color: white;
+        }
+        
+        nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        flex-direction:column;
+        
+        }
+
+        nav li {
+        display: inline;
+        margin-right: 3px;
+        padding-top: 2px; 
+        }
+
+        nav a {
+        display: flex;
+        text-decoration: none;
+        color:teal; 
+        font-size: 14px; 
+        background-color: white  ; 
+        padding: 10px 20px; 
+        border: 1px solid black;
+        border-radius: 10px; 
+        width: 150px;
+        height: 20px;
+        justify-content: center; 
+        }
+
+        nav a:hover {
+        background-color: wheat;
+        }
+
+        .body{
+        height: 70%;
+        }
+        
+        .profileImage{
+        width: 30%;
+        max-width: 200px;
+        margin-top: 10px;
+        align-content: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+            
+        }
+        
+        .body__dates{
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: teal;  
+        display: block;
+        justify-content: center;
+        }
+
+        .body__dates--info{
+	font-size: 20px;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;  
+        }
+        
+        .body__education{
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: teal; 
+        display: block;
+        justify-content: center; 
+        }
+
+        .body__exp{
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: teal; 
+        display: block;
+        justify-content: center; 
+        }
+        
+        .body__hobbies{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+            
+        }
+        
+        .body__dates{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        }
+
+        .body__education--h2{
+        font-size: 20px;
+        justify-content: center;
+        display: flex;
+        }
+
+        summary{
+        margin-bottom: 10px;
+        }
+        
+        footer{
+        width: 100%;
+        height: 50px;
+        background-color: teal;
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: black;
+        align-items: center
+        }
+        
+
+
+@media screen and (min-width: 768px) {
+
+    	.header{   
+        width: 100%;
+        height: 20%;
+        max-height: 200px;
+        background-color: teal;
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: black;
+        align-items: center;
+    	}
+
+    	.header__name{
+	display: flex;
+    	justify-content: center;
+    	color: white;
+        }
+        
+        
+        nav ul {
+	list-style: none;
+    	margin: 0;
+   	padding: 0;
+    	overflow: hidden;
+    	display: flex;
+    	flex-direction: row;
+    	justify-content: center;            
+        }
+	
+  	nav li {
+    	display: inline;
+    	margin-right: 3px;
+    	padding-top: 2px;   
+         }
+  	nav a {
+   	display: flex;
+   	text-decoration: none;
+   	color:teal; 
+   	font-size: 14px; 
+   	background-color: white; 
+   	padding: 10px 20px; 
+   	border: 1px solid black;
+   	border-radius: 10px; 
+   	width: 150px;
+   	height: 20px;
+   	justify-content: center;
+        }
+        nav a:hover {
+        background-color: wheat;
+        }
+
+        .body{
+        height: 70%;
+        }
+
+        .body__dates {
+    	display: flex;
+    	flex-direction: row;
+    	padding-bottom: 10px;
+        }
+
+        .profileImage {
+    	width: 30%;
+    	max-width: 200px;
+   	margin-top: 10px;
+    	align-content: center;
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+        }
+
+        .body__dates--info {
+    	font-size: 20px;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	text-align: left;
+        }
+
+
+        
+        main{
+    	display: block;
+    	height: 70%;
+    	max-width: 60%;
+    	align-content: center;
+        }
+
+        .body{
+        justify-content: center;
+        display: flex;            
+        }
+    }
+
