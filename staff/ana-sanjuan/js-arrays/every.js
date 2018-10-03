@@ -1,26 +1,20 @@
 function every(arr, callback) {
+    if (!(arr instanceof Array) && !(callback instanceof Function)) throw Error ('the array is not an array and callback is not a function');
+    if (!(arr instanceof Array)) throw Error('the arr is not an array');
+    
+    if (!arr.length) return true;
+
     var result = []; counter= 0;
     for(var i = 0; i < arr.length; i++) {
-        if(callback(arr[i])){
-            result[counter] = callback(arr[i]);
+        if(callback(arr[i], i, arr)){
+            result[counter] = callback(arr[i], i , arr);
             counter++;
         }
     }
     return (result.length === arr.length)? true: false;
+
 }
 
-console.log('DEMO every');
 
-var nums = [1, 30, 39, 29, 10, 13];
-
-var res = every(nums, function(num) { return num < 40; });
-
-console.log(res); // true
-
-var words = ['spray', 'limit', 'elite', 'exuberant', 'construction', 'present'];
-
-var res = every(words, function(word) { return word.length < 10; });
-
-console.log(res); // false
 
 
