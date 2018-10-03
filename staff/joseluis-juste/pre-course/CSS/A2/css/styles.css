@@ -25,11 +25,7 @@ a {
     margin-top: 2em; }
 
 .group1 div:first-child {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: space-between;
   display: flex; }
   .group1 div:first-child a:nth-child(1) {
     background-color: #EAEAEA;
@@ -56,11 +52,7 @@ a {
     border: 1px solid rgba(0, 0, 0, 0.1);
     color: white; }
 .group1 div:last-of-type {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: space-between;
   display: flex; }
   .group1 div:last-of-type a:nth-child(1) {
     border: 1px solid rgba(181, 171, 172, 0.7);
@@ -82,11 +74,7 @@ a {
     color: #ED5463; }
 
 .group2 div:first-child {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: space-between;
   display: flex; }
   .group2 div:first-child a:nth-child(1) {
     background-color: #EAEAEA;
@@ -119,11 +107,7 @@ a {
     color: white;
     border-radius: 22px; }
 .group2 div:last-of-type {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: space-between;
   display: flex; }
   .group2 div:last-of-type a:nth-child(1) {
     border: 1px solid rgba(181, 171, 172, 0.7);
@@ -151,11 +135,7 @@ a {
     border-radius: 22px; }
 
 .group3 div:first-child {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: start;
   display: flex; }
   .group3 div:first-child a:nth-child(1) {
     background-color: #EAEAEA;
@@ -180,11 +160,7 @@ a {
     margin-left: 15px; }
 
 .group4 div {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: start;
   display: flex; }
   .group4 div a:nth-child(1) {
     border: 1px solid #4EC2E8;
@@ -215,3 +191,5 @@ a {
     line-height: 61px; }
   .group4 div a:nth-child(n + 2) {
     margin-left: 15px; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -25,7 +25,7 @@
     "foot";
 }
 
-.image, .leftside, .rightside1, .rightside2, .inventions, .neverBuilt, .div__head {
+.image, .leftside, .rightside1, .rightside2, .inventions, .neverBuilt, .container__head {
     border-radius: 5px;
     min-width: 100px;
     width: 90%;
@@ -81,7 +81,7 @@
     letter-spacing: 4px;
 }
 
-.div__head{
+.container__head{
     font-family: 'Lobster', cursive;
     font-size: 20px;
     padding: 3px;
@@ -125,7 +125,7 @@
 }
 
 
-.div__span--bold {
+.container__span--bold {
     font-weight: 800;
     color: hsl(42, 86%, 45%);
     letter-spacing: 1px;
@@ -167,7 +167,7 @@
         width: 85%;
     }
 
-    .div__head {
+    .container__head {
         background-color: rgb(153, 185, 131);
         -webkit-transition: background-color 1500ms linear;
         -ms-transition: background-color 1500ms linear;
@@ -225,13 +225,13 @@
         max-width: 500px;
     }
 
-    .div__head {
+    .container__head {
         background-color: #a9b324;
     }
 
     .image {
         width: 90%;
-        min-width: 150px;;
+        min-width: 150px;
         max-width: 200px;
         margin-left: 30px;
 

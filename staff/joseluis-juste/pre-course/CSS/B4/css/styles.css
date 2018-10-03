@@ -34,12 +34,8 @@ nav {
 
 main {
   background: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start; }
+  justify-content: start; }
   main aside {
     width: 22%;
     text-align: center; }
@@ -83,3 +79,5 @@ footer {
     text-align: center;
     font-size: 0.9em;
     line-height: 44px; }
+
+/*# sourceMappingURL=styles.css.map */

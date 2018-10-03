@@ -1,0 +1,42 @@
+nav {
+  height: 130px;
+  background: green;
+}
+
+nav > div:first-child {
+  background-image: url("../img/nav.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 60%;
+}
+
+nav > div:last-child {
+  height: 40%;
+  background: black;
+}
+
+nav > div:last-child ul {
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  margin-left: 2em;
+}
+
+nav > div:last-child ul li {
+  display: inline-block;
+  padding: 0.4em;
+  background: white;
+  margin-left: 0.5em;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-top: 4px solid #75AB00;
+}
+
+nav > div:last-child ul li a {
+  text-decoration: none;
+  display: block;
+  color: black;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+/*# sourceMappingURL=nav.css.map */
