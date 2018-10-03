@@ -10,13 +10,13 @@ function indexof(arr, word) {
 	var reps = 0;
     for (var i=0; i<arr.length; i++) {
 		if (arr[i] == word) {
-		reps += 1;
+		reps ++;
         }
     }
 	if (reps == 0) {
-		console.log(-1);
+		return -1;
     }
-	console.log(reps);
+	return reps;
 }
 
 
