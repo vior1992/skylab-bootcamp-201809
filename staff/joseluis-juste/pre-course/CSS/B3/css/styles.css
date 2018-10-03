@@ -33,12 +33,8 @@ nav div {
   height: 800px; }
 
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   padding-right: 2em; }
   main aside {
     width: 20%; }
@@ -75,3 +71,5 @@ main {
       color: #10558E; }
       main section article:nth-child(2) p {
         text-indent: 2em; }
+
+/*# sourceMappingURL=styles.css.map */

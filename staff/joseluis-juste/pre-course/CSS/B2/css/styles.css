@@ -44,8 +44,7 @@ body {
   background-color: #99DEF2;
   padding: 0 3em;
   overflow: hidden;
-  -webkit-box-shadow: 15px 10px 50px black;
-          box-shadow: 15px 10px 50px black; }
+  box-shadow: 15px 10px 50px black; }
 
 .l-main-section {
   background-color: white;
@@ -63,3 +62,5 @@ body {
       height: 100%; }
   .l-main-section .l-article p {
     text-align: justify; }
+
+/*# sourceMappingURL=styles.css.map */
