@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nomen Nescio - Curriculum Vitae</title>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
 </head>
 <body>
-        <nav id="header">
+        <section id="header">
             <h1>Nomen Nescio</h1>
             <p>Age: 07/07/1987</p>
             <p>e-mail: hello@nomennescio.com</p>
             <p>Phone: +34 937777777</p>
             <p>Adress: c/Noname, 1 - 08080 Barcelona</p>
             
-        </nav>             
-        <nav id="content">
+        </section>             
+        <nav id="content" class="navigate">
         <ul>
                             <li><a href="#experience">Profesional experience</a></li>
                             <li><a href="#know-hows">Know-hows</a></li>
@@ -24,7 +25,8 @@
         </ul>
         </nav>
         <hr>
-        <nav id="experience"><h2>Profesional experience</h2>
+        <div class="container">
+        <section id="experience" class="box"><h2>Profesional experience</h2>
                         <table>
                                 <thead>
                                 <tr>
@@ -56,18 +58,9 @@
                                 </tbody>
                         </table>
                               </ul>
-        </nav>
+            </section>
                         <hr>
-        <nav id="know-hows"><h2>Know-hows</h2>
-                        <ul>
-                                <li><strong>Web developer:</strong> HTML5, CSS3, JavaScript, PHP, SEO, Node.js, MySQL, AngularJS, jQuery</li>
-                                <li><strong>Web Analytics:</strong> Google Analytics, Mixpanel, segment.io</li>
-                                <li><strong>Management</strong>: SCRUM, community management and event organization, team management</li>
-                                <li><strong>Entrepreneurship:</strong> startups, Lean Startup, etc.</li>
-                        </ul>
-        </nav>
-                        <hr>
-        <nav id="education"><h2>Education</h2>
+        <section id="education" class="box"><h2>Education</h2>
                         <table>
                                 <thead>
                                 <tr>
@@ -98,11 +91,23 @@
                                 </tr>
                                 </tbody>
                         </table>
-        </nav>
+        </section>
+        </div>
+        <hr>
+        <section id="know-hows"><h2>Know-hows</h2>
+            <ul>
+                    <li><strong>Web developer:</strong> HTML5, CSS3, JavaScript, PHP, SEO, Node.js, MySQL, AngularJS, jQuery</li>
+                    <li><strong>Web Analytics:</strong> Google Analytics, Mixpanel, segment.io</li>
+                    <li><strong>Management</strong>: SCRUM, community management and event organization, team management</li>
+                    <li><strong>Entrepreneurship:</strong> startups, Lean Startup, etc.</li>
+            </ul>
+        </section>
+            
                         <hr>
-        <nav id="footer"><h2>Contact</h2>
-                        <ul>hello@nomennescio.com | +34 937777777</ul>   
-        </nav>                                                      
+        <section id="footer"><h2>Contact</h2>
+                        <ul>hello@nomennescio.com</ul>
+                        <ul>+34 937777777</ul>   
+        </section>                                                      
                               </p>
 </body>
 </html>
