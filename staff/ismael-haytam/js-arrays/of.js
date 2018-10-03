@@ -1,5 +1,5 @@
 function of(elems) {
-    return console.log([].slice.call(arguments));
+    console.log([].slice.call(arguments));
 }
 
 // Another possible solution... (ES6)
@@ -7,7 +7,7 @@ function of(elems) {
 /*
 
 function of(elems) {
-    return console.log([...arguments]);
+    console.log([...arguments]);
 }
 
 */
