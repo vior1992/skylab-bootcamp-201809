@@ -4,76 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../cv-styled/style.css">
     <title>Curriculum Vitae</title>
    
 </head>
 <body>
-        <header>
-            <h1>Richard House</h1>
-            <address>
+    <header class="header">
+        <div class="personal-info">
+            <h1 class="personal-info__name">Richard House</h1>
+            <address class="personal-info__adress">
                 <p>Email adress:<br><a href="mailto:webmaster@example.com">webmaster@example.com</a></p>
                 <p>Portafolio<br><a href="mailto:webmaster@example.com">example.com</a></p>
-                <p>Street beta</p>
-                <p>London</p>
+                <p class="personal-info__andress--stick">Street beta</p>
+                <p class="personal-info__andress--stick">London</p>
             </address>
-        </header>  
-        <section>
-            <h2>Studies</h2> 
-                <section>
+        </div>
+        <div class="header-image">
+            <img class = "header-image__img" src="data:image/png;base64,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" alt="photo CV">
+        </div>
+    </header>  
+
+    <main class="main">
+        <section class="section section--studies">
+            <h2 class="section__title">Studies</h2> 
+                <section class="section__text">
                     <h4> Compulsory High School Education</h4>
                     <p>Oxford High School</p>
                     <p>London</p>
                 </section>
-                <section>
+                <section class="section__text">
                     <h4>Arts and Humanities</h4>
                     <p>University of London</p>
                     <p>London</p>
                 </section>
-                <section>
+                <section class="section__text">
                     <h4>Master in Roman art</h4>
                     <p>University of London</p>
                     <p>London</p>
                 </section>           
         </section>
-     <section>
-        <h2>Experience</h2> 
-        <section>
+        <section class="section section--experience">
+            <h2 class="section__title">Experience</h2> 
+            <section class="section__text">
                 <h4> Lorem ipsum dolor sit amet eos?</h4>
                 <p>ipsum dolor sit amet eos</p>
                 <p>London</p>
             </section>
-            <section>
+            <section class="section__text">
                 <h4> Lorem ipsum dolor sit amet eos?</h4>
                 <p>ipsum dolor sit amet eos</p>
                 <p>London</p>
             </section>
-            <section>
+            <section class="section__text">
                 <h4> Lorem ipsum dolor sit amet eos?</h4>
                 <p>ipsum dolor sit amet eos</p>
                 <p>London</p>
             </section> 
-             
-     </section>
-     <section>
-        <h2>Abilities</h2> 
-        <ul>
-            <li>
-                <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
-            </li>
-            <li>
-                <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
-            </li>
-            <li>
-                <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
-            </li>
-            <li>
-                <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
-             </li>
-            <li>
-                <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
-            </li>
-        </ul>
-               
-     </section>
+                
+        </section>
+        <section class="section section--abilities">
+            <h2 class="section__title">Abilities</h2> 
+            <ul class="section__text">
+                <li>
+                    <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
+                </li>
+                <li>
+                    <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
+                </li>
+                <li>
+                    <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
+                </li>
+                <li>
+                    <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
+                </li>
+                <li>
+                    <p>Lorem ipsis, repellat a consectetur ad numquam tenetur iusto nam?</p>
+                </li>
+            </ul>
+                
+        </section>
+    </main>
 </body>
 </html>

@@ -4,7 +4,15 @@
     text-align: left;
 }
 
+
 .grid-container { /*phone size*/
+    font-family: 'Roboto', sans-serif;
+    padding-right: 40px;
+    background-color: #d2e1c8;
+    -webkit-transition: background-color 1500ms linear;
+    -ms-transition: background-color 1500ms linear;
+    transition: background-color 1500ms linear;
+    
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: 
@@ -17,8 +25,121 @@
     "foot";
 }
 
-@media (min-width: 500px) { /*tablet size*/
+.image, .leftside, .rightside1, .rightside2, .inventions, .neverBuilt, .container__head {
+    border-radius: 5px;
+    min-width: 100px;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px 3px 1px hsl(42, 86%, 45%);
+
+    background-color: #f7f4e3;
+    -webkit-transition: background-color 1500ms linear;
+    -ms-transition: background-color 1500ms linear;
+    transition: background-color 1500ms linear;
+}
+
+.header {
+    max-width: 150px;;
+    width: 90%;
+}
+.image {
+    grid-area: image;
+    width: 90%;
+    max-width: 120px;
+    margin-left: 30px;
+    border-radius: 50%;
+    box-shadow: 3px 3px 3px 1px hsl(42, 86%, 45%);   
+}
+
+.leftside {
+    grid-area: lefty;
+}
+
+.rightside1 {
+    grid-area: right1;
+}
+
+.rightside2 {
+    grid-area: right2;
+}
+
+.inventions {
+    grid-area: centered;
+}
+
+.neverBuilt {
+    grid-area: foot;
+}
+
+
+.header_maintittle {
+    font-size: 35px;
+    width: 90%;
+    font-family: 'Lobster', cursive;    
+    text-shadow: 1px 2px 3px white;
+    letter-spacing: 4px;
+}
+
+.container__head{
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    padding: 3px;
+    color: white;
+    min-width: 100px;
+    box-shadow: 0;
+    background-color: hsl(42, 86%, 45%);
+    
+    
+}
+
+
+.main__list, .footer__list {
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px;
+    margin-left: 10px;
+    align-content: space-between;
+    
+}
+
+
+.main__list--odd:hover, .footer__list--odd:hover, .main__list--even:hover, .footer__list--even:hover {
+    background-color: hsl(42, 86%, 45%);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 3%;
+    margin: 3px;
+    display: block;
+}
+
+.main__list--even:hover, .footer__list--even:hover {
+    color:white;    
+}
+
+
+.leftside__email {
+    text-decoration: underline;
+    color: blue; 
+    display: inline-block;
+}
+
+
+.container__span--bold {
+    font-weight: 800;
+    color: hsl(42, 86%, 45%);
+    letter-spacing: 1px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+@media (min-width: 400px) { /*tablet size*/
     .grid-container {
+        background-color: hsl(96, 34%, 73%);
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
+
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
         "header image"
@@ -26,84 +147,99 @@
         "centered right2"    
         "foot foot";
     } 
-}
+    .leftside, .rightside1, .rightside2, .inventions, .neverBuilt {
+        box-shadow: rgb(235, 188, 79);
+        border-radius: 10px;
+        margin: 5px;
+        max-width: 350px;
+        width: 85%;
+
+        background-color: #f8e88e;
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
+    }
+    
+    .header {
+        font-size: 45px;
+        margin: 0 10px;
+        max-width: 300px;
+        width: 85%;
+    }
+
+    .container__head {
+        background-color: rgb(153, 185, 131);
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
+    }
+
+    .image {
+        margin-left: 35px;
+        width: 80%;
+        max-width: 150px;
 
 
-@media (min-width: 750px) { /*desktop size*/
-    .grid-container {  
-        display: grid;
-        grid-template-columns: 1fr, 3fr, 2fr;
-        grid-auto-rows: minmax(100px, auto auto auto);
-        grid-gap: 15px;
-        grid-template-areas:
-        "header header image"
-        "lefty centered right1"
-        "lefty centered right2"    
-        "foot foot foot"; 
+        background-color: #f8e88e;
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
     }
 }
 
 
-.grid-container ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+@media (min-width: 950px) { /*desktop size*/
+    .grid-container {  
+        background-color: rgb(204, 233, 124);
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
 
-.header {
-    grid-area: header;
-    width: 100%;
-    background-color: hsl(183, 69%, 87%);
-    padding: 20px;
-}
+        display: grid;
+        grid-template-columns: 1fr, 3fr, 2fr;
+        grid-auto-rows: minmax(100px, auto auto auto);
+        grid-gap: 10px;
+        grid-template-areas:
+        "header . image"
+        "lefty centered right1"
+        "lefty centered right2"    
+        "foot foot foot"; 
+    }
 
-.image {
-    grid-area: image;
-    display: inline-block;
-    border-radius: 55%;
-    min-width: 100px;
-}
+     .leftside, .rightside1, .rightside2, .inventions, .neverBuilt {
+        background-color: rgb(250, 238, 127);
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
+        
+        min-width: 300px;
+        margin: 5px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+    }
 
-.leftside {
-    grid-area: lefty;
-    background-color: hsl(183, 69%, 87%);
-    padding: 10px;
-    width: 100%;
-}
+    .header {
+        font-size: 60px;
+        width: 90%;
+        max-width: 500px;
+    }
 
-.rightside1 {
-    grid-area: right1;
-    background-color: hsl(183, 69%, 87%);
-    padding: 10px;
-    width: 95%;
-}
+    .container__head {
+        background-color: #a9b324;
+    }
 
-.rightside2 {
-    grid-area: right2;
-    background-color: hsl(183, 69%, 87%);
-    padding: 10px;
-    width: 100%;
-}
+    .image {
+        width: 90%;
+        min-width: 150px;
+        max-width: 200px;
+        margin-left: 30px;
 
-.inventions {
-    grid-area: centered;
-    background-color: hsl(183, 69%, 87%);
-    padding: 10px;
-    width: 90%;
-}
-
-.neverBuilt {
-    grid-area: foot;
-    background-color: hsl(183, 69%, 87%);
-    padding: 10px;
-    width: 100%;
-}
-
-h1 {
-    font-size: 35px;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-
-h2 {
-    font-size: 20px;
+        background-color: rgb(250, 238, 127);
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
+        
+        
+    }
 }
