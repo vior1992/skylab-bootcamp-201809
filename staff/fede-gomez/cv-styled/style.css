@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-image: url("https://images.wallpaperscraft.com/image/background_solid_spot_light_65990_1920x1080.jpg");
+}
+
+.header {
+    height: 100px;
+    /* border: 1px solid red; */
+}
+
+.introduction {
+    
+}
+
+.education {
+    
+}
+
+.studies {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 1px dotted blue; */
+}
+
+
+
+.studies div {
+    height: auto;
+    width: 30%;
+    min-width: 150px;
+    max-width: 200px;
+    margin: 1%;
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: lightblue;
+    color: grey;
+    transition-duration: 0.5s;
+}
+
+.experience {
+
+}
+
+.skills {
+
+}
+
+@media screen and (max-width : 320px) {
+    .studies{
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+}
+
+.studies div:hover {
+    background-color: rgba(86, 168, 216, 0.815);
+}
+

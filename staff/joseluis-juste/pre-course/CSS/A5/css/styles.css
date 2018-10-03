@@ -13,8 +13,7 @@ body {
   height: 192px;
   background: white;
   margin-top: 10em;
-  -webkit-box-shadow: 5px 10px 34px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 5px 10px 34px 0 rgba(0, 0, 0, 0.3); }
+  box-shadow: 5px 10px 34px 0 rgba(0, 0, 0, 0.3); }
   .container .input-text-field {
     display: block;
     width: 16em;
@@ -49,3 +48,5 @@ span {
     text-decoration: none;
     color: #67BE4B;
     display: inline-block; }
+
+/*# sourceMappingURL=styles.css.map */
