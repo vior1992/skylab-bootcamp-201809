@@ -16,11 +16,7 @@ function splice(array, start, delElements) {
       j++;
     }
   }
-  /*
-  for(var i = start, j = 0; i < start + duplicatedArray; i++, j++) {
-    newArray[j] = array[i];
-  }
-  */
+
   function duplicate() {
     for(var i = 0; i < array.length; i++) {
       duplicatedArray[i] = array[i];

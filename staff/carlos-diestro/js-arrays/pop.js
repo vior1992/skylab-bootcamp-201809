@@ -16,7 +16,7 @@ function pop(array) {
     element = undefined;
   }
 
-  function duplicate(array, newArray) {
+  function duplicate() {
     for(var i = 0; i < array.length; i++) {
       newArray[i] = array[i];
     }
