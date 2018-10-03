@@ -116,7 +116,7 @@
         }
     }
 
-    &__description__title {
+    &-description__title {
         width: 100%;
         background: rgb(188, 229, 245);
         border-radius: 10px;
@@ -138,11 +138,10 @@
 
     &__degree {
         display: flex;
-
-        &__subject,
-        &__add-info {
-            @extend %education;
-        }
+    }
+    &-degree__subject,
+    &-degree__add-info {
+        @extend %education;
     }
 }
 

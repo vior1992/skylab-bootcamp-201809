@@ -5,8 +5,7 @@
     border-radius: 10px;
     text-align: center;
     @media only screen and (min-width: 768px) {
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
+        border-radius: 0px 10px 10px 0px;
         background: rgb(243, 156, 125);
     }
 }
