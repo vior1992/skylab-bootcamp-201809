@@ -15,26 +15,19 @@ function sort(arr) {
     //     }
     //     return cutArr;
     // }
-    var orderArr = [];
-    var index = -1;
-    for(var x=0; x<arr.length; x++){
-        orderArr[x] = arr[x];
-    }
-    debugger;
+    var index;
     for(i=0; i<arr.length; i++){
-        for(var x=0; x<arr.length; x++){
-            if(orderArr[i] >= arr[x]){
-                orderArr[i] = arr[x];
-
+        index = i;
+        for(var x=i; x<arr.length; x++){
+            if(arr[x] < arr[index]){
+                index = x;
             }
-            index = x;
         }
-        if(index = -1){
-            index = i;            
-        }
-        arr.splice(index, 1);
+        var moment = arr[x];
+        arr[x] = arr[index];
+        arr[index] = moment;        
     }
-    return orderArr;
+    return arr;
      
 }
 
