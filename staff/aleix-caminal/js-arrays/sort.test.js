@@ -1,25 +1,34 @@
+var sortTests = [];
 document.querySelector('#test-sort').addEventListener('click', function() {
-    var months = ['March', 'Jan', 'Feb', 'Dec'];
-    console.log(sort(months));
-    console.log(months);
-    var nums = [1, 30, 4, 21];
-    console.log(sort(nums));
-    console.log(nums);
+    testSuite(sortTests);
 });
 
-function sort(arr) {
-    var result = slice(arr);
-    for (var i = 0; i < result.length - 1; i++) {
-        var min = i;
-        for (var j = i; j < result.length; j++) {
-            if ('' + result[j] < '' + result[min]) {
-                min = j;
-            }
-        }
+sortTests.push(function () {
+    console.log('should fail on non-array');
 
-        var sorted = result[i];
-        result[i] = result[min];
-        result[min] = sorted;
+    var error;
+
+    try {
+        sort();
+    } catch (err) {
+        error = err;
     }
-    return result;
-}
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== 'array is not valid') throw Error('error message is not correct');
+});
+
+sortTests.push(function () {
+    console.log('should not modify the original array');
+
+    var arr = [1, 211, 98, 3];
+
+    var original = arr.slice();
+
+    var error;
+
+    var res = sort(arr);
+
+    if (JSON.stringify(arr) !== JSON.stringify(original)) throw Error('the original array has been modified');
+});

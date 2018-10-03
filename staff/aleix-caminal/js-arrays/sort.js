@@ -8,6 +8,8 @@ document.querySelector('#sort').addEventListener('click', function() {
 });
 
 function sort(arr) {
+    if (typeof arr !== 'object' || arr.length === undefined) throw Error('array is not valid');
+
     var result = slice(arr);
     for (var i = 0; i < result.length - 1; i++) {
         var min = i;
