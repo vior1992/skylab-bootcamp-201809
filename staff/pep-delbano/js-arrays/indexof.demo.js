@@ -6,18 +6,23 @@ console.log(res); // 1 */
 
 
 
-function indexof(arr, word) {
-	var reps = 0;
+function indexof(arr, elem) {
+	var index = 0;
+	var coincidenceAtIndex;
     for (var i=0; i<arr.length; i++) {
-		if (arr[i] == word) {
-		reps ++;
+        arr[i];
+        index++;
+		if (arr[i] === elem) {
+        	coincidenceAtIndex = index;
+			return coincidenceAtIndex;
         }
-    }
-	if (reps == 0) {
+		if (index === arr.length-1 && coincidenceAtIndex !== undefined) {
+        return coincidenceAtIndex
+		} else if (index === arr.length-1 && coincidenceAtIndex === undefined){
 		return -1;
+		}
     }
-	return reps;
 }
 
 
-indexof(['ant', 'bison', 'camel', 'duck', 'bison'], 'bison')
+indexof(['ant', 'bison', 'camel', 'duck', 'bison'], 'bison');
