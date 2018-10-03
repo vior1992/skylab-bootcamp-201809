@@ -65,12 +65,8 @@ main {
       padding: 0.4em 0.2em;
       font-size: 2em; }
   main section:nth-child(2) {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between; }
+    justify-content: space-between; }
     main section:nth-child(2) article {
       margin-top: 0.5em;
       width: 81%; }
@@ -81,12 +77,8 @@ main {
         border-bottom: 1px solid black;
         margin-top: 3em; }
       main section:nth-child(2) article > div {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between; }
+        justify-content: space-between; }
         main section:nth-child(2) article > div > div {
           border-left: 1px solid black;
           width: 30%;
@@ -95,12 +87,8 @@ main {
             border-left: 0;
             padding-left: 0; }
           main section:nth-child(2) article > div > div .icon-titles {
-            display: -webkit-box;
-            display: -ms-flexbox;
             display: flex;
-            -webkit-box-pack: start;
-                -ms-flex-pack: start;
-                    justify-content: start; }
+            justify-content: start; }
             main section:nth-child(2) article > div > div .icon-titles div:nth-child(2) {
               margin-left: 0.2em;
               font-size: 1.7em;
@@ -152,3 +140,5 @@ aside {
     color: brown; }
   aside p + a:hover {
     color: black; }
+
+/*# sourceMappingURL=styles.css.map */
