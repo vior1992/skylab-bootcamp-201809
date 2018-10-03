@@ -1,12 +1,20 @@
 function join(arr, str) {
-    var outputString ="";
-    for (var i=0; i<arr.length; i++) {
-        if (i===arr.length-1) {
-            outputString = outputString + arr[i];
+    if (!(arr instanceof Array)) {
+        throw Error('Invalid or unexpected token');
+    }
+
+    var outputString = arr[0];
+    if (str === undefined) {
+        for (var i = 1; i < arr.length; i++) {
+            outputString += "," + arr[i];
         }
-        else {
-        outputString = outputString + arr[i] + str;
+    } else {
+        for (var i = 1; i < arr.length; i++) {
+            outputString += str + arr[i];
         }
+    }
+    if (!arr.length) {
+        return outputString = "";
     }
     return outputString;
 }
