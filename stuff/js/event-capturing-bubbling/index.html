@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: plum;
+        padding: 50px;
+        border: 1px solid blue;
+    }
+
+    .box--sky {
+        background-color: skyblue;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="box box--sky"></div>
+        <div class="box box--sky"></div>
+    </div>
+
+    <script>
+        var box = document.getElementsByClassName('box')[0];
+
+        box.addEventListener('click', function (event) { 
+            event.stopPropagation();
+
+            console.log('click', 'box');
+        }, true)
+
+        var skyBoxes = document.getElementsByClassName('box--sky');
+
+        var skyBox1 = skyBoxes[0];
+
+        skyBox1.addEventListener('click', function (event) { 
+            // event.stopPropagation();
+
+            console.log('click', 'box--sky', 1);
+        })
+
+        var skyBox2 = skyBoxes[1];
+
+        skyBox2.addEventListener('click', function (event) { 
+            // event.stopPropagation();
+            
+            console.log('click', 'box--sky', 2); 
+        })
+    </script>
+</body>
+
+</html>
