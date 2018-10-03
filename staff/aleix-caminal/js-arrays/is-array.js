@@ -6,5 +6,5 @@ document.querySelector('#is-array').addEventListener('click', function() {
 });
 
 function isArray(arr) {
-    return arr instanceof Array;
+    return typeof arr === 'object' && arr.length !== undefined;
 }

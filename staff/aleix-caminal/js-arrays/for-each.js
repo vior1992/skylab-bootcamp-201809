@@ -6,6 +6,9 @@ document.querySelector('#for-each').addEventListener('click', function() {
 });
 
 function forEach(arr, callback) {
+    if (typeof arr !== 'object' || arr.length === undefined) throw Error('no es un array');
+    if (typeof callback !== "function") throw Error('no es un callback');
+
     var result = [];
     for (var i = 0; i < arr.length; i++) {
         result[i] = callback(arr[i]);
