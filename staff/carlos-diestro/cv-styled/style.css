@@ -1,0 +1,93 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  color: #0a0a0a;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+p {
+  margin: 0.3em 0;
+  line-height: 1.4em;
+}
+
+a {
+  color: #0063f7;
+}
+
+main {
+  max-width: 600px;
+  margin: 1em auto;
+  padding: 1em 1.2em; 
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+}
+
+header {
+  display: grid;
+  grid-template-columns: 90px;
+}
+
+section h2 {
+  margin: 2rem 0 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1em 0 0;
+}
+
+.name {
+  margin-left: 1em;
+}
+
+.name h1, .name h3 {
+  margin: 0.5rem 0;
+}
+
+.contact {
+  margin: 1em 0;
+  line-height: 1.4em;
+}
+
+.skills ul li {
+  margin: 0.5em 0;
+}
+
+.grid-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid-item time {
+  text-align: right;
+}
+
+.item-1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.item-2 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.item-3 {
+  grid-column: span 2;
+  grid-row: 2;
+}

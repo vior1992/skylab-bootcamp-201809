@@ -19,7 +19,7 @@ table tr:not(:first-child) td{
     text-align: justify;
 }
 
-section{
+section:not(.header-personal-img){
 
     margin-bottom: 20px;
     padding: 0 10px;
@@ -71,7 +71,7 @@ section{
     text-align: center;
 }
 
-.header .header-title p{
+.header .header-title h2{
     
     margin: 0;
     font-size: 1.5em;
@@ -111,7 +111,7 @@ section{
 }
 
 @media screen and (min-device-width: 1024px){
-    section{
+    section:not(.header-personal-img){
         padding: 0 21px;
     }
     .main .personal-inf{

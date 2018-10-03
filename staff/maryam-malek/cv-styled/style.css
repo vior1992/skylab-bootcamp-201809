@@ -1,0 +1,128 @@
+body {
+    background-color: grey;
+    box-sizing: border-box;
+}
+.main {
+    display: grid;
+    grid-template: repeat(3, 1fr) / 10% 1fr 1fr 10%; 
+}
+.section {
+    text-align: justify;
+    border: 5px dotted;
+    transition: border-color 3s;
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+}
+.section--studies {
+    grid-area: 1 / 2 / 2 / span 2;
+    border-color: rgb(218, 216, 216);
+}
+.section:hover{
+    border-color: black;
+}
+.section--experience {
+    grid-area: 2 / 2 / 3 / 4;
+    border-color:  silver;    
+}
+.section--abilities {
+    grid-area: 3 / 2 / 4 / 4;
+    border-color: rgb(100, 100, 100);
+}
+.section__title, .section__text{
+    grid-column: 2;
+    height: auto;
+}
+.header {
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+.personal-info {
+    justify-content: flex-start;
+    transition: font-weight;
+}
+.personal-info__name {
+    font-size: 2em;
+}
+.personal-info__adress--stick {
+    line-height: 0.5em;
+}
+.personal-info:hover {
+    font-weight: bold;
+}
+.header__image {
+    justify-content: flex-end;  
+    max-width: 40%;
+    max-height: 70%;
+}
+.header-image__img {
+    max-width: 90%;
+    max-height: 90%;
+} 
+@media screen and (orientation:landscape), (min-width: 600px) {
+    .header {
+        display: grid;
+        grid-template-columns: 5% 1fr 5% 1fr 5%;
+    }
+    .personal-info {
+        grid-column: 2;
+    }
+    .header-image {
+        grid-column: 4;
+        justify-content: center;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .main {
+        display: grid;
+        grid-template: 1fr 2em 1fr / 10% 1fr 5% 1fr 10%; 
+    }
+    .section--studies {
+        grid-area: 1 / 2 / 2 / 3;    
+    }
+    .section--experience {
+        grid-area: 1 / 4 / 2 / 5;
+    }
+    .section--abilities {
+        grid-area: 3 / 2 / 4 / span 3;
+        display: grid;
+        grid-template-columns: 10% 1fr 10%;
+    }
+   
+}
+@media (min-width: 600px) {
+    .header {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .personal-info {
+        grid-column: 1;
+    }
+    .header-image {
+        grid-column: 4;
+        justify-content: center;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .main {
+        display: grid;
+        grid-template: 1fr 2em 1fr / 10% 1fr 5% 1fr 10%; 
+    }
+    .section--studies {
+        grid-area: 1 / 2 / 2 / 3;
+        text-align: justify;
+        border: 5px dotted rgb(218, 216, 216);
+    
+    }
+    .section--experience {
+        grid-area: 1 / 4 / 2 / 5;
+        text-align: justify;
+        border: 5px dotted silver;
+        
+    }
+    .section--abilities {
+        grid-area: 3 / 2 / 4 / span 3;
+        border: 5px dotted rgb(100, 100, 100);
+    }
+}
