@@ -1,6 +1,6 @@
 function every(arr, callback) {
-    if (!(arr instanceof Array) && !(callback instanceof Function)) throw Error ('the array is not an array and callback is not a function');
-    if (!(arr instanceof Array)) throw Error('the arr is not an array');
+    if (!(arr instanceof Array) && !(callback instanceof Function)) throw Error ('arr is not an array and callback is not a function');
+    if (!(arr instanceof Array)) throw Error('arr is not an array');
     
     if (!arr.length) return true;
 

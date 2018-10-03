@@ -86,7 +86,7 @@ tests.push(function () {
     }
 
     if (!error) throw Error('error did not occur when expected');
-    if (error.message !== 'the arr is not an array') throw Error('error message is not correct');
+    if (error.message !== 'arr is not an array') throw Error('error message is not correct');
 });
 
 //TEST 7
@@ -101,7 +101,7 @@ tests.push(function () {
     }
 
     if (!error) throw Error('error did not occur when expected');
-    if (error.message !== 'the array is not an array and callback is not a function') throw Error('error message is not correct');
+    if (error.message !== 'arr is not an array and callback is not a function') throw Error('error message is not correct');
 });
 
 //TEST 8
