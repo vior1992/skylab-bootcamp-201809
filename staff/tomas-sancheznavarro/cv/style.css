@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #dfe2fe;
+}
+
+.flex-container>div {
+    display: flex;
+    flex-direction: row;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li:before {
+    content: '✓';
+}
+
+h2 {
+    color: #8e98f5;
+    text-decoration: underline overline;
+}
+
+/* .goals .skills .education .hobbies .footer {
+    display: flex;
+    flex-direction: row;
+} */
