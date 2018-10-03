@@ -1,0 +1,41 @@
+console.log('TEST forEach');
+
+var tests= [];
+
+tests.push(function(){
+
+    console.log('should succed on iterating an array (copying it to another array)');
+
+    var nums = [1,2,3];
+
+    var res=[];
+
+    forEach(nums, function(num, index){
+        res[index]=num;
+    });
+
+    if (res.length !== nums.length) throw Error('result length is not equal to nums length');
+    
+    res.forEach(function(val, index){
+        if (val !== nums[index]) throw Error('element at index '+index+' is not the same');
+
+    });
+
+});
+
+tests.push(function(){
+    console.log('should fail on non-function callback');
+
+    var nums=[1,2,3];
+
+    var error;
+
+    try{
+        forEach(nums);
+    }
+    catch{
+        error=err;
+    }
+});
+
+testSuite(tests);
