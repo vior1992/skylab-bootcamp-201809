@@ -1,0 +1,376 @@
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+html {
+  margin: 0;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: arial;
+  overflow-y: scroll;
+}
+
+* {
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*COLORES SECTION 1*/
+/****************************/
+/*COLORES SECTION 2*/
+/****************************/
+/*COLORES SECTION 3*/
+/****************************/
+@font-face {
+  font-family: "digital";
+  src: url("../fonts/Digital.ttf") format("truetype");
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+
+@-webkit-keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.wrapper {
+  margin-top: 1em;
+}
+
+section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 92%;
+  margin: 0 auto;
+}
+
+.resp_ok:before {
+  background-color: #2aff00 !important;
+}
+
+.resp_nok:before {
+  background-color: #ff0008 !important;
+}
+
+.hide_card {
+  visibility: hidden;
+}
+
+.won {
+  color: green !important;
+}
+
+.rotation {
+  -webkit-animation: rotating 2s linear infinite;
+          animation: rotating 2s linear infinite;
+}
+
+.few_time {
+  color: red !important;
+}
+
+.blink {
+  -webkit-animation: blink 0.5s linear infinite;
+          animation: blink 0.5s linear infinite;
+}
+
+.section1 {
+  width: 888px;
+  background-color: #3665B8;
+  margin: 0 auto;
+}
+
+.section1 .l-inf {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2em 0 0 2em;
+}
+
+.section1 .l-inf > div:last-child {
+  width: 47%;
+  padding-left: 4em;
+  margin-top: 3em;
+}
+
+.section1 .l-inf > div:last-child p {
+  color: #B9B9B9;
+  font-weight: 700;
+  opacity: 0.8;
+  text-align: justify;
+}
+
+.section1 .l-inf > div:last-child p:nth-child(n + 2) {
+  font-size: 0.7em;
+}
+
+.section1 .l-inf > div:last-child .play {
+  display: inline-block;
+  background-color: #508EFE;
+  padding-top: 16px;
+  padding-left: 18px;
+  width: 133px;
+  height: 66px;
+  border-radius: 2px;
+}
+
+.section1 .l-inf > div:last-child .play a {
+  width: 99px;
+  height: 32px;
+  text-decoration: none;
+  color: white;
+  display: block;
+  border: 1px solid white;
+  border-radius: 1px;
+  background-color: #0071DD;
+  padding: 0.4em 0.6em;
+  text-align: center;
+  line-height: 20px;
+}
+
+.section1 .l-inf > div:last-child .play a:before {
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f04b";
+  padding-right: 0.5em;
+}
+
+.section1 > div:nth-child(2) {
+  margin-left: 1.5em;
+  overflow: visible;
+}
+
+.section1 > div:nth-child(2) div {
+  margin-top: -3em;
+}
+
+.section1 > div:nth-child(3) {
+  text-align: center;
+}
+
+.section2 {
+  background-color: #41B2BD;
+  width: 888px;
+}
+
+.section2 .header > p {
+  display: inline-block;
+  font-size: 0.7em;
+  color: white;
+  width: 79%;
+  margin: 0;
+  text-align: center;
+  line-height: 39px;
+  margin-left: 1em;
+}
+
+.section2 .header > p span {
+  color: gold;
+}
+
+.section2 .header > a {
+  display: inline-block;
+  line-height: 10px;
+  margin-left: 1em;
+}
+
+.section2 .header > a:hover {
+  cursor: pointer;
+}
+
+.section2 .grid {
+  padding: 0 0.5em;
+  text-align: center;
+}
+
+.section2 .grid .last-row {
+  text-align: left;
+  margin-left: 16px;
+}
+
+.section2 .grid .card {
+  width: 135px;
+  height: 172px;
+  margin-left: 6px;
+  background-color: #F6D055;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  color: #F3764A;
+  text-align: center;
+  font-size: 4em;
+  font-weight: bolder;
+  line-height: 2.8em;
+  display: inline-block;
+  border-style: outset;
+}
+
+.section2 .grid .card:hover {
+  cursor: pointer;
+}
+
+.section2 .grid .card.inf {
+  cursor: default;
+  border-style: unset;
+  color: white;
+  font-size: 0.7em;
+  padding: 0.2em 0.3em;
+}
+
+.section2 .grid .card.inf p {
+  margin: 0;
+  line-height: 23px;
+}
+
+.section2 .grid .card.inf p:first-child {
+  text-align: left;
+  margin-bottom: 0.3em;
+  border-bottom: 1px solid #F3764A;
+}
+
+.section2 .grid .card.inf p:first-child span {
+  color: #F3764A;
+  margin-right: 0.5em;
+}
+
+.section2 .grid .card.inf p.inf-text-card {
+  font-size: 2em;
+  font-family: digital;
+  letter-spacing: 2px;
+}
+
+.section2 .grid .card:nth-child(6n + 1) {
+  margin-left: 0;
+}
+
+.section3 {
+  width: 812px;
+}
+
+.section3 .buttons > div:first-child {
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.section3 .buttons > div:last-child {
+  text-align: center;
+}
+
+.section3 .buttons .button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(110deg, blue, lightblue);
+  border-radius: 50%;
+  color: black;
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.section3 .buttons .button .letter {
+  position: absolute;
+  color: black;
+  font-weight: bold;
+  top: 12px;
+  left: 14px;
+}
+
+.section3 .buttons .button:before {
+  position: absolute;
+  content: "";
+  left: 5px;
+  top: 5px;
+  background-color: #FFA700;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.section3 .question {
+  background-color: #00A2D7;
+  text-align: center;
+  color: white;
+  border-top: 2px solid blue;
+  font-size: 1.7em;
+  font-family: Gloria Hallelujah;
+  margin-top: 2.5em;
+}
+
+.section3 .question span {
+  text-transform: uppercase;
+}
+
+.section3 .question p {
+  padding: 0 0.5em;
+}
+
+.section3 .control-panel {
+  margin-top: 1em;
+  text-align: center;
+  overflow: hidden;
+}
+
+.section3 .control-panel input {
+  display: inline-block;
+  font-family: Gloria Hallelujah;
+  padding: 0.3em;
+  font-size: 1em;
+  border: 2px solid #00BDFF;
+  border-radius: 2px;
+  width: 24em;
+}
+
+.section3 .control-panel div {
+  display: inline-block;
+}
+
+.section3 .control-panel .p-button {
+  background-color: #00BDFF;
+  border-radius: 8px;
+  border: 3px solid blue;
+  padding: 0.3em 0.6em;
+  color: white;
+  margin-top: 0.3em;
+  vertical-align: top;
+  font-family: Gloria Hallelujah;
+  line-height: 19px;
+  cursor: pointer;
+  margin-left: 1em;
+}
+
+.section3 .control-panel .p-button:last-child {
+  background-color: #F09400;
+}
+
+.section3 .result {
+  margin-top: 1em;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+  font-family: Gloria Hallelujah;
+}
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,61 @@
+aside{
+	width:16%;
+	margin-top: 2.3em;
+	font-size: 0.9em;
+	a{
+		text-decoration: none;
+	}
+	form{
+		border-bottom: 1px solid black;
+		padding-bottom: 1em;
+		p{
+			color: brown;
+			margin-bottom: 0.2em;
+		}
+		a{
+			display: block;
+			text-align: right;
+			font-size: 0.9em;
+			margin-top: 0.2em;
+			&:hover{
+					color: black;
+				}
+		}
+		select{
+			display:block;
+			width: 100%;
+		}
+	}
+	ul{
+		border-bottom: 1px solid black;
+		border-top: 1px solid black;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		padding-left: 0;
+		margin-top: 1.5em;
+		span{
+			color: brown;
+			padding-bottom: 0.7em;
+			display: block;
+		}
+		li{
+			padding: 0.5em 0;
+			a{
+				display: block;
+				text-decoration: none;
+				&:hover{
+					color: black;
+				}
+			}
+		}
+	}
+	ul + p{
+		margin: 1em 0;
+		color: brown;
+	}
+	p + a{
+		&:hover{
+			color: black;
+		}
+	}
+}
