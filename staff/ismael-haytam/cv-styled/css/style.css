@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css?family=Bai+Jamjuree');
+
+body {
+    background-color: #fafafa;
+    font-family: 'Bai Jamjuree', sans-serif;
+    color: darkslategray;
+    margin: 0;
+}
+
+/* Header -------------------------- */
+
+.container {
+    padding: 20px;
+}
+
+/* Header -------------------------- */
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background: #455A64;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profile {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+/* About -------------------------- */
+
+.about {
+    background: beige;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: justify;
+}
+
+
+/* Skills -------------------------- */
+
+.info {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.circle {
+    --deg: calc(var(--percent)/100 * 180);
+    --size: 100px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: linear-gradient(0deg, var(--s-color) 50%, lavender 50%);
+    transform: rotate(var(--deg));
+}
+
+.circle::before {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    padding: 3%;
+    content: attr(data-tecno);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    background: Cornsilk content-box;
+    box-sizing: border-box;
+    transform: rotate(calc(var(--deg) * (-1)));
+    line-height: 30px;
+}
+
+.circle::after {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    content: attr(data-percent);
+    font-weight: bold;
+    text-align: center;
+    background-image: linear-gradient(transparent, Cornsilk 60%);
+    transform: rotate(calc(var(--deg) * (-1)));  
+    line-height: 80px;
+}
+
+/* Frameworks -------------------------- */
+
+.bars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bar {
+    background: whitesmoke;
+    height: 20px;
+    width: calc(100% - 40px);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .3);
+}
+
+.bar::after {
+    position: absolute;
+    width: calc(var(--percent) - 115px);
+    line-height: 11px;
+    content: attr(data-framework);
+    color: white;
+    font-weight: bold;
+    padding: 5px 0 5px 20px;
+    border-radius: 10px;
+    background: var(--bar-color);
+}
+
+/* Db -------------------------- */
+
+.db {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.db > li {
+    background: whitesmoke;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);    
+    line-height: 35px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Experience -------------------------- */
+
+.experience {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.grid {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);    
+}
+
+/* Colors -------------------------- */
+
+.gris {
+    background: #fafafa;
+}
+
+.cornsilk {
+    background: Cornsilk;
+}
+
+/* Media -------------------------- */
+
+
+@media screen and (min-width: 592px) {
+    .card {
+        width: 25%;
+        height: 150px;
+        background: white;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);    
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+    .circle {
+        --size: 120px;
+    }
+    .circle::before {
+        line-height: 40px;
+    }
+    .circle::after {
+        line-height: 100px;
+        background-image: linear-gradient(transparent, white 50%);
+    }
+    
+    .db {
+        flex-wrap: nowrap;
+    }
+    .db > li {
+        margin: 10px;
+    }
+    .experience {
+        flex-wrap: wrap;
+    }
+    .grid {
+        background: white;
+        margin: 10px;
+        max-width: 40%;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+      body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .app {
+        position: relative;
+        width: 950px;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, .2);            
+      }
+      header {
+          width: 950px;
+      }
+  }
