@@ -1,9 +1,8 @@
 
+
+// for-each.js
 function forEach(arr, callback){
-    for(var i = 0 ; i<arr.length;i++){
-    
-        callback(arr[i]);
-    }
+    for(var i = 0 ; i<arr.length;i++) callback(arr[i] , i, arr);
 }
 
 
