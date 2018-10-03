@@ -8,17 +8,18 @@ document.querySelector('#sort').addEventListener('click', function() {
 });
 
 function sort(arr) {
-    for (var i = 0; i < arr.length - 1; i++) {
+    var result = slice(arr);
+    for (var i = 0; i < result.length - 1; i++) {
         var min = i;
-        for (var j = i; j < arr.length; j++) {
-            if ('' + arr[j] < '' + arr[min]) {
+        for (var j = i; j < result.length; j++) {
+            if ('' + result[j] < '' + result[min]) {
                 min = j;
             }
         }
 
-        var sorted = arr[i];
-        arr[i] = arr[min];
-        arr[min] = sorted;
+        var sorted = result[i];
+        result[i] = result[min];
+        result[min] = sorted;
     }
-    return arr;
+    return result;
 }
