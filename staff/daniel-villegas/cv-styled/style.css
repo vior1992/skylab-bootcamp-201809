@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+}
+
+main {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    grid-row: 1 / 4;
+    background-color: rgb(204, 200, 200);
+}
+
+body {
+    background-color: rgb(12, 245, 245);
+}
+
+h1 {
+    font-size: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    background-image: linear-gradient(to bottom, rgb(204, 200, 200), rgb(12, 245, 245));
+    color: white;
+}
+
+.section__title {
+    color: red;
+    font-size: 50px;
+    background-image: linear-gradient(to bottom, rgb(12, 245, 245), rgb(204, 200, 200));
+}
+
+.section__info {
+    width: 100%;
+    height: 100%;
+}
+
+.p__text {
+    text-align: center;
+} 
+
+.p__text--studies {
+    text-shadow: 1px 1px rgb(1, 245, 21);
+}
+
+.p__text--experience {
+    text-shadow: 1px 1px yellow;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main__subtitles {
+    border-bottom: 6px solid red;
+    text-align: center;
+    font-size: 100%;    
+}
+
+.main__subtitles--information {
+    text-shadow: 2px 2px grey;
+}
+
+.main__subtitles--other {
+    text-shadow: 2px 2px white;
+}
+
+.main__list {
+    font-size: 100%;
+    text-align: left;
+}
+
+.main__list--circle {
+    list-style-type: circle;
+}
+
+.main__list--square {
+    list-style-type: square;
+}
+
+.center-pic {
+    display: flex;
+    justify-content: center;
+}
+
+.pic {
+    background-image: url("https://i.pinimg.com/564x/d6/c4/b7/d6c4b72aaeb98e1d54fbce780f1ce785.jpg");
+    background-position: center; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 150px;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 100px;
+
+}
+
+
+a.foot {
+    animation-name: change;
+    animation-duration: 1s;
+    animation-delay: 1;
+    animation-iteration-count: infinite;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@keyframes change {
+    0%   {background-color:gainsboro;}
+    25%  {background-color:orange;}
+    50%  {background-color:red;}
+    75%  {background-color:orange;}
+    100% {background-color:gainsboro;}
+}
+
+@media screen and (min-width: 400px) {
+    body {
+        background-color: lightgreen;
+    }
+
+    main {
+        background-color: rgb(204, 200, 200);
+    }
+
+    footer {
+        background-image: linear-gradient(to bottom, rgb(204, 200, 200), lightgreen);
+    }
+
+    .section__title {
+        background-image: linear-gradient(to bottom, lightgreen, rgb(204, 200, 200));
+    }
+}
+
+@media screen and (min-width: 800px) {
+    body {
+        background-color: rgb(0, 0, 0);
+    }
+
+    main {
+        background-color: rgb(204, 200, 200);
+    }
+
+    footer {
+        background-image: linear-gradient(to bottom, rgb(204, 200, 200), rgb(0, 0, 0));
+    }
+
+    .section__title {
+        background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(204, 200, 200));
+    }
+
+    .container {
+        flex-wrap: nowrap;
+    }
+
+
+    .main__list {
+        box-shadow: 1px 1px 1px 1px white;
+        font-size: 100%;
+        text-align: left;
+        min-height: 100px;
+         
+    }
+
+    .p__text {
+        min-height: 100px;
+    }
+
+    .p__text--studies {
+        box-shadow: 1px 1px 1px 1px white;
+    }
+    
+    .p__text--experience {
+        box-shadow: 1px 1px 1px 1px white;
+    }
+
+
+    
+
+
+}
