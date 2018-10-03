@@ -8,6 +8,15 @@ header {
   padding: 12px 15px;
   margin: -2px;
   border-radius: 10px 0px 0px 10px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.signupfree {
+  padding: 12px 15px;
+  background-color: #2E3233;
+  border-radius: 10px;
+  color: white;
+  border: none;
 }
 
 .li2 {
@@ -15,6 +24,7 @@ header {
   background-color: #DEF3F7;
   padding: 12px 15px;
   margin: -2px;
+  font-family: "Work Sans", sans-serif;
 }
 
 .li3 {
