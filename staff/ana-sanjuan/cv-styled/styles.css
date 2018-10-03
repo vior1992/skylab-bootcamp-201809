@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+
+body {
+    box-sizing: border-box;
+    margin: 5%;
+    background-color:rgb(210, 222, 230);
+    font-family: 'Crimson Text', serif;
+    color:#212121;
+}
+
+.section {
+    margin: 4% 2%;
+    box-shadow: 10px 10px 5px 2px #0097A7;
+    padding: 3%;
+    background-color: #00BCD4;
+    border-radius: 10px;
+}
+
+
+header {
+    text-align: right;
+}
+
+.introduction {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+.introduction__list{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    
+}
+.introduction__list li {
+    display: inline;
+}
+
+.intro__container{
+    margin: 2%;
+}
+
+.header__title, .footer__text {
+    color: #0097A7;
+}
+
+.section__title {
+    padding: 0%;
+    color:  #CDDC39;
+}
+
+footer {
+    margin-left: 3%;
+}
+
+.section__ulist {
+    list-style-type: none;
+    margin: 0;
+    padding: 2%;
+}
+
+.checked {
+    color: yellow;
+}
+
+.div__item{
+    border-radius: 10px;
+    background-color: #CDDC39;
+    margin: 1% 0%;
+    color:#212121;
+    padding-left: 2%;
+    padding-right: 1%;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up)*/
+@media only screen and (min-width: 768px) {
+
+    .first-row {
+        display: flex;
+        justify-content: space-between;  
+    }
+
+    .nd-row {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .skills {
+        flex: 50%;
+    }
+
+    .experience {
+        flex: 50%;
+    } 
+
+    .hobbies {
+       min-width: 28%;
+    }
+
+    .education {
+        min-width: 30%;
+    }
+} 
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) { 
+    .first-row {
+        display: flex;
+        justify-content: space-between; 
+    }
+
+    .nd-row {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;  
+    }
+
+}
+
+
+
