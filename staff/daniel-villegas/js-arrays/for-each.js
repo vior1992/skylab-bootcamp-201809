@@ -1,5 +1,7 @@
 function forEach(arr, callback) {
+    
     if (typeof arr !== "number") throw Error ("arr is not a number");
+    
 
     if (!arr.length) throw Error('arr is empty');
 
