@@ -1,10 +1,10 @@
 
-function forEach(array,callback){
+function forEach(arr,callback){
 
-    if (!(array instanceof array)) throw Error('array is not valid');
+    if (!(arr instanceof Array)) throw Error('array is not valid');
     
 
-    for (var i=0; i<array.length; i++){
-        callback(array[i]);
+    for (var i=0; i<arr.length; i++){
+        callback(arr[i], i, arr);
     }
 }
