@@ -1,0 +1,112 @@
+body{
+    font-family: 'K2D';
+    background-color: #f4efef;
+}
+header{
+    padding:10px;
+    text-align:center;
+}
+img{
+    width: 150px;
+    height:150px;
+}
+
+footer{
+    text-align:center;
+    font-size:75%;
+}
+
+.leftcontainer{
+   background-color:rgb(115, 115, 141) ; 
+   text-align:center;
+   border-radius:10px;
+}
+
+.rightcontainer{
+   background-color: rgb(240, 235, 221) ; 
+   text-align:justify;
+   border-radius:10px;
+   padding-right:5px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: auto;
+    padding: 10px;
+    width: auto;
+  }
+
+  /* For mobile phones: */
+    [class*="item"] {
+        grid-column: 2 / 12;
+}
+
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    
+    .item1 {
+        grid-column: 2 / 10;
+    }
+    .item2 {
+        grid-column: 10 / 11;
+    }
+    .item3 {
+        grid-column: 2 / 4;
+        text-justify: auto;
+    }
+    .item4 {
+        grid-column: 4 / 11;
+    }
+
+    .item5{
+        grid-column: 2 / 6;
+    }
+
+    .item6{
+        grid-column: 7 / 11;
+    }
+
+    .leftcontainer{
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .rightcontainer{
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}
+
+  .item1 {
+    background-color: rgb(190, 198, 204);
+    border: 1px solid black;
+  }
+
+  .item2 {
+    background-color: white;
+    border: 1px solid black;
+    text-align:center;
+  }
+
+  .item3{
+    border: 1px solid black;
+
+  }
+
+  .item4{
+    border: 1px solid black;
+
+  }
+
+  .item5 {
+      border: 1px solid black;
+      border-radius:10px;
+      background-color: rgb(240, 235, 221) ;
+  }
+
+  .item6 {
+    border: 1px solid black;
+    border-radius:10px;
+    background-color: rgb(240, 235, 221) ;
+}

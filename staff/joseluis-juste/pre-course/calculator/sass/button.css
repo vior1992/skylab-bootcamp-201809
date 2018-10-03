@@ -1,0 +1,39 @@
+.button {
+  color: white;
+  background: black;
+  width: 44px;
+  height: 32px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+  border-style: outset;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:active {
+  -webkit-transform: translatey(5px);
+          transform: translatey(5px);
+}
+
+.thin-button {
+  width: 42px;
+  height: 26px;
+  line-height: 23px;
+}
+
+.mas {
+  height: 92%;
+  line-height: 78px;
+}
+
+.orange {
+  background: #DD8140;
+}
+/*# sourceMappingURL=button.css.map */
