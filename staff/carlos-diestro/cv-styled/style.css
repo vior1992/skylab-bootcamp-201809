@@ -54,11 +54,7 @@ footer {
   margin-left: 1em;
 }
 
-.name h1 {
-  margin: 0.5rem 0;
-}
-
-.name h3 {
+.name h1, .name h3 {
   margin: 0.5rem 0;
 }
 
