@@ -3,10 +3,10 @@ Error: Undefined variable: "$footer__letters_color".
         on line 9 of C:/Users/Paco/bootcamp/collab/skylab-bootcamp-201809/staff/francisco-fernandez/mailchimp/sass/footer.sass
 
 4:         
-5: .footer__links
+5: .footer
 6:     display: flex
 7: 
-8: .footer__links__list
+8: .footer__links
 9:     color: $footer__letters_color
 10:     width: 25%
 11:     margin-left: 40px
@@ -62,4 +62,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$footer__letters_color\".\A         on line 9 of C:/Users/Paco/bootcamp/collab/skylab-bootcamp-201809/staff/francisco-fernandez/mailchimp/sass/footer.sass\A \A 4:         \A 5: .footer__links\A 6:     display: flex\A 7: \A 8: .footer__links__list\A 9:     color: $footer__letters_color\A 10:     width: 25%\A 11:     margin-left: 40px\A 12: \A 13: .list_title\A 14:     color: white"; }
+  content: "Error: Undefined variable: \"$footer__letters_color\".\A         on line 9 of C:/Users/Paco/bootcamp/collab/skylab-bootcamp-201809/staff/francisco-fernandez/mailchimp/sass/footer.sass\A \A 4:         \A 5: .footer\A 6:     display: flex\A 7: \A 8: .footer__links\A 9:     color: $footer__letters_color\A 10:     width: 25%\A 11:     margin-left: 40px\A 12: \A 13: .list_title\A 14:     color: white"; }

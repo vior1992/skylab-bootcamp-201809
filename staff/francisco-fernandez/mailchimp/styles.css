@@ -64,7 +64,7 @@ header {
 .paragraph {
   width: 500px; }
 
-.box, .box__button {
+.box, .box__button, .box__button2 {
   text-align: center;
   color: white;
   border-radius: 7px; }
@@ -75,6 +75,11 @@ header {
   padding-left: 30px;
   padding-right: 30px;
   color: white; }
+
+.box__button2 {
+  background-color: #E95C41;
+  padding: 15px 60px;
+  line-height: 48px; }
 
 .nav-options {
   padding-left: 0px; }
@@ -92,14 +97,6 @@ header {
   padding: 2px 15px;
   border-right: 1px solid grey;
   display: inline-block; }
-
-.signup__button2 {
-  background-color: #E95C41;
-  color: white;
-  padding: 15px 60px;
-  border-radius: 7px;
-  text-align: center;
-  line-height: 48px; }
 
 main {
   background-image: url("./images/noisepattern.png"); }
