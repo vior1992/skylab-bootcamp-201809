@@ -5,18 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>About</title>
+    <style>
+        body {
+    background-color: rgb(114, 196, 92);
+    font-family: arial;
+  }
+
+  .container {
+    margin: 0;
+    width: 900px;
+  }
+
+  .window {
+    width: 500px;
+    height: 280px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 2px 10px 4px rgb(76, 131, 12);
+    padding: 60px 0px;
+
+    /*para centrarlo enmedio de la página:*/
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+  }
+
+  input {
+    display: block;
+    margin: auto;
+    width: 350px;
+    height: 60px;
+    margin-bottom: 20px;
+    background-color: #F2F2F2;
+    border: none; /*borramos los que salen por defecto!*/
+  }
+
+  /*para modificar placeholder):*/
+  *::-webkit-input-placeholder {
+  			    color: #C9C9C9;
+  			    padding: 0 20px;
+  			    font-size: 180%;
+  			}
+  			*:-moz-placeholder {
+  			    /* Firefox 4-18 */
+  			    color: #C9C9C9;
+  			    padding: 0 20px;
+  			    font-size: 180%;
+  			}
+  			*::-moz-placeholder {
+  			    /* Firefox 19+ */
+  			    color: #C9C9C9;
+  			    padding: 0 20px;
+  			    font-size: 180%;
+  			}
+  			*:-ms-input-placeholder {
+  			    /* IExplorer 10+ */
+  			    color: #C9C9C9;
+  			    padding: 0 20px;
+  			    font-size: 180%;
+  			}
+
+  /* para el submit: */
+  input[type=submit] {
+    background-color: rgb(5, 172, 47);
+    color: white;
+    font-size: 130%;
+    font-weight: lighter;
+    letter-spacing: 1px;
+  }
+
+  p {
+    color: rgb(204, 204, 204);
+    text-align: center;
+  }
+
+  span {
+    color: rgb(114, 196, 92);
+  }
+
+    </style>
 </head>
-<body>
+<body class="container">
     <header>
         <h1>This is About page</h1>
     </header>
-    <section>
+    <main class="window">
         <h1>Tittle of section</h1>
         <h2>subtitle of section</h2>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque tenetur architecto dolorem</p>
         <img src="#" alt="img about about">
         <a href="#">Go to our FB for more info</a>
-    </section>
+    </main>
     <footer>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tenetur quod</p>
     </footer>
