@@ -14,10 +14,6 @@ main::after{
     display: block;
 }
 
-div {
-    /* border: 1px solid #666; */
-}
-
 .main__all{
     border: solid rgb(83, 82, 82);
     border-width: 20px 0 0 0;
