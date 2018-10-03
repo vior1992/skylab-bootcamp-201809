@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "digital";
+  src: url("../fonts/Digital.ttf") format("truetype"); }
+@-webkit-keyframes rotating {
+  from {
+    transform: rotateY(0deg); }
+  to {
+    transform: rotateY(360deg); } }
+@-webkit-keyframes blink {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+.wrapper {
+  margin-top: 1em; }
+
+section {
+  display: flex;
+  justify-content: space-between;
+  width: 92%;
+  margin: 0 auto; }
+
+.resp_ok:before {
+  background-color: #2aff00 !important; }
+
+.resp_nok:before {
+  background-color: #ff0008 !important; }
+
+.hide_card {
+  visibility: hidden; }
+
+.won {
+  color: green !important; }
+
+.rotation {
+  animation: rotating 2s linear infinite; }
+
+.few_time {
+  color: red !important; }
+
+.blink {
+  animation: blink 0.5s linear infinite; }
+
+/*# sourceMappingURL=main.css.map */
