@@ -7,7 +7,6 @@ function unshift(arr) {
         temp[temp.length] = arr[i];
     }
     for (var i = 0; i < temp.length; i++) {
-        console.log(temp[i], arr[i], i)
         arr[i] = temp[i];
     }
     return temp.length;
