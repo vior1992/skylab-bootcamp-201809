@@ -1,4 +1,5 @@
 function from(element, f){
+
     newArray = [];
     if((typeof element==="string" || (typeof element ==="object" && typeof element.length==="number"))&&arguments.length===1)
     {

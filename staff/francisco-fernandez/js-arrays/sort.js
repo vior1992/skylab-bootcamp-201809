@@ -1,4 +1,9 @@
 function sort(arr){
+
+    if(!(arr instanceof Array)) throw Error ('array is not valid');
+
+    if(!arr.length) throw Error ('array is empty');
+
     var newArray = [];
     for(var i = 0; i < arr.length; i++){
         newArray[i]=arr[i];
