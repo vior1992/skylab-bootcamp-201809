@@ -1,5 +1,5 @@
 console.log('DEMO of');
 
-of(7); // [7] 
+of(p); // [7] 
 of(1, 2, 3); // [1, 2, 3]
-of(undefined); // [undefined]
+of(1, 2, 4, p); // [undefined]
