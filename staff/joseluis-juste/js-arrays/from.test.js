@@ -27,7 +27,7 @@ tests.push(function () {
     var nums = [1, 2, 3];
 
     try {
-        from(nums);
+        from(nums,3);
     } catch (err) {
         error = err;
     }
