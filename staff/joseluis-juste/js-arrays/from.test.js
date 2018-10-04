@@ -31,8 +31,8 @@ tests.push(function () {
     } catch (err) {
         error = err;
     }
-    if (error)
-        if (error.message !== 'callback is not a function') throw Error('error message is not correct');
+    if (!error) throw Error('has not failed');
+    if (error.message !== 'callback is not a function') throw Error('error message is not correct');
 
 });
 
@@ -56,13 +56,21 @@ tests.push(function () {
 tests.push(function () {
     console.log('Not allowed empty positions in the output');
 
-    var error;
-    var nums = [1,2,3];
+    var nums = [1,2,,3];
     var res;
+    var error;
 
-    res = from(nums);
+    try{
+        res = from(nums);
+        if (res.some(function(x,i,arr){ return !x})) throw Error('Empty value found in array');
+    }catch(err){
+        error = err;
+    }
+    if (!error) throw Error('has not failed');
 
-    if (res.some(function(x,i,arr){ return !x})) throw Error('Empty value found in array');
+    if (error.message !== 'Empty value found in array') throw Error('error message is not correct');
+
+    
 
 });
 
