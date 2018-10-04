@@ -28,14 +28,14 @@ tests.push(function () {
     var error;
 
     try {
-        forEach(nums);
+        forEach(nums); // === forEach(nums, undefined);
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'callback is not a function') throw Error('error message is not correct');
+    if (error.message !== 'undefined is not a function') throw Error('error message is not correct');
 });
 
 tests.push(function () {
