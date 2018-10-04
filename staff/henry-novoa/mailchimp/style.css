@@ -67,6 +67,9 @@ input[type=text] {
   margin: auto;
   text-decoration: none;
   font-size: 30px;
+  border: 1px solid gray;
+  outline: 0;
+  cursor: pointer;
 }
 .header__logo-button__button--secondary {
   background-color: red;
