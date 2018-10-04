@@ -2,10 +2,11 @@
 
 var safeBox = {
     saveSecret: function(secret, password) {
-        // TODO
+        if (typeof password === 'undefined') throw Error('invalid password');
+        this.secret = {[password]:secret};
     },
 
     retrieveSecret: function(password) {
-        // TODO
-    }
+        return this.secret[password];
+    },
 }
