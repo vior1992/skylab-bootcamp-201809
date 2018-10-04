@@ -1,12 +1,12 @@
-console.log("TEST find")
+console.log("TEST FIND. This method find the first element that satisfy the provide test function. If not, return undef.")
 
 var tests = [];
 
 //TEST 1
 
-console.log("Should give fail if callback is not defined");
-
 tests.push(function (){
+
+    console.log("Should give fail if callback is not defined");
 
     var nums = [5, 12, 8, 130, 44];
 
@@ -20,16 +20,16 @@ tests.push(function (){
 
     if (!respuesta) throw Error ("Should give error, callback not defined");
 
-    if (respuesta.message !== ("callback is not a function")) throw Error ("Fail on error message, is not the same");
+    if (respuesta.message !== ("Callback isn't a function")) throw Error ("Fail on error message, is not the same");
 
 });
 
 
 //TEST2
 
-console.log("Should return undefined if not satisfy the provided testing function");
-
 tests.push(function (){
+
+    console.log("Should return undefined if not satisfy the provided testing function");
 
     var nums = [5, 1, 8, 3, 4];
 
@@ -43,9 +43,9 @@ tests.push(function (){
 
 //TEST3
 
-console.log("Should return error for empty array");
-
 tests.push(function (){
+
+    console.log("Should return error for empty array");
 
     var nums = [];
 
@@ -65,9 +65,9 @@ tests.push(function (){
 
 //TEST4 
 
-console.log("Should return 12");
-
 tests.push(function (){
+
+    console.log("Should return 12");
    
     var nums = [5, 12, 8, 130, 44];
 
@@ -81,3 +81,5 @@ tests.push(function (){
 });
 
 testSuite(tests);
+
+//TEST5
