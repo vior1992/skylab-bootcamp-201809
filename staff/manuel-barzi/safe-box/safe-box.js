@@ -2,10 +2,12 @@
 
 var safeBox = {
     saveSecret: function(secret, password) {
-        // TODO
+        return function (){
+            
+        }
     },
 
     retrieveSecret: function(password) {
-        // TODO
+        // TO DO
     }
 }
