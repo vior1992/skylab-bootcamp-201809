@@ -3,8 +3,8 @@ $signup__button__background-color:#2F413B
 $signup__button__background-color--secondary: black 
 $header__background-color: #46BDD5
 
-
-
+body
+    margin: 0
 //--Header--//
 header
     background-color: $header__background-color
@@ -12,7 +12,7 @@ header
 .header__log-in
     display: grid
     grid-template-columns: 10% 1fr 10%
-.header__log-in__text
+.log-in__text
     grid-column-start: 2
     justify-self: end
     color: white    
@@ -34,6 +34,12 @@ li
 .header__logo-button
     display: flex
     flex-direction: row
+
+.search
+    
+    background-image: url("./images/search.png")
+    background-repeat: no-repeat
+    background-position: 95% 3px    
 
 
 
@@ -62,6 +68,7 @@ input[type=text]
 
 
 .header__logo-button__button
+    position: relative
     color: $signup__button__color
     background-color: $signup__button__background-color
     border-radius: 15px
@@ -74,10 +81,20 @@ input[type=text]
     border: 1px solid gray
     outline: 0
     cursor: pointer
+    &::before
+        position: absolute
+        top: 0
+        left: 0
+        border-radius: 15px
+        background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%)
+        content: ""
+        height: 100%
+        width: 100%
  
+    
     &--secondary
         @extend .header__logo-button__button
-        background-color: red
+        background-color: #ff6b58
 
 
    

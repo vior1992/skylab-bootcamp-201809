@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 header {
   background-color: #46BDD5;
 }
@@ -32,6 +36,12 @@ li {
   flex-direction: row;
 }
 
+.search {
+  background-image: url("./images/search.png");
+  background-repeat: no-repeat;
+  background-position: 95% 3px;
+}
+
 .header__nav {
   display: flex;
   flex-direction: row;
@@ -58,6 +68,7 @@ input[type=text] {
 }
 
 .header__logo-button__button, .header__logo-button__button--secondary {
+  position: relative;
   color: white;
   background-color: #2F413B;
   border-radius: 15px;
@@ -71,8 +82,18 @@ input[type=text] {
   outline: 0;
   cursor: pointer;
 }
+.header__logo-button__button::before, .header__logo-button__button--secondary::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2) 50%, transparent 50%);
+  content: "";
+  height: 100%;
+  width: 100%;
+}
 .header__logo-button__button--secondary {
-  background-color: red;
+  background-color: #ff6b58;
 }
 
 .header__2nd-half {
