@@ -18,6 +18,7 @@ body {
 .container {
   width: 100%;
   max-width: 1200px;
+  min-width: 1200px;
   margin: 0 auto;
 }
 
@@ -95,6 +96,9 @@ body {
   top: 12%;
   left: 55%;
   position: absolute;
+  grid-row: 3/-1;
+  grid-column: 8/-1;
+  align-items: center;
   width: 30%;
   color: #464545;
 }
@@ -123,7 +127,8 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 2.3rem;
-  position: absolute;
+  transform: translateY(-50px);
+  margin-left: 60px;
   bottom: 0;
   left: 4.8rem;
 }
@@ -183,6 +188,8 @@ body {
 .footer .links {
   display: flex;
   justify-content: space-around;
+  width: 90%;
+  margin: auto;
 }
 .footer .links * {
   display: flex;
