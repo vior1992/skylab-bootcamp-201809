@@ -1,0 +1,16 @@
+html {
+  margin: 0;
+  height: 100vh;
+  font-family: arial; }
+
+body {
+  margin: 0;
+  height: 100vh; }
+
+p {
+  margin: 0; }
+
+* {
+  overflow: hidden; }
+
+/*# sourceMappingURL=reset.css.map */
