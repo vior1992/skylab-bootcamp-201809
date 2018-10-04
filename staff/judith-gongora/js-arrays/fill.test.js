@@ -2,94 +2,50 @@ console.log('TEST fill');
 
 var tests = [];
 
+tests.push(function () {
+    console.log('should succeed on modification');
 
-// tests.push(function () {
-//     console.log('should fail on non-array and non-callback');
+    var nums = [1, 2, 3];
 
-//     var error;
+    var res = fill(nums, 6);
 
-//     try {
-//         forEach();
-//     } catch (err) {
-//         error = err;
-//     }
+    forEach(res, function (val, index) {
+        if (res[index] !== 6) throw Error('element at index ' + index + ' does not match with 6');
+    });
+});
 
-//     if (!error) throw Error('has not failed');
+tests.push(function () {
+    console.log('should fail on non-array and non-elements');
+    
+    var error;
 
-//     if (error.message !== 'array is not valid') throw Error('error message is not correct');
-// });
+    try {
+        fill();
+    } catch (err) {
+        error = err;
+    }
 
-// tests.push(function () {
-//     console.log('should fail on non-array');
+    if (!error) throw Error('has not failed');
 
-//     var arr;
-//     var error;
+    if (error.message !== 'array is not valid') throw Error('error message is not correct');
+});
 
-//     try {
-//         forEach(arr, function () { });
-//     } catch (err) {
-//         error = err;
-//     }
+tests.push(function () {
+    console.log('should fail on non-element');
 
-//     if (!error) throw Error('has not failed');
+    var error;
 
-//     if (error.message !== 'array is not valid') throw Error('error message is not correct');
-// });
+    var nums = [1, 2, 3];
 
-// // very rare test! redundant...
+    try {
+        fill(nums);
+    } catch (err) {
+        error = err;
+    }
 
-// tests.push(function () {
-//     console.log('should succeed on iterating an array or characters and multiplying them for a number');
+    if (!error) throw Error('has not failed');
 
-//     var chars = ['a', 'b', 'c'];
-
-//     var res = [];
-
-//     forEach(chars, function (num, index) {
-//         res[index] = num * 2;
-//     });
-
-//     if (res.length !== chars.length) throw Error('result length is not equal to characters length');
-
-//     res.forEach(function (val, index) {
-//         if (!isNaN(val)) throw Error('element at index ' + index + ' does not match NaN');
-//     });
-// });
-
-// tests.push(function () {
-//     console.log('should succeed on iterating an array and passing all specified data to callback');
-
-//     var chars = ['a', 'b', 'c'];
-
-//     var elements = [];
-//     var indexes = [];
-//     var arrays = [];
-
-//     forEach(chars, function (element, index, array) {
-//         elements.push(element);
-        
-//         indexes.push(index);
-
-//         arrays.push(array);
-//     });
-
-//     if (elements.length !== chars.length) throw Error('elements length is not equal to chars length');
-
-//     if (indexes.length !== chars.length) throw Error('indexes length is not equal to chars length');
-
-//     if (arrays.length !== chars.length) throw Error('arrays length is not equal to chars length');
-
-//     elements.forEach(function (elem, index) {
-//         if (elem !== chars[index]) throw Error('element at index ' + index + ' does not match ' + chars[index]);
-//     });
-
-//     indexes.forEach(function (i, index) {
-//         if (i !== index) throw Error('index at index ' + index + ' does not match ' + index);
-//     });
-
-//     arrays.forEach(function(array) {
-//         if (array !== chars) throw Error('array does not match original one');
-//     });
-// });
+    if (error.message !== 'element is empty') throw Error('error message is not correct');
+});
 
 testSuite(tests);
