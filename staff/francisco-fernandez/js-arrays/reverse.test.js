@@ -93,6 +93,42 @@ tests.push(function (){
 
 });
 
+//test error 5
+tests.push(function (){
+    console.log('should fail if the argument is a boolean');
+    var error;
+
+    try {
+        reverse(true);
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== 'the argument passed is a boolean should be an array') throw Error('error message is not correct');
+
+
+});
+
+//test error 6
+tests.push(function (){
+    console.log('should fail if the argument is a symbol');
+    var error;
+    var sym2 = Symbol("foo");
+    try {
+        reverse(sym2);
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== 'the argument passed is a symbol should be an array') throw Error('error message is not correct');
+
+
+});
+
 
 // test suite
 
