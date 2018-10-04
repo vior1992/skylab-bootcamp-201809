@@ -1,4 +1,11 @@
 function sort(arr) {
+    if (arr===undefined) {
+        throw Error('array is not valid');
+    }
+    if (!arr.length) {
+        throw Error ('array is empty');
+    }
+    
     for (var i=0; i<arr.length;i++) {
         arr[i] = arr[i].toString();
     }

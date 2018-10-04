@@ -1,4 +1,17 @@
     function includes(arr, elem, index) {
+        if (elem===undefined) {
+            throw Error('element is not defined');
+        }
+        if (typeof elem === 'function') {
+            throw Error('element is a function, must be a string or number or object or boolean');
+        }
+
+        if (elem.trim()==='') {
+            throw Error('element is blank');
+        }
+        if (arr.length===0) {
+            throw Error('array is empty');
+        }
         if (index===undefined) {
             var i=0;
         }

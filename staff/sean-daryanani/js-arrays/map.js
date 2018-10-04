@@ -5,3 +5,4 @@ function map(arr, callback) {
     }
     return newArr;
 }
+

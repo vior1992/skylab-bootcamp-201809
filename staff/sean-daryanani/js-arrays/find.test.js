@@ -81,3 +81,5 @@ tests.push(function (){
     if (respuesta !== 12) throw Error ("The output should be 12");
 
 });
+
+testSuite(tests);
