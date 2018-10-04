@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Sans");
-.upperheader__logo, .upperheader__nav__ulist {
+.upperheader__logo, .nav__ulist {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -74,7 +74,7 @@ header {
   text-decoration: none;
 }
 
-.upperheader__nav__ulist {
+.nav__ulist {
   background-color: #CFEEF4;
   list-style-type: none;
   -ms-flex-pack: distribute;
@@ -93,23 +93,22 @@ header {
           justify-content: flex-end;
 }
 
-.upperheader__nav__ulist li {
+.nav__ulist a {
+  text-decoration: none;
+}
+
+.nav__ulist li:last-child {
+  border: none;
+}
+
+.nav__li {
   border-right: 1px #adc8ca solid;
   height: 50px;
   line-height: 50px;
-  text-align: center;
   padding-left: 5px;
   padding-right: 20px;
   text-align: left;
   font-size: 15px;
-}
-
-.upperheader__nav__ulist a {
-  text-decoration: none;
-}
-
-.upperheader__nav__ulist li:last-child {
-  border: none;
 }
 
 .upperheader__input {
@@ -190,7 +189,7 @@ main {
   margin: 0% 3% 2% 3%;
 }
 
-.main-section__button {
+.news__button {
   background-color: #3E3E36;
   display: block;
   width: 100%;
@@ -200,7 +199,7 @@ main {
   border-radius: 5px;
   background: #3E3E36 url(mailchimp/images/horizonal_arrow.png) left no-repeat;
   background-position: 90% 8px;
-  padding-righ: 5%;
+  padding-right: 5%;
   cursor: pointer;
   outline: 0;
 }
@@ -209,7 +208,7 @@ main {
   width: 22%;
 }
 
-.main-section__p {
+.news__p {
   font-size: 12px;
 }
 
@@ -231,13 +230,13 @@ footer {
       justify-content: space-around;
 }
 
-.upper-footer h4 {
+.upper-footer__h4 {
   color: white;
   margin-left: 26%;
   margin-bottom: 0%;
 }
 
-.upper-footer ul {
+.upper-footer__ul {
   list-style-type: none;
   margin-top: 3%;
 }
