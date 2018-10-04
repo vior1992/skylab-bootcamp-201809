@@ -156,7 +156,7 @@ nav .button {
   background-color: #191814;
 }
 
-footer {
+.links-footer {
   padding: 30px;
   display: flex;
   flex-direction: row;
@@ -178,4 +178,10 @@ footer {
   display: block;
   color: #575652;
   text-decoration: none;
+}
+
+.copy {
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0 40px;
 }
