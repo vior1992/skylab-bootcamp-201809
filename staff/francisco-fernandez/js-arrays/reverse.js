@@ -4,7 +4,7 @@ function reverse (arr){
 
     if (typeof arr == 'string') throw Error ('the argument passed is a string should be array');
     
-    if (!(arr instanceof Array)) throw Error ('array is not valid');
+    if (!(arr instanceof Array)) throw Error ('the argument is not an array');
 
     if (!arr.length) throw Error ('the array is empty');
 

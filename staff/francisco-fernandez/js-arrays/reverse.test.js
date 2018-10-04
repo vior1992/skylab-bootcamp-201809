@@ -26,14 +26,14 @@ tests.push(function () {
     var error;
 
     try {
-        reverse([]);
+        reverse();
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'array is not valid') throw Error('error message is not correct');
+    if (error.message !== 'the argument is not an array') throw Error('error message is not correct');
 });
 
 //test error 2
