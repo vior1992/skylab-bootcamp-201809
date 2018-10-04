@@ -20,6 +20,23 @@ sortTests.push(function () {
 });
 
 sortTests.push(function () {
+    console.log('should fail on empty array');
+
+    var arr = [];
+    var error;
+
+    try {
+        sort(arr);
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== 'array is empty') throw Error('error message is not correct');
+});
+
+sortTests.push(function () {
     console.log('should not modify the original array');
 
     var arr = [1, 211, 98, 3];
