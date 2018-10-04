@@ -54,23 +54,17 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('Not allowed empty positions in the input array');
+    console.log('Not allowed empty positions in the output');
 
     var error;
-    var nums = [1,2, ,3];
-    
-    try {
-        from(nums);
-    } catch (err) {
-        error = err;
-    }
+    var nums = [1,2,3];
+    var res;
 
-    if (!error) throw Error('has not failed');
+    res = from(nums);
 
-    //if (error.message !== 'Empty value found in array') throw Error('error message is not correct');
- 
+    if (res.some(function(x,i,arr){ return !x})) throw Error('Empty value found in array');
+
 });
-
 
 
 testSuite(tests);

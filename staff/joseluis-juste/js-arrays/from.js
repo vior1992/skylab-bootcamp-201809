@@ -15,7 +15,5 @@ function from(arr, callback){
         }
        
     }
-    if (output.some(function(x,i,arr){ return !x})) throw Error('Empty value found in array');
-
     return output;
 }
