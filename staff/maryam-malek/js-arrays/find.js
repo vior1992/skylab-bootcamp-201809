@@ -1,12 +1,8 @@
+
 function find(arr, callback) {
+    if (!(arr instanceof Array)) throw Error (arr + ' is not an array');
+
+    if (typeof callback !== 'function') throw Error (callback + ' is not a function')
     
-    if(typeof callback !== 'function') throw Error (callback + ' is not a function')
-    
-    var found = undefined;
-    for(i=arr.length; i>0; i--){
-        if(callback(arr[i])){
-            found = arr[i];
-        }
-    }
-    return found;
+    for (var i = 0; i < arr.length; i++) if (callback(arr[i])) return arr[i];
 }
