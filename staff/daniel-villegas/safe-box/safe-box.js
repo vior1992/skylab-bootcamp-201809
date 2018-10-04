@@ -1,27 +1,40 @@
 // safe-box.js
+var safeBox;
 
-var safeBox = {
-     
-    saveSecret: function(secret, password) {
-        var mySecret = secret;
-        var myPassword = password;
-        console.log(mySecret, myPassword)
-    },
+(function() {
 
-    retrieveSecret: function(password) {
-        var pass = this.myPassword;
-        if (pass !== password){
-            throw Error ("Incorrect password")
-            
-        } else {
-            
-            
+    var _secret;
+    var _password;
+
+    safeBox = {
+        saveSecret: function (secret, password) {
+            if (typeof secret === 'string') throw Error ('invalid secret');
+
+            if (!secret.lenth) throw Error ('invalid secret');
+
+            if (!secret.trim().lentgh) throw Error('invalid secret')
+
+            if (typeof password === 'string') throw Error ('invalid password');
+
+            if (!password.lenth) throw Error ('invalid password');
+
+            if (!password.trim().lentgh) throw Error('invalid password')
+
+            _secret = secret;
+            _password = password;
+        
+        },
+
+        retrieveSecret: function(password) {
+            if (password === _password)
+                return _secret;   
+                
         }
-    }
-}
+    
+    };
 
-console.log(safeBox.saveSecret("my secreeeeeeeeeeet", 1234));
-console.log(safeBox.retrieveSecret(1234));
+})
+
 
 
 
