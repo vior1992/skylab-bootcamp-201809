@@ -5,7 +5,7 @@ function safeBoxHandler() {
     var _password;
     var safeBox = {
         saveSecret: function (secret, password) {
-            if (!password || password.trim().length <= 0) throw Error('invalid password');
+            if (!password || !password.trim().length) throw Error('invalid password');
             _secret = secret;
             _password = password;
         },
@@ -14,7 +14,6 @@ function safeBoxHandler() {
             if (password === _password) {
                 return _secret;
             }
-            throw Error('invalid password');
         },
     };
     return safeBox;
