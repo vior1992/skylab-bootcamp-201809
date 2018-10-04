@@ -1,4 +1,10 @@
 function slice(arr, start, end) {
+
+    if (!(arr instanceof Array)) throw Error('array is not valid');
+    if (typeof start!=="number" && typeof start!=="undefined") throw Error('start is not valid');
+    if (typeof end!=="number" && typeof end!=="undefined") throw Error('end is not valid');
+
+
     var temp = [],
         count = 0;
     //comprobamos si hay end
@@ -31,7 +37,7 @@ function slice(arr, start, end) {
                 end = start;
             }
             count = -end - 1;
-            for (var i = start; i >= 0; i--) {
+            for (var i = start; i > 0; i--) {
                 if (start + end == i) {
                     break;
                 }

@@ -21,7 +21,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should fail on non-function callback');
+    console.log('should fail on non-function f');
 
     var nums = [1, 2, 3];
 
@@ -35,11 +35,11 @@ tests.push(function () {
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'callback is not a function') throw Error('error message is not correct');
+    if (error.message !== 'f is not a function') throw Error('error message is not correct');
 });
 
 tests.push(function () {
-    console.log('should fail on non-array and non-callback');
+    console.log('should fail on non-array and non-f');
 
     var error;
 
@@ -92,7 +92,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should succeed on iterating an array and passing all specified data to callback');
+    console.log('should succeed on iterating an array and passing all specified data to f');
 
     var chars = ['a', 'b', 'c'];
 
