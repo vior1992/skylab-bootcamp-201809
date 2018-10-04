@@ -9,14 +9,3 @@ function concat(arr1, arr2) {
     }
     return new_arr;
 }
-
-/////////////////////////////////
-
-// function concat_args() {
-//     var new_arr = [];
-//     for (var i = 0; i < arguments.length; i++) {
-//         new_arr = concat(new_arr, arguments[i]);
-//     }
-
-//     return new_arr;
-// }

@@ -1,6 +1,6 @@
 // pop.demo.js
 
-console.log("My Pop Demo");
+console.log("DEMO pop");
 
 var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
 

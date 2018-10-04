@@ -4,6 +4,8 @@ function forEach(arr, callback) {
     }
 
     if (typeof callback !== 'function') throw Error(callback + ' is not a function');
+
+
     for (var i = 0; i < arr.length; i++) {
         callback(arr[i], i, arr);
     }
