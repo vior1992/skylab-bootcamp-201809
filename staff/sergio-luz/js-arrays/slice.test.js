@@ -73,25 +73,37 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should fail when end or start are not a number');
+    console.log('should fail when end is not a number');
 
     var error;
     var res = [];
     var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 
     try {
-        res = slice(animals,0, "hola");
+        res = slice(animals, "hola");
     } catch (err) {
         error = err;
     }
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'start is not valid' || error.message!=="end is not valid") {
-        if (error.message === 'start is not valid') throw Error('error message for start is not correct');
-        else{ throw Error('error message for end is not correct');}
-    }
+    if (error.message !== 'start is not valid') throw Error('error message for start is not correct');
 });
 
-//mirar que el array no sea de longitud 0
+tests.push(function () {
+    console.log('should fail when start is not a number');
+
+    var error;
+    var res = [];
+    var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+    try {
+        res = slice(animals, 0, "hola");
+    } catch (err) {
+        error = err;
+    }
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== 'end is not valid') throw Error('error message for end is not correct');
+});
 
 testSuite(tests);
