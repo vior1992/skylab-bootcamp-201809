@@ -1,6 +1,6 @@
 // includes.demo.js
 
-console.log('My Includes Demo');
+console.log('DEMO includes');
 
 var arr = ['ant', 'bison', 'camel', 'duck', 'bison', 'cat', 'dog', 'bat'];
 

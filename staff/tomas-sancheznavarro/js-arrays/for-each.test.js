@@ -2,8 +2,9 @@ console.log('TEST forEach');
 
 var tests = [];
 
+//1
 tests.push(function () {
-    console.log('should succeed on iterating and array (copying it to another array)');
+    console.log('should succeed on iterating an array (copying it to another array)');
 
     var nums = [1, 2, 3];
 
@@ -20,6 +21,7 @@ tests.push(function () {
     });
 });
 
+//2
 tests.push(function () {
     console.log('should fail on non-function callback');
 
@@ -28,16 +30,17 @@ tests.push(function () {
     var error;
 
     try {
-        forEach(nums);
+        forEach(nums); // === forEach(nums, undefined)
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'callback is not a function') throw Error('error message is not correct');
+    if (error.message !== 'undefined is not a function') throw Error('error message is not correct');
 });
 
+//3
 tests.push(function () {
     console.log('should fail on non-array and non-callback');
 
@@ -54,6 +57,7 @@ tests.push(function () {
     if (error.message !== 'array is not valid') throw Error('error message is not correct');
 });
 
+//4
 tests.push(function () {
     console.log('should fail on non-array');
 
@@ -61,7 +65,7 @@ tests.push(function () {
     var error;
 
     try {
-        forEach(arr, function () { });
+        forEach(arr, function () {});
     } catch (err) {
         error = err;
     }
@@ -71,7 +75,7 @@ tests.push(function () {
     if (error.message !== 'array is not valid') throw Error('error message is not correct');
 });
 
-// very rare test! redundant...
+//5 very redundant test...
 
 tests.push(function () {
     console.log('should succeed on iterating an array or characters and multiplying them for a number');
@@ -91,6 +95,7 @@ tests.push(function () {
     });
 });
 
+// 6
 tests.push(function () {
     console.log('should succeed on iterating an array and passing all specified data to callback');
 
@@ -102,7 +107,7 @@ tests.push(function () {
 
     forEach(chars, function (element, index, array) {
         elements.push(element);
-        
+
         indexes.push(index);
 
         arrays.push(array);
@@ -122,7 +127,7 @@ tests.push(function () {
         if (i !== index) throw Error('index at index ' + index + ' does not match ' + index);
     });
 
-    arrays.forEach(function(array) {
+    arrays.forEach(function (array) {
         if (array !== chars) throw Error('array does not match original one');
     });
 });
