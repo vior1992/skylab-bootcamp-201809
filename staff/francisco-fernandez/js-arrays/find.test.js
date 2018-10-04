@@ -67,7 +67,7 @@ tests.push(function (){
 
 //TEST4 
 
-console.log("Should return 12");
+ console.log("Should return 12");
 
 tests.push(function (){
    
