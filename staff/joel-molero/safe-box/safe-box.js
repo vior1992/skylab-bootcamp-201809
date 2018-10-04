@@ -2,16 +2,18 @@
 
 var safeBox = {
     saveSecret: function(secret, password) {
-        function a(){
+console.log("no me times");
+debugger;
+console.log("me has timado");
+        (function(){
+console.log("b");
             var password = this.password
             var secret = this.secret;
-        }
+        })()
     },
-
     retrieveSecret: function(password) {
-        if (password === a(password)){
-            return safeBox.a.secret;
-        }
+           return safeBox.secret;
+       console.log("d");
         
     }
 }
