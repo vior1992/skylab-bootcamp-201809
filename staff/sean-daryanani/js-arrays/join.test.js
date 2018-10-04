@@ -76,6 +76,24 @@ tests.push(function () {
     if (error.message !== 'Invalid or unexpected token') throw Error('error message is not correct');
 });
 
+// tests.push(function () {
+//     console.log('Should fail if an undeclared variable is input as a separator');
+
+//     var nums = [1,2,3];
+//     var elem = asodfij;
+//     var error;
+
+//     try {
+//         join(nums, elem);
+//     } catch (err) {
+//         error = err;
+//     }
+
+//     if (!error) throw Error('has not failed');
+
+//     if (error.message !== elem + 'is not defined') throw Error('error message is not correct');
+// });
+
 
 tests.push(function () {
     console.log('Should output a string type');
