@@ -1,11 +1,11 @@
-function find(nums, funct) {
+function find(nums, callback) {
     var index = 0;
     var value = 0
     var flag = false;
    
     for(index=0; index<nums.length; index++) {
 
-        flag = funct(nums[index]);
+        flag = callback(nums[index]);
 
         if(flag == true) {
             return nums[index];

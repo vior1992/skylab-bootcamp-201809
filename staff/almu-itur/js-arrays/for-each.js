@@ -1,6 +1,12 @@
-function forEach(arr, funct) {
-    var index=0;
-    for (index in arr) {
-        funct(arr[index]);
+function forEach(arr, callback) {
+
+    var index;
+    
+    if (!(arr instanceof Array)) throw Error ('array is not valid');
+
+    for (index=0; index<arr.length; index++) {
+        
+        callback(arr[index], index, arr);
+        
     }
 }
