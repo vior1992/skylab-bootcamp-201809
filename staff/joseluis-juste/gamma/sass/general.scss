@@ -1,8 +1,13 @@
 .wrap{
     margin: 0 auto;
-    width: 980px;
+    max-width: 1400px;
 }
 
 body{
     background-color: $body__background-color;
+}
+
+.show-menu{
+    right: 0 !important;
+    opacity: 1 !important;
 }

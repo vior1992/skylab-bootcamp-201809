@@ -1,32 +1,65 @@
 .footer{
-    background-color: $footer__background-color;
-    height: 394px;
-    & .footer__items_menu{
-        display: flex;
-        justify-content: space-around;
-        font-size: 0.8em;
-        margin-top:2em;
-        & .footer__items__menu__item{
-            & li:first-child{
-                color:white;
+    & .footer__features{
+        padding: 3em 4em;
+        background-color: $green;
+        & .footer__features__section{
+            & .footer__features__section__title{
                 font-weight: bold;
-                margin-bottom: 0.7em;
-                
+                color:white;
+                font-size: 2.2em;
+                margin-bottom: 0.5em;
             }
-            & li:not(:first-child){
-                margin-bottom: 0.3em;
+            & .footer__features__section__options{
+                & li{
+                    color: white;
+                    padding-bottom: 0.8em;
+                    font-weight: bold;
+                    font-size: 1.3em;
+                }
             }
-            & li a{
-                text-decoration: none;
-                color:gray;
+           
+        }
+        & .footer__features__logo{
+            width: 80%;
+        }
+       
+    }
+    & .footer__nav{
+        background-color: #333333;
+    }
+}
+
+@media screen and (min-device-width: 580px){
+
+    .footer{
+        & .footer__features{
+            & .footer__features__logo{
+                width: 60%;
             }
         }
     }
-    & .footer__rights{
-        text-align:  center;
-        color:gray;
-        margin-top: 3em;
-        font-size: 0.8em;
+}
 
+@media screen and (min-device-width: 900px){
+
+    .footer{
+        & .footer__features{
+            & .footer__features__logo{
+                width: 35%;
+            }
+        }
+    }
+}
+
+@media screen and (min-device-width: 1400px){
+
+    .footer{
+        & .footer__features{
+           display: flex;
+           justify-content: space-around;
+           & .footer__features__logo{
+            width: 20%;
+        }
+        }
     }
 }
