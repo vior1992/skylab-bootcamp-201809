@@ -8,6 +8,7 @@ tests.push(function () {
     res[index] = num;
   });
   if (res.length !== nums.length) throw Error('result length is not equal to nums length');
+  
   res.forEach(function (val, index) {
     if (val !== nums[index]) throw Error('element at index ' + index + ' does not match the original one');
   });
@@ -34,7 +35,7 @@ tests.push(function () {
     error = err;
   }
   if (!error) throw Error('has not failed');
-  if (error.message !== 'object is not iterable') throw Error('error message is not correct');
+  if (error.message !== 'object is not iterable') throw Error('error message is not correct, since got ' + error.message);
 });
 tests.push(function () {
   console.log('Not allowed empty positions in the output');
@@ -43,11 +44,11 @@ tests.push(function () {
   var error;
   try {
     res = from(nums);
-    if (res.some(function (x, i, arr) { return !x })) throw Error('Empty value found in array');
+    //if (res.some(function (x, i, arr) { return !x })) throw Error('Empty value found in array');
   } catch (err) {
     error = err;
   }
   if (!error) throw Error('has not failed');
-  if (error.message !== 'Empty value found in array') throw Error('error message is not correct');
+  if (error.message !== 'Empty value found in array') throw Error('error message is not correct, since got ' + error.message);
 });
 testSuite(tests);

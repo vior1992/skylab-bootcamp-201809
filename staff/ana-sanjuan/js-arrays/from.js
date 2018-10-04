@@ -1,30 +1,13 @@
 // from.js
 
 function from(arr, callback) {
-    if (typeof callback !==  'function') throw Error('callback is not a function');
-    
-
-
+    if (!(typeof arr[Symbol.iterator] === 'function')) throw Error('object is not iterable');
+    if (callback && typeof callback !==  'function') throw Error('callback is not a function');
+   
     var result = [];
-    if(callback) {
-        for (var i = 0; i < arr.length; i++) result[i] = callback(arr[i]);
-    } else {    
-        for (var i = 0; i < arr.length; i++) result[i] = arr[i];
+    for (var i = 0; i < arr.length; i++){ 
+        result[i] = callback? callback(arr[i], i, arr): arr[i];
+        if (result[i]) throw Error('Empty value found in array');
     }
     return result;
 }
-
-
-
-// var result = [];
-//     if(callback) {
-//         for (var i = 0; i < arr.length; i++){
-//             result[i] = callback(arr[i]);
-//         }
-//     } else {    
-//         for (var i = 0; i < arr.length; i++){
-//             result[i] = arr[i];
-//         }
-//     }
-//     return result;
-// }
