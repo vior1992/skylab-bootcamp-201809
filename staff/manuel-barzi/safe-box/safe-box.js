@@ -10,4 +10,4 @@ var safeBox = {
     retrieveSecret: function(password) {
         // TO DO
     }
-}
+};
