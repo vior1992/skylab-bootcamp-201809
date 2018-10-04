@@ -1,84 +1,97 @@
+// find.test.js
 
-console.log("TEST FIND. This method find the first element that satisfy the provide test function. If not, return undef.")
+console.log('TEST find')
 
 var tests = [];
 
-//TEST 1
-
-
-tests.push(function (){
-
-    console.log("Should give fail if callback is not defined");
+tests.push(function () {
+    console.log('should fail if callback is not defined');
 
     var nums = [5, 12, 8, 130, 44];
 
-    var respuesta = [];
+    var error;
 
     try {
         find(nums);
-    } catch(err){
-        respuesta = err;
+    } catch (err) {
+        error = err;
     }
 
-    if (!respuesta) throw Error ("Should give error, callback not defined");
+    if (!error) throw Error('expected error, but got no error');
 
-    if (respuesta.message !== ("Callback isn't a function")) throw Error ("Fail on error message, is not the same");
-
+    if (error.message !== 'undefined is not a function') throw Error('error message is not as expected');
 });
 
-
-//TEST2
-
-
-tests.push(function (){
-    console.log("Should return undefined if not satisfy the provided testing function");
+tests.push(function () {
+    console.log('should return undefined if no item satisfies the condition');
 
     var nums = [5, 1, 8, 3, 4];
 
-    var respuesta = [];
+    var res = find(nums, function (elem) { return elem > 10; });
 
-    respuesta = find(nums, function (elem) { return elem > 10; });
-    
-    if (respuesta !== undefined) throw Error ("The output should be undefined");
-
+    if (res !== undefined) throw Error('result is not undefined');
 });
 
-//TEST3
-
-
-tests.push(function (){
-    console.log("Should return error for empty array");
-
-    var nums = [];
-
-    var respuesta = [];
-
-    try {
-        find(nums, function (elem) { respuesta = elem > 10; });
-    } catch(err) {
-        respuesta = err
-    }
-    
-    if (!respuesta) throw Error ("The array should be empty");
-
-    if (respuesta.message !== "Arr is empty") throw Error ("Fail on error message, is not the same");
-
-});
-
-//TEST4 
-
-tests.push(function (){
-    console.log("Should return 12");
+tests.push(function () {
+    console.log('should succeed and find matching elements');
 
     var nums = [5, 12, 8, 130, 44];
 
-    var respuesta = [];
+    var res = find(nums, function (elem) { return elem > 10; });
 
-    
-    respuesta = find(nums, function (elem) { return elem > 10; });
-    
-    if (respuesta !== 12) throw Error ("The output should be 12");
+    if (res !== 12) throw Error('result does not match expected value');
+});
 
+tests.push(function () {
+    console.log('should succeed and find matching elements (characters)');
+
+    var nums = ['5', '12', '8', '130', '44'];
+
+    var res = find(nums, function (elem) { return elem == 8; });
+
+    if (res !== '8') throw Error('result does not match expected value');
+});
+
+tests.push(function () { // BDD-like
+    console.log('should succeed and find matching elements (random input)');
+
+    var nums = [];
+
+    function randomNum() {
+        return 1 + Math.floor(Math.random() * 10);
+    }
+
+    var length = randomNum();
+
+    for (var i = 0; i < length; i++) {
+        nums.push(randomNum());
+    }
+
+    function condition(elem) {
+        return elem > 5;
+    }
+
+    var expected = nums.find(condition);
+
+    var result = find(nums, condition);
+
+    if (result !== expected) throw Error('result does not match expected value');
+});
+
+tests.push(function () {
+    console.log('should fail if array is not defined');
+
+    var error;
+
+    try {
+        find();
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('expected error, but got no error');
+
+    if (error.message !== 'undefined is not an array') throw Error('error message is not as expected');
 });
 
 testSuite(tests);
