@@ -1,4 +1,9 @@
 function includes (array, elem) {
+    
+
+    if(!(array instanceof Array)){throw Error ('first parameter is not an array');}
+
+    
     var isIncluded = false;
 
     for(i=0; i<array.length; i++) {

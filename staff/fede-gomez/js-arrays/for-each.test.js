@@ -64,7 +64,7 @@ tests.push(function () {
         forEach(arr, function () { });
     } catch (err) {
         error = err;
-    }
+    } 
 
     if (!error) throw Error('has not failed');
 
