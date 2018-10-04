@@ -14,7 +14,7 @@ tests.push(function() {
 	var error;
 
 	try {
-		indexof(undefined, "bison");
+		indexOf(undefined, "bison");
 	} catch (err) {
 		error = err;
 	}
@@ -24,18 +24,18 @@ tests.push(function() {
 
 	//in case the logged message wasn't 'undefined is not an array!', tell it didn't recognize the correct error: (note that we're just probing that the message is the same we defined in the file 'indexof.js' (in this case is 'undefined is not an array!') );
 
-	if (error.message !== "undefined is not an array!") throw Error('should have thrown "undefined is not an array!", but got: ' + error.message);
+	if (error.message !== "undefined is not an array") throw Error('should have thrown "undefined is not an array!", but got: ' + error.message);
 
 })
 
 //test 2:
 tests.push(function() {
-	console.log("fails if the first parameter is not an array!");
+	console.log("fails if the first parameter is not an array");
 	
 	var error;
 
 	try {
-		indexof(123, "bison");
+		indexOf(123, "bison");
 	} catch (err) {
 		error = err;
 	}
@@ -45,7 +45,7 @@ tests.push(function() {
 
 	//in case the logged message wasn't 'first parameter should be an array, tell it didn't recognize the correct error: (note that we're just probing that the message is the same we defined in the file 'indexof.js' (in this case is 'undefined is not an array!') );
 
-	if (error.message !== "first parameter should be an array!") throw Error('should have thrown "first parameter should be an array!", but got: ' + error.message);
+	if (error.message !== "123 is not an array") throw Error('should have thrown "first parameter should be an array!", but got: ' + error.message);
 
 })
 
@@ -56,14 +56,14 @@ tests.push(function() {
 	var error;
 
 	try {
-		indexof([], 'word');
+		indexOf([], 'word');
 	} catch (err) {
 		error = err;
 	}
 
 	if (!error) throw Error('should have thrown an error of having empty arguments');
 
-	if (error.message !== "one argument is empty") throw Error("should have thrown `error: one argument is empty´, but got: " + error.message);
+	if (error.message !== "array can not be empty") throw Error("should have thrown `error: one argument is empty´, but got: " + error.message);
 })
 
 testSuite(tests);

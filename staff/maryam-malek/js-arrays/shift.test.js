@@ -19,7 +19,8 @@ tests.push(function () {
     
     var nums = [1, 2, 3];
     var lengthTarget = nums.length - 1;
-
+    
+    debugger;
     shift(nums);
 
     if (nums.length!=lengthTarget) throw Error ('result length is not one unit smaller')
@@ -32,25 +33,24 @@ tests.push(function () {
 
     var error;
     var nums = 1;
-
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
-
+    
     if (!error) throw Error ('test has not failed on input different than array');
-    if (error.message !== 'input is not array') throw Error ('error message is not correct');
+    if (error.message !== 'array is not valid') throw Error ('error message is not correct');
 });
 
 tests.push(function () {
-
+    
     console.log('should fail on no parameter entered');
-
+    
     var error;
-
+    
     try {
-        forEach();
+        shift();
     } catch (err) {
         error = err;
     }
@@ -67,7 +67,7 @@ tests.push(function () {
     var nums = [];
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
@@ -84,7 +84,7 @@ tests.push(function () {
     var nums = ['', 2, 3];
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
