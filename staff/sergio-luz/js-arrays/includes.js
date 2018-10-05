@@ -1,4 +1,8 @@
-function includes(){
+function includes(arr, item){
+    if( !(arr instanceof Array)) throw Error('function must contain two arguments');
+    if(!arr.length)  throw Error('array cannot be empty');
+    if( (typeof item === 'undefined')) throw Error('item to search is missing');
+
     //Se comprueba si se ha enviado un indice
     if(arguments[2]===undefined){
         var i=0;

@@ -37,7 +37,7 @@ tests.push(function () {
 
     if(!error){throw Error ('execution has not failed')}
 
-    if(error.message!=='second element is not an array'){throw Error ('error message is not as expected');}
+    if(error.message!=='f is not a function'){throw Error ('error message is not as expected');}
 
 });
 
