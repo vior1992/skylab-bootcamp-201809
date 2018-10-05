@@ -1,0 +1,35 @@
+$color-top: #4cbdd6;
+$color-middle: #c3c9c8;
+$color-footer: #171715;
+$color-nav: #caebf3;
+$color-btn: #363730;
+
+@mixin button-properties($color) {
+    padding: 1rem;
+    border-radius: 1.2rem;
+    background-color: $color;
+    color: white;
+    border: 1px solid $color;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; //1rem = 10px;
+}
+
+body {
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+
+
