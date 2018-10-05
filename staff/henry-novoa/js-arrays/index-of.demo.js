@@ -2,7 +2,7 @@
     
 var arr = ['ant', 'bison', 'camel', 'duck', 'bison'];
     
-var res = indexOf(arr, 'bison');
+var res = indexof(arr, 'bison');
 
 console.log(res);
 
