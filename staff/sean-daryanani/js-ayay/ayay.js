@@ -8,15 +8,17 @@ function Ayay() {
 
 // TODO
 
-Ayay.prototype.push = function(element) {
-    this[this.length] = element;
-
-    this.length++;
+Ayay.prototype.push = function() {
+    var pointer = this;
+    Array.prototype.forEach.call(arguments, function(el) {
+        pointer[pointer.length] = el;
+        pointer.length++;
+    })
 };
 
 Ayay.prototype.pop = function() {
     var popped = this[this.length-1];
-    //delete last property
+    delete this[this.length-1];
     this.length = this.length-1;
     return popped;
 };
@@ -28,7 +30,11 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
-    // TODO
+    var newArr = [];
+    for (var i=0; i<this.length; i++) {
+        newArr[i] = callback(this[i]);
+    }
+    return newArr;
 };
 
 Ayay.prototype.sort = function() {
