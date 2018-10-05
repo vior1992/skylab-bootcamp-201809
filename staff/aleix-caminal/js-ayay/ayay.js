@@ -4,9 +4,11 @@
  */
 function Ayay() {
     this.length = 0;
+    for (var i = 0; i < arguments.length; i++) {
+        this.length++;
+        this[i] = arguments[i];
+    }
 }
-
-// TODO
 
 Ayay.prototype.push = function(element) {
     this[this.length] = element;

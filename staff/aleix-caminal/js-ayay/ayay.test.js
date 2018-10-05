@@ -9,19 +9,18 @@
 
     var tests = [];
 
-    tests.push(function () {
-        console.log('must succeed when pushing a new element');
+    tests.push(function() {
+        console.log('should push values in ayay');
+        var ayay = new Ayay();
 
-        var arr = [1, 2, 3];
-        var expectedResult = [1, 2, 3, 4]
+        ayay.push(1);
+        ayay.push(2);
+        ayay.push(3);
 
-        push(arr, 4);
+        if (ayay.length !== 3) throw Error('ayay length does not match expected one: ' + ayay.length);
 
-        arr.forEach((element, i) => {
-            if (element !== expectedResult[i]) throw Error('not return the expected result');
-        });
-
-        console.log('%c Done %s','color: green', '✔');
+        for (var i = 0; i < ayay.length; i++)
+            if (ayay[i] !== i + 1) throw Error('item does not match expected at position: ' + i);
     });
 
     tests.push(function () {
@@ -35,8 +34,6 @@
         arr.forEach((element, i) => {
             if (element.length && !(element instanceof Array)  && element[0] !== expectedResult[i][0]) throw Error('results do not match');
         });
-
-        console.log('%c Done %s','color: green', '✔');
     });
 
     tests.push(function () {
@@ -52,7 +49,6 @@
 
         if (!error) throw Error('has not failed');
         if (error.message !== 'array is not valid') throw Error('error message is not correct');
-        console.log('%c Done %s', 'color: green', '✔');
     });
 
     tests.push(function () {
@@ -69,8 +65,6 @@
         if (!error) throw Error('has not failed');
 
         if (error.message !== 'array is empty') throw Error('error message is not correct');
-
-        console.log('%c Done %s', 'color: green', '✔');
     });
 
 
@@ -89,8 +83,6 @@
         if (!error) throw Error('has not failed');
 
         if (error.message !== 'element not defined') throw Error('error message is not correct');
-
-        console.log('%c Done %s','color: green', '✔');
     });
 
     tests.push(function () {
@@ -106,8 +98,6 @@
         }
 
         if (!(arr instanceof Array)) throw Error('not return array');
-
-        console.log('%c Done %s','color: green', '✔');
     });
 
     testSuite(tests);
@@ -189,7 +179,7 @@
         if (error.message !== 'array is not valid') throw Error('error message is not correct');
     });
 
-        tests.push(function () {
+    tests.push(function () {
         console.log('should fail on empty array');
 
         var arr = [];
@@ -204,7 +194,7 @@
         if (!error) throw Error('has not failed');
 
         if (error.message !== 'array is not valid') throw Error('error message is not correct');
-        });
+    });
 
     tests.push(function () {
         console.log('should fail on non-function callback');
