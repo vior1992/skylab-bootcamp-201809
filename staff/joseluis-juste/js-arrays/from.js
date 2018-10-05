@@ -9,11 +9,13 @@ function from(arr, callback){
 
         if (callback !== undefined){
             if (!callback instanceof Function) throw Error('callback is not a function');
-            output[i] = callback(arr[i], i);
-        }else{
-            output[i] = arr[i];
+                output[i] = callback(arr[i], i);
         }
+        else
+
+            output[i] = arr[i];
        
     }
+    if (output.some(function(x,i,arr){ return !x})) throw Error('Empty value found in array');
     return output;
 }

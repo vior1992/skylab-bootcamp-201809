@@ -11,6 +11,7 @@ tests.push(function () {
 
     from(nums, function (num, index) {
         res[index] = num;
+        return num;
     });
 
     if (res.length !== nums.length) throw Error('result length is not equal to nums length');
@@ -57,12 +58,12 @@ tests.push(function () {
     console.log('Not allowed empty positions in the output');
 
     var nums = [1,2,,3];
-    var res;
+   // var res;
     var error;
 
     try{
-        res = from(nums);
-        if (res.some(function(x,i,arr){ return !x})) throw Error('Empty value found in array');
+        from(nums);
+       
     }catch(err){
         error = err;
     }
