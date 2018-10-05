@@ -20,7 +20,10 @@ function sort(arr) {
             }
         }
     }
-    return result;
+    for(i=0;i<results.length;i++){
+        arr[i]=results[i];
+    }
+    return arr;
 }   
      
     

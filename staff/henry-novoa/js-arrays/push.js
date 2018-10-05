@@ -4,6 +4,8 @@
 // push.js
 
 function push(arr, elem) {
+    if (!(arr instanceof Array)) throw Error("array is not valid");
+    if(arguments.length < 2) throw Error("element not defined")
     arr[arr.length] = elem;
     return arr;
 }
