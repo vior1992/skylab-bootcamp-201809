@@ -18,6 +18,8 @@ tests.push(function () {
     res.forEach(function (val, index) {
         if (val !== nums[index]) throw Error('element at index ' + index + ' does not match the original one');
     });
+
+    console.log('%c Done %s', 'color: green', '✔');
 });
 
 tests.push(function () {
@@ -28,14 +30,16 @@ tests.push(function () {
     var error;
 
     try {
-        forEach(nums);
+        forEach(nums); // === forEach(nums, undefined);
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'callback is not a function') throw Error('error message is not correct');
+    if (error.message !== 'undefined is not a function') throw Error('error message is not correct: ' + error.message);
+
+    console.log('%c Done %s', 'color: green', '✔');
 });
 
 tests.push(function () {
@@ -51,11 +55,13 @@ tests.push(function () {
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'array is not valid') throw Error('error message is not correct');
+    if (error.message !== 'undefined is not an array') throw Error('error message is not correct: ' + error.message);
+
+    console.log('%c Done %s', 'color: green', '✔');
 });
 
 tests.push(function () {
-    console.log('should fail on non-array');
+    console.log('should fail on non-array (undefined)');
 
     var arr;
     var error;
@@ -68,7 +74,66 @@ tests.push(function () {
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'array is not valid') throw Error('error message is not correct');
+    if (error.message !== arr + ' is not an array') throw Error('error message is not correct: ' + error.message);
+   
+    console.log('%c Done %s', 'color: green', '✔');
+});
+
+tests.push(function () {
+    console.log('should fail on non-array (number)');
+
+    var arr = 1;
+    var error;
+
+    try {
+        forEach(arr, function () { });
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== arr + ' is not an array') throw Error('error message is not correct: ' + error.message);
+
+    console.log('%c Done %s', 'color: green', '✔');
+});
+
+tests.push(function () {
+    console.log('should fail on non-array (string)');
+
+    var arr = 'hola mundo';
+    var error;
+
+    try {
+        forEach(arr, function () { });
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== arr + ' is not an array') throw Error('error message is not correct: ' + error.message);
+    
+    console.log('%c Done %s', 'color: green', '✔');
+});
+
+tests.push(function () {
+    console.log('should fail on non-array (boolean)');
+
+    var arr = true;
+    var error;
+
+    try {
+        forEach(arr, function () { });
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== arr + ' is not an array') throw Error('error message is not correct: ' + error.message);
+
+    console.log('%c Done %s', 'color: green', '✔');
 });
 
 // very rare test! redundant...
@@ -89,6 +154,8 @@ tests.push(function () {
     res.forEach(function (val, index) {
         if (!isNaN(val)) throw Error('element at index ' + index + ' does not match NaN');
     });
+
+    console.log('%c Done %s', 'color: green', '✔');
 });
 
 tests.push(function () {
@@ -125,6 +192,8 @@ tests.push(function () {
     arrays.forEach(function(array) {
         if (array !== chars) throw Error('array does not match original one');
     });
+
+    console.log('%c Done %s', 'color: green', '✔');
 });
 
 testSuite(tests);
