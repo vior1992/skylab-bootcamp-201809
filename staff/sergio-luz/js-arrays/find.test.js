@@ -43,31 +43,6 @@ tests.push(function (){
 
 });
 
-<<<<<<< HEAD
-//TEST3
-
-console.log("Should return error for empty array");
-
-tests.push(function (){
-
-    var nums = [];
-
-    var respuesta = [];
-
-    try {
-        find(nums, function (elem) { respuesta = elem > 10; });
-    } catch(err) {
-        respuesta = err
-    }
-    
-    if (!respuesta) throw Error ("The array should be empty");
-
-    if (respuesta.message !== "Arr is empty") throw Error ("Fail on error message, is not the same");
-
-});
-
-=======
->>>>>>> develop
 //TEST4 
 
 console.log("Should return 12");
