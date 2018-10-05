@@ -1,4 +1,13 @@
 function of(elems) {
+
+    // validation
+
+    if (!arguments.length) throw Error('elements is empty')
+    if (!elems) throw Error('element undefined');
+
+
+    // logic
+
     console.log([].slice.call(arguments));
 }
 
