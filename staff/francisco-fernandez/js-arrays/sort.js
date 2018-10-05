@@ -4,20 +4,16 @@ function sort(arr){
 
     if(!arr.length) throw Error ('array is empty');
 
-    var newArray = [];
-    for(var i = 0; i < arr.length; i++){
-        newArray[i]=arr[i];
-    }
     var temp;
     //debugger
-    for(var j=0; j<newArray.length-1; j++){
-        for(var i=0; i<newArray.length-1; i++){
-            if(newArray[i]>newArray[i+1]){
-                temp=newArray[i];
-                newArray[i]=newArray[i+1];
-                newArray[i+1]=temp;
+    for(var j=0; j<arr.length-1; j++){
+        for(var i=0; i<arr.length-1; i++){
+            if(arr[i]>arr[i+1]){
+                temp=arr[i];
+                arr[i]=arr[i+1];
+                arr[i+1]=temp;
             }
         }
         }
-    return newArray;  
+    return arr;  
 }

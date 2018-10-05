@@ -4,7 +4,7 @@ var tests = [];
 
 
 tests.push(function () {
-    console.log('Should succeed on searching inside an array and returning the index of the elemen that satisfies the callback, if exists');
+    console.log('should succeed on searching inside an array and returning the index of the elemen that satisfies the callback, if exists');
     
     var nums = [4, 26, 33, 105, 10, 25];
     var res;
@@ -14,7 +14,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('Should succeed on searching inside an array and returning the index of the elemen that satisfies the callback, and if not exists, returning -1');
+    console.log('should succeed on searching inside an array and returning the index of the elemen that satisfies the callback, and if not exists, returning -1');
     
     var nums = [4, 26, 33, 105, 10, 25];
     var res;
@@ -24,7 +24,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('Should succeed on searching inside an array and passing all the specified data to callback');
+    console.log('should succeed on searching inside an array and passing all the specified data to callback');
     
     var nums = [4, 26, 33, 105, 10, 25];
     var numShort = [4, 26];
@@ -52,7 +52,6 @@ tests.push(function () {
     index.forEach(function(i, index) {
         if (i !== index) throw Error('index array does not match original one');
     });
-    debugger;
     array.forEach(function(arr) {
         if (arr !== nums) throw Error('array does not match original one');
     });
@@ -60,7 +59,7 @@ tests.push(function () {
 });
     
 tests.push(function () {
-        console.log('Should fail with non-array input');
+        console.log('should fail with non-array input');
         var error;
         try {
             findIndex(undefined, function (num) { return num < 10; });
@@ -74,7 +73,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('Should fail with empty array');
+    console.log('should fail with empty array');
     var error;
     var nums = [];
     try {
@@ -89,7 +88,7 @@ tests.push(function () {
 });
 
 tests.push(function() {
-    console.log('Should fail with null array');
+    console.log('should fail with null array');
     var error;
     var nums = null;
     try{
@@ -118,7 +117,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('Should fail with non-array and non-callback');
+    console.log('should fail with non-array and non-callback');
     var error;
     try {
         findIndex();

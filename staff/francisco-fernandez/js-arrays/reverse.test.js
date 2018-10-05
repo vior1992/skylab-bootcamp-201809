@@ -23,8 +23,9 @@ tests.push(function () {
 
 tests.push(function () {
     console.log('should fail on non-array');
-    var error;
 
+    var error;
+    
     try {
         reverse();
     } catch (err) {
@@ -60,17 +61,18 @@ tests.push(function (){
 tests.push(function (){
     console.log('should fail if the argument is a string');
 
+    var array = 'cocacola';
     var error;
 
     try {
-        reverse('cocacola');
+        reverse(array);
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a string should be array') throw Error('error message is not correct');
+    if (error.message !==  array + ' is not an array') throw Error('error message is not correct');
 
 
 });
@@ -80,15 +82,17 @@ tests.push(function (){
     console.log('should fail if the argument is a function');
     var error;
 
+    var array=function(){};
+
     try {
-        reverse(function(){});
+        reverse(array);
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a function should be array') throw Error('error message is not correct');
+    if (error.message !== array + ' is not an array') throw Error('error message is not correct');
 
 
 });
@@ -97,16 +101,16 @@ tests.push(function (){
 tests.push(function (){
     console.log('should fail if the argument is a boolean');
     var error;
-
+    var array = true;
     try {
-        reverse(true);
+        reverse(array);
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a boolean should be an array') throw Error('error message is not correct');
+    if (error.message !== array + ' is not an array') throw Error('error message is not correct');
 
 
 });
@@ -124,7 +128,7 @@ tests.push(function (){
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a symbol should be an array') throw Error('error message is not correct');
+    if (error.message !== sym2 + ' is not an array') throw Error('error message is not correct');
 
 
 });

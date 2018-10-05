@@ -4,16 +4,18 @@ console.log('DEMO sort');
 
 var months = ['March', 'Jan', 'Feb', 'Dec'];
 
-console.log(sort(months));
-// ["Dec", "Feb", "Jan", "March"]
+var sorted = sort(months);
 
+console.log(sorted);
+// ["Dec", "Feb", "Jan", "March"]
 console.log(months);
-// ['March', 'Jan', 'Feb', 'Dec']
+// ["Dec", "Feb", "Jan", "March"]
+console.log(sorted === months);
 
 var nums = [1, 30, 4, 21];
 
-console.log(sort(nums));
-// [1, 21, 30, 4]
+var sorted = sort(nums);
 
-console.log(nums);
-// [1, 30, 4, 21]
+console.log(sorted); // [1, 21, 30, 4]
+console.log(nums); // [1, 21, 30, 4]
+console.log(sorted === nums); // true
