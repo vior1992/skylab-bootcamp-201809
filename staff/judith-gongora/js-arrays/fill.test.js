@@ -15,7 +15,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should fail on non-array and non-elements');
+    console.log('should fail on non-array');
     
     var error;
 
@@ -27,7 +27,59 @@ tests.push(function () {
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'array is not valid') throw Error('error message is not correct');
+    if (error.message !== 'undefined is not valid') throw Error('error message is not correct');
 });
+
+tests.push(function () {
+    console.log('should fail on non-array (undefined)');
+    
+    var error;
+    var arr;
+
+    try {
+        fill(arr);
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== arr + ' is not valid') throw Error('error message is not correct');
+});
+
+tests.push(function () {
+    console.log('should fail on non-array (string)');
+    
+    var error;
+    var arr='hola';
+
+    try {
+        fill(arr);
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== arr + ' is not valid') throw Error('error message is not correct');
+});
+
+tests.push(function () {
+    console.log('should fail on non-array (number)');
+    
+    var error;
+    var arr=5;
+
+    try {
+        fill(arr);
+    } catch (err) {
+        error = err;
+    }
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== arr + ' is not valid') throw Error('error message is not correct');
+});
+
 
 testSuite(tests);
