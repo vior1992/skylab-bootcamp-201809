@@ -4,27 +4,29 @@ var tests = [];
 
 
 tests.push(function () {
-    console.log('Should succeed on searching inside an array and returning the index of the elemen that satisfies the callback, if exists');
+    console.log('should succeed on searching inside an array and returning the index of the elemen that satisfies the callback, if exists');
     
     var nums = [4, 26, 33, 105, 10, 25];
     var res;
+
     res = findIndex(nums, function (num) { return num >= 25; });
     
-    if (res !== 1) throw Error('returned index does not match with the one expected')
+    if (res !== 1) throw Error('returned index does not match with the one expected');
 });
 
 tests.push(function () {
-    console.log('Should succeed on searching inside an array and returning the index of the elemen that satisfies the callback, and if not exists, returning -1');
+    console.log('should succeed on finding no index that satisfies the condition and returning -1');
     
     var nums = [4, 26, 33, 105, 10, 25];
     var res;
+
     res = findIndex(nums, function (num) { return num >= 110; });
     
     if (res !== -1) throw Error('returned index does not match with the one expected')
 });
 
 tests.push(function () {
-    console.log('Should succeed on searching inside an array and passing all the specified data to callback');
+    console.log('should succeed on searching inside an array and passing all the specified data to callback');
     
     var nums = [4, 26, 33, 105, 10, 25];
     var numShort = [4, 26];
@@ -52,7 +54,6 @@ tests.push(function () {
     index.forEach(function(i, index) {
         if (i !== index) throw Error('index array does not match original one');
     });
-    debugger;
     array.forEach(function(arr) {
         if (arr !== nums) throw Error('array does not match original one');
     });

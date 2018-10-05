@@ -12,7 +12,6 @@ tests.push(function () {
     var arraycopy =[]
     for (var i = 0; i<array.length;i++) arraycopy[i]=array[i];
     // test
-    debugger;
     reverse(array);
     /*if(array!=['three', 'two', 'one']) throw Error ('the reversed array is not correct');*/
     for(var i = 0; i<array.length; i++){

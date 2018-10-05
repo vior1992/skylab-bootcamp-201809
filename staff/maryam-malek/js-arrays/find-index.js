@@ -2,7 +2,7 @@ function findIndex(arr, callback) {
    
     if(!(arr instanceof Array)) throw Error ('entered invalid array');
     if(!arr.length) throw Error ('entered empty array');
-    if(typeof callback !== 'function') throw Error (callback + ' is not a function');
+    if(typeof callback !== 'function') throw Error ('callback is not a function');
 
     var index = -1;
     for(var i=0; i<arr.length; i++){

@@ -1,3 +1,4 @@
+console.log('of TEST')
 var tests = [];
 
 tests.push(function () {
@@ -21,7 +22,6 @@ tests.push(function () {
 
 	var error = undefined;
 	var p;
-
 	try {
 		of(p);
 	} catch (err) {
@@ -33,4 +33,4 @@ tests.push(function () {
 	if (error.message !== p + ' is undefined') throw Error('should have thrown correct error, but got: ' + error.message);
 });
 
-testSuite(tests);
+// testSuite(tests);

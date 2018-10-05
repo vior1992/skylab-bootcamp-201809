@@ -1,6 +1,5 @@
 function splice(arr, start, count) {
     var newArr = arr;
-    debugger;
     var cutArr = [];
     var sta = start;
     for(i=0;i<count; i++){

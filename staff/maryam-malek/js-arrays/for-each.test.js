@@ -119,7 +119,6 @@ tests.push(function () {
     });
 
     indexes.forEach(function (i, index) {
-        debugger;
         if (i !== index) throw Error('index at index ' + index + ' does not match ' + index);
     });
 

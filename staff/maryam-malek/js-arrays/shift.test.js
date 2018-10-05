@@ -19,9 +19,7 @@ tests.push(function () {
     
     var nums = [1, 2, 3];
     var lengthTarget = nums.length - 1;
-    
-    debugger;
-    shift(nums);
+        shift(nums);
 
     if (nums.length!=lengthTarget) throw Error ('result length is not one unit smaller')
 
@@ -48,7 +46,6 @@ tests.push(function () {
     console.log('should fail on no parameter entered');
     
     var error;
-    
     try {
         shift();
     } catch (err) {
