@@ -19,9 +19,9 @@ Ayay.prototype.pop = function() {
         del = this[this.length-1];
         delete this[this.length-1]
         this.length--;
-    }else{
-        del = 'undefined';
+        return del;
     }
+    return undefined;
     
 };
 

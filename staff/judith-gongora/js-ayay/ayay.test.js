@@ -26,12 +26,12 @@
 })();
 
 (function() {
-    console.log('TEST Ayay.prototype.forEach');
+    console.log('TEST Ayay.prototype.pop');
     
     var tests = [];
     
     tests.push(function() {
-        console.log('should iterate on valid ayay');
+        console.log('should pop the last value on valid ayay');
 
         var ayay = new Ayay();
 
@@ -44,7 +44,7 @@
         var result;
         result = ayay.pop();
 
-        if (ayay.length !== (ayay.length-1)) throw Error('result length does not match expected one: ' + ayay.length-1);
+        if (length-1 !== (ayay.length)) throw Error('result length does not match expected one: ' + ayay.length-1);
         if (last !== result) throw Error('result does not match expected one: ' + last);
 
     });
