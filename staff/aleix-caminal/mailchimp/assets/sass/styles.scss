@@ -1,0 +1,250 @@
+$padding-width: 3rem;
+$gap-width: 2rem;
+$color-title: #fff;
+$color-primary: #3f3f38;
+$color-secondary: #787975;
+
+@mixin button($color) {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: $color;
+    color: $color-title;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 0 darken($color, 25%), 0px -1px 0 darken($color, 25%);
+    background-image: linear-gradient(rgba(255,255,255,0.1) 49%, rgba(0,0,0,0) 51%);
+}
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+}
+
+header {
+    background-color: #00bdd1;
+    padding: 1rem $padding-width;
+
+    .login {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        &__link {
+            padding: .75rem;
+            text-decoration: none;
+            color: $color-title;
+            font-size: 14px;
+            font-weight: 700;
+        }
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+
+        &__logo {
+            height: 100%;
+            width: auto;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            grid-gap: 20px;
+
+            &__button {
+                grid-column: 1;
+                @include button($color-primary);
+            }
+
+            &__list {
+                grid-column: 2;
+                display: flex;
+                align-items: center;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                border-radius: 12px;
+                background-color: rgba(255, 255, 255, .75);
+                overflow: hidden;
+
+                li {
+                    border-right: 1px solid rgba(220, 220, 220, .75);
+
+                    &:last-child {
+                        border: none;
+                        padding: .75rem;
+                    }
+
+                    a {
+                        display: block;
+                        padding: 1rem;
+                        color: $color-primary;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 700;
+                        transition: background .2s linear;
+
+                        &:hover {
+                            background-color: rgba(255, 255, 255, .9);
+                        }
+                    }
+
+                    input {
+                        height: 1.5rem;
+                        padding: .25rem;
+                        border: 1px solid #ccc;
+                        border-radius: .25rem;
+                        font-size: 12px;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .intro {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin: 1rem 0 2rem;
+
+        &__image {
+            grid-column: 1;
+            margin: 0 auto -1px;
+        }
+
+        .copy {
+            grid-column: 2;
+
+            &__title {
+                margin: 0;
+                color: $color-title;
+                font-size: 90px;
+                font-weight: 700;
+                letter-spacing: -5px;
+                line-height: 80px;
+            }
+
+            &__text {
+                margin: 1rem 0;
+                color: #006577;
+            }
+
+            &__button {
+                @include button(#e95c41);
+                padding: 1rem 3rem;
+            }
+        }
+    }
+}
+
+main {
+    background-image: url('../img/noisepattern.png');
+    padding: 0 $padding-width;
+    border-top: 1px solid #fff;
+
+    .main {
+        display: grid;
+        grid-template: auto auto / 4fr 4fr 4fr 4fr;
+        grid-gap: 1rem $gap-width;
+        margin-top: -3rem;
+        padding: 1.5rem $gap-width 3rem;
+        background-color: #f0f0f0;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+
+        &__title {
+            grid-column: 1 / 5;
+            margin: 0;
+        }
+
+        .article {
+            display: grid;
+            grid-row: auto auto auto auto;
+            grid-gap: 1.25rem;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 auto;
+            border-top: 1px solid #b8b8b8;
+
+            &__image {
+                width: 100%;
+                height: auto;
+            }
+
+            &__title {
+                color: $color-primary;
+
+                small {
+                    font-size: 14px;
+                    font-weight: 700;
+                }
+
+                h1 {
+                    font-size: 22px;
+                    margin: 0;
+                }
+            }
+
+            &__text {
+                margin: 0;
+                font-size: 14px;
+                color: $color-secondary;
+            }
+
+            &__button {
+                @include button($color-primary);
+                padding: .5rem 1.5rem;
+                text-align: left;
+                font-size: 14px;
+                font-weight: 500;
+                box-shadow: none;
+                background-image: none;
+            }
+        }
+    }
+}
+
+.footer {
+    display: grid;
+    grid-template: auto auto / 4fr 4fr 4fr 4fr;
+    grid-gap: 1rem $gap-width;
+    padding: 1rem $padding-width + $gap-width 10rem;
+    background-image: url('../img/bg_home.png');
+    border-top: 1px solid #000;
+
+    &__list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        &--title {
+            color: $color-title;
+            padding: .5rem 0 .25rem;
+        }
+
+        li {
+            margin: .25rem 0;
+
+            a {
+               color: $color-secondary;
+               text-decoration: none;
+               font-size: 14px;
+           }
+        }
+    }
+
+    &__text {
+        grid-column: 1 / 5;
+        margin: 80px 0;
+        text-align: center;
+        color: $color-secondary;
+        font-size: 14px;
+    }
+}
