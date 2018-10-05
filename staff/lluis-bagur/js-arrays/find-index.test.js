@@ -59,6 +59,19 @@ tests.push(function () {
     
 });
     
+// tests.push(function () {
+//         console.log('Should succed and find no index (-1) on emty array');
+//         var error;
+//         try {
+//             findIndex(undefined, function (num) { return num < 10; });
+//         } catch (err) {
+//             error = err;
+//         }
+
+//         if (!error) throw Error('has not failed');
+
+//         if (error.message !== 'entered invalid array') throw Error('error message is not correct');
+// });
 
 tests.push(function () {
     console.log('Should fail with empty array');
