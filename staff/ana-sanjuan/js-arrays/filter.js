@@ -4,8 +4,17 @@ function filter(arr, callback) {
     for (var i = 0; i < arr.length; i++){
         if(callback(arr[i])){
             result[counter] = arr[i];
-            counter++
+            counter++;
         } 
     }
     return result
 }
+
+
+// var result = [];
+//     for (var i = 0; i < arr.length; i++){
+//         if(callback(arr[i])){
+//             result[result.length] = arr[i];
+//         } 
+//     }
+//     return result

@@ -4,16 +4,24 @@ function every(arr, callback) {
     
     if (!arr.length) return true;
 
-    var result = []; counter= 0;
     for(var i = 0; i < arr.length; i++) {
-        if(callback(arr[i], i, arr)){
-            result[counter] = callback(arr[i], i , arr);
-            counter++;
-        }
+        if(!(callback(arr[i], i, arr))) return false
     }
-    return (result.length === arr.length)? true: false;
+    return true
 
 }
+
+
+// old version without refactoring
+    // var result = []; counter = 0;
+    // for(var i = 0; i < arr.length; i++) {
+    //     if(callback(arr[i], i, arr)){
+    //         result[counter] = callback(arr[i], i , arr);
+    //         counter++;
+    //     }
+    // }
+    // return (result.length === arr.length)? true: false;
+
 
 
 
