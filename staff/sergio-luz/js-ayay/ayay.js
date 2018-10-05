@@ -15,9 +15,10 @@ Ayay.prototype.push = function(element) {
 };
 
 Ayay.prototype.pop = function() {
-    this.length--;
+    var temp=this[this.length-1];
     delete this[this.length-1];
-    return this[this.length-1];
+    this.length--;
+    return temp;
 };
 
 Ayay.prototype.forEach = function(callback) {
