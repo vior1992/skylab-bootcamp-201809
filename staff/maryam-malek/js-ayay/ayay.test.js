@@ -68,11 +68,9 @@
         ayay.push(3);
 
         var result = [1,2];
-        debugger;
 
         ayay.pop();
-        console.log(ayay[2]);
-        console.log(ayay);
+        
         result.forEach(function(elem, index) {
             if (elem !== ayay[index]) throw Error('item does not match expected one, at position: ' + index);
         });
