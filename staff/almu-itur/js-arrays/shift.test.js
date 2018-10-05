@@ -34,7 +34,7 @@ tests.push(function () {
     var nums = 1;
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
@@ -50,7 +50,7 @@ tests.push(function () {
     var error;
 
     try {
-        forEach();
+        shift();
     } catch (err) {
         error = err;
     }
@@ -67,7 +67,7 @@ tests.push(function () {
     var nums = [];
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
@@ -76,19 +76,4 @@ tests.push(function () {
     if (error.message !== 'array is empty') throw Error ('error message is not correct');
 });
 
-tests.push(function () {
-
-    console.log('should fail on first element being empty');
-
-    var error;
-    var nums = ['', 2, 3];
-
-    try {
-        forEach(nums);
-    } catch (err) {
-        error = err;
-    }
-
-    if (!error) throw Error ('should have thrown error on first element of array being empty');
-    if (error.message !== 'first element of array is empty') throw Error ('error message is not correct');
-});
+testSuite(tests);
