@@ -57,26 +57,6 @@ tests.push(function (){
 });
 
 
-tests.push(function (){
-    console.log('should fail if the array item is a function');
-
-    var error;
-
-    try {
-        reverse([function add(){
-            return a+b
-        }]);
-    } catch (err) {
-        error = err;
-    }
-
-    if (!error) throw Error('has not failed');
-
-    if (error.message !== 'the array cannot contain a function') throw Error('error message is not correct');
-
-
-});
-
 /*//test error 3
 tests.push(function (){
     console.log('should fail if the argument is a string');

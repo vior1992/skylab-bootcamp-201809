@@ -12,11 +12,7 @@ function reverse (arr){
 
     if (!arr.length) throw Error ('the array is empty');
 
-    arr.forEach(function(item) {
-        if( (typeof item) == 'function') throw Error ('the array cannot contain a function');
-    })
-
-
+    
     var arraytemp=[];
     for(var i = 0; i<arr.length; i++){
         arraytemp[i]=arr[i];
