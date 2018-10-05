@@ -51,7 +51,7 @@ tests.push(function () {
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'array is not valid') throw Error('error message is not correct');
+    if (error.message !== 'undefined is not an array') throw Error('error message is not correct');
 });
 
 tests.push(function () {
