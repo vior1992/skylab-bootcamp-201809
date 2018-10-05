@@ -10,7 +10,7 @@ tests.push(function () {
   
   map(nums, function(element, index) {
     res[index] = element * 2;
-  });
+  });       
 
   if (res.length !== nums.length) throw Error('result length is not equal to nums length');
 
