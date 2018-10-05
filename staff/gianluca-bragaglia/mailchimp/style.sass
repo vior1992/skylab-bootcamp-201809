@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,800')
+
+$font: 'Open Sans'
+  
+body
+    background-color: #cccccc
+    margin: 0
+    padding-top: 0
+    padding-bottom: 0
+
+p
+    font-family: $font
+    font-weight: 400
+ 
+header
+    background-color: #47bdd5
+
+.flex-container
+    display: flex
+    width: 100%
+    
+
+.header-container__login
+    width: 94%
+
+.header__login
+        height: 20px
+        font-family: $font
+        font-weight: 800
+        text-decoration: none
+        float: right
+        color: #ffffff
+        font-size: 0.8em
+        margin-top: 20px
+
+.header-container
+    width: 85%
+    margin: auto
+    padding-top: 20px
+    
+    &__logo
+        height: 47px
+        margin-top: 40px
+        margin-left: 30px
+         
+    &__button    
+        height: 50px
+        padding-left: 35px
+        padding-right: 35px
+        border-radius: 7px
+        background-color: #222220
+        color: #ffffff
+        font-family: $font
+        font-weight: 800
+        font-size: 0.8em
+        border: none
+        margin-top: 35px
+        margin-left: 50px
+
+    .nav 
+        margin-top: 51px
+        padding-left: 15px
+
+    .nav__item
+        display: inline
+        font-family: $font
+        font-weight: 800
+        font-size: 0.8em
+        background-color: #d1eef4
+        padding: 16px 15px 
+        border-right: 1px solid #b9d2d7
+    
+    .nav__item--first
+        @extend .nav__item
+        border-top-left-radius: 7px
+        border-bottom-left-radius: 7px
+
+    .nav__item a 
+        text-decoration: none
+        color: #3e3e36
+
+    .nav__search-item-container
+
+        background-color: #d1eef4
+        padding: 15px 15px
+        height: 20px
+        margin-top: 35px
+        margin-left: -4px
+        border-top-right-radius: 7px
+        border-bottom-right-radius: 7px 
+        
+        
+        .nav__search-item
+            width: 150px
+            background-image: url('./images/search.png')
+            background-repeat: no-repeat
+            background-position-x: 140px
+            background-position-y: 6px
+            border: none
+            border-radius: 3px
+            padding: 5px
+            
+    
+.main-content
+    display: flex
+    margin-top: 30px 
+    margin-left: 50px
+
+    
+
+    &__text
+        margin-left: 40px
+        margin-top: 40px
+    
+    .p--main-content
+        @extend p
+        color: #4c7279
+        font-weight: 600
+        font-size: 0.87em
+    
+    .header-container__button--main-content
+        @extend .header-container__button
+        padding-left: 60px
+        padding-right: 60px
+        background-color: #e95c41
+        margin-left: 0
+        margin-top: 0
+
+main
+    background-color: #FFF
+    width: 85%
+    height: 550px
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
+    margin-top: -50px
+    margin-left: 94px
+    width: 85%
+    z-index: 1000
+    position: relative
+    .news-content 
+        font-family: Arial Black
+        margin-left: 20px
+        margin-right: 20px
+
+        .news-content__flex-container
+            display: flex
+            width: 100%
+            margin-top: 30px
+            justify-content: space-between
+            align-items: center
+
+            .news-content__flex-container__item
+                width: 210px
+
+            h3
+                margin-top: -25px
+
+            .p__main
+                @extend p
+                font-size: 14px
+                margin-top: -10px
+
+            .header-container__button--learn
+                @extend .header-container__button
+                margin-left: 0px
+                padding-left: 15px
+                padding-right: 120px
+                height: 30px
+                border-radius: 4px
+                font-weight: 400
+                background-image: url('./images/arrows.png')
+                background-repeat: no-repeat
+                background-position-x: 180px
+                background-position-y: 10px
+
+
+footer
+    background-color: #000
+    left: 0
+    bottom: 0
+    width: 100% 
+    
+
+    .footer-container
+        display: flex
+        width: 100%
+        margin-top: 30px
+        justify-content: space-around
+        align-items: top
+
+    .footer-container__title-item
+        color: #fff
+        font-family: $font
+    
+    .footer-container__list
+        list-style: none
+        padding-left: 0px
+        margin-top: -15px
+    
+        .footer-container__link
+            text-decoration: none
+            color: gray
+            font-family: $font
+            font-weight: 400
+            font-size: 12px
+            margin-bottom: 25px
+
+    .footer__box
+        text-align: center
+
+        .footer__box__copy
+                color: gray
+                font-family: $font
+                font-size: 12px   
+            
+        
+            
+
+
+
+                    
+                
+
+
+
+
+
+    
+
+
+     
+
+
+
+
+
