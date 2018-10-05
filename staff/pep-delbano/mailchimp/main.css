@@ -1,0 +1,197 @@
+/*cd Desktop\CMDER\bootcamp\collab\skylab-bootcamp-201809\staff\pep-delbano\mailchimp
+ * sass --watch main.sass:main.css */
+/*Variables */
+* {
+  margin: 0 auto;
+  font-family: Arial;
+  /*upper section */ }
+  body {
+    flex-wrap: wrap;
+  }
+.background--color__blue {
+  background-color: #44bdd2;
+  display: block;
+  width: 100%;
+  padding-bottom: 2%; }
+
+.blue--margins {
+  padding: 15px 0 35px 0;
+  margin-right: 10%;
+  margin-left: 10%; }
+
+.log-in {
+  display: flex;
+  justify-content: flex-end;
+  color: white; }
+
+.upperHeader {
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  margin: 0px 10px 15px 0; }
+  .upperHeader .nav--btn {
+    background: #564a3e;
+    box-shadow: inset 0 -25px 0 #403a32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 10px; }
+  .upperHeader .navBar {
+    background-color: #cfedf5;
+    border-radius: 7px; }
+    .upperHeader .navBar ul {
+      display: flex;
+      flex-direction: row;
+      height: 40px; }
+    .upperHeader .navBar li {
+      align-self: center;
+      list-style-type: none;
+      border-right: 1px solid #403a32;
+      padding: 3px 15px; }
+    .upperHeader .navBar li:last-child {
+      border-right: none; }
+    .upperHeader .navBar a {
+      color: #564a3e;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 10px;
+      align-content: center;
+      display: block; }
+    .upperHeader .navBar .input--search {
+      display: inline-block;
+      position: relative;
+      margin: 5px;
+      width: 35%; }
+      .upperHeader .navBar .input--search .glyphicon-search {
+        margin-left: -10%;
+        position: absolute;
+        z-index: 10;
+        border: none;
+        background: transparent; }
+
+.underHeader {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  margin: 0 10%;
+  /*middle section */ }
+
+  
+  .underHeader .mainPictureMonkey {
+    width: 45%; }
+  .underHeader .right {
+    flex-direction: column;
+    width: 55%;
+    margin-top: 40px;
+    justify-content: left; }
+  .underHeader .img--title {
+    margin-left: 0;
+    width: 100%  }
+  .underHeader p {
+    margin: 20px 0;
+    color: #403a32; }
+  .underHeader .btn__red {
+    background: #e26b4c;
+    box-shadow: inset 0 -25px 0 #eb5d47;
+    color: white;
+    width: 50%;
+    padding: 15px 10px;
+    border: none;
+    border-radius: 5px; }
+
+.background--color__silver {
+  display: flex;
+  background-color: #cdcfcf;
+  position: relative;
+  width: 100%; }
+
+.window {
+  width: 80%;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 5px 15px;
+  margin-top: -5%;
+  /*last section */ }
+  .window .window--header {
+    display: flex;
+    flex-direction: row;
+    font-size: 40px;
+    font-weight: 900;
+    margin: 5px; }
+  .window .window--columns {
+    display: flex;
+    flex-direction: row; }
+  .window .window--sections {
+    color: #403a32;
+    margin: 15px;
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; }
+  .window .window--img {
+    width: 100%; }
+  .window h3 {
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0; }
+  .window h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 0; }
+  .window p {
+    font-size: 14px;
+    margin-left: 0; }
+
+  .window--sections__bottom {
+    display: flex;
+    justify-content: space-between;
+    background-color: #403a32;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    width: 100%;
+    
+  }
+  .link--learnMore {
+    color: white;
+    text-decoration: none;
+  }
+
+
+.background-color__black {
+  background-color: #1d1a1a;
+  width: 100%;
+  padding: 15px; }
+  .background-color__black .black--margins {
+    display: flex;
+    margin-right: 10%;
+    margin-left: 10%;
+    flex-direction: row;
+    justify-content: center; }
+  .background-color__black .black--list {
+    list-style-type: none;
+    text-decoration: none;
+    color: #564a3e; }
+    .background-color__black .black--list h4 {
+      color: white; }
+    .background-color__black .black--list a {
+      color: gray; }
+  .background-color__black footer p {
+    padding: 20px;
+    text-align: center; }
+
+/*  Remember:
+ *
+ * Use DISPLAY: flex; to create a flex container.
+ * Use JUSTIFY-CONTENT to define the horizontal alignment of items.
+ * Use ALIGN-ITEMS to define the vertical alignment of items.
+ * Use FLEX-DIRECTION if you need columns instead of rows.
+ * Use ROW-REVERSE or COLUMN-REVERSE values to flip item order.
+ * Use ORDER to customize the order of individual elements.
+ * Use ALIGN-SELF to vertically align individual items.
+ * Use FLEX to create flexible boxes that can stretch and shrink.
+ *
+ */
+
+/*# sourceMappingURL=main.css.map */
