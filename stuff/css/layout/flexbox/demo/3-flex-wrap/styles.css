@@ -11,7 +11,7 @@ body {
   border: 10px solid grey;
   margin: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   /* flex-wrap: wrap-reverse; */
 }
