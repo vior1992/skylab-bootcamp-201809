@@ -43,6 +43,7 @@ tests.push(function (){
 
 });
 
+<<<<<<< HEAD
 //TEST3
 
 console.log("Should return error for empty array");
@@ -65,6 +66,8 @@ tests.push(function (){
 
 });
 
+=======
+>>>>>>> develop
 //TEST4 
 
 console.log("Should return 12");
