@@ -7,7 +7,7 @@
     
     tests.push(function() {
         console.log('should push values in ayay');
-        debugger
+
         var ayay = new Ayay();
 
         ayay.push(1);
@@ -15,22 +15,6 @@
         ayay.push(3);
 
         if (ayay.length !== 3) throw Error('ayay length does not match expected one: ' + ayay.length);
-
-        for (var i = 0; i < ayay.length; i++) 
-            if (ayay[i] !== i + 1) throw Error('item does not match expected at position: ' + i);
-    });
-
-    tests.push(function() {
-        console.log('should push arrays in ayay');
-
-        var ayay = new Ayay();
-
-        ayay.push(1);
-        ayay.push(2);
-        ayay.push(3);
-        ayay.push([4,5])
-
-        if (ayay.length !== 5) throw Error('ayay length does not match expected one: ' + ayay.length);
 
         for (var i = 0; i < ayay.length; i++) 
             if (ayay[i] !== i + 1) throw Error('item does not match expected at position: ' + i);
@@ -75,22 +59,7 @@
     var tests = [];
     
     tests.push(function() {
-        console.log('should pop values in ayay');
-
-        var result;
-        var ayay = new Ayay();
-
-        ayay.push(1);
-        ayay.push(2);
-        ayay.push(3);
-        ayay.push(4);
-
-        result = ayay.pop()
-
-        if (ayay.length !== 3) throw Error('ayay length does not match expected one: ' + ayay.length);
-        
-        if (result !== 4) throw Error('returned value is not the last value');
-
+        // TODO
     });
     
     testSuite(tests);

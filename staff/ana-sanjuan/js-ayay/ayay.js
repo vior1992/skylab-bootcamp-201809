@@ -2,6 +2,7 @@
  * ?
  * 
  */
+
 function Ayay() {
     this.length = 0;
 }
@@ -9,26 +10,16 @@ function Ayay() {
 // TODO
 
 Ayay.prototype.push = function(element) {
-    // debugger
-    // this[this.length] = element;
-
-    // this.length++;
-
-    // var length = this.length 
-    // debugger
-    // for (var i = 0; i < length; i++) {
-    //     this[this.length+i] = element[i];
-    // } 
-
-    // this.length++;
-
+    this[this.length] = element;
+    this.length++;
+    return length;
 };
 
 Ayay.prototype.pop = function() {
-    var self = this;
+    var result = this[this.length-1];
+    delete this[this.length -1];
     this.length--;
-    return self[this.length];
-
+    return result;
 };
 
 Ayay.prototype.forEach = function(callback) {
@@ -38,7 +29,11 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
-    // TODO
+    var result = new Ayay;
+    for (var i = 0; i < this.length; i++){
+        result.push(callback(this[i], i,this));
+    }
+    return result;
 };
 
 Ayay.prototype.sort = function() {
