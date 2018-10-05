@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans')
+*
+    font-family: 'Open Sans', sans-serif  
+
+%main-section
+    padding: 2%
+    max-width: 100%
+    max-height: 100%
+.header
+    background-color: rgb(73, 190, 213)	
+    display: grid
+    grid-template: auto auto auto auto / 1fr 1fr 1fr 1fr 1fr 1fr 
+    padding: 1% 10% 4% 10%
+    &__nav
+        border-radius: 5px
+        background-color: rgb(210, 239, 245)
+        border: 2px solid rgb(210, 239, 245)
+        height: 2em
+        display: grid
+        grid-template-rows: 19% 1fr 2%
+        width: auto
+        padding: 0% 2% 0.1%
+    &__login
+        grid-area: 1 / 1 / 2 / 7
+        color: white
+        font-weight: bold
+        text-align: end
+        text-decoration: unset 
+        padding-bottom: 1%
+        font-size: 0.75em
+    &__image
+        max-width: 90%
+        padding-top: 5%
+        &--logo
+            width: 14em
+            height: 2em
+        &--monkey
+            grid-area: 3 / 1 / 4 / 4
+            max-height: 90%
+    &__text
+        display: block
+        height: min-content
+    &__info
+        grid-area: 3 / 4 / 5 / 7
+        &--letters
+            max-width: 90%
+.search__input
+    background-image: url(./images/search.png)
+    background-repeat: no-repeat
+    background-position: right
+.div__image
+    grid-area: 2 / 1 / 3 / 2
+.div__button
+    grid-area: 2 / 2 / 3 / 3 
+.div__nav
+    grid-area: 2 / 3 / 3 / 7
+.nav__element
+    border-right: 1px solid gainsboro
+    font-weight: bold
+    grid-area: 2
+    padding: 0% 4%
+    text-decoration: unset 
+    color: grey
+    font-size: 0.75em
+    &--input
+        display: inline
+        grid-area: 2
+.div__main
+    display: grid
+    grid-template: 10% 1fr / 4% 1fr 4%
+    background-color: rgb(73, 190, 213)
+    max-width: 100%	
+    background-image: url("./images/noisepattern.png")
+    background-repeat: repeat
+    &__image
+        width: 100%
+        height: 100%
+        &--left
+            grid-area: 2 / 1 / 3 / 2
+        &--right
+            grid-area: 2 / 3 / 3 / 4
+.main
+    grid-area: 2 / 2 / 3 / 3
+    max-width: 100%
+    max-height: 100%
+    display: grid
+    grid-template: repeat(2, auto) / repeat(4, 1fr)
+    border-radius: 2% 2% 0% 0%
+    background-color: rgb(240, 240, 240)
+    padding-bottom: 5%
+    margin-top: -5%
+    &__title    
+        grid-area: 1 / 1 / 2 / 2
+        padding-left: 15%
+        max-width: 100%
+        max-height: 100%
+    &__section
+        display: flex
+        align-items: stretch
+        flex-direction: column
+        justify-content: space-between
+        &--templates
+            grid-area: 2 / 1 / 3 / 2   
+            @extend %main-section
+        &--denim
+            grid-area: 2 / 2 / 3 / 3
+            @extend %main-section
+        &--unfurlr
+            grid-area: 2 / 3 / 3 / 4
+            @extend %main-section
+        &--golden
+            grid-area: 2 / 4 / 3 / 5
+            @extend %main-section
+    &__text 
+        font-size: 0.9em
+        margin-bottom: -2.5em
+    &__image    
+        border-top: 1px solid darkgrey
+        border-bottom: 1px solid white
+.footer
+    display: grid
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr 1fr
+    color: white
+    background-color: black
+    padding: 1% 10%
+
+    &__about
+        grid-area: 1 / 1 / 2 / 2
+    &__connect
+        grid-area: 1 / 2 / 2 / 3
+    &__contact
+        grid-area: 1 / 3 / 2 / 4
+    &__legal
+        grid-area: 1 / 4 / 2 / 5
+    &__rights
+        grid-area: 2 / 1 / 3 / 5
+        color: grey
+        font-size: 0.6em
+        padding-top: 15%
+        text-align: center
+.footer__anchor
+    display: block
+    color: grey
+    text-decoration: unset 
+    font-size: 0.9em
+.button
+    border-radius: 5px
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.09) 51%)
+    color: white
+    width: 15em
+    height: 4.5em
+    max-width: 90%
+    justify-content: center
+    display: flex
+    &__top
+        max-width: 80%
+        height: 3.5em
+        background-color: rgb(63, 63, 55)
+
+    &__big
+        background-color: rgb(231, 88, 66)
+    &__main
+        background-color: rgb(63, 63, 55)
+        background-image: url(./images/arrows.png)
+        background-repeat: no-repeat
+        background-position: right
+        max-height: 5%
+        flex-direction: row
+        justify-content: space-between
+        padding-bottom: 1%
+        padding-top: 2%
+        padding-right: 7%
+        height: 10em
+        overflow: hidden
+.image__arrow
+    max-height: 50%
+    
+.main__section h5
+    margin-bottom: -3.3em
+.main__section h2
+    margin-bottom: -1em    
+           
