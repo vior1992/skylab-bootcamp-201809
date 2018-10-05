@@ -10,12 +10,19 @@ function Ayay() {
 
 Ayay.prototype.push = function(element) {
     this[this.length] = element;
-
     this.length++;
 };
 
 Ayay.prototype.pop = function() {
-    // TODO
+    var del;
+    if (this.length > 0){
+        del = this[this.length-1];
+        delete this[this.length-1]
+        this.length--;
+        return del;
+    }
+    return undefined;
+    
 };
 
 Ayay.prototype.forEach = function(callback) {

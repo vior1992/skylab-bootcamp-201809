@@ -1,5 +1,5 @@
 // ayay.test.js
-
+/*
 (function() {
     console.log('TEST Ayay.prototype.push');
     
@@ -31,9 +31,10 @@
     var tests = [];
     
     tests.push(function() {
-        console.log('should iterate on valid ayay');
+        console.log('should pop the last value on valid ayay');
 
         var ayay = new Ayay();
+        var oldValue
 
         ayay.push(1);
         ayay.push(2);
@@ -50,16 +51,32 @@
         });
     });
     
+    
     testSuite(tests);
-})();
+})();*/
 
 (function() {
-    console.log('TEST Ayay.prototype.map');
+    console.log('TEST Ayay.prototype.pop');
     
     var tests = [];
     
     tests.push(function() {
-        // TODO
+        console.log('should delete the last element');
+
+        var ayay = new Ayay();
+
+        ayay.push(1);
+        ayay.push(2);
+        ayay.push(3);
+
+        var length = ayay.length;
+        var last = ayay[ayay.length-1];
+        var result;
+        result = ayay.pop();
+
+        if (length-1 !== (ayay.length)) throw Error('result length does not match expected one: ' + ayay.length);
+        if (last !== result) throw Error('result does not match expected one: ' + last);
+
     });
     
     testSuite(tests);
