@@ -59,24 +59,21 @@ tests.push(function () {
 // 4
 
 tests.push(function () {
-    console.log('should fail on element is empty');
+    console.log('should succeed on element is blank');
 
-    var arr = ['ant', 'bison', 'camel', 'duck', 'bison', 'cat', 'dog', 'bat'];
+    var arr = ['ant', 'bison', '    ', 'duck', 'bison', 'cat', 'dog', 'bat'];
 
-    var elem = '  ';
+    var elem = '    ';
 
-    var error;
+    var res;
 
-    try {
-        includes(arr, elem);
-    } catch (err) {
-        error = err;     
-    } 
-    
+  
+    res = arr.includes(elem) ;
 
-    if (!error) throw Error('should have thrown error on element is blank');
+    res1 = includes(arr,elem);
 
-    if (error.message !== 'element is blank') throw Error ('error message is not correct');
+
+    if(res !== res1) throw Error('results are not equals');
 });
 
 // 5
@@ -103,4 +100,3 @@ tests.push(function () {
 });
  
 testSuite(tests);
-
