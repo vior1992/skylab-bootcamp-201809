@@ -1,20 +1,18 @@
 function sort(array) {
-  var newArray = [],
-      temp;
+  if(!(array instanceof Array)) throw Error('array is not valid');
+  if(array.length === 0) throw Error('array is empty');
+
+  var temp;
 
   for(var i = 0; i < array.length; i++) {
-    newArray[i] = array[i];
-  }
-
-  for(var i = 0; i < newArray.length; i++) {
-    for(var j = i + 1; j < newArray.length; j++) {
-      if(newArray[i].toString() > newArray[j].toString()) {
-        temp = newArray[i];
-        newArray[i] = newArray[j];
-        newArray[j] = temp;
+    for(var j = i + 1; j < array.length; j++) {
+      if(array[i].toString() > array[j].toString()) {
+        temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
       }
     }
   }
 
-  return newArray;
+  return array;
 }
