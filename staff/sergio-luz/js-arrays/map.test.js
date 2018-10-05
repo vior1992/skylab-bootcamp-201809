@@ -1,4 +1,4 @@
-console.log('TEST map');
+console.log('%cTEST map', 'background: orange');
 
 var tests = [];
 

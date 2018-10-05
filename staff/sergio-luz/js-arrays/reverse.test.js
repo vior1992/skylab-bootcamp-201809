@@ -1,4 +1,4 @@
-console.log('TEST reverse');
+console.log('%cTEST reverse', 'background: orange');
 var tests = [];
 
 // Demo comprobation

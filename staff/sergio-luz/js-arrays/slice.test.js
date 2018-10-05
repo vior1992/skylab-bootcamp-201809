@@ -1,4 +1,4 @@
-console.log('TEST slice');
+console.log('%cTEST slice', 'background: orange');
 
 var tests = [];
 

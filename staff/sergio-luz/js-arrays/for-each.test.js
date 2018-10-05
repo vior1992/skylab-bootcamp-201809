@@ -1,4 +1,4 @@
-console.log('TEST forEach');
+console.log('%cTEST forEach', 'background: orange');
 
 var tests = [];
 

@@ -1,4 +1,4 @@
-console.log('TEST for join');
+console.log('%cTEST for join', 'background: orange');
 
 var tests = [];
 

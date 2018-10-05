@@ -1,4 +1,4 @@
-console.log('TEST findIndex');
+console.log('%cTEST findIndex', 'background: orange');
 
 var tests = [];
 

@@ -1,7 +1,9 @@
 function includes(arr, item){
     if( !(arr instanceof Array)) throw Error('function must contain two arguments');
-    if(!arr.length)  throw Error('array cannot be empty');
-    if( (typeof item === 'undefined')) throw Error('item to search is missing');
+    if(!arr.length)  throw Error('array is empty');
+    if( (typeof item === 'undefined')) throw Error('element is not defined');
+    if(!item.trim().length) throw Error ('element is blank');
+    if( (item instanceof Array)) throw Error('item to search cannot be an array');
 
     //Se comprueba si se ha enviado un indice
     if(arguments[2]===undefined){

@@ -1,4 +1,4 @@
-console.log("Pop Test");
+console.log("%cPop Test", 'background: orange');
 
 var tests=[];
 
