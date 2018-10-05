@@ -17,9 +17,9 @@ Ayay.prototype.push = function(element) {
 
 Ayay.prototype.pop = function() {
     
-    poppedElem = this[this.length];
+    poppedElem = this[this.length-1];
     this.length--;
-    this[this.length] = undefined;
+    delete this[this.length];
     return poppedElem;
 };
 
