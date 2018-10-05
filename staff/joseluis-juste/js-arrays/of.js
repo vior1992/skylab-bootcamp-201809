@@ -1,13 +1,21 @@
 // of.js
 
-function of(elems) {
+function of() {
     
     var output = [];
-    if (elems === undefined) { 
-        output[0] = undefined;
-        return output;
-    }
+    var index = -1;
 
+    if (arguments.length === 0) throw Error("elements is empty");
+
+    var val = Array.prototype.find.call(arguments, (x,i) => {
+        index = i;
+        return x === undefined;
+    });
+
+    if (val === undefined){
+        throw Error(val + ' is undefined');
+    }
+    
     for(var i = 0 ; i < arguments.length;i++){
         output[i] = arguments[i];
     }

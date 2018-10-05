@@ -1,4 +1,4 @@
-onsole.log('TEST reverse');
+console.log('TEST reverse');
 var tests = [];
 
 // Demo comprobation
