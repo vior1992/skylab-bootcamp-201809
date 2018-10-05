@@ -6,7 +6,13 @@ document.querySelector('#shift').addEventListener('click', function() {
 });
 
 function shift(arr) {
+    if (!Array.isArray(arr)) throw Error('array is not valid');
+    if (arr.length <= 0) throw Error('array is empty');
+
     var result = arr[0];
-    arr = slice(arr, 1);
+    for (var i = 1; i < arr.length; i++) {
+        arr[i-1] = arr[i];
+    }
+    arr.length--;
     return result;
 }

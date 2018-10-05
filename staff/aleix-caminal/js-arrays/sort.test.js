@@ -37,15 +37,11 @@ sortTests.push(function () {
 });
 
 sortTests.push(function () {
-    console.log('should not modify the original array');
+    console.log('should modify the original array');
 
     var arr = [1, 211, 98, 3];
 
-    var original = arr.slice();
+    var sorted = sort(arr);
 
-    var error;
-
-    var res = sort(arr);
-
-    if (JSON.stringify(arr) !== JSON.stringify(original)) throw Error('the original array has been modified');
+    if (JSON.stringify(arr) !== JSON.stringify(sorted)) throw Error('the original array hasn\'t been modified');
 });
