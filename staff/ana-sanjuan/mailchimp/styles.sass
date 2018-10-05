@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans')
+// SASS allows
+//  variables with sass $primary-color: #333;
+//  mixins similar to functions 
+//  inheritance with extend %message-shared {...}
+//  nesting (is it better nest or specify at the bem way?
+
+$header-blue: #45BDD4
+
+//inheritance
+
+%flex-shared  
+    display: flex
+    margin: 0% 3%
+     
+%header-button
+    border-radius: 10px
+    border: none
+    height: 50px
+    text-shadow: 1px 1px 5px black
+    background-image: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 51%)
+    box-shadow: 0px 1px 1px #3E3E37, 0px -1px 1px #3E3E37 open
+    cursor: pointer
+    outline: 0
+    
+body  
+    font-family: 'PT Sans'
+    background-color: black
+
+.container-all
+    margin: 0 11%
+
+// header section    
+header
+    background-color: $header-blue
+   
+
+// upperheader
+.upperheader
+    display: flex
+    margin: 1% 5% 1% 5%
+
+.upperheader__logo
+    @extend %flex-shared 
+    flex: 30%
+    justify-content: space-between
+    margin: 4% 0% 0% 2%
+    
+
+.upperheader__button
+    @extend %header-button
+    background-color: #3F3F37
+    color: #DDDDDF
+    width: 120px
+    font-size: 12px
+
+.upperheader__nav-container
+    flex: 55%
+    margin: 0% 2% 0% 0%
+
+
+.upperheader__p
+    display: block
+    text-align: right
+    margin: 2% 7% 0% 2%
+    color: white
+    a
+        text-decoration: none
+
+.nav__ulist
+    @extend %flex-shared 
+    background-color: #CFEEF4
+    list-style-type: none
+    justify-content: space-around
+    align-items: center
+    border-right: #C3DEE3 1px solid
+    margin-top: 1.1% 
+    border-radius: 10px
+    border: none
+    height: 50px
+    text-shadow: 2px 2px 5px white
+    justify-content: flex-end
+    a 
+        text-decoration: none
+    li:last-child
+        border: none
+
+.nav__li 
+    border-right: 1px #adc8ca solid
+    height: 50px
+    line-height: 50px
+    padding-left: 5px
+    padding-right: 20px
+    text-align: left
+    font-size: 15px
+
+            
+
+.upperheader__input
+    background:  white url(mailchimp/images/search.png) right no-repeat
+
+//lower header
+.lowerheader
+    display: flex
+    margin: 0 5%
+    justify-content: space-around
+
+.lowerheader__image
+    flex: 50%
+    margin: 0 0 4% 5%
+
+.lowerheader__text
+    flex: 40%
+    color: #11758C
+    margin-right: 5%
+    margin-top: 3%
+
+.lowerheader__button
+    @extend %header-button
+    background-color: #EA5C41
+    color: #F7F0E4
+    width: 200px
+    font-size: 16px
+   
+
+//main
+
+main 
+    background-image: url("mailchimp/images/noisepattern.png")
+
+.container-main
+    margin: 0% 8% 0% 5%
+    background-color: #F0F0F0
+    position: relative
+    bottom: 50px
+    height: 150%
+    width: 90%
+    border-radius: 1%
+    h2 
+        padding: 3% 0 0 1%
+        font-size: 30px
+        font-weight: bold
+
+.main-section
+    display: flex
+    justify-content: space-around
+    margin: 2% 3%
+    height: 500px
+    h5 
+        margin: 15% 0 0 0   
+    h3 
+        margin: 3% 0%
+
+.main-section__heading
+    margin: 0% 3% 2% 3%
+
+.news__button
+    background-color: #3E3E36
+    display: block
+    width: 100%
+    height: 30px
+    color: white
+    text-align: left
+    border-radius: 5px
+    background:  #3E3E36 url(mailchimp/images/horizonal_arrow.png) left no-repeat
+    background-position: 90% 8px
+    padding-right: 5%
+    cursor: pointer
+    outline: 0
+
+.main-section__news
+    width: 22%
+
+.news__p
+    font-size: 12px
+
+
+//footer
+
+footer 
+    background-color: #191814
+    color: #706F6B
+    position: relative
+    bottom: 170px 
+    width: 100%
+    height: 150%
+
+.upper-footer 
+    display: flex
+    margin: 10% 3%
+    justify-content: space-around
+    &__h4 
+        color: white
+        margin-left: 26%
+        margin-bottom: 0%
+    &__ul
+        list-style-type: none
+        margin-top: 3%
+.lower-footer
+    text-align: center
+    height: 200px
+
+
+    
