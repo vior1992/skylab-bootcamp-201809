@@ -1,0 +1,229 @@
+/*cd Desktop\CMDER\bootcamp\collab\skylab-bootcamp-201809\staff\pep-delbano\mailchimp
+    sass --watch main.sass:main.css*/
+
+/*Variables*/
+$blueBackground: rgb(68, 189, 210)
+$BtnSignUpUp: rgb(86, 74, 62)
+$BtnSignUpUnder: rgb(64, 58, 50)
+$blueNav: rgb(207, 237, 245)
+$redBtnUp: rgb(226, 107, 76)
+$redBtnUnder: rgb(235, 93, 71)
+$backgroundWindow: rgb(240, 240, 240)
+$grayBackground: rgb(205, 207, 207)
+$blackBackground: #1d1a1a
+
+*
+    margin: 0 auto
+    font-family: Arial
+
+    /*upper section*/
+.background--color__blue
+    background-color: $blueBackground
+    display: block
+    width: 100%
+    padding-bottom: 2%
+
+.blue--margins
+    padding: 15px 0 35px 0
+    margin-right: 10%
+    margin-left: 10%
+
+.log-in
+    display: flex
+    justify-content: flex-end
+    color: white
+
+.upperHeader
+    display: flex
+    justify-content: flex-end  //no funciona?!
+    height: 40px
+    margin: 0px 10px 15px 0
+      
+    .nav--btn
+        background: $BtnSignUpUp
+        box-shadow: inset 0 -25px 0 $BtnSignUpUnder
+        color: white
+        border: none
+        border-radius: 5px
+        padding: 10px 10px
+        
+
+    .navBar
+        background-color: $blueNav
+        border-radius: 7px
+
+        ul
+            display: flex
+            flex-direction: row
+            height: 40px
+
+        li
+            align-self: center
+            list-style-type: none
+            border-right: 1px solid rgb(64, 58, 50)
+            padding: 3px 15px
+        
+        li:last-child 
+            border-right: none
+        a
+            color: $BtnSignUpUp
+            font-weight: 700
+            text-decoration: none
+            font-size: 10px 
+            align-content: center //no funciona, y no se porqué!!
+            display: block
+
+        .input--search
+            display: inline-block
+            position: relative
+            margin: 5px
+            width: 35%
+            
+            .glyphicon-search
+                margin-left: -10%
+                position: absolute
+                z-index: 10
+                border: none
+                background: transparent
+                
+
+.underHeader
+    display: flex
+    flex-direction: row
+    align-content: space-between
+    margin: 0 10%
+
+
+    .mainPictureMonkey
+        width: 45%
+        margin-bottom: 10px
+    
+    .right
+        flex-direction: column
+        width: 55%
+        margin-top: 40px
+        justify-content: left
+    
+    .img--title
+        margin-left: 0
+        
+    p
+        margin: 20px 0
+        color: $BtnSignUpUnder
+       
+    .btn__red
+        background: $redBtnUp
+        box-shadow: inset 0 -25px 0 $redBtnUnder
+        color: white
+        width: 50%
+        padding: 15px 10px
+        border: none
+        border-radius: 5px
+       
+
+
+    /*middle section*/
+.background--color__silver
+    display: block
+    background-color: $grayBackground
+    position: relative
+    width: 100%
+
+.window
+    background-color: $backgroundWindow
+    border-radius: 15px
+    padding: 5px 15px
+    margin: -5% 7% 0 7%
+    
+    .window--header
+        display: flex
+        flex-direction: row
+
+        h1  //no funcionan sus estilos ¿?
+        font-size: 40px
+        font-weight: 900
+        margin: 5px
+
+    .window--columns
+        display: flex
+        flex-direction: row
+
+    .window--sections
+        color: $BtnSignUpUnder
+        margin: 15px
+        width: 22%
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+
+    .window--img
+        width: 100%
+    
+    h3
+        font-size: 12px
+        font-weight: 800
+        margin-left: 0
+
+    h2
+        font-size: 20px
+        font-weight: 700
+        margin-left: 0
+    p
+        font-size: 14px
+        margin-left: 0
+
+    a
+        background-color: $BtnSignUpUnder
+        border-radius: 5px
+        color: white
+        font-size: 14px
+        padding: 5px
+        width: 100%
+        margin-left: 0
+        // align-self: flex-end
+        margin-bottom: 0
+
+
+
+    /*last section*/
+.background-color__black
+    background-color: $blackBackground
+    width: 100%
+    padding: 15px
+
+    .black--margins
+        display: flex
+        margin-right: 10%
+        margin-left: 10%
+        flex-direction: row
+        justify-content: center
+
+    .black--list
+        list-style-type: none
+        text-decoration: none
+        color: $BtnSignUpUp
+        
+        h4
+            color: white
+
+        a
+            color: gray
+
+    footer p
+        padding: 20px
+        text-align: center
+
+
+
+/*  Remember:
+
+ Use DISPLAY: flex; to create a flex container.
+ Use JUSTIFY-CONTENT to define the horizontal alignment of items.
+ Use ALIGN-ITEMS to define the vertical alignment of items.
+ Use FLEX-DIRECTION if you need columns instead of rows.
+ Use ROW-REVERSE or COLUMN-REVERSE values to flip item order.
+ Use ORDER to customize the order of individual elements.
+ Use ALIGN-SELF to vertically align individual items.
+ Use FLEX to create flexible boxes that can stretch and shrink.
+ 
+  */
