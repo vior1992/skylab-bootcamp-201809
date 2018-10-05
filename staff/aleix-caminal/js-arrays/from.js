@@ -10,10 +10,14 @@ document.querySelector('#from').addEventListener('click', function() {
 });
 
 function from(arr, callback) {
+    if (typeof arr[Symbol.iterator] !== 'function') throw Error('object is not iterable');
+    if (callback !== undefined && typeof callback !== 'function') throw Error('callback is not a function');
+
     var result = [];
     for (var i = 0; i < arr.length; i++) {
+        if (!arr[i]) throw Error('empty value found in array');
         if (typeof callback === "function") {
-            result[i] = callback(arr[i]);
+            result[i] = callback(arr[i], i);
         } else {
             result[i] = arr[i];
         }
