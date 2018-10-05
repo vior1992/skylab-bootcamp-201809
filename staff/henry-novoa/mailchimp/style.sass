@@ -1,0 +1,172 @@
+$signup__button__color: white
+$signup__button__background-color:#2F413B
+$signup__button__background-color--secondary: black 
+$header__background-color: #46BDD5
+
+body
+    margin: 0
+//--Header--//
+header
+    background-color: $header__background-color
+
+.header__log-in
+    display: grid
+    grid-template-columns: 10% 1fr 10%
+.log-in__text
+    grid-column-start: 2
+    justify-self: end
+    color: white    
+
+.header__1st-half
+    display: grid
+    grid-template-columns: 10% 1fr 1fr 10%
+    align-content: center
+
+.header__logo-button
+    grid-column-start: 2
+
+
+
+li
+    display: inline-block
+
+
+.header__logo-button
+    display: flex
+    flex-direction: row
+
+.search
+    
+    background-image: url("./images/search.png")
+    background-repeat: no-repeat
+    background-position: 95% 3px    
+
+
+
+.header__nav
+    display: flex
+    flex-direction: row 
+   
+.header__navbar__list
+    display: grid
+    grid-template-columns: repeat(6, 1fr)
+    align-content: space-around
+    background-color: #D1EEF4
+    border-radius: 15px
+  
+
+.pricing , .features ,  .resources , .support , .blog  
+    padding: 20px 
+    border-right: solid 1px
+    font-weight: bold
+    
+
+input[type=text]
+    margin-top: 18px
+    margin-right: 16px
+    margin-left: 8px
+
+
+.header__logo-button__button
+    position: relative
+    color: $signup__button__color
+    background-color: $signup__button__background-color
+    border-radius: 15px
+    padding: 20px
+    display: inline-block
+    text-align: center
+    margin: auto
+    text-decoration: none
+    font-size: 30px
+    border: 1px solid gray
+    outline: 0
+    cursor: pointer
+    &::before
+        position: absolute
+        top: 0
+        left: 0
+        border-radius: 15px
+        background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%)
+        content: ""
+        height: 100%
+        width: 100%
+ 
+    
+    &--secondary
+        @extend .header__logo-button__button
+        background-color: #ff6b58
+
+
+   
+
+.header__2nd-half
+    display: flex
+    flex-direction: row  
+    margin-left: 10%
+    margin-right: 10% 
+    
+
+//--Main..//
+
+main
+    background-image: url("images/noisepattern.png")    
+    background-repeat: repeat
+    display: grid
+    grid-template-columns: 10% 1fr 10%
+    
+.main__banner
+    background-color: white
+    border-top-left-radius: 15px
+    border-top-right-radius: 15px
+    margin-top:-50px        
+
+.main__news__banner
+    display: grid
+    grid-template-columns: repeat(4, 1fr) 
+
+.main__news__banner__coffee , .main__news__banner__finger, .main__news__banner__wrap , .main__news__banner__phone
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    text-align: center
+
+.main__news__banner__button
+     background-color: black
+     color: white
+     font-weight: bold
+     padding-left: 50px
+     padding-right: 50px
+     padding-top: 10px
+     padding-bottom: 10px
+     border-radius: 15px
+//--footer--//    
+
+.footer__1sthalf
+    display: grid
+    grid-template-columns: 10% 1fr 1fr 1fr 1fr 10%
+
+.footer__1sthalf__about
+    grid-column-start: 2    
+.footer__1sthalf__connect
+    grid-column-start: 3
+.footer__1sthalf__contact        
+    grid-column-start: 4
+.footer__1sthalf__legalinfo
+    grid-column-start: 5    
+
+.footer__2ndhalf
+    display: flex
+    justify-content: center
+
+footer
+    background-color: black
+    color: white
+
+ul
+    display: flex
+    flex-direction: column    
+    
+
+
+    
