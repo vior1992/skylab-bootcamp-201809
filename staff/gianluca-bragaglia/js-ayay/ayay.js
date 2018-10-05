@@ -15,7 +15,10 @@ Ayay.prototype.push = function(element) {
 };
 
 Ayay.prototype.pop = function() {
-    // TODO
+    var lastItem = this[this.length-1];
+    if(this.length > 0) this.length--
+
+    return lastItem;
 };
 
 Ayay.prototype.forEach = function(callback) {
@@ -25,8 +28,12 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
-    // TODO
-};
+    var arr = [];
+    for (var i = 0; i < this.length; i++) {
+         arr[i] = callback(this[i],i);
+    }
+    return arr;  
+}; 
 
 Ayay.prototype.sort = function() {
     // TODO
@@ -37,5 +44,11 @@ Ayay.prototype.filter = function(callback) {
 };
 
 Ayay.prototype.find = function(callback) {
-    // TODO
+    
+    for(var i=0; i < this.length; i++) {
+        
+        if (callback(this[i]) == true) {
+            return this[i];
+        }   
+    }
 };
