@@ -2,6 +2,8 @@ function shift(arr) {
     var new_arr = [];
     var firstItem = arr[0];
 
+    if (typeof arr === 'undefined') throw Error('no parameter has been introduced');
+    if (arr.length === 0) throw Error('array is empty');
     if (!(arr instanceof Array)) throw Error('input is not array');
 
 

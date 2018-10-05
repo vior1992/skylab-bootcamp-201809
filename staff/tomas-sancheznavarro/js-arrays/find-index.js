@@ -1,10 +1,9 @@
 function findIndex(arr, func) {
-    var pos = -1
+
     for (var i = 0; i < arr.length; i++) {
-        if (func(arr[i])) {
-            pos = i;
-            break;
+        if (func(arr[i], i, arr)) {
+            return i;
         }
     }
-    return pos;
+    return -1;
 }

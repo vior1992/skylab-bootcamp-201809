@@ -26,7 +26,7 @@ function sort(arr) {
             }
         }
     }
-    return arr2;
+    return arr;
 }
 
 // Un bubble sort que encontré en StackOverflow.
