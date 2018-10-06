@@ -34,15 +34,31 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
-    // TODO
+
+    var output = [];
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    for (var i = 0; i < this.length; i++) output[i] = callback(this[i], i, this);
+    return output;
 };
 
 Ayay.prototype.sort = function() {
-    // TODO
+   
+    for (var i = 0; i < this.length - 1; i++) {
+        for (var j = 1; j < this.length; j++) {
+            if (this[j] < this[j - 1]) {   
+                var aux_elem = this[j];
+                this[j] = this[j - 1];
+                this[j - 1] = aux_elem;
+
+            }
+        }
+    }
+    return this;
 };
 
 Ayay.prototype.filter = function(callback) {
-    // TODO
+    var output = [];
+    
 };
 
 Ayay.prototype.find = function(callback) {
