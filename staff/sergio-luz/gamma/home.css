@@ -1,0 +1,33 @@
+nav{
+    background: white;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+div{
+    flex-grow:1;
+}
+
+.container--center{
+    display: flex;
+    justify-content: center;
+}
+
+.img{
+    height: 70%;
+    width: auto;
+}
+
+.bg-images{
+    width: 100%;
+}
+
