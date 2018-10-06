@@ -1,17 +1,22 @@
 function shift(arr) {
+    
+    var element;
+    var index;
+    var length;
 
-    var aux = arr[0];
-    var arr_aux = [];
-    var j = 0;
-    for (var i = 1; i < arr.length; i++) {
-        arr_aux[j] = arr[i];
-        j++;
+    if (typeof arr == 'undefined') throw Error ('no parameter has been introduced');
+    if (!(arr instanceof Array)) throw Error ('array is not valid');
+    if (!arr.length) throw Error ('array is empty');
+
+    element = arr[0];
+    if (element === "") throw Error ('first element of array is empty');
+    length = arr.length;
+
+    for (index = 0; index < arr.length; index ++) {
+
+        arr[index] = arr[index+1];
     }
-    arr.length = 0;
-    j = 0;
-    for (var i = 0; i < arr_aux.length; i++) {
-        arr[j] = arr_aux[i];
-        j++;
-    }
-    return aux;
+    arr.length = length - 1;
+    return element;
+
 }

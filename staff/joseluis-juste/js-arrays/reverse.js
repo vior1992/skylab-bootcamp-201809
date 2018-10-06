@@ -6,9 +6,10 @@ function reverse(arr){
     if ((typeof arr === "string")) throw Error("the argument passed is a string should be array");
     if (( arr instanceof Function)) throw Error("the argument passed is a function should be array");
     if (( typeof arr === "boolean")) throw Error("the argument passed is a boolean should be an array");
+    if (typeof arr === "symbol") throw Error("the argument passed is a symbol should be an array");
     if (!(arr instanceof Array)) throw Error("the argument is not an array");
     if ((arr.length == 0)) throw Error("the array is empty");
-   // if ((arr.toSource) && (arr.toSource() === "foo")){ throw Error("the argument passed is a symbol should be an array"); console.log(arr.toSource())}
+    
     
 
     for(var i = arr.length-1;i >= 0;i--){

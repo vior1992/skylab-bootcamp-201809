@@ -34,13 +34,13 @@ tests.push(function () {
     var nums = 1;
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error ('test has not failed on input different than array');
-    if (error.message !== 'input is not array') throw Error ('error message is not correct');
+    if (error.message !== 'array is not valid') throw Error ('error message is not correct');
 });
 
 tests.push(function () {
@@ -50,7 +50,7 @@ tests.push(function () {
     var error;
 
     try {
-        forEach();
+        shift();
     } catch (err) {
         error = err;
     }
@@ -67,7 +67,7 @@ tests.push(function () {
     var nums = [];
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
@@ -84,7 +84,7 @@ tests.push(function () {
     var nums = ['', 2, 3];
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }

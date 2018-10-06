@@ -73,7 +73,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should fail when end is not a number');
+    console.log('should fail when start is not a number');
 
     var error;
     var res = [];
@@ -90,7 +90,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should fail when start is not a number');
+    console.log('should fail when end is not a number');
 
     var error;
     var res = [];
