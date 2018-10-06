@@ -6,7 +6,7 @@ describe('Ayay', function () {
     });
 
     describe('push', function () {
-        it('should add items to the provided array ', function () {
+        it('should add items to the provided ayay ', function () {
             ayay.push(1);
             ayay.push(2);
             ayay.push(3);
@@ -17,7 +17,7 @@ describe('Ayay', function () {
                 expect(ayay[i]).toEqual(i + 1);
         });
 
-        it('should add consecutive items to the provided array ', function () {
+        it('should add consecutive items to the provided ayay ', function () {
             ayay.push(1);
             ayay.push(2);
             ayay.push(3);
@@ -28,6 +28,27 @@ describe('Ayay', function () {
 
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
+        });
+
+        it('should return the length of the modified ayay ', function () {
+           
+            var result; 
+            result =  ayay.push(1, 2, 3);
+            
+            expect(ayay.length).toEqual(3);
+            expect(result).toEqual(ayay.length);
+
+            for (var i = 0; i < ayay.length; i++)
+                expect(ayay[i]).toEqual(i + 1);
+
+        });
+
+        it('should fail when applied to non-ayays ', function () {
+           
+            var notAyay = 1;
+
+            expect(function() {notAyay.push(9);}).toThrowError(TypeError, 'not implemented! to do')
+           // expect(function() {ayay.forEach(p);}).toThrowError( TypeError, p + ' is not a function');
         });
 
     });
@@ -47,6 +68,59 @@ describe('Ayay', function () {
             });
 
         });
+        it('should fail on non-function callback', function () {
+            ayay.push(1, 2, 3);
+            var p = 1;
+
+            expect(function() {ayay.forEach(p);}).toThrowError( TypeError, p + ' is not a function');
+
+        });
+
+        it('should fail on non-ayay ', function () {
+            var notAyay = 1;
+            var callback = function(){}
+
+            expect(function() {notAyay.forEach(callback);}).toThrowError( TypeError, '.forEach can not be applied to this element');
+
+        });
+
+        it('should succeed on iterating an array and passing all specified data to callback', function () {
+            ayay.push(1, 2, 3);
+
+            var elements = [];
+            var indexes = [];
+            var arrays = [];
+        
+            ayay.forEach(function (element, index, array) {
+                elements.push(element);
+                
+                indexes.push(index);
+        
+                arrays.push(array);
+            });
+        
+            expect(elements).toBeTruthy();
+            expect(indexes).toBeTruthy();
+            expect(arrays).toBeTruthy();
+            
+            elements.forEach(function (elem, index) {
+                expect(elem).toBeEqual(ayay[index])      
+            });
+        
+            indexes.forEach(function (i, index) {
+                expect(i).toBeEqual(index)      
+            });
+        
+            arrays.forEach(function(array) {
+                expect(array).toBeEqual(chars)
+            });
+        });
+
+
+
+        
+
+
     });
 
 

@@ -9,6 +9,8 @@ function Ayay() {
 
 
 Ayay.prototype.push = function(element) {
+    if (!(this instanceof Ayay)) throw new TypeError ('push can not be applied to this element')
+    
     for (var i = 0; i < arguments.length; i++){
         this[this.length] = arguments[i];
         this.length++;
@@ -25,6 +27,7 @@ Ayay.prototype.pop = function() {
 
 Ayay.prototype.forEach = function(callback) {
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if ( this instanceof Ayay) throw new TypeError('.forEach can not be applied to this element');
 
     for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
