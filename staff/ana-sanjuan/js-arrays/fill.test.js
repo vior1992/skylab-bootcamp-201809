@@ -9,7 +9,7 @@ tests.push(function () {
 
     var res = fill(nums, 6);
 
-    forEach(res, function (val, index) {
+    res.forEach(function (val, index) { //before forEach(res,function..)
         if (res[index] !== 6) throw Error('element at index ' + index + ' does not match with 6');
     });
 });
