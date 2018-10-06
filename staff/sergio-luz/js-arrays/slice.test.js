@@ -73,37 +73,22 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should fail when end is not a number');
+    console.log('should fail when end or start are not a number');
 
     var error;
     var res = [];
     var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 
     try {
-        res = slice(animals, "hola");
+        res = slice(animals,0, "hola");
     } catch (err) {
         error = err;
     }
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'start is not valid') throw Error('error message for start is not correct');
-});
-
-tests.push(function () {
-    console.log('should fail when start is not a number');
-
-    var error;
-    var res = [];
-    var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-
-    try {
-        res = slice(animals, 0, "hola");
-    } catch (err) {
-        error = err;
-    }
-    if (!error) throw Error('has not failed');
-
-    if (error.message !== 'end is not valid') throw Error('error message for end is not correct');
+    if (error.message !== 'start is not valid' && error.message!=="end is not valid")
+        throw Error('error message for end is not correct');
+    
 });
 
 testSuite(tests);

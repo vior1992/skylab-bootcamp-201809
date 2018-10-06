@@ -1,15 +1,15 @@
 function slice(arr, start, end) {
 
     if (!(arr instanceof Array)) throw Error('array is not valid');
-    if (typeof start!=="number" && typeof start!=="undefined") throw Error('start is not valid');
-    if (typeof end!=="number" && typeof end!=="undefined") throw Error('end is not valid');
-
+    if (typeof start !== "number" && typeof start !== 'undefined') throw Error('start is not valid');
 
     var temp = [],
         count = 0;
     //comprobamos si hay end
-    if (end === undefined || end>=arr.length) {
+    if (end === undefined || end >= arr.length) {
         end = arr.length;
+    } else {
+        if (typeof end !== "number") throw Error('end is not valid');
     }
     if (start == undefined) {
         start = 0;
