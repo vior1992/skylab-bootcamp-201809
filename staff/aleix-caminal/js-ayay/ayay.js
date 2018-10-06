@@ -52,6 +52,7 @@ Ayay.prototype.sort = function() {
         this[i] = this[min];
         this[min] = sorted;
     }
+    return this;
 };
 
 Ayay.prototype.filter = function(callback) {
@@ -63,15 +64,16 @@ Ayay.prototype.filter = function(callback) {
             result[result.length] = this[i];
         }
     }
-    return result;
+    return result ? result : -1;
 };
 
 Ayay.prototype.find = function(callback) {
-    if (typeof callback !== "function") throw Error ("Callback isn't a function");
+    if (typeof callback !== 'function') throw Error('callback is not a function');
 
     for (var i = 0; i < this.length; i++) {
         if (callback(this[i], i, this)) {
             return this[i];
         }
     }
+    return -1;
 };

@@ -64,4 +64,62 @@ describe('Ayay', function () {
             }).toThrowError('callback is not a function');
         });
     });
+
+    describe('sort', function () {
+        it('should modify the original array', function () {
+            var result = ayay.sort();
+
+            ayay.forEach(function (elem, index) {
+                expect(elem).toEqual(result[index]);
+            });
+        });
+    });
+
+    describe('filter', function () {
+        it('should fail on non-function callback', function () {
+            expect(function() {
+                ayay.filter();
+            }).toThrowError('callback is not a function');
+        });
+
+        it('should filter elements on valid ayay', function () {
+            var result = ayay.filter(function(elem) {
+                return elem > 1;
+            });
+
+            expect(result).toEqual([2, 3]);
+        });
+
+        it('should return -1 when filter not matching any value', function () {
+            var result = ayay.find(function(elem) {
+                return elem > 3;
+            });
+
+            expect(result).toEqual(-1);
+        });
+    });
+
+    describe('find', function () {
+        it('should fail on non-function callback', function () {
+            expect(function() {
+                ayay.find();
+            }).toThrowError('callback is not a function');
+        });
+
+        it('should find value on valid ayay', function () {
+            var result = ayay.find(function(elem) {
+                return elem > 1;
+            });
+
+            expect(result).toEqual(2);
+        });
+
+        it('should return -1 when value not finded', function () {
+            var result = ayay.find(function(elem) {
+                return elem > 3;
+            });
+
+            expect(result).toEqual(-1);
+        });
+    });
 });
