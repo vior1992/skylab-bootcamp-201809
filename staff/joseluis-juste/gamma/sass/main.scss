@@ -46,44 +46,8 @@
     & .main__articles{
         padding: 3.5em 1em;
         background-color: white;
-        
-        & .main__articles__article{
-            margin-bottom: 1.5em;
-            &:last-child{
-                margin-bottom: 0;
-                & .main__articles__article__logo{
-                    padding: 1em 0.5em;
-                }
-            }
-            & .main__articles__article__logo{
-                border:1px solid rgba(0,0,0,0.3);
-                padding-top: 1em;
-               
-            }
-            & .main__articles__article__title{
-                margin: 0.5em 0;
-                font-size: 2em;
-                font-weight: BOLD;
-            }
-            & .main__articles__article__desc{
-                text-align: justify;
-                margin-bottom: 1em;
-                font-size: 0.9em;
-            }
-            & .main__articles__article__read-more{
-                text-decoration: none;
-                display: inline-block;
-                padding: 0.5em 0.5em;
-                color: black;
-                border-radius: 4px;
-                border: 1px solid black;
-                font-size: 0.9em;
-            }
-            
-        }
     }
 }
-
 
 @media screen and (min-device-width: 580px){
 
@@ -168,10 +132,10 @@
         & .main__articles{
             display: flex;
             justify-content: space-around;
-            & .main__articles__article{
+            .card{
                 width: 30%;
                 &:last-child{
-                    & .main__articles__article__logo{
+                    & .card__logo{
                         padding: 0;
                         padding-top: 1em;
                         
@@ -179,6 +143,7 @@
                     
                 }
             }
+            
         }
     }  
 }

@@ -53,47 +53,47 @@
                 </div>
             </section>
             <section class="main__articles">
-                <article class="main__articles__article">
-                    <div class="main__articles__article__logo">
+                <article class="card">
+                    <div class="card__logo">
                         <img src="./img/demo1.jpg" alt="">
                     </div>
-                    <h2 class="main__articles__article__title">
+                    <h2 class="card__title">
                         scotcher
                     </h2>
-                    <p class="main__articles__article__desc">
+                    <p class="card__desc">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit in voluptas sit? Illum,
                         blanditiis. Eligendi libero laborum iste eaque voluptate nisi, quisquam animi ad sint! Quos
                         optio quibusdam voluptates ducimus.
                     </p>
-                    <a class="main__articles__article__read-more" href="">Read More</a>
+                    <a class="card__read-more" href="">Read More</a>
                 </article>
-                <article class="main__articles__article">
-                    <div class="main__articles__article__logo">
+                <article class="card">
+                    <div class="card__logo">
                         <img src="./img/demo2.jpg" alt="">
                     </div>
-                    <h2 class="main__articles__article__title">
+                    <h2 class="card__title">
                         cabalistically
                     </h2>
-                    <p class="main__articles__article__desc">
+                    <p class="card__desc">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit in voluptas sit? Illum,
                         blanditiis. Eligendi libero laborum iste eaque voluptate nisi, quisquam animi ad sint! Quos
                         optio quibusdam voluptates ducimus.
                     </p>
-                    <a class="main__articles__article__read-more" href="">Read More</a>
+                    <a class="card__read-more" href="">Read More</a>
                 </article>
-                <article class="main__articles__article">
-                    <div class="main__articles__article__logo">
+                <article class="card">
+                    <div class="card__logo">
                         <img src="./img/demo3.jpg" alt="">
                     </div>
-                    <h2 class="main__articles__article__title">
+                    <h2 class="card__title">
                         jargonium
                     </h2>
-                    <p class="main__articles__article__desc">
+                    <p class="card__desc">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit in voluptas sit? Illum,
                         blanditiis. Eligendi libero laborum iste eaque voluptate nisi, quisquam animi ad sint! Quos
                         optio quibusdam voluptates ducimus.
                     </p>
-                    <a class="main__articles__article__read-more" href="">Read More</a>
+                    <a class="card__read-more" href="">Read More</a>
                 </article>
             </section>
 
@@ -144,67 +144,6 @@
             });
 
         });
-        /*if (!Object.prototype.watch)
-        {
-            Object.defineProperty(Object.prototype, "watch",
-                    {
-                        enumerable: false,
-                        configurable: true,
-                        writable: false,
-                        value: function (prop, handler) {
-                            var oldval = this[prop];
-                            var newval = oldval;
-                            getter = function ()
-                            {
-                                return newval;
-                            },
-                                    setter = function (val)
-                                    {
-                                        oldval = newval;
-                                        return newval = handler.call(this, prop, oldval, val);
-                                    };
-                            if (delete this[prop]) {
-                                Object.defineProperty(this, prop,
-                                        {
-                                            get: getter,
-                                            set: setter,
-                                            enumerable: true,
-                                            configurable: true
-                                        });
-                            }
-                        }
-                    });
-        }
-
-        if (!Object.prototype.unwatch)
-        {
-            Object.defineProperty(Object.prototype, "unwatch",
-                    {
-                        enumerable: false,
-                        configurable: true,
-                        writable: false,
-                        value: function (prop)
-                        {
-                            var val = this[prop];
-                            delete this[prop];
-                            this[prop] = val;
-                        }
-                    });
-        }
-
-        function Ayai()
-        {
-            this.length = 0;
-            
-            this.watch("length", (prop, oldval, newval) => this.length++);
-            
-        }
-
-        var ayai = new Ayai();
-        ayai.watch("length",ayai)
-        this.length = 1;
-        console.log(ayai.length);*/
-
     </script>
 </body>
 
