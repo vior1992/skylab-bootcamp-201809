@@ -59,6 +59,7 @@
     var tests = [];
     
     tests.pop(function() {
+        debbuger
         console.log('should delete values in ayay');
 
         var ayay = new Ayay();
@@ -75,6 +76,88 @@
     });
 
     // TODO add more test cases
+    
+    testSuite(tests);
+})();
+
+(function() {
+    console.log('TEST Ayay.prototype.map');
+    
+    var tests = [];
+    
+    tests.push(function() {
+        console.log('should iterate on valid ayay');
+
+        var ayay = new Ayay();
+
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            ayay.push(4);
+
+            var result = [];
+
+            ayay.map(function(elem, index) { result[index] = elem * 3; });
+
+            if (result.length !== ayay.length) throw Error('result length does not match expected one: ' + result.length);
+
+            result.forEach(function(elem, index) {
+                if (elem !== ayay[index] * 3) throw Error('item does not match expected one, at position: ' + index);
+            });
+    });
+    
+    testSuite(tests);
+})();
+
+(function() {
+    console.log('TEST Ayay.prototype.filter');
+    
+    var tests = [];
+    
+    tests.push(function() {
+        console.log('should iterate on valid ayay');
+
+        var ayay = new Ayay();
+        
+        ayay.push(6);
+        ayay.push(4);
+        ayay.push(9);
+        ayay.push(2);
+
+        var result = [];
+        
+        ayay.filter(function(elem, index) { return ayay[index] > 7; });
+        debugger;
+        if (result.length !== 2) throw Error('result length does not match expected one: ' + result.length);
+        
+    });
+    
+    testSuite(tests);
+})();
+
+(function() {
+    console.log('TEST Ayay.prototype.find');
+    
+    var tests = [];
+    
+    tests.push(function() {
+        console.log('should iterate on valid ayay');
+
+        var ayay = new Ayay();
+        
+        ayay.push(6);
+        ayay.push(42);
+        ayay.push(9);
+        ayay.push(30);
+        ayay.push(85);
+
+        var result = [];
+        
+        ayay.find(function(elem, index) { return ayay[index] > 31; });
+        
+        if (result.length !== 42) throw Error('result length does not match expected one: ' + result.length);
+        
+    });
     
     testSuite(tests);
 })();
