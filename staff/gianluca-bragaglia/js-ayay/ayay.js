@@ -16,7 +16,8 @@ Ayay.prototype.push = function(element) {
 
 Ayay.prototype.pop = function() {
     var lastItem = this[this.length-1];
-    if(this.length > 0) this.length--
+    delete this[this.length-1];
+    this.length--
 
     return lastItem;
 };
@@ -28,21 +29,52 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
     var arr = [];
     for (var i = 0; i < this.length; i++) {
-         arr[i] = callback(this[i],i);
+         arr[i] = callback(this[i],i,this);
     }
     return arr;  
 }; 
 
-Ayay.prototype.sort = function() {
-    // TODO
-};
+/* Ayay.prototype.sort = function() {
+    var arr =[];
+    var 
+    for(var i=0; i<this.length; i++) {
+
+    }
+}; */
 
 Ayay.prototype.filter = function(callback) {
-    // TODO
-};
+    
+    var result = [];
 
+    for(var i = 0; i < this.length; i++) {
+
+        if(callback(this[i]) === true) {
+            result.push(this[i]);
+        }
+    }
+    return result; 
+
+    /* var index = 0;
+    var indexResult = 0;
+    var result = [];
+    var flag = false;
+
+    for(index = 0; index < this.length; index++) {
+
+        flag = callback(this[index]);
+
+        if(flag === true) {
+            result.push(this[index]);
+            indexResult++;
+        }
+    }
+    return result; */
+
+
+};
 Ayay.prototype.find = function(callback) {
     
     for(var i=0; i < this.length; i++) {
@@ -51,4 +83,4 @@ Ayay.prototype.find = function(callback) {
             return this[i];
         }   
     }
-};
+}; 
