@@ -17,13 +17,24 @@ describe('Ayay', function () {
                 expect(ayay[i]).toEqual(i + 1);
         });
 
+        it('should add consecutive items to the provided array ', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+
+            ayay.push(4, 5, 6);
+
+            expect(ayay.length).toEqual(6);
+
+            for (var i = 0; i < ayay.length; i++)
+                expect(ayay[i]).toEqual(i + 1);
+        });
+
     });
 
     describe('forEach', function () {
         it('should iterate on valid ayay', function () {
-            ayay.push(1);
-            ayay.push(2);
-            ayay.push(3);
+            ayay.push(1, 2, 3);
 
             var result = [];
 
@@ -41,9 +52,7 @@ describe('Ayay', function () {
 
     describe('pop', function () {
         it('should return last item and exclude it from array', function () {
-            ayay.push(1);
-            ayay.push(2);
-            ayay.push(3);
+            ayay.push(1, 2, 3);
 
             var last = ayay[ayay.length-1];
             var length = ayay.length;
@@ -61,9 +70,7 @@ describe('Ayay', function () {
 
     describe('map', function () {
         it('should iterate through the elements of the array and return the elements modified by the callback in new array', function () {
-            ayay.push(1);
-            ayay.push(2);
-            ayay.push(3);
+            ayay.push(1, 2, 3);
 
 
             var result;
@@ -89,6 +96,7 @@ describe('Ayay', function () {
             ayay.push(0);
 
             var validate = new Ayay
+
             validate.push(0);
             validate.push(1);
             validate.push(2);
@@ -109,9 +117,7 @@ describe('Ayay', function () {
 
     describe('filter', function () {
         it('should returns the items of the array that satifies the callback condition ', function () {
-            ayay.push(1);
-            ayay.push(2);
-            ayay.push(3);
+            ayay.push(1, 2, 3);
 
             var result;
             var callback = function(elem) { return elem > 2 }
@@ -127,9 +133,7 @@ describe('Ayay', function () {
 
     describe('find', function () {
         it('should return the first element that satisfais the callback condition', function () {
-            ayay.push(1);
-            ayay.push(2);
-            ayay.push(3);
+            ayay.push(1, 2, 3);
 
 
             var result;

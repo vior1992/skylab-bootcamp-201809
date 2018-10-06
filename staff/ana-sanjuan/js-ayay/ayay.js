@@ -9,9 +9,11 @@ function Ayay() {
 
 
 Ayay.prototype.push = function(element) {
-    this[this.length] = element;
-    this.length++;
-    return length;
+    for (var i = 0; i < arguments.length; i++){
+        this[this.length] = arguments[i];
+        this.length++;
+    }
+    return this.length;
 };
 
 Ayay.prototype.pop = function() {
@@ -36,7 +38,19 @@ Ayay.prototype.map = function(callback) {
 };
 
 Ayay.prototype.sort = function() {
-    // TODO
+    var temp;
+
+    for (var j = 0; j < this.length -1; j++){
+        for (var i = 0; i < this.length; i++){
+            if (this[i] > this[i+1]){
+                temp = this[i];
+                this[i] = this[i+1];
+                this[i+1] = temp;
+            }
+        }
+    }
+    return this;
+
 };
 
 Ayay.prototype.filter = function(callback) {
