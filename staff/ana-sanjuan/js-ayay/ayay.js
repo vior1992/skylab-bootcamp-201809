@@ -9,8 +9,7 @@ function Ayay() {
 
 
 Ayay.prototype.push = function(element) {
-    if (!(this instanceof Ayay)) throw new TypeError ('push can not be applied to this element')
-    
+    // if (!(this instanceof Ayay)) throw new TypeError ('push can not be applied to this element')
     for (var i = 0; i < arguments.length; i++){
         this[this.length] = arguments[i];
         this.length++;
@@ -21,18 +20,20 @@ Ayay.prototype.push = function(element) {
 Ayay.prototype.pop = function() {
     var result = this[this.length-1];
     delete this[this.length -1];
-    this.length--;
+    if (this.length > 0) this.length--;
     return result;
 };
 
 Ayay.prototype.forEach = function(callback) {
+    // if (!(this instanceof Ayay)) throw new TypeError('.forEach can not be applied to this element');
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
-    if ( this instanceof Ayay) throw new TypeError('.forEach can not be applied to this element');
-
+  
     for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
 
 Ayay.prototype.map = function(callback) {
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
     var result = new Ayay;
     for (var i = 0; i < this.length; i++){
         result.push(callback(this[i], i,this));
@@ -57,14 +58,18 @@ Ayay.prototype.sort = function() {
 };
 
 Ayay.prototype.filter = function(callback) {
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
     var result = new Ayay;
     for (var i = 0; i < this.length; i++){
        if(callback(this[i])) result.push((this[i])); 
     }
-    return result[0];
+    return result;
 };
 
 Ayay.prototype.find = function(callback) {
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
     var result = new Ayay;
     for (var i = 0; i < this.length; i++){
        if(callback(this[i])) return (this[i]); 
