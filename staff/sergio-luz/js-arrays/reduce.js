@@ -1,11 +1,13 @@
-function reduce(arr, f, initial){
+function reduce(arr, callback, initial){
+    if(!(arr instanceof Array)) throw Error(arr+' is not an array');
+    if(!(callback instanceof Function)) throw Error(callback+' is not a function');
+
     if(initial===undefined){
         initial=0;
     }
-    var sum=0;
+    var sum=initial+arr[0];
     for (var i = 1; i < arr.length; i++) {
-        sum=initial+arr[i-1];
-        sum=f(sum, arr[i]);
+        sum=callback(sum, arr[i]);
         initial=sum;
     }
     return sum;

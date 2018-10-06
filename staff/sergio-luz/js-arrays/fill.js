@@ -1,4 +1,5 @@
 function fill(arr, value, start, end){
+    if(!(arr instanceof Array)) throw Error(arr+' is not valid');
     if(end==undefined){
         end=arr.length;
     }
