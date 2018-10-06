@@ -16,7 +16,69 @@ describe('Ayay', function () {
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
         });
-    });
+
+        it('should push several items at a time', function () {
+            ayay.push(1,2,3);
+           
+            expect(ayay.length).toEqual(3);
+
+            for (var i = 0; i < ayay.length; i++)
+                expect(ayay[i]).toEqual(i + 1);
+        });
+
+        it('should be able to push and undefined', function () {
+            ayay.push(1,2,3);
+            ayay.push(undefined);
+           
+            expect(ayay.length).toEqual(4);
+            expect(ayay[3]).toEqual(undefined);
+
+        });
+
+        it('should be able to push and empty string', function () {
+            ayay.push('');
+                       
+            expect(ayay.length).toEqual(1);
+            expect(ayay[0]).toEqual('');
+
+        });
+
+        it('should return correctly the ayay length', function () {
+            ayay.push(3,'strin',true,undefined,[],{});
+                       
+            expect(ayay.length).toEqual(6);
+            
+        });
+
+        it('should maintain the type of the object added', function () {
+            ayay.push({});
+
+            expect(ayay.length).toEqual(1);           
+            expect(ayay[0] instanceof Object).toEqual(true);
+            
+        });
+
+        it('should be able to add a function', function () {
+            ayay.push(function(){});
+                       
+            expect(ayay.length).toEqual(1);
+            expect(ayay[0] instanceof Function).toEqual(true);
+            
+        });
+
+        it('should be able tu push items several times', function () {
+            ayay.push(1,2,3);
+            ayay.push(4);
+            ayay.push(5);
+
+                       
+            expect(ayay.length).toEqual(5);
+            for (var i = 0; i < ayay.length; i++)
+                expect(ayay[i]).toEqual(i + 1);
+            
+        });
+
+});
 
     describe('pop', function () {
         it('should pop items', function () {
@@ -31,6 +93,15 @@ describe('Ayay', function () {
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
         });
+        it('should return undefined if the ayay is empty', function () {
+            
+            var result = ayay.pop();
+
+            expect(ayay.length).toEqual(0);
+            expect(result).toEqual(undefined);
+            
+        });
+
     });
 
     describe('forEach', function () {
@@ -75,6 +146,15 @@ describe('Ayay', function () {
             result.forEach(function (elem, index) {
                 expect(elem).toEqual(ayay[index] * 2);
             });
+        });
+
+        it('should return error if callback is not a function', function () {
+            // ayay.push(1);
+            var callback = 1;
+            expect(function (){
+                map(callback);
+            }).toThrow();
+            
         });
     });
 
@@ -131,9 +211,29 @@ describe('Ayay', function () {
             expect(result.length).toEqual(0);
           
         });
+
+        it('should return error if callback is not a function', function () {
+            // ayay.push(1);
+            var callback = 1;
+            expect(function (){
+                map(callback);
+            }).toThrow();
+            
+        });
+        
     });
 
     describe('find', function () {
+
+        it('should return error if callback is not a function', function () {
+            // ayay.push(1);
+            var callback = 1;
+            expect(function (){
+                map(callback);
+            }).toThrow();
+            
+        });
+        
         it('should find the first matching element', function () {
             
             ayay.push(3,5,1);
@@ -146,5 +246,7 @@ describe('Ayay', function () {
             expect(result).toEqual(5);
                 
         });
+        
     });
+    
 });

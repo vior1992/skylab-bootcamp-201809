@@ -16,10 +16,12 @@ Ayay.prototype.push = function() {
 };
 
 Ayay.prototype.pop = function() {
-    var element = this[this.length-1];
-    delete this[this.length-1];
-    this.length--;
-    return element;
+    if(this.length>0){
+        var element = this[this.length-1];
+        delete this[this.length-1];
+        this.length--;
+        return element;
+    }
 };
 
 Ayay.prototype.forEach = function(callback) {
@@ -30,6 +32,7 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
+
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
 
     returnayay = new Ayay;
@@ -41,6 +44,7 @@ Ayay.prototype.map = function(callback) {
 };
 
 Ayay.prototype.sort = function() {
+    
     var temp;
     //debugger
     for(var j=0; j<this.length-1; j++){
@@ -56,6 +60,9 @@ Ayay.prototype.sort = function() {
 };
 
 Ayay.prototype.filter = function(callback) {
+
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
     newayay = new Ayay;
     var j = 0;
     for(var i = 0; i<this.length; i++){
@@ -69,6 +76,9 @@ Ayay.prototype.filter = function(callback) {
 };
 
 Ayay.prototype.find = function(callback) {
+
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
     for(var i = 0; i<this.length; i++){
         if(callback(this[i])===true){
             return this[i];
