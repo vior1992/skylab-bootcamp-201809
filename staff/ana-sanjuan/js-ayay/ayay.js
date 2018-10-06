@@ -7,7 +7,6 @@ function Ayay() {
     this.length = 0;
 }
 
-// TODO
 
 Ayay.prototype.push = function(element) {
     this[this.length] = element;
@@ -41,9 +40,16 @@ Ayay.prototype.sort = function() {
 };
 
 Ayay.prototype.filter = function(callback) {
-    // TODO
+    var result = new Ayay;
+    for (var i = 0; i < this.length; i++){
+       if(callback(this[i])) result.push((this[i])); 
+    }
+    return result[0];
 };
 
 Ayay.prototype.find = function(callback) {
-    // TODO
+    var result = new Ayay;
+    for (var i = 0; i < this.length; i++){
+       if(callback(this[i])) return (this[i]); 
+    }
 };
