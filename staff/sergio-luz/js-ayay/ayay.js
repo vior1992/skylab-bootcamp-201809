@@ -19,8 +19,8 @@ Ayay.prototype.push = function () {
 };
 
 Ayay.prototype.pop = function () {
-    if(!this.length) return undefined;
- 
+    if (!this.length) return undefined;
+
     var temp = this[this.length - 1];
     delete this[this.length - 1];
     this.length--;
@@ -35,16 +35,13 @@ Ayay.prototype.forEach = function (callback) {
 };
 
 Ayay.prototype.map = function (callback) {
-    if(!this.length) throw Error('array is not valid');
-    if(!(callback instanceof Function)) throw Error('callback is not a function');
+    if (!this.length) throw Error('array is not valid');
+    if (!(callback instanceof Function)) throw Error('callback is not a function');
 
     var temp = [];
     for (var i = 0; i < this.length; i++) {
         temp[i] = callback(this[i], i, this);
     }
-    // temp.forEach(elem, i){
-    //     if(elem===undefined) throw Error('function callback is empty');
-    // }
     return temp;
 };
 
@@ -73,6 +70,7 @@ Ayay.prototype.sort = function () {
 
 Ayay.prototype.filter = function (callback) {
     if (!(this instanceof Ayay)) throw Error('first element is not an ayay');
+    if (!(callback instanceof Function)) throw Error(callback + ' is not a function');
 
     var x, temp = [],
         count = 0;
@@ -87,5 +85,66 @@ Ayay.prototype.filter = function (callback) {
 };
 
 Ayay.prototype.find = function (callback) {
-    // TODO
+    if (!(this instanceof Ayay)) throw Error('first element is not an ayay');
+    if (!(callback instanceof Function)) throw Error(callback + ' is not a function');
+
+    var x;
+    for (var i = 0; i < this.length; i++) {
+        x = callback(this[i]);
+        if (x == true) {
+            return this[i];
+        }
+    }
+};
+
+Ayay.prototype.slice = function (start, end) {
+
+    if (!(this instanceof Ayay)) throw Error('ayay is not defined');
+    if(!this.length) throw Error('ayay is not valid')
+    if (typeof start !== "number" && typeof start !== 'undefined') throw Error('start is not valid');
+
+    var temp = [],
+        count = 0;
+    //comprobamos si hay end
+    if (end === undefined || end >= this.length) {
+        end = this.length;
+    } else {
+        if (typeof end !== "number") throw Error('end is not valid');
+    }
+    if (start == undefined) {
+        start = 0;
+    }
+    if (start < 0 && start < this.length) {
+        count = this.length - 1 + start;
+        for (var i = (this.length - 1 + start); i >= 0; i--) {
+            temp[count] = this[i];
+            count--;
+        }
+    } else if (start >= this.length) {
+        temp = [];
+    } else {
+        //Start POSITIVO
+        if (end > 0) {
+            for (var i = start; i < end; i++) {
+                if (start + end == i) {
+                    break;
+                }
+                temp[count] = this[i];
+                count++;
+            }
+        } else {
+            if (start + end < 0) {
+                end = start;
+            }
+            count = -end - 1;
+            for (var i = start; i > 0; i--) {
+                if (start + end == i) {
+                    break;
+                }
+                temp[count] = this[i];
+                count--;
+            }
+        }
+    }
+    return temp;
 };

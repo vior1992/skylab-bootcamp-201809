@@ -274,10 +274,7 @@ describe('Ayay', function () {
             var res = [];
             res = ayay.sort();
 
-            expect(res.length).toEqual(4);
-            expect(function () {
-                if(ayay !== original) throw Error ('ayay is not modified');
-            }).toThrowError('ayay is not modified');
+            expect(JSON.stringify(ayay) === JSON.stringify(original)).toEqual(false);
         });
 
         it('should succed sorting', function () {
@@ -286,10 +283,18 @@ describe('Ayay', function () {
             var res = [];
             res = ayay.sort();
 
-            expect(res.length).toEqual(3);
-
             expect(JSON.stringify(ayay)).toEqual(JSON.stringify(res));
         });
+
+        it('should maintain the same length', function () {
+            ayay.push(1, 2, 3);
+
+            var res = [];
+            res = ayay.sort();
+
+            expect(res.length).toEqual(3);
+        });
+
     });
 
     describe('filter', function () {
@@ -309,7 +314,181 @@ describe('Ayay', function () {
             res.forEach(function (element, index) {
                 expect(element).toEqual(filtered[index]);
             });
+        });
 
+        it('It should fail on non-function second parameter', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.filter();
+            }).toThrowError('undefined is not a function');
+        });
+
+        it('It should fail on string second parameter', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.filter("string");
+            }).toThrowError('string is not a function');
+        });
+
+        it('It should fail on number second parameter', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.filter(1);
+            }).toThrowError('1 is not a function');
+        });
+
+        it('It should fail on boolean second parameter', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.filter(true);
+            }).toThrowError('true is not a function');
+        });
+
+        it('It should fail on array second parameter', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.filter([1, 2]);
+            }).toThrowError('1,2 is not a function');
+        });
+
+        it('It should fail on object second parameter', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.filter({
+                    ob: "ject"
+                });
+            }).toThrowError('[object Object] is not a function');
+        });
+
+    });
+
+    describe('find', function () {
+        it('Should succed finding', function () {
+            ayay.push(1, 2, 3);
+
+            var res = [];
+            res = ayay.find(function (elem) {
+                return elem <= 2;
+            });
+
+            expect(res).toEqual(1);
+        });
+
+        it('Should give fail if callback is not defined', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.find();
+            }).toThrowError('undefined is not a function');
+        });
+
+        it('Should give fail if callback is a number', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.find(1);
+            }).toThrowError('1 is not a function');
+        });
+
+
+        it('Should give fail if callback is a string', function () {
+            ayay.push(1, 2, 3);
+            var p = "hola";
+
+            expect(function () {
+                ayay.find(p);
+            }).toThrowError(p + ' is not a function');
+        });
+
+        it('Should give fail if callback is a array', function () {
+            ayay.push(1, 2, 3);
+            var p = [];
+
+            expect(function () {
+                ayay.find(p);
+            }).toThrowError(p + ' is not a function');
+        });
+
+        it('Should give fail if callback is a object', function () {
+            ayay.push(1, 2, 3);
+            var p = {
+                ob: "hola"
+            };
+
+            expect(function () {
+                ayay.find(p);
+            }).toThrowError(p + ' is not a function');
+        });
+
+        it('Should give fail if callback is a boolean', function () {
+            ayay.push(1, 2, 3);
+            var p = true;
+
+            expect(function () {
+                ayay.find(p);
+            }).toThrowError(p + ' is not a function');
+        });
+    });
+
+    describe('slice', function () {
+        it('should succeed on extracting a part of an array (copying it to another array)', function () {
+            ayay.push(1, 2, 3);
+            var start = 0;
+            var end = 2;
+
+            var res = [];
+            res = ayay.slice(start, end);
+
+            expect(res.length).toEqual(end-start);
+
+            res.forEach(function (val, index) {
+                expect(val).toEqual(ayay[index+start]);
+            });
+        });
+
+        it('should fail on non-ayay', function () {
+            var start = 0;
+            var end = 2;
+
+            expect(function(){
+                ayay.slice(start, end);
+            }).toThrowError('ayay is not valid');
+        });
+
+        it('should succeed on extracting a concrete part of an array (copying it to another array)', function () {
+            ayay.push(1, 2, 3);
+            var start = 0;
+            var end = 2;
+
+            var res=ayay.slice(start,end);
+            var res2=[1,2,3].slice(start, end);
+
+            expect(res).toEqual(res2);
+        });
+
+        it('should succed on non-end and non-start', function () {
+            ayay.push(1, 2, 3);
+
+            var res=ayay.slice();
+            var res2=[1,2,3].slice();
+
+            expect(res).toEqual(res2);
+        });
+
+        it('should fail when start is not a number', function () {
+            ayay.push(1, 2, 3);
+            var start = "start";
+            var end = 0;
+
+            expect(function(){
+                ayay.slice(start, end);
+            }).toThrowError('start is not valid')
         });
     });
 });
