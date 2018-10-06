@@ -1,4 +1,7 @@
 function splice(arr, start, del){
+    if (!(arr instanceof Array)) throw Error('array is not valid');
+    if (typeof start !== "number" && typeof start !== 'undefined') throw Error('start is not valid');
+    
     var temp=[],
     deleted=[],
     count=0,
