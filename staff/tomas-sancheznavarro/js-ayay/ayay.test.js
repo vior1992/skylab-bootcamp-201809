@@ -10,9 +10,7 @@
 
         var ayay = new Ayay();
 
-        ayay.push(1);
-        ayay.push(2);
-        ayay.push(3);
+        ayay.push(1, 2, 3);
 
         if (ayay.length !== 3) throw Error('ayay length does not match expected one: ' + ayay.length);
 
@@ -35,9 +33,7 @@
 
         var ayay = new Ayay();
 
-        ayay.push(1);
-        ayay.push(2);
-        ayay.push(3);
+        ayay.push(1, 2, 3);
 
         var result = [];
 
@@ -51,37 +47,9 @@
             if (elem !== ayay[index] * 2) throw Error('item does not match expected one, at position: ' + index);
         });
     });
-
     testSuite(tests);
+
 })();
-
-(function () {
-    console.log('TEST Ayay.prototype.pop');
-
-    var tests = [];
-
-    tests.push(function () {
-        console.log("should successfully remove last item");
-
-        var ayay = new Ayay;
-
-        ayay.pop(1);
-        ayay.pop(2);
-        ayay.pop(3);
-
-        var res = [];
-
-        pop(ayay);
-        for (var i = 0; i < ayay.length; i++) {
-            res[i] = ayay[i];
-        }
-
-        if (res.length !== 2) throw Error("did not sucessfully remove last item");
-
-    });
-})();
-
-testSuite(tests);
 
 (function () {
     console.log('TEST Ayay.prototype.map');
@@ -89,6 +57,27 @@ testSuite(tests);
     var tests = [];
 
     tests.push(function () {
+        console.log('should iterate on valid ayay');
+
+        var ayay = new Ayay();
+
+        ayay.push(1, 2, 3);
+
+        var result = new Ayay();
+
+        for (var i = 0; i < ayay.length; i++) {
+            result[i] = ayay[i] * 2;
+        }
+
+        // ayay.forEach(function (elem, index) {
+
+        // });
+
+        if (result.length !== ayay.length) throw Error('result length does not match expected one: ' + result.length);
+
+        result.forEach(function (elem, index) {
+            if (elem !== ayay[index] * 2) throw Error('item does not match expected one, at position: ' + index);
+        });
         // TODO
     });
 
