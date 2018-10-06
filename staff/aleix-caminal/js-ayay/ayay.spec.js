@@ -21,7 +21,9 @@ describe('Ayay', function () {
         it('should iterate on valid ayay', function () {
             var result = [];
 
-            ayay.forEach(function (elem, index) { result[index] = elem * 2; });
+            ayay.forEach(function (elem, index) {
+                result[index] = elem * 2;
+            });
 
             expect(result.length).toEqual(ayay.length);
 
@@ -58,6 +60,18 @@ describe('Ayay', function () {
     });
 
     describe('map', function () {
+        it('should iterate on valid ayay', function () {
+            var result = ayay.map(function (elem) {
+                return elem * 2;
+            });
+
+            expect(result.length).toEqual(ayay.length);
+
+            result.forEach(function (elem, index) {
+                expect(elem).toEqual(ayay[index] * 2);
+            });
+        });
+
         it('should fail on non-function callback', function () {
             expect(function() {
                 ayay.map();
@@ -76,12 +90,6 @@ describe('Ayay', function () {
     });
 
     describe('filter', function () {
-        it('should fail on non-function callback', function () {
-            expect(function() {
-                ayay.filter();
-            }).toThrowError('callback is not a function');
-        });
-
         it('should filter elements on valid ayay', function () {
             var result = ayay.filter(function(elem) {
                 return elem > 1;
@@ -97,15 +105,15 @@ describe('Ayay', function () {
 
             expect(result).toEqual(-1);
         });
+
+        it('should fail on non-function callback', function () {
+            expect(function() {
+                ayay.filter();
+            }).toThrowError('callback is not a function');
+        });
     });
 
     describe('find', function () {
-        it('should fail on non-function callback', function () {
-            expect(function() {
-                ayay.find();
-            }).toThrowError('callback is not a function');
-        });
-
         it('should find value on valid ayay', function () {
             var result = ayay.find(function(elem) {
                 return elem > 1;
@@ -120,6 +128,12 @@ describe('Ayay', function () {
             });
 
             expect(result).toEqual(-1);
+        });
+
+        it('should fail on non-function callback', function () {
+            expect(function() {
+                ayay.find();
+            }).toThrowError('callback is not a function');
         });
     });
 });
