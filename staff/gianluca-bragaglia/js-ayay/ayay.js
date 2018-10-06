@@ -9,6 +9,8 @@ function Ayay() {
 // TODO
 
 Ayay.prototype.push = function(element) {
+
+    if (element == undefined) throw Error('undefined is not a valid element');
     this[this.length] = element;
 
     this.length++;
@@ -37,16 +39,26 @@ Ayay.prototype.map = function(callback) {
     return arr;  
 }; 
 
-/* Ayay.prototype.sort = function() {
-    var arr =[];
-    var 
-    for(var i=0; i<this.length; i++) {
-
+Ayay.prototype.sort = function() {
+    var temp;
+  
+    for(var i = 0; i < this.length; i++) {
+      for(var j = i + 1; j < this.length; j++) {
+        if(this[i].toString() > this[j].toString()) {
+          temp = this[i];
+          this[i] = this[j];
+          this[j] = temp;
+        }
+      }
     }
-}; */
+  
+    return this;
+};
 
 Ayay.prototype.filter = function(callback) {
-    
+
+    if (typeof callback !== 'function') throw Error(callback + ' is not a function');
+
     var result = [];
 
     for(var i = 0; i < this.length; i++) {
@@ -57,25 +69,12 @@ Ayay.prototype.filter = function(callback) {
     }
     return result; 
 
-    /* var index = 0;
-    var indexResult = 0;
-    var result = [];
-    var flag = false;
-
-    for(index = 0; index < this.length; index++) {
-
-        flag = callback(this[index]);
-
-        if(flag === true) {
-            result.push(this[index]);
-            indexResult++;
-        }
-    }
-    return result; */
-
-
 };
+
+
 Ayay.prototype.find = function(callback) {
+
+    if (typeof callback !== 'function') throw Error(callback + ' is not a function');
     
     for(var i=0; i < this.length; i++) {
         
@@ -83,4 +82,16 @@ Ayay.prototype.find = function(callback) {
             return this[i];
         }   
     }
-}; 
+};
+
+
+Ayay.prototype.includes = function(elem) {
+
+    if ( typeof elem === 'undefined') throw Error('element is not defined');
+
+    for(var i=0; i<this.length; i++) {
+        if(elem === this[i]) {
+            return true
+        }
+    }
+}
