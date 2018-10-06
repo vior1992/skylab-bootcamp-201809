@@ -44,7 +44,7 @@
         var result;
         result = ayay.pop();
 
-        if (length-1 !== (ayay.length)) throw Error('result length does not match expected one: ' + ayay.length-1);
+        if (length !== (ayay.length)) throw Error('result length does not match expected one: ' + length-1);
         if (last !== result) throw Error('result does not match expected one: ' + last);
 
     });
