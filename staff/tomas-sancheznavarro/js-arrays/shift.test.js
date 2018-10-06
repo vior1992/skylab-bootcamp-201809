@@ -11,18 +11,18 @@ tests.push(function () {
 
     shifted = shift(nums);
 
-    if (shifted != shiftedControl) throw Error ('it has not deleted the first element of the array by one');
+    if (shifted != shiftedControl) throw Error('it has not deleted the first element of the array by one');
 });
 
 tests.push(function () {
     console.log('should succeed on reducing length of array');
-    
+
     var nums = [1, 2, 3];
     var lengthTarget = nums.length - 1;
 
     shift(nums);
 
-    if (nums.length!=lengthTarget) throw Error ('result length is not one unit smaller')
+    if (nums.length != lengthTarget) throw Error('result length is not one unit smaller')
 
 });
 
@@ -39,12 +39,12 @@ tests.push(function () {
         error = err;
     }
 
-    if (!error) throw Error ('test has not failed on input different than array');
-    if (error.message !== 'input is not array') throw Error ('error message is not correct');
+    if (!error) throw Error('test has not failed on input different than array');
+    if (error.message !== 'input is not array') throw Error('error message is not correct');
 });
 
 tests.push(function () {
-
+    // debugger
     console.log('should fail on no parameter entered');
 
     var error;
@@ -55,8 +55,8 @@ tests.push(function () {
         error = err;
     }
 
-    if (!error) throw Error ('test has not failed on parameter not being entered');
-    if (error.message !== 'no parameter has been introduced') throw Error ('error message is not correct');
+    if (!error) throw Error('test has not failed on parameter not being entered');
+    if (error.message !== 'no parameter has been introduced') throw Error('error message is not correct: ' + error.message);
 });
 
 tests.push(function () {
@@ -72,8 +72,8 @@ tests.push(function () {
         error = err;
     }
 
-    if (!error) throw Error ('should have thrown error on empty array');
-    if (error.message !== 'array is empty') throw Error ('error message is not correct');
+    if (!error) throw Error('should have thrown error on empty array');
+    if (error.message !== 'array is empty') throw Error('error message is not correct');
 });
 
 testSuite(tests);
