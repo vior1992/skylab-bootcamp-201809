@@ -78,6 +78,15 @@ describe('Ayay', function () {
             
         });
 
+        it('should be able to add a string', function () {
+            ayay.push('pepito');
+                       
+            expect(ayay.length).toEqual(1);
+            expect(typeof ayay[0]).toEqual('string');
+            
+        });
+
+
 });
 
     describe('pop', function () {
@@ -233,7 +242,7 @@ describe('Ayay', function () {
             }).toThrow();
             
         });
-        
+
         it('should find the first matching element', function () {
             
             ayay.push(3,5,1);
