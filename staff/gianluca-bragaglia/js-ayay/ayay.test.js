@@ -1,7 +1,7 @@
 // ayay.test.js
 
 (function() {
-    console.log('TEST: Ayay.prototype.push');
+    console.log('TEST Ayay.prototype.push');
 
     var tests = [];
 
