@@ -6,6 +6,15 @@ var res = filter(words, function(word) { return word.length > 6; });
 console.log(res);
 // ["exuberant", "destruction", "present"] */
 
+//....................................
+
+
+//By Jose Luis:
+
+
+
+
+//By me:
 function filter(arr) {
     var emptyarr = [];
     var pos = 0;
