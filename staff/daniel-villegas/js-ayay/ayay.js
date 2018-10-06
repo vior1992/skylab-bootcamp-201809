@@ -28,7 +28,7 @@ Ayay.prototype.forEach = function(callback) {
 Ayay.prototype.map = function(callback) {
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
 
-    var newAyay = [];
+    var newAyay = new Ayay;
 
     for (var i = 0; i < this.length; i++) {
         newAyay[i] = callback(this[i], i, this);}
@@ -36,12 +36,9 @@ Ayay.prototype.map = function(callback) {
     return newAyay;
 };
 
-Ayay.prototype.sort = function() {
-    // TODO
-};
 
 Ayay.prototype.filter = function(callback) {
-    var result = [];
+    var result = new Ayay;
 
     if (!(this instanceof Object)) throw Error ("first element is not an Object");
 
@@ -65,4 +62,26 @@ Ayay.prototype.find = function(callback) {
     if (typeof callback !== "function") throw Error ("Callback is not a function")
     
     for (var i = 0; i < this.length; i++) if (callback(this[i])) return this[i]; 
+};
+
+
+Ayay.prototype.sort = function() {
+    if (!(this instanceof Object)) throw Error ("Arr is not a Object");
+
+    if (!this.length) throw Error ("Arr is empty");
+
+    var temp;
+
+    for(var i = 0; i < this.length; i++) this[i] = this[i].toString();
+
+    for(var j = 0; j < this.length; j++) {
+        for(var i = 0; i < this.length; i++) {
+            if (this[i] < this[i-1]) {
+                temp = this[i];
+                this[i] = this[i-1];
+                this[i-1] = temp;
+            }
+        }
+    }  
+    return this;
 };

@@ -38,7 +38,6 @@ describe('Ayay', function () {
 
     describe('map', function () {
         it('should return new array with numbers *3', function () {
-            var ayay = new Ayay();
 
             ayay.push(1);
             ayay.push(2);
@@ -71,7 +70,6 @@ describe('Ayay', function () {
 
     describe('filter', function () {
         it('should create new array with elements that satisfy the test (>5)', function () {
-            var ayay = new Ayay();
         
             ayay.push(6);
             ayay.push(4);
@@ -87,7 +85,6 @@ describe('Ayay', function () {
     
     describe('find', function () {
         it('should returns the value of the first element in the array that satisfies the provided testing function', function () {
-            var ayay = new Ayay();
         
             ayay.push(6);
             ayay.push(15);
@@ -97,6 +94,36 @@ describe('Ayay', function () {
             var result = ayay.find(function(elem, index) { return elem > 16});
            
             expect(result).toEqual(24);
+
+        });
+    });  
+
+    describe('sort', function () {
+        it('should sorts the elements of an array in place and returns the array.(numbers)', function () {
+        
+            ayay.push(6);
+            ayay.push(15);
+            ayay.push(39);
+            ayay.push(99);
+            ayay.push(1);
+            ayay.push(70);
+            
+            var result = ayay.sort(function () { return item })
+            for(var i = 0; i < ayay.length; i++) expect(result[i]).toEqual(ayay[i]);
+        });
+
+        it('should sorts the elements of an array in place and returns the array.(letters)', function () {
+
+            ayay.push("hola");
+            ayay.push("manu");
+            ayay.push("estoy");
+            ayay.push("aprendiendo");
+            ayay.push("javascript");
+            
+            debugger;
+            var result = ayay.sort(function () { return item })
+            for(var i = 0; i < ayay.length; i++) expect(result[i]).toEqual(ayay[i]);
+
 
         });
     });  
