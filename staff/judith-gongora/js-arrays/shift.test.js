@@ -34,7 +34,7 @@ tests.push(function () {
     var nums = 1;
 
     try {
-        forEach(nums);
+        shift(nums);
     } catch (err) {
         error = err;
     }
@@ -50,45 +50,49 @@ tests.push(function () {
     var error;
 
     try {
-        forEach();
+        shift();
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error ('test has not failed on parameter not being entered');
-    if (error.message !== 'no parameter has been introduced') throw Error ('error message is not correct');
+    if (error.message !== 'input is not array') throw Error ('error message is not correct');
 });
+ 
+//Este caso si que lo acepta shift. Mirar bien la documentacion de MDN
+// tests.push(function () {
 
-tests.push(function () {
+//     console.log('should fail on empty array');
 
-    console.log('should fail on empty array');
+//     var error;
+//     var nums = [];
 
-    var error;
-    var nums = [];
+//     try {
+//         shift(nums);
+//     } catch (err) {
+//         error = err;
+//     }
 
-    try {
-        forEach(nums);
-    } catch (err) {
-        error = err;
-    }
+//     if (!error) throw Error ('should have thrown error on empty array');
+//     if (error.message !== 'input is not array') throw Error ('error message is not correct');
+// });
 
-    if (!error) throw Error ('should have thrown error on empty array');
-    if (error.message !== 'array is empty') throw Error ('error message is not correct');
-});
+//Shift si que acepta el borrado del primer parametro vacío. Mirar documentación en MDN
+// tests.push(function () {
 
-tests.push(function () {
+//     console.log('should fail on first element being empty');
 
-    console.log('should fail on first element being empty');
+//     var error;
+//     var nums = ['', 2, 3];
 
-    var error;
-    var nums = ['', 2, 3];
+//     try {
+//         shift(nums);
+//     } catch (err) {
+//         error = err;
+//     }
 
-    try {
-        forEach(nums);
-    } catch (err) {
-        error = err;
-    }
+//     if (!error) throw Error ('should have thrown error on first element of array being empty');
+//     if (error.message !== 'first element of array is empty') throw Error ('error message is not correct');
+// });
 
-    if (!error) throw Error ('should have thrown error on first element of array being empty');
-    if (error.message !== 'first element of array is empty') throw Error ('error message is not correct');
-});
+testSuite(tests);
