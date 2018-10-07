@@ -157,7 +157,7 @@ body {
   border: 1px solid #ccc;
   width: 100%;
 }
-.middle-container .cards-container .cards-container__card .card-titol {
+.middle-container .cards-container .cards-container__card .card-title {
   font-family: Arial;
   font-size: 32px;
   color: #333333;
@@ -169,6 +169,37 @@ body {
   line-height: 1.4;
   margin-top: -10px;
   padding-rigth: 15px;
+}
+.bottom-container {
+  width: 100%;
+  background-color: #00B19A;
+}
+.bottom-container .bottom-container__content {
+  width: 70%;
+  padding-top: 40px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+@media (max-width: 900px) {
+  .bottom-container .bottom-container__content {
+    display: block;
+  }
+}
+.bottom-container .bottom-container__content .content-left .content-left_title {
+  font-family: Arial;
+  list-style: none;
+  font-size: 32px;
+  color: white;
+}
+.bottom-container .bottom-container__content .content-left .content-left_list {
+  list-style-type: none;
+  line-height: 40px;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  color: white;
+  font-size: 23px;
 }
 
 /*# sourceMappingURL=style.css.map */

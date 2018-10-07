@@ -134,7 +134,7 @@ body
                 border: 1px solid #ccc
                 width: 100%
 
-            .card-titol
+            .card-title
                 font-family: $font 
                 font-size: 32px 
                 color: #333333  
@@ -151,7 +151,30 @@ body
             .btn--card-btn
                 @extend .btn
 
-                
 
-                     
-               
+.bottom-container
+    width: 100%
+    background-color: $primary-color
+    .bottom-container__content
+        width: 70%
+        padding-top: 40px
+        margin: auto
+        display: flex
+        justify-content: space-around
+        @media (max-width: 900px)
+            display: block
+        .content-left
+            .content-left_title
+                font-family: $font
+                list-style: none
+                font-size: 32px 
+                color: white
+            .content-left_list
+                list-style-type: none
+                line-height:40px
+                margin: 0
+                padding: 0
+                font-family: $font
+                color: white
+                font-size: 23px
+        
