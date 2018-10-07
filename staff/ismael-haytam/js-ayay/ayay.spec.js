@@ -17,11 +17,15 @@ describe('Ayay', function () {
             for (var i = 0; i < ayay.length; i++) expect(ayay[i]).toEqual(i + 1);
         });
 
-        it('should fail when element is not defined', function () {
+        it('should return ayay length if element is not defined', function () {
 
-            expect(function () {
-                ayay.push();
-            }).toThrowError(TypeError, 'undefined is not a valid argument');
+            ayay.push(1);
+            ayay.push(2);
+
+            var result = ayay.push();
+
+            expect(result === ayay.length).toBe(true);
+            expect(result).toEqual(2);
 
         });
 
@@ -119,6 +123,38 @@ describe('Ayay', function () {
             expect(ayay[0]+ayay[1]).toEqual('ipsumlorem');
 
         });
+
+    });
+
+
+    describe('map', function () {
+
+
+        it('should fail when non-callback', function() {
+
+            expect(function() {
+                ayay.map();
+            }).toThrowError(TypeError, 'undefined is not a function');
+
+        });
+
+        it('should succeed on iterating an array and multiply by 2', function() {
+            
+
+            ayay.push(6);
+            ayay.push(12);
+
+            var result = [];
+
+            ayay.map(function(element, index) {
+                result[index] = element * 2;
+            });
+
+            expect(result[0]).toEqual(12);
+            expect(result[1]).toEqual(24);
+
+
+        }) 
 
     });
 

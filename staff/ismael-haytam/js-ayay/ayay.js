@@ -9,11 +9,9 @@ function Ayay() {
 // TODO
 
 Ayay.prototype.push = function(element) {
-
-    if (!element) throw new TypeError(element + ' is not a valid argument');
-
     this[this.length] = element;
-    this.length++;
+    if (element) this.length++;
+    return this.length
 };
 
 Ayay.prototype.pop = function() {
@@ -22,12 +20,14 @@ Ayay.prototype.pop = function() {
 
 Ayay.prototype.forEach = function(callback) {
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
-
     for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
 
 Ayay.prototype.map = function(callback) {
-    // TODO
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    var result = [];
+    for (var i = 0; !!(this[i]); i++)  result[i] = callback(this[i], i)
+    return result;
 };
 
 Ayay.prototype.sort = function() {
