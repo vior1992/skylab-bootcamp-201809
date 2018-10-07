@@ -24,6 +24,47 @@ describe('Ayay', function () {
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
         });
+
+
+        it('should be able to push a function', function () {
+            ayay.push(function (a, b) {
+                return a + b
+            })
+            expect(ayay[0] instanceof Function).toEqual(true);
+        });
+
+        it('should be able to push a string', function () {
+            ayay.push('pepito')
+            expect(typeof ayay[0]).toBe('string');
+        });
+
+        it('should be able to push a number', function () {
+            ayay.push(10)
+            expect(typeof ayay[0]).toBe('number');
+        });
+
+        it('should be able to push a boolean', function () {
+            ayay.push(true)
+            expect(typeof ayay[0]).toBe('boolean');
+        });
+
+        it('should be able to push an object', function () {
+            var o = {}
+            ayay.push(o)
+            expect(typeof ayay[0]).toBe('object');
+        });
+
+
+        it('should return the new length of ayay', function () {
+            
+            var ayay = new Ayay;
+            var newLength;
+            
+            newLength = ayay.push(1, 2, 3, 4);
+            
+            expect(newLength).toEqual(4);
+        });
+
     });
 
     
@@ -35,16 +76,47 @@ describe('Ayay', function () {
 
             ayay.forEach(function (elem, index) { result[index] = elem * 2; });
 
-            expect(result.length).toEqual(ayay.length);
-
             result.forEach(function (elem, index) {
                 expect(elem).toEqual(ayay[index] * 2);
             });
         });
+
+        it('should keep same length', function () {
+            ayay.push(1, 2, 3);
+
+            var result = [];
+
+            ayay.forEach(function (elem, index) { result[index] = elem * 2; });
+
+            expect(result.length).toEqual(ayay.length);
+            
+        });
+        
     });
 
     describe('pop', function () {
         it('should pop items', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            var lastItem = ayay.pop();
+
+            expect(ayay.length).toEqual(2);
+        });
+
+        it('should return last element of ayay', function () {
+            var elementTest = 3;
+            var lastItem;
+
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(elementTest);
+            lastItem = ayay.pop();
+        
+            expect(lastItem).toEqual(elementTest);
+        });
+
+        it('should reduce length by one unit', function () {
             ayay.push(1);
             ayay.push(2);
             ayay.push(3);
