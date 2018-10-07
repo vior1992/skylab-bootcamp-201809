@@ -7,23 +7,29 @@ describe('Ayay', function () {
     });
 
     describe('push', function () {
-        it('should push items', function () {
+        it('should push one item', function () {
             ayay.push(1);
-            ayay.push(2);
-            ayay.push(3);
+
+            expect(ayay.length).toEqual(1);
+            expect(ayay[0]).toEqual(1);
+        }); 
+        
+        it('should push more than one element', function () {
+            
+            var ayay = new Ayay;
+            ayay.push(1, 2, 3);
 
             expect(ayay.length).toEqual(3);
-
+        
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
         });
     });
+
     
     describe('forEach', function () {
         it('should iterate on valid ayay', function () {
-            ayay.push(1);
-            ayay.push(2);
-            ayay.push(3);
+            ayay.push(1, 2, 3);
 
             var result = [];
 

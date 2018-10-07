@@ -6,15 +6,12 @@ function Ayay() {
     this.length = 0;
 }
 
-// TODO
-
-Ayay.prototype.push = function (element) {
-    this[this.length] = element;
-
+Ayay.prototype.push = function () {
+    for (var i = 0; i < arguments.length; i++) {
+    this[this.length] = arguments[i];
     this.length++;
+    }
 };
-
-
 
 Ayay.prototype.pop = function () {
     var element = this[this.length - 1];
@@ -34,11 +31,8 @@ Ayay.prototype.map = function (callback) {
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
 
     var result = new Ayay;
-    //var result = [];
 
     for (var i = 0; i < this.length; i++)
-        //result[i] = callback(this[i], i, this);
-        //result.length++;
         result.push(callback(this[i], i, this));
 
     return result;
@@ -63,45 +57,6 @@ Ayay.prototype.sort = function () {
         this[min] = sorted;
     }
     return this;
-
-    /*
-    var indexMain = 0;
-    var indexSecondary = 0;
-    var indexTemp = 0;
-    var tempItem = [];
-    var arraySorted = [];
-    var arrString = [];
-    var swap = false;
-    
-        
-        for (var i = 0; i < this.length; i++) {
-            arrString[i] = this[i].toString();
-        }
-        
-        console.log(this);
-
-        for(indexMain = 0; indexMain < arrString.length; indexMain++) {
-            
-            tempItem = arrString[indexMain];
-    
-            for(indexSecondary = indexMain + 1; indexSecondary < arrString.length; indexSecondary++) {
-                
-                if(arrString[indexSecondary] < tempItem) {
-                    tempItem = arrString[indexSecondary];
-                    indexTemp = indexSecondary;
-                    swap = true;
-                }
-            }
-            if (swap) { 
-                arraySorted[indexMain] = tempItem;
-                arrString[indexTemp] = arrString[indexMain];
-                swap = false;
-            }
-            else { arraySorted[indexMain] = arrString[indexMain]; }
-        }
-        this = arraySorted;
-        return this;
-    */
 };
 
 
