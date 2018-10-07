@@ -16,6 +16,11 @@ describe('Ayay', function () {
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
         });
+        // it('should fail on non-ayay', function () {
+        //     var p = undefined;
+        //     expect(function() {ayay.push(p);}).toThrowError(TypeError, p + ' is not a valid ayay')
+
+        // });
     });
 
     describe('forEach', function () {
@@ -34,8 +39,14 @@ describe('Ayay', function () {
                 expect(elem).toEqual(ayay[index] * 2);
             });
         });
+        // it('should fail on non-ayay', function () {
+        //     var p = undefined;
+        //     ayay.push(p);
+        //     expect(function() {ayay.forEach(function (elem, index) { 
+        //         var result = [];
+        //         result[index] = elem * 2; });}).toThrowError(TypeError, p + ' is not a valid ayay')
+        // });
     });
-
     describe('pop', function () {
         it('should iterate on valid ayay', function () {
             ayay.push(1);
@@ -49,7 +60,11 @@ describe('Ayay', function () {
             expect(result).toEqual(last);
             
         });
+        // it('should fail on non-ayay', function () {
+        //     var p = null;
+        //     expect(function() {ayay.pop(p);}).toThrowError(TypeError, p + ' is not a valid ayay')
         
+        // });
     });
     describe('map', function () {
         it('should succeed on iterating an array and multiply by 2', function () {
@@ -69,7 +84,11 @@ describe('Ayay', function () {
             expect(result.length).toEqual(ayay.length);
             
         });
+        // it('should fail on non-ayay', function () {
+        //     var p = null;
+        //     expect(function() {ayay.map();}).toThrowError(TypeError, p + ' is not a valid ayay')
         
+        // });
     });
     describe('filter', function () {
         it('should succeed on returning an array with the elements that pass the callback requirement', function () {

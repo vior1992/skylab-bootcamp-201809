@@ -9,13 +9,18 @@ function Ayay() {
 // TODO
 
 Ayay.prototype.push = function(element) {
-    this[this.length] = element;
+    // if(!(this instanceof Ayay)) throw TypeError (this + ' is not a valid ayay');
+    // if(!arr.length) throw Error ('array cannot be empty')
+    // if(!elem) throw Error ('element not defined');
 
+    this[this.length] = element;
     this.length++;
     return length;
 };
 
 Ayay.prototype.pop = function() {
+    // if(!(this instanceof Ayay)) throw TypeError (this + ' is not a valid ayay');
+
     var extra = this[this.length-1];
     delete this[this.length-1];
     this.length--;
@@ -23,7 +28,8 @@ Ayay.prototype.pop = function() {
 };
 
 Ayay.prototype.forEach = function(callback) {
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    // if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if(!(this instanceof Ayay)) throw TypeError (this + ' is not a valid ayay');
 
     for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
