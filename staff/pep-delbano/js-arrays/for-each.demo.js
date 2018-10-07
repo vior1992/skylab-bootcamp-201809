@@ -1,14 +1,10 @@
-function forEach (arr, num) {
-    var result = '';
-        for(var i= 0; i<arr.length; i++) {
-           result = arr[i] * num;
-            console.log(result);
-        }
-    }
-    
-    forEach([1,2,3], 2);
+// for-each.demo.js
 
+console.log('DEMO forEach');
 
+var arr = [1, 2, 3];
 
-
-
+forEach(arr, function(num) { console.log(num * 2); });
+// 2
+// 4
+// 6
