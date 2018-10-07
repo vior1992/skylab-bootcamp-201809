@@ -1,10 +1,17 @@
 $background-color: white
 $font: Arial
 $primary-color: #00B19A
+$secondary-color: #333333 
 
 body 
     padding: 0
     margin: 0
+a
+    font-family: Arial
+    font-size: 13px  
+    padding: 10px 
+    color: #fff
+    text-decoration: none
 
 .btn
     height: 40px
@@ -12,7 +19,7 @@ body
     padding-right: 20px
     border-radius: 7px
     background-color: white
-    color: #333333 
+    color: $secondary-color
     font-family: $font
     font-weight: 800
     font-size: 0.9em
@@ -27,7 +34,7 @@ body
     width: 100%
     padding-bottom: 5px
 
-    .header__container
+    &__container
         width: 80%
         margin: auto
 
@@ -43,19 +50,16 @@ body
             margin: auto
             display: flex
             justify-content: flex-start
-
-            .content-container__rigth
+            &__rigth
                 padding: 0
                 height: 600px
                 display: block
                 @media (max-width: 1170px)
-                    display: none
-                
+                    display: none               
                 img 
                     height: 87%
                     margin-top: 28px
-
-            .content-container__left
+            &__left
                 margin-right: 20px
                 padding-top: 40px
                 width: 500px
@@ -63,25 +67,20 @@ body
                     display: block
                     text-align: center
                     padding-top: 10px
-
                 .content-text
-
-
-                    .content-text__article 
+                    &__article 
                             font-size: 22px
                             color: white
                             font-family: $font
                             @media (max-width: 670px)
                             font-size: 18px
-
-                    .content-text__titol 
+                    &__title 
                         font-size: 60px
                         color: white
                         font-family: $font
                         @media (max-width: 670px)
                             font-size: 40px
-
-                    #life-titol
+                    #life-title
                         color: $primary-color
 
 
@@ -96,6 +95,7 @@ body
 
 .middle-container
     margin-top: 20px
+    padding-bottom: 20px
 
     .cards-container
         width: 80%
@@ -103,18 +103,19 @@ body
         display: flex
         justify-content: space-between
         @media (max-width: 1480px)
-            width: 100%
+            width: 96%
             display: flex
-            justify-content: space-between
+            justify-content: space-arond
         @media (max-width: 1200px)
+            display: flex
+            justify-content: space-arond
             width: 80%
             display: block
             text-align: center
             align-items: center
         @media (max-width: 450px)
             width: 90%
-            display: block
-        
+            display: block       
         .cards-container__card
             margin-top: 20px
             margin-bottom: 20px
@@ -127,27 +128,21 @@ body
                 text-align: left
                 width: 100%
                 margin-top: 20px
-                margin-bottom: 20px  
-
-            
+                margin-bottom: 20px              
             .card-img
                 border: 1px solid #ccc
                 width: 100%
-
             .card-title
                 font-family: $font 
                 font-size: 32px 
-                color: #333333  
-
+                color: $secondary-color 
             .card-text
                 font-family: $font
                 font-size: 14px 
-                color: #333333 
+                color: $secondary-color
                 line-height: 1.4
                 margin-top: -10px
                 padding-rigth: 15px
- 
-
             .btn--card-btn
                 @extend .btn
 
@@ -155,21 +150,24 @@ body
 .bottom-container
     width: 100%
     background-color: $primary-color
-    .bottom-container__content
-        width: 70%
+    &__content
+        width: 80%
         padding-top: 40px
+        padding-bottom: 40px
         margin: auto
         display: flex
         justify-content: space-around
         @media (max-width: 900px)
             display: block
         .content-left
-            .content-left_title
+            @media (max-width: 900px)
+            padding-bottom: 40px
+            &_title
                 font-family: $font
                 list-style: none
                 font-size: 32px 
                 color: white
-            .content-left_list
+            &_list
                 list-style-type: none
                 line-height:40px
                 margin: 0
@@ -177,4 +175,30 @@ body
                 font-family: $font
                 color: white
                 font-size: 23px
-        
+footer 
+    background-color: $secondary-color
+    width: 100%
+    .footer-container
+        display: flex
+        justify-content: space-between
+        width: 80%
+        margin: auto
+        @media (max-width: 730px)
+            margin-top: 0px
+            display: block
+            text-align: center
+        &__left
+            .footer-menu
+                padding: 20px 0px
+                color: white
+                .footer-menu__item
+                    display: inline
+        &__rigth
+            color: white
+            font-family: $font
+            font-size: 13px 
+            padding: 20px 0px          
+  
+   
+ 
+                    
