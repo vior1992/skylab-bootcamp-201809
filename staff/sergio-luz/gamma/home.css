@@ -46,7 +46,9 @@ span {
 h1 {
     font-size: 3em;
 }
-
+p{
+    font-size: 0.9em;
+}
 article {
     width: 90%;
 }
@@ -67,7 +69,7 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 0px 5vw;
+    padding: 0px 10vw;
 }
 
 .container--center {
