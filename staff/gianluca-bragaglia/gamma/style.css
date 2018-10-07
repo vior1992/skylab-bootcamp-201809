@@ -1,5 +1,93 @@
-header {
-  background-color: #f8f8f8;
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  background-color: white;
+  font-family: Arial;
+  border: 1px solid gray;
+  color: #00B19A;
+  height: 50px;
+  width: 100%;
+  padding-bottom: 5px;
+}
+.header .header__container {
+  width: 80%;
+  margin: auto;
+}
+
+.background-container {
+  height: 550px;
+  background-image: url("/Users/Gianluca/Documents/skylab-bootcamp-201809/staff/gianluca-bragaglia/gamma/images/site_showcase_bg.jpg");
+  padding: 0;
+  padding-top: 30px;
+}
+.background-container .content-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+.background-container .content-container .content-container__rigth {
+  padding: 0;
+  height: 600px;
+  display: block;
+}
+@media (max-width: 1170px) {
+  .background-container .content-container .content-container__rigth {
+    display: none;
+  }
+}
+.background-container .content-container .content-container__rigth img {
+  height: 87%;
+  margin-top: 28px;
+}
+.background-container .content-container .content-container__left {
+  margin-right: 20px;
+  padding-top: 40px;
+  width: 500px;
+}
+@media (max-width: 670px) {
+  .background-container .content-container .content-container__left {
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+  }
+}
+.background-container .content-container .content-container__left .content-text .content-text__article {
+  font-size: 22px;
+  color: white;
+  font-family: Arial;
+  font-size: 18px;
+}
+.background-container .content-container .content-container__left .content-text .content-text__titol {
+  font-size: 60px;
+  color: white;
+  font-family: Arial;
+}
+@media (max-width: 670px) {
+  .background-container .content-container .content-container__left .content-text .content-text__titol {
+    font-size: 40px;
+  }
+}
+.background-container .content-container .content-container__left .content-text #life-titol {
+  color: #00B19A;
+}
+.background-container .content-container .content-container__left .content-stores-img img {
+  padding-right: 10px;
+}
+@media (max-width: 670px) {
+  .background-container .content-container .content-container__left .content-stores-img img {
+    padding-right: 0px;
+    padding-bottom: 20px;
+  }
+}
+@media (max-width: 450px) {
+  .background-container .content-container .content-container__left .content-stores-img img {
+    padding-right: 0px;
+    padding-bottom: 20px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

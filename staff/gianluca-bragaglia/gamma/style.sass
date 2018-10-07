@@ -1,4 +1,85 @@
-$background-color: #f8f8f8
+$background-color: white
+$font: Arial
+$primary-color: #00B19A
+
+body 
+    padding: 0
+    margin: 0
     
-header
+.header
     background-color: $background-color
+    font-family: $font
+    border: 1px solid gray
+    color: $primary-color
+    height: 50px
+    width: 100%
+    padding-bottom: 5px
+
+    .header__container
+        width: 80%
+        margin: auto
+
+
+.background-container
+    height: 550px
+    background-image: url('/Users/Gianluca/Documents/skylab-bootcamp-201809/staff/gianluca-bragaglia/gamma/images/site_showcase_bg.jpg')
+    padding: 0
+    padding-top: 30px
+
+    .content-container
+            width: 80%
+            margin: auto
+            display: flex
+            justify-content: flex-start
+
+            .content-container__rigth
+                padding: 0
+                height: 600px
+                display: block
+                @media (max-width: 1170px)
+                    display: none
+                
+                img 
+                    height: 87%
+                    margin-top: 28px
+
+            .content-container__left
+                margin-right: 20px
+                padding-top: 40px
+                width: 500px
+                @media (max-width: 670px)
+                    display: block
+                    text-align: center
+                    padding-top: 10px
+
+                .content-text
+
+
+                    .content-text__article 
+                            font-size: 22px
+                            color: white
+                            font-family: $font
+                            @media (max-width: 670px)
+                            font-size: 18px
+
+                    .content-text__titol 
+                        font-size: 60px
+                        color: white
+                        font-family: $font
+                        @media (max-width: 670px)
+                            font-size: 40px
+
+                    #life-titol
+                        color: $primary-color
+
+
+                .content-stores-img img
+                    padding-right: 10px
+                    @media (max-width: 670px)
+                        padding-right: 0px
+                        padding-bottom: 20px
+                    @media (max-width: 450px)
+                        padding-right: 0px
+                        padding-bottom: 20px
+                     
+               
