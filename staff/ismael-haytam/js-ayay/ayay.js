@@ -10,7 +10,7 @@ function Ayay() {
 
 Ayay.prototype.push = function(element) {
 
-    if (!element) throw Error('element not defined');
+    if (!element) throw new TypeError(element + ' is not a valid argument');
 
     this[this.length] = element;
     this.length++;
@@ -31,7 +31,23 @@ Ayay.prototype.map = function(callback) {
 };
 
 Ayay.prototype.sort = function() {
-    // TODO
+
+    if (this.length <= 0) throw new TypeError('ayay is empty');
+
+    for (var i = 0; i < this.length - 1; i++) {
+        var min = i;
+        for (var j = i; j < this.length; j++) {
+            if ('' + this[j] < '' + this[min]) {
+                min = j;
+            }
+        }
+
+        var sorted = this[i];
+        this[i] = this[min];
+        this[min] = sorted;
+    }
+    return this;
+
 };
 
 Ayay.prototype.filter = function(callback) {
