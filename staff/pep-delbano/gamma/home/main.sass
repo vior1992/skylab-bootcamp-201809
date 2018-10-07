@@ -1,0 +1,110 @@
+/*Variables*/
+$bigphone: "(min-width: 580px) and (max-width: 900px)"
+$tablet: "(min-width: 900px) and (max-width: 1400px)"
+$desktop: "(min-width: 1400px)"
+
+
+*
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+    font-family: Arial
+    width: 450px
+    color: rgb(248, 248, 248)
+
+    
+    .navbar-section
+        display: flex
+        flex-direction: column
+        width: 100%
+        background-color: rgb(248, 248, 248)
+        color: rgb(27, 34, 42)
+
+        .navbar-visible
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            width: 450px
+            height: 50px
+            cursor: pointer
+            
+
+        .title--navbar
+            display: inline-block
+            font-size: 20px
+            font-weight: 700
+            color: rgb(28, 170, 152)
+            margin: 15px 0 15px 17px 
+    
+
+        .menu-icon
+            width: 40px
+            height: 35px
+            position: absolute
+            top: 10px
+            right: 20px
+            align-self: flex-end
+            // display: initial
+    
+        #menu-toggle
+            display: none
+
+
+        .navbar-collapse
+            list-style-type: none
+            text-align: center
+            // margin: 15px auto
+            overflow: hidden
+            max-height: 0
+            -webkit-transition: all 0.5s ease
+            
+            li
+                padding: 5px
+                font-size: 20px
+                font-weight: 700
+
+            li:hover
+                background-color: rgb(127, 219, 207)
+            
+            
+            a
+                text-decoration: none
+                color: silver
+            
+
+        #menu-toggle:checked + .navbar-collapse
+            max-height: 120px
+
+    .first-section
+        background-color: rgb(27, 34, 42)
+        align-content: center
+        text-align: center
+
+    .second-section
+        background-color: rgb(248, 248, 248)
+
+    .third-section
+        background-color: rgb(28, 170, 152)
+    
+    footer
+        background-color: rgb(27, 34, 42)
+        text-align: center
+
+
+
+
+
+@media #{$bigphone}
+        /*add changes respect the smaller version*/
+    *
+        width: 580px
+
+@media #{$tablet} 
+    *
+        width: 900px
+        
+
+@media #{$desktop} 
+    *
+        width: 1400px
+        
