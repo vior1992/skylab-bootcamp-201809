@@ -36,7 +36,22 @@ describe('Ayay', function () {
         it('should increase the length of the array', function () {
             ayay.push(1, 2, 3)
             expect(ayay.length).toEqual(3);
-        })
+        });
+
+
+        it('should be able to push a function', function () {
+            ayay.push(function (a, b) {
+                return a + b
+            })
+            expect(ayay[0] instanceof Function).toEqual(true);
+        });
+
+        it('should be able to push a string', function () {
+            ayay.push('pepito')
+            expect(typeof ayay[0]).toBe('string');
+        });
+
+
 
     });
 
@@ -69,22 +84,19 @@ describe('Ayay', function () {
             expect(ayay.length).toEqual(2);
         });
 
-        it('should be able to push a function', function () {
-            ayay.push(function (a, b) {
-                return a + b
-            })
-            expect(ayay[0] instanceof Function).toEqual(true);
-        });
-
-        it('should be able to push a string', function () {
-            ayay.push('pepito')
-            expect(typeof ayay[0]).toBe('string');
-        });
 
         it('should return undefined if ayay is empty', function () {
             var result = ayay.pop();
             expect(ayay.length).toEqual(0);
             expect(result).toEqual(undefined);
+        });
+
+        it('should fail if arguments are passed', function () {
+            ayay.push(1, 2, 3);
+
+            expect(function () {
+                ayay.pop(3)
+            }).toThrowError(Error, 'input is not required in pop');
         });
     });
 
@@ -127,6 +139,20 @@ describe('Ayay', function () {
                 expect(i).toEqual(index)
             });
         });
+
+        it('should return error if callback is not a function', function () {
+            var callback = 1;
+            expect(function () {
+                forEach(callback);
+            }).toThrowError();
+        });
+
+        it('should fail on empty callback', function () {
+            expect(function () {
+                ayay.map();
+            }).toThrowError();
+
+        });
     });
 
     describe('forEach', function () {
@@ -152,7 +178,7 @@ describe('Ayay', function () {
             expect(function () {
                 forEach(callback);
             }).toThrow();
-        })
+        });
     });
 
     describe('filter', function () {
@@ -188,6 +214,21 @@ describe('Ayay', function () {
 
             expect(result.length).toEqual(0);
         });
+
+        it('should return error if callback is not a function', function () {
+            var callback = 1;
+            ayay.push(1, 2, 3);
+            expect(function () {
+                ayay.map(callback);
+            }).toThrowError();
+        });
+
+        it('should fail on empty callback', function () {
+            expect(function () {
+                ayay.filter();
+            }).toThrowError();
+
+        });
     });
 
     describe('find', function () {
@@ -204,6 +245,39 @@ describe('Ayay', function () {
 
             expect(result).toEqual(3);
 
+        });
+
+        it('should find matching elements (character)', function () {
+            ayay.push('1', '2', '3');
+            var result = ayay.find(function (elem) {
+                return elem == '2';
+            });
+            expect(result).toEqual('2');
+
+        });
+
+        it('should find matching elements (random input)', function () {
+            var nums = new Ayay;
+
+            function randomNum() {
+                return 1 + Math.floor(Math.random() * 10);
+            }
+
+            var length = randomNum();
+
+            for (var i = 0; i < length; i++) {
+                nums.push(randomNum());
+            }
+
+            function condition(elem) {
+                return elem > 5;
+            }
+
+            var expected = nums.find(condition);
+
+            var result = nums.find(condition);
+
+            expect(result).toEqual(expected);
         });
 
         it('should return undefined when condition is not met', function () {
@@ -227,6 +301,13 @@ describe('Ayay', function () {
             expect(function () {
                 ayay.find();
             }).toThrowError('undefined is not a function');
+        });
+
+        it('should fail if ayay is not defined', function () {
+            var ayay;
+            expect(function () {
+                forEach(ayay);
+            }).toThrow();
         });
     });
 

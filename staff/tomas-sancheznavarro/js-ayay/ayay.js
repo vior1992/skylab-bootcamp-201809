@@ -8,6 +8,7 @@ function Ayay() {
 
 // TODO
 Ayay.prototype.push = function () {
+
     for (var i = 0; i < arguments.length; i++) {
         this[this.length] = arguments[i];
         this.length++;
@@ -15,6 +16,8 @@ Ayay.prototype.push = function () {
 };
 
 Ayay.prototype.pop = function () {
+    if (arguments.length) throw Error('input is not required in pop');
+
     if (this.length > 0) {
         var element = this[this.length - 1];
         delete this[this.length - 1];
@@ -33,6 +36,7 @@ Ayay.prototype.forEach = function (callback) {
 
 Ayay.prototype.map = function (callback) {
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if (!arguments.length) throw new Error('input is empty')
 
     return_ayay = new Ayay;
     for (var i = 0; i < this.length; i++) {
@@ -57,6 +61,8 @@ Ayay.prototype.sort = function () {
 };
 
 Ayay.prototype.filter = function (callback) {
+    if (!arguments.length) throw new Error('input is empty');
+
     var new_arr = new Ayay;
     for (var i = 0; i < this.length; i++) {
 
