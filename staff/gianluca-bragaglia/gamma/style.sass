@@ -24,7 +24,8 @@ a
     font-weight: 800
     font-size: 0.9em
     border: 1px solid #ccc  
-    
+ 
+
 .header
     background-color: $background-color
     font-family: $font
@@ -37,7 +38,6 @@ a
     &__container
         width: 80%
         margin: auto
-
 
 .top-container
     height: 550px
@@ -69,11 +69,11 @@ a
                     padding-top: 10px
                 .content-text
                     &__article 
-                            font-size: 22px
-                            color: white
-                            font-family: $font
-                            @media (max-width: 670px)
-                            font-size: 18px
+                        font-size: 22px
+                        color: white
+                        font-family: $font
+                        @media (max-width: 670px)
+                        font-size: 18px
                     &__title 
                         font-size: 60px
                         color: white
@@ -97,54 +97,54 @@ a
     margin-top: 20px
     padding-bottom: 20px
 
-    .cards-container
-        width: 80%
-        margin: auto
+.cards-container
+    width: 80%
+    margin: auto
+    display: flex
+    justify-content: space-between
+    @media (max-width: 1480px)
+        width: 96%
         display: flex
-        justify-content: space-between
-        @media (max-width: 1480px)
-            width: 96%
-            display: flex
-            justify-content: space-arond
+        justify-content: space-arond
+    @media (max-width: 1200px)
+        display: flex
+        justify-content: space-arond
+        width: 80%
+        display: block
+        text-align: center
+        align-items: center
+    @media (max-width: 450px)
+        width: 90%
+        display: block       
+    .cards-container__card
+        margin-top: 20px
+        margin-bottom: 20px
+        margin-right: 20px
+        max-width: 400px
         @media (max-width: 1200px)
-            display: flex
-            justify-content: space-arond
-            width: 80%
-            display: block
-            text-align: center
-            align-items: center
-        @media (max-width: 450px)
-            width: 90%
-            display: block       
-        .cards-container__card
+            text-align: left
+            margin: auto
+        @media (max-width: 750px)
+            text-align: left
+            width: 100%
             margin-top: 20px
-            margin-bottom: 20px
-            margin-right: 20px
-            max-width: 400px
-            @media (max-width: 1200px)
-                text-align: left
-                margin: auto
-            @media (max-width: 750px)
-                text-align: left
-                width: 100%
-                margin-top: 20px
-                margin-bottom: 20px              
-            .card-img
-                border: 1px solid #ccc
-                width: 100%
-            .card-title
-                font-family: $font 
-                font-size: 32px 
-                color: $secondary-color 
-            .card-text
-                font-family: $font
-                font-size: 14px 
-                color: $secondary-color
-                line-height: 1.4
-                margin-top: -10px
-                padding-rigth: 15px
-            .btn--card-btn
-                @extend .btn
+            margin-bottom: 20px              
+        .card-img
+            border: 1px solid #ccc
+            width: 100%
+        .card-title
+            font-family: $font 
+            font-size: 32px 
+            color: $secondary-color 
+        .card-text
+            font-family: $font
+            font-size: 14px 
+            color: $secondary-color
+            line-height: 1.4
+            margin-top: -10px
+            padding-rigth: 15px
+        .btn--card-btn
+            @extend .btn
 
 
 .bottom-container
@@ -199,6 +199,67 @@ footer
             font-size: 13px 
             padding: 20px 0px          
   
-   
- 
+.top-container--about
+    @extend .top-container
+    background-image: none
+    padding-bottom: 80px
+
+.content-container--about
+    @extend .content-container
+    justify-content: space-between
+    .content-container__left--about
+        margin-right: 20px
+        padding-top: 40px
+        width: 650px
+        @media (max-width: 670px)
+            display: block
+            text-align: center
+            padding-top: 10px
+    .content-container__rigth--about
+        margin: auto
+        display: flex
+        justify-content: space-between
+        width: 34%
+        .cards-container--about
+        @extend .cards-container
+
+.card-text--about
+    font-family: $font
+    font-size: 14px 
+    color: $secondary-color
+    line-height: 1.4
+    margin-top: -10px
+
+.card-title--about
+    font-family: $font 
+    font-size: 32px 
+    color: $secondary-color 
+    margin-top: -10px
+
+.collapsible-title
+    font-family: $font 
+    font-size: 16px 
+    color: $secondary-color 
+    background-color: #F5F5F5
+    padding: 20px 0px 13px 20px
+    border: 1px solid #ccc
+    border-radius: 5px 5px 0px 0px
+
+.collapsible-text
+    font-family: $font 
+    font-size: 14px 
+    color: $secondary-color 
+    border: 1px solid #ccc
+    padding: 20px 0px 15px 20px
+    line-height: 1.4
+    margin-top: -22px
+    margin-bottom: 22px
+
+.collapsible-title-2
+    @extend .collapsible-title
+    border-radius: 5px 5px 5px 5px
+    margin-top: -15px
+    
+
+
                     

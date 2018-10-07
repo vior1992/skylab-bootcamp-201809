@@ -11,7 +11,7 @@ a {
   text-decoration: none;
 }
 
-.btn, .middle-container .cards-container .cards-container__card .btn--card-btn {
+.btn, .cards-container .cards-container__card .btn--card-btn, .content-container--about .content-container__rigth--about .cards-container__card .btn--card-btn {
   height: 40px;
   padding-left: 20px;
   padding-right: 20px;
@@ -38,74 +38,74 @@ a {
   margin: auto;
 }
 
-.top-container {
+.top-container, .top-container--about {
   height: 550px;
   background-image: url("/Users/Gianluca/Documents/skylab-bootcamp-201809/staff/gianluca-bragaglia/gamma/images/site_showcase_bg.jpg");
   padding: 0;
   padding-top: 30px;
 }
-.top-container .content-container {
+.top-container .content-container, .top-container .content-container--about, .top-container--about .content-container, .top-container--about .content-container--about {
   width: 80%;
   margin: auto;
   display: flex;
   justify-content: flex-start;
 }
-.top-container .content-container__rigth {
+.top-container .content-container__rigth, .top-container--about .content-container__rigth {
   padding: 0;
   height: 600px;
   display: block;
 }
 @media (max-width: 1170px) {
-  .top-container .content-container__rigth {
+  .top-container .content-container__rigth, .top-container--about .content-container__rigth {
     display: none;
   }
 }
-.top-container .content-container__rigth img {
+.top-container .content-container__rigth img, .top-container--about .content-container__rigth img {
   height: 87%;
   margin-top: 28px;
 }
-.top-container .content-container__left {
+.top-container .content-container__left, .top-container--about .content-container__left {
   margin-right: 20px;
   padding-top: 40px;
   width: 500px;
 }
 @media (max-width: 670px) {
-  .top-container .content-container__left {
+  .top-container .content-container__left, .top-container--about .content-container__left {
     display: block;
     text-align: center;
     padding-top: 10px;
   }
 }
-.top-container .content-container__left .content-text__article {
+.top-container .content-container__left .content-text__article, .top-container--about .content-container__left .content-text__article {
   font-size: 22px;
   color: white;
   font-family: Arial;
   font-size: 18px;
 }
-.top-container .content-container__left .content-text__title {
+.top-container .content-container__left .content-text__title, .top-container--about .content-container__left .content-text__title {
   font-size: 60px;
   color: white;
   font-family: Arial;
 }
 @media (max-width: 670px) {
-  .top-container .content-container__left .content-text__title {
+  .top-container .content-container__left .content-text__title, .top-container--about .content-container__left .content-text__title {
     font-size: 40px;
   }
 }
-.top-container .content-container__left .content-text #life-title {
+.top-container .content-container__left .content-text #life-title, .top-container--about .content-container__left .content-text #life-title {
   color: #00B19A;
 }
-.top-container .content-container__left .content-stores-img img {
+.top-container .content-container__left .content-stores-img img, .top-container--about .content-container__left .content-stores-img img {
   padding-right: 10px;
 }
 @media (max-width: 670px) {
-  .top-container .content-container__left .content-stores-img img {
+  .top-container .content-container__left .content-stores-img img, .top-container--about .content-container__left .content-stores-img img {
     padding-right: 0px;
     padding-bottom: 20px;
   }
 }
 @media (max-width: 450px) {
-  .top-container .content-container__left .content-stores-img img {
+  .top-container .content-container__left .content-stores-img img, .top-container--about .content-container__left .content-stores-img img {
     padding-right: 0px;
     padding-bottom: 20px;
   }
@@ -115,21 +115,22 @@ a {
   margin-top: 20px;
   padding-bottom: 20px;
 }
-.middle-container .cards-container {
+
+.cards-container, .content-container--about .content-container__rigth--about {
   width: 80%;
   margin: auto;
   display: flex;
   justify-content: space-between;
 }
 @media (max-width: 1480px) {
-  .middle-container .cards-container {
+  .cards-container, .content-container--about .content-container__rigth--about {
     width: 96%;
     display: flex;
     justify-content: space-arond;
   }
 }
 @media (max-width: 1200px) {
-  .middle-container .cards-container {
+  .cards-container, .content-container--about .content-container__rigth--about {
     display: flex;
     justify-content: space-arond;
     width: 80%;
@@ -139,41 +140,41 @@ a {
   }
 }
 @media (max-width: 450px) {
-  .middle-container .cards-container {
+  .cards-container, .content-container--about .content-container__rigth--about {
     width: 90%;
     display: block;
   }
 }
-.middle-container .cards-container .cards-container__card {
+.cards-container .cards-container__card, .content-container--about .content-container__rigth--about .cards-container__card {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 20px;
   max-width: 400px;
 }
 @media (max-width: 1200px) {
-  .middle-container .cards-container .cards-container__card {
+  .cards-container .cards-container__card, .content-container--about .content-container__rigth--about .cards-container__card {
     text-align: left;
     margin: auto;
   }
 }
 @media (max-width: 750px) {
-  .middle-container .cards-container .cards-container__card {
+  .cards-container .cards-container__card, .content-container--about .content-container__rigth--about .cards-container__card {
     text-align: left;
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
   }
 }
-.middle-container .cards-container .cards-container__card .card-img {
+.cards-container .cards-container__card .card-img, .content-container--about .content-container__rigth--about .cards-container__card .card-img {
   border: 1px solid #ccc;
   width: 100%;
 }
-.middle-container .cards-container .cards-container__card .card-title {
+.cards-container .cards-container__card .card-title, .content-container--about .content-container__rigth--about .cards-container__card .card-title {
   font-family: Arial;
   font-size: 32px;
   color: #333333;
 }
-.middle-container .cards-container .cards-container__card .card-text {
+.cards-container .cards-container__card .card-text, .content-container--about .content-container__rigth--about .cards-container__card .card-text {
   font-family: Arial;
   font-size: 14px;
   color: #333333;
@@ -246,6 +247,73 @@ footer .footer-container__rigth {
   font-family: Arial;
   font-size: 13px;
   padding: 20px 0px;
+}
+
+.top-container--about {
+  background-image: none;
+  padding-bottom: 80px;
+}
+
+.content-container--about {
+  justify-content: space-between;
+}
+.content-container--about .content-container__left--about {
+  margin-right: 20px;
+  padding-top: 40px;
+  width: 650px;
+}
+@media (max-width: 670px) {
+  .content-container--about .content-container__left--about {
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+  }
+}
+.content-container--about .content-container__rigth--about {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 34%;
+}
+.card-text--about {
+  font-family: Arial;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.4;
+  margin-top: -10px;
+}
+
+.card-title--about {
+  font-family: Arial;
+  font-size: 32px;
+  color: #333333;
+  margin-top: -10px;
+}
+
+.collapsible-title, .collapsible-title-2 {
+  font-family: Arial;
+  font-size: 16px;
+  color: #333333;
+  background-color: #F5F5F5;
+  padding: 20px 0px 13px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.collapsible-text {
+  font-family: Arial;
+  font-size: 14px;
+  color: #333333;
+  border: 1px solid #ccc;
+  padding: 20px 0px 15px 20px;
+  line-height: 1.4;
+  margin-top: -22px;
+  margin-bottom: 22px;
+}
+
+.collapsible-title-2 {
+  border-radius: 5px 5px 5px 5px;
+  margin-top: -15px;
 }
 
 /*# sourceMappingURL=style.css.map */
