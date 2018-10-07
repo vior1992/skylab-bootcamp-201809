@@ -5,7 +5,6 @@ var tests = [];
 tests.push(function () {
     console.log('must succeed when pushing a new element');
 
-
     var arr = [1, 2, 3];
     var expectedResult = [1, 2, 3, 4]
 
@@ -51,7 +50,7 @@ tests.push(function () {
 
     if (error.message !== 'array is not valid') throw Error('error message is not correct');
     
-    console.log('%c Done %s','color: green', '✔');
+    console.log('%c Done %s', 'color: green', '✔');
 
 
 });

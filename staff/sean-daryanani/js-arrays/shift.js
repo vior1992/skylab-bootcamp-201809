@@ -1,4 +1,5 @@
 function shift(arr) {
+    if (arr===undefined) {throw Error('no parameter has been introduced')};
     if(!(arr instanceof Array)) {
         throw Error ('input is not array');
     }

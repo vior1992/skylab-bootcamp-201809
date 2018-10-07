@@ -52,7 +52,7 @@ tests.push(function () {
     index.forEach(function(i, index) {
         if (i !== index) throw Error('index array does not match original one');
     });
-    debugger;
+ 
     array.forEach(function(arr) {
         if (arr !== nums) throw Error('array does not match original one');
     });
