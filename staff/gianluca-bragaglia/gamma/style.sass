@@ -5,6 +5,18 @@ $primary-color: #00B19A
 body 
     padding: 0
     margin: 0
+
+.btn
+    height: 40px
+    padding-left: 20px
+    padding-right: 20px
+    border-radius: 7px
+    background-color: white
+    color: #333333 
+    font-family: $font
+    font-weight: 800
+    font-size: 0.9em
+    border: 1px solid #ccc  
     
 .header
     background-color: $background-color
@@ -20,7 +32,7 @@ body
         margin: auto
 
 
-.background-container
+.top-container
     height: 550px
     background-image: url('/Users/Gianluca/Documents/skylab-bootcamp-201809/staff/gianluca-bragaglia/gamma/images/site_showcase_bg.jpg')
     padding: 0
@@ -81,5 +93,65 @@ body
                     @media (max-width: 450px)
                         padding-right: 0px
                         padding-bottom: 20px
+
+.middle-container
+    margin-top: 20px
+
+    .cards-container
+        width: 80%
+        margin: auto
+        display: flex
+        justify-content: space-between
+        @media (max-width: 1480px)
+            width: 100%
+            display: flex
+            justify-content: space-between
+        @media (max-width: 1200px)
+            width: 80%
+            display: block
+            text-align: center
+            align-items: center
+        @media (max-width: 450px)
+            width: 90%
+            display: block
+        
+        .cards-container__card
+            margin-top: 20px
+            margin-bottom: 20px
+            margin-right: 20px
+            max-width: 400px
+            @media (max-width: 1200px)
+                text-align: left
+                margin: auto
+            @media (max-width: 750px)
+                text-align: left
+                width: 100%
+                margin-top: 20px
+                margin-bottom: 20px  
+
+            
+            .card-img
+                border: 1px solid #ccc
+                width: 100%
+
+            .card-titol
+                font-family: $font 
+                font-size: 32px 
+                color: #333333  
+
+            .card-text
+                font-family: $font
+                font-size: 14px 
+                color: #333333 
+                line-height: 1.4
+                margin-top: -10px
+                padding-rigth: 15px
+ 
+
+            .btn--card-btn
+                @extend .btn
+
+                
+
                      
                

@@ -3,6 +3,19 @@ body {
   margin: 0;
 }
 
+.btn, .middle-container .cards-container .cards-container__card .btn--card-btn {
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 7px;
+  background-color: white;
+  color: #333333;
+  font-family: Arial;
+  font-weight: 800;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+}
+
 .header {
   background-color: white;
   font-family: Arial;
@@ -17,77 +30,145 @@ body {
   margin: auto;
 }
 
-.background-container {
+.top-container {
   height: 550px;
   background-image: url("/Users/Gianluca/Documents/skylab-bootcamp-201809/staff/gianluca-bragaglia/gamma/images/site_showcase_bg.jpg");
   padding: 0;
   padding-top: 30px;
 }
-.background-container .content-container {
+.top-container .content-container {
   width: 80%;
   margin: auto;
   display: flex;
   justify-content: flex-start;
 }
-.background-container .content-container .content-container__rigth {
+.top-container .content-container .content-container__rigth {
   padding: 0;
   height: 600px;
   display: block;
 }
 @media (max-width: 1170px) {
-  .background-container .content-container .content-container__rigth {
+  .top-container .content-container .content-container__rigth {
     display: none;
   }
 }
-.background-container .content-container .content-container__rigth img {
+.top-container .content-container .content-container__rigth img {
   height: 87%;
   margin-top: 28px;
 }
-.background-container .content-container .content-container__left {
+.top-container .content-container .content-container__left {
   margin-right: 20px;
   padding-top: 40px;
   width: 500px;
 }
 @media (max-width: 670px) {
-  .background-container .content-container .content-container__left {
+  .top-container .content-container .content-container__left {
     display: block;
     text-align: center;
     padding-top: 10px;
   }
 }
-.background-container .content-container .content-container__left .content-text .content-text__article {
+.top-container .content-container .content-container__left .content-text .content-text__article {
   font-size: 22px;
   color: white;
   font-family: Arial;
   font-size: 18px;
 }
-.background-container .content-container .content-container__left .content-text .content-text__titol {
+.top-container .content-container .content-container__left .content-text .content-text__titol {
   font-size: 60px;
   color: white;
   font-family: Arial;
 }
 @media (max-width: 670px) {
-  .background-container .content-container .content-container__left .content-text .content-text__titol {
+  .top-container .content-container .content-container__left .content-text .content-text__titol {
     font-size: 40px;
   }
 }
-.background-container .content-container .content-container__left .content-text #life-titol {
+.top-container .content-container .content-container__left .content-text #life-titol {
   color: #00B19A;
 }
-.background-container .content-container .content-container__left .content-stores-img img {
+.top-container .content-container .content-container__left .content-stores-img img {
   padding-right: 10px;
 }
 @media (max-width: 670px) {
-  .background-container .content-container .content-container__left .content-stores-img img {
+  .top-container .content-container .content-container__left .content-stores-img img {
     padding-right: 0px;
     padding-bottom: 20px;
   }
 }
 @media (max-width: 450px) {
-  .background-container .content-container .content-container__left .content-stores-img img {
+  .top-container .content-container .content-container__left .content-stores-img img {
     padding-right: 0px;
     padding-bottom: 20px;
   }
+}
+
+.middle-container {
+  margin-top: 20px;
+}
+.middle-container .cards-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 1480px) {
+  .middle-container .cards-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 1200px) {
+  .middle-container .cards-container {
+    width: 80%;
+    display: block;
+    text-align: center;
+    align-items: center;
+  }
+}
+@media (max-width: 450px) {
+  .middle-container .cards-container {
+    width: 90%;
+    display: block;
+  }
+}
+.middle-container .cards-container .cards-container__card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  max-width: 400px;
+}
+@media (max-width: 1200px) {
+  .middle-container .cards-container .cards-container__card {
+    text-align: left;
+    margin: auto;
+  }
+}
+@media (max-width: 750px) {
+  .middle-container .cards-container .cards-container__card {
+    text-align: left;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+.middle-container .cards-container .cards-container__card .card-img {
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.middle-container .cards-container .cards-container__card .card-titol {
+  font-family: Arial;
+  font-size: 32px;
+  color: #333333;
+}
+.middle-container .cards-container .cards-container__card .card-text {
+  font-family: Arial;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.4;
+  margin-top: -10px;
+  padding-rigth: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */
