@@ -153,7 +153,13 @@ describe('Ayay', function () {
             expect(ayay.length).toEqual(2);
 
         });
+
+        it('should give error for try pop on empty object', function () {
+            ayay;
         
+            expect(function() {ayay.pop();}).toThrowError(Error, 'object is empty')
+
+        });
     });    
 
     describe('filter', function () {
@@ -254,7 +260,11 @@ describe('Ayay', function () {
 
         });
 
-    
-    });  
+        it('should give error if sort in non-object', function() {
+            
 
+            expect(function() {ayay.sort();}).toThrowError(Error, 'element is empty')
+
+        });
+    });  
 });
