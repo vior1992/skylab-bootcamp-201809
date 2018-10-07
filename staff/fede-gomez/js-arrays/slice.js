@@ -1,13 +1,9 @@
-function slice () {
+function slice (array, start, end) {
     
-    if(arguments.length>3){
-        return 'Please insert the correct amount of arguments';
-    }
-    else if(arguments[0] instanceof Array){
-        var array = arguments[0];
+
+        if(!(array instanceof Array)){throw Error ('array is not valid')}
+        
         var newArray = [];
-        var start = arguments[1];
-        var end = arguments[2];
 
         if(start === undefined){
             
@@ -15,13 +11,14 @@ function slice () {
 
         } else if(end === undefined){
 
+            if(typeof start !== "number"){throw Error ('start is not valid');}
             var index = 0;
             for(i=start; i<array.length; i++){
                 newArray[index++] = array[i];
             }
 
         } else {
-
+            if(typeof end !== "number"){throw Error ('end is not valid');}
             var index = 0;
             for(i=start; i<end; i++){
                 newArray[index++] = array[i];
@@ -30,8 +27,4 @@ function slice () {
         }
 
         return newArray;
-
-    } else {
-        return 'Please insert a valid array';
-    }
 }
