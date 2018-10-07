@@ -8,6 +8,8 @@ function Ayay() {
 
 
 Ayay.prototype.push = function(element) {
+    if (element === 'undefined' || element === null) throw Error (element + ' is undefined')
+
     this[this.length] = element;
 
     this.length++;
@@ -40,11 +42,7 @@ Ayay.prototype.map = function(callback) {
 Ayay.prototype.filter = function(callback) {
     var result = new Ayay;
 
-    if (!(this instanceof Object)) throw Error ("first element is not an Object");
-
-    if (!this.length) throw Error ("the array passed as argument is empty");
-
-    if (!(callback instanceof Function)) throw Error ('second element is not an function');
+    if (!(callback instanceof Function)) throw Error ('element is not an function');
 
     for (var i = 0; i < this.length; i++) {
         if (callback(this[i])) {
