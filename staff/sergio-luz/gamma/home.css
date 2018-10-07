@@ -6,12 +6,18 @@ nav{
     padding-left: 10%;
     padding-top: 0px;
     padding-bottom: 0px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 main{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    box-sizing: border-box;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 div{
     flex-grow:1;
@@ -20,14 +26,27 @@ div{
 .container--center{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .img{
-    height: 70%;
-    width: auto;
+    width: 23vw;
 }
 
 .bg-images{
     width: 100%;
 }
+.nav-menu{
+    display: flex;
+}
 
+.nav-menu__item{
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    padding: 0 20px 0px 20px;
+    font-family: 'Open Sans',san-serif;
+    font-weight: 600;
+    font-size: 13px;
+    z-index: 1000;
+}
