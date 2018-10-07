@@ -111,7 +111,76 @@ describe('Ayay', function () {
             
         });
 
+        it('should work properly with an ayay of one elementh', function () {
+            
+            ayay.push(1);
+
+            var result = ayay.pop();
+
+            expect(ayay.length).toEqual(0);
+            expect(result).toEqual(1);
+            
+        });
+
+        it('should work properly with an ayay of objects', function () {
+            
+            ayay.push({hola: "mundo"},{adios: 'mundo cruel'});
+
+            var result = ayay.pop();
+
+            expect(ayay.length).toEqual(1);
+            expect(result).toEqual({adios: 'mundo cruel'});
+            
+        });
+
+        it('should work properly with an ayay of arrays', function () {
+            
+            ayay.push([1,2,3],[4,5,6]);
+
+            var result = ayay.pop();
+
+            expect(ayay.length).toEqual(1);
+            expect(result).toEqual([4,5,6]);
+            
+        });
+
+        it('should work properly with an ayay of 0', function () {
+            
+            ayay.push(0,0,0,0,0);
+
+            var result = ayay.pop();
+
+            expect(ayay.length).toEqual(4);
+            expect(result).toEqual(0);
+            
+        });
+
+        it('should work properly with an ayay element,element,... with a come in the end', function () {
+            
+            ayay.push(1,2,3,4,);
+
+            var result = ayay.pop();
+
+            expect(ayay.length).toEqual(3);
+            expect(result).toEqual(4);
+            
+        });
+
+        it('should work properly if you put an argument in the function', function () {
+            
+            ayay.push(1,2,3,4);
+
+            var result = ayay.pop(2);
+
+            expect(ayay.length).toEqual(3);
+            expect(result).toEqual(4);
+            
+        });
+
+        
+
     });
+    
 
     describe('forEach', function () {
         it('should apply the callback to each element of the ayay', function () {
@@ -133,6 +202,15 @@ describe('Ayay', function () {
         it('should return error if callback is not a function', function () {
             // ayay.push(1);
             var callback = 1;
+            expect(function (){
+                forEach(callback);
+            }).toThrow();
+            
+        });
+
+        it('should work properly if the function do nothing', function () {
+            // ayay.push(1);
+            var callback = function(){};
             expect(function (){
                 forEach(callback);
             }).toThrow();
@@ -165,10 +243,19 @@ describe('Ayay', function () {
             }).toThrow();
             
         });
+
+        it('should work properly if the function do nothing', function () {
+            // ayay.push(1);
+            var callback = function(){};
+            expect(function (){
+                map(callback);
+            }).toThrow();
+            
+        });
     });
 
     describe('sort', function () {
-        it('should sort an ayay', function () {
+        it('should sort an ayay of strings', function () {
             ayay.push('bison');
             ayay.push('aligator');
             ayay.push('zebra');
@@ -178,6 +265,54 @@ describe('Ayay', function () {
             result.push('aligator');
             result.push('bison');
             result.push('zebra');
+
+            ayay.sort();
+
+            expect(result.length).toEqual(ayay.length);
+
+            result.forEach(function (elem, index) {
+                expect(result[index]).toEqual(ayay[index]);
+            });
+        });
+
+        it('should sort an ayay of numbers', function () {
+            ayay.push(5,4,3);
+            
+            result = new Ayay;
+
+            result.push(3,4,5)
+
+            ayay.sort();
+
+            expect(result.length).toEqual(ayay.length);
+
+            result.forEach(function (elem, index) {
+                expect(result[index]).toEqual(ayay[index]);
+            });
+        });
+
+        it('should sort an ayay mix of type of elements', function () {
+            ayay.push(5,3,'string',['a'],{});
+            
+            result = new Ayay;
+
+            result.push(3,5,{},['a'],"string");
+
+            ayay.sort();
+
+            expect(result.length).toEqual(ayay.length);
+
+            result.forEach(function (elem, index) {
+                expect(result[index]).toEqual(ayay[index]);
+            });
+        });
+
+        it('should sort if all the elements are equal', function () {
+            ayay.push(1,1,1,1,1);
+            
+            result = new Ayay;
+
+            result.push(1,1,1,1,1);
 
             ayay.sort();
 
@@ -225,7 +360,7 @@ describe('Ayay', function () {
             // ayay.push(1);
             var callback = 1;
             expect(function (){
-                map(callback);
+                filter(callback);
             }).toThrow();
             
         });
@@ -255,6 +390,18 @@ describe('Ayay', function () {
             expect(result).toEqual(5);
                 
         });
+
+        it('should work properly if the function do nothing', function () {
+            // ayay.push(1);
+            result = ayay.find(isGreatThan);
+            
+            function isGreatThan(item){};
+
+            expect(result).toEqual(undefined);
+            
+        });
+
+        
         
     });
     
