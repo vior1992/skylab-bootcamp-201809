@@ -4,9 +4,9 @@ function shift(arr) {
     var index;
     var length;
 
-    // El siguiente if absorbe este error: if (typeof arr == 'undefined') throw Error ('no parameter has been introduced');
     if (!(arr instanceof Array)) throw Error ('input is not array');
-    if (!arr.length) throw Error ('array is empty');
+    if (typeof arr == 'undefined') throw Error ('no parameter has been introduced');
+    // if (!arr.length) throw Error ('array is empty'); //REDUNDANTE, ya se comprueba con instanceof
 
     element = arr[0];
     length = arr.length;
