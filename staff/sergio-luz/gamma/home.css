@@ -1,52 +1,232 @@
-nav{
-    background: white;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 10%;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    position: fixed;
-    top: 0;
-    width: 100%;
+body {
+    margin: 0px;
+    padding-bottom: -15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4vw;
+    font-family: 'Open Sans', san-serif;
+    box-sizing: border-box;
+    background: #333333;
 }
 
-main{
+nav {
+    background: #F8F8F8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 5%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 1.5px solid #80808029;
+}
+
+main {
     display: flex;
     flex-direction: row;
     justify-content: center;
     box-sizing: border-box;
-    padding-left: 10vw;
-    padding-right: 10vw;
-}
-div{
-    flex-grow:1;
+    padding: 4vw 8vw;
+    background: white;
+    position: relative;
 }
 
-.container--center{
+div {
+    flex-grow: 1;
+}
+
+header {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+span {
+    color: #1CAA98;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+article {
+    width: 90%;
+}
+
+button {
+    font-size: 1em;
+    background: white;
+    border: 0.15vw solid #8080802e;
+    padding: 0.8vw;
+    color: black;
+    font-weight: 300;
+    margin-left: 1vw;
+}
+footer{
+    background: #333333;
+    height: 7vw;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0px 5vw;
+}
+
+.container--center {
+    display: flex;
     align-items: center;
+    margin: 1vw;
+    flex-direction: column;
 }
 
-.img{
+.img {
     width: 23vw;
+    border: 0.15vw solid #8080802e;
+
 }
 
-.bg-images{
+.bg-images {
     width: 100%;
-}
-.nav-menu{
+    /* height: auto; */
+    position: absolute;
+    /* margin: 0px -13vw; */
     display: flex;
+    justify-self: center;
+    align-self: center;
 }
 
-.nav-menu__item{
+.nav-menu {
+    display: flex;
+    margin: 0px;
+}
+
+.nav-menu__item {
     position: relative;
     cursor: pointer;
     color: #fff;
-    padding: 0 20px 0px 20px;
-    font-family: 'Open Sans',san-serif;
+    padding: 1vw 2vw;
+    font-family: 'Open Sans', san-serif;
     font-weight: 600;
-    font-size: 13px;
-    z-index: 1000;
+    font-size: 1.25vw;
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu__item--logo {
+    text-decoration-line: none;
+    color: #1CAA98;
+    font-size: 1.45vw;
+}
+
+.nav__anchor {
+    text-decoration-line: none;
+    color: black;
+}
+
+.wrapper-header {
+    position: relative;
+    height: 36vw;
+    margin: 0px 14vw;
+    font-weight: 300;
+    color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.header--left {
+    width: 60%;
+    padding-top: 5vw;
+}
+
+.header--right {
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.wrapper__icons {
+    display: flex;
+    flex-direction: row;
+}
+
+.icon {
+    width: 40%;
+    align-self: center;
+    padding-right: 4vw;
+}
+
+.img-phone {
+    width: 23vw;
+}
+
+.gamma-features {
+    background: #1CAA98;
+    height: 30vw;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    padding: 0px 15vw;
+}
+
+.gamma-features--left {
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+}
+
+.gamma-features--right {
+    height: 100%;
+    width: 50%;
+    display: flex;
+}
+
+.img-logo {
+    display: flex;
+    align-self: baseline;
+    width: 20vw;
+    padding-top: 4vw;
+}
+
+.features {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 0px;
+}
+
+.features--h2 {
+    font-size: 2em;
+    color: white;
+    padding: 0px;
+    padding-top: 5vw;
+    margin: 0px;
+
+}
+
+.features__item {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    color: #1CAA98;
+    list-style-type: none;
+    font-family: 'Open Sans', san-serif;
+    font-weight: 600;
+    font-size: 1.25vw;
+    align-items: center;
+}
+
+.anchors {
+    display: inline-block;
+    font-size: 1.3em;
+    text-decoration-line: none;
+    color: white;
+    font-weight: 300;
+    padding: 0.35vw;
+}
+.text-footer{
+    width: 50%;
+    text-align: end;
+    color: white;
+    font-weight: 300;
 }
