@@ -16,6 +16,18 @@ describe('Ayay', function () {
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
         });
+        
+        it('should return the length of the ayay even if no element is passed as argument', function () {
+            ayay.push(1);   
+            ayay.push(2);
+            ayay.push(3);
+            ayay.push(4);
+
+            var returnedValue = ayay.push();
+            
+            expect(returnedValue).toEqual(4);
+        });
+        
     });
 
     describe('forEach', function () {

@@ -11,8 +11,14 @@ function Ayay() {
 
 Ayay.prototype.push = function(element) {
     this[this.length] = element;
+    if(element) this.length++;
+    return this.length;
+};
 
-    this.length++;
+Ayay.prototype.forEach = function(callback) {
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
+    for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
 
 Ayay.prototype.pop = function() {
@@ -21,12 +27,6 @@ Ayay.prototype.pop = function() {
     this.length--;
     delete this[this.length];
     return poppedElem;
-};
-
-Ayay.prototype.forEach = function(callback) {
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
-
-    for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
 
 Ayay.prototype.map = function(callback) {
