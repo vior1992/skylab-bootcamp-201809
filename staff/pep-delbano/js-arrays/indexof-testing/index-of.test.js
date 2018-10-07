@@ -6,9 +6,9 @@ console.log("TEST of indexOf(arr, elem):");
 var tests = []; 
 
 //test 1:
-(function()  {
-console.log("Test 1: should succeed on searching inside an array of strings and returning the index of the element that satisfies the condition, if it exists");
-	tests.push(function() {
+tests.push(function() {
+
+	console.log("Test 1: should succeed on searching inside an array of strings and returning the index of the element that satisfies the condition, if it exists");
 
 	var arrNums = ['uno', 'dos', 'tres', 'cuatro', 'cinco'];
 	var findNumber = 'cuatro';
@@ -20,15 +20,12 @@ console.log("Test 1: should succeed on searching inside an array of strings and 
 	if (result !== 3) throw Error('returned index does not match with the one expected');
 	})
 
-	
-})();  //the function calls itself (selfie), and pushes its content to the test array;
 
 
 // test 2:
-(function() {
+tests.push(function() {
 	console.log("Test 2: should succeed on searching inside an array of numbers and returning the index of the element that satisfies the condition, if it exists");
 	
-	tests.push(function() {
 	
 	var arrNums = [22,89,35,47];
 	var findNumber = 35;
@@ -40,15 +37,15 @@ console.log("Test 1: should succeed on searching inside an array of strings and 
 
 })
 
-})();
+
 
 
 //test 3:
-(function(){
+tests.push(function() {
+
 	console.log("Test 3: fails if first parameter is not an array");
 
-	tests.push(function() {
-	
+	var arr = 123; // need to define arr to use it in line 58 and 61
 	var error;
 
 	try {
@@ -65,14 +62,13 @@ console.log("Test 1: should succeed on searching inside an array of strings and 
 
 })
 
-})();
+
 
 
 //case 4:
-(function() {
+tests.push(function() {
 	console.log('Test 4: fails if the first parameter is empty');
 
-	tests.push(function() {
 	
 	var error;
 
@@ -87,14 +83,13 @@ console.log("Test 1: should succeed on searching inside an array of strings and 
 	if (error.message !== "first parameter is an empty array") throw Error("should have thrown 'first parameter is an empty array', but got: " + error.message);
 })
 
-})();
+
 
 
 //case 5:
-(function() {
+tests.push(function() {
 	console.log('Test 5: fails if the second parameter is empty');
 
-	tests.push(function() {
 	
 	var error;
 
@@ -110,7 +105,6 @@ console.log("Test 1: should succeed on searching inside an array of strings and 
 
 })
 
-})();
 
 testSuite(tests); //now we call the function testSuite with all the just pushed stuff to the 'test' array;
 

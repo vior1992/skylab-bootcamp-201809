@@ -5,15 +5,12 @@ var res = concat(arr, arr2);
 
 console.log(res); // [1, 2, 3, 4, 5, 6]*/
 
-//Victor:
+function concat(arr1, arr2) {
+    for (var i=0; i<arr2.length; i++) {
+        arr1[arr1.length] = arr2[i];
+    }
 
-function concat(arr, arr2) {
-    var result = []
-    for (var i = 0; i < arr.length; i++) {
-        result.push(arr[i]);
-    }
-    for (var i = 0; i < arr2.length; i++) {
-        result.push(arr2[i]);
-    }
-    return (result);
+   console.log(arr1);
 }
+
+concat([1, 2, 3], [4, 5, 6]);
