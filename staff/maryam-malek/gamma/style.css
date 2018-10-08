@@ -47,15 +47,21 @@
   background: #cdcdcd;
   z-index: 1;
 }
-.burger-menu__checkbox:checked + .first, .burger-menu .burger-menu__checkbox:checked + .second {
+
+.burger-menu__checkbox:checked ~ .first {
   opacity: 1;
   transform: rotate(90deg) translate(0.5em, 0em);
+}
+.burger-menu__checkbox:checked ~ .third {
+  display: none;
+}
+.burger-menu__checkbox:checked ~ .burger-list {
+  opacity: 1;
 }
 
 .burger-list {
   position: absolute;
   background: #ededed;
-  transform-origin: 0% 0%;
   list-style-type: none;
   top: 100%;
   width: 100%;
