@@ -47,12 +47,6 @@ describe('Ayay', function () {
             var error;
             var p = 0;
             
-            try{
-                ayay.forEach(p);
-            }catch(err){
-                error = err;
-            }
-            expect(error).not.toBeUndefined();
             expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
         });    
     });
@@ -99,15 +93,8 @@ describe('Ayay', function () {
             ayay.push(2);
             ayay.push(3);
             
-            var error;
             var p = 0;
             
-            try{
-                ayay.map(p);
-            }catch(err){
-                error = err;
-            }
-            expect(error).not.toBeUndefined();
             expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
         });    
     });
@@ -132,16 +119,9 @@ describe('Ayay', function () {
             ayay.push(1);
             ayay.push(2);
             ayay.push(3);
-            
-            var error;
+
             var p = 0;
             
-            try{
-                ayay.filter(p);
-            }catch(err){
-                error = err;
-            }
-            expect(error).not.toBeUndefined();
             expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
         });    
     });
@@ -164,15 +144,8 @@ describe('Ayay', function () {
             ayay.push(2);
             ayay.push(3);
             
-            var error;
             var p = 0;
             
-            try{
-                ayay.find(p);
-            }catch(err){
-                error = err;
-            }
-            expect(error).not.toBeUndefined();
             expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
         });    
     });
@@ -185,6 +158,7 @@ describe('Ayay', function () {
             ayay.push(9);
 
             var correct=new Ayay;
+
             correct.push(2);
             correct.push(8);
             correct.push(9);
