@@ -1,25 +1,28 @@
 $color-primary: #2196f3;
 
 @mixin form() {
-    width: 100px;
     display: inline-block;
     padding: 0.75rem 1rem;
     border-radius: 1.5rem;
     text-decoration: none;
     font-size: 1.25rem;
-    color: #000;
-    transition: all .4s;
-    border: 1px solid #ccc;
+    border: none;
 
     &:focus {
         outline: 0;
     }
 }
 
+@mixin input() {
+    color: #000;
+    border: 1px solid #ccc;
+}
+
 @mixin button($color) {
     background-color: $color;
     color: #fff;
     border: none;
+    transition: all .4s;
 
     &:hover {
         cursor: pointer;
@@ -50,9 +53,17 @@ $color-primary: #2196f3;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        
-        &__input {
-            @include form();
+
+        &__group {
+            .form-group {
+                &__label {
+                }
+
+                &__input {
+                    @include form();
+                    @include input();
+                }
+            }
         }
 
         &__button {

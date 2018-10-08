@@ -110,14 +110,47 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
 Confirm.prototype = Object.create(Dialog.prototype);
 Confirm.prototype.constructor = Confirm;
 
-function Form(ids) {
+function Form(elements) {
     var form = document.createElement('form');
     form.className = 'form';
-    ids.forEach(function(id) {
-        this.input = document.createElement('input');
-        this.input.className = 'form__input';
-        this.input.id = id;
-        form.appendChild(this.input);
+
+    function formatLabel(label) {
+        var words = label.split('_');
+        words.forEach(function(word, i) {
+            words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+        });
+        return words.join(' ');
+    }
+
+    elements.forEach(function(element) {
+        switch (element.element) {
+            case 'input':
+                this.group = document.createElement('div');
+                this.group.className = 'form__group';
+
+                this.label = document.createElement('label');
+                if (element.id) this.label.for = element.id;
+                this.label.className = element.class ? element.class : 'form-group__label';
+                this.label.innerText = element.label ? element.label : formatLabel(element.id);
+                group.appendChild(this.label);
+
+                this.input = document.createElement('input');
+                if (element.id) this.input.id = element.id;
+                this.input.className = element.class ? element.class : 'form-group__input';
+                this.input.type = element.type ? element.type : 'text';
+                group.appendChild(this.input);
+
+                form.appendChild(this.group);
+                break;
+            case 'button':
+                this.button = document.createElement('button');
+                this.button.type = element.type ? element.type : 'button';
+                if (element.label) this.button.innerText = element.label;
+                this.button.className = element.class ? element.class : 'form__button';
+                for (var listener in element.on) this.button.addEventListener(listener, element.on[listener]);
+                form.appendChild(this.button);
+                break;
+        }
     });
 
     return form;

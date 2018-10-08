@@ -20,23 +20,33 @@ Landing.prototype.constructor = Landing;
 function Login(title, tag, loginCallback, cancelCallback) {
     Panel.call(this, title, tag);
     this.element.style.display = 'none';
+    this.form = new Form([
+        {
+            element: 'input',
+            id: 'username'
+        },
+        {
+            element: 'input',
+            id: 'password',
+            type: 'password'
+        },
+        {
+            element: 'button',
+            label: 'Cancel',
+            on: {
+                click: cancelCallback
+            }
+        },
+        {
+            element: 'button',
+            label: 'Log In',
+            on: {
+                click: loginCallback
+            }
+        }
+    ]);
 
-    this.form = new Form(['username', 'password']);
     this.element.appendChild(this.form);
-
-    this.cancel = document.createElement('button');
-    this.cancel.type = 'button';
-    this.cancel.innerText = 'Cancel';
-    this.cancel.className = 'form__button';
-    this.cancel.addEventListener('click', cancelCallback);
-    this.form.appendChild(this.cancel);
-
-    this.login = document.createElement('button');
-    this.login.type = 'button';
-    this.login.innerText = 'Log In';
-    this.login.className = 'form__button';
-    this.login.addEventListener('click', loginCallback);
-    this.form.appendChild(this.login);
 }
 
 Login.prototype = Object.create(Panel.prototype);
@@ -45,23 +55,42 @@ Login.prototype.constructor = Login;
 function Register(title, tag, registerCallback, cancelCallback) {
     Panel.call(this, title, tag);
     this.element.style.display = 'none';
+    this.form = new Form([
+        {
+            element: 'input',
+            id:'name'
+        },
+        {
+            element: 'input',
+            id:'username'
+        },
+        {
+            element: 'input',
+            id: 'password',
+            type: 'password'
+        },
+        {
+            element: 'input',
+            id: 'confirm_password',
+            type: 'password'
+        },
+        {
+            element: 'button',
+            label: 'Cancel',
+            on: {
+                click: cancelCallback
+            }
+        },
+        {
+            element: 'button',
+            label: 'Register',
+            on: {
+                click: registerCallback
+            }
+        }
+    ]);
 
-    this.form = new Form(['name', 'username', 'password', 'confirm_password']);
     this.element.appendChild(this.form);
-
-    this.cancel = document.createElement('button');
-    this.cancel.type = 'button';
-    this.cancel.innerText = 'Cancel';
-    this.cancel.className = 'form__button';
-    this.cancel.addEventListener('click', cancelCallback);
-    this.form.appendChild(this.cancel);
-
-    this.register = document.createElement('button');
-    this.register.type = 'button';
-    this.register.innerText = 'Register';
-    this.register.className = 'form__button';
-    this.register.addEventListener('click', registerCallback);
-    this.form.appendChild(this.register);
 }
 
 Register.prototype = Object.create(Panel.prototype);
