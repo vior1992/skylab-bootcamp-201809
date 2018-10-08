@@ -67,9 +67,9 @@ describe('Ayay', function () {
 
         it('should fail on non-function callback', function () {
             ayay.push(1, 2, 3);
-            var p = 1;
+            var callback = 1;
 
-            expect(function() {ayay.forEach(p);}).toThrowError( TypeError, p + ' is not a function');
+            expect(function() {ayay.forEach(callback);}).toThrowError( TypeError, callback + ' is not a function');
         });
 
         it('should succeed on iterating an array and passing all specified data to callback', function () {
@@ -160,9 +160,9 @@ describe('Ayay', function () {
 
         it('should fail on non-function callback', function () {
             ayay.push(1, 2, 3);
-            var p = 1;
+            var callback = 1;
 
-            expect(function() {ayay.map(p);}).toThrowError( TypeError, p + ' is not a function');
+            expect(function() {ayay.map(callback);}).toThrowError( TypeError, callback + ' is not a function');
 
         });
 
@@ -197,6 +197,20 @@ describe('Ayay', function () {
     });
 
     describe('sort', function () {
+        it('should modify original array', function () {
+            ayay.push(2,3,1,0);
+            var lengthBefore = ayay.length;
+            var validate = new Ayay
+            validate.push(0, 1, 2, 3);
+
+            ayay.sort();
+            var lengthAfter = ayay.length;
+
+            expect(lengthBefore).toEqual(lengthAfter); 
+            for (var i = 0; i < ayay.length; i++){
+                expect(validate[i]).toEqual(ayay[i]);
+            }
+        });
         it('should sort elements in original array(numbers)', function () {
             ayay.push(2,3,1,0);
             var validate = new Ayay
@@ -257,7 +271,6 @@ describe('Ayay', function () {
 
         it('should fail on non-functoin callback', function(){
             ayay.push(1, 2, 3, 4);
-            var result;
             var callback = 1;
                    
             expect(function() {ayay.filter(callback);}).toThrowError( TypeError, callback + ' is not a function');
