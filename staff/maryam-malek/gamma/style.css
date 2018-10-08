@@ -50,8 +50,9 @@
   opacity: 1;
   transform: rotate(90deg) translate(0.5em, 0em);
 }
-.burger-menu__checkbox:checked + .burger-menu__lines:last-child {
-  opacity: 0;
+.burger-menu__checkbox:checked + .third {
+  display: none !important;
+  opacity: 0 !important;
   transform: rotate(-45deg) translate(0.5em, 0.3em);
 }
 
@@ -154,6 +155,33 @@
 }
 .main-bottom-list__element {
   margin-bottom: 0.4em;
+}
+
+.footer {
+  background: #333333;
+  height: 10em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5% 10%;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: row;
+}
+.footer-nav__element {
+  color: white;
+  text-decoration: none;
+  margin-right: 5%;
+}
+.footer-nav__element--last {
+  margin-right: 0;
+}
+
+.footer-text {
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
