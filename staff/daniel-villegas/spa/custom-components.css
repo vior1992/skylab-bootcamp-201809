@@ -1,0 +1,28 @@
+/* TODO implement styles from here following BEM */
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding-bottom: 50px;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px; }
+
+h2 {
+  font-size: 50px; }
+
+.buttons {
+  border: 2px solid white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  width: 150px;
+  height: 25px; }
