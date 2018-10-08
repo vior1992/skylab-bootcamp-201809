@@ -141,6 +141,16 @@
             x.addEventListener("click", function (event) {
 
                 var ele = (event.target.nextSibling.nextSibling);
+
+                [].forEach.call(document.getElementsByClassName("collapsable__desc"), (x, i, arr) => {
+                    
+                    if (x !== ele)
+                        if (x.className.indexOf("collapsable-up") === -1)
+                        {
+                            x.className = x.className + " collapsable-up";                        
+                        }
+                });
+
                 if ((ele.hasAttributes()) && ([].some.call(ele.attributes, x => { return x.name === "class" })))
 
                     if (ele.className.indexOf("collapsable-up") !== -1)
@@ -148,6 +158,8 @@
                         ele.className = ele.className.replace(" collapsable-up","");
                     else
                         ele.className = ele.className + " collapsable-up";
+
+               
             });
         });
     </script>

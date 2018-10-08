@@ -20,7 +20,8 @@
             top: 0;
             transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
             opacity: 0;
-            padding: 0 2em;
+            padding: 0 1.5em;
+            z-index: 50;
             & li
             {
                 &:first-child{
@@ -28,7 +29,7 @@
                     padding: 0;
                     border-bottom: none;
                     text-align: right;
-                    padding-top: 29px;
+                    padding-top: 23px;
                     
                 }
                 &:nth-child(2){
