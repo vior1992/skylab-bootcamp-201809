@@ -29,10 +29,12 @@ function Login(title, tag, loginCallback) {
     this.element.appendChild(this.form);
 
     this.username = document.createElement('input');
+    this.username.name = ('input1');
 
     this.form.appendChild(this.username);
 
     this.password = document.createElement('input');
+    this.password.name = ('input2');
 
     this.form.appendChild(this.password);
 

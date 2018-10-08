@@ -17,6 +17,10 @@ document.body.appendChild(landing.element);
 
 var login = new Login('Login', 'section',
     function(){
+        var user = document.getElementsByName("input1")[0].value;
+        var pass = document.getElementsByName("input2")[0].value;
+        console.log(user);
+        console.log(pass);
         login.hide();
         welcome.show();
     });
