@@ -1,1 +1,6 @@
-/* TODO BEM + Sass */
+/* TODO implement styles from here following BEM */
+.form {
+  display: flex;
+}
+
+/*# sourceMappingURL=custom-components.css.map */
