@@ -23,17 +23,17 @@ function Login(title, tag, loginCallback, backCallback) {
 
     this.hide();
 
-    this.inputs = [{Username:"username"}, {Password:"password"}];
+    this.inputs = [{ Username: "username" }, { Password: "password" }];
 
-    this.inputs.forEach((x,i) => {
+    this.inputs.forEach((x, i) => {
 
         var groupfield = document.createElement('div');
         var label = document.createElement('label');
         var input = document.createElement('input');
-        for(var key in x){
+        for (var key in x) {
             label.innerText = key;
             input.placeholder = key;
-            input.name  = x[key];
+            input.name = x[key];
             input.id = x[key];
         }
         groupfield.appendChild(label);
@@ -64,7 +64,7 @@ function Login(title, tag, loginCallback, backCallback) {
 
 Login.prototype = Object.create(Panel.prototype);
 Login.prototype.constructor = Login;
-Login.prototype.show = function(){
+Login.prototype.show = function () {
     this.element.reset();
     this.__proto__.__proto__.show.call(this);
     this.element.username.focus();
@@ -82,26 +82,26 @@ function Register(tag, registerCallback) {
 
     this.hide();
 
-    this.getUsername = function(){
+    this.getUsername = function () {
         return username;
     }
 
-    this.getPassword = function(){
+    this.getPassword = function () {
         return password;
     }
 
-   
-    this.inputs = [{FirstName:"firstname"}, {LastName:"lastname"}, {Addres:"addres"},{Email:"email"},{Phone:"phone"},{Username:"username"},{Password:"password"}];
 
-    this.inputs.forEach((x,i) => {
+    this.inputs = [{ FirstName: "firstname" }, { LastName: "lastname" }, { Addres: "addres" }, { Email: "email" }, { Phone: "phone" }, { Username: "username" }, { Password: "password" }];
+
+    this.inputs.forEach((x, i) => {
 
         var groupfield = document.createElement('div');
         var label = document.createElement('label');
         var input = document.createElement('input');
-        for(var key in x){
+        for (var key in x) {
             label.innerText = key;
             input.placeholder = key;
-            input.name  = x[key];
+            input.name = x[key];
             input.id = x[key];
         }
         groupfield.appendChild(label);
@@ -116,15 +116,15 @@ function Register(tag, registerCallback) {
         username = this.element.username.value;
         password = this.element.password.value;
         registerCallback();
-       
+
     });
     this.element.appendChild(button);
-   
+
 }
 
 Register.prototype = Object.create(Component.prototype);
 Register.prototype.constructor = Register;
-Register.prototype.show = function(){
+Register.prototype.show = function () {
     this.element.reset();
     this.__proto__.__proto__.show.call(this);
     this.element.firstname.focus();

@@ -1,7 +1,7 @@
-var login = new Login("LOGIN", "form", function(username, password){
+var login = new Login("LOGIN", "form", function (username, password) {
 
-    if ((username === register.getUsername()) && (register.getPassword() === password)){
-        var welcome = new Alert("¡¡¡WELCOME!!!", "Bienvenido a los Web Components","section", function() {
+    if ((username === register.getUsername()) && (register.getPassword() === password)) {
+        var welcome = new Alert("¡¡¡WELCOME!!!", "Bienvenido a los Web Components", "section", function () {
 
             welcome.hide();
             login.hide();
@@ -10,41 +10,41 @@ var login = new Login("LOGIN", "form", function(username, password){
         });
         welcome.render(document.body);
         welcome.show();
-        login.hide(); 
+        login.hide();
     }
-    else{
-        var error = new Alert("¡¡¡ERROR!!!","The credentials are incorrect","section", function() {
+    else {
+        var error = new Alert("¡¡¡ERROR!!!", "The credentials are incorrect", "section", function () {
             error.hide();
             login.show();
 
-        },true)
+        }, true)
         error.show();
         error.render(document.body);
-        login.hide(); 
+        login.hide();
     }
 
-}, function(){
+}, function () {
     login.hide();
     landing.show();
 });
 
 
-var register = new Register("form", function(){
+var register = new Register("form", function () {
 
     register.hide();
     landing.show();
 });
 
-var landing = new Landing("¡¡¡Welcome to WebComponents!!!","section",function(){
+var landing = new Landing("¡¡¡Welcome to WebComponents!!!", "section", function () {
 
-    
+
     register.render(document.body);
     register.show();
     landing.hide();
 
-},function(){
+}, function () {
 
-     
+
     login.render(document.body);
     login.show();
     landing.hide();
