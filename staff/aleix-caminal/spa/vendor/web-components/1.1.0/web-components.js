@@ -12,9 +12,11 @@ Component.prototype.hide = function () {
 
 function Panel(title, tag) {
     Component.call(this, tag);
+    this.element.className = 'panel';
 
     this.title = document.createElement('h2');
     this.title.innerText = title;
+    this.title.clasName = 'panel__title';
 
     this.element.appendChild(this.title);
 }
@@ -107,3 +109,16 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
 
 Confirm.prototype = Object.create(Dialog.prototype);
 Confirm.prototype.constructor = Confirm;
+
+function Form(ids) {
+    var form = document.createElement('form');
+    form.className = 'panel__form';
+    ids.forEach(function(id) {
+        this.input = document.createElement('input');
+        this.input.className = 'form__input';
+        this.input.id = id;
+        form.appendChild(this.input);
+    });
+
+    return form;
+}

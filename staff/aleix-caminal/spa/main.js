@@ -10,15 +10,29 @@ var landing = new Landing('Choose an option', 'section',
     }
 );
 
-var login = new Login('Login', 'section', function() {
-    login.hide();
-    welcome.show();
-});
+var login = new Login('Login', 'section',
+    function() {
+        login.hide();
+        welcome.show();
+    },
 
-var register = new Register('Register', 'section', function() {
-    register.hide();
-    login.show();
-});
+    function() {
+        login.hide();
+        landing.show();
+    }
+);
+
+var register = new Register('Register', 'section',
+    function() {
+        register.hide();
+        login.show();
+    },
+
+    function() {
+        register.hide();
+        landing.show();
+    }
+);
 
 var welcome = new Welcome('Welcome', 'section', function() {
     welcome.hide();
