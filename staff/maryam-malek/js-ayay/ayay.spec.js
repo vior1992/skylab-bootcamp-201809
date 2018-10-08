@@ -16,11 +16,21 @@ describe('Ayay', function () {
             for (var i = 0; i < ayay.length; i++)
                 expect(ayay[i]).toEqual(i + 1);
         });
-        // it('should fail on non-ayay', function () {
-        //     var p = undefined;
-        //     expect(function() {ayay.push(p);}).toThrowError(TypeError, p + ' is not a valid ayay')
+        it('should push more than one item at once', function () {
+            ayay.push(1, 2, 3);
 
-        // });
+            expect(ayay.length).toEqual(3);
+
+            for (var i = 0; i < ayay.length; i++)
+                expect(ayay[i]).toEqual(i + 1);
+        });
+        it('should push more than one item at once (chars)', function () {
+            ayay.push('a', 'b', 'c');
+            var ex = ['a', 'b', 'c'];
+            expect(ayay.length).toEqual(3);
+
+            for (var i = 0; i < ayay.length; i++) expect(ayay[i]).toEqual(ex[i]);
+        });
     });
 
     describe('forEach', function () {
@@ -39,16 +49,32 @@ describe('Ayay', function () {
                 expect(elem).toEqual(ayay[index] * 2);
             });
         });
-        // it('should fail on non-ayay', function () {
-        //     var p = undefined;
-        //     ayay.push(p);
-        //     expect(function() {ayay.forEach(function (elem, index) { 
-        //         var result = [];
-        //         result[index] = elem * 2; });}).toThrowError(TypeError, p + ' is not a valid ayay')
-        // });
+        it('should fail on non valid callback', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            var callback = undefined;
+            expect(function() {ayay.forEach(callback);}).toThrowError(TypeError, callback + ' is not a function')
+        
+        });
+        it('should fail on empty array', function () {
+            expect(function() {ayay.forEach();}).toThrowError('array can not be empty')
+        });
     });
     describe('pop', function () {
-        it('should iterate on valid ayay', function () {
+        it('should succesfully remove last item', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            var ex = [1,2];
+            ayay.pop();
+            expect(ayay.length).toEqual(2);
+            for (var i = 0; i<ayay.length; i++)
+                expect(ayay[i]).toEqual(ex[i]);
+                       
+            
+        });
+        it('should succesfully return the removed item', function () {
             ayay.push(1);
             ayay.push(2);
             ayay.push(3);
@@ -60,11 +86,11 @@ describe('Ayay', function () {
             expect(result).toEqual(last);
             
         });
-        // it('should fail on non-ayay', function () {
-        //     var p = null;
-        //     expect(function() {ayay.pop(p);}).toThrowError(TypeError, p + ' is not a valid ayay')
+        it('should fail on empty array', function () {
+            expect(function() {ayay.pop();}).toThrowError('array can not be empty')
         
-        // });
+        });
+
     });
     describe('map', function () {
         it('should succeed on iterating an array and multiply by 2', function () {
@@ -84,11 +110,18 @@ describe('Ayay', function () {
             expect(result.length).toEqual(ayay.length);
             
         });
-        // it('should fail on non-ayay', function () {
-        //     var p = null;
-        //     expect(function() {ayay.map();}).toThrowError(TypeError, p + ' is not a valid ayay')
+        it('should fail on non valid callback', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            var callback = undefined;
+            expect(function() {ayay.map(callback);}).toThrowError(TypeError, callback + ' is not a function')
         
-        // });
+        });
+        it('should fail on empty array', function () {
+            expect(function() {ayay.map();}).toThrowError('array can not be empty')
+        
+        });
     });
     describe('filter', function () {
         it('should succeed on returning an array with the elements that pass the callback requirement', function () {
@@ -108,7 +141,18 @@ describe('Ayay', function () {
             expect(result.length).toEqual(comprovation.length);
             
         });
+        it('should fail on non valid callback', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            var callback = 1;
+            expect(function() {ayay.filter(callback);}).toThrowError(TypeError, callback + ' is not a function')
         
+        });
+        it('should fail on empty array', function () {
+            expect(function() {ayay.filter();}).toThrowError('array can not be empty')
+        
+        });
     });
 
     describe('find', function () {
@@ -127,7 +171,18 @@ describe('Ayay', function () {
             expect(result.length).toEqual(comprovation.length);
             
         });
+        it('should fail on non valid callback', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            var callback = 1;
+            expect(function() {ayay.find(callback);}).toThrowError(TypeError, callback + ' is not a function')
         
+        });
+        it('should fail on empty array', function () {
+            expect(function() {ayay.find();}).toThrowError('array can not be empty')
+        
+        });
     });
 
     describe('sort', function () {
@@ -147,6 +202,22 @@ describe('Ayay', function () {
             expect(result.length).toEqual(comprovation.length);
             
         });
+        it('should succeed on sorting the elements of the array(chars)', function () {
+            ayay.push('b', 'c', 'a');
+
+            var result = ayay.sort();
+            var comprovation = ['a', 'b', 'c'];
+            expect(result).toBeTruthy();
+
+            for(var i = 0; i<ayay.length; i++){
+                expect(result[i]).toEqual(comprovation[i]);
+            }
+            expect(result.length).toEqual(comprovation.length);
+            
+        });
+        it('should fail on empty array', function () {
+            expect(function() {ayay.sort();}).toThrowError('array can not be empty')
         
+        });
     });
 });
