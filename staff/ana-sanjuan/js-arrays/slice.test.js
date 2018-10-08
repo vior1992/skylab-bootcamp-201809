@@ -61,12 +61,10 @@ tests.push(function () {
     var res = [];
     var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 
-    try {
-        res = slice(animals);
-        //if (res.length === 0) throw Error("end or start are not starting automatically");
-    } catch (err) {
-        error = err;
-    }
+    res = slice(animals);
+    
+    if (res.length === 0) throw Error("end or start are not starting automatically");
+
     if (error) {
         if (error.message === 'end or start are not starting automatically') throw Error('End and start have to be valid');
     }
