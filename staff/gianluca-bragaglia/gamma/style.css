@@ -124,16 +124,23 @@ a {
 }
 @media (max-width: 1480px) {
   .cards-container, .content-container--about .content-container__rigth--about {
-    width: 96%;
+    width: 80%;
     display: flex;
     justify-content: space-arond;
   }
 }
 @media (max-width: 1200px) {
   .cards-container, .content-container--about .content-container__rigth--about {
+    width: 95%;
     display: flex;
     justify-content: space-arond;
-    width: 80%;
+  }
+}
+@media (max-width: 900px) {
+  .cards-container, .content-container--about .content-container__rigth--about {
+    display: flex;
+    justify-content: space-arond;
+    width: 95%;
     display: block;
     text-align: center;
     align-items: center;
@@ -180,7 +187,6 @@ a {
   color: #333333;
   line-height: 1.4;
   margin-top: -10px;
-  padding-rigth: 15px;
 }
 .bottom-container {
   width: 100%;
@@ -309,6 +315,7 @@ footer .footer-container__rigth {
   line-height: 1.4;
   margin-top: -22px;
   margin-bottom: 22px;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .collapsible-title-2 {
