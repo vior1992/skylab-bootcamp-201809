@@ -6,6 +6,10 @@ $secondary-color: #333333
 body 
     padding: 0
     margin: 0
+
+main
+    ºdisplay: block
+
 a
     font-family: Arial
     font-size: 13px  
@@ -33,7 +37,7 @@ a
     color: $primary-color
     height: 50px
     width: 100%
-    padding-bottom: 5px
+    padding-bottom: 15px
 
     &__container
         width: 80%
@@ -128,6 +132,8 @@ a
         @media (max-width: 1200px)
             text-align: left
             margin: auto
+            margin-top: 20px
+            margin-bottom: 20px 
         @media (max-width: 750px)
             text-align: left
             width: 100%
@@ -201,28 +207,66 @@ footer
             font-family: $font
             font-size: 13px 
             padding: 20px 0px          
-  
+
+
+
+.title-about
+    width: 100%
+    background-color: $primary-color
+    padding-top: 5px
+    padding-bottom: 5px
+    text-align: left
+    margin: auto
+    .title-about__container
+        width: 90%
+        margin: auto
+        .h1-about
+            font-family: $font
+            color: white
+ 
+
+.header__container--about
+    width: 90%
+    margin: auto
+    
+
 .top-container--about
     @extend .top-container
     background-image: none
-    padding-bottom: 80px
+    padding-bottom: auto
+    height: auto
 
 .content-container--about
-    @extend .content-container
+    width: 90%
+    display: flex
     justify-content: space-between
+    margin: auto
+    @media (max-width: 1200px)
+            display: block
+            padding-top: 10px
+            margin: auto
+            width: 97%
     .content-container__left--about
         margin-right: 20px
         padding-top: 40px
-        width: 650px
-        @media (max-width: 670px)
-            display: block
-            text-align: center
+        max-width: 650px
+        @media (max-width: 1200px)
             padding-top: 10px
+            margin: auto
+        @media (max-width: 670px)
+            padding-top: 10px
+            margin: auto
+            width: 100%
     .content-container__rigth--about
-        margin: auto
-        display: flex
-        justify-content: space-between
         width: 34%
+        @media (max-width: 1200px)
+            width: 60%
+            display: block
+            padding-top: 10px
+        @media (max-width: 600px)
+            width: 90%
+            display: block
+            padding-top: 10px
         .cards-container--about
         @extend .cards-container
 
@@ -253,7 +297,7 @@ footer
     font-size: 14px 
     color: $secondary-color 
     border: 1px solid #ccc
-    padding: 20px 0px 15px 20px
+    padding: 20px 10px 15px 20px
     line-height: 1.4
     margin-top: -22px
     margin-bottom: 22px
@@ -263,15 +307,38 @@ footer
     @extend .collapsible-title
     border-radius: 5px 5px 5px 5px
     margin-top: -15px
-        
-
-
-
-
-
-
-
-   
-
     
+.footer-container--about
+        display: flex
+        justify-content: space-between
+        width: 80%
+        margin: auto
+        @media (max-width: 730px)
+            margin-top: 0px
+            display: block
+            text-align: center
+
+
+.contact-form
+    font-family: $font
+    font-size: 12px
+    font-weight: bold
+
+input
+    width: 100%
+    padding: 7px 10px
+    margin: 8px 0
+    display: inline-block
+    border: 1px solid #ccc
+    border-radius: 4px
+    box-sizing: border-box
+
+.submit
+    width: 72px
+    padding: 5px 10px 5px 10px
+    display: inline-block
+    border: 1px solid #ccc
+    border-radius: 4px
+    box-sizing: border-box
+
 
