@@ -65,14 +65,8 @@ describe('Ayay', function () {
             ayay.map(function(num) { return num * 2; });
 
             expect(ayay.length).toEqual(num);  
-
-            result.forEach (function (element){
-                expect(element.length > 5).toBeTruthy();
-            });
                        
-        });
-    });
-        
+        }); 
 
         it('should throw error, callback is not a function', function () {
 
@@ -85,6 +79,7 @@ describe('Ayay', function () {
             expect(function(){ayay.map(x);}).toThrowError(TypeError, x + ' is not a function')
                     
         });
+    });
 
         describe('filter', function () {
             it('shuld return the items that meet the condition', function () {
@@ -101,7 +96,6 @@ describe('Ayay', function () {
                 });
                            
             });
-        });
     
             it('It should fail on non-function second parameter', function () {
     
@@ -114,6 +108,36 @@ describe('Ayay', function () {
                 expect(function(){ayay.filter(x);}).toThrowError(TypeError, x + ' is not a function')
                         
             });
+        });
+
+        describe('find', function () {
+            it('shuld return the 1rst item that meet the condition', function () {
+    
+                ayay.push('maria');
+                ayay.push('pepe');
+                ayay.push('judith');
+                ayay.push('antoñito');
+    
+                var result = ayay.find(function(element) { return element.length > 5; });
+
+                    expect(result.length > 5).toBeTruthy();
+                           
+            });
+    
+            it('It should fail on non-function second parameter', function () {
+    
+                ayay.push(1);
+                ayay.push(2);
+                ayay.push(3);
+    
+                var x =2;
+    
+                expect(function(){ayay.find(x);}).toThrowError(TypeError, x + ' is not a function')
+                        
+            });
+        });
+
+
 
 
     

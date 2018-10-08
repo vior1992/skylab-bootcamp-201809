@@ -59,12 +59,11 @@ Ayay.prototype.filter = function(callback) {
 };
 
 Ayay.prototype.find = function(callback) {
+
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if (!this.length) throw Error ("Ayay is empty");
+
     for (var i=0; i<this.length; i++){
-        
-        if (!(this instanceof Array)) throw Error ("Ayay is not a array");
-        if (!this.length) throw Error ("Ayay is empty");
-        if (typeof callback !== "function") throw Error ("Callback isn't a function")
-        
             if(callback(this[i])){
                 return this[i];
         }   
