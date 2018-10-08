@@ -2,83 +2,106 @@ console.log('TEST includes');
 
 var tests = [];
 
+
 // 1
+
 tests.push(function () {
-    console.log('should succeed on returning true or false');
+    console.log('should succeed on determines if the array includes a certain element, returning true or false as appropriate');
 
     var arr = ['ant', 'bison', 'camel', 'duck', 'bison', 'cat', 'dog', 'bat'];
 
-    var res = includes(arr, 'duck');
+    var res = Boolean, 
+        res2 = Boolean;
 
-    if (res !== true) throw Error('should return the correct boolean value');
+    var elem = 'bat';
+
+    function includes(arr, elem) {
+        arr.forEach(function(item){
+            if(elem === item){
+                res = true;
+            }
+        })
+    }
+
+    res2 = arr.includes(elem);
+
+    console.log(res2);
+    
+
+    if(!res2 && !res) throw Error('results are not equals');
+
 });
+
 
 // 2
+
 tests.push(function () {
+    console.log('should fail on non-item');
 
-    console.log('should fail because array is empty');
+    var arr = ['ant', 'bison', 'camel', 'duck', 'bison', 'cat', 'dog', 'bat'];
 
-    var arr = [];
-    var test_item = 'cat';
+    elem = undefined;
+
     var error;
 
     try {
-        includes(arr, test_item);
+        includes(arr,elem);
     } catch (err) {
         error = err;
-    }
+    } 
+    
 
-    if (!error) throw Error('should have thrown an error');
-    if (error.message !== 'array cannot be empty') throw Error('error message is not correct');
+    if (!error) throw Error('should have thrown error on elem is not defined');
+
+    if (error.message !== 'element is not defined') throw Error ('error message is not correct');
 });
 
-// 3
-tests.push(function () {
-    console.log('should fail because item is missing');
-
-    var arr = [1, 2, 3];
-    var error;
-    try {
-        includes(arr);
-    } catch (err) {
-        error = err;
-    }
-
-    if (!error) throw Error('should have thrown an error');
-    if (error.message !== 'item to search is missing') throw Error('error message is not correct');
-
-});
 
 // 4
+
 tests.push(function () {
-    console.log('should fail because there are no arguments');
+    console.log('should fail on element is empty');
+
+    var arr = ['ant', 'bison', 'camel', 'duck', 'bison', 'cat', 'dog', 'bat'];
+
+    var elem = '  ';
 
     var error;
-    try {
-        includes();
-    } catch (err) {
-        error = err;
-    }
 
-    if (!error) throw Error('should have thrown an error');
-    if (error.message !== 'function must contain two arguments') throw Error('error message is not correct');
+    try {
+        includes(arr, elem);
+    } catch (err) {
+        error = err;     
+    } 
+    
+
+    if (!error) throw Error('should have thrown error on element is blank');
+
+    if (error.message !== 'element is blank') throw Error ('error message is not correct');
 });
 
 // 5
+
 tests.push(function () {
-    console.log('should fail when item is an array');
+    console.log('should fail on array is empty');
+
+    var arr = [];
+
+    var elem = 'bat';
 
     var error;
-    var test_arr = [1, 2, 3];
-    var dummy_item = [1];
-    try {
-        includes(test_arr, dummy_item)
-    } catch (err) {
-        error = err;
-    }
 
-    if (!error) throw Error('should have thrown an error');
-    if (error.message !== 'item to search cannot be an array') throw Error('error message is not correct');
+    try {
+        includes(arr, elem);
+    } catch (err) {
+        error = err;     
+    } 
+    
+
+    if (!error) throw Error('has not failed');
+
+    if (error.message !== 'array is empty') throw Error ('error message is not correct');
 });
+ 
 
 testSuite(tests);
