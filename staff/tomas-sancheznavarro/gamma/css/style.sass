@@ -10,22 +10,35 @@ header
         background: #f8f8f8
         display: flex
         justify-content: space-between
-        line-height: 40px
+
+        align-items: center
+        
+    .hamburger
+        
+        padding: 0px
+        margin: 0px
 
     img
         height: 20px
         width: 20px
+        filter: invert(50%)
+        border: 1px solid rgba(0,0,0, .4)
+        border-radius: 4px
+        padding: 5px 10px
+        margin: 5px 
 
     a
         text-decoration: none
         color: #1caa98
         font-weight: bold
+        line-height: 50px
+        letter-spacing: .1em
 
 main
     background-color: white
 
     .app-store
-        padding: 30px 0
+        padding: 30px
         background-color: #1b222a
         color: white
         display: flex
@@ -43,8 +56,20 @@ main
             color: white
             width: 80%
             text-align: center
+            font-size: 1.2em
         img 
             padding: 7px 0
+
+        @media screen and (min-width: 580px)
+            flex-direction: row
+            flex-wrap: wrap
+            background-image: url('/model/images/site_showcase_bg.jpg')
+            background-size: cover
+            
+        p
+            text-align: left
+        img:first-of-type
+            padding-right: 20px
 
     .news
         padding: 50px 0
@@ -103,4 +128,12 @@ footer
                 font-size: .8em
                 font-weight: bold
                 padding: 0 10px
-    
+
+    @media screen and (min-width: 580px)
+    padding: 20px
+    ul
+        justify-content: flex-start
+    p 
+        text-align: right
+
+
