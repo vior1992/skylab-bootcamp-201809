@@ -203,8 +203,8 @@ describe('Ayay', function () {
             // ayay.push(1);
             var callback = 1;
             expect(function (){
-                forEach(callback);
-            }).toThrow();
+                ayay.forEach(callback);
+            }).toThrowError(TypeError, callback + ' is not a function');
             
         });
 
@@ -214,6 +214,14 @@ describe('Ayay', function () {
             expect(function (){
                 forEach(callback);
             }).toThrow();
+            
+        });
+        it('should return error if callback is an object', function () {
+            // ayay.push(1);
+            var callback = {};
+            expect(function (){
+                ayay.forEach(callback);
+            }).toThrowError(callback + ' is not a function');
             
         });
     });
@@ -239,8 +247,17 @@ describe('Ayay', function () {
             // ayay.push(1);
             var callback = 1;
             expect(function (){
-                map(callback);
-            }).toThrow();
+                ayay.map(callback);
+            }).toThrowError(TypeError, callback + ' is not a function');
+            
+        });
+
+        it('should return error if callback is an object', function () {
+            // ayay.push(1);
+            var callback = {};
+            expect(function (){
+                ayay.map(callback);
+            }).toThrowError(callback + ' is not a function');
             
         });
 
@@ -342,6 +359,15 @@ describe('Ayay', function () {
             
         });
 
+        it('should return error if callback is an object', function () {
+            // ayay.push(1);
+            var callback = {};
+            expect(function (){
+                ayay.filter(callback);
+            }).toThrowError(callback + ' is not a function');
+            
+        });
+
         it('should return an empty ayay if condition is not accomplished', function () {
             var result = new Ayay;
 
@@ -360,8 +386,8 @@ describe('Ayay', function () {
             // ayay.push(1);
             var callback = 1;
             expect(function (){
-                filter(callback);
-            }).toThrow();
+                ayay.filter(callback);
+            }).toThrowError(TypeError, callback + ' is not a function');
             
         });
         
@@ -373,8 +399,8 @@ describe('Ayay', function () {
             // ayay.push(1);
             var callback = 1;
             expect(function (){
-                map(callback);
-            }).toThrow();
+                ayay.map(callback);
+            }).toThrowError(TypeError, callback + ' is not a function');
             
         });
 
