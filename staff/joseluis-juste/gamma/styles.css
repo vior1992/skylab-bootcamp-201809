@@ -56,7 +56,7 @@ body {
     .card:last-child .card__logo {
       padding: 1em 0.5em; }
   .card .card__logo {
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     padding-top: 1em; }
   .card .card__title {
     margin: 0.5em 0;
@@ -65,14 +65,6 @@ body {
   .card .card__desc {
     text-align: justify;
     margin-bottom: 1em;
-    font-size: 0.9em; }
-  .card .card__read-more {
-    text-decoration: none;
-    display: inline-block;
-    padding: 0.5em 0.5em;
-    color: black;
-    border-radius: 4px;
-    border: 1px solid black;
     font-size: 0.9em; }
 
 .collapsable {
@@ -86,12 +78,81 @@ body {
   .collapsable .collapsable__desc {
     padding: 1.5em 1em;
     font-size: 0.9em;
-    text-align: justify; }
+    text-align: justify;
+    transition: height 0.2s linear, padding 0.2s linear;
+    height: 188px; }
 
+.collapsable-up {
+  height: 0px !important;
+  padding: 0 !important; }
+
+@media screen and (min-device-width: 580px) {
+  .collapsable .collapsable__desc {
+    height: 141px; } }
+@media screen and (min-device-width: 900px) {
+  .collapsable .collapsable__desc {
+    height: 124px; } }
+@media screen and (min-device-width: 1400px) {
+  .collapsable:last-child {
+    margin-bottom: 0; }
+  .collapsable .collapsable__desc {
+    height: 110px; } }
 .form-contact {
-  border: 1px solid black;
-  height: 400px;
   margin-bottom: 2em; }
+  .form-contact .form-contact__groupfield {
+    margin-bottom: 1em; }
+    .form-contact .form-contact__groupfield label {
+      color: black;
+      font-size: 0.8em;
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: bolder; }
+    .form-contact .form-contact__groupfield input {
+      display: block;
+      width: 100%;
+      padding: 0.8em 1em;
+      border-radius: 4px;
+      border-color: rgba(0, 0, 0, 0.2);
+      border-width: 1px; }
+    .form-contact .form-contact__groupfield textarea {
+      width: 100%;
+      border-radius: 4px;
+      padding: 1em 1em;
+      border-color: rgba(0, 0, 0, 0.2);
+      border-width: 1px;
+      font-family: arial; }
+  .form-contact input[type="submit"] {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5em 0.5em;
+    color: black;
+    border-radius: 4px;
+    border: 1px solid black;
+    font-size: 0.9em;
+    background-color: white;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-width: 1px; }
+    .form-contact input[type="submit"]:hover {
+      background-color: black;
+      color: white;
+      border-color: white;
+      cursor: pointer; }
+
+.button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5em 0.5em;
+  color: black;
+  border-radius: 4px;
+  border: 1px solid black;
+  font-size: 0.9em;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px; }
+  .button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+    cursor: pointer; }
 
 .header {
   background-color: #1b222a;

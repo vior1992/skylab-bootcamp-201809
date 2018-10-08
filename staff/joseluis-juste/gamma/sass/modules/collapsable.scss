@@ -12,5 +12,44 @@
         padding: 1.5em 1em;
         font-size: 0.9em;
         text-align: justify;
+        transition: height 0.2s linear, padding 0.2s linear;
+        height: 188px;
+    }
+}
+
+.collapsable-up{
+     height: 0px !important;
+     padding: 0 !important;
+}
+
+
+@media screen and (min-device-width: 580px){
+    .collapsable{
+        & .collapsable__desc{
+            height: 141px;
+        }
+
+    }
+
+}
+
+@media screen and (min-device-width: 900px){
+    .collapsable{
+        & .collapsable__desc{
+            height: 124px;
+        }
+
+    }
+}
+
+@media screen and (min-device-width: 1400px){
+    .collapsable{
+        &:last-child{
+            margin-bottom: 0;
+        }
+        & .collapsable__desc{
+            height: 110px;
+        }
+
     }
 }

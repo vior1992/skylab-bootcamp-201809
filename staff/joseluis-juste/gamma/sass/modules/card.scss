@@ -7,7 +7,7 @@
         }
     }
     & .card__logo{
-        border:1px solid rgba(0,0,0,0.3);
+        border:1px solid rgba(0,0,0,0.2);
         padding-top: 1em;
        
     }
@@ -21,14 +21,4 @@
         margin-bottom: 1em;
         font-size: 0.9em;
     }
-    & .card__read-more{
-        text-decoration: none;
-        display: inline-block;
-        padding: 0.5em 0.5em;
-        color: black;
-        border-radius: 4px;
-        border: 1px solid black;
-        font-size: 0.9em;
-    }
-    
 }
