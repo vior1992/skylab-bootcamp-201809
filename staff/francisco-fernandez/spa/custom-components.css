@@ -1,1 +1,23 @@
-/* TODO BEM + Sass */
+/* TODO implement styles from here following BEM */
+button {
+  margin: 5px; }
+
+.button__login {
+  color: white;
+  margin: 40px; }
+
+body {
+  background-color: #f7efef; }
+
+section {
+  background-color: #caf2c4;
+  padding: 15px 20px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  width: 30%;
+  text-align: center; }
+
+.alertclass {
+  color: red; }
+
+/*# sourceMappingURL=custom-components.css.map */

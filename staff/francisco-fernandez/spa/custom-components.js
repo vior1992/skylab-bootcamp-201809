@@ -1,6 +1,6 @@
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
-
+    
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
     this.register.addEventListener('click', registerCallback);
@@ -10,6 +10,7 @@ function Landing(title, tag, registerCallback, loginCallback) {
     this.element.appendChild(document.createTextNode(' or '));
 
     this.login = document.createElement('button');
+    this.login.class = 'button__login';
     this.login.innerText = 'Login';
     this.login.addEventListener('click', loginCallback);
 
@@ -47,6 +48,12 @@ function Login(title, tag, loginCallback) {
     this.login.addEventListener('click', loginCallback);
 
     this.form.appendChild(this.login);
+
+    this.message = document.createElement('p');
+    this.message.name = 'alertlogin';
+    this.message.class = 'alertclass';
+    this.message.innerText = '';
+    this.form.appendChild(this.message);
 }
 
 Login.prototype = Object.create(Panel.prototype);
@@ -68,6 +75,7 @@ function Register(title, tag, registerCallback){
     this.form.appendChild(this.user);
 
     this.username = document.createElement('input');
+    this.username.name = ('userreg');
     this.form.appendChild(this.username);
 
     this.pass = document.createElement('p');
@@ -75,6 +83,7 @@ function Register(title, tag, registerCallback){
     this.form.appendChild(this.pass);
 
     this.password = document.createElement('input');
+    this.password.name = ('passreg');
     this.form.appendChild(this.password);
 
     this.register = document.createElement('button');
@@ -83,6 +92,9 @@ function Register(title, tag, registerCallback){
     this.register.addEventListener('click', registerCallback);
     this.form.appendChild(this.register);
 
+    this.message = document.createElement('p');
+    this.message.innerText = '';
+    this.form.appendChild(this.message);
 
 }
 
