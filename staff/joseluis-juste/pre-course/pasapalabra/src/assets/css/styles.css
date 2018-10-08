@@ -11,8 +11,7 @@ body {
 
 * {
   overflow: hidden;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 /*COLORES SECTION 1*/
 /****************************/
@@ -25,11 +24,9 @@ body {
   src: url("../fonts/Digital.ttf") format("truetype"); }
 @-webkit-keyframes rotating {
   from {
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg); }
+    transform: rotateY(0deg); }
   to {
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg); } }
+    transform: rotateY(360deg); } }
 @-webkit-keyframes blink {
   from {
     opacity: 1; }
@@ -39,12 +36,8 @@ body {
   margin-top: 1em; }
 
 section {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   width: 92%;
   margin: 0 auto; }
 
@@ -61,23 +54,19 @@ section {
   color: green !important; }
 
 .rotation {
-  -webkit-animation: rotating 2s linear infinite;
-          animation: rotating 2s linear infinite; }
+  animation: rotating 2s linear infinite; }
 
 .few_time {
   color: red !important; }
 
 .blink {
-  -webkit-animation: blink 0.5s linear infinite;
-          animation: blink 0.5s linear infinite; }
+  animation: blink 0.5s linear infinite; }
 
 .section1 {
   width: 888px;
   background-color: #3665B8;
   margin: 0 auto; }
   .section1 .l-inf {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     padding: 2em 0 0 2em; }
     .section1 .l-inf > div:last-child {
@@ -272,3 +261,5 @@ section {
     text-align: center;
     font-size: 2em;
     font-family: Gloria Hallelujah; }
+
+/*# sourceMappingURL=styles.css.map */

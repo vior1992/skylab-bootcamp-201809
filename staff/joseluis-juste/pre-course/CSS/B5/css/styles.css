@@ -14,12 +14,8 @@ p {
   overflow: hidden; }
 
 nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   background-color: #307FBE;
   height: 2em; }
   nav div:first-child {
@@ -31,12 +27,8 @@ nav {
     nav div:first-child span {
       color: #FA6800; }
   nav .l-search {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
     width: 27%; }
     nav .l-search a {
       text-decoration: none;
@@ -92,21 +84,12 @@ main {
     text-align: center;
     font-weight: bold; }
   main section:first-child p + div {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between; }
+    flex-wrap: wrap;
+    justify-content: space-between; }
   main section:nth-child(2) {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
     margin-top: 2em; }
     main section:nth-child(2) article > p {
       background-color: #5987B8;
@@ -117,13 +100,9 @@ main {
       text-align: center;
       font-weight: bold; }
     main section:nth-child(2) article .new {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
       margin-top: 0.5em;
-      -webkit-box-pack: start;
-          -ms-flex-pack: start;
-              justify-content: start; }
+      justify-content: start; }
       main section:nth-child(2) article .new div:nth-child(2) {
         margin-left: 2em; }
         main section:nth-child(2) article .new div:nth-child(2) p:first-child {
@@ -139,3 +118,5 @@ main {
       main section:nth-child(2) article:last-child .new div:nth-child(1) {
         width: 45px;
         height: 54px; }
+
+/*# sourceMappingURL=styles.css.map */

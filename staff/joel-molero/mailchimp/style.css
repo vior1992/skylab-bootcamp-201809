@@ -1,0 +1,198 @@
+header {
+  background-color: #4abdd2;
+}
+
+.li {
+  display: inline-block;
+  background-color: #DEF3F7;
+  padding: 12px 15px;
+  margin: -2px;
+  border-radius: 10px 0px 0px 10px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 1.2vw;
+}
+
+.signupfree {
+  padding: 12px 15px;
+  background-color: #2E3233;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  font-size: 1.2vw;
+  display: inline;
+  white-space: nowrap;
+}
+
+.li2 {
+  display: inline-block;
+  background-color: #DEF3F7;
+  padding: 12px 15px;
+  margin: -2px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 1.2vw;
+}
+
+.li3 {
+  display: inline-block;
+  background-color: #DEF3F7;
+  padding: 12px 15px;
+  margin: -2px;
+  border-radius: 0px 10px 10px 0px;
+  font-size: 1.2vw;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link2 {
+  color: #535859;
+  text-decoration: none;
+  font-family: "Work Sans", sans-serif;
+}
+
+.footerdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search {
+  display: inline;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  align-content: space-around;
+}
+
+main {
+  position: relative;
+  background-image: url("./images/img/noisepattern.png");
+  height: 600px;
+}
+
+.title-img {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  justify-content: space-around;
+}
+
+.footernavs {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  height: 300px;
+}
+
+.footerp {
+  color: white;
+  text-align: center;
+  padding-bottom: 30px;
+  font-family: "Work Sans", sans-serif;
+  color: #535859;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+section {
+  flex-wrap: wrap;
+  margin-top: 0em;
+  width: 1300px;
+  margin-left: 14em;
+  background-color: white;
+  position: relative;
+  top: -80px;
+  padding: 10px;
+  border-radius: 10px;
+  height: 660px;
+}
+
+.learnmore {
+  padding: 12px 15px;
+  background-color: #2E3233;
+  color: white;
+  position: absolute;
+  top: 560px;
+  width: 320px;
+  text-align: left;
+}
+
+.footertitle {
+  color: white;
+  font-family: "Work Sans", sans-serif;
+  font-size: 15px;
+  padding-top: 10px;
+  text-align: left;
+}
+
+.footerurl {
+  text-align: left;
+  align-self: flex-start;
+  margin-left: -35px;
+  height: 400px;
+}
+
+.maintitle {
+  color: white;
+  font-family: "Work Sans", sans-serif;
+  margin-top: 10px;
+  font-size: 5vw;
+}
+
+.p1 {
+  color: #616764;
+  font-family: "Work Sans", sans-serif;
+  margin-top: -35px;
+}
+
+.signup {
+  background-color: #d6673e;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  padding: 15px 55px;
+  border-radius: 10px;
+}
+
+.images {
+  width: 400px;
+}
+
+.chimplogo {
+  width: 100%;
+}
+
+.monkey {
+  height: 500px;
+  padding-left: 150px;
+}
+
+.images img {
+  padding-left: 66px;
+}
+
+h1.news {
+  font-family: "Work Sans", sans-serif;
+  font-size: 35px;
+  padding-left: 20px;
+  color: #2E3233;
+}
+
+/*# sourceMappingURL=style.css.map */

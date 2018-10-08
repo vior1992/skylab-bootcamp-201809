@@ -1,0 +1,221 @@
+* {
+    box-sizing: border-box;
+}
+
+/* FORMAT HEADER  */
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-bottom: 1px solid gray;
+    background-color: rgb(98, 195, 233);
+    color: white;
+}
+
+main {
+    width: 100%;
+}
+
+.user-image-container h1 {
+    font-size: 1.3rem;
+
+}
+
+.user-image-container h1 span {
+    font-weight: 100;
+    color: black;
+    font-size: 1.3rem
+}
+
+
+
+.user-image-container {
+    width: 50%;
+    padding: 5px;
+}
+
+address{
+    width: 35%;
+    height: 40%;
+    align-self: center;  
+    font-size: 0.9rem;
+    font-style: italic;    
+    word-wrap: break-word
+
+}
+
+p > span {
+    color: black;
+}
+
+/* FORMAT MAIN SECTION  */
+
+section h2 {
+    width: 100%;
+    background: rgb(98, 195, 233);
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.work h4 {
+    width: 100%;
+    background: rgb(188, 229, 245);
+    border-radius: 10px;
+}
+
+.skills {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.programming {
+    border: 1px solid rgb(98, 195, 233);
+    border-radius: 5px;
+    width: 50%;
+}
+
+.data {
+    border: 1px solid rgb(98, 195, 233);
+    margin-top: 10px;
+    width: 50%;
+    border-radius: 5px;
+}
+
+.skills p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.skills ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+
+
+}
+
+.skills ul li {
+    width: 100%;
+    text-align: center;
+    align-content: space-around;
+    
+}
+
+.work {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.degree {
+    display: flex;
+}
+
+.subject {
+    flex:1;
+    border-bottom: 1px solid rgb(188, 229, 245);
+}
+
+.add-info {
+    flex:1;
+    border-bottom: 1px solid rgb(188, 229, 245);
+}
+
+@media only screen and (min-width: 768px) {
+    
+    .container {
+        display: flex;
+        margin: auto;
+        width: 80%;
+    }
+
+    header {
+        flex: 0.3;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: rgb(161, 203, 223);
+    }
+
+     .user-image-container {
+        width: 100%;
+    }
+
+    main {
+        width: 100%;
+        /* background: rgb(236, 219, 222); */
+    }
+
+    section h2 {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        background: rgb(243, 156, 125);
+
+    }    
+
+    .work h4 {
+        width: 60%;
+        background: rgb(236, 180, 160);
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .skills {
+        flex-direction: row;
+   
+    }    
+
+    .programming {
+        width: 40%;
+        border: 1px solid rgb(236, 180, 160);
+        border-radius: 10px;
+    }
+    
+    .data {
+        width: 40%;
+        border: 1px solid rgb(236, 180, 160);
+        border-radius: 10px;
+    }
+
+    .projects ul {
+        display: flex;
+    }
+
+    .projects ul li {
+        list-style: none;
+        margin-left: 20px;
+
+    }
+    
+    address {
+        width: 100%;
+    }
+
+    .subject {
+        border-bottom: 1px solid rgb(243, 156, 125);
+    }
+    
+    .add-info {
+        border-bottom: 1px solid rgb(243, 156, 125);
+    }
+
+    .work {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 0.3fr 1fr;
+    }
+
+    .work h2 {
+        grid-column: 1/3
+        }
+
+
+}
