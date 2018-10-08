@@ -66,31 +66,27 @@ Ayay.prototype.sort = function sort(arr) {
         return arr;
     }
 
-Ayay.prototype.filter = function(array, callback) {
+Ayay.prototype.filter = function(callback) {
     
-        if (!(array instanceof Array))  throw new TypeError('first argument is not an array');
-        if (!(callback instanceof Function))  throw new TypeError('second argument is not a function');
-        if (array.every(function(elem){return elem === undefined}))  throw new TypeError ('the array is empty');
+        if (!(callback instanceof Function))  throw new TypeError('callback is not a function');
         
         var index = 0;
-        var result = [];
+        var result = new Ayay;
 
-        for(var i=0; i<array.length; i++){
-            if(callback(array[i])){
-                result[index++] = array[i];
+        for(var i=0; i<this.length; i++){
+            if(callback(this[i])){
+                result[index++] = this[i];
             }
         }
         return result;
 
 };
 
-Ayay.prototype.find = function(arr, callback) {
+Ayay.prototype.find = function(callback) {
 
-        if (!(arr instanceof Array)) throw new TypeError ("first argument is not an array");
-        if (!arr.length) throw new TypeError ("array is empty");
-        if (typeof callback !== "function") throw new TypeError ("second argument is not a function")
+        if (typeof callback !== "function") throw new TypeError ("callback is not a function")
         
-        for (var i = 0; i < arr.length; i++) if (callback(arr[i])) return arr[i]
+        for (var i = 0; i < this.length; i++) if (callback(this[i])) return this[i]
 
     
 };

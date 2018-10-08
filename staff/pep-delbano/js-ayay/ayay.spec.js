@@ -135,41 +135,60 @@ describe('Ayay', function () {
 
     describe('filter', function () { //it returns an array with all the coincidences
 
-        it('should succeed with array of numbers', function() {
+        it('should succeed with an ayay of numbers', function() {
             
-            var arrOfNums = [1,2,5,9];
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(5);
+            ayay.push(9);
 
-            expect(ayay.filter(arrOfNums, function(elem){return elem > 4})).toEqual([5, 9]);
+            var expected = [5,9]
+            var result = ayay.filter(function(elem){return (elem > 4)});
+            
+            for(var i=0; i<ayay.length; i++) {
+                expect(expected[i]).toEqual(result[i]);
+            }
+
+            // expect(JSON.stringify(expected)).toEqual(JSON.stringify(result));
         })
 
-        it('should succeed with array of strings', function() {
+        it('should succeed with an ayay of strings', function() {
 
-            var arrOfStr = ['as','ed','dfe','ghy'];
+            ayay.push('as');
+            ayay.push('ed');
+            ayay.push('dfe');
+            ayay.push('ghy');
 
-            expect(ayay.filter(arrOfStr, function(elem){if(elem.includes('e')) {return elem}})).toEqual(["ed", "dfe"]);
-        })
+            var expected = ['ed', 'dfe'];
+            var result = ayay.filter(function(elem){if(elem.includes('e')) {return elem}});
+            
+            for(var i=0; i<ayay.length; i++) {
+                expect(expected[i]).toEqual(result[i]);
+            }
 
-        it('should fail if first argument is not an array', function() {
+            // expect(ayay.filter(function(elem){if(elem.includes('e')) {return elem}})).toEqual(["ed", "dfe"]);
+        }) 
+
+        it('should fail if callback is a string', function() {
             
             expect(function() {
-                ayay.filter('hello', function(elem){return elem < 10});
-            }).toThrowError('first argument is not an array');
+                ayay.filter('hello');
+            }).toThrowError('callback is not a function');
         })
 
-        it('it should fail if second argument is not a function', function() {
+        it('it should fail if callback is an array', function() {
 
             expect(function() {
-                ayay.filter([1,2,3], 3);
-            }).toThrowError('second argument is not a function');
+                ayay.filter([1,2,3]);
+            }).toThrowError('callback is not a function');
         })
 
-        it('should fail if array is empty', function() {
-
+        it('it should fail if callback is a number', function() {
+ 
             expect(function() {
-                ayay.filter([], function(elem){return elem < 10});
-            }).toThrowError('the array is empty');
+                ayay.filter(5);
+            }).toThrowError('callback is not a function');
         })
-
 
 
 
@@ -179,36 +198,55 @@ describe('Ayay', function () {
 
         it('should succeed with array of numbers', function() {
             
-            var arrOfNums = [1,2,5,9];
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(5);
+            ayay.push(9);
 
-            expect(ayay.find(arrOfNums, function(elem){return elem > 4})).toEqual(5);
+            var expected = 5;
+            var result = ayay.find(function(elem){return (elem > 4)});
+            
+            for(var i=0; i<ayay.length; i++) {
+                expect(expected[i]).toEqual(result[i]);
+            }
         })
 
         it('should succeed with array of strings', function() {
 
-            var arrOfStr = ['as','ed', 'ed', 'dfe','ghy'];
+            ayay.push('as');
+            ayay.push('ed');
+            ayay.push('dfe');
+            ayay.push('ghy');
 
-            expect(ayay.find(arrOfStr, function(elem){if(elem.includes('e')) {return elem}})).toEqual('ed');
-        })  
-
-        it('should fail if first argument is not an array', function() {
+            var expected = 'ed';                                                                                                     
+            var result = ayay.find(function(elem){if(elem.includes('e')) {return elem}});
             
-            expect(function() {
-                ayay.find('hello', function(elem){return elem < 10})}).toThrowError('first argument is not an array');
+            for(var i=0; i<ayay.length; i++) {
+                expect(expected[i]).toEqual(result[i]);
+            }
+
+            // expect(ayay.find(arrOfStr, function(elem){if(elem.includes('e')) {return elem}})).toEqual('ed');
         })
 
-        it('it should fail if second argument is not a function', function() {
+        it('should fail if callback is a string', function() {
             
             expect(function() {
-                ayay.find([1,2,3], 3);
-            }).toThrowError('second argument is not a function');
+                ayay.find('hello');
+            }).toThrowError('callback is not a function');
         })
 
-        it('should fail if array is empty', function() {
+        it('it should fail if callback is an array', function() {
 
             expect(function() {
-                ayay.find([], function(elem){return elem < 10});
-            }).toThrowError('array is empty');
+                ayay.find([1,2,3]);
+            }).toThrowError('callback is not a function');
+        })
+
+        it('it should fail if callback is a number', function() {
+ 
+            expect(function() {
+                ayay.find(5);
+            }).toThrowError('callback is not a function');
         })
 
     });
