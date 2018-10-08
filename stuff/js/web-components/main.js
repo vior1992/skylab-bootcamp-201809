@@ -1,45 +1,23 @@
-var car = new Car;
+var dialog = new Dialog('hola mundo', 'lorem ipsum ...', 'section');
 
-document.addEventListener('keydown', function (event) {
-    switch (event.keyCode) {
-        case 39: // right
-            car.turnRight();
+document.body.appendChild(dialog.element);
 
-            break;
-        case 37: // left
-            car.turnLeft();
-
-            break;
-        case 38: // 38: // up (go forward "palante")
-            car.goForward();
-
-            break;
-        case 40: // down (go backwards "patras")
-            car.goBackwards();
-
-            break;
-    }
+var alert = new Alert('Achtung!', 'Schade! ...', 'section', function() {
+    console.log('Achtung accepted');
 });
 
-var car2 = new Car;
+document.body.appendChild(alert.element);
 
-document.addEventListener('keydown', function (event) {
-    switch (event.keyCode) {
-        case 68: // right (D)
-            car2.turnRight();
+var error = new Alert('Error!', 'Schade! ...', 'section', function() {
+    console.log('Error accepted');
+}, true);
 
-            break;
-        case 65: // left (A)
-            car2.turnLeft();
+document.body.appendChild(error.element);
 
-            break;
-        case 87: // forward (W)
-            car2.goForward();
-
-            break;
-        case 83: // backwards (S)
-            car2.goBackwards();
-
-            break;
-    }
+var confirm = new Confirm('Do you want to proceed?', 'Please, review the contract before accepting...', 'section', function() {
+    console.log('confirm accepted');
+}, function() {
+    console.log('confirm denied');
 });
+
+document.body.appendChild(confirm.element);
