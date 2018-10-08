@@ -1,40 +1,65 @@
+$green: #1caa98
+    
+    
 * 
     box-sizing: border-box
     display: flex
     justify-content: center
     flex-direction: column 
 
+body 
+    margin: 0
+
+
 .head
-    background-color: grey 
+    display: flex 
+    justify-content: center
+    
+     
 
 .head__up
     flex-direction: row
     justify-content: space-between
-    background-color: grey 
-    color: green 
+    color: $green
+    background-color: grey
+    @media screen and (min-width: 580px) and (max-width: 899px)
+        background-color: green 
+
+    @media screen and (min-width: 900px) and (max-width: 1399px)
+        background-color: yellow
+
+    @media screen and (min-width: 1400px)
+        background-color: red
 
 .head__down
-    justify-content: center
+    flex-direction: column
     text-align: center 
-    margin-left: 50px
-    margin-right: 50px 
+    background-color: black
+    align-items: center
     
 .down__title
     flex-direction: row
-
+    color: white
+    
 .down__title--life
-    color: green
+    color: $green
+
+.down__text
+    color: white
 
 .down__pics
-    width: 250px
-    height: 60px
+    max-width: 250px
+    max-height: 350px
+    margin: 10px 50px
     
+   
+.body__text
+    margin: 10% 3% 10% 3%
 
-@media screen and (min-width: 400px)
-    background-color: green
+.body__pics
+    border: 1px solid grey
 
-@media screen and (min-width: 800px)
-    background-color: yellow
+    
 
 
 

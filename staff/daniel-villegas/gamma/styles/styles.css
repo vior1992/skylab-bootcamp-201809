@@ -1,53 +1,56 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  box-sizing: border-box;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  justify-content: center;
+  flex-direction: column; }
+
+body {
+  margin: 0; }
 
 .head {
-  background-color: grey; }
+  display: flex;
+  justify-content: center; }
 
 .head__up {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  background-color: grey;
-  color: green; }
+  flex-direction: row;
+  justify-content: space-between;
+  color: #1caa98;
+  background-color: grey; }
+  @media screen and (min-width: 580px) and (max-width: 899px) {
+    .head__up {
+      background-color: green; } }
+  @media screen and (min-width: 900px) and (max-width: 1399px) {
+    .head__up {
+      background-color: yellow; } }
+  @media screen and (min-width: 1400px) {
+    .head__up {
+      background-color: red; } }
 
 .head__down {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
   text-align: center;
-  margin-left: 50px;
-  margin-right: 50px; }
+  background-color: black;
+  align-items: center; }
 
 .down__title {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row; }
+  flex-direction: row;
+  color: white; }
 
 .down__title--life {
-  color: green; }
+  color: #1caa98; }
+
+.down__text {
+  color: white; }
 
 .down__pics {
-  width: 250px;
-  height: 60px; }
+  max-width: 250px;
+  max-height: 350px;
+  margin: 10px 50px; }
 
-@media screen and (min-width: 400px) {
-  background-color: green; }
-@media screen and (min-width: 800px) {
-  background-color: yellow; }
+.body__text {
+  margin: 10% 3% 10% 3%; }
+
+.body__pics {
+  border: 1px solid grey; }
+
+/*# sourceMappingURL=styles.css.map */
