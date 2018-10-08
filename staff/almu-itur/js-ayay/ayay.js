@@ -18,6 +18,7 @@ Ayay.prototype.push = function () {
 };
 
 Ayay.prototype.pop = function () {
+    
     if (!(this instanceof Ayay)) throw Error('array is not valid');
 
     var element = this[this.length - 1];
@@ -28,14 +29,14 @@ Ayay.prototype.pop = function () {
 };
 
 Ayay.prototype.forEach = function (callback) {
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if (typeof callback !== 'function') throw new Error(callback + ' is not a function');
     if (!(this instanceof Ayay)) throw Error('array is not valid');
     
     for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
 
 Ayay.prototype.map = function (callback) {
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if (typeof callback !== 'function') throw new Error(callback + ' is not a function');
     if (!(this instanceof Ayay)) throw Error('array is not valid');
 
     var result = new Ayay;
@@ -48,7 +49,6 @@ Ayay.prototype.map = function (callback) {
 
 
 Ayay.prototype.sort = function () {
-    if (!(this instanceof Ayay)) throw Error('array is not valid');
 
     for (var i = 0; i < this.length - 1; i++) {
         var min = i;
@@ -67,7 +67,7 @@ Ayay.prototype.sort = function () {
 
 
 Ayay.prototype.filter = function (callback) {
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if (typeof callback !== 'function') throw new Error(callback + ' is not a function');
 
     var index = 0;
     var indexResult = 0;

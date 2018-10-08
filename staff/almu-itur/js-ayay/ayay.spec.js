@@ -54,7 +54,6 @@ describe('Ayay', function () {
             expect(typeof ayay[0]).toBe('object');
         });
 
-
         it('should return the new length of ayay', function () {
             
             var ayay = new Ayay;
@@ -64,7 +63,6 @@ describe('Ayay', function () {
             
             expect(newLength).toEqual(4);
         });
-
     });
 
     
@@ -90,6 +88,16 @@ describe('Ayay', function () {
 
             expect(result.length).toEqual(ayay.length);
             
+        });
+
+        it('should fail on non-function callback', function () {
+            
+            var nonFunction;
+            ayay.push(1, 2, 3);
+
+            //Cuando tenga que fallar, encerrar la orden en un expect (try-catch!)
+            expect(function() { ayay.forEach(nonFunction); }).toThrowError(Error, nonFunction + ' is not a function');
+
         });
         
     });
@@ -139,18 +147,52 @@ describe('Ayay', function () {
                 result[index] = element*2;
                 //result.map(element * 2);
             });
-            
-            expect(result.length).toEqual(ayay.length);
 
             result.forEach(function (elem, index) {
                 expect(elem).toEqual(ayay[index] * 2);
             });
         });
 
+        it('result should have same length as original ayay', function () {
+
+            var result = [];
+            ayay.push(1, 2, 3);
+
+            ayay.map(function (element, index) {
+                result[index] = element*2;
+            });
+            
+            expect(result.length).toEqual(ayay.length);
+
+        });
+
+        it('should fail on non-function callback', function () {
+            
+            var nonFunction;
+            ayay.push(1, 2, 3);
+
+            //Cuando tenga que fallar, encerrar la orden en un expect (try-catch!)
+            expect(function() { ayay.forEach(nonFunction); }).toThrowError(Error, nonFunction + ' is not a function');
+
+        });
+
+        it('ayay should not be modified', function () {
+            
+            ayay.push(1, 2, 3);
+            ayay.map(function (element, index) {
+                result[index] = element*2;
+            });
+
+            expect(ayay[0]).toEqual(1);
+            expect(ayay[1]).toEqual(2);
+            expect(ayay[2]).toEqual(3);
+
+        });
+
     });
 
     describe('sort', function () {
-        it('should sort items on array', function () {
+        it('should sort numbers on array', function () {
             
             ayay.push(1);
             ayay.push(30);
@@ -165,6 +207,23 @@ describe('Ayay', function () {
             expect(ayay[2]).toEqual(30);
             expect(ayay[3]).toEqual(4);
         });
+
+        it('should sort strings on array', function () {
+            
+            ayay.push('a');
+            ayay.push('z');
+            ayay.push('h');
+            ayay.push('f');
+            
+            ayay.sort();
+            
+            expect(ayay.length).toEqual(4);
+            expect(ayay[0]).toEqual('a');
+            expect(ayay[1]).toEqual('f');
+            expect(ayay[2]).toEqual('h');
+            expect(ayay[3]).toEqual('z');
+        });
+
     });
 
     describe('filter', function () {
@@ -186,6 +245,16 @@ describe('Ayay', function () {
                 expect(elem).toBeGreaterThan(2);
             });
             
+        });
+
+        it('should fail on non-function callback', function () {
+            
+            var nonFunction;
+            ayay.push(1, 2, 3);
+
+            //Cuando tenga que falla, encerrar la orden en un expect (try-catch!)
+            expect(function() { ayay.forEach(nonFunction); }).toThrowError(Error, nonFunction + ' is not a function');
+
         });
         
     });
