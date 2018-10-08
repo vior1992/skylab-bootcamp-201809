@@ -3,7 +3,7 @@ function Component(tag) {
 }
 
 Component.prototype.show = function () {
-    this.element.style.display = 'block';
+    this.element.style.display = 'flex';
 };
 
 Component.prototype.hide = function () {
@@ -16,7 +16,7 @@ function Panel(title, tag) {
 
     this.title = document.createElement('h2');
     this.title.innerText = title;
-    this.title.clasName = 'panel__title';
+    this.title.className = 'panel__title';
 
     this.element.appendChild(this.title);
 }
@@ -112,7 +112,7 @@ Confirm.prototype.constructor = Confirm;
 
 function Form(ids) {
     var form = document.createElement('form');
-    form.className = 'panel__form';
+    form.className = 'form';
     ids.forEach(function(id) {
         this.input = document.createElement('input');
         this.input.className = 'form__input';

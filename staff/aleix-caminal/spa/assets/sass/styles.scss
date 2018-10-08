@@ -1,3 +1,63 @@
-.panel {
+$color-primary: #2196f3;
 
+@mixin form() {
+    width: 100px;
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    border-radius: 1.5rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: #000;
+    transition: all .4s;
+    border: 1px solid #ccc;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+@mixin button($color) {
+    background-color: $color;
+    color: #fff;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+        background-color: darken($color-primary, 20%);
+    }
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: repeat(2, auto);
+    font-family: TT Commons, Roboto, Oxygen, 'Helvetica Neue', sans-serif;
+
+    &__title {
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    &__button {
+        @include form();
+        @include button($color-primary);
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        &__input {
+            @include form();
+        }
+
+        &__button {
+            @include form();
+            @include button($color-primary);
+        }
+    }
 }

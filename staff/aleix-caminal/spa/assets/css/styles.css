@@ -1,3 +1,76 @@
-
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-template-rows: repeat(2, auto);
+  font-family: TT Commons, Roboto, Oxygen, "Helvetica Neue", sans-serif;
+}
+.panel__title {
+  font-size: 36px;
+  font-weight: 700;
+}
+.panel__button {
+  width: 100px;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: 1.5rem;
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: #000;
+  transition: all 0.4s;
+  border: 1px solid #ccc;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+}
+.panel__button:focus {
+  outline: 0;
+}
+.panel__button:hover {
+  cursor: pointer;
+  background-color: #0960a5;
+}
+.panel .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.panel .form__input {
+  width: 100px;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: 1.5rem;
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: #000;
+  transition: all 0.4s;
+  border: 1px solid #ccc;
+}
+.panel .form__input:focus {
+  outline: 0;
+}
+.panel .form__button {
+  width: 100px;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: 1.5rem;
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: #000;
+  transition: all 0.4s;
+  border: 1px solid #ccc;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+}
+.panel .form__button:focus {
+  outline: 0;
+}
+.panel .form__button:hover {
+  cursor: pointer;
+  background-color: #0960a5;
+}
 
 /*# sourceMappingURL=styles.css.map */
