@@ -15,7 +15,8 @@ Ayay.prototype.push = function(element) {
 };
 
 Ayay.prototype.pop = function() {
-    // TODO
+    var arr;
+    
 };
 
 Ayay.prototype.forEach = function(callback) {
@@ -25,11 +26,14 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
-    // TODO
+    //var arr;
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
+    for (var x = 0; x < this.length; x++) arr[x] = callback[x];
 };
 
 Ayay.prototype.sort = function() {
-    // TODO
+    
 };
 
 Ayay.prototype.filter = function(callback) {
