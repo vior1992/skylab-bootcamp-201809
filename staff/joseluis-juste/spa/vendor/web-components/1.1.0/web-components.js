@@ -10,9 +10,11 @@ Component.prototype.hide = function () {
     this.element.style.display = 'none';
 };
 
-Component.prototype.addAsChild = function (parentElement) {
+Component.prototype.render = function(parentElement){
     parentElement.appendChild(this.element);
 };
+
+
 
 function Panel(title, tag) {
     Component.call(this, tag);
@@ -43,9 +45,12 @@ function Dialog(title, text, tag) {
 Dialog.prototype = Object.create(Panel.prototype);
 Dialog.prototype.constructor = Dialog;
 
+
 function Alert(title, text, tag, callback, error) {
     Dialog.call(this, title, text, tag);
 
+    this.hide();
+    
     this.element.className = error ? 'alert alert--danger' : 'alert';
 
     this.title.className = 'alert__title';
