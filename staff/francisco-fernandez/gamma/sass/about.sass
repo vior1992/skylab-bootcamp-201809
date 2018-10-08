@@ -1,6 +1,10 @@
 .upheader
     display: flex
+    justify-content: space-between
     background-color: $upheader__background
+
+    @media screen and (min-width: 900px)
+        background-color: red
 
 .upheader__title
     width: 80%
@@ -16,6 +20,12 @@
     border-radius: 3px
     padding-top: 3px
     margin-top: 8px
+    margin-right: 15px
+    visibility: visible
+
+    @media screen and (min-width: 900px)
+        visibility: hidden
+    // size: 0
     
 .burger--div
     width: 20px
@@ -23,7 +33,7 @@
     background-color: $burger__color
     margin-top: 5px
     margin-left: 10px
-    
+        
 
 .downheader
     background-color: $green__gamma
@@ -65,16 +75,21 @@
 .collapsible__p
     margin-left: 15px
 
+.image--section
+    margin-right: 15px
+
 .image--box
     display: flex
-    width: 95%
+    width: 97%
     height: 100%
     border: 1px solid $border__grey
     margin: 15px
+    
 .image
     display: flex
     width: 100%
     height: 100%
+    
 
 .readmore
     margin-left: 15px
@@ -110,6 +125,7 @@
 .footer--menu__li 
     display: inline-block
     margin: 5px 
+
     
     
 
