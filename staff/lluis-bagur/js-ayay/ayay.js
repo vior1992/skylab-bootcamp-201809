@@ -6,8 +6,6 @@ function Ayay() {
     this.length = 0;
 }
 
-// TODO
-
 Ayay.prototype.push = function(element) {
     this[this.length] = element;
 
@@ -15,10 +13,11 @@ Ayay.prototype.push = function(element) {
 };
 
 Ayay.prototype.pop = function(arr) {
-        var last = arr[arr.length];
-           arr.length--
+
+        var last = this[this.length-1];
+           this.length--
    
-           return last;
+           return this;
 };
 
 Ayay.prototype.forEach = function(callback) {
@@ -28,7 +27,15 @@ Ayay.prototype.forEach = function(callback) {
 };
 
 Ayay.prototype.map = function(callback) {
-    // TODO
+
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    
+
+        var arr=[];
+        for (var i=0; i<this.length; i++){
+            arr[i] = callback(this[i]);
+        }
+        return arr;
 };
 
 Ayay.prototype.sort = function() {
@@ -36,9 +43,31 @@ Ayay.prototype.sort = function() {
 };
 
 Ayay.prototype.filter = function(callback) {
-    // TODO
+
+    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
+    var array = [];
+    var cont = 0;
+    for (var i=0; i<this.length; i++){
+        if(callback(this[i])){
+            array[cont] = this[i];
+            cont++;
+        }   
+    }
+
+    return array;
 };
 
 Ayay.prototype.find = function(callback) {
-    // TODO
+    for (var i=0; i<this.length; i++){
+        
+        if (!(this instanceof Array)) throw Error ("Ayay is not a array");
+        if (!this.length) throw Error ("Ayay is empty");
+        if (typeof callback !== "function") throw Error ("Callback isn't a function")
+        
+            if(callback(this[i])){
+                return this[i];
+        }   
+    }
+    
 };
