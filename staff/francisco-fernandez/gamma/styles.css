@@ -17,9 +17,6 @@ body {
   display: flex;
   justify-content: space-between;
   background-color: #F8F8F8; }
-  @media screen and (min-width: 900px) {
-    .upheader {
-      background-color: red; } }
 
 .upheader__title {
   width: 80%;
@@ -38,7 +35,8 @@ body {
   visibility: visible; }
   @media screen and (min-width: 900px) {
     .upheader__burger {
-      visibility: hidden; } }
+      visibility: hidden;
+      size: 0; } }
 
 .burger--div {
   width: 20px;
