@@ -1,18 +1,16 @@
 function Car(image) {
-    Component.call(this, 'img');
+    var car = document.createElement('img');
 
-    this.element.src = image;
-    this.element.style.position = 'absolute'
-    this.element.style.height = '200px';
+    car.src = image;
+    car.style.position = 'absolute'
+    car.style.height = '200px';
 
-    document.body.appendChild(this.element);
+    document.body.appendChild(car);
 
+    this.car = car;
     this.step = 10;
     this.rotation = 0;
 }
-
-Car.prototype = Object.create(Component.prototype);
-Car.prototype.constructor = Car;
 
 Car.prototype.calcX = function () {
     return Math.sin(this.rotation * Math.PI / 180) * this.step;
@@ -23,14 +21,14 @@ Car.prototype.calcY = function () {
 };
 
 Car.prototype.move = function (x, y) {
-    this.element.style.top = this.element.offsetTop + y + 'px';
-    this.element.style.left = this.element.offsetLeft + x + 'px';
+    this.car.style.top = this.car.offsetTop + y + 'px';
+    this.car.style.left = this.car.offsetLeft + x + 'px';
 };
 
 Car.prototype.turn = function (rotation) {
     this.rotation += rotation;
 
-    this.element.style.transform = 'rotate(' + this.rotation + 'deg)';
+    this.car.style.transform = 'rotate(' + this.rotation + 'deg)';
 };
 
 Car.prototype.turnRight = function () {
