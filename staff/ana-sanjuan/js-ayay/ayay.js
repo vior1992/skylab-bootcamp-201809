@@ -9,7 +9,7 @@ function Ayay() {
 
 
 Ayay.prototype.push = function(element) {
-    // if (!(this instanceof Ayay)) throw new TypeError ('push can not be applied to this element')
+    //if (!(this instanceof Ayay)) throw new TypeError ('push can not be applied to this element')
     for (var i = 0; i < arguments.length; i++){
         this[this.length] = arguments[i];
         this.length++;

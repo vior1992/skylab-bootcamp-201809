@@ -29,6 +29,22 @@ describe('Ayay', function () {
                 expect(ayay[i]).toEqual(i + 1);
         });
 
+        it('should add an ayay as new element', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            var newAyay = new Ayay;
+            newAyay.push(4,5,6)
+
+            ayay.push(newAyay);
+
+            expect(ayay.length).toEqual(4);
+            for (var i = 0; i < ayay.length -1; i++){
+                expect(ayay[i]).toEqual(i + 1);
+            }
+            expect(ayay[ayay.length -1]).toEqual(newAyay);
+        });
+
         it('should return the length of the modified ayay ', function () {
            
             var result; 
