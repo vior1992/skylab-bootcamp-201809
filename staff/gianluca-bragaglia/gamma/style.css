@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-@import url("https://fonts.googleapis.com/css?family=Scada:400,700");
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Helvetica, sans-serif;
-  background-color: #f8f8f8;
-=======
 body {
   padding: 0;
   margin: 0;
@@ -48,7 +40,7 @@ a {
 
 .top-container, .top-container--about {
   height: 550px;
-  background-image: url("/Users/Gianluca/Documents/skylab-bootcamp-201809/staff/gianluca-bragaglia/gamma/images/site_showcase_bg.jpg");
+  background-image: url("./images/site_showcase_bg.jpg");
   padding: 0;
   padding-top: 30px;
 }
@@ -322,29 +314,6 @@ footer .footer-container__rigth {
 .collapsible-title-2 {
   border-radius: 5px 5px 5px 5px;
   margin-top: -15px;
->>>>>>> 17f015c9e0fbffb9b00889678b5f235bd1dbfcfe
-}
-
-.header {
-  width: 80%;
-  margin: auto;
-}
-
-main {
-  margin-top: 30px;
-}
-
-.container-first {
-  display: flex;
-  background-image: url("./images/site_showcase_bg.jpg");
-  background-repeat: no-repeat;
-  height: 500px;
-}
-.container-first__content, .container-first__content--right {
-  display: flex;
-}
-.container-first__content--right {
-  margin-top: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
