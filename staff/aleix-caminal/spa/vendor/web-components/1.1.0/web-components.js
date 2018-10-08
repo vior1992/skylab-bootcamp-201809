@@ -111,8 +111,8 @@ Confirm.prototype = Object.create(Dialog.prototype);
 Confirm.prototype.constructor = Confirm;
 
 function Form(elements) {
-    var form = document.createElement('form');
-    form.className = 'form';
+    this.form = document.createElement('form');
+    this.form.className = 'form';
 
     function formatLabel(label) {
         var words = label.split('_');
@@ -122,36 +122,43 @@ function Form(elements) {
         return words.join(' ');
     }
 
+    var that = this;
     elements.forEach(function(element) {
         switch (element.element) {
             case 'input':
-                this.group = document.createElement('div');
-                this.group.className = 'form__group';
+                that.group = document.createElement('div');
+                that.group.className = 'form__group';
 
-                this.label = document.createElement('label');
-                if (element.id) this.label.for = element.id;
-                this.label.className = element.class ? element.class : 'form-group__label';
-                this.label.innerText = element.label ? element.label : formatLabel(element.id);
-                group.appendChild(this.label);
+                that.label = document.createElement('label');
+                if (element.id) that.label.for = element.id;
+                that.label.className = element.class ? element.class : 'form-group__label';
+                that.label.innerText = element.label ? element.label : formatLabel(element.id);
+                that.group.appendChild(that.label);
 
-                this.input = document.createElement('input');
-                if (element.id) this.input.id = element.id;
-                this.input.className = element.class ? element.class : 'form-group__input';
-                this.input.type = element.type ? element.type : 'text';
-                group.appendChild(this.input);
+                that.input = document.createElement('input');
+                if (element.id) that.input.id = element.id;
+                that.input.className = element.class ? element.class : 'form-group__input';
+                that.input.type = element.type ? element.type : 'text';
+                that.group.appendChild(that.input);
 
-                form.appendChild(this.group);
+                that.form.appendChild(that.group);
                 break;
             case 'button':
-                this.button = document.createElement('button');
-                this.button.type = element.type ? element.type : 'button';
-                if (element.label) this.button.innerText = element.label;
-                this.button.className = element.class ? element.class : 'form__button';
-                for (var listener in element.on) this.button.addEventListener(listener, element.on[listener]);
-                form.appendChild(this.button);
+                if (typeof that.buttons === 'undefined') {
+                    that.buttons = document.createElement('div');
+                    that.buttons.className = 'form__buttons'
+                    that.form.appendChild(that.buttons);
+                }
+
+                that.button = document.createElement('button');
+                that.button.type = element.type ? element.type : 'button';
+                if (element.label) that.button.innerText = element.label;
+                that.button.className = element.class ? element.class : 'form-buttons__button';
+                for (var listener in element.on) that.button.addEventListener(listener, element.on[listener]);
+                that.buttons.appendChild(that.button);
                 break;
         }
     });
 
-    return form;
+    return this.form;
 }
