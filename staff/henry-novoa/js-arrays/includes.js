@@ -5,9 +5,13 @@
 function includes(arr, elem) {
    
 
-if (!(arr instanceof Array)) throw Error("input is not an array");
-   if(!arr.length) throw Error("array cannot be empty");
-   if(!(arguments.length==2)) throw Error("item to search is missing")
+    if (!(arr instanceof Array)) throw Error('array is not valid');
+
+    if ( elem === undefined) throw Error('element is not defined');
+
+    if (!elem.trim()) throw Error('element is blank');
+
+    if(arr.length == 0) throw Error('array is empty');
     for(var i=0; i < arr.length; i++){
         if(elem  === arr[i]){
             return true;
