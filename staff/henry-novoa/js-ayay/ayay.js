@@ -14,6 +14,8 @@ if(!(arguments.length)) throw Error('an element to push is required');
     this[this.length] = element;
 
     this.length++;
+
+    return this.length;
 };
 
 Ayay.prototype.pop = function() {
@@ -30,10 +32,9 @@ Ayay.prototype.pop = function() {
 
 Ayay.prototype.forEach = function(callback) {
     if(!(arguments.length)) throw Error('input is empty');
-    if(typeof callback !== 'function') throw Error(callback +' is not a function');
-    if(!(this.length)) throw Error('ayay is empty');
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
-
+    if(!(this.length)) throw Error('ayay is empty');
+   
     for (var i = 0; i < this.length; i++) callback(this[i], i, this);
 };
 
