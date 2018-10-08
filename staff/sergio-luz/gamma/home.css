@@ -7,6 +7,7 @@ body {
     font-family: 'Open Sans', san-serif;
     box-sizing: border-box;
     background: #333333;
+    min-width: 450px;
 }
 
 nav {
@@ -94,11 +95,11 @@ footer {
 }
 
 .bg-images {
-    display:flex;
+    display: flex;
     position: absolute;
     visibility: hidden;
     height: 0px;
-        width: 0px;
+    width: 0px;
 }
 
 .nav-menu {
@@ -109,7 +110,8 @@ footer {
     box-sizing: border-box;
     justify-content: space-around;
 }
-.nav-menu__burger{
+
+.nav-menu__burger {
     width: 10vw;
     padding: 2vw;
     border: 0.5vw solid rgba(128, 128, 128, 0.24);
@@ -118,11 +120,13 @@ footer {
     align-content: center;
     justify-content: center;
 }
+
 .burger {
-    width:8vw;
+    width: 8vw;
     align-self: center;
     justify-self: center;
 }
+
 .nav-menu__logo {
     display: flex;
     position: relative;
@@ -134,10 +138,11 @@ footer {
     font-size: 1.25vw;
     align-items: center;
 }
+
 .nav-menu__item {
     visibility: hidden;
     height: 0px;
-        width: 0px;
+    width: 0px;
     position: relative;
     cursor: pointer;
     color: #fff;
@@ -174,12 +179,13 @@ footer {
     flex-direction: column;
     align-items: center;
 }
+
 p.header--left {
     font-size: 5vw;
 }
 
 .header--right {
-    display:none;
+    display: none;
 }
 
 .wrapper__icons {
@@ -199,9 +205,10 @@ p.header--left {
     width: 23vw;
 }
 
-.text--article{
+.text--article {
     text-align: left;
 }
+
 .gamma-features {
     background: #1CAA98;
     height: 95vw;
@@ -226,8 +233,8 @@ p.header--left {
 }
 
 .img-logo {
-        align-self: flex-end;
-        width: 50vw;
+    align-self: flex-end;
+    width: 50vw;
 }
 
 .features {
@@ -370,6 +377,7 @@ p.header--left {
     .bg-images {
         visibility: visible;
         width: 100%;
+        height: 37vw;
         position: absolute;
         display: flex;
         justify-self: center;
@@ -388,12 +396,17 @@ p.header--left {
         position: relative;
         cursor: pointer;
         color: #fff;
-        padding: 1vw 2vw;
+        padding: 1vw 3vw;
         font-family: 'Open Sans', san-serif;
         font-weight: 600;
         font-size: 1.25vw;
         display: flex;
-        align-items: center;
+        align-self: center;
+    }
+
+    .nav-menu__logo {
+
+        align-self: center;
     }
 
     .nav-menu__item--logo {
@@ -401,16 +414,18 @@ p.header--left {
         color: #1CAA98;
         font-size: 1.45vw;
     }
-    .nav-menu__burger{
+
+    .nav-menu__burger {
         visibility: hidden;
         height: 0px;
         width: 0px;
     }
-    .burger{
+
+    .burger {
         visibility: hidden;
         height: 0px;
         width: 0px;
-        }
+    }
 
     .nav__anchor {
         text-decoration-line: none;
