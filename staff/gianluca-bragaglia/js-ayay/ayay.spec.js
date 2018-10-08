@@ -6,11 +6,11 @@ describe('Ayay', function () {
     });
 
     describe('push', function () {
-        it('ayay length should increment by 1', function () {
+        it('should succeed if ayay length increment by 1', function () {
             ayay.push(1);
 
             expect(ayay.length).toEqual(1);
-;
+
         });
 
         it('should succeed if push items', function () {
@@ -31,7 +31,7 @@ describe('Ayay', function () {
 
 
     describe('pop: should succeed if delete the last item of ayay', function () {
-        it('should pop items', function () {
+        it('should succeed if the ayay length is one less than the original', function () {
             
             ayay.push(1);
             ayay.push(2);
@@ -58,7 +58,7 @@ describe('Ayay', function () {
 
 
     describe('forEach', function () {
-        it('should succeed if ayay length should still the same', function () {
+        it('should succeed if ayay length is still the same', function () {
             ayay.push(1);
             ayay.push(2);
             ayay.push(3);
@@ -237,13 +237,11 @@ describe('Ayay', function () {
             });
         }); 
         
-        it('should succeed if ayay length should still the same', function () {
+        it('should succeed if ayay length is still the same', function () {
 
             ayay.push('c');
             ayay.push('a');
             ayay.push('b');
-
-            var result = ['a', 'b', 'c'];
 
             ayay.sort();
 
@@ -252,7 +250,7 @@ describe('Ayay', function () {
     });
 
     describe('includes: should succeed on determines if the array includes a certain element, returning true or false as appropriate', function () { 
-        it('should succeed if ayay length should still the same', function () {
+        it('should succeed if ayay length is still the same', function () {
 
             ayay.push('c');
             ayay.push('a');
