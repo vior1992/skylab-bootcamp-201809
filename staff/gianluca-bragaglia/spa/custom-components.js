@@ -45,3 +45,33 @@ Login.prototype = Object.create(Panel.prototype);
 Login.prototype.constructor = Login;
 
 // TODO Register & Welcome
+
+
+function Register(title, tag, registerCallback) {
+    Panel.call(this, title, tag);
+
+    this.element.style.display = 'none';
+
+    this.form = document.createElement('form');
+
+    this.element.appendChild(this.form);
+
+    this.email = document.createElement('input');
+
+    this.form.appendChild(this.email);
+
+    this.username = document.createElement('input');
+
+    this.form.appendChild(this.username);
+
+    this.password = document.createElement('input');
+
+    this.form.appendChild(this.password);
+
+    this.register = document.createElement('button');
+
+    this.form.appendChild(this.register);
+}
+
+Register.prototype = Object.create(Panel.prototype);
+Register.prototype.constructor = Register;
