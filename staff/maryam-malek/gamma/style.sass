@@ -12,6 +12,7 @@
     &__title
         margin-left: 0.7em
         padding-top: 0.6em
+        color: lightseagreen
     &__container
         position: absolute
         top: 10%
@@ -42,13 +43,15 @@
     // &__checkbox:checked + .burger-menu__lines
     //     opacity: 1
     //     transform: rotate(45deg) translate(0.5em,0.3em)
-    &__checkbox:checked + .burger-menu__lines
+    &__checkbox:checked + .first, .burger-menu__checkbox:checked + .second
         opacity: 1
         transform: rotate(90deg) translate(0.5em,0em)
-    &__checkbox:checked + .third
-        display: none !important
-        opacity: 0 !important
-        transform: rotate(-45deg) translate(0.5em,0.3em)
+    // &__checkbox:checked + .second
+    //     display: none !important
+    //     opacity: 0 !important
+    //     transform: rotate(-45deg) translate(0.5em,0.3em)
+    // &__checkbox:checked + .burger-list
+    //     opacity: 1
 .burger-list
     position: absolute
     background: #ededed 
@@ -139,6 +142,7 @@
 .footer-nav
     display: flex
     flex-direction: row
+    width: 80%
     &__element
         color: white
         text-decoration: none

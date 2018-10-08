@@ -15,6 +15,7 @@
 .burger-menu__title {
   margin-left: 0.7em;
   padding-top: 0.6em;
+  color: lightseagreen;
 }
 .burger-menu__container {
   position: absolute;
@@ -46,14 +47,9 @@
   background: #cdcdcd;
   z-index: 1;
 }
-.burger-menu__checkbox:checked + .burger-menu__lines {
+.burger-menu__checkbox:checked + .first, .burger-menu .burger-menu__checkbox:checked + .second {
   opacity: 1;
   transform: rotate(90deg) translate(0.5em, 0em);
-}
-.burger-menu__checkbox:checked + .third {
-  display: none !important;
-  opacity: 0 !important;
-  transform: rotate(-45deg) translate(0.5em, 0.3em);
 }
 
 .burger-list {
@@ -170,6 +166,7 @@
 .footer-nav {
   display: flex;
   flex-direction: row;
+  width: 80%;
 }
 .footer-nav__element {
   color: white;
