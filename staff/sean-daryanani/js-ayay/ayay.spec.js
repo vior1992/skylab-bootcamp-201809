@@ -106,10 +106,9 @@ describe('Ayay', function () {
                 indexes.push(index);
                 arr.push(array);
             });
-
-            expect(items.length).toEqual(3)
-            expect(indexes.length).toEqual(3)
-            expect(arr.length).toEqual(3)
+            
+            var lengthArray = [items.length, indexes.length, arr.length] 
+            lengthArray.forEach(function(el){ expect(el).toEqual(3)});
 
             items.forEach(function (elem, index) {
                 expect(ayay[index]).toEqual(elem);
