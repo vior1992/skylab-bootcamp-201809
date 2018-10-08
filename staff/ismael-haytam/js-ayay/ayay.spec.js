@@ -127,6 +127,43 @@ describe('Ayay', function () {
     });
 
 
+    describe('find', function () {
+	
+	it('should fail when non-callback', function() {
+
+            expect(function() {
+                ayay.find();
+            }).toThrowError(TypeError, 'undefined is not a function');
+
+        });
+
+
+	it('should succeed on find element', function() {
+            
+            ayay.push(1);
+            ayay.push(2);
+	    ayay.push(3);
+	    ayay.push(4);
+
+	    var result = ayay.find(function(elem) { return elem >= 3; });
+
+	    expect(result.length).toEqual(2);
+            expect(result[0]).toEqual(3);
+	    expect(result[1]).toEqual(4);
+
+        });
+
+	it('should fail when argument is not a function (String)', function() {
+
+		expect(function() {
+			ayay.find('string');
+		}).toThrowError(TypeError, 'string is not a function');
+
+	});
+
+    });
+
+
     describe('map', function () {
 
 
@@ -154,7 +191,41 @@ describe('Ayay', function () {
             expect(result[1]).toEqual(24);
 
 
-        }) 
+        });
+
+	
+        it('should fail when argument is not a function (String)', function() {
+
+            expect(function() {
+                ayay.map('string');
+            }).toThrowError(TypeError, 'string is not a function');
+
+        });
+
+
+        describe('pop', function() {
+
+            it('should sucessfully return popped item', function() {
+
+                ayay.push('lorem');
+                ayay.push('ipsum');
+
+                var removed = ayay.pop();
+
+                expect(removed).toEqual('ipsum');
+
+            });
+
+            it('should return 0 when array is empty', function() {
+
+                var totalRemoved = ayay.pop();
+
+                expect(totalRemoved).toEqual(0);
+
+            });
+
+        });
+ 
 
     });
 
