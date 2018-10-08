@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #212121;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 450px;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+header a {
+  color: #212121;
+  text-decoration: none;
+}
+
+.title {
+  padding: 10px;
+  font-size: 1.5em;
+  color: #1caa98;
+}
+
+header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+header li a {
+  display: block;
+  padding: 20px 20px;
+  text-decoration: none;
+}
+
+header li a:hover,
+header .menu-btn:hover {
+  background-color: #f4f4f4;
+}
+
+header .menu {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+header .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+header .menu-icon .navicon {
+  background: #212121;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background 0.2s ease-out;
+  width: 18px;
+}
+
+header .menu-icon .navicon:before,
+header .menu-icon .navicon:after {
+  background: #212121;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+header .menu-btn {
+  display: none;
+}
+
+header .menu-btn:checked ~ .menu {
+  max-height: 240px;
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+.slider {
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #24292c;
+  color: #ffffff;
+  text-align: center;
+}
+
+.slider h1 {
+  margin: 20px 0;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+.slider h1 > span {
+  color: #1caa98;
+}
+
+.slider p {
+  margin: 10px 0;
+  font-size: 1.5em;
+}
+
+.slider a img {
+  margin: 10px 0;
+}
+
+.main {
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main article {
+  margin: 10px 0;
+}
+
+.main article img {
+  max-width: 100%;
+}
+
+.main article h3 {
+  margin: 10px 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.main article p {
+  margin: 10px 0;
+}
+
+.main article .button {
+  padding: 10px 15px;
+  display: inline-block;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  color: #212121;
+  text-decoration: none;
+}
+
+.features {
+  padding: 30px 10px;
+  background-color: #1caa98;
+  color: #ffffff;
+}
+
+.features h2 {
+  font-size: 2em;
+}
+
+/*# sourceMappingURL=style.css.map */
