@@ -45,12 +45,47 @@ body {
 .down__pics {
   max-width: 250px;
   max-height: 350px;
-  margin: 10px 50px; }
+  margin: 10px 50px;
+  margin-bottom: 25px; }
+
+.pics--down {
+  margin-bottom: 50px; }
+
+.main {
+  display: flex;
+  justify-content: center; }
 
 .body__text {
-  margin: 10% 3% 10% 3%; }
+  margin: 10% 3% -5% 3%; }
 
 .body__pics {
-  border: 1px solid grey; }
+  border: 1px solid grey;
+  max-width: 450px;
+  max-height: 450px; }
+
+.body__button {
+  width: 100px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: white;
+  border-color: grey;
+  border-radius: 5px;
+  color: black; }
+
+.fooder__up {
+  background-color: #1caa98;
+  margin-top: 10%;
+  color: white; }
+
+.fooder__logo {
+  flex-direction: column;
+  text-align: left;
+  max-width: 200px;
+  max-height: 300px;
+  margin-left: 10%;
+  margin-bottom: 5%; }
+
+.fooder__down {
+  background-color: grey; }
 
 /*# sourceMappingURL=styles.css.map */
