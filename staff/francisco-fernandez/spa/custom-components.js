@@ -3,8 +3,11 @@ function Landing(title, tag, registerCallback, loginCallback) {
 
     this.element.className = 'landing';
 
+    this.title.className = 'landing__title';
+
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
+    this.register.className = 'landing__button'
     this.register.addEventListener('click', registerCallback);
 
     this.element.appendChild(this.register);
@@ -12,6 +15,7 @@ function Landing(title, tag, registerCallback, loginCallback) {
     this.element.appendChild(document.createTextNode(' or '));
 
     this.login = document.createElement('button');
+    this.login.className = 'landing__button';
     this.login.innerText = 'Login';
     this.login.addEventListener('click', loginCallback);
 
@@ -24,6 +28,10 @@ Landing.prototype.constructor = Landing;
 function Login(title, tag, loginCallback) {
     Panel.call(this, title, tag);
 
+    this.element.className = 'login';
+
+    this.element.title.className = 'login__title'
+
     this.element.style.display = 'none';
 
     this.form = document.createElement('form');
@@ -31,16 +39,20 @@ function Login(title, tag, loginCallback) {
     this.element.appendChild(this.form);
 
     this.username = document.createElement('input');
+    this.username.className = 'login__input';
     this.username.name = ('input1');
+    
 
     this.form.appendChild(this.username);
 
     this.password = document.createElement('input');
+    this.password.className = 'login__input';
     this.password.name = ('input2');
 
     this.form.appendChild(this.password);
 
     this.login = document.createElement('button');
+    this.login.className='login__button';
 
     this.login.innerText = ('Login');
 
@@ -66,6 +78,10 @@ Login.prototype.constructor = Login;
 function Register(title, tag, registerCallback){
     Panel.call(this, title, tag);
 
+    this.element.className = 'register';
+
+    this.element.title.className = 'register__title'
+
     this.element.style.display = 'none';
 
     this.form = document.createElement('form');
@@ -76,6 +92,7 @@ function Register(title, tag, registerCallback){
     this.form.appendChild(this.user);
 
     this.username = document.createElement('input');
+    this.username.className = 'register__input';
     this.username.name = ('userreg');
     this.form.appendChild(this.username);
 
@@ -84,11 +101,13 @@ function Register(title, tag, registerCallback){
     this.form.appendChild(this.pass);
 
     this.password = document.createElement('input');
+    this.password.className = 'register__input';
     this.password.name = ('passreg');
     this.form.appendChild(this.password);
 
     this.register = document.createElement('button');
     this.register.type=('button');
+    this.register.className='register__button'
     this.register.innerText = ('register');
     this.register.addEventListener('click', registerCallback);
     this.form.appendChild(this.register);
@@ -108,9 +127,12 @@ function Welcome (title, tag){
 
     this.element.style.display = 'none';
 
+    this.element.className = 'welcome';
+    this.title.className ='welcome__title'
+
     this.h1 = document.createElement('h1');
     this.element.appendChild(this.h1);
-    this.h1.innerText = ('Welcome!!');
+    this.h1.innerText = ('Welcome to the page of Pacus!!');
     
 
 }
