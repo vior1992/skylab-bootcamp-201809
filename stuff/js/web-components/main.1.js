@@ -13,7 +13,7 @@ document.body.appendChild(car);
 var step = 10;
 var rotation = 0;
 
-document.addEventListener('keyup', function (event) {
+document.addEventListener('keydown', function (event) {
     switch (event.keyCode) {
         case 39: // right
             //car.style.left = car.offsetLeft + step + 'px';
