@@ -1,4 +1,4 @@
-// TODO
+// TODO REGISTER
 describe( 'logic', function(){
 
     describe ('logic.register', function(){
@@ -58,35 +58,25 @@ describe( 'logic', function(){
             expect(msg).toEqual('invalid password')
         })
 
-        //TO IMPLEMENT VALIDATION ON LOGIC - con throw Error
-        // it('should fail on first callback non-function', function(){
-        //     var name = 'Ana';
-        //     var surname = 'San';
-        //     var username = 'asan';
-        //     var password;
-        //     onSuccess = 1;
-        //     onFail = function(message){
-        //         msg = message
-        //     };
-
-        //     logic.register(name, surname, username, password, onSuccess, onFail)
-        //     expect(msg).toEqual('invalid password')
-        // })
-
-         //TO IMPLEMENT VALIDATION ON LOGIC - con throw Error
-        // it('should fail on non-callback', function(){
-        //     var name = 'Ana';
-        //     var surname = 'San';
-        //     var username = 'asan';
-        //     var password;
-        //     onSuccess = 1;
-        //     onFail = function(message){
-        //         msg = message
-        //     };
-
-        //     logic.register(name, surname, username, password, onSuccess, onFail)
-        //     expect(msg).toEqual('invalid password')
-        // })
+        
+        it('should fail on first callback non-function', function(){
+            var name = 'Ana';
+            var surname = 'San';
+            var username = 'asan';
+            var password;
+            onSuccess = 1;
+            onFail = function(){}
+            expect(function() {logic.register(name, surname, username, password, onSuccess, onFail)}).toThrowError(TypeError, onSuccess + ' is not a function')
+        })
+        it('should fail on second callback non-function', function(){
+            var name = 'Ana';
+            var surname = 'San';
+            var username = 'asan';
+            var password;
+            onSuccess =  function(){};
+            onFail = 1;
+            expect(function() {logic.register(name, surname, username, password, onSuccess, onFail)}).toThrowError(TypeError, onFail + ' is not a function')
+        })
 
         it('should succed on saving the variables', function(){
             var name = 'Ana';
@@ -101,23 +91,6 @@ describe( 'logic', function(){
             expect(user.surname).toEqual(surname)
             expect(user.username).toEqual(username)
             expect(user.password).toEqual(password)
-        })
-
-    })
-
-    describe ('logic.register', function(){
-        it('should fail on invalid name', function(){
-            var name;
-            var surname = 'Sanjuan';
-            var username = 'asan';
-            var password = '123';
-            onSuccess = function(){};
-            onFail = function(message){
-                msg = message
-            };
-
-            logic.register(name, surname, username, password, onSuccess, onFail)
-            expect(msg).toEqual('invalid name')
         })
 
     })

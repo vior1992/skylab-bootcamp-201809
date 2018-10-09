@@ -2,6 +2,10 @@ var user;
 
 var logic = {
     register: function (name, surname, username, password, onSuccess, onFail) {
+        if (typeof onSuccess !== 'function') throw TypeError (onSuccess + ' is not a function')
+        if (typeof onFail !== 'function') throw TypeError (onFail + ' is not a function')
+        
+        
         if (!name || !name.trim().length) onFail('invalid name');
         else if (!surname || !surname.trim().length) onFail('invalid surname');
         else if (!username || !username.trim().length) onFail('invalid username');
