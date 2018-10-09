@@ -2,25 +2,62 @@ function Component(tag) {
     this.element = document.createElement(tag);
 }
 
-Component.prototype.show = function () {
+Component.prototype.show = function() {
     this.element.style.display = 'block';
-};
+}
 
-Component.prototype.hide = function () {
+Component.prototype.hide = function() {
     this.element.style.display = 'none';
-};
+}
 
 function Panel(title, tag) {
-    Component.call(this, tag);
+    Component.call(this,tag)
+
+    this.element.className = 'panel';
 
     this.title = document.createElement('h2');
     this.title.innerText = title;
+    this.title.className = 'panel__title'
 
-    this.element.appendChild(this.title);
+    this.element.appendChild(this.title)
 }
-
 Panel.prototype = Object.create(Component.prototype);
 Panel.prototype.constructor = Panel;
+
+
+// function Component(tag) {
+//     this.element = document.createElement(tag);
+// }
+
+// Component.prototype.show = function () {
+//     this.element.style.display = 'block';
+// };
+
+// Component.prototype.hide = function () {
+//     this.element.style.display = 'none';
+// };
+
+// function Panel(title, tag) {
+//     Component.call(this, tag);
+
+//     this.element.className = 'panel';
+
+//     this.title = document.createElement('h2');
+//     this.title.innerText = title;
+//     this.title.className = 'panel__title'
+
+//     this.element.appendChild(this.title);
+// }
+
+// Panel.prototype = Object.create(Component.prototype);
+// Panel.prototype.constructor = Panel;
+
+
+
+
+
+
+
 
 function Dialog(title, text, tag) {
     Panel.call(this, title, tag);

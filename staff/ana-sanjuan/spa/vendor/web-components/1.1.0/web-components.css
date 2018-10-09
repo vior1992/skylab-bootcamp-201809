@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400");
-.dialog, .alert, .confirm {
+.panel, .dialog, .alert, .confirm {
   background-color: silver;
   padding: 20px;
   border-radius: 15px;
@@ -8,8 +8,21 @@
   font-weight: bold;
 }
 
+.panel__title {
+  color: gray;
+}
+
+.dialog, .alert, .confirm {
+  background-color: silver;
+  border-color: gray;
+}
+
 .dialog__title {
   color: gray;
+}
+
+.dialog__body {
+  color: black;
 }
 
 .alert, .confirm {
@@ -19,6 +32,10 @@
 
 .alert__title {
   color: #177CBF;
+}
+
+.alert__body {
+  color: black;
 }
 
 .alert__button {
@@ -47,5 +64,4 @@
 .confirm__button--accept {
   background-color: darkgray;
 }
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=web-components.css.map */
