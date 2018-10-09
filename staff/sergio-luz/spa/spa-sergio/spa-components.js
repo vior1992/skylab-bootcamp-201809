@@ -93,7 +93,7 @@ Register.prototype.constructor = Register;
 function Register_Errors(tag) {
     Panel_Errors.call(this, tag);
     // this.element.style.display='none';
-    this.element.className = 'alert alert--danger';
+    this.element.className = 'register-error__message';
     this.element.display = 'block';
 
     this.message = document.createElement(tag);

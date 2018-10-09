@@ -71,7 +71,7 @@ var login = new Login('Login', 'section', function () {
         error = err;
     }
 
-    if (result) {
+    if (result===true) {
         login.hide();
         welcome.show();
         login_errors.hide();
