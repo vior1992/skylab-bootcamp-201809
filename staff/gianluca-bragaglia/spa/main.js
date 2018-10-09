@@ -11,8 +11,16 @@ var landing = new Landing('Choose an option', 'section',
 document.body.appendChild(landing.element);
 
 var login = new Login('Login', 'section', function() {
-    login.hide();
-    welcome.show();
+    var user = document.querySelector('.user').value;
+    var pass = document.querySelector('.pass').value;
+    if(user === '_user' && pass === '_pass') {
+        login.hide();
+        welcome.show();
+        error.hide();
+    }else{
+        error.show();
+    }
+   
 });
 
 document.body.appendChild(login.element);
@@ -27,3 +35,7 @@ document.body.appendChild(register.element);
 var welcome = new Welcome('Welcome', 'section');
 
 document.body.appendChild(welcome.element);
+
+var error = new Error('Error', 'section');
+
+document.body.appendChild(error.element);
