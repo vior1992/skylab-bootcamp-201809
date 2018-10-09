@@ -22,6 +22,10 @@
   width: 100px;
   height: 30px;
 }
+.panel__back {
+  color: darkgrey;
+  margin-top: 1em;
+}
 
 .panel-form {
   display: flex;

@@ -10,17 +10,38 @@ var landing = new Landing('Choose an option', 'section',
 
 document.body.appendChild(landing.element);
 
-var login = new Login('Login', 'section', function() {
+var login = new Login('Login', 'section', function(username, password) {
+    
+    logic.login(username, password, function(user){
+
+        login.hide();
+        welcome.title.innerText = 'Welcome, ' + user.name + '!';
+        welcome.show();
+
+    }, 
+    function(message){
+        alert(message);
+    });
+}, function(){
     login.hide();
-    welcome.show();
+    landing.show();
 });
 
 document.body.appendChild(login.element);
 
 
-var register = new Register('Register', 'section', function() {
+var register = new Register('Register', 'section', function(name, email, username, password) {
+    
+    logic.register(name, email, username, password, function(){
         register.hide();
         login.show();
+    }, 
+    function(message){
+        alert(message);
+    });
+}, function() {
+    register.hide();
+    landing.show();
 });
 
 document.body.appendChild(register.element);
