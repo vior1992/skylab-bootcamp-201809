@@ -9,6 +9,9 @@
     margin: 15px 0px 15px 15px
     font-weight: bold 
 
+    @media screen and (min-width: 900px)
+        margin: 15px 0px 15px 60px
+
 .upheader__burger
     width: 42px
     height: 35px
@@ -40,22 +43,40 @@
     margin: 0px 0px 0px 15px
     color: white
     font-size: 200%
+    @media screen and (min-width: 900px)
+        margin: 0px 0px 0px 60px
+
+main 
+    @media screen and (min-width: 1100px)
+        display: flex
+        flex-direction: row
+        
+
+.main--left
+    @media screen and (min-width: 1100px)
+        width: 80%
 
 .introduction
     margin-top: 50px
 
 .introduction__title
     margin-left: 15px
+    @media screen and (min-width: 900px)
+        margin-left: 60px
 
 .introduction__title--paragraph
     @extend .introduction__title
     margin-right: 15px
     text-align: justify
+    @media screen and (min-width: 900px)
+        margin-right: 60px
 
 .collapsible
     margin: 5px 15px
     border: 1px solid $border__grey
     border-radius: 5px
+    @media screen and (min-width: 900px)
+        margin: 5px 60px
 
 .collapsible__up
     width: 100%
@@ -71,8 +92,15 @@
 .collapsible__p
     margin-left: 15px
 
+.main--right
+    @media screen and (min-width: 1100px)
+        display: flex
+        width: 30%
+
 .image--section
     margin-right: 15px
+    @media screen and (min-width: 900px)
+        margin-right: 60px
 
 .image--box
     display: flex
@@ -80,11 +108,20 @@
     height: 100%
     border: 1px solid $border__grey
     margin: 15px
+    @media screen and (min-width: 900px)
+        margin-left: 60px
+        margin-right: 60px
+    @media screen and (min-width: 1100px)
+        width: default
+        
     
 .image
     display: flex
     width: 100%
     height: 100%
+    @media screen and (min-width: 1100px)
+        width: default
+        
     
 
 .readmore
@@ -92,6 +129,8 @@
     border: 1px solid $border__grey
     border-radius: 5px
     padding: 7px
+    @media screen and (min-width: 900px)
+        margin-left: 60px
 
 .footer--up
     background-color: $green__gamma
@@ -102,13 +141,19 @@
     padding-top: 40px
     margin-left: 40px
     font-size: 200%
+    @media screen and (min-width: 900px)
+        margin-left: 70px
 
 .footer--up__li
     margin-left: 30px
     font-size: 150%
+    @media screen and (min-width: 900px)
+        margin-left: 60px
 
 .logo
     margin-left: 40px
+    @media screen and (min-width: 900px)
+        margin-left: 70px
   
 .footer--down
     background-color: $footer__background
@@ -117,10 +162,20 @@
     font-size: 85%
     padding-top: 20px
     padding-bottom: 20px
+    @media screen and (min-width: 900px)
+        text-align: left
 
 .footer--menu__li 
     display: inline-block
     margin: 5px 
+    @media screen and (min-width: 900px)
+        text-align: right
+
+.copyright
+    @media screen and (min-width: 900px)
+        text-align: right
+        margin-right: 60px
+
 
     
     

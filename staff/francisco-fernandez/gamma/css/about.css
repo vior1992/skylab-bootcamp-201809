@@ -1,18 +1,19 @@
 /*
 Error: Undefined variable: "$upheader__background".
-        on line 3 of C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\gamma\sass\about.sass
+        on line 4 of C:/Users/Paco/bootcamp/collab/skylab-bootcamp-201809/staff/francisco-fernandez/gamma/sass/about.sass
 
 1: .upheader
 2:     display: flex
-3:     background-color: $upheader__background
-4: 
-5: @media screen and (min-width: 900px)
-6:     background-color: red
-7: 
-8: .upheader__title
+3:     justify-content: space-between
+4:     background-color: $upheader__background
+5: 
+6: .upheader__title
+7:     width: 80%
+8:     color: $green__gamma
+9:     margin: 15px 0px 15px 15px
 
 Backtrace:
-C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\gamma\sass\about.sass:3
+C:/Users/Paco/bootcamp/collab/skylab-bootcamp-201809/staff/francisco-fernandez/gamma/sass/about.sass:4
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
@@ -59,4 +60,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$upheader__background\".\A         on line 3 of C:\Users\Paco\bootcamp\collab\skylab-bootcamp-201809\staff\francisco-fernandez\gamma\sass\about.sass\A \A 1: .upheader\A 2:     display: flex\A 3:     background-color: $upheader__background\A 4: \A 5: @media screen and (min-width: 900px)\A 6:     background-color: red\A 7: \A 8: .upheader__title"; }
+  content: "Error: Undefined variable: \"$upheader__background\".\A         on line 4 of C:/Users/Paco/bootcamp/collab/skylab-bootcamp-201809/staff/francisco-fernandez/gamma/sass/about.sass\A \A 1: .upheader\A 2:     display: flex\A 3:     justify-content: space-between\A 4:     background-color: $upheader__background\A 5: \A 6: .upheader__title\A 7:     width: 80%\A 8:     color: $green__gamma\A 9:     margin: 15px 0px 15px 15px"; }

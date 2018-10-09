@@ -23,6 +23,9 @@ body {
   color: #1CAA98;
   margin: 15px 0px 15px 15px;
   font-weight: bold; }
+  @media screen and (min-width: 900px) {
+    .upheader__title {
+      margin: 15px 0px 15px 60px; } }
 
 .upheader__burger {
   width: 42px;
@@ -54,21 +57,42 @@ body {
   margin: 0px 0px 0px 15px;
   color: white;
   font-size: 200%; }
+  @media screen and (min-width: 900px) {
+    .downheader__title {
+      margin: 0px 0px 0px 60px; } }
+
+@media screen and (min-width: 1100px) {
+  main {
+    display: flex;
+    flex-direction: row; } }
+
+@media screen and (min-width: 1100px) {
+  .main--left {
+    width: 80%; } }
 
 .introduction {
   margin-top: 50px; }
 
 .introduction__title, .introduction__title--paragraph {
   margin-left: 15px; }
+  @media screen and (min-width: 900px) {
+    .introduction__title, .introduction__title--paragraph {
+      margin-left: 60px; } }
 
 .introduction__title--paragraph {
   margin-right: 15px;
   text-align: justify; }
+  @media screen and (min-width: 900px) {
+    .introduction__title--paragraph {
+      margin-right: 60px; } }
 
 .collapsible {
   margin: 5px 15px;
   border: 1px solid #DDDDDD;
   border-radius: 5px; }
+  @media screen and (min-width: 900px) {
+    .collapsible {
+      margin: 5px 60px; } }
 
 .collapsible__up {
   width: 100%;
@@ -84,8 +108,16 @@ body {
 .collapsible__p {
   margin-left: 15px; }
 
+@media screen and (min-width: 1100px) {
+  .main--right {
+    display: flex;
+    width: 30%; } }
+
 .image--section {
   margin-right: 15px; }
+  @media screen and (min-width: 900px) {
+    .image--section {
+      margin-right: 60px; } }
 
 .image--box {
   display: flex;
@@ -93,17 +125,30 @@ body {
   height: 100%;
   border: 1px solid #DDDDDD;
   margin: 15px; }
+  @media screen and (min-width: 900px) {
+    .image--box {
+      margin-left: 60px;
+      margin-right: 60px; } }
+  @media screen and (min-width: 1100px) {
+    .image--box {
+      width: default; } }
 
 .image {
   display: flex;
   width: 100%;
   height: 100%; }
+  @media screen and (min-width: 1100px) {
+    .image {
+      width: default; } }
 
 .readmore {
   margin-left: 15px;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
   padding: 7px; }
+  @media screen and (min-width: 900px) {
+    .readmore {
+      margin-left: 60px; } }
 
 .footer--up {
   background-color: #1CAA98;
@@ -114,13 +159,22 @@ body {
   padding-top: 40px;
   margin-left: 40px;
   font-size: 200%; }
+  @media screen and (min-width: 900px) {
+    .footer--up__title {
+      margin-left: 70px; } }
 
 .footer--up__li {
   margin-left: 30px;
   font-size: 150%; }
+  @media screen and (min-width: 900px) {
+    .footer--up__li {
+      margin-left: 60px; } }
 
 .logo {
   margin-left: 40px; }
+  @media screen and (min-width: 900px) {
+    .logo {
+      margin-left: 70px; } }
 
 .footer--down {
   background-color: #333333;
@@ -129,9 +183,20 @@ body {
   font-size: 85%;
   padding-top: 20px;
   padding-bottom: 20px; }
+  @media screen and (min-width: 900px) {
+    .footer--down {
+      text-align: left; } }
 
 .footer--menu__li {
   display: inline-block;
   margin: 5px; }
+  @media screen and (min-width: 900px) {
+    .footer--menu__li {
+      text-align: right; } }
+
+@media screen and (min-width: 900px) {
+  .copyright {
+    text-align: right;
+    margin-right: 60px; } }
 
 /*# sourceMappingURL=styles.css.map */
