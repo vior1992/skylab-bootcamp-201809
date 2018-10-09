@@ -1,0 +1,82 @@
+$font: 'Open Sans'
+
+
+a
+    text-decoration: none
+    margin-left: 0px
+
+li
+    list-style: none
+    margin-left: 0px
+  
+.header
+    width: 100%
+    margin: auto
+    background-color: f8f8f8
+    display: flex
+    justify-content: space-between
+
+.logo h1
+    color: #1caa98
+    font-family: $font 
+    font-weight: 600
+
+
+.collapsible-menu 
+    background-color: rgb(255, 255, 255)
+    padding: 0px 0px
+
+    &__nav 
+        font-family: $font
+        font-size: 23px
+        
+
+
+.navigation li
+    padding-bottom: 15px
+    padding-top: 10px
+    border-bottom: 1px solid gray
+
+    a
+        color: gray
+
+
+.collapsible-menu label 
+    font-family: $font
+    font-size: 36px
+    display: block
+    cursor: pointer
+    background: url(./images/menu-hamburger.png) no-repeat left 
+    padding: 10px 0 10px 50px
+    color: white
+
+input#menu 
+    display: none
+
+input:checked +label 
+    background-image: url(./images/x.png)
+
+.collapsible-menu__nav
+    max-height: 0
+    overflow: hidden
+    font-family: $font
+    padding: 0 0 0 0px
+
+/* Toggle Effect */
+input:checked ~ label 
+    background-image: url(./images/x.png)
+
+input:checked ~ .collapsible-menu__nav 
+    max-height: 100%
+
+
+
+
+    
+
+    
+        
+
+
+
+
