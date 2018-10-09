@@ -38,6 +38,9 @@ var register = new Register('Register Now!', 'section', function (email, fullnam
         wrongRegister.title.innerText = message;
         wrongRegister.show();
     });
+}, function() {
+    register.hide();
+    landing.show();
 })
 
 document.querySelector(".container").appendChild(register.element);

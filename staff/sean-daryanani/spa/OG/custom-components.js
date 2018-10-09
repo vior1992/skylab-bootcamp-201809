@@ -83,7 +83,7 @@ Login.prototype.constructor = Login;
 
 // TODO Register & Welcome
 
-function Register(title, tag, registerCallback) {
+function Register(title, tag, registerCallback, backCallBack) {
     Panel.call(this, title, tag);
 
     this.element.style.display = 'none';
@@ -135,6 +135,12 @@ function Register(title, tag, registerCallback) {
 
     
     this.form.appendChild(this.register);
+
+    this.backButton = document.createElement('a');
+    this.backButton.href = '#'
+    this.backButton.innerText = 'Back to home';
+    this.backButton.addEventListener('click', backCallBack);
+    this.element.appendChild(this.backButton);
 
 }
 Register.prototype = Object.create(Panel.prototype);

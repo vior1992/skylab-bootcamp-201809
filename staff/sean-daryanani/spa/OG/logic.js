@@ -15,7 +15,6 @@ var logic = {
                 onFail('wrong username!')
             }
         })
-
         credentials.password.forEach(function (el) {
             if (password === el) {
                 return passwordCorrect = true;
@@ -28,7 +27,7 @@ var logic = {
             onFail('wrong username and password!')
         }
         else if (userNameCorrect && passwordCorrect) {
-            onSuccess('wrong username!');
+            onSuccess();
         }
         
     },
