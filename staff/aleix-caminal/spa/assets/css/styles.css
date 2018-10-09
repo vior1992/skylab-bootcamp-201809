@@ -19,6 +19,7 @@
   color: #fff;
   border: none;
   transition: all 0.4s;
+  margin: 1rem 5rem;
 }
 .panel__button:focus {
   outline: 0;
@@ -54,6 +55,9 @@
 }
 .panel .form__group .form-group__input:focus {
   outline: 0;
+}
+.panel .form__group .form-group__input.is-invalid {
+  border-color: #f00;
 }
 .panel .form__buttons {
   display: flex;

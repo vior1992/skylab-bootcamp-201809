@@ -20,7 +20,7 @@ Landing.prototype.constructor = Landing;
 function Login(title, tag, loginCallback, cancelCallback) {
     Panel.call(this, title, tag);
     this.element.style.display = 'none';
-    this.form = new Form([
+    this.form = new Form('login', [
         {
             element: 'input',
             id: 'username'
@@ -55,7 +55,7 @@ Login.prototype.constructor = Login;
 function Register(title, tag, registerCallback, cancelCallback) {
     Panel.call(this, title, tag);
     this.element.style.display = 'none';
-    this.form = new Form([
+    this.form = new Form('register', [
         {
             element: 'input',
             id:'name'
@@ -99,7 +99,6 @@ Register.prototype.constructor = Register;
 function Welcome(title, tag, logoutCallback) {
     Panel.call(this, title, tag);
     this.element.style.display = 'none';
-
 
     this.logout = document.createElement('button');
     this.logout.type = 'button';

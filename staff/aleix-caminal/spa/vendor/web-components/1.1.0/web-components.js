@@ -110,8 +110,9 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
 Confirm.prototype = Object.create(Dialog.prototype);
 Confirm.prototype.constructor = Confirm;
 
-function Form(elements) {
+function Form(id, elements) {
     this.form = document.createElement('form');
+    if (id) this.form.id = id;
     this.form.className = 'form';
 
     function formatLabel(label) {
