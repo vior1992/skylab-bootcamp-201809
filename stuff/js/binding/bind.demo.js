@@ -9,33 +9,34 @@ var o = {
 
 var greet = o.greet;
 
-//console.log(greet());
+console.log(greet());
 
 // .
 
 // greet = greet.bind(o);
-
-//console.log(greet());
-
-// .
-
-// var p = { name: 'anita' };
-
-// greet.unbind... ??? (TODO jose luis!)
-
-// greet = greet.bind(p);
-
-// console.log(greet());
-
-// .
-
-// greet = bind(greet, o);
 
 // console.log(greet());
 
 // .
 
 var p = { name: 'anita' };
+
+// greet.unbind... ??? (TODO jose luis!)
+
+greet = greet.bind(p);
+
+console.log(greet());
+
+// .
+
+// greet = greet.bind(o);
+// greet = bind(greet, o);
+
+console.log(greet());
+
+// .
+
+// var p = { name: 'anita' };
 
 // greet = bind(greet, p);
 
@@ -44,6 +45,6 @@ var p = { name: 'anita' };
 // .
 
 // greet = greet.bind(p);
-greet = bind(greet, p);
+// greet = bind(greet, p);
 
-console.log(greet('hi', '!!'));
+// console.log(greet('hi', '!!'));
