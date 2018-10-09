@@ -1,6 +1,7 @@
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
 
+    this.element.className = 'landing';
     this.title.className = 'title';
 
     this.register = document.createElement('button');
