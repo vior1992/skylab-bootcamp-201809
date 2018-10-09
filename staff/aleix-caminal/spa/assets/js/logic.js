@@ -20,14 +20,6 @@ var user, safeBox;
 })();
 
 var logic = {
-    login: function(form, callback) {
-        if (user = safeBox.retrieveUser(form.querySelector('#username').value, form.querySelector('#password').value)) {
-            callback();
-        } else {
-            this.error('Your credentials are invalid');
-        }
-    },
-
     register: function(form, callback) {
         if (this.validate(form, ['name', 'username', 'password', 'confirm_password'])) {
             if (form.querySelector('#password').value === form.querySelector('#confirm_password').value) {
@@ -44,6 +36,18 @@ var logic = {
         } else {
             this.error('Fields in red are mandatory');
         }
+    },
+
+    login: function(form, callback) {
+        if (user = safeBox.retrieveUser(form.querySelector('#username').value, form.querySelector('#password').value)) {
+            callback();
+        } else {
+            this.error('Your credentials are invalid');
+        }
+    },
+
+    logout: function() {
+        user = undefined;
     },
 
     validate: function(form, inputs) {

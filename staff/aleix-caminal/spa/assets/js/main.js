@@ -10,6 +10,20 @@ var landing = new Landing('Choose an option', 'section',
     }
 );
 
+var register = new Register('Register', 'section',
+    function(form) {
+        logic.register(form, function() {
+            register.hide();
+            login.show();
+        });
+    },
+
+    function() {
+        register.hide();
+        landing.show();
+    }
+);
+
 var login = new Login('Login', 'section',
     function(form) {
         logic.login(form, function() {
@@ -25,26 +39,12 @@ var login = new Login('Login', 'section',
     }
 );
 
-var register = new Register('Register', 'section',
-    function(form) {
-        logic.register(form, function() {
-            register.hide();
-            login.show();
-        });
-    },
-
-    function() {
-        register.hide();
-        landing.show();
-    }
-);
-
 var welcome = new Welcome('Welcome', 'section', function() {
     welcome.hide();
     login.show();
 });
 
 document.body.appendChild(landing.element);
-document.body.appendChild(login.element);
 document.body.appendChild(register.element);
+document.body.appendChild(login.element);
 document.body.appendChild(welcome.element);
