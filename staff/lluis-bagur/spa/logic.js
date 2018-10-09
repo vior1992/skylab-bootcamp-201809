@@ -1,25 +1,31 @@
+var user;
+
 var logic = {
-
-        saveDates: function (user, pass, name, email, phone) {
-            if (typeof user !== 'string' || !user.trim().length) onFail ('invalid user');
-            if (typeof pass !== 'string' || !pass.trim().length) onFail ('invalid password');
-            if (typeof name !== 'string' || !name.trim().length) onFail ('invalid user');
-            if (typeof email !== 'string' || !email.trim().length) alert('invalid password');
-            if (typeof phone !== 'string' || !phone.trim().length) alert('invalid password');
-
+    register: function (name, surname, username, password, onSuccess, onFail) {
+        if (!name || !name.trim().length) onFail('invalid name');
+        else if (!surname || !surname.trim().length) onFail('invalid surname');
+        else if (!username || !username.trim().length) onFail('invalid username');
+        else if (!password || !password.trim().length) onFail('invalid password');
+        else {
             user = {
-                
-                
-            }
+                name: name,
+                surname: surname,
+                username: username,
+                password: password
+            };
 
-        },
-
-        retrieveDates: function (user,pass) {
-            if (user !== _user) throw Error('invalid user');
-            if (pass !== _password) throw Error('invalid password');
-
-            return true;
+            onSuccess();
         }
-    };
+    },
 
-
+    login: function (username, password, onSuccess, onFail) {
+        if (!username || !username.trim().length) onFail('invalid username');
+        else if (!password || !password.trim().length) onFail('invalid password');
+        else if (user) {
+            if (user.username === username && user.password === password) {
+                onSuccess(user);
+            }
+            else onFail('wrong credentials!');
+        }
+    }
+};
