@@ -1,3 +1,5 @@
+var user;
+
 var landing = new Landing('Choose an option', 'section',
     function() {
         landing.hide();
@@ -10,31 +12,53 @@ var landing = new Landing('Choose an option', 'section',
 
 document.body.appendChild(landing.element);
 
-var login = new Login('Login', 'section', function() {
-    var user = document.querySelector('.user').value;
-    var pass = document.querySelector('.pass').value;
-    if(user === '_user' && pass === '_pass') {
-        login.hide();
-        welcome.show();
-        error.hide();
-    }else{
-        error.show();
-    }
-   
+var login = new Login('Login', 'section', function (username, password) {
+    logic.login(username, password, 
+        function(user) {
+            login.hide();
+
+            welcome.title.innerText = 'Welcome, ' + user.username + '!';
+            
+            welcome.show();
+        },
+        function(message) {
+            alert(message);
+        });
+}, function () {
+    login.hide();
+    landing.show();
 });
+   
+
 
 document.body.appendChild(login.element);
 
-var register = new Register('Register', 'section', function() {
+
+
+var register = new Register('Register', 'section', function (email, username, password) {
+    logic.register(email, username, password,
+        function () {
+            register.hide();
+            login.show();
+        },
+        function (message) {
+            alert(message);
+        }
+    );
+}, function () {
     register.hide();
-    login.show();
+    landing.show();
 });
 
 document.body.appendChild(register.element);
 
+
+
 var welcome = new Welcome('Welcome', 'section');
 
 document.body.appendChild(welcome.element);
+
+
 
 var error = new Error('Error', 'section');
 
