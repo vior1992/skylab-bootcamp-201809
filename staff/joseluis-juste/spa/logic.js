@@ -14,10 +14,15 @@ var service = (function () {
 
             if (typeof password !== 'string' || !password.trim().length){registerFail('invalid password'); return};
 
+            if (typeof registerSuccess !== "function") throw Error('registerSuccess is not a function'); 
+
+            if (typeof registerFail !== "function") throw Error('registerFail is not a function'); 
+
             _firstname = firstname;
             _lastname = lastname;
             _username = username;
             _password = password;
+
             registerSuccess();
         },
         getUserData: function () {
@@ -30,6 +35,10 @@ var service = (function () {
             if (typeof username !== 'string' || !username.trim().length){loginFail('invalid username'); return}
 
             if (typeof password !== 'string' || !password.trim().length){loginFail('invalid password'); return}
+
+            if (typeof loginSuccess !== "function") throw Error('loginSuccess is not a function'); 
+
+            if (typeof loginFail !== "function") throw Error('loginFail is not a function'); 
 
             if (username === _username && password === _password){
                 loginSuccess();
