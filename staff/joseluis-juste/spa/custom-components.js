@@ -1,25 +1,3 @@
-var safeBox = (function () {
-    var _username;
-    var _password;
-
-    return {
-        setCredentials: function (username, password) {
-            if (typeof username !== 'string' || !username.trim().length) throw Error('invalid secret');
-
-            if (typeof password !== 'string' || !password.trim().length) throw Error('invalid password');
-
-            _username = username;
-            _password = password;
-        },
-
-        getCredentials: function () {
-
-
-            return { username: _username, password: _password };
-        }
-    };
-})();
-
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
 
@@ -111,7 +89,7 @@ function Register(tag, registerCallback,backCallback) {
     this.hide();
     this.element.className = "register";
 
-    this.inputs = [{ FirstName: "firstname" }, { LastName: "lastname" }, { Addres: "addres" }, { Email: "email" }, { Phone: "phone" }, { Username: "username" }, { Password: "password" }];
+    this.inputs = [{ FirstName: "firstname" }, { LastName: "lastname" }, { Username: "username" }, { Password: "password" }];
 
     this.inputs.forEach((x, i) => {
 
@@ -135,7 +113,7 @@ function Register(tag, registerCallback,backCallback) {
     button.type = "button";
     button.innerText = "Send";
     button.addEventListener("click", x => {
-        registerCallback(this.element.username.value,this.element.password.value);
+        registerCallback(this.element.firstname.value, this.element.lastname.value, this.element.username.value, this.element.password.value);
 
     });
     this.element.appendChild(button);

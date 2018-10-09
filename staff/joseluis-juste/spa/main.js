@@ -1,22 +1,22 @@
 var landing = new Landing("¡¡¡Welcome to WebComponents!!!", "section", function () {
 
 
-    var register = new Register("form", function (username, password) {
+    var register = new Register("form", function (firstname,lastname,username, password) {
 
-        try{
-            safeBox.setCredentials(username, password);
+        service.setUserData(firstname,lastname,username, password, function(){
             register.hide();
             landing.show();
-        }catch(err){
-            var error = new Alert("¡¡¡ERROR!!!", err.message,"section", function () {
+       },function(message){
+            var error = new Alert("¡¡¡ERROR!!!", message,"section", function () {
                 error.hide();
                 register.show();
 
             }, true)
+            register.hide();
             error.show();
             error.render(document.body);
-            register.hide();
-        }
+       });
+      
     },function(){
 
         register.hide();
@@ -30,7 +30,8 @@ var landing = new Landing("¡¡¡Welcome to WebComponents!!!", "section", functi
 
     var login = new Login("LOGIN", "form", function (username, password) {
 
-        if ((username === safeBox.getCredentials().username) && (safeBox.getCredentials().password === password)) {
+        service.login(username, password, function(){
+
             var welcome = new Alert("¡¡¡WELCOME!!!", "Bienvenido a los Web Components", "section", function () {
 
                 welcome.hide();
@@ -41,9 +42,10 @@ var landing = new Landing("¡¡¡Welcome to WebComponents!!!", "section", functi
             welcome.render(document.body);
             welcome.show();
             login.hide();
-        }
-        else {
-            var error = new Alert("¡¡¡ERROR!!!", "The credentials are incorrect", "section", function () {
+
+        }, function(message){
+
+            var error = new Alert("¡¡¡ERROR!!!", message, "section", function () {
                 error.hide();
                 login.show();
 
@@ -51,8 +53,8 @@ var landing = new Landing("¡¡¡Welcome to WebComponents!!!", "section", functi
             error.show();
             error.render(document.body);
             login.hide();
-        }
-
+        });
+        
     }, function () {
         login.hide();
         landing.show();
