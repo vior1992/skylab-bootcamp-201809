@@ -77,7 +77,7 @@ var register = new Register('Register', 'section',
 );
 
 var welcome = new Welcome('Welcome', 'section', function() {
-    var user = undefined;
+    user = undefined;
     welcome.hide();
     login.show();
 });
