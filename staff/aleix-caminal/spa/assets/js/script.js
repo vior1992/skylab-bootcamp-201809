@@ -33,6 +33,7 @@ function Login(title, tag, loginCallback, cancelCallback) {
         {
             element: 'button',
             label: 'Cancel',
+            class: 'form-buttons__button form-buttons__button--danger',
             on: {
                 click: cancelCallback
             }
@@ -77,6 +78,7 @@ function Register(title, tag, registerCallback, cancelCallback) {
         {
             element: 'button',
             label: 'Cancel',
+            class: 'form-buttons__button form-buttons__button--danger',
             on: {
                 click: cancelCallback
             }

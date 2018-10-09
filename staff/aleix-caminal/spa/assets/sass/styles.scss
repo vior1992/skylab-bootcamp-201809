@@ -1,8 +1,9 @@
 $color-primary: #2196f3;
+$color-danger: #f3212d;
 
 @mixin form() {
     display: inline-block;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 1.5rem;
     text-decoration: none;
     font-size: 1.25rem;
@@ -69,7 +70,7 @@ $color-primary: #2196f3;
                     @include input();
 
                     &.is-invalid {
-                        border-color: #f00;
+                        border-color: $color-danger;
                     }
                 }
             }
@@ -83,6 +84,10 @@ $color-primary: #2196f3;
             .form-buttons__button {
                 @include form();
                 @include button($color-primary);
+
+                &--danger {
+                    @include button($color-danger);
+                }
             }
         }
     }
