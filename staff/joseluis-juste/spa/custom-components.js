@@ -1,3 +1,25 @@
+var safeBox = (function () {
+    var _username;
+    var _password;
+
+    return {
+        setCredentials: function (username, password) {
+            if (typeof username !== 'string' || !username.trim().length) throw Error('invalid secret');
+
+            if (typeof password !== 'string' || !password.trim().length) throw Error('invalid password');
+
+            _username = username;
+            _password = password;
+        },
+
+        getCredentials: function () {
+
+
+            return { username: _username, password: _password };
+        }
+    };
+})();
+
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
 
@@ -75,19 +97,10 @@ Login.prototype.show = function () {
 // TODO Register & Welcome
 
 
-function Register(tag, registerCallback) {
+function Register(tag, registerCallback,backCallback) {
     Component.call(this, tag);
     
     this.hide();
-
-    this.getUsername = function () {
-        return username;
-    }
-
-    this.getPassword = function () {
-        return password;
-    }
-
 
     this.inputs = [{ FirstName: "firstname" }, { LastName: "lastname" }, { Addres: "addres" }, { Email: "email" }, { Phone: "phone" }, { Username: "username" }, { Password: "password" }];
 
@@ -112,6 +125,15 @@ function Register(tag, registerCallback) {
     button.innerText = "Send";
     button.addEventListener("click", x => {
         registerCallback(this.element.username.value,this.element.password.value);
+
+    });
+    this.element.appendChild(button);
+
+    button = document.createElement("button");
+    button.type = "button";
+    button.innerText = "Back";
+    button.addEventListener("click", x => {
+        backCallback();
 
     });
     this.element.appendChild(button);
