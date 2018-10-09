@@ -1,8 +1,22 @@
 describe('Logic', function () {
     describe('register', function () {
-        it('should fail on non form argument', function () {
+        it('should fail on object as form', function () {
             expect(function() {
                 logic.register({});
+            }).toThrowError('no form passed as argument');
+        });
+
+        it('should fail on non form element', function () {
+            expect(function() {
+                var form = document.createElement('p');
+                logic.register(form);
+            }).toThrowError('no form passed as argument');
+        });
+
+        it('should fail on empty form argument', function () {
+            expect(function() {
+                var form = document.createElement('p');
+                logic.register();
             }).toThrowError('no form passed as argument');
         });
 
@@ -18,6 +32,20 @@ describe('Logic', function () {
         it('should fail on non form argument', function () {
             expect(function() {
                 logic.login({});
+            }).toThrowError('no form passed as argument');
+        });
+
+        it('should fail on non form element', function () {
+            expect(function() {
+                var form = document.createElement('p');
+                logic.login(form);
+            }).toThrowError('no form passed as argument');
+        });
+
+        it('should fail on empty form argument', function () {
+            expect(function() {
+                var form = document.createElement('p');
+                logic.login();
             }).toThrowError('no form passed as argument');
         });
 
@@ -39,9 +67,15 @@ describe('Logic', function () {
     });
 
     describe('validate', function () {
-        it('should fail on invalid form id', function () {
+        it('should fail on blank form id', function () {
             expect(function() {
-                logic.validate('');
+                logic.validate(' ');
+            }).toThrowError('form id is not valid');
+        });
+
+        it('should fail on empty form id', function () {
+            expect(function() {
+                logic.validate();
             }).toThrowError('form id is not valid');
         });
 
