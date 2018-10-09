@@ -1,6 +1,29 @@
+var safeBox = (function () {
+    var _username;
+    var _password;
+
+    return {
+        setCredentials: function (username, password) {
+            if (typeof username !== 'string' || !username.trim().length) throw Error('invalid secret');
+
+            if (typeof password !== 'string' || !password.trim().length) throw Error('invalid password');
+
+            _username = username;
+            _password = password;
+        },
+
+        getCredentials: function () {
+            
+
+            return {username:_username,password:_password};
+        }
+    };
+})();
+
+
 var login = new Login("LOGIN", "form", function (username, password) {
 
-    if ((username === register.getUsername()) && (register.getPassword() === password)) {
+    if ((username === safeBox.getCredentials().username) && (safeBox.getCredentials().password === password)) {
         var welcome = new Alert("¡¡¡WELCOME!!!", "Bienvenido a los Web Components", "section", function () {
 
             welcome.hide();
@@ -29,8 +52,9 @@ var login = new Login("LOGIN", "form", function (username, password) {
 });
 
 
-var register = new Register("form", function () {
+var register = new Register("form", function (username, password) {
 
+    safeBox.setCredentials(username, password);
     register.hide();
     landing.show();
 });

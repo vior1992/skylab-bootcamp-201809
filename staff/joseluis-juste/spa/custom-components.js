@@ -77,9 +77,7 @@ Login.prototype.show = function () {
 
 function Register(tag, registerCallback) {
     Component.call(this, tag);
-    var username;
-    var password;
-
+    
     this.hide();
 
     this.getUsername = function () {
@@ -113,9 +111,7 @@ function Register(tag, registerCallback) {
     button.type = "button";
     button.innerText = "Send";
     button.addEventListener("click", x => {
-        username = this.element.username.value;
-        password = this.element.password.value;
-        registerCallback();
+        registerCallback(this.element.username.value,this.element.password.value);
 
     });
     this.element.appendChild(button);
