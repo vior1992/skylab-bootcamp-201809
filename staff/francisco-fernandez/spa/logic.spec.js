@@ -6,7 +6,7 @@ describe('logic', function(){
     var username;
     var password;
     var error;
-    var message;
+   
 
     beforeEach(function(){
         name = 'Paco';
@@ -17,10 +17,11 @@ describe('logic', function(){
 
     describe('register', function(){
         it ('should save the input elements', function(){
-            debugger
+
             logic.register(name,surname,username,password,
                 
             function () {
+                
                 user.name = name;
                 user.surname = surname;
                 user.username = username;
@@ -30,10 +31,29 @@ describe('logic', function(){
                 
                 alert(message);
             });
+            
             expect(user.name).toEqual(name);
             expect(user.surname).toEqual(surname);
             expect(user.username).toEqual(username);
             expect(user.password).toEqual(password);
+        });
+    });
+
+    describe('login', function(){
+        it ('should launch on succes if username and password are correct', function(){
+            
+            user = {name: 'Paco',surname: 'Fdez',username: 'Pacus',password: '123'};
+            var message = 0;
+
+            logic.login(username,password,
+                
+            function () {
+               message = 'succes';
+            },
+            function (message) {
+                
+            });
+            expect(message).toEqual('succes');
         });
     });
 });
