@@ -1,4 +1,6 @@
 function fill(array, substitute, start, end) {
+  if(!(array instanceof Array)) throw Error(array + ' is not valid');
+
   var newArray = [],
   start = start || 0,
   end = end || array.length;

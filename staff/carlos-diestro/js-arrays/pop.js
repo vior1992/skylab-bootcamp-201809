@@ -1,4 +1,7 @@
 function pop(array) {
+  if(!(array instanceof Array)) throw Error(array + ' is not an array');
+  if(array.length === 0) throw Error(array + ' is empty');
+
   var newArray = [],
       element;
 

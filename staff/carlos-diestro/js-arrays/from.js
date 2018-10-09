@@ -3,7 +3,7 @@ function from(array, callback) {
 
   for(var i = 0; i < array.length; i++) {
     if(typeof callback == 'function') {
-      newArray[i] = callback(array[i]);
+      newArray[i] = callback(array[i], i);
     } else {
       newArray[i] = array[i];
     }
