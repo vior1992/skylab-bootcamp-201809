@@ -1,0 +1,32 @@
+.footer{
+    background-color: $footer__background-color;
+    height: 394px;
+    & .footer__items_menu{
+        display: flex;
+        justify-content: space-around;
+        font-size: 0.8em;
+        margin-top:2em;
+        & .footer__items__menu__item{
+            & li:first-child{
+                color:white;
+                font-weight: bold;
+                margin-bottom: 0.7em;
+                
+            }
+            & li:not(:first-child){
+                margin-bottom: 0.3em;
+            }
+            & li a{
+                text-decoration: none;
+                color:gray;
+            }
+        }
+    }
+    & .footer__rights{
+        text-align:  center;
+        color:gray;
+        margin-top: 3em;
+        font-size: 0.8em;
+
+    }
+}
