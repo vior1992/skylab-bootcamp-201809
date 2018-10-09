@@ -25,6 +25,7 @@ var register = new Register('Register', 'section', function () {
     if (result) {
         register.hide();
         login.show();
+        //login.flex();
     } else {
         //document.getElementsByName('errors_register')[0].innerText = error.message;
     }
@@ -32,6 +33,7 @@ var register = new Register('Register', 'section', function () {
 document.body.appendChild(register.element);
 
 var login = new Login('Login', 'section', function () {
+    
     var username = document.getElementsByName("confirm_username")[0].value;
     var password = document.getElementsByName("confirm_password")[0].value;
 
@@ -48,7 +50,8 @@ var login = new Login('Login', 'section', function () {
         login_errors.hide();
     } else {
         login_errors.show();
-        login.hide();
+        login_errors.errors.innerText='hola';
+        //login.hide();
         // var text=document.getElementsByClassName("errors_login")[0].innerText;
         // text.innerText=error.message.innerText;
         //        // var text = document.getElementByClassName("errors_login").innerText;

@@ -1,27 +1,31 @@
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
-    this.element.className = 'dialog';
+    // this.element.className = 'dialog';
+    
+    this.div=document.createElement('div');
+    this.div.className='dialog';
+    this.element.appendChild(this.div);
+
     this.title.className = 'dialog__title';
+    this.div.appendChild(this.title);
 
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
     this.register.type = 'button';
     this.register.addEventListener('click', registerCallback);
     this.register.className = 'confirm__button';
-    this.element.appendChild(this.register);
+    this.div.appendChild(this.register);
 
-    this.element.appendChild(document.createTextNode(' or '));
+    this.div.appendChild(document.createTextNode(' or '));
 
     this.login = document.createElement('button');
     this.login.innerText = 'Login';
     this.login.addEventListener('click', loginCallback);
     this.login.className = 'confirm__button';
-    this.element.appendChild(this.login);
+    this.div.appendChild(this.login);
 }
 Landing.prototype = Object.create(Panel.prototype);
 Landing.prototype.constructor = Landing;
-
-
 
 function Register(title, tag, submitCallback) {
     Panel.call(this, title, tag);
@@ -40,11 +44,13 @@ function Register(title, tag, submitCallback) {
     this.password = document.createElement('input');
     this.password.name = '_password';
     this.password.value = 'password';
+    this.password.type='password';
     this.form.appendChild(this.password);
 
     this.repeatPass = document.createElement('input');
     this.repeatPass.name = '_repeatPass';
     this.repeatPass.value = 'password';
+    this.repeatPass.type='password';
     this.form.appendChild(this.repeatPass);
 
     this.name = document.createElement('input');
@@ -59,12 +65,16 @@ function Register(title, tag, submitCallback) {
 
     this.submit = document.createElement('button');
     this.submit.innerText = 'Submit';
-    this.submit.addEventListener('click', submitCallback);
+    this.submit.type='button';
+    this.submit.addEventListener('click', function(event){
+        event.preventDefault();
+        submitCallback();
+    });
     this.submit.className = 'confirm__button';
-    this.element.appendChild(this.submit);
+    this.form.appendChild(this.submit);
 
     this.errors = document.createElement('p');
-    this.errors.innerText = 'hola';
+    this.errors.innerText = '';
     this.errors.name = 'errors_register';
     this.element.appendChild(this.errors);
 }
@@ -89,6 +99,7 @@ function Login(title, tag, login_Callback) {
     this.password = document.createElement('input');
     this.password.name = 'confirm_password';
     this.password.value = 'password';
+    this.password.type = 'password';
     this.form.appendChild(this.password);
 
     this.login = document.createElement('button');
@@ -96,7 +107,6 @@ function Login(title, tag, login_Callback) {
     this.login.addEventListener('click', login_Callback);
     this.login.className = 'confirm__button';
     this.login.innerText = 'Login';
-
     this.form.appendChild(this.login);
 }
 Login.prototype = Object.create(Panel.prototype);
@@ -104,7 +114,7 @@ Login.prototype.constructor = Login;
 
 function Welcome(title, tag, WelcomeCallback) {
     Panel.call(this, title, tag);
-    this.element.className = 'alert';
+    this.element.className = 'dialog alert';
     this.title.className = 'alert__title';
 
     this.element.style.display = 'none';
@@ -123,13 +133,14 @@ function Login_Errors(title, tag, error_Callback) {
     Panel.call(this, title, tag);
 
     this.errors = document.createElement(tag);
-    this.errors.innerText = 'Username or password is not valid';
+    this.errors.innerText = '';
     this.errors.classList.add("errors_login");
     this.errors.name = 'errors_login';
     this.element.style.display = 'none';
-    this.element.className = 'alert alert--danger';
+    this.element.className = 'dialog alert alert--danger';
     this.title.className = 'alert__title--danger';
     this.element.appendChild(this.errors);
+
 
     this.but = document.createElement('button');
     this.but.type = 'button';
@@ -143,3 +154,4 @@ Login_Errors.prototype = Object.create(Panel.prototype);
 Login_Errors.prototype.constructor = Login_Errors;
 
 // TODO Register & Welcome
+

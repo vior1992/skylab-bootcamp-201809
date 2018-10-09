@@ -6,9 +6,10 @@ function SafeBoxAdministration(_name, _surname, _username, _password, _repeatPas
     var password;
     var safeBox = {
         saveData: function(_name, _surname, _username, _password, _repeatPass) {
-            if(_password==undefined && typeof _password !=='string'){
-                throw Error ("Password must be set");
-            }
+            if(_password==undefined)  throw Error ("Password must be set");
+        
+            if(!isNaN(_password))  throw Error('password can not contain numbers');
+            
             if(_repeatPass==undefined && typeof _repeatPass !=='string' && _password!==_repeatPass){
                 throw Error ("Password does not match");
             }
