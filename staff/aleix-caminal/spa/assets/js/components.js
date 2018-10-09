@@ -41,11 +41,14 @@ function Login(title, tag, loginCallback, cancelCallback) {
         {
             element: 'button',
             label: 'Log In',
-            on: {
-                click: loginCallback
-            }
+            type: 'submit'
         }
     ]);
+
+    this.form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        loginCallback(this.form);
+    }.bind(this));
 
     this.element.appendChild(this.form);
 }
@@ -86,11 +89,14 @@ function Register(title, tag, registerCallback, cancelCallback) {
         {
             element: 'button',
             label: 'Register',
-            on: {
-                click: registerCallback
-            }
+            type: 'submit'
         }
     ]);
+
+    this.form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        registerCallback(this.form);
+    }.bind(this));
 
     this.element.appendChild(this.form);
 }
