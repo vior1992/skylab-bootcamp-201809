@@ -2,20 +2,26 @@
     box-sizing: border-box;
 }
 
-section{
+.dialog, .alert, .confirm {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.landing{
     padding: 2em 3em;
     background-color: antiquewhite;
     text-align: center;
     width: 27%;
     margin: 0 auto;
     margin-top: 2em;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
-form{
-   width: 24%;
-   padding: 2em 3em;
-   background-color: antiquewhite;
-  
+.register,.login{
+    width: 24%;
+    padding: 2em 3em;
+    background-color: antiquewhite;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     margin: 0 auto;
     margin-top: 2em;
     & > div{
@@ -49,7 +55,7 @@ form{
     }
 }
 
-button{
+.button{
     text-decoration: none;
     display: inline-block;
     padding: 1em 3em;

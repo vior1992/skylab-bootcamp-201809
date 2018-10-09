@@ -23,14 +23,17 @@ var safeBox = (function () {
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
 
+    this.element.className = "landing";
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
+    this.register.className = "button";
     this.register.addEventListener('click', registerCallback);
 
     this.element.appendChild(this.register);
 
     this.login = document.createElement('button');
     this.login.innerText = 'Login';
+    this.login.className = "button";
     this.login.addEventListener('click', loginCallback);
 
     this.element.appendChild(this.login);
@@ -44,6 +47,7 @@ function Login(title, tag, loginCallback, backCallback) {
     Panel.call(this, title, tag);
 
     this.hide();
+    this.element.className = "login";
 
     this.inputs = [{ Username: "username" }, { Password: "password" }];
 
@@ -66,10 +70,12 @@ function Login(title, tag, loginCallback, backCallback) {
 
     this.login = document.createElement('button');
     this.login.type = "button";
+    this.login.className = "button";
     this.login.innerText = "Login";
 
     this.back = document.createElement('button');
     this.back.type = "button";
+    this.back.className = "button";
     this.back.innerText = "Back";
 
     this.login.addEventListener("click", eve => {
@@ -101,6 +107,7 @@ function Register(tag, registerCallback,backCallback) {
     Component.call(this, tag);
     
     this.hide();
+    this.element.className = "register";
 
     this.inputs = [{ FirstName: "firstname" }, { LastName: "lastname" }, { Addres: "addres" }, { Email: "email" }, { Phone: "phone" }, { Username: "username" }, { Password: "password" }];
 
@@ -121,6 +128,7 @@ function Register(tag, registerCallback,backCallback) {
     });
 
     var button = document.createElement("button");
+    button.className = "button";
     button.type = "button";
     button.innerText = "Send";
     button.addEventListener("click", x => {
@@ -131,6 +139,7 @@ function Register(tag, registerCallback,backCallback) {
 
     button = document.createElement("button");
     button.type = "button";
+    button.className = "button";
     button.innerText = "Back";
     button.addEventListener("click", x => {
         backCallback();

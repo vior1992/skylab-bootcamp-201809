@@ -2,30 +2,38 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-section {
+.dialog, .alert, .confirm {
+  width: 30%;
+  margin: 0 auto; }
+
+.landing {
   padding: 2em 3em;
   background-color: antiquewhite;
   text-align: center;
   width: 27%;
   margin: 0 auto;
-  margin-top: 2em; }
+  margin-top: 2em;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75); }
 
-form {
+.register, .login {
   width: 24%;
   padding: 2em 3em;
   background-color: antiquewhite;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   margin: 0 auto;
   margin-top: 2em; }
-  form > div {
+  .register > div, .login > div {
     margin-bottom: 1em;
     width: 100%; }
-    form > div label {
+    .register > div label, .login > div label {
       color: black;
       font-size: 0.8em;
       display: block;
       margin-bottom: 0.5em;
       font-weight: bolder; }
-    form > div input {
+    .register > div input, .login > div input {
       display: block;
       width: 100%;
       padding: 0.8em 1em;
@@ -33,7 +41,7 @@ form {
       border-color: rgba(0, 0, 0, 0.2);
       border-width: 1px;
       width: 100%; }
-    form > div textarea {
+    .register > div textarea, .login > div textarea {
       width: 100%;
       border-radius: 4px;
       padding: 1em 1em;
@@ -41,7 +49,7 @@ form {
       border-width: 1px;
       font-family: arial; }
 
-button {
+.button {
   text-decoration: none;
   display: inline-block;
   padding: 1em 3em;
@@ -52,10 +60,10 @@ button {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.2);
   border-width: 1px; }
-  button:hover {
+  .button:hover {
     background-color: black;
     color: white;
     border-color: white;
     cursor: pointer; }
-  button:nth-of-type(2) {
+  .button:nth-of-type(2) {
     margin-left: 3em; }
