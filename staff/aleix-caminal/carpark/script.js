@@ -36,14 +36,14 @@ function start() {
     document.addEventListener('keydown', function(e) {
         switch (e.keyCode) {
             case 37:
-                if (speed) rotation -= 9;
+                if (speed > .4) rotation -= 9;
                 car.style.transform = 'rotate(' + rotation + 'deg)';
                 break;
             case 38:
                 if (max_speed > speed) speed++;
                 break;
             case 39:
-                if (speed) rotation += 9;
+                if (speed > .4) rotation += 9;
                 car.style.transform = 'rotate(' + rotation + 'deg)';
                 break;
             case 40:
@@ -54,6 +54,12 @@ function start() {
 }
 
 function update(dt) {
+    if (speed > 0) {
+        speed -= 0.001 * dt;
+    } else if (speed < 0) {
+        speed += 0.001 * dt;
+    }
+
     x += (speed * dt / 10) * Math.sin(Math.PI / 180 * (rotation - 90));
     y -= (speed * dt / 10) * Math.cos(Math.PI / 180 * (rotation - 90));
     car.style.left = x + 'px';
