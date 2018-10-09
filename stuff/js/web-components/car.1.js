@@ -1,13 +1,13 @@
 function Car(image) {
-    var car = document.createElement('img');
+    var element = document.createElement('img');
 
-    car.src = image;
-    car.style.position = 'absolute'
-    car.style.height = '200px';
+    element.src = image;
+    element.style.position = 'absolute'
+    element.style.height = '200px';
 
-    document.body.appendChild(car);
+    document.body.appendChild(element);
 
-    this.car = car;
+    this.element = element;
     this.step = 10;
     this.rotation = 0;
 }
@@ -21,14 +21,14 @@ Car.prototype.calcY = function () {
 };
 
 Car.prototype.move = function (x, y) {
-    this.car.style.top = this.car.offsetTop + y + 'px';
-    this.car.style.left = this.car.offsetLeft + x + 'px';
+    this.element.style.top = this.element.offsetTop + y + 'px';
+    this.element.style.left = this.element.offsetLeft + x + 'px';
 };
 
 Car.prototype.turn = function (rotation) {
     this.rotation += rotation;
 
-    this.car.style.transform = 'rotate(' + this.rotation + 'deg)';
+    this.element.style.transform = 'rotate(' + this.rotation + 'deg)';
 };
 
 Car.prototype.turnRight = function () {
