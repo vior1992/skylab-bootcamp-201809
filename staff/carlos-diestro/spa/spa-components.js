@@ -63,25 +63,6 @@ function Register(title, tag, registerCallback) {
 Register.prototype = Object.create(Panel.prototype);
 Register.prototype.constructor = Register;
 
-function Welcome(title, tag, logoutCallback) {
-    Panel.call(this, title, tag);
-
-    this.element.className = 'welcome';
-    this.hide();
-
-    this.paragraph = document.createElement('p');
-    this.paragraph.appendChild(document.createTextNode('Hello my friend'));
-    this.element.appendChild(this.paragraph);
-
-    this.logout = document.createElement('button');
-    this.logout.innerText = 'Logout';
-    this.logout.addEventListener('click', logoutCallback);
-    this.element.appendChild(this.logout);
-}
-
-Welcome.prototype = Object.create(Panel.prototype);
-Welcome.prototype.constructor = Welcome;
-
 function Login(title, tag, loginCallback) {
     Panel.call(this, title, tag);
 
@@ -118,3 +99,31 @@ function Login(title, tag, loginCallback) {
 
 Login.prototype = Object.create(Panel.prototype);
 Login.prototype.constructor = Login;
+
+function Welcome(title, tag, logoutCallback) {
+    Panel.call(this, title, tag);
+
+    this.element.className = 'welcome';
+    this.hide();
+
+    this.paragraph = document.createElement('p');
+    this.paragraph.appendChild(document.createTextNode('Hello my friend'));
+    this.element.appendChild(this.paragraph);
+
+    this.logout = document.createElement('button');
+    this.logout.innerText = 'Logout';
+    this.logout.addEventListener('click', logoutCallback);
+    this.element.appendChild(this.logout);
+}
+
+Welcome.prototype = Object.create(Panel.prototype);
+Welcome.prototype.constructor = Welcome;
+
+function inputError(message, tag) {
+    Panel.call(this, message, tag);
+
+    this.element.className = 'error';
+}
+
+inputError.prototype = Object.create(Panel.prototype);
+inputError.prototype.constructor = inputError;

@@ -1,4 +1,5 @@
 var user;
+var error;
 
 var logic = {
   register: function(email, name, password, onSuccess, onFailure) {

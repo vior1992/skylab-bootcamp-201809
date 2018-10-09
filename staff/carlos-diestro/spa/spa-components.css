@@ -42,4 +42,8 @@ input {
   text-align: center;
 }
 
-/*# sourceMappingURL=custom-components.css.map */
+.error {
+  color: #e53935;
+}
+
+/*# sourceMappingURL=spa-components.css.map */
