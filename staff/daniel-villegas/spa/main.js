@@ -29,8 +29,9 @@ document.body.appendChild(register.element);
 var welcome = new Welcome('Welcome', 'section', 
     function(){
         alert('WELCOME VISITOR!');
-        welcome.hide();
-        landing.show();
+        //welcome.hide();
+        window.location.href="http://www.humordev.com"
+        //landing.show();
     });
 
 document.body.appendChild(welcome.element);

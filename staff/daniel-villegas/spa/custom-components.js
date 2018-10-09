@@ -1,6 +1,6 @@
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
-
+    
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
     this.register.className = "buttons";
@@ -91,7 +91,7 @@ Register.prototype.constructor = Register;
 function Welcome(title, tag, alertCallback) {
     Panel.call(this, title, tag);
 
-    this.form = document.createElement('form');
+    this.form = document.createElement('form');;
 
     this.element.appendChild(this.form);
 
