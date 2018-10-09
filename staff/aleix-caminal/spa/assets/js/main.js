@@ -40,8 +40,10 @@ var login = new Login('Login', 'section',
 );
 
 var welcome = new Welcome('Welcome', 'section', function() {
-    welcome.hide();
-    login.show();
+    logic.logout(function() {
+        welcome.hide();
+        login.show();
+    });
 });
 
 document.body.appendChild(landing.element);

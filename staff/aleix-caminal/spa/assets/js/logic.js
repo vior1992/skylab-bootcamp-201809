@@ -46,8 +46,9 @@ var logic = {
         }
     },
 
-    logout: function() {
+    logout: function(callback) {
         user = undefined;
+        callback();
     },
 
     validate: function(form, inputs) {
