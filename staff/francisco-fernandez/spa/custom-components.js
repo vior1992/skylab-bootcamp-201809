@@ -1,6 +1,8 @@
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
-    
+
+    this.element.className = 'landing';
+
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
     this.register.addEventListener('click', registerCallback);
@@ -10,7 +12,6 @@ function Landing(title, tag, registerCallback, loginCallback) {
     this.element.appendChild(document.createTextNode(' or '));
 
     this.login = document.createElement('button');
-    this.login.class = 'button__login';
     this.login.innerText = 'Login';
     this.login.addEventListener('click', loginCallback);
 
