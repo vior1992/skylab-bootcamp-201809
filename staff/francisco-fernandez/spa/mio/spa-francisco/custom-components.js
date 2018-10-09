@@ -75,17 +75,40 @@ Login.prototype.constructor = Login;
 
 // TODO Register & Welcome
 
-function Register(title, tag, registerCallback){
+function Register(title, tag, registerCallback, backCallback){
     Panel.call(this, title, tag);
 
     this.element.className = 'register';
 
     this.element.title.className = 'register__title'
 
-    this.element.style.display = 'none';
+    this.hide();
 
     this.form = document.createElement('form');
+    this.form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var name = this.name.value;
+        var surname = this.surname.value;
+        var username = this.username.value;
+        var password = this.password.value;
+
+        registerCallback(name, surname, username, password);
+    }.bind(this));
+
     this.element.appendChild(this.form);
+
+    this.name = document.createElement('input');
+    this.name.className = 'register__input';
+    this.name.placeholder = 'name';
+
+    this.form.appendChild(this.name);
+
+    this.surname = document.createElement('input');
+    this.surname.className = 'register__input';
+    this.surname.placeholder = 'surname';
+
+    this.form.appendChild(this.surname);
 
     this.user = document.createElement('p');
     this.user.innerText = 'Usuario';
@@ -94,6 +117,8 @@ function Register(title, tag, registerCallback){
     this.username = document.createElement('input');
     this.username.className = 'register__input';
     this.username.name = ('userreg');
+    this.username.placeholder = 'username';
+
     this.form.appendChild(this.username);
 
     this.pass = document.createElement('p');
@@ -103,18 +128,29 @@ function Register(title, tag, registerCallback){
     this.password = document.createElement('input');
     this.password.className = 'register__input';
     this.password.name = ('passreg');
+    this.password.type = 'password';
+    this.password.placeholder = 'password';
+
     this.form.appendChild(this.password);
 
     this.register = document.createElement('button');
+    this.register.innerText = ('Register');
     this.register.type=('button');
     this.register.className='register__button'
-    this.register.innerText = ('register');
     this.register.addEventListener('click', registerCallback);
+
     this.form.appendChild(this.register);
 
     this.message = document.createElement('p');
     this.message.innerText = '';
     this.form.appendChild(this.message);
+
+    this.back = document.createElement('a');
+    this.back.href = '#';
+    this.back.innerText = 'Back';
+    this.back.addEventListener('click', backCallback);
+
+    this.element.appendChild(this.back);
 
 }
 
