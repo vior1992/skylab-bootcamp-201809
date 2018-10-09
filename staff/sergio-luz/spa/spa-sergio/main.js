@@ -1,4 +1,6 @@
-
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: LANDING 
+// 
 
 var landing = new Landing('Choose an option', 'section',
     function () {
@@ -11,6 +13,12 @@ var landing = new Landing('Choose an option', 'section',
     });
 document.body.appendChild(landing.element);
 
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: REGISTER 
+// 
+
+var register_errors=[];
+
 var register = new Register('Register', 'section', function () {
     var name = document.getElementsByName("_name")[0].value;
     var surname = document.getElementsByName("_surname")[0].value;
@@ -21,19 +29,38 @@ var register = new Register('Register', 'section', function () {
     console.log(name, surname, username, password, repeatPass);
     var result = safeBox.saveData(name, surname, username, password, repeatPass);
 
-    console.log(safeBox.checkData(password, username));
-    if (result) {
+    console.log(result);
+    if (result === true) {
+        if(register_errors.length){
+            register_errors.forEach(n => {
+                document.body.removeChild(n.element);
+            });
+        } 
         register.hide();
         login.show();
         //login.flex();
     } else {
-        //document.getElementsByName('errors_register')[0].innerText = error.message;
+        if(register_errors.length){
+            register_errors.forEach(n => {
+                document.body.removeChild(n.element);
+            });
+        }            
+        for (let index = 0; index < result.length; index++) {
+            register_errors[index] = new Register_Errors('div');
+            register_errors[index].message.innerText = result[index];
+            document.body.appendChild(register_errors[index].element);
+            console.log(register_errors);
+        }
     }
 })
 document.body.appendChild(register.element);
 
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: LOGIN 
+// 
+
 var login = new Login('Login', 'section', function () {
-    
+
     var username = document.getElementsByName("confirm_username")[0].value;
     var password = document.getElementsByName("confirm_password")[0].value;
 
@@ -50,25 +77,24 @@ var login = new Login('Login', 'section', function () {
         login_errors.hide();
     } else {
         login_errors.show();
-        login_errors.errors.innerText='hola';
-        //login.hide();
-        // var text=document.getElementsByClassName("errors_login")[0].innerText;
-        // text.innerText=error.message.innerText;
-        //        // var text = document.getElementByClassName("errors_login").innerText;
-        // console.log(text);
+        login.hide();
     }
 });
 document.body.appendChild(login.element);
 
+
+var login_errors = new Login_Errors('Error', 'section', function () {
+    login_errors.hide();
+    login.show();
+});
+document.body.appendChild(login_errors.element);
+
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: WELCOME 
+// 
 
 var welcome = new Welcome('Welcome!', 'section', function () {
     welcome.hide();
     landing.show();
 });
 document.body.appendChild(welcome.element);
-
-var login_errors=new Login_Errors('Error','section', function (){
-    login_errors.hide();
-    login.show();
-});
-document.body.appendChild(login_errors.element);

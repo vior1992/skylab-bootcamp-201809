@@ -33,4 +33,10 @@ button {
   border: 1px solid #50514B;
   width: 14em; }
 
-/*# sourceMappingURL=custom-components.css.map */
+.alert--danger {
+  padding: 2px;
+  border: 2px solid #7e0707;
+  border-radius: 0px;
+  font-weight: normal; }
+
+/*# sourceMappingURL=spa-components.css.map */
