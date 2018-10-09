@@ -143,3 +143,6 @@ function Credentials(title, tag) {
     this.element.style.display = 'none';
 
 }
+
+Credentials.prototype = Object.create(Panel.prototype);
+Credentials.prototype.constructor = Credentials;

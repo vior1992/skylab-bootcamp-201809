@@ -58,6 +58,7 @@ var register = new Register('Register Now!', 'section', function() {
     arr.forEach(function(el) {
         if (el.value==="") {
             hasBlank=true;
+            wrongRegister.element.style.display = 'block';
         }        
     })
     if (!hasBlank) {                
@@ -69,6 +70,9 @@ var register = new Register('Register Now!', 'section', function() {
 });
 
 document.querySelector(".container").appendChild(register.element);
+
+var wrongRegister = new Credentials("Can't have blank fields!", 'section');
+document.querySelector(".register").appendChild(wrongRegister.element);
 
 var welcome = new Welcome('Welcome to the app!', 'section');
 
