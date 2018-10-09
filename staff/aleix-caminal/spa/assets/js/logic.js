@@ -59,6 +59,9 @@ var logic = {
     },
 
     validate: function(form, inputs) {
+        if (typeof form !== 'string' || (form.trim()).length < 1) throw Error('form id is not valid');
+        if (!Array.isArray(inputs) || inputs.length < 1) throw Error('array is not valid');
+
         var result = 1;
         for (var i in inputs) {
             var input = form.querySelector('#' + inputs[i]);
@@ -74,6 +77,8 @@ var logic = {
     },
 
     error: function(message) {
+        if (!message) throw Error('message is not valid');
+
         alert(message);
     }
 };

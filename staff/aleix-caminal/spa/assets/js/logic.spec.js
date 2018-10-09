@@ -37,4 +37,26 @@ describe('Logic', function () {
             }).toThrowError('callback is not a function');
         });
     });
+
+    describe('validate', function () {
+        it('should fail on invalid form id', function () {
+            expect(function() {
+                logic.validate('');
+            }).toThrowError('form id is not valid');
+        });
+
+        it('should fail on non-array', function () {
+            expect(function() {
+                logic.validate('register', []);
+            }).toThrowError('array is not valid');
+        });
+    });
+
+    describe('error', function () {
+        it('should fail on invalid message', function () {
+            expect(function() {
+                logic.error();
+            }).toThrowError('message is not valid');
+        });
+    });
 });
