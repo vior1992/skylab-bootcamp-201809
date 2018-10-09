@@ -21,6 +21,9 @@ var user, safeBox;
 
 var logic = {
     register: function(form, callback) {
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+        if (typeof callback !== 'function') throw Error('callback is not a function');
+
         if (this.validate(form, ['name', 'username', 'password', 'confirm_password'])) {
             if (form.querySelector('#password').value === form.querySelector('#confirm_password').value) {
                 safeBox.saveUser(
@@ -39,6 +42,9 @@ var logic = {
     },
 
     login: function(form, callback) {
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+        if (typeof callback !== 'function') throw Error('callback is not a function');
+
         if (user = safeBox.retrieveUser(form.querySelector('#username').value, form.querySelector('#password').value)) {
             callback();
         } else {
@@ -47,6 +53,7 @@ var logic = {
     },
 
     logout: function(callback) {
+        if (typeof callback !== 'function') throw Error('callback is not a function');
         user = undefined;
         callback();
     },
