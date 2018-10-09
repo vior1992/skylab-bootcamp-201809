@@ -38,10 +38,61 @@ function Login(title, tag, loginCallback) {
 
     this.login = document.createElement('button');
 
+    this.login.type = "button";
+
+    this.login.addEventListener('click',loginCallback);
+
     this.form.appendChild(this.login);
 }
 
 Login.prototype = Object.create(Panel.prototype);
 Login.prototype.constructor = Login;
 
-// TODO Register & Welcome
+function Register(title, tag, registerCallback) {
+    Panel.call(this, title, tag);
+
+    this.element.style.display = 'none';
+
+    this.form = document.createElement('form');
+
+    this.element.appendChild(this.form);
+
+    this.fullName = document.createElement('input');
+
+    this.form.appendChild(this.fullName);
+
+    this.username = document.createElement('input');
+
+    this.form.appendChild(this.username);
+
+    this.password = document.createElement('input');
+
+    this.form.appendChild(this.password);
+
+    this.email = document.createElement('input');
+
+    this.form.appendChild(this.email);
+
+    this.register = document.createElement('button');
+
+    this.register.type = "button";
+
+    this.register.addEventListener('click',registerCallback);
+
+    this.form.appendChild(this.register);
+    
+}
+
+Register.prototype = Object.create(Panel.prototype);
+
+Register.prototype.constructor = Register;
+
+function Welcome(title, tag) {
+    Panel.call(this, title, tag);
+
+    this.element.style.display = 'none';    
+}
+
+Welcome.prototype = Object.create(Panel.prototype);
+
+Welcome.prototype.constructor = Welcome;
