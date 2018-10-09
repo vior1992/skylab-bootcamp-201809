@@ -4,6 +4,7 @@ function Component(tag) {
 
 Component.prototype.show = function () {
     this.element.style.display = 'block';
+    this.element.error = 'amending Component';
 };
 
 Component.prototype.hide = function () {
@@ -13,8 +14,11 @@ Component.prototype.hide = function () {
 function Panel(title, tag) {
     Component.call(this, tag);
 
+    this.element.className = 'panel';
+
     this.title = document.createElement('h2');
     this.title.innerText = title;
+    this.title.className = 'panel__title'
 
     this.element.appendChild(this.title);
 }
