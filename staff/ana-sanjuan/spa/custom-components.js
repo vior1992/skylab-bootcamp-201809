@@ -2,6 +2,7 @@ function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
 
     this.element.className = 'main';
+
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
     this.register.type = 'button';
@@ -17,7 +18,6 @@ function Landing(title, tag, registerCallback, loginCallback) {
     this.login.innerText = 'Login';
     this.login.className = 'button';
     this.login.addEventListener('click', loginCallback);
-    
 
     this.element.appendChild(this.login);
 }
@@ -33,19 +33,21 @@ function Login(title, tag, registerCallback) {
 
     this.form = document.createElement('form');
     this.element.appendChild(this.form);
-    this.form.className = 'main';
 
-    this.form.appendChild(document.createTextNode('Usename'));
     this.username = document.createElement('input');
+    this.username.placeholder = 'Username';
+    this.username.className = 'element__input'
     this.form.appendChild(this.username);
 
-    this.form.appendChild(document.createTextNode('Password'));
     this.password = document.createElement('input');
+    this.password.type = 'password';
+    this.password.className = 'element__input'
+    this.password.placeholder = 'password';
     this.form.appendChild(this.password);
 
     this.login = document.createElement('button');
     this.login.type = 'button';
-    this.login.className = 'button';
+    this.login.className = 'button element__input';
     this.login.innerText = 'submit';
     this.form.appendChild(this.login);
     this.login.addEventListener('click', registerCallback);
@@ -61,8 +63,6 @@ function Wellcome(title, tag) {
     this.element.className = 'main ';
     this.element.style.display = 'none';
 
-    this.element.appendChild(document.createTextNode(' Wellcome '));
-
 }
 
 Wellcome.prototype = Object.create(Panel.prototype);
@@ -76,27 +76,32 @@ function Register(title, tag, loginCallback) {
 
     this.form = document.createElement('form');
     this.element.appendChild(this.form);
-    this.form.className = 'main';
-
-    this.form.appendChild(document.createTextNode('Usename'));
+    
+    
     this.username = document.createElement('input');
+    this.username.className = 'element__input';
+    this.username.placeholder = 'Username';
     this.form.appendChild(this.username);
 
-    this.form.appendChild(document.createTextNode('Email'));
     this.email = document.createElement('input');
+    this.email.className = 'element__input';
+    this.email.placeholder = 'email';
     this.form.appendChild(this.email);
 
-    this.form.appendChild(document.createTextNode('Postcode'));
     this.postcode = document.createElement('input');
+    this.postcode.className = 'element__input';
+    this.postcode.placeholder = 'postcode';
     this.form.appendChild(this.postcode);
 
-    this.form.appendChild(document.createTextNode('Password'));
     this.password = document.createElement('input');
+    this.password.type = 'password';
+    this.password.className = 'element__input';
+    this.password.placeholder = 'password'
     this.form.appendChild(this.password);
 
     this.login = document.createElement('button');
     this.login.type = 'button';
-    this.login.className = 'button login__button';
+    this.login.className = 'button element__input';
     this.login.innerText = 'submit';
     this.form.appendChild(this.login);
     this.login.addEventListener('click', loginCallback);
