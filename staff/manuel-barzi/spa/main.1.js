@@ -1,3 +1,5 @@
+var user;
+
 var landing = new Landing('Choose an option', 'section',
     function () {
         landing.hide();
@@ -11,15 +13,21 @@ var landing = new Landing('Choose an option', 'section',
 document.body.appendChild(landing.element);
 
 var register = new Register('Register', 'section', function (name, surname, username, password) {
-    logic.register(name, surname, username, password,
-        function () {
-            register.hide();
-            login.show();
-        },
-        function (message) {
-            alert(message);
-        }
-    );
+    if (!name || !name.trim().length) alert('invalid name');
+    else if (!surname || !surname.trim().length) alert('invalid surname');
+    else if (!username || !username.trim().length) alert('invalid username');
+    else if (!password || !password.trim().length) alert('invalid password');
+    else {
+        user = {
+            name: name,
+            surname: surname,
+            username: username,
+            password: password
+        };
+
+        register.hide();
+        login.show();
+    }
 }, function () {
     register.hide();
     landing.show();
@@ -28,17 +36,16 @@ var register = new Register('Register', 'section', function (name, surname, user
 document.body.appendChild(register.element);
 
 var login = new Login('Login', 'section', function (username, password) {
-    logic.login(username, password, 
-        function(user) {
+    if (!username || !username.trim().length) alert('invalid username');
+    else if (!password || !password.trim().length) alert('invalid password');
+    else if (user) {
+        if (user.username === username && user.password === password) {
             login.hide();
-
             welcome.title.innerText = 'Welcome, ' + user.name + '!';
-            
             welcome.show();
-        },
-        function(message) {
-            alert(message);
-        });
+        }
+        else alert('wrong credentials!');
+    }
 }, function () {
     login.hide();
     landing.show();
