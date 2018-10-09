@@ -31,7 +31,8 @@ function Login(title, tag, loginCallback) {
     
     this.title.className = 'panel__title';
     
-    this.element.style.display = 'none';
+    // this.element.style.display = 'none';
+    this.hide();
 
     this.form = document.createElement('form');
     this.form.className = 'panel-form';
@@ -68,8 +69,8 @@ function Register(title, tag, registerCallback){
 
     this.element.className = 'panel';
 
-    this.element.style.display = 'none';
-    
+// this.element.style.display = 'none';
+    this.hide();    
     this.title.className = 'panel__title';
 
     this.form = document.createElement('form');
@@ -119,8 +120,8 @@ function Welcome(title, tag, logOutCallback){
 
     this.element.className = 'panel';
 
-    this.element.style.display = 'none';
-
+    // this.element.style.display = 'none';
+    this.hide();
     this.title.className = 'panel__title';
 
     this.h1 = document.createElement('h1');

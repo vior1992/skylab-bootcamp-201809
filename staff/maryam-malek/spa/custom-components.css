@@ -4,6 +4,8 @@
   min-height: 450px;
   padding-top: 15%;
   background: darkcyan;
+  border-radius: 30px;
+  border: 2px solid darkgoldenrod;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -15,10 +17,10 @@
 }
 .panel__button {
   background: grey;
-  border: 1px solid darkgrey;
+  border: 2px solid darkgrey;
   border-radius: 5px;
   width: 100px;
-  height: 50px;
+  height: 30px;
 }
 
 .panel-form {
