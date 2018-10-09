@@ -14,7 +14,8 @@ var login = new Login('Login', 'section', function (username, password) {
     logic.login(username, password, function () {
         login.hide();
         welcome.show();
-    }, function () {
+    }, function (message) {
+        wrongCredentials.title.innerText = message
         wrongCredentials.show();
     })
 
@@ -33,7 +34,8 @@ var register = new Register('Register Now!', 'section', function (email, fullnam
     logic.register(email, fullname, username, password, function () {
         register.hide();
         login.show();
-    }, function () {
+    }, function (message) {
+        wrongRegister.title.innerText = message;
         wrongRegister.show();
     });
 })
