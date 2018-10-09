@@ -49,7 +49,15 @@ function Login(title, tag, loginCallback, newUserCallback) {
     this.form.appendChild(this.password);
 
     this.login = document.createElement('button');
-    this.login.type = 'button';
+    this.form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = this.username.value;
+        var password = this.password.value;
+
+        loginCallback(username, password);
+    }.bind(this));
+
     this.login.innerText = 'Submit'
     this.login.addEventListener('click', loginCallback);
     this.login.className = 'button login__button'
@@ -83,6 +91,14 @@ function Register(title, tag, registerCallback) {
 
     this.form = document.createElement('form');
     this.form.className = 'register__form'
+    this.form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var email = this.email.value;
+        var fullname = this.fullName.value;
+        var username = this.userName.value;
+        var password = this.password.value;
+        registerCallback(email, fullname, username, password);
+    }.bind(this));
     this.element.appendChild(this.form);
     
     this.email = document.createElement('input');
@@ -114,10 +130,8 @@ function Register(title, tag, registerCallback) {
     this.form.appendChild(this.password);
 
     this.register = document.createElement('button');
-    this.register.type = 'button';
     this.register.innerText = 'Register Now';
     this.register.className = 'button register__submit'
-    this.register.addEventListener('click', registerCallback)
 
     
     this.form.appendChild(this.register);
@@ -139,7 +153,6 @@ Welcome.prototype.constructor = Welcome;
 function Credentials(title, tag) {
     Panel.call(this, title, tag); 
     this.element.className = 'login__error'
-
     this.element.style.display = 'none';
 
 }
