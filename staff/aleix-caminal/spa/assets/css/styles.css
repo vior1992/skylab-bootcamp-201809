@@ -28,6 +28,20 @@
   cursor: pointer;
   background-color: #0960a5;
 }
+.panel__button--danger {
+  background-color: #f3212d;
+}
+.panel__button--danger:hover {
+  background-color: #a50912;
+}
+.panel__button--link {
+  color: #2196f3;
+  background-color: transparent;
+}
+.panel__button--link:hover {
+  color: #0960a5;
+  background-color: transparent;
+}
 .panel .form {
   display: flex;
   flex-direction: column;
@@ -61,7 +75,7 @@
 }
 .panel .form__buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
 }
 .panel .form__buttons .form-buttons__button {
@@ -85,15 +99,18 @@
   background-color: #0960a5;
 }
 .panel .form__buttons .form-buttons__button--danger {
-  margin: 1rem 0;
   background-color: #f3212d;
-  color: #fff;
-  border: none;
-  transition: all 0.4s;
 }
 .panel .form__buttons .form-buttons__button--danger:hover {
-  cursor: pointer;
-  background-color: #0960a5;
+  background-color: #a50912;
+}
+.panel .form__buttons .form-buttons__button--link {
+  color: #2196f3;
+  background-color: transparent;
+}
+.panel .form__buttons .form-buttons__button--link:hover {
+  color: #0960a5;
+  background-color: transparent;
 }
 
 /*# sourceMappingURL=styles.css.map */

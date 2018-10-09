@@ -30,13 +30,27 @@ $color-danger: #f3212d;
     border: none;
     transition: all .4s;
 
-    &--danger {
-        background-color: $color-danger;
-    }
-
     &:hover {
         cursor: pointer;
         background-color: darken($color-primary, 20%);
+    }
+
+    &--danger {
+        background-color: $color-danger;
+
+        &:hover {
+            background-color: darken($color-danger, 20%);
+        }
+    }
+
+    &--link {
+        color: $color-primary;
+        background-color: transparent;
+
+        &:hover {
+            color: darken($color-primary, 20%);
+            background-color: transparent;
+        }
     }
 }
 
@@ -82,7 +96,7 @@ $color-danger: #f3212d;
 
         &__buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             width: 100%;
 
             .form-buttons__button {

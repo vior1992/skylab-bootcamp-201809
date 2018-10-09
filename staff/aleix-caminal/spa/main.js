@@ -51,7 +51,7 @@ var login = new Login('Login', 'section',
 
 var register = new Register('Register', 'section',
     function() {
-        let form = document.querySelector('#register')
+        let form = document.querySelector('#register');
         if (validate(form, ['name', 'username', 'password', 'confirm_password'])) {
             if (form.querySelector('#password').value === form.querySelector('#confirm_password').value) {
                 safeBox.saveUser(
