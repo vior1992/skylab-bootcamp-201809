@@ -8,7 +8,7 @@ function boot() {
         var now = Date.now();
         var dt = now - lastUpdate;
         lastUpdate = now;
-        
+
         update(dt);
     }, 0);
 }
@@ -18,8 +18,9 @@ function start() {
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundRepeat = 'no-repeat';
 
-
     speed = 0;
+    max_speed = 6;
+    min_speed = -2;
     rotation = 180;
     car = document.createElement("img");
     car.src = 'car.png';
@@ -39,14 +40,14 @@ function start() {
                 car.style.transform = 'rotate(' + rotation + 'deg)';
                 break;
             case 38:
-                speed++;
+                if (max_speed > speed) speed++;
                 break;
             case 39:
                 if (speed) rotation += 9;
                 car.style.transform = 'rotate(' + rotation + 'deg)';
                 break;
             case 40:
-                speed--;
+                if (min_speed < speed) speed--;
                 break;
         }
     });
