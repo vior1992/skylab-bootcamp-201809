@@ -57,10 +57,12 @@ function Login(title, tag, loginCallback, backCallback) {
         var label = document.createElement('label');
         var input = document.createElement('input');
         for (var key in x) {
+            
             label.innerText = key;
             input.placeholder = key;
             input.name = x[key];
             input.id = x[key];
+            input.type = key === "Password" ? "password" : "text";
         }
         groupfield.appendChild(label);
         groupfield.appendChild(input);
@@ -121,6 +123,7 @@ function Register(tag, registerCallback,backCallback) {
             input.placeholder = key;
             input.name = x[key];
             input.id = x[key];
+            input.type = key === "Password" ? "password" : "text";
         }
         groupfield.appendChild(label);
         groupfield.appendChild(input);
