@@ -9,9 +9,7 @@ function forEach(arr, callback) {
     if (typeof arr !== 'object' || arr.length === undefined) throw Error('array is not valid');
     if (typeof callback !== "function") throw Error('callback is not a function');
 
-    var result = [];
     for (var i = 0; i < arr.length; i++) {
-        result[i] = callback(arr[i], i, arr);
+        callback(arr[i], i, arr);
     }
-    return result;
 }
