@@ -1,10 +1,16 @@
-function concat(arr, arr2) {
-    var array=[];
-    for (var i=0; i<arr.length; i++){
-        array[i] = arr[i];
-    }
-    for (var i=0; i<arr2.length; i++){
-        array[array.length] = arr2[i];
-    }
-    return array;
-}
+function concat() {
+    var temp = [];
+    var cont = 0;
+    for (var j = 0; j < arguments.length; j++) {
+        if (typeof arguments[j] !== "object") {
+            temp[cont] = arguments[j];
+            cont++;
+        } else {
+            for (var i = 0; i < arguments[j].length; i++) {
+                temp[cont] = arguments[j][i];
+                cont++;
+            }
+        }
+     }
+    return temp;
+} 

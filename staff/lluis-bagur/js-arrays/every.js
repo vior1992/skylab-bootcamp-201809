@@ -1,15 +1,10 @@
 function every(arr, callback) {
-    
-    var cont = 0;
-    for (var i=0; i<arr.length; i++){
-        if(callback(arr[i])){
-            cont++;
-        }   
+    if (!(arr instanceof Array)&& callback===undefined) throw Error('arr is not an array and callback is not a function');
+    if (!(arr instanceof Array)) throw Error('arr is not an array');
+    for (var i=0; i<arr.length; i++) {
+        if (!callback(arr[i])) {
+           return false;
+        }
     }
-    if (cont == arr.length){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return true;
 }
