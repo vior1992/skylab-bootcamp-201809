@@ -31,7 +31,7 @@ var logic = {
                     username: user.username
                 });
             }
-            else onFail('wrong credentials');
+            else onFail('wrong credentials!');
         }
     }
 };
