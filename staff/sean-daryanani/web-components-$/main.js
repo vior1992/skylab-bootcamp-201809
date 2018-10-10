@@ -1,32 +1,60 @@
-var panel = new Panel('hola mundo', 'section');
+var landing = new Landing('Choose an option', 'section',
+    function () {
+        landing.element.hide();
+        register.element.show();
+    },
+    function () {
+        landing.element.hide();
+        login.element.show();
+    });
 
-// document.body.appendChild(panel.element);
-panel.element.appendTo('body');
+landing.element.appendTo($('.container'));
 
-var dialog = new Dialog('hola mundo', 'lorem ipsum ...', 'section');
+var login = new Login('Login', 'section', function (username, password) {
+    logic.login(username, password, function () {
+        wrongCredentials.element.hide();
+        login.element.hide();
+        welcome.title.append( 'Welcome, ' + username + '. Enjoy!')
+        welcome.element.show();
+    }, function (message) {
+        wrongCredentials.title.text(message);
+        wrongCredentials.element.show();
+    })
 
-// document.body.appendChild(dialog.element);
-dialog.element.appendTo('body');
+}, function () {  
+    wrongCredentials.element.hide();
+    login.element.hide();
+    register.element.show();
 
-var alert = new Alert('Achtung!', 'Schade! ...', 'section', function() {
-    console.log('Achtung accepted');
 });
 
-// document.body.appendChild(alert.element);
-alert.element.appendTo('body')
+login.element.appendTo($('.container'));
 
-var error = new Alert('Error!', 'Schade! ...', 'section', function() {
-    console.log('Error accepted');
-}, true);
+var wrongCredentials = new Credentials('Wrong password!', 'section');
+wrongCredentials.element.appendTo($('.container'));
 
-// document.body.appendChild(error.element);
-error.element.appendTo('body');
+var register = new Register('Register Now!', 'section', function (name, surname, username, password) {
+    logic.register(name, surname, username, password, function () {
 
-var confirm = new Confirm('Do you want to proceed?', 'Please, review the contract before accepting...', 'section', function() {
-    console.log('confirm accepted');
+        wrongRegister.element.hide();
+        register.element.hide();
+        login.element.show();
+    }, function (message) {
+        wrongRegister.title.text(message);
+        wrongRegister.element.show();
+    });
 }, function() {
-    console.log('confirm denied');
-});
+    wrongRegister.element.hide();
+    register.element.hide();
+    landing.element.show();
+})
 
-// document.body.appendChild(confirm.element);
-confirm.element.appendTo('body')
+register.element.appendTo($('.container'));
+
+var wrongRegister = new Credentials('', 'section');
+wrongRegister.element.appendTo($('.container'));
+
+
+var welcome = new Welcome('', 'section');
+
+welcome.element.appendTo($('.container'));

@@ -7,7 +7,7 @@ function Landing(title, tag, registerCallback, loginCallback) {
     this.register = $('<button></button>')
     this.register.append('Register');
     this.register.on('click', registerCallback);
-    this.register.addClass('button landing__button');
+    this.register.addClass('button landing__button btn-primary btn-lg');
 
     this.register.appendTo(this.element);
 
@@ -15,7 +15,7 @@ function Landing(title, tag, registerCallback, loginCallback) {
     this.login.append('Login');
     this.login.on('click', loginCallback)
     this.login.className = 'button landing__button'
-    this.login.addClass('button landing__button');
+    this.login.addClass('button landing__button btn-primary btn-lg');
 
 
     this.login.appendTo(this.element);
