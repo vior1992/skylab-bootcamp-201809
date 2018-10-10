@@ -9,8 +9,6 @@ tests.push(function(){
     var nums= [1,2,3];
     
     var res=[];
-    
-
    
         pop(nums);
         for(var i = 0; i<nums.length;i++){

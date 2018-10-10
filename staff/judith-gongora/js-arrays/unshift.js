@@ -1,14 +1,25 @@
-function unshift(){
+function unshift(arr, item){
+    if (!(arr instanceof Array)) throw Error('array is not valid'); 
+    if (!item) throw Error('element not defined');
+    
     var array=[];
-    var i;
-    for (i=1;i<arguments.length;i++){
-        array[i-1]=arguments[i];
+    for(i=0;i<arr.length;i++){
+        array[i]=arr[i];
     }
-    for(i=arguments.length-1;i<arguments[0].length;i++){
-        array[i]=arguments[0][i];
+    arr[0]=item;
+    for (i=1;i=arr.length;i++){
+        arr[i] = array[i-1];
     }
-    for(i=0;i<array.length;i++){
-        arguments[0][i]=array[i];
-    }
-    return arguments[0].length;
+
+    // var i;
+    // for (i=1;i<arguments.length;i++){
+    //     array[i-1]=arguments[i];
+    // }
+    // for(i=arguments.length-1;i<arr.length;i++){
+    //     array[i]=arr[i];
+    // }
+    // for(i=0;i<array.length;i++){
+    //     arr[i]=array[i];
+    // }
+    return arr.length;
 }
