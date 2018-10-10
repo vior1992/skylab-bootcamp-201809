@@ -36,7 +36,7 @@ function Register(title, tag, registerCallback, backCallback) {
 
     this.form = document.createElement('form');
     this.form.addEventListener('submit', function (event) {
-        event.preventDefault(); // evita el comportamiento default que es el de enviar información
+        event.preventDefault(); // evita el comportamiento default del form que es el de enviar información al presionar
 
         var name = this.name.value; // 'value' hace referencia al valor del campo del formulario
         var surname = this.surname.value;
@@ -150,7 +150,7 @@ function Welcome(title, tag) {
 
 
     this.element.className = 'welcome';
-    this.element.style.display = 'none'; // o this.hide() heredado de Components
+    this.element.style.display = 'none'; // o this.hide() heredado de Components en web-components.js
 
     this.title.className = 'welcome__title';
 }
