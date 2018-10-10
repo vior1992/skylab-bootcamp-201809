@@ -1,29 +1,50 @@
 var landing = new Landing('Choose an option', 'section',
-    function() {
+    function () {
         landing.hide();
         register.show();
     },
-    function() {
+    function () {
         landing.hide();
         login.show();
     });
 
 document.body.appendChild(landing.element);
 
-var login = new Login('Login', 'section', function() {
-        login.hide();
-        welcome.show();
-    });
+var register = new Register('Register', 'section', function (name, surname, username, password) {
+    logic.register(name, surname, username, password,
+        function () {
+            register.hide();
+            login.show();
+        },
+        function (message) {
+            alert(message);
+        }
+    );
+}, function () {
+    register.hide();
+    landing.show();
+});
 
-var register = new Register('Register', 'section', function(email) {
-        if (this.email.indexOf("@") === -1) throw Error("nonono");
-        register.hide();
-        login.show();
+document.body.appendChild(register.element);
+
+var login = new Login('Login', 'section', function (username, password) {
+    logic.login(username, password, 
+        function(user) {
+            login.hide();
+
+            welcome.title.innerText = 'Welcome, ' + user.name + '!';
+            
+            welcome.show();
+        },
+        function(message) {
+            alert(message);
+        });
+}, function () {
+    login.hide();
+    landing.show();
 });
 
 document.body.appendChild(login.element);
-
-document.body.appendChild(register.element);
 
 var welcome = new Welcome('Welcome', 'section');
 

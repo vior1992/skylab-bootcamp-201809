@@ -1,7 +1,7 @@
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
 
-    this.element.className = 'landing';  // esto es para los estilos
+    this.element.className = 'landing';
 
     this.title.className = 'landing__title';
 
@@ -25,50 +25,16 @@ function Landing(title, tag, registerCallback, loginCallback) {
 Landing.prototype = Object.create(Panel.prototype);
 Landing.prototype.constructor = Landing;
 
-function Login(title, tag, loginCallback, backCallback) {
-    Panel.call(this, title, tag);
-
-    //this.element.style.display = 'none';
-    this.element.className = 'login';
-
-    this.title.className = 'login__title';
-
-    this.hide();
-
-    this.form = document.createElement('form');
-
-    this.element.appendChild(this.form);
-
-    this.username = document.createElement('input');
-
-    this.form.appendChild(this.username);
-
-    this.password = document.createElement('input');
-
-    this.form.appendChild(this.password);
-
-    this.login = document.createElement('button');
-
-    this.login.type = "button";
-
-    this.login.addEventListener('click',loginCallback);
-
-    this.form.appendChild(this.login);
-}
-
-Login.prototype = Object.create(Panel.prototype);
-Login.prototype.constructor = Login;
-
-function Register(title, tag, registerCallback, backCallback) {  //backcallback añadido
+function Register(title, tag, registerCallback, backCallback) {
     Panel.call(this, title, tag);
 
     this.element.className = 'register';
 
     this.title.className = 'register__title';
 
-    this.hide(); // desde primer momento esto no se debe ver
+    this.hide();
 
-    this.form = document.createElement('form');  // se crea el constructor para facilidad 
+    this.form = document.createElement('form');
     this.form.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -78,17 +44,13 @@ function Register(title, tag, registerCallback, backCallback) {  //backcallback 
         var password = this.password.value;
 
         registerCallback(name, surname, username, password);
-    }.bind(this));  // (?) necesito acceder al this del objeto padre (?)
-
-    // this.element.style.display = 'none'; (?) substituido por linea 64
-
-    // this.form = document.createElement('form');  puesto en el objeto
+    }.bind(this));
 
     this.element.appendChild(this.form);
 
     this.name = document.createElement('input');
     this.name.className = 'register__input';
-    this.name.placeholder = 'name';  // placeholder para el form
+    this.name.placeholder = 'name';
 
     this.form.appendChild(this.name);
 
@@ -114,8 +76,7 @@ function Register(title, tag, registerCallback, backCallback) {  //backcallback 
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
     this.register.className = 'register__button';
-    // this.register.type = "button";  desaparecido ?
-    // this.register.addEventListener('click',registerCallback);  desaparecido ?
+
     this.form.appendChild(this.register);
 
     this.back = document.createElement('a');
@@ -127,15 +88,67 @@ function Register(title, tag, registerCallback, backCallback) {  //backcallback 
 }
 
 Register.prototype = Object.create(Panel.prototype);
-
 Register.prototype.constructor = Register;
+
+function Login(title, tag, loginCallback, backCallback) {
+    Panel.call(this, title, tag);
+
+    this.element.className = 'login';
+
+    this.title.className = 'login__title';
+
+    this.hide();
+
+    this.form = document.createElement('form');
+    this.form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = this.username.value;
+        var password = this.password.value;
+
+        loginCallback(username, password);
+    }.bind(this));
+
+    this.element.appendChild(this.form);
+
+    this.username = document.createElement('input');
+    this.username.className = 'login__input';
+    this.username.placeholder = 'username';
+
+    this.form.appendChild(this.username);
+
+    this.password = document.createElement('input');
+    this.password.className = 'login__input';
+    this.password.type = 'password';
+    this.password.placeholder = 'password';
+
+    this.form.appendChild(this.password);
+
+    this.login = document.createElement('button');
+    this.login.innerText = 'Login';
+    this.login.className = 'login__button';
+
+    this.form.appendChild(this.login);
+
+    this.back = document.createElement('a');
+    this.back.href = '#';
+    this.back.innerText = 'Back';
+    this.back.addEventListener('click', backCallback);
+
+    this.element.appendChild(this.back);
+}
+
+Login.prototype = Object.create(Panel.prototype);
+Login.prototype.constructor = Login;
 
 function Welcome(title, tag) {
     Panel.call(this, title, tag);
 
-    this.element.style.display = 'none';    
+    this.element.className = 'welcome';
+    this.hide();
+
+    this.title.className = 'welcome__title';
 }
 
 Welcome.prototype = Object.create(Panel.prototype);
-
 Welcome.prototype.constructor = Welcome;
