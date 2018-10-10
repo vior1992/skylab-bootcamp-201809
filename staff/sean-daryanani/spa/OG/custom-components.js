@@ -93,27 +93,27 @@ function Register(title, tag, registerCallback, backCallBack) {
     this.form.className = 'register__form'
     this.form.addEventListener('submit', function(event) {
         event.preventDefault();
-        var email = this.email.value;
-        var fullname = this.fullName.value;
+        var name = this.name.value;
+        var surname = this.surname.value;
         var username = this.userName.value;
         var password = this.password.value;
-        registerCallback(email, fullname, username, password);
+        registerCallback(name, surname, username, password);
     }.bind(this));
     this.element.appendChild(this.form);
     
-    this.email = document.createElement('input');
-    this.email.type = 'email';
-    this.email.placeholder = 'test1234@gmail.com';
-    this.email.className = 'input register__email'
+    this.name = document.createElement('input');
+    this.name.type = 'name';
+    this.name.placeholder = 'Name';
+    this.name.className = 'input register__email'
 
-    this.form.appendChild(this.email);
+    this.form.appendChild(this.name);
 
-    this.fullName = document.createElement('input');
-    this.fullName.type = 'text';
-    this.fullName.placeholder = 'John Smith';
-    this.fullName.className = 'input register__fullname'
+    this.surname = document.createElement('input');
+    this.surname.type = 'text';
+    this.surname.placeholder = 'Full Name';
+    this.surname.className = 'input register__fullname'
 
-    this.form.appendChild(this.fullName);
+    this.form.appendChild(this.surname);
 
     this.userName = document.createElement('input');
     this.userName.type = 'text';

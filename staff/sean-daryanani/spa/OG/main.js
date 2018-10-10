@@ -13,6 +13,7 @@ document.querySelector(".container").appendChild(landing.element);
 var login = new Login('Login', 'section', function (username, password) {
     logic.login(username, password, function () {
         login.hide();
+        welcome.title.innerText = 'Welcome, ' + username + '. Enjoy!';
         welcome.show();
     }, function (message) {
         wrongCredentials.title.innerText = message
@@ -30,8 +31,8 @@ document.querySelector(".container").appendChild(login.element);
 var wrongCredentials = new Credentials('Wrong password!', 'section');
 document.querySelector(".login").appendChild(wrongCredentials.element);
 
-var register = new Register('Register Now!', 'section', function (email, fullname, username, password) {
-    logic.register(email, fullname, username, password, function () {
+var register = new Register('Register Now!', 'section', function (name, surname, username, password) {
+    logic.register(name, surname, username, password, function () {
         register.hide();
         login.show();
     }, function (message) {
