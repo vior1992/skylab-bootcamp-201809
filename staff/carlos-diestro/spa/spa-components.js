@@ -59,11 +59,14 @@ function Register(title, tag, registerCallback, backCallback) {
     this.register.innerText = 'Register';
     this.form.appendChild(this.register);
 
+    this.form.appendChild(document.createTextNode(' '));
+
     this.back = document.createElement('a');
     this.back.href = '#';
     this.back.innerText = 'Back';
+    this.back.className = 'back';
     this.back.addEventListener('click', backCallback);
-    this.element.appendChild(this.back);
+    this.form.appendChild(this.back);
 }
 
 Register.prototype = Object.create(Panel.prototype);
@@ -102,11 +105,14 @@ function Login(title, tag, loginCallback, backCallback) {
     this.login.innerText = 'Login';
     this.form.appendChild(this.login);
 
+    this.form.appendChild(document.createTextNode(' '));
+
     this.back = document.createElement('a');
     this.back.href = '#';
     this.back.innerText = 'Back';
+    this.back.className = 'back';
     this.back.addEventListener('click', backCallback);
-    this.element.appendChild(this.back);
+    this.form.appendChild(this.back);
 }
 
 Login.prototype = Object.create(Panel.prototype);

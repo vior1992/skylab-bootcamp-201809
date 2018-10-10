@@ -93,7 +93,7 @@ describe('SPA', function() {
         throw Error();
       },
       function(message) {
-        expect(message).toEqual('Name is not valid');
+        expect(message).toEqual('Credentials are wrong');
       });
     });
 
@@ -105,7 +105,7 @@ describe('SPA', function() {
         throw Error();
       },
       function(message) {
-        expect(message).toEqual('Password is not valid');
+        expect(message).toEqual('Credentials are wrong');
       });
     });
   });
