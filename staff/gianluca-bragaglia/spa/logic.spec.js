@@ -14,6 +14,8 @@ describe('logic', function () {
         var email;
         var username;
         var password;
+
+
         
         it('should fail on undefined email', function () {
             email = undefined;
