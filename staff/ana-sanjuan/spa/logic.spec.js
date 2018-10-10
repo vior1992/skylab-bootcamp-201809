@@ -63,7 +63,7 @@ describe( 'logic', function(){
             var name = 'Ana';
             var surname = 'San';
             var username = 'asan';
-            var password;
+            var password= '123';
             onSuccess = 1;
             onFail = function(){}
             expect(function() {logic.register(name, surname, username, password, onSuccess, onFail)}).toThrowError(TypeError, onSuccess + ' is not a function')
@@ -72,7 +72,7 @@ describe( 'logic', function(){
             var name = 'Ana';
             var surname = 'San';
             var username = 'asan';
-            var password;
+            var password= '234';
             onSuccess =  function(){};
             onFail = 1;
             expect(function() {logic.register(name, surname, username, password, onSuccess, onFail)}).toThrowError(TypeError, onFail + ' is not a function')
@@ -91,6 +91,22 @@ describe( 'logic', function(){
             expect(user.surname).toEqual(surname)
             expect(user.username).toEqual(username)
             expect(user.password).toEqual(password)
+        })
+
+        it('should succed on saving the variables', function(){
+            var name = 'Ana';
+            var surname = 'San';
+            var username = 'asan';
+            var password = '123';
+
+            logic.register(name, surname, username, password, function(){
+                expect(user.name).toEqual('Ana')
+                expect(user.surname).toEqual(surname)
+                expect(user.username).toEqual(username)
+                expect(user.password).toEqual(password)
+            },function(message){
+                throw Error(message)
+            })
         })
 
     })
