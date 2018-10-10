@@ -1,4 +1,3 @@
-var user;
 
 var landing = new Landing('Choose an option', 'section',
     function() {
