@@ -11,9 +11,9 @@ describe('Logic', function () {
         name = 'sergio';
         surname = 'luz';
         username = 'slf';
-        password = 'olala';
-        repeatPass = 'olala';
-        result;
+        password = 'olalaolala';
+        repeatPass = 'olalaolala';
+        result=undefined;
     });
 
     describe('Save data in safeBox', function () {
@@ -89,8 +89,24 @@ describe('Logic', function () {
             expect(result instanceof Array).toEqual(true);
         })
 
+        it('Should fail when password has less than 8 characters', function () {
+            password = 'hola';
+            repeatPass='hola';
+
+            result = safeBox.saveData(name, surname, username, password, repeatPass);
+            expect(result instanceof Array).toEqual(true);
+        })
+
         it('Should fail when no-repeatPassword', function () {
             repeatPass = '';
+
+            result = safeBox.saveData(name, surname, username, password, repeatPass);
+            expect(result instanceof Array).toEqual(true);
+        })
+
+        it('Should fail when Repeatpassword has less than 8 characters', function () {
+            password = 'hola';
+            repeatPass='hola';
 
             result = safeBox.saveData(name, surname, username, password, repeatPass);
             expect(result instanceof Array).toEqual(true);

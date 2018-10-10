@@ -17,7 +17,7 @@ document.body.appendChild(landing.element);
 // LOGICA DE PRESENTACION DE LA PANTALLA: REGISTER 
 // 
 
-var register_errors=[];
+var register_errors = [];
 
 var register = new Register('Register', 'section', function () {
     var name = document.getElementsByName("_name")[0].value;
@@ -31,20 +31,20 @@ var register = new Register('Register', 'section', function () {
 
     console.log(result);
     if (result === true) {
-        if(register_errors.length){
+        if (register_errors.length) {
             register_errors.forEach(n => {
                 document.body.removeChild(n.element);
             });
-        } 
+        }
         register.hide();
         login.show();
         //login.flex();
     } else {
-        if(register_errors.length){
+        if (register_errors.length) {
             register_errors.forEach(n => {
                 document.body.removeChild(n.element);
             });
-        }            
+        }
         for (let index = 0; index < result.length; index++) {
             register_errors[index] = new Register_Errors('div');
             register_errors[index].message.innerText = result[index];
@@ -64,14 +64,9 @@ var login = new Login('Login', 'section', function () {
     var username = document.getElementsByName("confirm_username")[0].value;
     var password = document.getElementsByName("confirm_password")[0].value;
 
-    var error;
-    try {
-        var result = safeBox.checkData(password, username);
-    } catch (err) {
-        error = err;
-    }
+    var result = safeBox.checkData(password, username);
 
-    if (result===true) {
+    if (result === true) {
         login.hide();
         welcome.show();
         login_errors.hide();

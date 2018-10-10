@@ -8,7 +8,7 @@ function SafeBoxAdministration(_name, _surname, _username, _password, _repeatPas
         saveData: function(_name, _surname, _username, _password, _repeatPass) {
             var count=0, arr=[];
 
-            if(!_password || !_password.trim().length)  {arr[count]=("Password must be set"); count++;}
+            if(!_password || !(_password.trim().length>=8))  {arr[count]=("Password must be set and it has to have a minum of 8 characters"); count++;}
             if((_password).match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/)!==null || !isNaN(_password))  {
                 arr[count]=('Your password can not contain numbers'); count++;
             }
@@ -16,7 +16,7 @@ function SafeBoxAdministration(_name, _surname, _username, _password, _repeatPas
                 arr[count]='Your password can not contain symbols'; count++;
             }
             
-            if(!_repeatPass || !_repeatPass.trim().length)  {arr[count]=("Repeat the password please"); count++;}
+            if(!_repeatPass || !(_repeatPass.trim().length>=8))  {arr[count]=("Repeat the password please. Remeber it has to have a minum of 8 characters"); count++;}
             if((_repeatPass).match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/) || !isNaN(_repeatPass))  
             {arr[count]=('Your password can not contain numbers'); count++;}
             if((_repeatPass).match(/[$-/:-?{-~!“^_`\[\]]/)!==null){
@@ -27,21 +27,21 @@ function SafeBoxAdministration(_name, _surname, _username, _password, _repeatPas
             if((_name).match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/) || !isNaN(_name))  
             {arr[count]=('Your name can not contain numbers'); count++;}
             if((_name).match(/[$-/:-?{-~!“^_`\[\]]/)!==null){
-                arr[count]='Your password can not contain symbols'; count++;
+                arr[count]='Your name can not contain symbols'; count++;
             }
 
             if(!_surname || !_surname.trim().length)  {arr[count]=("Surname must be set"); count++;}
             if((_surname).match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/) || !isNaN(_surname))  
             {arr[count]=('Your surname can not contain numbers'); count++;}
             if((_surname).match(/[$-/:-?{-~!“^_`\[\]]/)!==null){
-                arr[count]='Your password can not contain symbols'; count++;
+                arr[count]='Your surname can not contain symbols'; count++;
             }
 
-            if(!_username || !_username.trim().length)  {arr[count]=("Password must be set"); count++;}
+            if(!_username || !_username.trim().length)  {arr[count]=("Username must be set"); count++;}
             if((_username).match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/) || !isNaN(_username))  
             {arr[count]=('Your username can not contain numbers'); count++;}
             if((_username).match(/[$-/:-?{-~!“^_`\[\]]/)!==null){
-                arr[count]='Your password can not contain symbols'; count++;
+                arr[count]='Your username can not contain symbols'; count++;
             }
 
             if(_password!==(_repeatPass)){ arr[count]='Password must be the same in both fields'; count++}
@@ -59,7 +59,6 @@ function SafeBoxAdministration(_name, _surname, _username, _password, _repeatPas
         checkData: function(_password, _username) {
             var arr=[];
             // TODO
-            console.log(_password, password, _username, username);
             if((password===_password) && (_username===username)){
                 return true;
             }else{
