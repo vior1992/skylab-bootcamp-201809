@@ -1,3 +1,6 @@
+// Segunda iteración de web-components en la que usamos selectores de jquery.
+// Las líneas comentadas son las originales que programamos con selectores de Vanilla JS.
+
 function Component(tag) {
     // this.element = document.createElement(tag);
     this.element = $('<' + tag + '></' + tag + '>');
@@ -111,26 +114,33 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
     // this.cancel.className = 'confirm__button';
     $(this.cancel).addClass('confirm__button');
 
-    //////////////////////continuar desde aquí ////////////////////////////////////
-
-    this.cancel.addEventListener('click', function () {
-        this.element.style.display = 'none';
-
-        cancelCallback();
+    this.cancel.click(function () {
+        this.element.css('display', 'none');
+        cancelcallback();
     }.bind(this));
 
     // this.element.appendChild(this.cancel);
     $(this.cancel).appendTo(this.element);
 
-    this.accept = document.createElement('button');
-    this.accept.innerText = 'Accept';
-    this.accept.className = 'confirm__button confirm__button--accept';
+    // this.accept = document.createElement('button');
+    this.accept = $('<button></button>');
+    // this.accept.innerText = 'Accept';
+    $(this.accept).text('Accept');
+    // this.accept.className = 'confirm__button confirm__button--accept';
+    $(this.accept).addClass('confirm__button confirm__button--accept');
 
-    this.accept.addEventListener('click', function () {
-        this.element.style.display = 'none';
+    this.accept.click(function () {
+        this.element.css('display', 'none');
 
         acceptCallback();
+
     }.bind(this));
+
+    // this.accept.addEventListener('click', function () {
+    //     this.element.style.display = 'none';
+
+    //     acceptCallback();
+    // }.bind(this));
 
     // this.element.appendChild(this.accept);
     $(this.accept).appendTo(this.element);
