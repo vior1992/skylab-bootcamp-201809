@@ -1,4 +1,7 @@
 function fill (arr,arg1,arg2,arg3){
+
+    if(!(arr instanceof Array))throw Error (arr+' is not valid');
+
     if(arguments.length===4){
     for(var i = arg2; i < arg3; i++){
         arr[i]=arg1;

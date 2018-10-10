@@ -3,7 +3,7 @@ function includes (arr, element){
 
     if (typeof element == 'function') throw Error ('element is a function, must be a string or number or object or boolean');
 
-    if (!element.trim()) throw Error ('element is blank');
+    //if (!element.trim()) throw Error ('element is blank');
 
     if(arr.length===0) throw Error ('array is empty');
     
