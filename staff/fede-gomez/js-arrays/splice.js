@@ -1,3 +1,6 @@
+// Yet to be finished...
+
+
 function splice(array, start, deleteCount) {
 
     var elemsToBeAdded = arguments.length - 3;
@@ -16,4 +19,4 @@ function splice(array, start, deleteCount) {
   
     return array;
 }
-
+}
