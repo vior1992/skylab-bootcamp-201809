@@ -40,9 +40,25 @@ describe('logic', function(){
     });
 
     describe('login', function(){
+        beforeEach (function(){
+            
+            logic.register(name,surname,username,password,
+                
+                function () {
+                    
+                    user.name = name;
+                    user.surname = surname;
+                    user.username = username;
+                    user.password = password;
+                },
+                function (message) {
+                    
+                    alert(message);
+                });
+
+        });
         it ('should launch on succes if username and password are correct', function(){
             
-            user = {name: 'Paco',surname: 'Fdez',username: 'Pacus',password: '123'};
             var message = 0;
 
             logic.login(username,password,
