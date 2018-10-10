@@ -1,4 +1,4 @@
-var service = (function () {
+function factoryService() {
     var _firstname;
     var _lastname;
     var _username;
@@ -28,7 +28,7 @@ var service = (function () {
         getUserData: function () {
 
 
-            return { firsname:_firstname, lastname:_lastname,username: _username, password: _password };
+            return { firstname:_firstname, lastname:_lastname,username:undefined,password:undefined};
         },
         login: function(username, password, loginSuccess, loginFail){
 
@@ -47,4 +47,4 @@ var service = (function () {
             }
         }
     };
-})();
+}

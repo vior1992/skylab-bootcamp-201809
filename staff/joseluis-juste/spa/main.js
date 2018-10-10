@@ -1,3 +1,4 @@
+var service = factoryService();
 var landing = new Landing("¡¡¡Welcome to WebComponents!!!", "section", function () {
 
 
