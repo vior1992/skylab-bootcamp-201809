@@ -1,6 +1,6 @@
 function Component(tag) {
 
-    this.element = $('<' + tag + '>title</'+ tag +'>');
+    this.element = $('<' + tag + '></'+ tag +'>');
 }
 
 Component.prototype.show = function () {
@@ -17,7 +17,7 @@ function Panel(title, tag) {
     $(this.element).addClass( "panel" );
 
     $(this.title).addClass( "panel__title" );
-    this.title = $('<h2>title</h2>');
+    this.title = $('<h2>'+ title +'</h2>');
 
     this.title.appendTo(this.element);
 }
@@ -32,7 +32,7 @@ function Dialog(title, text, tag) {
 
     $(this.title).addClass( "dialog__title" );
 
-    this.body = $('<p>text</p>');
+    this.body = $('<p>' + text + '</p>');
     $(this.body).addClass( "dialog__body" );
 
     this.body.appendTo(this.element);
