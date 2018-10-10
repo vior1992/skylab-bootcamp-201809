@@ -27,7 +27,7 @@ Panel.prototype.constructor = Panel;
 function Dialog(title, text, tag) {
     Panel.call(this, title, tag);
 
-    $(this.element).addClass('panel')
+    $(this.element).addClass('dialog')
     //this.element.className = 'dialog';
     $(this.title).addClass('dialog__title');
     //this.title.className = 'dialog__title';
@@ -45,9 +45,10 @@ Dialog.prototype.constructor = Dialog;
 function Alert(title, text, tag, callback, error) {
     Dialog.call(this, title, text, tag);
 
-    this.element.className = error ? 'alert alert--danger' : 'alert';
+    $(this.element).addClass(error ? 'alert alert--danger' : 'alert');
 
-    this.title.className = 'alert__title';
+    $(this.title).addClass('alert__title')
+    //this.title.className = 'alert__title';
 
     this.body.className = 'alert__body';
 
