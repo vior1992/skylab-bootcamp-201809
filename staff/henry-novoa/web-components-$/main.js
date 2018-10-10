@@ -11,7 +11,7 @@ var alert = new Alert('Achtung!', 'Schade! ...', 'section', function() {
     console.log('Achtung accepted');
 });
 
-$('body').appendTo(alert.element);
+$('body').append(alert.element);
 //document.body.appendChild(alert.element);
 
 var error = new Alert('Error!', 'Schade! ...', 'section', function() {
