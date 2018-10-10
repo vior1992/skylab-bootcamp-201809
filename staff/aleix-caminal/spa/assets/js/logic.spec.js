@@ -15,7 +15,6 @@ describe('Logic', function () {
 
         it('should fail on empty form argument', function () {
             expect(function() {
-                var form = document.createElement('p');
                 logic.register();
             }).toThrowError('no form passed as argument');
         });
@@ -67,21 +66,29 @@ describe('Logic', function () {
     });
 
     describe('validate', function () {
-        it('should fail on blank form id', function () {
+        it('should fail on object as form', function () {
             expect(function() {
-                logic.validate(' ');
-            }).toThrowError('form id is not valid');
+                logic.validate({});
+            }).toThrowError('no form passed as argument');
         });
 
-        it('should fail on empty form id', function () {
+        it('should fail on non form element', function () {
+            expect(function() {
+                var form = document.createElement('p');
+                logic.validate(form);
+            }).toThrowError('no form passed as argument');
+        });
+
+        it('should fail on empty form argument', function () {
             expect(function() {
                 logic.validate();
-            }).toThrowError('form id is not valid');
+            }).toThrowError('no form passed as argument');
         });
 
         it('should fail on non-array', function () {
             expect(function() {
-                logic.validate('register', []);
+                var form = document.createElement('form');
+                logic.validate(form, []);
             }).toThrowError('array is not valid');
         });
     });
