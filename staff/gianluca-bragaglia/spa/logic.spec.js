@@ -12,16 +12,11 @@ describe('spa/logic', function () {
     var password;
 
 
-    describe('register', function () {
+    describe('login', function () {
         it('should succeed if username and password are valid', function () {
 
-            logic.login('gi@gio.it', 'gia', '123', 
-                function(){
-
-            },
-            function(message) {
-                alert(message);
-            });
+            logic.login('gi@gio.it', 'gia', '123'); 
+               
 
             expect(user.password).toEqual('123');
             expect(user.username).toEqual('gia');
