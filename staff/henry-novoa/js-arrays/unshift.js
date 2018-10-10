@@ -22,6 +22,5 @@ function unshift(arr, elems) {
 console.log('DEMO unshift');
 
 var nums = [1, 2, 3];
-debugger;
 console.log(unshift(nums, 4, 5)); // 5
 console.log(nums); // [4, 5, 1, 2, 3]
