@@ -50,7 +50,7 @@ function Alert(title, text, tag, callback, error) {
     this.accept.text('Accept');
     this.accept.addClass('alert__button');
     
-    this.accept.bind('click', function () {
+    this.accept.on('click', function () {
         this.element.hide();
 
         callback();
@@ -80,7 +80,7 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
     
     
 
-    this.cancel.bind('click', function () {
+    this.cancel.on('click', function () {
         this.element.hide();
 
         cancelCallback();
@@ -94,7 +94,7 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
 
     
 
-    this.accept.bind('click', function () {
+    this.accept.on('click', function () {
         this.element.hide();
 
         acceptCallback();
