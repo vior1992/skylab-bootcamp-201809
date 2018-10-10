@@ -2,11 +2,10 @@ var user;
 
 var logic = {
     login: function(username, password, onSuccess, onFail){
-        //if callback is not a function
         if (typeof username != 'string' || !username || !username.trim().length) onFail('invalid username');
         else if (typeof password != 'string' || !password || !password.trim().length) onFail('invalid password');
-        else if (typeof onSuccess !== 'function') throw Error (onSuccess + 'is not a function');
-        else if (typeof onFail !== 'function') throw Error (onFail + 'is not a function');
+        else if (typeof onSuccess !== 'function') throw TypeError (onSuccess + ' is not a function');
+        else if (typeof onFail !== 'function') throw TypeError (onFail + ' is not a function');
         else if (user) {
             if (user.username === username && user.password === password) {
                // onSuccess(user);//Aquí no hauria d'enviar user, sinó una còpia de user sense el password
@@ -24,8 +23,8 @@ var logic = {
         else if (typeof username != 'string' || !username || !username.trim().length) onFail('invalid username');
         else if (typeof email != 'string' || !email || !email.trim().length) onFail('invalid email');
         else if (typeof password != 'string' || !password || !password.trim().length) onFail('invalid password');//find aquí són validacions funcionals. Les altres dues són validacions tècniques, pel dev
-        else if (typeof onSuccess !== 'function') throw Error (onSuccess + 'is not a function');
-        else if (typeof onFail !== 'function') throw Error (onFail + 'is not a function');
+        else if (typeof onSuccess !== 'function') throw TypeError (onSuccess + ' is not a function');
+        else if (typeof onFail !== 'function') throw TypeError (onFail + ' is not a function');
         else {
             user = {
                 name: name,
