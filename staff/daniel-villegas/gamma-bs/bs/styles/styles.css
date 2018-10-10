@@ -1,16 +1,83 @@
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+header {
+  background-color: black; }
+
+.navbar-brand {
+  color: #1caa98; }
+
+.main__up {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-align: center;
+  background-color: black;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.up__title {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: white; }
+
+.title__life {
+  color: #1caa98; }
+
+.rounded {
+  max-width: 150px;
+  max-height: 250px;
+  margin-bottom: 25px; }
+
+.main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center;
+          justify-content: center; }
+
+.card {
+  margin: 10% 0% -5% 4%; }
+
+.card-img-top {
+  border: 1px solid grey;
+  max-width: 450px;
+  max-height: 450px; }
+
+.btn-primary {
+  background-color: white;
+  border-color: grey;
+  border-radius: 5px;
+  color: black; }
+
+.main__foot {
+  color: white;
+  background-color: #1caa98; }
+
+.justify-content-center {
+  background-color: grey;
+  color: white; }
+
+.fooder__up {
+  background-color: #1caa98;
+  margin-top: 10%;
+  color: white; }
+
+.fooder__logo {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
-          flex-direction: column; }
+          flex-direction: column;
+  text-align: left;
+  max-width: 200px;
+  max-height: 300px;
+  margin-left: 10%;
+  margin-bottom: 5%; }
+
+.fooder__down {
+  background-color: grey; }
 
 @media screen and (min-width: 400px) {
   background-color: green; }
