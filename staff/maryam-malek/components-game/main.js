@@ -24,7 +24,7 @@ document.addEventListener('keydown', function (event) {
 
             break;
 
-        case 32: // turn 
+        case 32: // (space) turn 
             turtle.rotate(10);
             turtle.checkPosition();
 
