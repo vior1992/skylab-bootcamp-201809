@@ -30,20 +30,4 @@ tests.push(function () {
     if (error.message !== 'argument empty') throw Error('error message is not correct');
 });
 
-// tests.push(function () {
-//     console.log('should fail if is not array');
-
-//     var nums = [];
-
-//     try {
-//         isArray(nums);
-//     } catch (err) {
-//         error = err;
-//     }
-
-//     if (!error) throw Error('has not failed');
-
-//     if (error.message !== 'array is empty') throw Error('error message is not correct');
-// });
-
 testSuite(tests);

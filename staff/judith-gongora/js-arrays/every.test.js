@@ -113,45 +113,4 @@ tests.push(function () {
     console.log('%c Done %s','color: green', '✔');
 });
 
-// //TEST 8
-// tests.push(function () {
-//     console.log('should succeed on iterating an array and passing all specified data to callback');
-
-//     var arr = [1, 2, 3];
-
-//     var elements = [];
-//     var indexes = [];
-//     var arrays = [];
-
-//     every(arr, function (element, index, array) {
-//         elements.push(element);
-        
-//         indexes.push(index);
-
-//         arrays.push(array);
-//     });
-
-//     if (elements.length !== arr.length) throw Error('elements length is not equal to array length');
-
-//     if (indexes.length !== arr.length) throw Error('indexes length is not equal to array length');
-
-//     if (arrays.length !== arr.length) throw Error('arrays length is not equal to array length');
-
-//     elements.every(function (elem, index) {
-//         if (elem !== arr[index]) throw Error('element at index: ' + index + ' does not match ' + arr[index]);
-//     });
-
-//     indexes.forEach(function (i, index) {
-//         if (i !== index) throw Error('index: ' + index + ' does not match ' + index);
-//     });
-
-//     arrays.forEach(function(array) {
-//         if (array !== arr) throw Error('array does not match original one');
-//     });
-
-//     console.log('%c Done %s','color: green', '✔');
-// });
-
-
-
 testSuite(tests);
