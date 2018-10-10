@@ -22,15 +22,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -42,62 +42,69 @@
                     <h1>Capture <span class ='title__green'>Life</span></h1>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora deserunt odit error. </p>
                 </section>
-                <section class= 'images__container'>
-                    <section class= 'loewer-header__app-store'>
+                <section class= 'container-fluid'>
+                    <div class= 'row'>
+                    <section class= 'col-sm-12 col-md-6 loewer-header__app-store'>
                         <img src="gamma/images/icon_app_store.png" alt="app store icon">
                     </section>
-                    <section class= 'lower-header__google-icon'>
+                    <section class= 'col-sm-12 col-md-6 lower-header__google-icon'>
                         <img src="gamma/images/icon_google_play.png" alt="google play icon">
                     </section>
+                </div>
 
                 </section>
             </section> 
     </header>
         
     <main class= 'main'>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="gamma/images/demo1.jpg" alt="gamma mobiles">
-            <div class="card-body">
-                <h5 class="card-title">scotcher</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Read Me</a>
+        <div class="row">
+            <div class=" col-sm card" style="width: 18rem;">
+                <img class="card-img-top" src="gamma/images/demo1.jpg" alt="gamma mobiles">
+                <div class="card-body">
+                    <h5 class="card-title">scotcher</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class = '#section__button' >Read Me</a>
+                </div>
             </div>
-         </div>
-         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="gamma/images/demo2.jpg" alt="gamma mobiles">
-            <div class="card-body">
-                <h5 class="card-title">cabalistically</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Read Me</a>
+            <div class="col-sm card" style="width: 18rem;">
+                <img class="card-img-top" src="gamma/images/demo2.jpg" alt="gamma mobiles">
+                <div class="card-body">
+                    <h5 class="card-title">cabalistically</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class = '#section__button' >Read Me</a>
+                </div>
             </div>
-        </div>
 
-        <div class="card" style="width: 18rem;">
+            <div class="col-sm card" style="width: 18rem;">
                 <img class="card-img-top" src="gamma/images/demo3.jpg" alt="gamma mobiles">
                 <div class="card-body">
                     <h5 class="card-title">jargonium</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Read Me</a>
+                    <a href="#" class = '#section__button' >Read Me</a>
                 </div>
             </div>
+        </div>
     </main>
 
     <footer class= 'footer'>
-        <section class ='footer__features' >
-            <h2>Gamma Features</h2>
-            <ul>
-                <li>charlatanistic</li>
-                <li>unembattled</li>
-                <li>bleekbok</li>
-                <li>overtiple</li>
-                <li>empathically</li>
-            </ul>
-            <div>
-                <img src="gamma/images/logo.png" alt="">
-            </div>
-        </section>
-        <section class ='footer__nav'>
-            <nav class = 'nav'>
+        <div class="container">
+            <section class ='row footer__features' >
+                <div class="col-sm">
+                    <h2>Gamma Features</h2>
+                    <ul>
+                        <li>charlatanistic</li>
+                        <li>unembattled</li>
+                        <li>bleekbok</li>
+                        <li>overtiple</li>
+                        <li>empathically</li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <img src="gamma/images/logo.png" alt="">
+                </div>
+            </section>
+        <section class ='row footer__nav'>
+            <nav class = 'col-sm nav'>
                 <ul>
                     <li>Home</li>
                     <li>About</li>
@@ -105,7 +112,9 @@
                     <li>Privacy Policy</li>
                 </ul>
             </nav>
-            <p>Copyright &copy; 2015, All Rights Reserved </p>
+            <div class= 'col-sm foorter__text'></div>
+                <p>Copyright &copy; 2015, All Rights Reserved </p>
+            </div>
         </section>
     </footer>
 
