@@ -1,6 +1,6 @@
 
 
-console.log("TEST FIND. This method find the first element that satisfy the provide test function. If not, return undef.")
+console.log("%cTEST FIND. This method find the first element that satisfy the provide test function. If not, return undef.", 'background: orange')
 
 var tests = [];
 
