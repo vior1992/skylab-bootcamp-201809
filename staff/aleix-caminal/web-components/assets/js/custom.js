@@ -2,16 +2,16 @@ function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
 
     this.register = document.createElement('button');
-    this.register.innerText = 'Register';
-    this.register.className = 'panel__button';
-    this.register.addEventListener('click', registerCallback);
-    this.element.appendChild(this.register);
+    $(this.register).html('Register');
+    $(this.register).addClass('panel__button');
+    $(this.register).on('click', registerCallback);
+    $(this.element).append(this.register);
 
     this.login = document.createElement('button');
-    this.login.innerText = 'Log In';
-    this.login.className = 'panel__button';
-    this.login.addEventListener('click', loginCallback);
-    this.element.appendChild(this.login);
+    $(this.login).html('Log In');
+    $(this.login).addClass('panel__button');
+    $(this.login).on('click', loginCallback);
+    $(this.element).append(this.login);
 }
 
 Landing.prototype = Object.create(Panel.prototype);
@@ -19,7 +19,8 @@ Landing.prototype.constructor = Landing;
 
 function Register(title, tag, registerCallback, cancelCallback) {
     Panel.call(this, title, tag);
-    this.element.style.display = 'none';
+    $(this.element).hide();
+
     this.form = new Form('register', [
         {
             element: 'input',
@@ -58,8 +59,7 @@ function Register(title, tag, registerCallback, cancelCallback) {
         event.preventDefault();
         registerCallback(this.form);
     }.bind(this));
-
-    this.element.appendChild(this.form);
+    $(this.element).append(this.form);
 }
 
 Register.prototype = Object.create(Panel.prototype);
@@ -67,7 +67,8 @@ Register.prototype.constructor = Register;
 
 function Login(title, tag, loginCallback, cancelCallback) {
     Panel.call(this, title, tag);
-    this.element.style.display = 'none';
+    $(this.element).hide();
+
     this.form = new Form('login', [
         {
             element: 'input',
@@ -97,8 +98,7 @@ function Login(title, tag, loginCallback, cancelCallback) {
         event.preventDefault();
         loginCallback(this.form);
     }.bind(this));
-
-    this.element.appendChild(this.form);
+    $(this.element).append(this.form);
 }
 
 Login.prototype = Object.create(Panel.prototype);
@@ -106,14 +106,13 @@ Login.prototype.constructor = Login;
 
 function Welcome(title, tag, logoutCallback) {
     Panel.call(this, title, tag);
-    this.element.style.display = 'none';
+    $(this.element).hide();
 
     this.logout = document.createElement('button');
-    this.logout.type = 'button';
-    this.logout.innerText = 'Log Out';
-    this.logout.className = 'panel__button';
-    this.logout.addEventListener('click', logoutCallback);
-    this.element.appendChild(this.logout);
+    $(this.logout).html('Log Out');
+    $(this.logout).addClass('panel__button');
+    $(this.logout).on('click', logoutCallback);
+    $(this.element).append(this.logout);
 }
 
 Welcome.prototype = Object.create(Panel.prototype);

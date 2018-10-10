@@ -27,7 +27,7 @@ var register = new Register('Register', 'section',
 var login = new Login('Login', 'section',
     function(form) {
         logic.login(form, function() {
-            welcome.element.querySelector('.panel__title').innerText = 'Welcome ' + user.name + '!';
+            $('.panel__title').html('Welcome ' + user.name + '!');
             login.hide();
             welcome.show();
         });
@@ -46,7 +46,7 @@ var welcome = new Welcome('Welcome', 'section', function() {
     });
 });
 
-document.body.appendChild(landing.element);
-document.body.appendChild(register.element);
-document.body.appendChild(login.element);
-document.body.appendChild(welcome.element);
+$('body').append(landing.element);
+$('body').append(register.element);
+$('body').append(login.element);
+$('body').append(welcome.element);
