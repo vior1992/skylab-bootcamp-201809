@@ -37,6 +37,63 @@ describe('logic', function(){
             expect(user.username).toEqual(username);
             expect(user.password).toEqual(password);
         });
+        it ('should send on fail invalid name', function(){
+            name = '';
+            var p;
+            logic.register(name,surname,username,password,
+                
+            function () {
+                
+                user.name = name;
+                user.surname = surname;
+                user.username = username;
+                user.password = password;
+            },
+            function (message) {
+                p = message;
+            });
+            
+            expect(p).toEqual('invalid name');
+            
+        });
+        it ('should send on fail invalid surname', function(){
+            surname = '';
+            var p;
+            logic.register(name,surname,username,password,
+                
+            function () {
+                
+                user.name = name;
+                user.surname = surname;
+                user.username = username;
+                user.password = password;
+            },
+            function (message) {
+                p = message;
+            });
+            
+            expect(p).toEqual('invalid surname');
+            
+        });
+        it ('should send on fail invalid username', function(){
+            username = undefined;
+            var p;
+            logic.register(name,surname,username,password,
+                
+            function () {
+                
+                user.name = name;
+                user.surname = surname;
+                user.username = username;
+                user.password = password;
+            },
+            function (message) {
+                p = message;
+            });
+            
+            expect(p).toEqual('invalid username');
+            
+        });
     });
 
     describe('login', function(){
