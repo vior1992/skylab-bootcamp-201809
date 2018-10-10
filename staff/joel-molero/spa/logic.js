@@ -6,6 +6,8 @@ var logic = {
         else if (!surname || !surname.trim().length) onFail('invalid surname');
         else if (!username || !username.trim().length) onFail('invalid username');
         else if (!password || !password.trim().length) onFail('invalid password');
+        else if (typeof onSuccess !== 'function') throw Error(onSuccess + ' is not a function')
+        else if (typeof onSuccess !== 'function') throw Error(onFail + ' is not a function')
         else {
             user = {
                 name: name,
@@ -23,7 +25,11 @@ var logic = {
         else if (!password || !password.trim().length) onFail('invalid password');
         else if (user) {
             if (user.username === username && user.password === password) {
-                onSuccess(user);
+                onSuccess({
+                    name: user.name,
+                    surname: user.surname,
+                    username: user.username,
+                })
             }
             else onFail('wrong credentials!');
         }
