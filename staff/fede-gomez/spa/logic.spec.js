@@ -1,11 +1,11 @@
-describe('SPA', function () {
+describe('logic', function () {
 
     beforeEach(function() {
         //Something to execute before each describe
     });
 
     describe('register', function () {
-        it('register the correct values', function () {
+        it('should register the correct values', function () {
 
             var name = 'Fede';
             var surname = 'Gomez';
@@ -17,12 +17,21 @@ describe('SPA', function () {
             var expectedUsername = username;
             var expectedPassword = password;
 
-            logic.register(name, surname, username, password);
+            logic.register(name, surname, username, password, function(){
+                expect(user.name).toEqual(expectedName);
+                expect(user.surname).toEqual(expectedSurname);
+                expect(user.username).toEqual(expectedUsername);
+                expect(user.password).toEqual(expectedPassword);
+            }, 
+            function(errorMessage){
+                throw Error(errorMessage);
+            });
 
-           expect(user.name).toEqual(expectedName);
-           expect(user.surname).toEqual(expectedSurname);
-           expect(user.username).toEqual(expectedUsername);
-           expect(user.password).toEqual(expectedPassword);
+           
+        });
+
+        afterEach(function(){
+            //To do something after each "it". E.g: reset the User variable...
         });
         
     });
