@@ -55,7 +55,8 @@ function Register(title, tag, registerCallback, cancelCallback) {
         }
     ]);
 
-    this.form.addEventListener('submit', function(event) {
+
+    $(this.form).on('submit', function(event) {
         event.preventDefault();
         registerCallback(this.form);
     }.bind(this));
@@ -94,7 +95,7 @@ function Login(title, tag, loginCallback, cancelCallback) {
         }
     ]);
 
-    this.form.addEventListener('submit', function(event) {
+    $(this.form).on('submit', function(event) {
         event.preventDefault();
         loginCallback(this.form);
     }.bind(this));
