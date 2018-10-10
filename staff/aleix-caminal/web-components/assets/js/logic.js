@@ -1,5 +1,5 @@
 var user, safeBox;
-(function () {
+(function() {
     _users = [];
 
     safeBox = {
@@ -21,15 +21,15 @@ var user, safeBox;
 
 var logic = {
     register: function(form, callback) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+        if (typeof form !== 'object' || $(form).prop("tagName") !== 'FORM') throw Error('no form passed as argument');
         if (typeof callback !== 'function') throw Error('callback is not a function');
 
         if (this.validate(form, ['name', 'username', 'password', 'confirm_password'])) {
-            if (form.querySelector('#password').value === form.querySelector('#confirm_password').value) {
+            if ($('#password').val() === $('#confirm_password').val()) {
                 safeBox.saveUser(
-                    form.querySelector('#name').value,
-                    form.querySelector('#username').value,
-                    form.querySelector('#password').value
+                    $('#name').val(),
+                    $('#username').val(),
+                    $('#password').val()
                 );
 
                 callback();
@@ -42,10 +42,10 @@ var logic = {
     },
 
     login: function(form, callback) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+        if (typeof form !== 'object' || $(form).prop("tagName") !== 'FORM') throw Error('no form passed as argument');
         if (typeof callback !== 'function') throw Error('callback is not a function');
 
-        if (user = safeBox.retrieveUser(form.querySelector('#username').value, form.querySelector('#password').value)) {
+        if (user = safeBox.retrieveUser($('#username').val(), $('#password').val())) {
             callback();
         } else {
             this.error('Your credentials are invalid');
@@ -59,19 +59,18 @@ var logic = {
     },
 
     validate: function(form, inputs) {
-        if (typeof form !== 'string' || (form.trim()).length < 1) throw Error('form id is not valid');
-        if (!Array.isArray(inputs) || inputs.length < 1) throw Error('array is not valid');
+        if (typeof form !== 'object' || $(form).prop("tagName") !== 'FORM') throw Error('no form passed as argument');
+        if (!$.isArray(inputs) || inputs.length < 1) throw Error('array is not valid');
 
         var result = 1;
-        for (var i in inputs) {
-            var input = form.querySelector('#' + inputs[i]);
-            if (!input.value) {
-                input.classList.add('is-invalid');
+        $.each(inputs, function(i, input) {
+            if (!$('#' + input).val()) {
+                $('#' + input).addClass('is-invalid');
                 result = 0;
             } else {
-                input.classList.remove('is-invalid');
+                $('#' + input).removeClass('is-invalid');
             }
-        }
+        });
 
         return result;
     },

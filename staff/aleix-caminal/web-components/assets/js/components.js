@@ -17,7 +17,6 @@ function Panel(title, tag) {
     this.title = document.createElement('h2');
     $(this.title).html(title);
     $(this.title).addClass('panel__title');
-
     $(this.element).append(this.title);
 }
 
