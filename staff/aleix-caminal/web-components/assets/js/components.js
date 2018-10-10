@@ -3,11 +3,11 @@ function Component(tag) {
 }
 
 Component.prototype.show = function () {
-    this.element.style.display = 'flex';
+    $(this.element).css('display', 'flex');
 };
 
 Component.prototype.hide = function () {
-    this.element.style.display = 'none';
+    $(this.element).hide();
 };
 
 function Panel(title, tag) {
