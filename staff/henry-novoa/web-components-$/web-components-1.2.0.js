@@ -65,6 +65,7 @@ function Alert(title, text, tag, callback, error) {
         callback();
     }.bind(this));
 
+
     // var self = this;
 
     // this.accept.addEventListener('click', function(event) {

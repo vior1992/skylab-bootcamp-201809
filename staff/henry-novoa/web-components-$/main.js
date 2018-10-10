@@ -2,6 +2,8 @@ var panel = new Panel('hola mundo', 'section');
 
 $('body').append(panel.element);
 
+
+
 var dialog = new Dialog('hola mundo', 'lorem ipsum ...', 'section');
 
 $('body').append(dialog.element);
