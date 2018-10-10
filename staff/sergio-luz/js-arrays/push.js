@@ -7,5 +7,5 @@ function push() {
         arguments[0][arguments[0].length + count] = arguments[i];
         count++;
     }
-    return arguments[0];
+    return arguments[0].length;
 }
