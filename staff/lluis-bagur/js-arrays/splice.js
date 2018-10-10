@@ -1,4 +1,4 @@
-function splice() {
+function splice(months,elem) {
 
     var aux = [];
     
