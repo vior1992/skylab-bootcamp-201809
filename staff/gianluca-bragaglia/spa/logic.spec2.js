@@ -5,6 +5,10 @@ describe('logic', function () {
     
     describe('register', function () {
 
+        beforeEach(function() {
+            user = undefined;
+        });
+
         it('should succeed on correct data', function () {
 
             logic.register('gia@gia.com', 'gian', '123', 
@@ -15,7 +19,7 @@ describe('logic', function () {
             }, function (message) {
                 throw Error(message);
             });
-        });
+        });/*
 
         it('should fail on undefined email', function () {
 
@@ -57,7 +61,7 @@ describe('logic', function () {
             });
         });
 
-        /* it('should throw error on undefined success callback', function () {
+         it('should throw error on undefined success callback', function () {
 
             expect(function() {
                 logic.register('gig@gig.com', 'gian', '123', 
