@@ -4,183 +4,373 @@ describe('logic', function () {
     
     
     describe('register', function () {
-        
-        beforeEach(function () {
-            email = 'gia@Ga.com';
-            username = 'gian';
-            password = '123'; 
+
+        beforeEach(function() {
+            user = undefined;
         });
 
-        var email;
-        var username;
-        var password;
+        it('should succeed on correct data', function () {
 
+            logic.register('gia@gia.com', 'gian', '123', 
+            function () {
+                expect(user.email).toEqual('gia@gia.com');
+                expect(user.username).toEqual('gian');
+                expect(user.password).toEqual('123');
+            }, function (message) {
+                throw Error(message);
+            });
+        });
 
-        
         it('should fail on undefined email', function () {
-            email = undefined;
-            var msg;
-            logic.register(email, username, password, function () {
+
+            logic.register(undefined, 'gian', '123', 
+            function () {
+                throw Error();
             }, function (message) {
-                msg = message;
+                expect(message).toEqual('invalid email');    
             });
-            expect(msg).toEqual('invalid email');
         });
-        it('should fail on undefined username', function () {
-            username = undefined;
-            var msg;
-            logic.register(email, username, password, function () {
+
+        it('should fail on empty email', function () {
+
+            logic.register('', 'gian', '123', 
+            function () {
+                throw Error();
             }, function (message) {
-                msg = message;
+                expect(message).toEqual('invalid email');    
             });
-            expect(msg).toEqual('invalid username');
         });
+
+        it('should fail on blank email', function () {
+
+            logic.register('   ', 'gian', '123', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid email');    
+            });
+        });
+
+        it('should fail on no string email (boolean)', function () {
+
+            logic.register(true, 'gian', '123', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid email');    
+            });
+        });
+
+        //password
         it('should fail on undefined password', function () {
-            password = undefined;
-            var msg;
-            logic.register(email, username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid password');
-        });
-        it('should fail on blanck username', function () {
-            username = '   ';
-            var msg;
-            logic.register(email, username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid username');
-        });
-        it('should fail on blanck email', function () {
-            email = '   ';
-            var msg;
-            logic.register(email, username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid email');
-        });
-        it('should fail on blanck password', function () {
-            password = '   ';
-            var msg;
-            logic.register(email, username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid password');
-        });
-        it('should succeed on keeping user data', function(){
 
-            var error;
-            logic.register(email, username, password, function(){
-                error = false
-            }, function(){
-                error = true;
+            logic.register('gia@gia.com', 'gian', undefined, 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid password');    
             });
-            expect(error).toEqual(false);
-            expect(user.email).toEqual(email);
-            expect(user.username).toEqual(username);
-            expect(user.password).toEqual(password);
         });
-      
 
+        it('should fail on empty password', function () {
+
+            logic.register('gia@gia.com', 'gian', '', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid password');    
+            });
+        });
+
+        it('should fail on blank password', function () {
+
+            logic.register('gia@gia.com', 'gian', '   ', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid password');    
+            });
+        });
+
+        it('should fail on no string password (boolean)', function () {
+
+            logic.register('gia@gia.com', 'gian', true, 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid password');    
+            });
+        });
+
+        //username
+        it('should fail on undefined username', function () {
+
+            logic.register('gia@gia.com', undefined,'123', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid username');    
+            });
+        });
+
+        it('should fail on empty username', function () {
+
+            logic.register('gia@gia.com', '', '123', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid username');    
+            });
+        });
+
+        it('should fail on blank username', function () {
+
+            logic.register('gia@gia.com', '   ', '123', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid username');    
+            });
+        });
+
+        it('should fail on no string username (boolean)', function () {
+
+            logic.register('gia@gia.com', false, '123', 
+            function () {
+                throw Error();
+            }, function (message) {
+                expect(message).toEqual('invalid username');    
+            });
+        });
+
+
+        //onSuccess
+        it('should throw error on undefined success callback', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    undefined,
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'undefined is not a function');
+        });
+
+        it('should throw error on null success callback', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    null,
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'null is not a function');
+        });
+
+        it('should throw error on non-function success callback (string)', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    'hola',
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'hola is not a function');
+        });
+
+        it('should throw error on non-function success callback (boolean)', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    false,
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'false is not a function');
+        });
+
+         //onFail       
+        it('should throw error on undefined fail callback', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    undefined
+                );
+            }).toThrowError(TypeError, 'undefined is not a function');
+        });
+
+        it('should throw error on null fail callback', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    null
+                );
+            }).toThrowError(TypeError, 'null is not a function');
+        });
+
+        it('should throw error on non-function fail callback (string)', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    'hola'
+                );
+            }).toThrowError(TypeError, 'hola is not a function');
+        });
+
+        it('should throw error on non-function fail callback (boolean)', function () {
+            expect(function () {
+                logic.register('gia@gia.com', 'gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    true
+                );
+            }).toThrowError(TypeError, 'true is not a function');
+        });
+        
     });
 
+
+    //LOGIN
+
     describe('login', function () {
+        beforeEach(function(){
+            user = {
+                username: 'gian',
+                password: '123'
+            }
+        });
+
+        it('should succeed on correct credentials', function () {
+            logic.login('gian', '123', 
+            function (user) {
+                expect(user).toBeDefined();
+                expect(user.username).toEqual('gian');
+                expect(user.password).not.toBeDefined();
+            }, function (message) {
+                throw Error(message);
+            });
+        }); 
+
+        it('should fail on wrong username', function() {
+            logic.login('jd-', '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('wrong credentials!');
+                }
+            );
+        });
+
+        it('should fail on wrong password', function() {
+            logic.login('gian', '126',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('wrong credentials!');
+                }
+            );
+        });
+
+
+        //onSuccess
+        it('should throw error on undefined success callback', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    undefined,
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'undefined is not a function');
+        });
+
+        it('should throw error on null success callback', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    null,
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'null is not a function');
+        });
+
+        it('should throw error on non-function success callback (string)', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    'hola',
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'hola is not a function');
+        });
+
+        it('should throw error on non-function success callback (boolean)', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    false,
+                    function (message) {
+                        throw Error(message); // new Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'false is not a function');
+        });
+
+         //onFail       
+         it('should throw error on undefined fail callback', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    undefined
+                );
+            }).toThrowError(TypeError, 'undefined is not a function');
+        });
+
+        it('should throw error on null fail callback', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    null
+                );
+            }).toThrowError(TypeError, 'null is not a function');
+        });
+
+        it('should throw error on non-function fail callback (string)', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    'hola'
+                );
+            }).toThrowError(TypeError, 'hola is not a function');
+        });
+
+        it('should throw error on non-function fail callback (boolean)', function () {
+            expect(function () {
+                logic.login('gian', '123',
+                    function() {
+                        throw Error(message); // new Error(message);
+                    },
+                    true
+                );
+            }).toThrowError(TypeError, 'true is not a function');
+        });
         
-        beforeEach(function () {
-            email = 'gia@Ga.com';
-            username = 'gian';
-            password = '123'; 
-        });
-
-        it('should fail on undefined username', function () {
-            var username = undefined;
-            var password;
-            var msg;
-            logic.login(username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid username');
-        }); 
-        it('should fail on blank username', function () {
-            var username = '    ';
-            var password;
-            var msg;
-            logic.login(username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid username');
-        }); 
-        it('should fail on undefined password', function () {
-            var username = 'gian';
-            var password = undefined;
-            var msg;
-            logic.login(username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid password');
-        });
-        it('should fail on blank password', function () {
-            var username = 'gian';
-            var password = '    ';
-            var msg;
-            logic.login(username, password, function () {
-            }, function (message) {
-                msg = message;
-            });
-            expect(msg).toEqual('invalid password');
-        }); 
-        it('should succeed on correct username and password', function () {
-
-            logic.register('e', 'gian', '123', function () { }, function () { })
-            var username = 'gian';
-            var password = '123';
-            var error;
-            logic.login(username, password, function () {
-                error = false;
-            }, function (message) {
-                error = true;
-            });
-            expect(error).toEqual(false);
-        });
-        it('should fail on incorrect username', function () {
-
-            logic.register('p', 'gian', '123', function () { }, function () { })
-            var username = 'gol';
-            var password = '123';
-            var error;
-            var msg;
-            logic.login(username, password, function () {
-                error = false;
-            }, function (message) {
-                error = true;
-                msg = message
-            });
-            expect(error).toEqual(true);
-            expect(msg).toEqual('wrong credentials!');
-        }); 
-        it('should fail on incorrect password', function () {
-
-            logic.register('p', 'gian', '123', function () { }, function () { })
-            var username = 'gian';
-            var password = '13';
-            var error;
-            var msg;
-            logic.login(username, password, function () {
-                error = false;
-            }, function (message) {
-                error = true;
-                msg = message
-            });
-            expect(error).toEqual(true);
-            expect(msg).toEqual('wrong credentials!');
-        }); 
     }); 
 
 }); 
