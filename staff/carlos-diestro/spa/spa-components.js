@@ -19,7 +19,7 @@ function Landing(title, tag, registerCallback, loginCallback) {
 Landing.prototype = Object.create(Panel.prototype);
 Landing.prototype.constructor = Landing;
 
-function Register(title, tag, registerCallback) {
+function Register(title, tag, registerCallback, backCallback) {
     Panel.call(this, title, tag);
 
     this.element.className = 'register';
@@ -58,12 +58,18 @@ function Register(title, tag, registerCallback) {
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
     this.form.appendChild(this.register);
+
+    this.back = document.createElement('a');
+    this.back.href = '#';
+    this.back.innerText = 'Back';
+    this.back.addEventListener('click', backCallback);
+    this.element.appendChild(this.back);
 }
 
 Register.prototype = Object.create(Panel.prototype);
 Register.prototype.constructor = Register;
 
-function Login(title, tag, loginCallback) {
+function Login(title, tag, loginCallback, backCallback) {
     Panel.call(this, title, tag);
 
     this.element.className = 'login';
@@ -95,6 +101,12 @@ function Login(title, tag, loginCallback) {
     this.login = document.createElement('button');
     this.login.innerText = 'Login';
     this.form.appendChild(this.login);
+
+    this.back = document.createElement('a');
+    this.back.href = '#';
+    this.back.innerText = 'Back';
+    this.back.addEventListener('click', backCallback);
+    this.element.appendChild(this.back);
 }
 
 Login.prototype = Object.create(Panel.prototype);

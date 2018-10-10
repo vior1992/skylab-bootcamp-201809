@@ -21,12 +21,19 @@ var logic = {
   },
 
   login: function(name, password, onSuccess, onFailure) {
-    if(name !== user.name) {
-      onFailure('Name is wrong');
-    } else if(password !== user.password) {
-      onFailure('Password is wrong');
-    } else {
-      onSuccess();
+    if(!name || !name.trim().length) {
+      onFailure('Name is not valid');
+    } else if(!password || !password.trim().length) {
+      onFailure('Password is not valid');
+    } else if(user){
+      if(name === user.name && password === user.password) {
+        onSuccess({
+          email: user.email,
+          name: user.name
+        });
+      } else {
+        onFailure('Credentials are wrong');
+      }
     }
   }
 };
