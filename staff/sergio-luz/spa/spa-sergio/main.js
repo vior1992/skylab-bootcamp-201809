@@ -27,10 +27,7 @@ var register = new Register('Register', 'section', function () {
     var repeatPass = document.getElementsByName("_repeatPass")[0].value;
 
     console.log(name, surname, username, password, repeatPass);
-    var result = safeBox.saveData(name, surname, username, password, repeatPass);
-
-    console.log(result);
-    if (result === true) {
+    safeBox.saveData(name, surname, username, password, repeatPass, function () {
         if (register_errors.length) {
             register_errors.forEach(n => {
                 document.body.removeChild(n.element);
@@ -38,8 +35,7 @@ var register = new Register('Register', 'section', function () {
         }
         register.hide();
         login.show();
-        //login.flex();
-    } else {
+    }, function (result) {
         if (register_errors.length) {
             register_errors.forEach(n => {
                 document.body.removeChild(n.element);
@@ -51,8 +47,8 @@ var register = new Register('Register', 'section', function () {
             document.body.appendChild(register_errors[index].element);
             console.log(register_errors);
         }
-    }
-})
+    });
+});
 document.body.appendChild(register.element);
 
 // 
@@ -64,16 +60,15 @@ var login = new Login('Login', 'section', function () {
     var username = document.getElementsByName("confirm_username")[0].value;
     var password = document.getElementsByName("confirm_password")[0].value;
 
-    var result = safeBox.checkData(password, username);
-
-    if (result === true) {
+    safeBox.checkData(password, username, function(){}, function(){});
+    safeBox.checkData(password, username, function(){
         login.hide();
         welcome.show();
         login_errors.hide();
-    } else {
+    }, function (arr){
         login_errors.show();
         login.hide();
-    }
+    });
 });
 document.body.appendChild(login.element);
 
