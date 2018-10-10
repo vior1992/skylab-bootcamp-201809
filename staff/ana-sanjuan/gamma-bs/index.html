@@ -15,14 +15,28 @@
 
 <body>
     <header class= 'header'>
-            <section class = 'upper-header'>
-                <h3>Gamma</h3>
-                    <div class= 'burger__container'>
-                        <div class= 'burger'></div>
-                        <div class= 'burger'></div>
-                        <div class= 'burger'></div>
-                        </div>
-            </section>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Gamma</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+
             <section class = 'lower-header' >
                 <section class= 'lower-header__title'>
                     <h1>Capture <span class ='title__green'>Life</span></h1>
@@ -37,29 +51,35 @@
                     </section>
 
                 </section>
-                
-            </section>  
+            </section> 
     </header>
         
     <main class= 'main'>
-        <section class = 'main__section'>
-            <img src="gamma/images/demo1.jpg" alt="gamma mobiles">
-            <h2>scotcher</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni cum nisi perferendis sed maxime ullam obcaecati inventore earum, quis rem odit repudiandae nam quasi similique quidem nobis est at commodi?</p>
-            <input class='section__button' type='button' value = 'Read Me' />
-        </section>
-        <section class = 'main__section'>
-            <img src="gamma/images/demo2.jpg" alt="gamma mobiles">
-            <h2>cabalistically</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni cum nisi perferendis sed maxime ullam obcaecati inventore earum, quis rem odit repudiandae nam quasi similique quidem nobis est at commodi?</p>
-            <input class='section__button' type='button' value = 'Read Me' />
-        </section>
-        <section class = 'main__section'>
-            <img src="gamma/images/demo3.jpg" alt="gamma mobiles">
-            <h2>jargonium</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni cum nisi perferendis sed maxime ullam obcaecati inventore earum, quis rem odit repudiandae nam quasi similique quidem nobis est at commodi?</p>
-            <input class='section__button' type='button' value = 'Read Me' />
-        </section>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="gamma/images/demo1.jpg" alt="gamma mobiles">
+            <div class="card-body">
+                <h5 class="card-title">scotcher</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Read Me</a>
+            </div>
+         </div>
+         <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="gamma/images/demo2.jpg" alt="gamma mobiles">
+            <div class="card-body">
+                <h5 class="card-title">cabalistically</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Read Me</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="gamma/images/demo3.jpg" alt="gamma mobiles">
+                <div class="card-body">
+                    <h5 class="card-title">jargonium</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Read Me</a>
+                </div>
+            </div>
     </main>
 
     <footer class= 'footer'>
