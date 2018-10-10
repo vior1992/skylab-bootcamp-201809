@@ -36,9 +36,7 @@ describe('Ayay', function () {
                 expect(elem).toEqual(ayay[index] * 2);
             });
         });
-    });
-
-    describe('forEach', function () {
+        
         it('should throw an exception if callback is not a function', function () {
             ayay.push(1);
             ayay.push(2);
@@ -48,7 +46,7 @@ describe('Ayay', function () {
             var p = 0;
             
             expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
-        });    
+        });  
     });
 
     describe('pop', function () {
@@ -84,10 +82,8 @@ describe('Ayay', function () {
             result.forEach(function (elem, index) {
                 expect(elem).toEqual(ayay[index] * 2);
             });
-        });  
-    });
-
-    describe('map', function () {
+        }); 
+        
         it('should throw an exception if callback is not a function', function () {
             ayay.push(1);
             ayay.push(2);
@@ -95,8 +91,8 @@ describe('Ayay', function () {
             
             var p = 0;
             
-            expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
-        });    
+            expect(function() {ayay.map(p);}).toThrowError(TypeError, p + ' is not a function')
+        });  
     });
 
     describe('filter', function () {
@@ -111,10 +107,8 @@ describe('Ayay', function () {
             result.forEach(function (elem) {
                 expect(elem > 6).toBeTruthy();
             });
-        });  
-    });
-
-    describe('filter', function () {
+        }); 
+        
         it('should throw an exception if callback is not a function', function () {
             ayay.push(1);
             ayay.push(2);
@@ -122,8 +116,8 @@ describe('Ayay', function () {
 
             var p = 0;
             
-            expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
-        });    
+            expect(function() {ayay.filter(p);}).toThrowError(TypeError, p + ' is not a function')
+        });
     });
 
     describe('find', function () {
@@ -136,9 +130,7 @@ describe('Ayay', function () {
             var result = ayay.find(function (elem) { return elem < 6;});
             expect(result < 6).toBeTruthy();
         });  
-    });
 
-    describe('find', function () {
         it('should throw an exception if callback is not a function', function () {
             ayay.push(1);
             ayay.push(2);
@@ -146,7 +138,7 @@ describe('Ayay', function () {
             
             var p = 0;
             
-            expect(function() {ayay.forEach(p);}).toThrowError(TypeError, p + ' is not a function')
+            expect(function() {ayay.find(p);}).toThrowError(TypeError, p + ' is not a function')
         });    
     });
 
@@ -171,24 +163,17 @@ describe('Ayay', function () {
                 expect(elem).toEqual(correct[index]);  
             });
         });  
+
+        it('should throw an exception if callback is not a function', function () {
+            ayay.push(1);
+            ayay.push(2);
+            ayay.push(3);
+            
+            var p = 0;
+            
+            expect(function() {ayay.sort(p);}).toThrowError(TypeError, p + ' is not a function')
+        });  
     });
 
-    // describe('reverse', function () {
-    //     it('should sort the elements in reverse', function () {
-            
-    //         ayay.push(8);
-    //         ayay.push(2);
-    //         ayay.push(9);
-
-    //         var length = ayay.length;
-
-    //         var result = ayay.sort(function (elem) { return elem < 6;});
-
-    //         result.forEach(function (elem) {
-    //             length--;
-    //             expect(elem).toEqual(ayay[length]);
-                
-    //         });
-    //     });  
-    // });
+    
 });
