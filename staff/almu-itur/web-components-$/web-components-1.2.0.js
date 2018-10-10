@@ -4,30 +4,33 @@ function Component(tag) {
 }
 
 Component.prototype.show = function () {
-    this.element.style.display = 'block';
+    //this.element.style.display = 'block';
+    this.element.css('display', 'block');
 };
 
 Component.prototype.hide = function () {
-    this.element.style.display = 'none';
+    //this.element.style.display = 'none';
+    this.element.css('display', 'none');
 };
 
 function Panel(title, tag) {
     Component.call(this, tag);
 
     //this.element.className = 'panel';
-    $(this.element).addClass('panel');
+    this.element.addClass('panel');
 
     //this.title = document.createElement('h2');
-    this.title = $('<h2>');
+    this.title = $('<h2></h2>');
   
     //this.title.innerText = title;
-    $(this.title).text(title);
+    this.title.text(title);
+    //Also this is correct: this.title = $('<h2>' + title + '</h2>').addClass('panel__title');
     
     //this.title.className = 'panel__title';
-    $(this.title).addClass('panel__title');
+    this.title.addClass('panel__title');
 
     //this.element.appendChild(this.title);
-    $(this.element).appendTo(this.title);
+    this.title.appendTo(this.element);
 }
 
 Panel.prototype = Object.create(Component.prototype);
@@ -37,22 +40,22 @@ function Dialog(title, text, tag) {
     Panel.call(this, title, tag);
 
     //this.element.className = 'dialog';
-    $(this.element).addClass('dialog');
+    this.element.addClass('dialog');
 
     //this.title.className = 'dialog__title';
-    $(this.title).addClass('dialog__title');
+    this.title.addClass('dialog__title');
     
     //this.body = document.createElement('p');
-
+    this.body = $('<p></p>');
 
     //this.body.innerText = text;
-    $(this.body).text(title);
+    this.body.text(text);
 
     //this.body.className = 'dialog__body';
-    $(this.body).addClass('dialog__body');
+    this.body.addClass('dialog__body');
 
     //this.element.appendChild(this.body);
-    $(this.element).appendTo(this.body);
+    this.body.appendTo(this.element);
 }
 
 Dialog.prototype = Object.create(Panel.prototype);
@@ -62,37 +65,44 @@ function Alert(title, text, tag, callback, error) {
     Dialog.call(this, title, text, tag);
 
     //this.element.className = error ? 'alert alert--danger' : 'alert';
-    $(this.element).addClass(dialog__title ? 'alert alert--danger' : 'alert');
+    this.element.addClass(error ? 'alert alert--danger' : 'alert');
 
     //this.title.className = 'alert__title';
-    $(this.title).addClass('alert__title');
+    this.title.addClass('alert__title');
 
     //this.body.className = 'alert__body';
-    $(this.body).addClass('alert__body');
+    this.body.addClass('alert__body');
 
     //this.accept = document.createElement('button');
-    this.element = $('<button>');
+    this.accept = $('<button></button>');
 
     //this.accept.innerText = 'Accept';
-    $(this.accept).text(title);
+    this.accept.text('Accept');
+
+    //this.accept.className = 'alert__button';
+    this.accept.addClass('alert__button');
 
     // var self = this;
 
-    // this.accept.addEventListener('click', function(event) {
+    // this.accept.addEventListener('click', function(event) { //Alternative version
     //     self.element.style.display = 'none';
     // });
-
-    this.accept.addEventListener('click', function () {
-        this.element.style.display = 'none';
+    
+    
+    //this.accept.addEventListener('click', function () {       //Equivalent to jquery in js
+    //    this.element.style.display = 'none';
+    //
+    //    callback();
+    //}.bind(this));
+    
+    this.accept.click(function () {    
+        this.element.css('display', 'none');
 
         callback();
     }.bind(this));
 
-    //this.accept.className = 'alert__button';
-    $(this.accept).addClass('alert__button');
-
     //this.element.appendChild(this.accept);
-    this.element.appendTo('this.accept');	
+    this.accept.appendTo(this.element);	
 }
 
 Alert.prototype = Object.create(Dialog.prototype);
@@ -102,39 +112,61 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
     Dialog.call(this, title, text, tag);
 
     //this.element.className = 'confirm';
-    $(this.element).addClass('confirm');
+    this.element.addClass('confirm');
 
     //this.title.className = 'confirm__title';
-    $(this.title).addClass('confirm__title');
+    this.title.addClass('confirm__title');
 
     //this.body.className = 'confirm__body';
-    $(this.body).addClass('confirm__body');
+    this.body.addClass('confirm__body');
 
-    this.cancel = document.createElement('button');
-    this.cancel.innerText = 'Cancel';
+    //this.cancel = document.createElement('button');
+    this.cancel = $('<button></button>');
+
+    //this.cancel.innerText = 'Cancel';
+    this.cancel.text('Cancel');
+    
     //this.cancel.className = 'confirm__button';
-    $(this.cancel).addClass('confirm__button');
+    this.cancel.addClass('confirm__button');
 
-    this.cancel.addEventListener('click', function () {
-        this.element.style.display = 'none';
+    //this.cancel.addEventListener('click', function () {
+    //    this.element.style.display = 'none';
+    //
+    //    cancelCallback();
+    //}.bind(this));
+    
+    this.cancel.click(function () {
+        this.element.css('display', 'none');
 
         cancelCallback();
     }.bind(this));
 
-    this.element.appendChild(this.cancel);
+    //this.element.appendChild(this.cancel);
+    this.cancel.appendTo(this.element);
 
-    this.accept = document.createElement('button');
-    this.accept.innerText = 'Accept';
+    //this.accept = document.createElement('button');
+    this.accept = $('<button></button>'); 
+
+    //this.accept.innerText = 'Accept';
+    this.accept.text('Accept');
+    
     //this.accept.className = 'confirm__button confirm__button--accept';
-    $(this.accept).addClass('confirm__button confirm__button--accept');
+    this.accept.addClass('confirm__button confirm__button--accept');
 
-    this.accept.addEventListener('click', function () {
-        this.element.style.display = 'none';
+    //this.accept.addEventListener('click', function () {
+    //    this.element.style.display = 'none';
+    //
+    //    acceptCallback();
+    //}.bind(this));
+    
+    this.accept.click(function () {
+        this.element.css('display', 'none');
 
         acceptCallback();
     }.bind(this));
 
-    this.element.appendChild(this.accept);
+    //this.element.appendChild(this.accept);
+    this.accept.appendTo(this.element);
 }
 
 Confirm.prototype = Object.create(Dialog.prototype);
