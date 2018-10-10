@@ -35,6 +35,8 @@ $green__color: #1BAA98
 .title__green
     color: $green__color
 
+.images__container
+    display: block
 
 .main
     margin: 10% 0
@@ -59,6 +61,8 @@ $green__color: #1BAA98
     &__nav
         background-color: #333333
         text-align: center
+        margin: 10% auto
+        padding: 5% 0
         ul 
             list-style: none    
         li 
@@ -76,3 +80,26 @@ $green__color: #1BAA98
             margin-left: 10%
             
        
+@media only screen and (min-width: 540px) 
+
+    .lower-header
+        background-color: #1B222A
+        text-align: left
+        color: white
+        padding: 8% 0%
+        &__title
+            margin: 3% 0
+        &__app-store
+            margin: 3% 0
+        &__google-icon
+            margin: 3% 0
+
+    .images__container
+        display: flex
+        justify-content: space-between
+
+
+    .footer__nav
+        text-align: left
+        p 
+            text-align: right
