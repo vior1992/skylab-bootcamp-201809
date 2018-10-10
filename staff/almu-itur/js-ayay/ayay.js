@@ -50,6 +50,8 @@ Ayay.prototype.map = function (callback) {
 
 Ayay.prototype.sort = function () {
 
+    if (!(this instanceof Ayay)) throw Error('array is not valid');
+
     for (var i = 0; i < this.length - 1; i++) {
         var min = i;
         for (var j = i; j < this.length; j++) {
@@ -68,6 +70,7 @@ Ayay.prototype.sort = function () {
 
 Ayay.prototype.filter = function (callback) {
     if (typeof callback !== 'function') throw new Error(callback + ' is not a function');
+    if (!(this instanceof Ayay)) throw Error('array is not valid');
 
     var index = 0;
     var indexResult = 0;
@@ -88,14 +91,12 @@ Ayay.prototype.filter = function (callback) {
     return result;
 };
 
-Ayay.prototype.find = function (element) {
-
-    var flag = false;
-
-    for (index = 0; index < this.length; index++) {
-
-        if (element === this[index]) { return this[index]; }
+Ayay.prototype.find = function (callback) {
+    
+    if (typeof callback !== 'function') throw new Error(callback + ' is not a function');
+    
+    for(var index=0; index<this.length; index++) { 
+        if (callback(this[index])) { return this[index]; }
     }
-
     return undefined;
-};
+}

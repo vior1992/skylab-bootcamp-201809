@@ -178,6 +178,7 @@ describe('Ayay', function () {
 
         it('ayay should not be modified', function () {
             
+            var result = [];
             ayay.push(1, 2, 3);
             ayay.map(function (element, index) {
                 result[index] = element*2;
@@ -260,19 +261,64 @@ describe('Ayay', function () {
     });
 
     describe('find', function () {
-        it('should find items', function () {
-            var result = [];
+                
+        it('should return first item that complies with callback', function () {
+            var result;
+
+            ayay.push(1, 2, 3, 4);
+            
+            result = ayay.find(function (item) { return item > 2; });
+
+            expect(result).toBe(3);
+            
+        });
+
+        it('should work if callback involves working with a number', function () {
+            var result;
 
             ayay.push(1);
             ayay.push(2);
-            ayay.push(3);
+            ayay.push(4);
+            ayay.push(2);
                   
-            result = ayay.find(2);
+            result = ayay.find(function(item) { return item > 2});
 
-            expect(result).toBe(2);
+            expect(result).toBe(4);
             
         });
-        
+
+        it('should work if callback involves working with a string', function () {
+            var result;
+
+            ayay.push('hello', 'world', 'argentina');
+                  
+            result = ayay.find(function(item) { return item.length > 5; });
+
+            expect(result).toBe('argentina');
+            
+        });
+
+
+        it('should return undefined if it does not find an item that complies with callback', function () {
+            var result;
+
+            ayay.push('hello', 'world', 'hello');
+                  
+            result = ayay.find(function(item) { return item.length > 8});
+
+            expect(result).toBe(undefined);
+            
+        });
+
+        it('should fail on non-function callback', function () {
+            
+            var nonFunction;
+            ayay.push(1, 2, 3);
+
+            expect(function() { ayay.find(nonFunction); }).toThrowError(Error, nonFunction + ' is not a function');
+
+        });
+
     });
 
 });

@@ -74,11 +74,7 @@
     tests.push(function() {
         console.log('should pop elements on ayay');
 
-<<<<<<< HEAD
-        var result [];
-=======
         var result = [];
->>>>>>> develop
         var element;
         var ayay = new Ayay();
         
@@ -86,11 +82,8 @@
         ayay.push(2);
         ayay.push(3);
 
-<<<<<<< HEAD
         //FUNCTION test
-=======
         //ayay.pop(function)
->>>>>>> develop
 
         if(result.length !== ayay.length-1) throw Error ('unexpected result length');
         if(element!==ayay[ayay.length]) throw Error ('unexpected popped element');
