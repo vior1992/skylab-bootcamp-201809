@@ -42,29 +42,6 @@ header img {
           align-items: center;
 }
 
-.app-store .app-store__buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-@media screen and (min-width: 580px) {
-  .app-store .app-store__buttons {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    margin: 5px;
-  }
-}
-
 .app-store h2 {
   color: white;
 }
@@ -97,6 +74,9 @@ header img {
     background-image: url("./images/site_showcase_bg.jpg");
     background-size: cover;
   }
+  .app-store .app-store__button {
+    margin: 10px;
+  }
 }
 
 .news {
@@ -118,9 +98,10 @@ header img {
   width: 90%;
 }
 
-.news article img {
+.news article .news__image {
   max-width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .news article a {
