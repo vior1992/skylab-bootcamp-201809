@@ -1,19 +1,7 @@
 function search(query, callback) {
     var xhr = new XMLHttpRequest();
 
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //         // console.log(xhr.responseText);
 
-    //         var res = JSON.parse(xhr.responseText);
-
-    //         // console.log(res);
-
-    //         callback(res);
-    //     }
-    // };
-
-    // xhr.addEventListener("progress", updateProgress);
     xhr.addEventListener("load", function () {
         var res = JSON.parse(xhr.responseText);
 
@@ -23,7 +11,7 @@ function search(query, callback) {
     xhr.addEventListener("error", function () {
         callback([]);
     });
-    // xhr.addEventListener("abort", transferCanceled);
+    
 
     xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
 
@@ -37,7 +25,7 @@ function retrieveBeer(id, callback) {
     xhr.addEventListener("load", function () {
         var res = JSON.parse(xhr.responseText);
 
-        callback(res);
+        callback(res.labels.medium, res.name, res.style.description);
     });
 
     xhr.addEventListener("error", function () {
@@ -80,9 +68,16 @@ form.addEventListener('submit', function (event) {
                 li.innerText = beer.name + ' ' + (beer.id);
 
                 li.addEventListener("click", function(){
-                    retrieveBeer(beer.id, function(){
+                    retrieveBeer(beer.id, function(url, name, description){
                         var beerImg = document.createElement("img");
-                        document.getElementById("beer-img").innerHTML = beerImg;
+                        beerImg.src = url;
+                        var beerContainer = document.getElementById("beer-container");
+                        beerContainer.appendChild(beerImg);
+                        var beerTitle = document.createElement("h1");
+                        beerTitle.innerText = name;
+                        var beerDescription
+                        beerContainer.appendChild(beerTitle);
+                        
                     });
                     
                     
