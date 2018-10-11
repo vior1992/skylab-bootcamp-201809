@@ -12,10 +12,14 @@ header
     display: flex
     line-height: 50px
     justify-content: space-between
-    a
+    .menuLink
         text-decoration: none
         color: $primary
         font-weight: bold
+        
+    .menuDesktopLink
+            color: red
+            //display: none
     img
         height: 20px
         width: 20px
@@ -51,6 +55,10 @@ main
                 text-align: left
             img: first-of-type
                 padding-right: 20px
+        
+        //Desktop size
+        @media screen and (min-width: 900px)
+
       
     .news
         padding-top: 60px
