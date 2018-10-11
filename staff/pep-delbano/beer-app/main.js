@@ -45,7 +45,7 @@ function retrieveBeer(id, callback) {
     });
 
     xhr.addEventListener("error", function () {
-        callback([]);
+        callback();
     });
 
     xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
@@ -76,30 +76,43 @@ form.addEventListener('submit', function (event) {
             var ul = document.createElement('ul');
             
             beers.forEach(function (beer) {
-                // console.log(beer.id, beer.name);
-
-                
+              
                 var li = document.createElement('li');
-                li.innerText = beer.name + ' ' + (beer.id);
+
+                var a = document.createElement('a');
+
+                a.href = '#';
+                a.innerText = beer.name;
 
                 ul.appendChild(li);
 
-                li.addEventListener('click', function(x) {
+                li.addEventListener('click', function() {
+                    retrieveBeer(beer.id, function(beer) {
+                        var details = document.getElementsByTagName('section');
+
+                        if (){
+
+                        }
+                    })
                     var div = document.createElement('div');
                     document.body.appendChild(div);
 
                     var title = document.createElement('h1');
-                    title.innerText = x.name;
+                    title.innerText = beer.name;
                     div.appendChild(title);
 
                     var picBeer = x.labels.medium;
 
-                    var pic = document.createElement('img');
-                    div.appendChild(pic);
+                    var label = document.createElement('img');
+                    label.src = beer.labels? beer.labels.medium : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5h9_k7YdUpzwloXiE3U163dZirzmODJP5tj4I3nYtzC1y9gtF';
+                    label.style.width= '300px';
+                    
+                    detail.appendChild(label);
 
-                    var text = document.createElement('p');
-                    text.innerText = x.description;
-                    div.appendChild(text);
+                    var desc = document.createElement('p');
+
+                    text.innerText = beer.style.
+                    document.body.appendChild(desc);
                     // TODO on click on beer do retrieve beer and show beer below
                 });
             });
