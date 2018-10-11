@@ -7,4 +7,4 @@ var res = concat(arr, arr2, "hola");
 
 console.log(res);
 
-// [1, 2, 3, 4, 5, 6]
+// [1, 2, 3, 4, 5, 6, 'hola']
