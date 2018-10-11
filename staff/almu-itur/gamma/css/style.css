@@ -21,6 +21,10 @@ header img {
   width: 20px;
 }
 
+.navMenu {
+  display: none;
+}
+
 main .capture {
   padding: 30px;
   display: flex;
@@ -109,6 +113,7 @@ main .features ul li img {
   height: 15px;
   width: 15px;
 }
+
 footer {
   background-color: #353138;
   color: white;
@@ -141,3 +146,5 @@ footer p {
     text-align: right;
   }
 }
+
+/*# sourceMappingURL=style.css.map */
