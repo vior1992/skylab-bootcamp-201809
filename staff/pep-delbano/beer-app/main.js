@@ -25,6 +25,7 @@ function search(query, callback) {
     xhr.addEventListener("error", function () {
         callback([]);
     });
+
     // xhr.addEventListener("abort", transferCanceled);
 
     xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
@@ -35,13 +36,23 @@ function search(query, callback) {
 
 
 function retrieveBeer(id, callback) {
+    var xhr = new XMLHttpRequest();
     
+    xhr.addEventListener("load", function () {
+        var res = JSON.parse(xhr.responseText);
+
+        callback(res);
+    });
+
+    xhr.addEventListener("error", function () {
+        callback([]);
+    });
+
+    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
+
+    xhr.send();
     
-    
-    // TODO call endpoint https://quiet-inlet-67115.herokuapp.com/api/beer/ + id
 }
-
-
 
 
 var form = document.getElementById('search-form');
@@ -53,42 +64,44 @@ form.addEventListener('submit', function (event) {
 
     var query = input.value;
 
+    
     search(query, function (beers) {
         var uls = document.getElementsByTagName('ul');
-
+        
         if (uls.length) {
             document.body.removeChild(uls[0]);
         }
-
+        
         if (beers.length) {
             var ul = document.createElement('ul');
-
+            
             beers.forEach(function (beer) {
                 // console.log(beer.id, beer.name);
 
+                
                 var li = document.createElement('li');
                 li.innerText = beer.name + ' ' + (beer.id);
 
                 ul.appendChild(li);
 
-                li.addEventListener('click', function() {
+                li.addEventListener('click', function(x) {
                     var div = document.createElement('div');
-                    // div.setAttribute("id", "myDiv");
-                    body.appendChild(div);
+                    document.body.appendChild(div);
 
                     var title = document.createElement('h1');
-                    title.innerText = li.innerText;
+                    title.innerText = x.name;
                     div.appendChild(title);
 
+                    var picBeer = x.labels.medium;
+
                     var pic = document.createElement('img');
-                    pic.src = 
                     div.appendChild(pic);
 
                     var text = document.createElement('p');
-                    text.innerText = .description;
+                    text.innerText = x.description;
                     div.appendChild(text);
                     // TODO on click on beer do retrieve beer and show beer below
-                }
+                });
             });
 
             document.body.appendChild(ul);
