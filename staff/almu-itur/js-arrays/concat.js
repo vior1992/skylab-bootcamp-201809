@@ -1,5 +1,5 @@
 function concat(arr, arr2) {
-    res = [];
+    var res = [];
     var index=0;
     var index2=arr.length;
 
@@ -13,5 +13,3 @@ function concat(arr, arr2) {
     }
    return res;
 }
-
-//PROBAR CON LA FUNCION FOR-EACH CREADA EN EL EJERCICIO ANTERIOR
