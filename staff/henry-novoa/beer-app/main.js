@@ -80,9 +80,11 @@ form.addEventListener('submit', function (event) {
                     var des = document.getElementsByTagName('p');
 
                     if(h3.length){
-                        document.li.removeChild(h3[0]);
-                        document.li.removeChild(img[0]);
-                        document.li.removeChild(des[0]);
+
+                        document.body.removeChild(h3[0]);
+                        document.body.removeChild(img[0]);
+                        document.body.removeChild(des[0]);
+                        
                     }
 
 
