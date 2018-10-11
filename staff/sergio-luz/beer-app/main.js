@@ -1,50 +1,3 @@
-function search(query, callback) {
-    var xhr = new XMLHttpRequest();
-
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //         // console.log(xhr.responseText);
-
-    //         var res = JSON.parse(xhr.responseText);
-
-    //         // console.log(res);
-
-    //         callback(res);
-    //     }
-    // };
-
-    // xhr.addEventListener("progress", updateProgress);
-    xhr.addEventListener("load", function () {
-        var res = JSON.parse(xhr.responseText);
-        callback(res);
-    });
-
-    xhr.addEventListener("error", function () {
-        callback([]);
-    });
-    // xhr.addEventListener("abort", transferCanceled);
-
-    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
-
-    xhr.send();
-}
-
-function retrieveBeer(id, callback) {
-    // TODO call endpoint https://quiet-inlet-67115.herokuapp.com/api/beer/ + id
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener("load", function () {
-        var res = JSON.parse(xhr.responseText);
-        callback(res);
-    });
-
-    xhr.addEventListener("error", function () {
-        callback();
-    });
-    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
-
-    xhr.send();
-}
-
 var form = document.getElementById('search-form');
 
 form.addEventListener('submit', function (event) {
@@ -54,64 +7,9 @@ form.addEventListener('submit', function (event) {
 
     var query = input.value;
 
-    search(query, function (beers) {
-        var uls = document.getElementsByTagName('ul');
+    var listBeers = view.listBeers;
 
-        if (uls.length) {
-            document.body.removeChild(uls[0]);
-        }
-
-        var div = document.getElementsByTagName('div');
-        if (div.length) {
-            document.body.removeChild(div[0]);
-        }
-
-        if (beers.length) {
-            var ul = document.createElement('ul');
-
-            beers.forEach(function (beer) {
-                
-                var li = document.createElement('li');
-                li.innerText = beer.name + ' ' + (beer.id);
-
-                li.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    retrieveBeer(beer.id, function (res) {
-                        console.log(res);
-                        var section = document.getElementsByTagName('section');
-                        if (section.length) {
-                            document.body.removeChild(section[0]);
-                        }
-
-                        var section = document.createElement('section');
-                        document.body.appendChild(ul);
-
-                        var title = document.createElement('h2');
-                        title.innerText = res.name;
-                        section.appendChild(title);
-
-                        var text = document.createElement('p');
-                        section.appendChild(text);
-
-                        if (res.labels) {
-                            if(res.description!==undefined) text.innerText = res.description;
-                            var image = document.createElement('img');
-                            image.src = res.labels.medium;
-                            section.appendChild(image);
-                        }else{
-                            var info=document.createElement('h3');
-                            info.innerText = 'Image no disponible';
-                            section.appendChild(info);
-                        }
-                        document.body.appendChild(section);
-                    });
-                });
-
-                ul.appendChild(li);
-            });
-
-            document.body.appendChild(ul);
-        } else alert('no results');
-
-    });
+    logic.search(query, listBeers.bind(view));
 });
+
+
