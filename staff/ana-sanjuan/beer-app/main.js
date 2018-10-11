@@ -34,12 +34,13 @@ form.addEventListener('submit', function (event) {
                             
                             var description = document.createElement('p')
                             var defaultText = 'No description available'
-                            description.innerText = res.description?res.description:defaultText;
+                            description.innerText = res.description || res.style.description || defaultText;
                             section.appendChild(description);
                             
                             var placeholder= 'https://placekitten.com/300/200'
                             var image = document.createElement('img')
-                            image.src = (res.labels? res.labels.icon: placeholder);
+                            image.src = (res.labels? res.labels.medium: placeholder);
+                            image.style.width = '300px'
                             section.appendChild(image);
 
                             document.body.appendChild(section);
