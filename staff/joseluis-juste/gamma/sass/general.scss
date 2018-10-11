@@ -1,6 +1,7 @@
 .wrap{
     margin: 0 auto;
     max-width: 1400px;
+    position: relative;
 }
 
 body{
@@ -12,6 +13,11 @@ body{
     opacity: 1 !important;
 }
 
+.block-scroll{
+    overflow-y: hidden;
+    height: 100vh;
+}
+
 .main__title{
     background-color: #1caa98;
     color: white;
@@ -20,3 +26,7 @@ body{
     font-size: 2.2em;
     margin: 0;
 }
+
+
+
+

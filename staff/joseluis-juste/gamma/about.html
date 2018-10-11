@@ -13,18 +13,19 @@
 
 <body>
     <div class="wrap">
+       
         <header class="header">
             <nav class="header__nav">
                 <h2 class="header__nav__title">
                     Gamma
                 </h2>
                 <ul id="menu" class="header__nav__menu">
-                    <li id="menu-button" class="icon-bars"></li>
-                    <li><a href="index.html">Gamma</a></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+                        <li id="menu-button" class="icon-bars"></li>
+                        <li><a href="index.html">Gamma</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
                 <div class="icon-bars">
 
                 </div>
@@ -122,15 +123,17 @@
 
             x.addEventListener("click", function (ele, ev) {
 
-                var menu = document.getElementsByClassName("header__nav__menu")[0];
+                 var menu = document.getElementsByClassName("header__nav__menu")[0];
 
                 if (menu.className.indexOf("show-menu") !== -1) {
 
                     menu.className = menu.className.replace(" show-menu", "");
+                    document.getElementsByClassName("wrap")[0].className = document.getElementsByClassName("wrap")[0].className.replace(" block-scroll", "");
 
                 } else {
 
                     menu.className = menu.className + " show-menu";
+                    document.getElementsByClassName("wrap")[0].className += " block-scroll";
                 }
             });
 
@@ -143,11 +146,10 @@
                 var ele = (event.target.nextSibling.nextSibling);
 
                 [].forEach.call(document.getElementsByClassName("collapsable__desc"), (x, i, arr) => {
-                    
+
                     if (x !== ele)
-                        if (x.className.indexOf("collapsable-up") === -1)
-                        {
-                            x.className = x.className + " collapsable-up";                        
+                        if (x.className.indexOf("collapsable-up") === -1) {
+                            x.className = x.className + " collapsable-up";
                         }
                 });
 
@@ -155,11 +157,11 @@
 
                     if (ele.className.indexOf("collapsable-up") !== -1)
 
-                        ele.className = ele.className.replace(" collapsable-up","");
+                        ele.className = ele.className.replace(" collapsable-up", "");
                     else
                         ele.className = ele.className + " collapsable-up";
 
-               
+
             });
         });
     </script>

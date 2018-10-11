@@ -2,6 +2,7 @@
     border: 1px solid rgba(0,0,0,0.1);
     margin-bottom: 1em;
     border-radius: 3px;
+    overflow: hidden;
     & .collapsable__title{
         background-color: #f5f5f5;
         padding: 0.5em 1em;
@@ -13,7 +14,7 @@
         font-size: 0.9em;
         text-align: justify;
         transition: height 0.2s linear, padding 0.2s linear;
-        height: 188px;
+       
     }
 }
 
@@ -23,33 +24,11 @@
 }
 
 
-@media screen and (min-device-width: 580px){
-    .collapsable{
-        & .collapsable__desc{
-            height: 141px;
-        }
-
-    }
-
-}
-
-@media screen and (min-device-width: 900px){
-    .collapsable{
-        & .collapsable__desc{
-            height: 124px;
-        }
-
-    }
-}
 
 @media screen and (min-device-width: 1400px){
     .collapsable{
         &:last-child{
             margin-bottom: 0;
         }
-        & .collapsable__desc{
-            height: 110px;
-        }
-
     }
 }
