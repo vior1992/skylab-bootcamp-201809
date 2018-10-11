@@ -1,5 +1,6 @@
 var view = {
     listBeers: function (beers) {
+        console.log(beers);
         this.clearList();
 
         this.clearDetail();

@@ -9,12 +9,11 @@ describe('Beers', function() {
             })            
         })
 
-        it('should detect an undefined callback', function(done) {
+        // it('should detect an undefined callback', function(done) {
                 
-                expect(function() {
-                    logic.search('Sean').toThrowError(TypeError, 'undefined is not a function')
-                    done();
-                })
-            })            
+        //         expect(function() {
+        //             logic.search('Sean').toThrowError(TypeError, 'undefined is not a function')
+        //         })
+        //     })            
         })
     })
