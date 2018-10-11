@@ -81,10 +81,10 @@ tests.push(function () {
 
 tests.push(function () {
 
-    console.log('it return an array')
+    console.log('it returns the array of length')
 
     var arr = [1, 2, 3];
-    var error;
+    var length = arr.push(4);
 
     try {
         push(arr, 'SKYLAB');
@@ -92,9 +92,10 @@ tests.push(function () {
         error = err;
     }
 
-    if (!(arr instanceof Array)) throw Error('not return array');
+    if (length != 4) throw Error('did not return array length');
     
     console.log('%c Done %s','color: green', '✔');
+    console.log('New length is ' + length);
 
 });
 
