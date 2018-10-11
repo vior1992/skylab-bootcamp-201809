@@ -6,9 +6,8 @@ var logic = {
         else if (typeof surname != 'string' || !surname || !surname.trim().length) onFail('invalid surname');
         else if (typeof username != 'string' || !username || !username.trim().length) onFail('invalid username');
         else if (typeof password != 'string' || !password || !password.trim().length) onFail('invalid password');
-        else if (!surname || !surname.trim().length) onFail('invalid surname');
-        else if (!username || !username.trim().length) onFail('invalid username');
-        else if (!password || !password.trim().length) onFail('invalid password');
+        else if (typeof onSuccess !== 'function') throw TypeError(onSuccess + ' is not a function');
+        else if (typeof onFail !== 'function') throw TypeError(onFail + ' is not a function');
         else {
             user = {
                 name: name,
