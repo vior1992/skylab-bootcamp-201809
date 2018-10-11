@@ -1,3 +1,54 @@
+function search(query, callback) {
+    var xhr = new XMLHttpRequest();
+
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState === 4 && xhr.status === 200) {
+    //         // console.log(xhr.responseText);
+
+    //         var res = JSON.parse(xhr.responseText);
+
+    //         // console.log(res);
+
+    //         callback(res);
+    //     }
+    // };
+
+    // xhr.addEventListener("progress", updateProgress);
+    xhr.addEventListener("load", function () {
+        var res = JSON.parse(xhr.responseText);
+
+        callback(res);
+    });
+
+    xhr.addEventListener("error", function () {
+        callback([]);
+    });
+    // xhr.addEventListener("abort", transferCanceled);
+
+    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
+
+    xhr.send();
+}
+
+function retrieveBeer(id, callback) {
+    // TODO call endpoint https://quiet-inlet-67115.herokuapp.com/api/beer/ + id
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("load", function () {
+        var res = JSON.parse(xhr.responseText);
+
+        callback(res);
+    });
+
+    xhr.addEventListener("error", function () {
+        callback([]);
+    });
+
+    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
+
+    xhr.send();
+}
+
 var form = document.getElementById('search-form');
 
 form.addEventListener('submit', function (event) {
@@ -7,7 +58,7 @@ form.addEventListener('submit', function (event) {
 
     var query = input.value;
 
-    logic.search(query, function (beers) {
+    search(query, function (beers) {
         var uls = document.getElementsByTagName('ul');
 
         if (uls.length) {
@@ -27,11 +78,11 @@ form.addEventListener('submit', function (event) {
                 // console.log(beer.id, beer.name);
 
                 var li = document.createElement('li');
-                li.innerText = beer.name;
+                li.innerText = beer.name + ' ' + (beer.id);
 
                 li.addEventListener('click', function () {
                     //mandar borrar
-                    logic.retrieveBeer(beer.id, function (info) {
+                    retrieveBeer(beer.id, function (info) {
                         var div = document.getElementsByTagName('div');
 
                         if (div.length) {
