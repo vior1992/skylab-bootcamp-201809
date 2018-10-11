@@ -10,12 +10,13 @@ body {
   color: #212121;
 }
 
-.wrapper {
+.wrap {
+  padding: 0 20px;
   margin: 0 auto;
   max-width: 450px;
 }
 
-header {
+.top-menu {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -23,7 +24,7 @@ header {
   background-color: #ffffff;
 }
 
-header a {
+.top-menu .menu a {
   color: #212121;
   text-decoration: none;
 }
@@ -32,9 +33,10 @@ header a {
   padding: 10px;
   font-size: 1.5em;
   color: #1caa98;
+  text-decoration: none;
 }
 
-header ul {
+.top-menu ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -42,18 +44,18 @@ header ul {
   background-color: #fff;
 }
 
-header li a {
+.top-menu li a {
   display: block;
   padding: 20px 20px;
   text-decoration: none;
 }
 
-header li a:hover,
-header .menu-btn:hover {
+.top-menu li a:hover,
+.top-menu .menu-btn:hover {
   background-color: #f4f4f4;
 }
 
-header .menu {
+.top-menu .menu {
   position: absolute;
   top: 50px;
   left: 0;
@@ -63,7 +65,7 @@ header .menu {
   transition: max-height 0.2s ease-out;
 }
 
-header .menu-icon {
+.top-menu .menu-icon {
   cursor: pointer;
   display: inline-block;
   padding: 28px 20px;
@@ -71,7 +73,7 @@ header .menu-icon {
   user-select: none;
 }
 
-header .menu-icon .navicon {
+.top-menu .menu-icon .navicon {
   background: #212121;
   display: block;
   height: 2px;
@@ -80,8 +82,8 @@ header .menu-icon .navicon {
   width: 18px;
 }
 
-header .menu-icon .navicon:before,
-header .menu-icon .navicon:after {
+.top-menu .menu-icon .navicon:before,
+.top-menu .menu-icon .navicon:after {
   background: #212121;
   content: "";
   display: block;
@@ -91,36 +93,36 @@ header .menu-icon .navicon:after {
   width: 100%;
 }
 
-header .menu-icon .navicon:before {
+.top-menu .menu-icon .navicon:before {
   top: 5px;
 }
 
-header .menu-icon .navicon:after {
+.top-menu .menu-icon .navicon:after {
   top: -5px;
 }
 
-header .menu-btn {
+.top-menu .menu-btn {
   display: none;
 }
 
-header .menu-btn:checked ~ .menu {
+.top-menu .menu-btn:checked ~ .menu {
   max-height: 240px;
 }
 
-header .menu-btn:checked ~ .menu-icon .navicon {
+.top-menu .menu-btn:checked ~ .menu-icon .navicon {
   background: transparent;
 }
 
-header .menu-btn:checked ~ .menu-icon .navicon:before {
+.top-menu .menu-btn:checked ~ .menu-icon .navicon:before {
   transform: rotate(-45deg);
 }
 
-header .menu-btn:checked ~ .menu-icon .navicon:after {
+.top-menu .menu-btn:checked ~ .menu-icon .navicon:after {
   transform: rotate(45deg);
 }
 
-header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+.top-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.top-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
   top: 0;
 }
 
@@ -151,8 +153,12 @@ header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
   margin: 10px 0;
 }
 
+.slider a img:first-child {
+  margin-right: 20px;
+}
+
 .main {
-  padding: 30px 10px;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
 }
@@ -205,16 +211,15 @@ header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
 }
 
 footer {
-  padding: 30px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 30px 0;
   background-color: #333333;
   color: #ffffff;
 }
 
 footer .menu {
   margin: 10px 0;
+  display: flex;
+  justify-content: center;
 }
 
 footer ul {
@@ -233,6 +238,31 @@ footer ul li a {
 
 footer .copyright {
   margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 580px) {
+  .wrap {
+    max-width: 580px;
+  }
+
+  .slider {
+    text-align: left;
+  }
+
+  footer .menu {
+    justify-content: flex-start;
+  }
+
+  footer .copyright {
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 900px) {
+  .wrap {
+    max-width: 900px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
