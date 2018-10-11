@@ -4,7 +4,7 @@ function fill(arr, value, start, end) {
     for (var i = ((start)? start: 0) ; i < (end? end: arr.length); i++){
         arr[i] = value;
     }
-    return arr
+    return arr;
     
     // var newArr = [];
     
