@@ -90,15 +90,19 @@ form.addEventListener('submit', function (event) {
                         title.innerText = res.name;
                         div.appendChild(title);
 
+                        var text = document.createElement('p');
+                        div.appendChild(text);
+
                         if (res.labels) {
-                            var text = document.createElement('p');
-                            text.innerText = res.description;
-                            div.appendChild(text);
+                            if(res.description!==undefined) text.innerText = res.description;
                             var image = document.createElement('img');
                             image.src = res.labels.medium;
                             div.appendChild(image);
+                        }else{
+                            var info=document.createElement('h3');
+                            info.innerText = 'Image no disponible';
+                            div.appendChild(info);
                         }
-
                         document.body.appendChild(div);
                     });
                 });
