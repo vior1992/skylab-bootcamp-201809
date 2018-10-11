@@ -64,7 +64,31 @@ describe('logic', function(){
                 },
             );
         });
-    //Hacer lo mismo con los demas parametros: null y undefined 
+
+        it('should give us an error if name is null', function () {
+            
+            logic.register(null, 'falso@gmail.com', '1234', '1234', 
+                function(){
+                    throw Error();
+                },
+                function(message){
+                    expect(message).toEqual('User name not valid');
+                },
+            );
+        });
+
+        it('should give us an error if name is undefined', function () {
+            
+            logic.register(undefined, 'falso@gmail.com', '1234', '1234', 
+                function(){
+                    throw Error();
+                },
+                function(message){
+                    expect(message).toEqual('User name not valid');
+                },
+            );
+        });
+    
         it('should give us an error if callback is undefined', function () {
             expect(function () {
                 logic.register("Dani", 'falso@gmail.com', '1234', '1234', 
@@ -78,9 +102,76 @@ describe('logic', function(){
     });
 /////Login tests///////////////////////////////////////////////////////////////////////////
     describe('login', function () {
-        it('ssssssss', function() {
-        
+        it('should give us an error if callback is undefined', function () {
+            expect(function () {
+                logic.login("Dani", 'falso@gmail.com', 
+                    undefined,
+                    function(message){
+                        throw Error(message);
+                    },
+                );
+            }).toThrowError(TypeError, 'undefined is not a function');
         })
+
+        it('should give us an error if name is undefined', function () {
+            
+            logic.login(undefined, '1234', 
+                function(){
+                    throw Error();
+                },
+                function(message){
+                    expect(message).toEqual('User name not valid');
+                },
+            );
+        });
+
+        it('should give us an error if name is null', function () {
+            
+            logic.login(null, '1234', 
+                function(){
+                    throw Error();
+                },
+                function(message){
+                    expect(message).toEqual('User name not valid');
+                },
+            );
+        });
+
+        it('should give us an error if name is an object', function () {
+            
+            logic.login({}, '1234', 
+                function(){
+                    throw Error();
+                },
+                function(message){
+                    expect(message).toEqual('User name not valid');
+                },
+            );
+        });
+
+        it('should give us an error if name is empty', function () {
+            
+            logic.login('', '1234', 
+                function(){
+                    throw Error();
+                },
+                function(message){
+                    expect(message).toEqual('User name not valid');
+                },
+            );
+        });
+
+        it('should give us an error if name is an boolean', function () {
+            
+            logic.login(true, '1234', 
+                function(){
+                    throw Error();
+                },
+                function(message){
+                    expect(message).toEqual('User name not valid');
+                },
+            );
+        });
     })
 /////Welcome tests///////////////////////////////////////////////////////////////////////////
     describe('welcome', function () {

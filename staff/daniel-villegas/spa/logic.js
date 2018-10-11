@@ -24,6 +24,8 @@ var logic = {
     login: function (username, password, onSucces, onFail) {
         if (typeof username !== 'string' || !username || !username.trim().length) onFail('User name not valid');
         else if (typeof password !== 'string' || !password || !password.trim().length) onFail('Password not valid');
+        else if (typeof onSuccess !== 'function') throw TypeError(onSucces + ' is not a function');
+        else if (typeof onFail !== 'function') throw TypeError(onFail + ' is not a function');
         else if (username) {
             if (user.username === username && user.password === password) {
                 onSucces({
