@@ -406,30 +406,30 @@ describe('logic', function () {
         // });
     });
 
-    // describe('login', function() {
-    //     beforeEach(function() {
-    //         user = {
-    //             name: 'John',
-    //             surname: 'Doe',
-    //             username: 'jd',
-    //             password: '123'
-    //         };
-    //     });
+    describe('login', function() {
+        beforeEach(function() {
+            user = {
+                name: 'John',
+                surname: 'Doe',
+                username: 'jd',
+                password: '123'
+            };
+        });
 
-    //     it('should succeed on correct credentials', function() {
-    //         logic.login('jd', '123',
-    //             function(user) {
-    //                 expect(user).toBeDefined();
-    //                 expect(user.name).toEqual('John');
-    //                 expect(user.surname).toEqual('Doe');
-    //                 expect(user.username).toEqual('jd');
-    //                 expect(user.password).not.toBeDefined();
-    //             },
-    //             function(message) {
-    //                 throw Error(message);
-    //             }
-    //         );
-    //     });
+        it('should succeed on correct credentials', function() {
+            logic.login('jd', '123',
+                function(user) {
+                    expect(user).toBeDefined();
+                    expect(user.name).toEqual('John');
+                    expect(user.surname).toEqual('Doe');
+                    expect(user.username).toEqual('jd');
+                    expect(user.password).not.toBeDefined();
+                },
+                function(message) {
+                    throw Error(message);
+                }
+            );
+        });
 
     //     it('should fail on wrong username', function() {
     //         logic.login('jd-', '123',
@@ -546,5 +546,5 @@ describe('logic', function () {
     //     // TODO end other cases for success callback
 
     //     // TODO implement analog cases for fail callback
-    // });
+     });
 });

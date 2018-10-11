@@ -22,7 +22,7 @@ var logic = {
     },
 
     login: function (username, password, onSuccess, onFail) {
-        if (typeof surname !== 'string' || !username || !username.trim().length) onFail('invalid username');
+        if (typeof username !== 'string' || !username || !username.trim().length) onFail('invalid username');
         else if (typeof password !== 'string' || !password || !password.trim().length) onFail('invalid password');
         else if (user) {
             if (user.username === username && user.password === password) {
