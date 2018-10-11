@@ -13,7 +13,7 @@ if (typeof array[index] !== 'undefined')
         if(elem(arr[x])){
             return x;
         }
-        if()
+        return -1;
     }
 
 }
