@@ -1,49 +1,27 @@
-function search(query, callback) {
-    var xhr = new XMLHttpRequest();
+var logic = {
+    call: function (path, callback, defaultValueOnError) {
+        var xhr = new XMLHttpRequest();
 
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //         // console.log(xhr.responseText);
+        xhr.addEventListener("load", function () {
+            var res = JSON.parse(xhr.responseText);
 
-    //         var res = JSON.parse(xhr.responseText);
+            callback(res);
+        });
 
-    //         // console.log(res);
+        xhr.addEventListener("error", function () {
+            callback(defaultValueOnError);
+        });
 
-    //         callback(res);
-    //     }
-    // };
+        xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/' + path);
+        
+        xhr.send();
+    },
 
-    // xhr.addEventListener("progress", updateProgress);
-    xhr.addEventListener("load", function () {
-        var res = JSON.parse(xhr.responseText);
+    search: function (query, callback) {
+        this.call('/search/all?q=' + query, callback, []);
+    },
 
-        callback(res);
-    });
-
-    xhr.addEventListener("error", function () {
-        callback([]);
-    });
-    // xhr.addEventListener("abort", transferCanceled);
-
-    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
-    
-    xhr.send();
-}
-
-function retrieveBeer(id, callback) {
-    xhr.addEventListener("load", function () {
-        var res = JSON.parse(xhr.responseText);
-
-        callback(res);
-    });
-
-    xhr.addEventListener("error", function () {
-        callback([]);
-    });
-    // xhr.addEventListener("abort", transferCanceled);
-
-    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
-
-    xhr.send();
-}
-
+    retrieveBeer: function (id, callback) {
+        this.call('/beer/' + id, callback);
+    }
+};
