@@ -31,7 +31,7 @@ function retrieveBeer(id, callback) {
     });
 
     xhr.addEventListener("error", function () {
-        callback([]);
+        callback();
     });
 
     xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
@@ -66,45 +66,31 @@ form.addEventListener('submit', function (event) {
                 li.dataset.id = beer.id;
                 li.innerText = beer.name;
                 li.addEventListener('click', function() {
-                    retrieveBeer(this.dataset.id, function(beer) {
+                    retrieveBeer(beer.id, function(data) {
                         var div = document.getElementById('beer-info');
 
-                        if (div) {
-                            document.body.removeChild(div);
-                        }
+                        if(div) document.body.removeChild(div);
 
                         var beerContainer = document.createElement('div');
                         beerContainer.id = 'beer-info';
 
                         var beerName = document.createElement('h3');
-                        beerName.innerText = beer.name;
+                        beerName.innerText = data.name;
                         beerContainer.appendChild(beerName);
 
-                        if(beer.description) {
-                            var beerDescription = document.createElement('p');
-                            beerDescription.innerText = beer.description;
-                            beerContainer.appendChild(beerDescription);
-                        }
+                        var beerDescription = document.createElement('p');
+                        beerDescription.innerText = data.description || '';
+                        beerContainer.appendChild(beerDescription);
                         
                         var beerImage = document.createElement('img');
-
-                        if(beer.labels) {
-                            beerImage.src = beer.labels.medium;
-                            beerImage.width = '300';
-                            beerContainer.appendChild(beerImage);
-                        } else {
-                            beerImage.src = 'https://www.beerhawk.co.uk/media/catalog/product/g/e/german_beer_mixed_case_master.png';
-                            beerImage.width = '300';
-                            beerContainer.appendChild(beerImage);
-                        }
+                        beerImage.src = data.labels ? data.labels.medium : 'https://www.beerhawk.co.uk/media/catalog/product/g/e/german_beer_mixed_case_master.png';
+                        beerImage.width = '300';
+                        beerContainer.appendChild(beerImage);
 
                         document.body.appendChild(beerContainer);
                     });
-                    // console.log(this.innerHTML);
                 });
-
-                // TODO on click on beer do retrieve beer and show beer below
-
+                
                 ul.appendChild(li);
             });
 
