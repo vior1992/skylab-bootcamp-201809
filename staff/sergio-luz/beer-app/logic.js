@@ -1,10 +1,15 @@
 var logic = {
-    call: function(path, callback, defaultValueOnError, ErrorControler) {
+    call: function(path, callback, defaultValueOnError) {
         var xhr = new XMLHttpRequest();
+
+        if(!(typeof path === 'string'))
+        {
+            callback(path+ ' is not a string');
+            throw Error(path+ ' is not a string');
+        }  
 
         if(!(callback instanceof Function))
         {
-            ErrorControler('callback is not a function');
             throw Error('callback is not a function');
         }  
     
