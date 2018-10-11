@@ -2,7 +2,10 @@ var user;
 
 var logic = {
     register: function (name, surname, username, password, onSuccess, onFail) {
-        if (!name || !name.trim().length) onFail('invalid name');
+        if (typeof name != 'string' || !name || !name.trim().length) onFail('invalid name');
+        else if (typeof surname != 'string' || !surname || !surname.trim().length) onFail('invalid surname');
+        else if (typeof username != 'string' || !username || !username.trim().length) onFail('invalid username');
+        else if (typeof password != 'string' || !password || !password.trim().length) onFail('invalid password');
         else if (!surname || !surname.trim().length) onFail('invalid surname');
         else if (!username || !username.trim().length) onFail('invalid username');
         else if (!password || !password.trim().length) onFail('invalid password');
