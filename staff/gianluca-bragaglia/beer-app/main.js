@@ -26,13 +26,7 @@ function retrieveBeer(id, callback) {
     xhr.addEventListener("load", function () {
     var res = JSON.parse(xhr.responseText);
         
-        /* if(res.labels.medium) {
-            callback(res.labels.medium, res.name, res.style.description);
-        }else{
-            callback('https://www.idahostatesman.com/latest-news/7m7lxo/picture217539750/alternates/LANDSCAPE_1140/Beer%20Alan%20Levine.jpg', res.name, res.style.description);
-        } */
-        
-        callback(res.labels.medium, res.name, res.style.description);
+        callback(res);
         
     });
 
