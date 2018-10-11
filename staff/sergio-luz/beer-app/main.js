@@ -38,7 +38,7 @@ function retrieveBeer(id, callback) {
     });
 
     xhr.addEventListener("error", function () {
-        callback([]);
+        callback();
     });
     xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
 
@@ -78,32 +78,32 @@ form.addEventListener('submit', function (event) {
                     event.preventDefault();
                     retrieveBeer(beer.id, function (res) {
                         console.log(res);
-                        var div = document.getElementsByTagName('div');
-                        if (div.length) {
-                            document.body.removeChild(div[0]);
+                        var section = document.getElementsByTagName('section');
+                        if (section.length) {
+                            document.body.removeChild(section[0]);
                         }
 
-                        var div = document.createElement('div');
+                        var section = document.createElement('section');
                         document.body.appendChild(ul);
 
                         var title = document.createElement('h2');
                         title.innerText = res.name;
-                        div.appendChild(title);
+                        section.appendChild(title);
 
                         var text = document.createElement('p');
-                        div.appendChild(text);
+                        section.appendChild(text);
 
                         if (res.labels) {
                             if(res.description!==undefined) text.innerText = res.description;
                             var image = document.createElement('img');
                             image.src = res.labels.medium;
-                            div.appendChild(image);
+                            section.appendChild(image);
                         }else{
                             var info=document.createElement('h3');
                             info.innerText = 'Image no disponible';
-                            div.appendChild(info);
+                            section.appendChild(info);
                         }
-                        document.body.appendChild(div);
+                        document.body.appendChild(section);
                     });
                 });
 
