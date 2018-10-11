@@ -10,7 +10,7 @@ header
 
 .main__up
 
-    flex-direction: row
+    flex-direction: column
 
     text-align: center 
 
@@ -20,7 +20,13 @@ header
 
 .up__title
 
-    flex-direction: row
+    padding-top: 5%
+
+    flex-direction: column
+
+    text-align: center 
+
+    align-items: center
 
     color: white
 
@@ -64,10 +70,6 @@ header
 
     color: black
 
-.main__foot
-    color: white
-    background-color: $green
-
 .justify-content-center
 
     background-color: grey
@@ -76,17 +78,36 @@ header
 
 /////FOODER/////////////////////////////////////////////////////////////////////////
 
-.fooder__up
+.fooder
 
     background-color: $green
+
+    display: flex
+
+    flex-direction: column
 
     margin-top: 10%
 
     color: white
 
-.fooder__logo
+.fooder__up
 
-    flex-direction: column
+    background-color: $green
+
+    margin-top: 15%
+
+    padding-left: 15%
+
+    color: white
+
+    .list
+
+        list-style: none
+
+        li:before 
+            content: '✓'
+
+.fooder__logo
 
     text-align: left
 
@@ -94,13 +115,21 @@ header
 
     max-height: 300px
 
-    margin-left: 10%
-
     margin-bottom: 5%
 
 .fooder__down
 
     background-color: grey
+
+    text-align: center 
+
+
+
+    
+
+
+  
+
 
 @media screen and (min-width: 400px)
     background-color: green
