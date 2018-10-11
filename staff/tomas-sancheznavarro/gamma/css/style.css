@@ -31,6 +31,18 @@ header a {
   line-height: 50px;
   letter-spacing: 0.1em;
 }
+header .nav-bar {
+  display: none;
+}
+@media screen and (min-width: 900px) {
+  header .hamburger {
+    display: none;
+  }
+  header .nav-bar ul {
+    display: inline;
+    text-decoration: none;
+  }
+}
 
 main {
   background-color: white;
@@ -64,7 +76,7 @@ main .app-store img {
   main .app-store {
     flex-direction: row;
     flex-wrap: wrap;
-    background-image: url("/model/images/site_showcase_bg.jpg");
+    background-image: url("../model/images/site_showcase_bg.jpg");
     background-size: cover;
   }
 }
