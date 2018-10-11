@@ -22,21 +22,22 @@ form.addEventListener('submit', function (event) {
                 // console.log(beer.id, beer.name);
 
                 var li = document.createElement('li');
-                li.innerText = beer.name + ' // ID: ' + (beer.id);
-                li.addEventListener('click', function(){
 
-                    logic.retrieveBeer(beer.id, function(url){
+                var a = document.createElement('link');
+                    a.href = '#';
+                    a.style.display = "flex";
+                    a.innerText = beer.name;
+                    li.appendChild(a);
 
-                        var a = document.createElement('a');
-                        a.innerText = "ID beer: " + beer.id;
-                        document.body.appendChild(a);
+                a.addEventListener('click', function(){
+                    logic.retrieveBeer(beer.id, function(url){  
 
                         var imagen = document.createElement('img');
                         imagen.src = url;
-                        document.body.appendChild(imagen);
+                        li.appendChild(imagen);
                      })
                 })
-
+               
                 ul.appendChild(li);
             });
 

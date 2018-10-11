@@ -35,7 +35,7 @@ var logic = {
         });
     
         xhr.addEventListener("error", function () {
-            callback([]);
+            callback({});
         });
     
         xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
