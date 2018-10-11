@@ -16,18 +16,6 @@ describe('logic', function(){
                 },
             );
         });
-    
-        it('should give us an error if name is not the same', function () {
-            
-            logic.register(undefined, 'falso@gmail.com', '1234', '1234', 
-                function(){
-                    throw Error();
-                },
-                function(message){
-                    expect(message).toEqual('User name not valid');
-                },
-            ); 
-        });
 
         it('should give us an error if name is empty', function () {
             
@@ -172,12 +160,5 @@ describe('logic', function(){
                 },
             );
         });
-    })
-/////Welcome tests///////////////////////////////////////////////////////////////////////////
-    describe('welcome', function () {
-        it('', function() {
-            
-            
-        })
     })
 })
