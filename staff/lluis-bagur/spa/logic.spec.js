@@ -13,6 +13,9 @@ describe('logic', function () {
 
     });
 
+
+// __________________________________REGISTER______________________________//
+
     describe('register', function () {
         it('succes case', function () {
 
