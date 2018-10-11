@@ -1,33 +1,28 @@
 var logic = {
+
+    call: function(path, callback, defaultValueonError) {
+        var xhr = new XMLHttpRequest();
+    
+        xhr.addEventListener("load", function () {
+            var res = JSON.parse(xhr.responseText);
+            callback(res);
+        });
+    
+        xhr.addEventListener("error", function () {
+            callback(defaultValueonError);
+        });
+    
+        xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api' + path);
+    
+        xhr.send();
+    },
     search: function(query, callback) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.addEventListener("load", function () {
-            var res = JSON.parse(xhr.responseText);
-            callback(res);
-        });
+        if (callback === undefined ) throw Error('undefined is not a function')
+        this.call('/search/all?q=' + query, callback, []);
+    },
     
-        xhr.addEventListener("error", function () {
-            callback([]);
-        });
     
-        xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
-    
-        xhr.send();
-    }, 
-    retrieBeer: function(id, callback) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.addEventListener("load", function () {
-            var res = JSON.parse(xhr.responseText);
-            callback(res);
-        })
-    
-        xhr.addEventListener("error", function () {
-            callback([]);
-        })
-    
-        xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
-        xhr.send();
+    retrieveBeer: function(id, callback) {
+        this.call('/beer/' + id, callback);
     }
 }
