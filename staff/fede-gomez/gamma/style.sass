@@ -55,6 +55,7 @@ header
     flex-direction: column
     align-items: center
     article
+        display: none
         padding: 10px 0
         width: 90%
         .news__image
@@ -67,6 +68,9 @@ header
             border: 1px solid rgba(0, 0, 0, .2)
             border-radius: 5px
             padding: 5px 10px
+    @media screen and (min-width: 1400px)
+        display: none
+        flex-direction: row
 
 .features 
     background: $primary
