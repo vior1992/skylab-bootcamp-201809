@@ -28,6 +28,14 @@ function retrieveBeer(id, callback) {
     xhr.send();
 }
 
+function updateFavicon(image) {
+    var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = image;
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+
 form.addEventListener('submit', function(event) {
     event.preventDefault();
     var input = document.getElementById('search-query');
@@ -48,6 +56,7 @@ form.addEventListener('submit', function(event) {
                         var img = document.createElement('img');
                         img.src = r.labels.large;
                         show.appendChild(img);
+                        updateFavicon(r.labels.icon);
                     }
                 });
             });
