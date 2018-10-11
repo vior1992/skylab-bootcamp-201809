@@ -1,5 +1,7 @@
 var form = document.getElementById('search-form');
 var list = document.getElementById('beer-list');
+var show = document.getElementById('show-beer');
+
 function search(query, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
@@ -26,19 +28,27 @@ function retrieveBeer(id, callback) {
     xhr.send();
 }
 
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', function(event) {
     event.preventDefault();
     var input = document.getElementById('search-query');
     var query = input.value;
     search(query, function (beers) {
-        list.innerHtml = '';
+        list.innerText = '';
         beers.forEach(function (beer) {
             var li = document.createElement('li');
             li.innerText = beer.name;
             li.id = beer.id
             li.addEventListener('click', function(event) {
-                retrieveBeer(event.target.id, function(prop) {
-                    console.log(prop);
+                retrieveBeer(event.target.id, function(r) {
+                    show.innerText = '';
+                    var text = document.createElement('h4');
+                    text.innerText = r.nameDisplay;
+                    show.appendChild(text);
+                    if (r.labels) {
+                        var img = document.createElement('img');
+                        img.src = r.labels.large;
+                        show.appendChild(img);
+                    }
                 });
             });
             list.appendChild(li);
