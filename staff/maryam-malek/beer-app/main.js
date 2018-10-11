@@ -7,7 +7,7 @@ form.addEventListener('submit', function (event) {
 
     var query = input.value;
 
-    search(query, function (beers) {
+    logic.search(query, function (beers) {
 
         var uls = document.getElementsByTagName('ul');
 
@@ -30,6 +30,7 @@ form.addEventListener('submit', function (event) {
                 ul.appendChild(li);
 
                 var a = document.createElement('a');
+                a.href = '#';
                 a.innerText = beer.name + ' ' + (beer.id);
                 var id = beer.id;
 
@@ -42,21 +43,23 @@ form.addEventListener('submit', function (event) {
                         document.body.removeChild(details[0]);  
                     }
                     details = document.createElement('section');
-                    retrieveBeer(id, function(beerDetails){   
+                    logic.retrieveBeer(id, function(beerDetails){   
                         var h1 = document.createElement('h1');
                         h1.innerText = beerDetails.name;
                         details.appendChild(h1);
 
-                        var p = document.createElement('p');
-                        if(beerDetails.description) p.innerText = beerDetails.description;
-                        else p.innerText = 'No beer description';
-                        details.appendChild(p);
-        
-                        var img = document.createElement('img');       
-                        if(beerDetails.labels) img.src = beerDetails.labels.icon;
-                        else img.src = 'https://dummyimage.com/200x75/000/fff';
+                        var img = document.createElement('img');  
+                        img.src = beerDetails.labels? beerDetails.labels.medium: 'https://dummyimage.com/200x75/000/fff';
+                        //if(beerDetails.labels) img.src = beerDetails.labels.icon;
+                        //else img.src = 'https://dummyimage.com/200x75/000/fff';
                         details.appendChild(img);
 
+                        var p = document.createElement('p');
+                        p.innerText = beerDetails.description || beerDetails.style.description || 'No beer description';
+                        //if(beerDetails.description) p.innerText = beerDetails.description;
+                        //else p.innerText = 'No beer description';
+                        details.appendChild(p);
+        
                         document.body.appendChild(details);
                     });
                 });
