@@ -3,23 +3,25 @@
 describe('logic', function () {
     describe('call', function () {
         beforeEach(function() {
-            user = undefined;
+            jasmine.Ajax.install();
         });
 
-    //     it('should succeed on correct data', function () {
-    //         logic.register('John', 'Doe', 'jd', '123',
-    //             function () {
-    //                 expect(user.name).toEqual('John');
-    //                 expect(user.surname).toEqual('Doe');
-    //                 expect(user.username).toEqual('jd');
-    //                 expect(user.password).toEqual('123');
-    //             },
-    //             function (message) {
-    //                 //expect(message).not.toBeDefined();
-    //                 throw Error(message);
-    //             }
-    //         );
-    //     });
+        afterEach(function() {
+            jasmine.Ajax.uninstall();
+        });
+        });
+
+        it('should succeed on correct data', function () {
+            var doneFn = jasmine.createSpy("success");
+            logic.call('/search/all?q=mahou',
+                function (message) {
+                    expect(message[0].id).toEqual("8OucfG");
+                },
+                []
+            );
+            expect(message[0].id).toEqual("8OucfG"); 
+        });
+    });
 
     //     it('should fail on undefined name', function () {
     //         logic.register(undefined, 'Doe', 'jd', '123',
@@ -291,5 +293,4 @@ describe('logic', function () {
     //     // TODO end other cases for success callback
 
     //     // TODO implement analog cases for fail callback
-    });
-});
+    // });

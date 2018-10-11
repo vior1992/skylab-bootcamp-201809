@@ -4,7 +4,6 @@ var logic={
     
         xhr.addEventListener("load", function () {
             var res = JSON.parse(xhr.responseText);
-    
             callback(res);
         });
     
