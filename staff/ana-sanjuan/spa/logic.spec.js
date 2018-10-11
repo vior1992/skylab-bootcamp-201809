@@ -431,120 +431,167 @@ describe('logic', function () {
             );
         });
 
-    //     it('should fail on wrong username', function() {
-    //         logic.login('jd-', '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('wrong credentials');
-    //             }
-    //         );
-    //     });
+        it('should fail on wrong username', function() {
+            logic.login('jd-', '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('wrong credentials!');
+                }
+            );
+        });
 
-    //     it('should fail on wrong password', function() {
-    //         logic.login('jd', '123-',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('wrong credentials');
-    //             }
-    //         );
-    //     });
+        it('should fail on wrong password', function() {
+            logic.login('jd', '123-',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('wrong credentials!');
+                }
+            );
+        });
 
-    //     it('should fail on undefined username', function() {
-    //         logic.login(undefined, '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('invalid username');
-    //             }
-    //         );
-    //     });
+        it('should fail on undefined username', function() {
+            logic.login(undefined, '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('invalid username');
+                }
+            );
+        });
 
-    //     it('should fail on null username', function() {
-    //         logic.login(null, '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('invalid username');
-    //             }
-    //         );
-    //     });
+        it('should fail on null username', function() {
+            logic.login(null, '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('invalid username');
+                }
+            );
+        });
 
-    //     it('should fail on empty username', function() {
-    //         logic.login('', '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('invalid username');
-    //             }
-    //         );
-    //     });
+        it('should fail on empty username', function() {
+            logic.login('', '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('invalid username');
+                }
+            );
+        });
 
-    //     it('should fail on blank username', function() {
-    //         logic.login('       \t\n', '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('invalid username');
-    //             }
-    //         );
-    //     });
+        it('should fail on blank username', function() {
+            logic.login('       \t\n', '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('invalid username');
+                }
+            );
+        });
 
-    //     it('should fail on non-string username (object)', function() {
-    //         logic.login({}, '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('invalid username');
-    //             }
-    //         );
-    //     });
+        it('should fail on non-string username (object)', function() {
+            logic.login({}, '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('invalid username');
+                }
+            );
+        });
 
-    //     it('should fail on non-string username (numeric)', function() {
-    //         logic.login(123, '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('invalid username');
-    //             }
-    //         );
-    //     });
+        it('should fail on non-string username (numeric)', function() {
+            logic.login(123, '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('invalid username');
+                }
+            );
+        });
 
-    //     it('should fail on non-string username (boolean)', function() {
-    //         logic.login(true, '123',
-    //             function() {
-    //                 throw Error();
-    //             },
-    //             function(message) {
-    //                 expect(message).toEqual('invalid username');
-    //             }
-    //         );
-    //     });
+        it('should fail on non-string username (boolean)', function() {
+            logic.login(true, '123',
+                function() {
+                    throw Error();
+                },
+                function(message) {
+                    expect(message).toEqual('invalid username');
+                }
+            );
+        });
 
     //     // TODO implement analog cases for password
 
-    //     it('should throw error on undefined success callback', function () {
-    //         expect(function () {
-    //             logic.login('John', 'Doe',
-    //                 undefined,
-    //                 function (message) {
-    //                     throw Error(message);
-    //                 }
-    //             );
-    //         }).toThrowError(TypeError, 'undefined is not a function');
-    //     });
+        it('should throw error on undefined success callback', function () {
+            expect(function () {
+                logic.login('John', 'Doe',
+                    undefined,
+                    function (message) {
+                        throw Error(message);
+                    }
+                );
+            }).toThrowError(TypeError, 'undefined is not a function');
+        });
+
+        it ('should fail on non-function success callback(string)', function(){
+            var onFail = '123'
+            expect(function(){
+                logic.login('John', 'Doe',
+                function(message){
+                    throw Error(message)
+                }, onFail
+                )
+            }).toThrowError(TypeError, onFail + ' is not a function');
+
+        });
 
     //     // TODO end other cases for success callback
 
+
+        it('should throw error on undefined fail callback(undefined)', function () {
+            var onFail = undefined
+            expect(function(){
+                logic.login('John', 'Doe',
+                function(message) {
+                    throw Error(message)
+                }, onFail
+                )
+            }).toThrowError(TypeError, onFail + ' is not a function');
+        });
+
+        it('should throw error on non-function fail callback(string)', function () {
+            var onFail = '123';
+            expect(function(){
+                logic.login('John', 'Doe',
+                function(message) {
+                    throw Error(message)
+                }, onFail
+                )
+            }).toThrowError(TypeError, onFail + ' is not a function');
+        });
+
+        it('should throw error on non-function fail callback(boolean)', function () {
+            var onFail = true
+            expect(function(){
+                logic.login('John', 'Doe',
+                function(message) {
+                    throw Error(message)
+                }, onFail
+                )
+            }).toThrowError(TypeError, onFail + ' is not a function');
+        });
+
+        
     //     // TODO implement analog cases for fail callback
      });
 });
