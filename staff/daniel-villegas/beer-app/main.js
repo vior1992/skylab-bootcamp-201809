@@ -1,51 +1,3 @@
-function search(query, callback) {
-    var xhr = new XMLHttpRequest();
-
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //         // console.log(xhr.responseText);
-
-    //         var res = JSON.parse(xhr.responseText);
-
-    //         // console.log(res);
-
-    //         callback(res);
-    //     }
-    // };
-
-    // xhr.addEventListener("progress", updateProgress);
-    xhr.addEventListener("load", function () {
-        var res = JSON.parse(xhr.responseText);
-
-        callback(res);
-    });
-
-    xhr.addEventListener("error", function () {
-        callback([]);
-    });
-    // xhr.addEventListener("abort", transferCanceled);
-
-    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query);
-    
-    xhr.send();
-}
-
-function retrieveBeer(id, callback) {
-    xhr.addEventListener("load", function () {
-        var res = JSON.parse(xhr.responseText);
-
-        callback(res);
-    });
-
-    xhr.addEventListener("error", function () {
-        callback([]);
-    });
-    // xhr.addEventListener("abort", transferCanceled);
-
-    xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api/beer/' + id);
-
-    xhr.send();
-}
 
 var form = document.getElementById('search-form');
 
@@ -73,7 +25,9 @@ form.addEventListener('submit', function (event) {
                 
                 // TODO on click on beer do retrieve beer and show beer below
                 li.addEventListener('click', function () {
-                    var h = document.createElement('h3');
+                   var h = document.getElementsByTagName('h3');
+                   var pic = document.getElementsByTagName('img');
+                   var p = document.getElementsByTagName('p');
 
                     if (h.length) {
                         document.body.removeChild(h[0]);
@@ -81,20 +35,27 @@ form.addEventListener('submit', function (event) {
                         document.body.removeChild(p[0]);
                     }
 
+                    h = document.createElement('h3');
                     h.innerText = beer.name;
                     document.body.appendChild(h);
-                
-                    if (beer.labels) {
-                        var pic = document.createElement('img');
-                        pic.src = beer.labels.medium;
-                        document.body.appendChild(pic);
-                    } else {
-                        var pic = document.createElement('img');
-                        pic.src = 'https://i.pinimg.com/originals/6a/e8/a7/6ae8a729773b78fc3c94d451d8ccde36.jpg';
-                        document.body.appendChild(pic);
-                    }
+                    
+                    pic = document.createElement('img');
+                    pic.src = (beer.labels) ? beer.labels.medium : 'https://i.pinimg.com/originals/6a/e8/a7/6ae8a729773b78fc3c94d451d8ccde36.jpg' ;
+                    pic.width = 250
+                    document.body.appendChild(pic);
 
-                    var p = document.createElement('p');
+                    ////Version antigua para seleccionar la imagen////////////////////
+                    // if (beer.labels) {
+                    //     pic = document.createElement('img');
+                    //     pic.src = beer.labels.medium;
+                    //     document.body.appendChild(pic);
+                    // } else {
+                    //     pic = document.createElement('img');
+                    //     pic.src = 'https://i.pinimg.com/originals/6a/e8/a7/6ae8a729773b78fc3c94d451d8ccde36.jpg';
+                    //     document.body.appendChild(pic);
+                    // }
+
+                    p = document.createElement('p');
                     p.innerText = beer.style.description;
                     document.body.appendChild(p);
 
