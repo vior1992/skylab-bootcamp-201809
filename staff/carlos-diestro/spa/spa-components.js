@@ -32,8 +32,9 @@ function Register(title, tag, registerCallback, backCallback) {
         var email = this.email.value;
         var name = this.name.value;
         var password = this.password.value;
+        var rePassword = this.rePassword.value;
 
-        registerCallback(email, name, password);
+        registerCallback(email, name, password, rePassword);
     }.bind(this));
     this.element.appendChild(this.form);
 
@@ -54,6 +55,12 @@ function Register(title, tag, registerCallback, backCallback) {
     this.password.name = 'password';
     this.password.placeholder = 'Password';
     this.form.appendChild(this.password);
+
+    this.rePassword = document.createElement('input');
+    this.rePassword.type = 'password';
+    this.rePassword.name = 'rePassword';
+    this.rePassword.placeholder = 'Repeat password';
+    this.form.appendChild(this.rePassword);
 
     this.register = document.createElement('button');
     this.register.innerText = 'Register';

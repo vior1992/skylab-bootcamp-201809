@@ -2,13 +2,17 @@ var user;
 var error;
 
 var logic = {
-  register: function(email, name, password, onSuccess, onFailure) {
+  register: function(email, name, password, rePassword, onSuccess, onFailure) {
     if(!email || !email.trim().length) {
       onFailure('Email is empty');
     } else if(!name || !name.trim().length) {
       onFailure('Name is empty');
     } else if(!password || !password.trim().length) {
       onFailure('Password is empty');
+    } else if(!rePassword || !rePassword.trim().length) {
+      onFailure('Repeated password is empty');
+    } else if(password !== rePassword) {
+      onFailure('Passwords do not match');
     } else {
       user = {
         email: email,

@@ -12,8 +12,8 @@ var landing = new Landing('Choose an option', 'section',
 document.body.appendChild(landing.element);
 
 var register = new Register('Register', 'section',
-  function(email, name, password) {
-    logic.register(email, name, password,
+  function(email, name, password, rePassword) {
+    logic.register(email, name, password, rePassword,
       function() {
           register.hide();
           registerError.element.innerText = '';
