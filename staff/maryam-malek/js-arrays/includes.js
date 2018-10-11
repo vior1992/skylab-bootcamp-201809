@@ -8,7 +8,7 @@ function includes(arr, elem) {
     for(i=0; i<arr.length; i++){
         if(arr[i] === elem){
             inclu = true;
+            return inclu;        
         }
     }
-    return inclu;        
 }
