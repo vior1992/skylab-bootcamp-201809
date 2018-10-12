@@ -1,4 +1,4 @@
-var view = (function () {
+var viewListComponent = (function () {
 
     return {
 

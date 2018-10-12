@@ -12,7 +12,7 @@ function Panel(title, tag) {
     this.title.addClass('panel__title');
 
     this.title.appendTo(this.element);
-    this.element.appendTo('body');
+   // this.element.appendTo('body');
 }
 
 Panel.prototype = Object.create(Component.prototype);

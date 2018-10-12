@@ -6,41 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./web-components/web-components-1.2.0.css">
-    <style>
-        ul{
-            list-style: none;
-            padding: 0 2em;
-            width: 30%;
-            margin: 0 auto;
-        }
-        li{
-            padding: 1em 0;
-            border-bottom: 1px solid rgba(0,0,0,0.4);
-            
-        }
-        li:hover{
-            cursor: pointer;
-        }
-        li:last-child{
-            border-bottom: 0;
-        }
-        img{
-            position: absolute;
-            left: 4%;
-            top: 24%;
-        }
-    </style>
+    <link rel="stylesheet" href="./custom-components/search-component/search-component.css">
+    <link rel="stylesheet" href="./custom-components/list-component/list-component.css">
+   
 </head>
-<body>
-  
-   <!--<form id="search-form">
-        <input id="search-query" type="text" name="query">
-        <button id="search-button" type="submit">Search</button>
-    </form>-->
+<body>    
     <script src="./vendor/jquery/3.3.1/jquery-3.3.1.min.js"></script>
     <script src="./web-components/web-components-1.2.0.js"></script>
-    <script src="logic.js"></script>
-    <script src="view.js"></script>
+    <script src="./services/services.js"></script>
+    <script src="./custom-components/search-component/search-component.js"></script>
+    <script src="./custom-components/search-component/view-search-component.js"></script>
+    <script src="./custom-components/list-component/view-list-component.js"></script>
+    <script src="./custom-components/list-component/list-component.js"></script>   
     <script src="main.js"></script>
 </body>
 </html>
