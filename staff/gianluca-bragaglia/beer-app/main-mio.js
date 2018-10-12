@@ -59,31 +59,60 @@ form.addEventListener('submit', function (event) {
             document.body.removeChild(uls[0]);
         }
 
+        var details = document.getElementsByTagName('section'); //creo el contenedor details(imagen+titol+description)
+
+        if (details.length) {    // para borrar el detalle(imagen+titol+description) cuando hago una nueva busqueda
+            document.body.removeChild(details[0]);
+        }
+
         if (beers.length) {
-            var listContainer = document.getElementById('list-container');
+
             var ul = document.createElement('ul');
 
             beers.forEach(function (beer) {
                 // console.log(beer.id, beer.name);
 
-                var li = document.createElement('li');
-                li.innerText = beer.name + ' ' + (beer.id);
-                li.addEventListener('click', function() {
-                    retrieveBeer(beer.id, function(url,name,description){
-                        var beerTitle = document.createElement('h1');
-                        beerTitle.innerText = name; 
-                        var beerImg = document.createElement('img');
-                        beerImg.src = url;
-                        var beerDescription = document.createElement('p');
-                        beerDescription.innerText = description;
-                        var beerContainer = document.getElementById('beer-container');
-                        beerContainer.appendChild(beerTitle);
-                        beerContainer.appendChild(beerImg);
-                        beerContainer.appendChild(beerDescription); 
-                        
-                        
-                    });    
-                })
+                var li = document.createElement('li');  // creo un li e a para cada item(beer) del jason
+
+                var a = document.createElement('a');
+
+                a.href = '#';
+                a.innerText = beer.name;
+
+
+                a.addEventListener('click', function () {
+                    retrieveBeer(beer.id, function (beer) {
+                        var details = document.getElementsByTagName('section');
+
+                        if (details.length) {
+                            document.body.removeChild(details[0]);
+                        }
+
+                        var detail = document.createElement('section');
+
+                        var h2 = document.createElement('h2');
+
+                        h2.innerText = beer.name;
+
+                        detail.appendChild(h2);
+
+                        var label = document.createElement('img');
+
+                        label.src = beer.labels ? beer.labels.medium : 'https://visualpharm.com/assets/797/Beer-595b40b65ba036ed117d2949.svg';
+                        label.style.width = '300px';
+
+                        detail.appendChild(label);
+
+                        var desc = document.createElement('p');
+
+                        desc.innerText = beer.description || beer.style.description || 'no description';
+
+                        detail.appendChild(desc);
+
+                        document.body.appendChild(detail);
+                    });
+                });
+                li.appendChild(a);
                 ul.appendChild(li);
 
             });

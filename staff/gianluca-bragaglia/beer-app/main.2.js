@@ -1,4 +1,7 @@
-function search(query, callback) {
+
+
+
+function search(query, callback) {   // conexion al servidor api con ajax
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("load", function () {
@@ -16,7 +19,7 @@ function search(query, callback) {
     xhr.send();
 }
 
-function retrieveBeer(id, callback) {
+function retrieveBeer(id, callback) {  // conexion al servidor api con ajax
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("load", function () {
@@ -34,33 +37,35 @@ function retrieveBeer(id, callback) {
     xhr.send();
 }
 
-var form = document.getElementById('search-form');
+var form = document.getElementById('search-form'); // creamos el input search
 
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', function (event) { // accion cuando pulso el botono de search
     event.preventDefault();
 
-    var input = document.getElementById('search-query');
+    var input = document.getElementById('search-query');  
 
-    var query = input.value;
+    var query = input.value;  // guardo la palabra buscada en el input
 
-    search(query, function (beers) {
+    search(query, function (beers) {  // funcion callback del search
+
         var uls = document.getElementsByTagName('ul');
 
-        if (uls.length) {
+        if (uls.length) {     // para borrar la lista cuando hago una nueva busqueda
             document.body.removeChild(uls[0]);
         }
 
         var details = document.getElementsByTagName('section');
 
-        if (details.length) {
+        if (details.length) {    // para borrar el detalle(imagen+titol+description) cuando hago una nueva busqueda
             document.body.removeChild(details[0]);
         }
 
-        if (beers.length) {
-            var ul = document.createElement('ul');
+        if (beers.length) {   
+            var ul = document.createElement('ul');  // creo una lista 
 
-            beers.forEach(function (beer) {
-                var li = document.createElement('li');
+            beers.forEach(function (beer) {  // itero el array beers(me viene del jason de la api)
+
+                var li = document.createElement('li');  // creo un li e a para cada item(beer) del jason
 
                 var a = document.createElement('a');
 
