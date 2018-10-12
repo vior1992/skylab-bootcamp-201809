@@ -6,7 +6,7 @@ function find(arr, Callback) {
     var x;
     for (var i = 0; i < arr.length; i++) {
         x = Callback(arr[i]);
-        if (x == true) {
+        if (x) {
             return arr[i];
         }
     }
