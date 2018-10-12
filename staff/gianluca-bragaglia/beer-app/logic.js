@@ -18,6 +18,8 @@ var logic = {
     },
 
     search: function(query, callback) {
+        if(typeof query !== 'string') throw TypeError(query + ' is noy a syting');
+        
         this.call('/search/all?q=' + query, callback, []);
     },
     
