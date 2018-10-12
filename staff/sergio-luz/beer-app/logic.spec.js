@@ -1,11 +1,26 @@
 // // TODO ...
 describe("Using callbacks", function () {
 
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
-    beforeEach(function (done) {
-        setTimeout(function () {
-            done();
-        }, 1);
+    
+    describe('failing call (slow test)', function(){
+        beforeEach(function () {
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+            
+        });
+
+        it('failing call (slow test)', function (done) {
+            logic.call('/search/all?q=fanta',
+                function (res) {
+                    expect(res).toEqual(false);
+                    done();
+                }, false);
+        });
+
+        afterEach(function () {
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
+            
+        });
+
     });
     
     describe('function call', function () {
@@ -14,7 +29,7 @@ describe("Using callbacks", function () {
             logic.call('/search/all?q=hello',
                 function (res) {
                     expect(res instanceof Object).toEqual(true);
-                    done()
+                    done();
                 });
         });
 
@@ -22,7 +37,7 @@ describe("Using callbacks", function () {
             logic.call('/search/all?q=mahou',
                 function (res) {
                     expect(res).toEqual(result_mahou);
-                    done()
+                    done();
                 });
         });
 
@@ -35,7 +50,7 @@ describe("Using callbacks", function () {
                     function (message) {}
                 );
             }).toThrowError('null is not a string');
-            done()
+            done();
         });
 
         it('should fail when path is not a string (undefined)', function (done) {
@@ -47,7 +62,7 @@ describe("Using callbacks", function () {
                     function (message) {}
                 );
             }).toThrowError('undefined is not a string');
-            done()
+            done();
         });
 
         it('should fail when path is not a string (num)', function (done) {
@@ -59,7 +74,7 @@ describe("Using callbacks", function () {
                     function (message) {}
                 );
             }).toThrowError('123 is not a string');
-            done()
+            done();
         });
 
         it('should fail when path is not a string (boolean)', function (done) {
@@ -71,7 +86,7 @@ describe("Using callbacks", function () {
                     function (message) {}
                 );
             }).toThrowError('true is not a string');
-            done()
+            done();
         });
 
         it('should fail when path is not a string (array)', function (done) {
@@ -83,9 +98,8 @@ describe("Using callbacks", function () {
                     function (message) {}
                 );
             }).toThrowError('1,2 is not a string');
-            done()
+            done();
         });
-
 
         it('should fail when path is not a string (object)', function (done) {
             expect(function () {
@@ -98,7 +112,7 @@ describe("Using callbacks", function () {
                     function (message) {}
                 );
             }).toThrowError('[object Object] is not a string');
-            done()
+            done();
         });
 
         it('should fail when path is not a string (function)', function (done) {
@@ -109,8 +123,8 @@ describe("Using callbacks", function () {
                     }, ' ',
                     function (message) {}
                 );
-            }).toThrowError('function(){} is not a string');
-            done()
+            }).toThrowError('function () {} is not a string');
+            done();
         });
 
         it('should fail when callback is not a function (string)', function (done) {
@@ -118,7 +132,7 @@ describe("Using callbacks", function () {
                 logic.call('/search/all?q=mahou',
                     'undefined', ' ');
             }).toThrowError('callback is not a function');
-            done()
+            done();
         });
 
         it('should fail when callback is not a function (num)', function (done) {
@@ -126,7 +140,7 @@ describe("Using callbacks", function () {
                 logic.call('/search/all?q=mahou',
                     123, ' ');
             }).toThrowError('callback is not a function');
-            done()
+            done();
         });
 
         it('should fail when callback is not a function (boolean)', function (done) {
@@ -134,7 +148,7 @@ describe("Using callbacks", function () {
                 logic.call('/search/all?q=mahou',
                     true, ' ');
             }).toThrowError('callback is not a function');
-            done()
+            done();
         });
 
         it('should fail when callback is not a function (array)', function (done) {
@@ -142,9 +156,8 @@ describe("Using callbacks", function () {
                 logic.call('/search/all?q=mahou',
                     [1, 2], ' ');
             }).toThrowError('callback is not a function');
-            done()
+            done();
         });
-
 
         it('should fail when callback is not a function (object)', function (done) {
             expect(function () {
@@ -152,7 +165,7 @@ describe("Using callbacks", function () {
                     ob: [1, 2]
                 }, ' ');
             }).toThrowError('callback is not a function');
-            done()
+            done();
         });
 
         it('should fail when callback is not a function (null)', function (done) {
@@ -160,7 +173,7 @@ describe("Using callbacks", function () {
                 logic.call('/search/all?q=mahou',
                     null, ' ');
             }).toThrowError('callback is not a function');
-            done()
+            done();
         });
     });
 
