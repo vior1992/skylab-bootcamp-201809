@@ -2,26 +2,17 @@
 
 describe('logic', function () {
     describe('call', function () {
-        beforeEach(function() {
-            jasmine.Ajax.install();
-        });
-
-        afterEach(function() {
-            jasmine.Ajax.uninstall();
-        });
-        });
-
-        it('should succeed on correct data', function () {
-            var doneFn = jasmine.createSpy("success");
+        it('should succeed on correct data', function (done) {
             logic.call('/search/all?q=mahou',
                 function (message) {
                     expect(message[0].id).toEqual("8OucfG");
+                    done();
                 },
                 []
             );
-            expect(message[0].id).toEqual("8OucfG"); 
         });
     });
+});
 
     //     it('should fail on undefined name', function () {
     //         logic.register(undefined, 'Doe', 'jd', '123',
