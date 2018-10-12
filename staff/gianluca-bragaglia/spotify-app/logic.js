@@ -3,19 +3,19 @@ const logic = {
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
-            xhr.addEventListener('load', function () {
+            xhr.addEventListener('load', function() {
                 var res = JSON.parse(xhr.responseText)
 
                 resolve(res.artists.items)
             })
 
-            xhr.addEventListener('error', function () {
+            xhr.addEventListener('error', function() {
                 reject() // TODO
             })
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
 
-            var token = 'BQDC-hqIyF8ZXfBBgoHHoBd8Nnh6AmU9jlj2hzv0GbYozZp3ElRVJrDauE_LKgGE32N80cZ_kyB-t--d3PwQQODO--3EPpoyYuaL0ffZUs_MH5XTkmxuKE4xcS3yL8p5nsdoHocRQid6ok8'
+            var token = 'BQCupPYx5P0fkoO9-am_w077fH0FujhUdOt-MiEtjaXxERbFoXOWPehgh5cZB_ch2QNoT9CqL2PkzUI7t4Vk4b43lc2Nqv0KzSVnopFc8LZBTPa8jRyG79gMOSSURKJwmc_ad71-osnYXw'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -23,7 +23,29 @@ const logic = {
         })
     },
 
-    listAlbums(id) {
-        // TODO
+    searchAlbums(id) {
+        return new Promise((resolve, reject) => {
+            var xhr = new XMLHttpRequest()
+
+            xhr.addEventListener('load', function() {
+                var res = JSON.parse(xhr.responseText)
+
+                resolve(res.items)
+                console.log(res.items);
+
+            })
+
+            xhr.addEventListener('error', function() {
+                reject() // TODO
+            })
+
+            xhr.open('get', 'https://api.spotify.com/v1/artists/' + id + '/albums')
+
+            var token = 'BQAI6-FVuO-JBI9krzovJ_uwIrFYpabgvRTnzqTAs-6g6ig9-aHS7PECGm87T6fLHpU3caVHkR8Is3sv9nwpi7R3okXhYWdmQCdmW3-XB2MbJVzRR13IVakGZhaFeD3HP55wSHNcpfubQg'
+
+            xhr.setRequestHeader('authorization', 'Bearer ' + token)
+
+            xhr.send()
+        })
     }
 }

@@ -1,6 +1,8 @@
 const $artists = $('.artists')
+const $albums = $('.albums')
 
 $artists.hide()
+$albums.hide()
 
 const $form = $('form')
 
@@ -29,9 +31,20 @@ function listArtist(artists) {
         const $a = $(`<a href="#">${artist.name}</a>`)
 
         $a.click(() => {
-            console.log(artist)
+            event.preventDefault()
 
             // TODO search albums by artist id
+
+            const id = artist.id
+            console.log(id);
+
+            logic.searchAlbums(id)
+                .then(albums => {
+                    listArtist(albums)
+                })
+                .catch(console.error)
+
+
         })
 
         const $li = $('<li>')
@@ -40,4 +53,31 @@ function listArtist(artists) {
 
         $ul.append($li)
     })
+}
+
+
+function listAlbums(albums) {
+    $albums.show()
+
+    const $ulAlbums = $('.list-albums')
+    const $liAlbums = $ulAlbums.find('li')
+    const $aAlbums = $ulAlbums.find('a')
+
+    $ulAlbums.empty()
+
+    albums.forEach(album => {
+
+        $aAlbums = $(`<a href="#">${album.name}</a>`)
+
+        $aAlbums.click(() => {
+            event.preventDefault()
+
+
+        })
+    })
+    $liAlbums = $('<li>')
+
+    $liAlbums.append($aAlbums)
+
+    $ulAlbums.append($liAlbums)
 }
