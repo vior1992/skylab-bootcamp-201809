@@ -3,35 +3,34 @@ function sort(arr) {
     var indexMain = 0;
     var indexSecondary = 0;
     var indexTemp = 0;
-    var tempNumber = [];
+    var tempItem = [];
     var arraySorted = [];
+    var arrString = [];
+    var swap = false;
 
-    for(indexMain = 0; indexMain <= arr.length; indexMain++) {
+    for (var i = 0; i < arr.length; i++) {
+        arrString[i] = arr[i].toString();
+    }
+
+    for(indexMain = 0; indexMain < arrString.length; indexMain++) {
         
-        tempNumber = arr[indexMain];
-        tempNumberString = number.toString(tempNumber);
+        tempItem = arrString[indexMain];
 
-        console.log('Entra en el primer for y tempNumber es ' + arr[indexMain]);
-
-        for(indexSecondary = indexMain + 1; indexSecondary <= arr.length; indexSecondary++) {
-
-            console.log('Entra en el segundo for y compara con ' + arr[indexSecondary]);
-            tempDigitString = number.toString(arr[indexSecondary]);
+        for(indexSecondary = indexMain + 1; indexSecondary < arrString.length; indexSecondary++) {
             
-            console.log(arr[indexSecondary][0]);
-            console.log(arr[indexSecondary][0] + ' es < ' + tempNumber[0]);
-            if(arr[indexSecondary][0] < tempNumber[0] ) {
-                tempNumber = arr[indexSecondary];
+            if(arrString[indexSecondary] < tempItem) {
+                tempItem = arrString[indexSecondary];
                 indexTemp = indexSecondary;
-                console.log('Ha encontrado un numero menor');
-                console.log('Nuevo valor de tempNumber es ' + tempNumber);
+                swap = true;
             }
         }
-        arraySorted[indexMain] = tempNumber;
-        arr[indexTemp] = arr[indexMain];
-        console.log('El array original es: ' + arr);
-        console.log('El array sorted tiene esta pinta: ' + arraySorted);
-
+        if (swap) { 
+            arraySorted[indexMain] = tempItem;
+            arrString[indexTemp] = arrString[indexMain];
+            swap = false;
         }
-        console.log('Array final ' + arraySorted);
+        else { arraySorted[indexMain] = arrString[indexMain]; }
+        }
+        arr = arraySorted;
+        return arr;
 }

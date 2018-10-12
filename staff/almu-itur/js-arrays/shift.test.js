@@ -59,21 +59,4 @@ tests.push(function () {
     if (error.message !== 'no parameter has been introduced') throw Error ('error message is not correct');
 });
 
-tests.push(function () {
-
-    console.log('should fail on empty array');
-
-    var error;
-    var nums = [];
-
-    try {
-        shift(nums);
-    } catch (err) {
-        error = err;
-    }
-
-    if (!error) throw Error ('should have thrown error on empty array');
-    if (error.message !== 'array is empty') throw Error ('error message is not correct');
-});
-
 testSuite(tests);

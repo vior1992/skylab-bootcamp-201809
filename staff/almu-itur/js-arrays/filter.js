@@ -1,14 +1,15 @@
 function filter(arr, callback) {
-    var index = 0;
+    
+    if (!(arr instanceof Array)) throw Error (arr + 'is not array');
+    if (typeof callback !== "function") throw Error (callback + 'is not a function');
+    if (!arr.length) throw Error (arr + ' is empty');
+
     var indexResult = 0;
     var result = [];
-    var flag = false;
 
-    for(index=0; index<arr.length; index++) {
+    for(var index = 0; index < arr.length; index++) {
         
-        flag = callback(arr[index]);
-
-        if(flag == true) {
+        if (callback(arr[index])) {
             result[indexResult] = arr[index];
             indexResult++;
         }
