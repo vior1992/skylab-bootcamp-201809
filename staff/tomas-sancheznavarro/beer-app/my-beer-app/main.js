@@ -58,6 +58,12 @@ form.addEventListener('submit', function (event) {
     search(query, function (beers) {
         var uls = document.getElementsByTagName('ul');
 
+        var cards = document.getElementsByTagName('section');
+
+        if (cards.length) {
+            document.body.removeChild(cards[0]);
+        }
+
         if (uls.length) {
             document.body.removeChild(uls[0]);
         }
@@ -75,49 +81,63 @@ form.addEventListener('submit', function (event) {
                 li.addEventListener('click', function () {
                     retrieveBeer(beer.id, function (details) {
                         console.log(details);
+                        cards = document.getElementsByTagName('section');
+
+                        if (cards.length) {
+                            document.body.removeChild(cards[0]);
+                        }
+
+                        var card = document.createElement('section');
+                        document.body.appendChild(card);
+
 
                         var titles = document.createElement('h2');
 
                         titles.innerText = details.name;
 
-                        document.body.appendChild(titles);
+                        card.appendChild(titles);
 
                         var image = document.createElement('img');
 
                         if (details.labels) {
                             image.src = details.labels.medium;
-                            document.body.appendChild(image);
+                            card.appendChild(image);
                         } else {
                             var message = document.createElement('h3');
-                            message.innerText = 'no image available';
-                            document.body.appendChild(message);
+                            message.innerText = '(no image available, using a generic one instead)';
+                            card.appendChild(message);
+                            image.src = 'https://visualpharm.com/assets/797/Beer-595b40b65ba036ed117d2949.svg';
+                            image.style.width = '200px';
+                            card.appendChild(image);
                         }
 
                         var info = document.createElement('p');
 
-                        if (details.description) {
-                            info.innerText = details.description;
-                            document.body.appendChild(info);
+                        if (!details.description || !details.style.description) {
 
-                        } else {
                             var message_2 = document.createElement('p');
                             message_2.innerText = 'no description available';
-                            document.body.appendChild(message_2);
+                            card.appendChild(message_2);
+
+
+
+
+                        } else {
+                            var title = document.createElement('h3');
+                            title.innerText = 'Description';
+                            card.appendChild(title);
+                            info.innerText = details.description || details.style.description;
+                            card.appendChild(info);
+
                         }
-
-
-
-
                     });
                 });
-
                 ul.appendChild(li);
             });
 
             document.body.appendChild(ul);
+
         } else alert('no results');
 
     });
-
-
 });
