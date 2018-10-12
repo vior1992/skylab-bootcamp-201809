@@ -1,11 +1,8 @@
 function splice(arr, start, count) {
     var removed = [], original = [], counter;
     for (var i = 0; i < arr.length; i++) original[i] = arr[i];
-    //debugger
-    var remain = arr.length - (count)
-    for (var i = 0; i < remain ; i++){
-        arr.length--
-    }
+    arr.length = arr.length - (count)
+
     for (var i = 0; i < start-1 ; i++){
         arr[i] = original[i]
     }
