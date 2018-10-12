@@ -1,38 +1,22 @@
-function splice () {
+// Yet to be finished...
 
-    if(arguments.length>3){
-        return 'Please insert the correct amount of arguments';
-    }
-    else if(arguments[0] instanceof Array){
-        var array = arguments[0];
-        var newArray = [];
-        var start = arguments[1];
-        var end = arguments[2];
 
-        if(start === undefined){
-            
-            newArray = array;
+function splice(array, start, deleteCount) {
 
-        } else if(end === undefined){
-
-            var index = 0;
-            for(i=start; i<array.length; i++){
-                newArray[index++] = array[i];
+    var elemsToBeAdded = arguments.length - 3;
+    if (elemsToBeAdded === 0){
+        if (deleteCount === undefined) {
+            array.length = start;
+        } else if (deleteCount === 0) {
+            for (var i = 3; i < arguments.length; i++) {
+                push(array, arguments[i]);
             }
-
         } else {
-
-            var index = 0;
-            for(i=start; i<end; i++){
-                newArray[index++] = array[i];
-            }
-
+            for (var i = 3; i < arguments.length; i++) {
+                push(array, arguments[i]);
         }
-
-    } else {
-        return 'Please insert a valid array';
     }
-
-    return removed;
+  
+    return array;
 }
-
+}
