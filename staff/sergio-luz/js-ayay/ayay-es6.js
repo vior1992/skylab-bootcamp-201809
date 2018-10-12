@@ -12,7 +12,7 @@ class Ayay {
     }
 
     push() {
-        for (var i = 0; i < arguments.length; i++) {
+        for (let i = 0; i < arguments.length; i++) {
             this[this.length] = arguments[i];
             this.length++;
         }
