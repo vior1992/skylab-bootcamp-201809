@@ -1,4 +1,4 @@
-var service = (function () {
+function ServiceFactory() {
 
     return {
 
@@ -71,4 +71,4 @@ var service = (function () {
 
         }
     };
-})();
+}

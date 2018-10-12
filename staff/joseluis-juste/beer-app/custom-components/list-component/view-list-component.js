@@ -1,11 +1,12 @@
-function viewListComponent(ele) {
+function viewListComponent(listComponent) {
 
     var self = this;
-    this.main_element = ele;
+    this.listComponent = listComponent;
+    this.main_element = this.listComponent.element;
 
     
     this.render = function (parentElement) {
-        
+
         this.section_list = $("<section/>");
         this.section_list.css("width","22%");
         this.section_detail = $("<section/>");  
@@ -60,17 +61,7 @@ function viewListComponent(ele) {
 
     this.getDetails = function (id) {
 
-        try {
-            service.getDetail(id, function (resp) {
-
-                if (resp instanceof Error) throw resp;
-
-                self.drawDetails(resp);
-            });
-        } catch (error) {
-            alert("ERROR: " + error.message);
-        }
-
+       this.listComponent.getDetails(id);
 
     }
 

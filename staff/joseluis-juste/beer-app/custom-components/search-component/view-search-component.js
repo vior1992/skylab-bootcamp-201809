@@ -6,6 +6,7 @@ function viewSearchComponent(searchComponent) {
     
     this.render = function (parentElement) {
         
+        this.main_element.css("margin-bottom","3em");
         var form = $('<form/>');
         var input = $('<input/>')
         var button = $('<button/>');
@@ -31,3 +32,4 @@ function viewSearchComponent(searchComponent) {
         parentElement.append(this.main_element);
     }
 }
+

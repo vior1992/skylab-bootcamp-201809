@@ -5,17 +5,18 @@ function SearchComponent(title, tag) {
 
     this.viewEngine = new viewSearchComponent(this);
     
-    this.viewEngine.render($("body"));
+    this.viewEngine.render($("#wrap").first());
 
     this.getList = function(val){
 
+        var service = new ServiceFactory();
         service.getList(val, function(resp){
     
             if (resp instanceof Error)
-                listBeers.paintList([]);
+                listBeers.setList([]);
                      
             
-            listBeers.paintList(resp);
+            listBeers.setList(resp);
 
         });
     }
