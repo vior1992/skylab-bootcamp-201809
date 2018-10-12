@@ -10,15 +10,21 @@ function SearchComponent(title, tag) {
     this.getList = function(val){
 
         var service = new ServiceFactory();
-        service.getList(val, function(resp){
+        try {
+            service.getList(val, function(resp){
     
-            if (resp instanceof Error)
-                listBeers.setList([]);
-                     
-            
-            listBeers.setList(resp);
-
-        });
+                if (resp instanceof Error)
+                    listBeers.setList([]);
+                         
+                
+                listBeers.setList(resp);
+    
+            });
+        } catch (error) {
+            alert(error.message);
+            this.deleteSearch();
+        }
+        
     }
 
     this.deleteSearch = function(){

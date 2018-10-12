@@ -25,7 +25,11 @@ function ServiceFactory() {
 
         getList: function (query, callback) {
 
+            if (!query && query !=="") throw Error(query + " is not a valid input value");
 
+            if (typeof query !== "string" || query.trim().length === 0) throw Error("empty input value is not allowed");
+
+           
             this.call('https://quiet-inlet-67115.herokuapp.com/api/search/all?q=' + query, 'get', function (resp) {
 
                 callback(resp);
