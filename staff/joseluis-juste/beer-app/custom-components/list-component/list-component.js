@@ -23,6 +23,12 @@ function ListComponent(title, tag) {
         });
 
     }
+
+    this.deleteSearch = function(){
+
+        this.viewEngine.deleteSearch();
+
+    }
 }
 
 ListComponent.prototype = Object.create(Panel.prototype);

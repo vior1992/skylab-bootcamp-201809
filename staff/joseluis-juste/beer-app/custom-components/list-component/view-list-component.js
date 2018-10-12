@@ -114,4 +114,9 @@ function viewListComponent(listComponent) {
 
         this.section_detail.html("");
     }
+
+    this.deleteSearch = function () {
+
+        this.main_element.hide();
+    }
 }

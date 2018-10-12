@@ -20,6 +20,13 @@ function SearchComponent(title, tag) {
 
         });
     }
+
+    this.deleteSearch = function(){
+
+        listBeers.deleteSearch();
+        this.viewEngine.resetForm();
+       
+    }
 }
 
 SearchComponent.prototype = Object.create(Panel.prototype);
