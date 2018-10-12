@@ -10,5 +10,7 @@ function find(arr, elem) {
         return arr[i];
         }
     }
+
+    return undefined;
     
 }

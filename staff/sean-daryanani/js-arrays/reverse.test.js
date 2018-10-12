@@ -55,7 +55,7 @@ tests.push(function (){
 
 
 });
-
+/*
 //test error 3
 tests.push(function (){
     console.log('should fail if the argument is a string');
@@ -70,7 +70,7 @@ tests.push(function (){
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a string should be array') throw Error('error message is not correct');
+    if (error.message !== 'the argument is not an array') throw Error('error message is not correct');
 
 
 });
@@ -88,7 +88,7 @@ tests.push(function (){
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a function should be array') throw Error('error message is not correct');
+    if (error.message !== 'the argument is not an array') throw Error('error message is not correct');
 
 
 });
@@ -106,7 +106,7 @@ tests.push(function (){
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a boolean should be an array') throw Error('error message is not correct');
+    if (error.message !== 'the argument is not an array') throw Error('error message is not correct');
 
 
 });
@@ -124,10 +124,10 @@ tests.push(function (){
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument passed is a symbol should be an array') throw Error('error message is not correct');
+    if (error.message !== 'the argument is not an array') throw Error('error message is not correct');
 
 
-});
+});*/
 
 
 // test suite

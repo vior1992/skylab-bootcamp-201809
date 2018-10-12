@@ -73,7 +73,7 @@ tests.push(function () {
 });
 
 tests.push(function () {
-    console.log('should fail when start is not a number');
+    console.log('should fail when end is not a number');
 
     var error;
     var res = [];
@@ -86,11 +86,11 @@ tests.push(function () {
     }
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'start is not valid') throw Error('error message for start is not correct' + ' ' + error.message);
+    if (error.message !== 'start is not valid') throw Error('error message for start is not correct');
 });
 
 tests.push(function () {
-    console.log('should fail when end is not a number');
+    console.log('should fail when start is not a number');
 
     var error;
     var res = [];
@@ -103,8 +103,7 @@ tests.push(function () {
     }
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'end is not valid') throw Error('error message for end is not correct' + ' ' + error.message);
+    if (error.message !== 'end is not valid') throw Error('error message for end is not correct');
 });
 
 testSuite(tests);
-

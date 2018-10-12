@@ -1,9 +1,6 @@
-var sortTests = [];
-// document.querySelector('#test-sort').addEventListener('click', function() {
-//     testSuite(sortTests);
-// });
+var tests = [];
 
-sortTests.push(function () {
+tests.push(function () {
     console.log('should fail on non-array');
 
     var error;
@@ -19,7 +16,7 @@ sortTests.push(function () {
     if (error.message !== 'array is not valid') throw Error('error message is not correct');
 });
 
-sortTests.push(function () {
+tests.push(function () {
     console.log('should fail on empty array');
 
     var arr = [];
@@ -36,19 +33,15 @@ sortTests.push(function () {
     if (error.message !== 'array is empty') throw Error('error message is not correct');
 });
 
-sortTests.push(function () {
-    console.log('should not modify the original array');
+tests.push(function () {
+    console.log('should modify the original array');
 
     var arr = [1, 211, 98, 3];
 
-    var original = arr.slice();
+    var sorted = sort(arr);
 
-    var error;
-
-    var res = sort(arr);
-
-    if (JSON.stringify(arr) !== JSON.stringify(original)) throw Error('the original array has been modified');
+    if (JSON.stringify(arr) !== JSON.stringify(sorted)) throw Error('the original array hasn\'t been modified');
 });
 
 
-testSuite(sortTests);
+testSuite(tests);
