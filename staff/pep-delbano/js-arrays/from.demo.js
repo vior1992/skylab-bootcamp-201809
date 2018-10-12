@@ -1,4 +1,4 @@
-/*console.log('from demo');
+console.log('from demo');
 
 console.log(from('foo'));
 // ["f", "o", "o"]
@@ -12,15 +12,4 @@ var b = from(a);
 
 console.log(a); // [1, 2, 3]
 console.log(b); // [1, 2, 3]
-console.log(a === b); // false */
-
-
-function from(arr) {
-    var result = [0];
-    for(var i= 0; i<arr.length; i++) {
-        result[i] = arr[i] * arr[i];
-    }
-       return result;
-}
-
-from([1,2,5]);
+console.log(a === b); // false

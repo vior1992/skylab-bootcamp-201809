@@ -1,4 +1,4 @@
-/*function isArray(arr) {
+function isArray(arr) {
     // TODO
 }
 the function should work as follows:
@@ -10,15 +10,4 @@ console.log('isArray demo');
 console.log(isArray([1, 2, 3]));    // true
 console.log(isArray({foo: 123}));   // false
 console.log(isArray('foobar'));     // false
-console.log(isArray(undefined));    // false*/
-
-
-function isArray(arr) {
-        if (arr[-1] === '[') {
-            return true;
-        }
-}
-
-isArray([1,2,3]);
-
-No acabado!
+console.log(isArray(undefined));    // false
