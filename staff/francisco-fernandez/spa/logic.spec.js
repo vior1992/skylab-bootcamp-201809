@@ -348,5 +348,56 @@ describe('logic', function(){
         }).toThrowError(TypeError, 'null is not a function');
     });
 
-    
+    it('should throw error on undefined success callback', function () {
+        expect(function () {
+            logic.register('John', 'Doe', 'jd', '123',
+                undefined,
+                function (message) {
+                    throw Error(message); // new Error(message);
+                }
+            );
+        }).toThrowError(TypeError, 'undefined is not a function');
+    });
+
+    it('should throw error on null success callback', function () {
+        expect(function () {
+            logic.register('John', 'Doe', 'jd', '123',
+                null,
+                function (message) {
+                    throw Error(message); // new Error(message);
+                }
+            );
+        }).toThrowError(TypeError, 'null is not a function');
+    });
+
+    it('should throw error on non-function success callback (string)', function () {
+        expect(function () {
+            logic.register('John', 'Doe', 'jd', '123',
+                '',
+                function (message) {
+                    throw Error(message); // new Error(message);
+                }
+            );
+        }).toThrowError(TypeError, ' is not a function');
+    });
+
+    it('should throw error on non-function success callback (boolean)', function () {
+        expect(function () {
+            logic.register('John', 'Doe', 'jd', '123',
+                true,
+                function (message) {
+                    throw Error(message); // new Error(message);
+                }
+            );
+        }).toThrowError(TypeError, 'true is not a function');
+    });
+
+    // TODO implement analog cases for fail callback
+
+    // afterEach(function() {
+    //     user = undefined;
+    // });
 });
+
+    
+
