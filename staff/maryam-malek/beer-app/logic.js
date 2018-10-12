@@ -1,6 +1,6 @@
 var logic = {
     call: function(path, callback, defaultValueOnError){
-       if(typeof path != 'string') throw TypeError('invalid path');
+       if(typeof path !== 'string') throw TypeError('invalid path');
         var xhr = new XMLHttpRequest();
     
         xhr.addEventListener("load", function () {

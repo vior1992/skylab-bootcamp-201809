@@ -1,15 +1,17 @@
 describe('logic', function(){
 
     describe('call', function(){
-        beforeEach(function(done) {
-            setTimeout(function() {          
-              done();
-            }, 1);
-          });
-        it('should fail on undefined path', function(done){
+        // beforeEach(function(done) {
+        //     setTimeout(function() {          
+        //       done();
+        //     }, 1000);
+        //   });
+        it('should fail on undefined path', function(){
             var path = undefined;
             
-            expect(logic.call(path, function(res){console.log(res)}, [])). toThrowError(TypeError, 'invalid path');
+            expect(function(){
+                logic.call(path, function(){}, [])
+            }). toThrowError(TypeError, 'invalid path');
         });
 
     });
