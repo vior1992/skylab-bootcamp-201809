@@ -15,7 +15,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
 
-            var token = 'BQDBgQe5OKOv59B-9XZARPBRqCzA-GssSL5CwB69_RGiIu2tQRXVlgvGruIguNrp_8WjANbFSYfbNwUdHYePVfpGHXss8gJUMVW2-HNzIPRsghpxam-E52l1m4Jc8yGTk6AI_w5Kec3hPw'
+            var token = 'BQCqL-_SIPyRSuE_-zuSnTW-QaLX78Qn15akOuzL-fYIpv44VyaDWdMHhWJ4Ozyh-5nJ1TRLKxXywRTNFPnTeeXYwveij2wWzY5rIxQQ5J00dSFFkkab-718kpP_VYuWR2XH85aik3KTow'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -41,7 +41,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/artists/' + id + '/albums')
 
-            var token = 'BQDBgQe5OKOv59B-9XZARPBRqCzA-GssSL5CwB69_RGiIu2tQRXVlgvGruIguNrp_8WjANbFSYfbNwUdHYePVfpGHXss8gJUMVW2-HNzIPRsghpxam-E52l1m4Jc8yGTk6AI_w5Kec3hPw'
+            var token = 'BQCqL-_SIPyRSuE_-zuSnTW-QaLX78Qn15akOuzL-fYIpv44VyaDWdMHhWJ4Ozyh-5nJ1TRLKxXywRTNFPnTeeXYwveij2wWzY5rIxQQ5J00dSFFkkab-718kpP_VYuWR2XH85aik3KTow'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -49,7 +49,33 @@ const logic = {
         })
     },
 
-    searchTracks(idTracks) {
+    searchTracks(idAlbum) {
+        return new Promise((resolve, reject) => {
+            var xhr = new XMLHttpRequest()
+
+            xhr.addEventListener('load', function() {
+                var res = JSON.parse(xhr.responseText)
+
+                resolve(res.items)
+                console.log(res.items);
+
+            })
+
+            xhr.addEventListener('error', function() {
+                reject() // TODO
+            })
+
+            xhr.open('get', 'https://api.spotify.com/v1/albums/' + idAlbum + '/tracks')
+
+            var token = 'BQCqL-_SIPyRSuE_-zuSnTW-QaLX78Qn15akOuzL-fYIpv44VyaDWdMHhWJ4Ozyh-5nJ1TRLKxXywRTNFPnTeeXYwveij2wWzY5rIxQQ5J00dSFFkkab-718kpP_VYuWR2XH85aik3KTow'
+
+            xhr.setRequestHeader('authorization', 'Bearer ' + token)
+
+            xhr.send()
+        })
+    },
+
+    playTrack(idTracks) {
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
@@ -67,7 +93,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/albums/' + idTracks + '/tracks')
 
-            var token = 'BQDBgQe5OKOv59B-9XZARPBRqCzA-GssSL5CwB69_RGiIu2tQRXVlgvGruIguNrp_8WjANbFSYfbNwUdHYePVfpGHXss8gJUMVW2-HNzIPRsghpxam-E52l1m4Jc8yGTk6AI_w5Kec3hPw'
+            var token = 'BQCqL-_SIPyRSuE_-zuSnTW-QaLX78Qn15akOuzL-fYIpv44VyaDWdMHhWJ4Ozyh-5nJ1TRLKxXywRTNFPnTeeXYwveij2wWzY5rIxQQ5J00dSFFkkab-718kpP_VYuWR2XH85aik3KTow'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
