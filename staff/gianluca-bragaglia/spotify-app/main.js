@@ -1,8 +1,10 @@
 const $artists = $('.artists')
 const $albums = $('.albums')
+const $tracks = $('.tracks')
 
 $artists.hide()
 $albums.hide()
+$tracks.hide()
 
 const $form = $('form')
 
@@ -21,7 +23,7 @@ $form.submit(event => {
 })
 
 function listArtist(artists) {
-    $artists.show()
+    $artists.css('display', 'block')
 
     const $ul = $artists.find('ul')
 
@@ -31,20 +33,16 @@ function listArtist(artists) {
         const $a = $(`<a href="#">${artist.name}</a>`)
 
         $a.click(() => {
-            event.preventDefault()
-
-            // TODO search albums by artist id
 
             const id = artist.id
-            console.log(id);
+
+            $albums.css('display', 'block')
 
             logic.searchAlbums(id)
                 .then(albums => {
-                    listArtist(albums)
+                    listAlbums(albums)
                 })
                 .catch(console.error)
-
-
         })
 
         const $li = $('<li>')
@@ -52,18 +50,16 @@ function listArtist(artists) {
         $li.append($a)
 
         $ul.append($li)
+
     })
 }
 
 
 function listAlbums(albums) {
-    $albums.show()
 
-    const $ulAlbums = $('.list-albums')
-    const $liAlbums = $ulAlbums.find('li')
-    const $aAlbums = $ulAlbums.find('a')
-
-    $ulAlbums.empty()
+    let $ulAlbums = $albums.find('ul')
+    let $liAlbums = $ulAlbums.find('li')
+    let $aAlbums = $liAlbums.find('a')
 
     albums.forEach(album => {
 
@@ -72,12 +68,52 @@ function listAlbums(albums) {
         $aAlbums.click(() => {
             event.preventDefault()
 
+            const idTracks = album.id
+
+            $tracks.css('display', 'block')
+
+            logic.searchTracks(idTracks)
+                .then(tracks => {
+                    listTracks(tracks)
+                })
+                .catch(console.error)
 
         })
+
+        $liAlbums = $('<li>')
+
+        $liAlbums.append($aAlbums)
+
+        $ulAlbums.append($liAlbums)
+
     })
-    $liAlbums = $('<li>')
 
-    $liAlbums.append($aAlbums)
 
-    $ulAlbums.append($liAlbums)
+}
+
+function listTracks(tracks) {
+
+    let $ulTracks = $tracks.find('ul')
+    let $liTracks = $ulTracks.find('li')
+    let $aTracks = $liTracks.find('a')
+
+    tracks.forEach(tracks => {
+
+        $aTracks = $(`<a href="#">${tracks.name}</a>`)
+
+        $aTracks.click(() => {
+            event.preventDefault()
+
+
+        })
+
+        $liTracks = $('<li>')
+
+        $liTracks.append($aTracks)
+
+        $ulTracks.append($liTracks)
+
+    })
+
+
 }
