@@ -18,6 +18,13 @@ var logic = {
     },
 
     search: function(query, callback) {
+
+        if(typeof query !== 'string') throw TypeError(query + ' is not a string');
+
+        if(!query.trim()).length) throw Error('query is empty or blank');
+
+        if(typeof callback !== 'function') throw TypeError(callback + ' is not a function')
+        
         this.call('/search/all?q=' + query, callback, []);
     },
     
