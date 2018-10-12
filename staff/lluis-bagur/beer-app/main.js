@@ -1,4 +1,3 @@
-
 var form = document.getElementById('search-form');
 
 form.addEventListener('submit', function (event) {
@@ -8,41 +7,9 @@ form.addEventListener('submit', function (event) {
 
     var query = input.value;
 
-    logic.search(query, function (beers) {
-        var uls = document.getElementsByTagName('ul');
+    // logic.search(query, view.listBeers.bind(view));
 
-        if (uls.length) {
-            document.body.removeChild(uls[0]);
-        }
+    var listBeers = view.listBeers;
 
-        if (beers.length) {
-            var ul = document.createElement('ul');
-
-            beers.forEach(function (beer) {
-                // console.log(beer.id, beer.name);
-
-                var li = document.createElement('li');
-
-                var a = document.createElement('link');
-                    a.href = '#';
-                    a.style.display = "flex";
-                    a.innerText = beer.name;
-                    li.appendChild(a);
-
-                a.addEventListener('click', function(){
-                    logic.retrieveBeer(beer.id, function(url){  
-
-                        var imagen = document.createElement('img');
-                        imagen.src = url;
-                        li.appendChild(imagen);
-                     })
-                })
-               
-                ul.appendChild(li);
-            });
-
-            document.body.appendChild(ul);
-        } else alert('no results');
-
-    });
+    logic.search(query, listBeers.bind(view));
 });
