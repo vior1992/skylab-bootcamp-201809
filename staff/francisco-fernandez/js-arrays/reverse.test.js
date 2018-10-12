@@ -25,16 +25,17 @@ tests.push(function () {
     console.log('should fail on non-array');
 
     var error;
+    var arr;
     
     try {
-        reverse();
+        reverse(arr);
     } catch (err) {
         error = err;
     }
 
     if (!error) throw Error('has not failed');
 
-    if (error.message !== 'the argument is not an array') throw Error('error message is not correct');
+    if (error.message !== arr+' is not an array') throw Error('error message is not correct');
 });
 
 //test error 2
@@ -111,24 +112,6 @@ tests.push(function (){
     if (!error) throw Error('has not failed');
 
     if (error.message !== array + ' is not an array') throw Error('error message is not correct');
-
-
-});
-
-//test error 6
-tests.push(function (){
-    console.log('should fail if the argument is a symbol');
-    var error;
-    var sym2 = Symbol("foo");
-    try {
-        reverse(sym2);
-    } catch (err) {
-        error = err;
-    }
-
-    if (!error) throw Error('has not failed');
-
-    if (error.message !== sym2 + ' is not an array') throw Error('error message is not correct');
 
 
 });
