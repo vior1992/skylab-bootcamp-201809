@@ -1,8 +1,8 @@
 describe('Ayay', function () {
-    var ayay;
+    let ayay;
 
     beforeEach(function () {
-        ayay = new Ayay;
+        ayay = new Ayay();
     });
 
     describe('push', function () {
