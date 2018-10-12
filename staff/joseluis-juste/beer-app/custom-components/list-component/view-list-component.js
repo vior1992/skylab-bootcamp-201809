@@ -8,10 +8,12 @@ function viewListComponent(listComponent) {
     this.render = function (parentElement) {
 
         this.section_list = $("<section/>");
-        this.section_list.css("width","22%");
-        this.section_detail = $("<section/>");  
-        this.section_detail.css("width","43%"); 
+        this.section_list.addClass("panel__section-list");
+        this.section_detail = $("<section/>");
+        this.section_detail.addClass("panel__section-detail"); 
         this.main_section = $("<section/>");
+        this.main_section.addClass("panel__main-section");
+        this.main_section.addClass("block");
         this.main_section.append(this.section_list);
         this.main_section.append(this.section_detail);
         this.main_element.append(this.main_section);
@@ -26,7 +28,7 @@ function viewListComponent(listComponent) {
 
         if (beers.length) {
             var ul = $("<ul/>");
-
+           
             beers.forEach(function (beer) {
 
 
@@ -51,7 +53,11 @@ function viewListComponent(listComponent) {
             self.clearMainSection();
             var p = $("<p/>");
             p.text("!!!There are not beers...Sorry¡¡¡");
-            this.main_section.css("display","block");
+            if (this.main_section.hasClass("flex")){
+
+                this.main_section.removeClass("flex");
+                this.main_section.addClass("block");   
+            }  
             this.section_list.append(p);
             this.main_element.show();
 
@@ -67,11 +73,10 @@ function viewListComponent(listComponent) {
 
     this.drawDetails = function (detail) {
 
-        if (this.main_section.css("display") === "block"){
+        if (this.main_section.hasClass("block")){
 
-            this.main_section.css("display","flex");
-            this.main_section.css("justify-content","space-around");
-    
+            this.main_section.removeClass("block");
+            this.main_section.addClass("flex");   
         }   
        
         var name = $("<h2/>");
@@ -100,12 +105,8 @@ function viewListComponent(listComponent) {
 
     this.showMarked = function (el) {
 
-        $("ul li").each((i, e) => {
-
-            $(e).css("color", "black");
-
-        });
-        $(el).css("color", "red");
+        $("li.red").first().removeClass("red");
+        $(el).addClass("red");
 
     }
 
