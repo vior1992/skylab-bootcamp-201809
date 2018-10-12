@@ -17,4 +17,5 @@ function find(arr, callback) {
             return arr[i];
         }
     }
+    return -1;
 }

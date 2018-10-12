@@ -13,4 +13,5 @@ function findIndex(arr, callback) {
             return i;
         }
     }
+    return -1;
 }
