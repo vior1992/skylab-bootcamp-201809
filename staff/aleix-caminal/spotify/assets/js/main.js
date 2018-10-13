@@ -1,4 +1,4 @@
-const main = new Component('main');
+const main = new Component('main', 'main');
 document.body.appendChild(main.element);
 
 const footer = new Footer();

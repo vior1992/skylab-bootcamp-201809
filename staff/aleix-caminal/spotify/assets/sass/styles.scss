@@ -78,7 +78,7 @@ body {
     font-family: Whitney, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     overflow: hidden;
 
-    main {
+    .main {
         grid-row: 1;
         display: grid;
         grid-template-rows: $header-height 1fr;
@@ -198,7 +198,7 @@ body {
         grid-template-columns: 240px 1fr 240px;
         background-color: $color-bg1;
 
-        &__control {
+        .control {
             grid-column: 1;
             display: flex;
             justify-content: space-around;
@@ -224,7 +224,7 @@ body {
             }
         }
 
-        &__player {
+        .player {
             grid-column: 2;
             display: flex;
             flex-wrap: wrap;
@@ -258,7 +258,7 @@ body {
         }
     }
 
-    &__current-song {
+    .current-song {
         grid-column: 3;
         display: grid;
         grid-template-columns: $header-height auto;

@@ -1,4 +1,4 @@
-body__current-song__image *, body main__body .container__image * {
+body .current-song__image *, body .main__body .container__image * {
   position: absolute;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@ body__current-song__image *, body main__body .container__image * {
   background-repeat: no-repeat;
 }
 
-body .footer__control__button {
+body .footer .control__button {
   width: 60px;
   height: 60px;
   padding: 0;
@@ -21,26 +21,26 @@ body .footer__control__button {
   font-size: 28px;
   line-height: 52px;
 }
-body .footer__control__button:hover {
+body .footer .control__button:hover {
   background-color: #363e39;
   cursor: pointer;
 }
-body .footer__control__button:focus {
+body .footer .control__button:focus {
   outline: 0;
 }
-body .footer__control__button:active {
+body .footer .control__button:active {
   border-color: #6c0;
   color: #6c0;
   outline: 0;
 }
 
-body__current-song__text {
+body .current-song__text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-right: 10px;
 }
-body__current-song__text h1 {
+body .current-song__text h1 {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
@@ -48,7 +48,7 @@ body__current-song__text h1 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-body__current-song__text p {
+body .current-song__text p {
   margin: 0;
   font-size: 14px;
   white-space: nowrap;
@@ -65,7 +65,7 @@ body {
   font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow: hidden;
 }
-body main {
+body .main {
   grid-row: 1;
   display: grid;
   grid-template-rows: 80px 1fr;
@@ -74,7 +74,7 @@ body main {
   overflow-x: hidden;
   overflow-y: scroll;
 }
-body main__header {
+body .main__header {
   position: sticky;
   top: 0;
   display: flex;
@@ -85,19 +85,19 @@ body main__header {
   z-index: 800;
   background-color: #363e39;
 }
-body main__header .main-header__title {
+body .main__header .main-header__title {
   margin: 20px 0 0;
   line-height: 60px;
   font-size: 38px;
   font-weight: 400;
 }
-body main__header .main-header__menu {
+body .main__header .main-header__menu {
   display: flex;
   flex-direction: row;
   align-items: center;
   list-style-type: none;
 }
-body main__header .main-header__menu li {
+body .main__header .main-header__menu li {
   padding: 0 0.75rem;
   height: 30px;
   background-color: #363e39;
@@ -108,55 +108,55 @@ body main__header .main-header__menu li {
   box-shadow: 1px 1px 1px #1e2320, 1px 1px 1px #1e2320;
   background-image: linear-gradient(#424945 25%, #28302b 75%);
 }
-body main__header .main-header__menu li:first-child {
+body .main__header .main-header__menu li:first-child {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
-body main__header .main-header__menu li:last-child {
+body .main__header .main-header__menu li:last-child {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-body main__header .main-header__menu li + li {
+body .main__header .main-header__menu li + li {
   border-left: 2px solid #363e39;
 }
-body main__header .main-header__menu li:focus {
+body .main__header .main-header__menu li:focus {
   outline: 0;
 }
-body main__header .main-header__menu li:active {
+body .main__header .main-header__menu li:active {
   background-image: linear-gradient(#28302b 25%, #424945 75%);
 }
-body main__body {
+body .main__body {
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 1.5rem;
   padding: 0 1.5rem;
   min-width: 320px;
 }
-body main__body .container {
+body .main__body .container {
   min-width: 0;
 }
-body main__body .container__image {
+body .main__body .container__image {
   position: relative;
   padding-bottom: 100%;
   margin-bottom: 0.25rem;
   width: 100%;
   height: 0;
 }
-body main__body .container__image * {
+body .main__body .container__image * {
   border-radius: 0.75rem;
   cursor: pointer;
 }
-body main__body .container__image *.selected {
+body .main__body .container__image *.selected {
   border: 4px solid #6c0;
 }
-body main__body .container__title {
+body .main__body .container__title {
   margin: 0 0 0 0.25rem;
   font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-body main__body .container__title--small {
+body .main__body .container__title--small {
   font-size: 12px;
 }
 body .footer {
@@ -164,26 +164,26 @@ body .footer {
   grid-template-columns: 240px 1fr 240px;
   background-color: #1e2421;
 }
-body .footer__control {
+body .footer .control {
   grid-column: 1;
   display: flex;
   justify-content: space-around;
   align-items: center;
   max-height: 80px;
 }
-body .footer__control__button--sm {
+body .footer .control__button--sm {
   width: 45px;
   height: 45px;
   font-size: 22px;
   line-height: 37px;
 }
-body .footer__control__button--xs {
+body .footer .control__button--xs {
   width: 30px;
   height: 30px;
   font-size: 16px;
   line-height: 22px;
 }
-body .footer__player {
+body .footer .player {
   grid-column: 2;
   display: flex;
   flex-wrap: wrap;
@@ -191,7 +191,7 @@ body .footer__player {
   padding: 0.75rem 1.5rem 0;
   max-height: 80px;
 }
-body .footer__player__bar {
+body .footer .player__bar {
   order: -1;
   align-self: flex-end;
   width: 100%;
@@ -200,35 +200,35 @@ body .footer__player__bar {
   border-radius: 5px;
   cursor: pointer;
 }
-body .footer__player__bar > span {
+body .footer .player__bar > span {
   display: block;
   height: 100%;
   border-radius: 2px;
   background-color: #6c0;
   overflow: hidden;
 }
-body .footer__player__time {
+body .footer .player__time {
   align-self: flex-start;
   margin-top: 0.25rem;
   font-size: 14px;
 }
-body__current-song {
+body .current-song {
   grid-column: 3;
   display: grid;
   grid-template-columns: 80px auto;
   max-height: 80px;
 }
-body__current-song__image {
+body .current-song__image {
   position: relative;
   width: 60px;
   height: 0;
   margin: 10px;
   padding-bottom: 60px;
 }
-body__current-song__image * {
+body .current-song__image * {
   border-radius: 0.5rem;
 }
-body__current-song__text {
+body .current-song__text {
   max-width: 190px;
 }
 
