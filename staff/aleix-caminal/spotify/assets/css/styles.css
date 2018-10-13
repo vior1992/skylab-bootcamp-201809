@@ -129,9 +129,6 @@ body .main .panel__body .container__image * {
   border-radius: 0.75rem;
   cursor: pointer;
 }
-body .main .panel__body .container__image *.selected {
-  border: 4px solid #6c0;
-}
 body .main .panel__body .container__title {
   margin: 0 0 0 0.25rem;
   font-size: 14px;

@@ -1,31 +1,41 @@
-const main = new Component('main', 'main');
+var main = new Component('main', 'main');
 document.body.appendChild(main.element);
 
-const footer = new Footer();
+var footer = new Footer();
 document.body.appendChild(footer.element);
 
-const search = new Search('Search Spotify', 'section', function() {
+var search = new Search('Search Spotify', 'section', function() {
     LOGIC.search(function(items) {
-        const artists = new Artists('Artists', 'section', items.artists, function() {
-            LOGIC.artists(function() {
+        var artists = new Artists('Artists', 'section', items.artists, function(name, id) {
+            LOGIC.artistAlbums(id, function(items) {
+                var artist = new Albums(name, 'section', items, function(name, id) {
+                    LOGIC.albumTracks(id, function() {
+                        artist.hide();
+                    });
+                });
+
+                $(main.element).append(artist.element);
                 artists.hide();
+                albums.hide();
+                LOGIC.alignItems();
             });
         });
 
-        const albums = new Albums('Albums', 'section', items.albums, function() {
-            LOGIC.albums(function() {
+        var albums = new Albums('Albums', 'section', items.albums, function(name, id) {
+            LOGIC.albumTracks(id, function() {
                 albums.hide();
+                artists.hide();
             });
         });
 
         $(main.element).append(artists.element);
         $(main.element).append(albums.element);
         search.hide();
-        alignItems();
+        LOGIC.alignItems();
     });
 });
 
-/* const songs = new Songs('Songs', 'section', function() {
+/* var songs = new Songs('Songs', 'section', function() {
     LOGIC.songs(function() {
         welcome.hide();
         login.show();
@@ -35,18 +45,6 @@ const search = new Search('Search Spotify', 'section', function() {
 $(main.element).append(search.element);
 // $(main.element).append(songs.element);
 
-function alignItems() {
-    let main = $('.panel__body').get(0);
-    let px, columns = 0;
-    let width = main.offsetWidth - (parseFloat(getComputedStyle(main).paddingLeft) + parseFloat(getComputedStyle(main).paddingRight));
-
-    do {
-        columns++;
-        px = Math.floor(width / columns);
-    } while (px > 240);
-    $('.panel__body').css('grid-template-columns', 'repeat(' + columns + ', ' + columns + 'fr)');
-}
-
 window.addEventListener('resize', function() {
-    alignItems();
+    LOGIC.alignItems();
 });

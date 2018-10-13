@@ -129,7 +129,9 @@ function Artists(title, tag, items, callback) {
 
     var that = this;
     $.each(items, function(i, item) {
-        that.item = new Item(item);
+        that.item = new Item(item, function() {
+            callback(item.name, item.id);
+        });
         $(that.body).append(that.item);
     });
 }
@@ -142,7 +144,9 @@ function Albums(title, tag, items, callback) {
 
     var that = this;
     $.each(items, function(i, item) {
-        that.item = new Item(item);
+        that.item = new Item(item, function(id) {
+            callback(item.name, item.id);
+        });
         $(that.body).append(that.item);
     });
 }
@@ -217,12 +221,13 @@ function Form(id, elements) {
     return this.form;
 }
 
-function Item(item) {
+function Item(item, callback) {
     this.item = document.createElement('article');
     $(this.item).addClass('container');
 
     this.wrapper = document.createElement('div');
     $(this.wrapper).addClass('container__image');
+    $(this.wrapper).on('click', function() { callback() });
     $(this.item).append(this.wrapper);
 
     this.image = document.createElement('div');

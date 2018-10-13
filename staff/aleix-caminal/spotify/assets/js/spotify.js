@@ -5,10 +5,12 @@ class Spotify {
     constructor() {
         this.auth_code = _AUTH_CODE;
         this.refresh_token = _REFRESH_TOKEN;
+        this.access_token = this.getAccessToken();
     }
 
     getAccessToken() {
-        return new Promise((resolve, reject) => {
+        return 'BQAa0TsTK-PZcxv1hf6paLHVCq27sVUvnuKrfUv93Sl73yXafj1q7iLXp_nqQqe-bmMOxb7NkA7YbCbd83slZTR75tQEYZsVwxNFky8u5cNYRx2ug3k42mFV5nMqXljG200hGdW8nxdQwDY';
+        /* return new Promise((resolve, reject) => {
             $.ajax({
                 method: "POST",
                 url: "https://accounts.spotify.com/api/token",
@@ -23,16 +25,49 @@ class Spotify {
                     resolve(result);
                 }
             });
-        });
+        }); */
     }
 
     search(query) {
+        let token = this.access_token;
         return new Promise((resolve, reject) => {
             $.ajax({
                 method: 'GET',
                 url: 'https://api.spotify.com/v1/search?q='+query+'&type=artist,album&limit=12',
                 beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Authorization", "Bearer BQCv2H8AckBsVXTGcCP3S3z74NW0TuZVC-0_yL9_zZIMp1oBpuxt-tl46GEoiqQoc2G4_3AGBU0VW4_rt0hFfXVbAleNAk4Woanp6TpXbDpraa1QZYROTPBxxb0Ohr4iWIZv9ExXXhGnDNA");
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                },
+                success: function(result) {
+                    resolve(result);
+                }
+            });
+        });
+    }
+
+    getArtist(artist) {
+        let token = this.access_token;
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                method: 'GET',
+                url: 'https://api.spotify.com/v1/artists/'+artist+'/albums',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                },
+                success: function(result) {
+                    resolve(result);
+                }
+            });
+        });
+    }
+
+    getAlbum(album) {
+        let token = this.access_token;
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                method: 'GET',
+                url: 'https://api.spotify.com/v1/albums/'+album+'/tracks',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
                 },
                 success: function(result) {
                     resolve(result);
