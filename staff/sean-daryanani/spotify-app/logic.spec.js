@@ -24,4 +24,28 @@ describe('logic', () => {
                 })
         })
     })
+
+    describe('list tracks', () => {
+        it('should succeed on matching query', () => {
+            var id = '4GjdtlX0gGwOxf5vta6Jpk' 
+
+            return logic.listTracks(id)
+                .then(tracks => {
+                    expect(tracks).toBeDefined()
+
+                    expect(tracks.length).toBeGreaterThan(0)
+                })
+        })
+    })
+
+    describe('get song to play', () => {
+        it('should succeed on matching query', () => {
+            var id = '4JIeOo8F6Yl6yegQIfCBUp' 
+
+            return logic.listTrackInfo(id)
+                .then(res => {
+                    expect(res).toBeDefined()
+                })
+        })
+    })
 })

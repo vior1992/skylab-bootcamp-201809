@@ -1,7 +1,7 @@
 const $artists = $('.artists')
 const $albums = $('.albums')
 const $tracks = $('.tracks')
-const $trackInfo = $('trackInfo')
+const $trackInfo = $('.trackInfo')
 
 $artists.hide()
 $albums.hide()
@@ -40,6 +40,7 @@ function listArtist(artists) {
 
             logic.listAlbums(id)
                 .then(albums => {
+                    //show albums en una lista
                     showAlbums(albums, artistName)
                 })
                 .catch(console.error)
@@ -89,6 +90,7 @@ function showAlbums(albums, artistName) {
 }
 
 function showTracks(tracks, albumName) {
+
     $tracks.show()
 
     const $h4_tracks = $tracks.find('h4')
@@ -103,12 +105,13 @@ function showTracks(tracks, albumName) {
         const $li_tracks = $('<li></li>')
 
         $a_tracks.click(() => {
+            console.log(track.id)
             const trackName = track.name
             const trackid = track.id
 
             logic.listTrackInfo(trackid)
-                .then(trackInfo => {
-                    showTrackInfo(trackInfo, trackName)
+                .then(trackAudio => {
+                    showTrackInfo(trackAudio, trackName)
                 })
                 .catch(console.error)
         })
@@ -118,7 +121,18 @@ function showTracks(tracks, albumName) {
     })
 }
 
-// function showTrackInfo(trackInfo, trackName)  {
-//     $trackInfo.show()
-//     const $h5_tracks = $track
-// }
+function showTrackInfo(trackAudio, trackName)  {
+    $trackInfo.show()
+    const $h5_trackInfo = $trackInfo.find('h5')
+    const audio = new Audio(trackAudio.preview_url)
+    $h5_trackInfo.text(trackName)
+    $button = $('.play')
+    $button.click(() =>{
+        audio.play()
+    })
+    $button = $('.stop')
+    $button.click(() =>{
+        audio.pause()
+    })
+    
+}
