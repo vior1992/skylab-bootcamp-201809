@@ -3,9 +3,11 @@ var view = {
     
     listArtist(artists) {
 
-        if($oneTrack.css('display') !== 'none')
-        $oneTrack.hide()
+        if($oneTrack.css('display') !== 'none') $oneTrack.hide()
 
+        if($tracks.css('display') !== 'none') $tracks.hide()
+
+        if($albums.css('display') !== 'none') $albums.hide()
 
         const $ul = $artists.find('ul')
         const $title = $artists.find('h2')
@@ -56,7 +58,7 @@ var view = {
             $a.click(() => {
                 var id = album.id
                 logic.searchTracks(id)
-                    .then(tracks => {
+                    .then(res => {
                         var tracks = res.items;
                         view.listTracks(tracks,albumName)
                     })
@@ -77,7 +79,9 @@ var view = {
 
     listTracks(tracks,albumName){
 
-        $albums.hide()
+        if($oneTrack.css('display') !== 'none') $oneTrack.hide()
+        if($tracks.css('display') !== 'none') $tracks.hide()
+
 
         const $ul = $tracks.find('ul')
         const $title = $tracks.find('h4')
@@ -114,7 +118,7 @@ var view = {
 
     showOneTrack(oneTrack,trackName){
 
-        $tracks.hide()
+        
         const $title = $oneTrack.find('h5')
         $title.text(trackName)
 
