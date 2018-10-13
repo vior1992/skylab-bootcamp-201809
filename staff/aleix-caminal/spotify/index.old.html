@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <title>Bolt</title>
+    </head>
+    <body class="open">
+        <aside class="sidebar">
+            <nav class="sidenav">
+                <ul class="sidenav__menu">
+                    <li class="active">Albums</li>
+                    <li>Artists</li>
+                    <li>Songs</li>
+                    <li>Genres</li>
+                    <li>Lists</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <section class="main__header">
+                <h1 class="main-header__title">Albums</h1>
+                <ul class="main-header__menu">
+                    <li class="active" tabindex="1">Window</li>
+                    <li tabindex="2">List</li>
+                </ul>
+            </section>
+
+            <section id="main" class="main__body window"></section>
+        </main>
+
+        <section class="control control--player">
+            <button id="play" class="control__button">P</button>
+            <button id="stop" class="control__button control__button--sm">S</button>
+            <button id="prev" class="control__button control__button--xs"><</button>
+            <button id="next" class="control__button control__button--xs">></button>
+        </section>
+
+        <section class="player">
+            <audio id="player" src="assets/music/blinded-in-chains.mp3"></audio>
+            <label id="time-ahead" class="player__time">-:--</label>
+            <div class="player__bar">
+                <span id="progress" style="width: 0"></span>
+            </div>
+            <label id="time-left" class="player__time">-:--</label>
+        </section>
+
+        <aside class="current">
+            <section id="playlist" class="current-song">
+                <div class="current-song__image">
+                    <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                </div>
+                <div class="current-song__text">
+                    <h1>Blinded in Chains</h1>
+                    <p>Avenged Sevenfold Avenged Sevenfold</p>
+                    <p>City of Evil</p>
+                </div>
+            </section>
+
+            <section class="current-playlist">
+                <ul class="playlist">
+                    <li class="playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Beast and the Harlot</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Burn It Down</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song--current">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Blinded In Chains</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Bat Country</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Trashed and Scattered</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Seize the Day Seize the Day</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Sidewinder</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>The Wicked End</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Strength of the World</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                    <li class="playlist__song playlist__song">
+                        <div class="playlist-song__image">
+                            <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
+                        </div>
+                        <div class="playlist-song__text">
+                            <h1>Betrayed</h1>
+                            <p>Avenged Sevenfold</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="control control--playlist">
+                <button id="repeat" class="control__button">S</button>
+                <button id="random" class="control__button">R</button>
+                <button id="collapse" class="control__button control__button">C</button>
+            </section>
+        </aside>
+    </body>
+    <script type="text/javascript" src="assets/js/plugins/selection.min.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script type="text/javascript" src="assets/js/player.js"></script>
+    <script type="text/javascript" src="assets/js/selection.js"></script>
+</html>

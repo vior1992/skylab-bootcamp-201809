@@ -1,84 +1,66 @@
-var user, safeBox;
-(function () {
-    _users = [];
-
-    safeBox = {
-        saveUser: function (name, username, password) {
-            _users.push({
-                name: name,
-                username: username,
-                password: password
-            });
-        },
-
-        retrieveUser: function (username, password) {
-            return _users.find(function (user) {
-                return user.username === username && user.password === password;
-            });
-        },
-    };
-})();
-
-var logic = {
-    register: function(form, callback) {
+const LOGIC = {
+    search: function(form, callback) {
         if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
         if (typeof callback !== 'function') throw Error('callback is not a function');
 
-        if (this.validate(form, ['name', 'username', 'password', 'confirm_password'])) {
-            if (form.querySelector('#password').value === form.querySelector('#confirm_password').value) {
-                safeBox.saveUser(
-                    form.querySelector('#name').value,
-                    form.querySelector('#username').value,
-                    form.querySelector('#password').value
-                );
-
-                callback();
-            } else {
-                this.error('Passwords do not match');
-            }
-        } else {
-            this.error('Fields in red are mandatory');
-        }
-    },
-
-    login: function(form, callback) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
-        if (typeof callback !== 'function') throw Error('callback is not a function');
-
-        if (user = safeBox.retrieveUser(form.querySelector('#username').value, form.querySelector('#password').value)) {
-            callback();
-        } else {
-            this.error('Your credentials are invalid');
-        }
-    },
-
-    logout: function(callback) {
-        if (typeof callback !== 'function') throw Error('callback is not a function');
-        user = undefined;
+        form.querySelector('#name').value,
+        form.querySelector('#username').value,
+        form.querySelector('#password').value
         callback();
     },
 
-    validate: function(form, inputs) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
-        if (!Array.isArray(inputs) || inputs.length < 1) throw Error('array is not valid');
-
-        var result = 1;
-        for (var i in inputs) {
-            var input = form.querySelector('#' + inputs[i]);
-            if (!input.value) {
-                input.classList.add('is-invalid');
-                result = 0;
-            } else {
-                input.classList.remove('is-invalid');
-            }
-        }
-
-        return result;
+    artists: function(callback) {
+        if (typeof callback !== 'function') throw Error('callback is not a function');
+        callback();
     },
 
-    error: function(message) {
-        if (!message) throw Error('message is not valid');
+    albums: function(callback) {
+        if (typeof callback !== 'function') throw Error('callback is not a function');
+        callback();
+    },
 
-        alert(message);
+    songs: function(callback) {
+        if (typeof callback !== 'function') throw Error('callback is not a function');
+        callback();
+    },
+
+    alignAlbums: function() {
+        var px, columns = 0;
+        var width = main.offsetWidth - (parseFloat(getComputedStyle(main).paddingLeft) + parseFloat(getComputedStyle(main).paddingRight));
+
+        do {
+            columns++;
+            px = Math.floor(width / columns);
+        } while (px > 240);
+        main.style.gridTemplateColumns = "repeat(" + columns + ", " + columns + "fr)";
+    },
+
+    printAlbums: function() {
+        for (var i in albums) {
+            var article = document.createElement('article');
+            article.className = 'container';
+            main.appendChild(article);
+
+            var wrapper = document.createElement('div');
+            wrapper.className = 'container__image';
+            article.appendChild(wrapper);
+
+            var image = document.createElement('div');
+            image.style.backgroundImage = "url('assets/img/" + albums[i].cover + "')";
+            image.className = 'selectable';
+            wrapper.appendChild(image);
+
+            var small = document.createElement('small');
+            small.className = 'container__title container__title--small';
+            small.innerHTML = albums[i].author;
+            article.appendChild(small);
+
+            var title = document.createElement('h4');
+            title.className = 'container__title';
+            title.innerHTML = albums[i].title;
+            article.appendChild(title);
+        }
+
+        this.alignAlbums();
     }
 };

@@ -1,52 +1,43 @@
-var landing = new Landing('Choose an option', 'section',
-    function() {
-        landing.hide();
-        register.show();
-    },
+const main = new Component('main');
+document.body.appendChild(main.element);
 
-    function() {
-        landing.hide();
-        login.show();
-    }
-);
+const footer = new Footer();
+document.body.appendChild(footer.element);
 
-var register = new Register('Register', 'section',
-    function(form) {
-        logic.register(form, function() {
-            register.hide();
-            login.show();
-        });
-    },
+const search = new Search('Search Spotify', 'section', function(form) {
+    LOGIC.search(form, function() {
+        search.hide();
+        artists.show();
+        albums.show();
+    });
+});
 
-    function() {
-        register.hide();
-        landing.show();
-    }
-);
-
-var login = new Login('Login', 'section',
-    function(form) {
-        logic.login(form, function() {
-            welcome.element.querySelector('.panel__title').innerText = 'Welcome ' + user.name + '!';
-            login.hide();
-            welcome.show();
-        });
-    },
-
-    function() {
+const artists = new Artists('Artists', 'section', function() {
+    LOGIC.artists(function() {
         login.hide();
-        landing.show();
-    }
-);
+        welcome.show();
+    });
+});
 
-var welcome = new Welcome('Welcome', 'section', function() {
-    logic.logout(function() {
+const albums = new Albums('Albums', 'section', function() {
+    LOGIC.albums(function() {
         welcome.hide();
         login.show();
     });
 });
 
-document.body.appendChild(landing.element);
-document.body.appendChild(register.element);
-document.body.appendChild(login.element);
-document.body.appendChild(welcome.element);
+const songs = new Songs('Songs', 'section', function() {
+    LOGIC.songs(function() {
+        welcome.hide();
+        login.show();
+    });
+});
+
+$(main.element).append(search.element);
+$(main.element).append(artists.element);
+$(main.element).append(albums.element);
+$(main.element).append(songs.element);
+
+window.addEventListener('resize', function() {
+    LOGIC.alignAlbums();
+});
