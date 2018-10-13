@@ -1,9 +1,21 @@
 const LOGIC = {
     spotify: new Spotify(),
     search: function(callback) {
-        if (typeof callback !== 'function') throw Error('callback is not a function');
+        if (typeof searchCallback !== 'function') throw Error('callback is not a function');
         this.spotify.search($('#search input').val()).then(function(result) {
-            callback({artists: result.artists.items, albums: result.albums.items});
+            $.each(result.artists.items, function(i, artist) {
+                artists.printItem(artist, function() {
+                    console.log(artist.id);
+                });
+            });
+
+            $.each(result.albums.items, function(i, album) {
+                albums.printItem(album, function() {
+                    console.log(album.id);
+                });
+            });
+
+            callback();
         }).catch(console.error);
     },
     artistAlbums: function(artist, callback) {
@@ -13,10 +25,6 @@ const LOGIC = {
         }).catch(console.error);
     },
     albumTracks: function(album, callback) {
-        if (typeof callback !== 'function') throw Error('callback is not a function');
-        callback();
-    },
-    songs: function(callback) {
         if (typeof callback !== 'function') throw Error('callback is not a function');
         callback();
     },
