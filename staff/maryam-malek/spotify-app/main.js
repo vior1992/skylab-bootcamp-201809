@@ -1,3 +1,7 @@
+var search = new Search('Search', 'section', 'search')
+
+$(document.body).append(search.element);
+
 const $form = $('form')
 
 $form.submit(event => {

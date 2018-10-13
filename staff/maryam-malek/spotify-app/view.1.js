@@ -1,19 +1,3 @@
-var artists = new List('Artists', 'section', 'artists')
-
-$(document.body).append(artists.element);
-
-var albums = new List('Albums', 'section', 'albums')
-
-$(document.body).append(albums.element);
-
-var songs = new List('Songs', 'section', 'songs')
-
-$(document.body).append(songs.element);
-
-var player = new Player('Player', 'section', 'player')
-
-$(document.body).append(player.element);
-
 const $artists = $('.artists')
 
 const $albums = $('.albums')
