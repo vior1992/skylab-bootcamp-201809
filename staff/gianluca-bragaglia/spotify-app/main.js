@@ -34,6 +34,8 @@ $form.submit(event => {
     $albums.hide()
     $tracks.hide()
     $player.hide()
+    $pPlayer.hide()
+    $audioTrack.attr('src', '')
 
     logic.searchArtists(query)
         .then(artists => {
@@ -57,6 +59,10 @@ function listArtist(artists) {
             let id = artist.id
 
             $albums.show()
+            $tracks.hide()
+            $player.hide()
+            $pPlayer.hide()
+            $audioTrack.attr('src', '')
 
             logic.searchAlbums(id)
                 .then(albums => {
@@ -80,20 +86,17 @@ function listAlbums(albums) {
 
     albums.forEach(album => {
 
-
         $imgAlbums = $(`<img class='img-circle'/>`)
         $imgAlbums.attr('src', '' + album.images[2].url + '')
         $aAlbums = $(`<a href="#">${album.name}</a>`)
-        console.log(album.images[2].url);
-        //debugger;
+
         $aAlbums.click(() => {
             event.preventDefault()
 
             let idAlbum = album.id
-
             $h4Track.text(album.name)
-
             $tracks.show()
+            $audioTrack.attr('src', '')
 
             logic.searchTracks(idAlbum)
                 .then((tracks) => {
@@ -103,13 +106,11 @@ function listAlbums(albums) {
 
         })
 
-
         $liAlbums = $('<li>')
         $liAlbums.addClass('list-group-item media')
         $liAlbums.append($imgAlbums)
         $liAlbums.append($aAlbums)
         $ulAlbums.append($liAlbums)
-
 
     })
 
@@ -129,22 +130,16 @@ function listTracks(tracks) {
             event.preventDefault()
 
             $player.show()
-
             $h5Track.text(track.name)
-
             let trackPlaying = track.preview_url
 
                 !trackPlaying ? nullPreviewTrack() : $audioTrack.attr('src', '' + trackPlaying + '')
 
         })
 
-
         $liTracks = $('<li>')
-
         $liTracks.addClass('list-group-item')
-
         $liTracks.append($aTracks)
-
         $ulTracks.append($liTracks)
 
     })

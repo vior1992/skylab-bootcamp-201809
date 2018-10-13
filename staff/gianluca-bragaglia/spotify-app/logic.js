@@ -1,4 +1,4 @@
-var token = 'BQB7KSxAQgDZDsCNIq-4tW6xoDMKJWyIIXPKxAyhMzxVsSTgjSiYWloK1LltOx-WR3y4_J6kl3rUkOJ9X2s8g7DAI9PrLdJy0WKHAHlVPQ7pl3lzyJyH3LleaRBcwOsUKzsw8-ltjSV97A'
+var token = 'BQAIHu2kaxRBjjgTjO0FlAtcmY5VkVsgyBcWvZqJniqpqZ09ZBf0RCnY4tskinZxIKC0mdwtlwmfOBQpN8j0KHC8wdYFoQUDRXbeczWF0ykUgByLE8eMMqIbJGm_psNdcgqiGo8VoM26_Q'
 
 const logic = {
     searchArtists(query) {
