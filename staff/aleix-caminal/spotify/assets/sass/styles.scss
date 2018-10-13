@@ -80,12 +80,40 @@ body {
 
     .main {
         grid-row: 1;
-        display: grid;
-        grid-template-rows: $header-height 1fr;
         background-color: $color-bg3;
-        border-top-left-radius: .75rem;
         overflow-x: hidden;
         overflow-y: scroll;
+
+        .search {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+
+            .form {
+                width: 60%;
+            }
+
+            &__title {
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+
+            &__input {
+                width: 100%;
+                border: none;
+                border-radius: 1rem;
+                padding: 1rem 2rem;
+                font-size: 24px;
+                background-color: $color-bg2;
+                color: $color-text;
+
+                &:focus {
+                    outline: 0;
+                }
+            }
+        }
 
         &__header {
             position: sticky;

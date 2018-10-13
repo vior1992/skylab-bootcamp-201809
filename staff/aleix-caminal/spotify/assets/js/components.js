@@ -25,8 +25,7 @@ Panel.prototype = Object.create(Component.prototype);
 Panel.prototype.constructor = Panel;
 
 function Footer() {
-    Component.call(this, 'footer');
-    $(this.element).addClass('footer');
+    Component.call(this, 'footer', 'footer');
 
     // control section
     this.control = document.createElement('section');
@@ -96,12 +95,19 @@ Footer.prototype = Object.create(Component.prototype);
 Footer.prototype.constructor = Footer;
 
 function Search(title, tag, callback) {
-    Panel.call(this, title, tag);
+    Component.call(this, tag, 'search');
+    this.title = document.createElement('h1');
+    $(this.title).html(title);
+    $(this.title).addClass('search__title');
+    $(this.element).append(this.title);
+
     this.form = new Form('search', [
         {
             element: 'input',
             id: 'search',
-            type: 'search'
+            type: 'search',
+            label: false,
+            class: 'search__input'
         }
     ]);
 
@@ -109,6 +115,7 @@ function Search(title, tag, callback) {
         event.preventDefault();
         callback(this.form);
     }.bind(this));
+    $(this.element).append(this.form);
 }
 
 Search.prototype = Object.create(Panel.prototype);
@@ -178,11 +185,13 @@ function Form(id, elements) {
                 $(that.input).prop('type', element.type ? element.type : 'text');
                 $(that.group).append(that.input);
 
-                that.label = document.createElement('label');
-                if (element.id) $(that.label).attr('for', element.id);
-                $(that.label).addClass(element.class ? element.class : 'form-group__label');
-                $(that.label).html(element.label ? element.label : formatLabel(element.id));
-                $(that.group).prepend(that.label);
+                if (element.label !== false) {
+                    that.label = document.createElement('label');
+                    if (element.id) $(that.label).attr('for', element.id);
+                    $(that.label).addClass(element.class ? element.class : 'form-group__label');
+                    $(that.label).html(element.label ? element.label : formatLabel(element.id));
+                    $(that.group).prepend(that.label);
+                }
 
                 $(that.form).append(that.group);
                 break;
