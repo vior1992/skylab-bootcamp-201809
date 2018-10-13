@@ -2,141 +2,34 @@ const $artists = $('.artists')
 const $albums = $('.albums')
 const $tracks = $('.tracks')
 const $trackInfo = $('.trackInfo')
-
-$artists.hide()
-$albums.hide()
-$tracks.hide()
-$trackInfo.hide()
-
+const $audioTrack = $trackInfo.find('audio')
 const $form = $('form')
+
+view.hideEverything()
 
 $form.submit(event => {
     event.preventDefault()
 
+    view.hideEverything()
+
+    view.soundPause()
     const $input = $form.find('input')
 
     const query = $input.val()
 
     logic.searchArtists(query)
+
         .then(artists => {
             var arr_artists = []
             arr_artists.push(...artists.artists.items)
-            listArtist(arr_artists)
+            view.listArtist(arr_artists)
         })
         .catch(console.error)
-})
-
-function listArtist(artists) {
-    $artists.show()
-
-    const $ul = $artists.find('ul')
-
-    $ul.empty()
-
-    artists.forEach(artist => {
-        const $a = $(`<a href="#">${artist.name}</a>`)
-
-        $a.click(() => {
-            const id = artist.id
-            const artistName = artist.name
-
-            logic.listAlbums(id)
-                .then(albums => {
-                    var arr_albums = []
-                    arr_albums.push(...albums.items)
-                    showAlbums(arr_albums, artistName)
-                })
-                .catch(console.error)
+}).bind(view)
 
 
-            // TODO search albums by artist id
-        })
-
-        const $li = $('<li>')
-
-        $li.append($a)
-
-        $ul.append($li)
-    })
-}
-
-function showAlbums(albums, artistName) {
-    $albums.show()
-    const $h3_albums = $albums.find('h3')
-    $h3_albums.text(artistName)
-
-    const $ul_albums = $albums.find('ul')
-
-    $ul_albums.empty()
-
-    albums.forEach(album => {
-        if (album.album_type === 'album') {
-            const $a_albums = $(`<a href="#">${album.name}</a>`)
-            const $li_albums = $('<li></li>')
-            $a_albums.click(() => {
-                const albumName = album.name
-                const albumid = album.id
-                logic.listTracks(albumid)
-                    .then(tracks => {
-                        var arr_tracks = []
-                        arr_tracks.push(...tracks.items)
-                        showTracks(arr_tracks, albumName)
-                    })
-                    .catch(console.error)
-                
-            })
 
 
-            $li_albums.append($a_albums)
-            $ul_albums.append($li_albums)
-        }
-    })
 
-}
 
-function showTracks(tracks, albumName) {
 
-    $tracks.show()
-
-    const $h4_tracks = $tracks.find('h4')
-    $h4_tracks.text(albumName)
-
-    const $ul_tracks = $tracks.find('ul')
-
-    $ul_tracks.empty()
-
-    tracks.forEach(track => {
-        const $a_tracks = $(`<a href="#">${track.name}</a>`)
-        const $li_tracks = $('<li></li>')
-
-        $a_tracks.click(() => {
-            const trackName = track.name
-            const trackid = track.id
-
-            logic.listTrackInfo(trackid)
-                .then(trackAudio => {
-                    showTrackInfo(trackAudio, trackName)
-                })
-                .catch(console.error)
-        })
-
-        $a_tracks.appendTo($li_tracks)
-        $li_tracks.appendTo($ul_tracks)
-    })
-}
-
-function showTrackInfo(trackAudio, trackName)  {
-    $trackInfo.show()
-    const $h5_trackInfo = $trackInfo.find('h5')
-    const audio = new Audio(trackAudio.preview_url)
-    $h5_trackInfo.text(trackName)
-    $button = $('.play')
-    $button.click(() =>{
-        audio.play()
-    })
-    $button = $('.stop')
-    $button.click(() =>{
-        audio.pause()
-    })
-    
-}

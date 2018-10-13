@@ -16,7 +16,7 @@ const logic = {
 
             xhr.open('get', path)
 
-            var token = 'BQDLf6sUS1oNVkPNO1FHUOzPxgQn2LzTZC0jtKVnmkd2p3mSr5K88GD74vdbGrX4ZRgSIVY3q4nIWUmUyWx7lWesGiaZjUaarID91hTPfuX18-OQaNnfj97PofN8J-zr6g0JFpCcrdDiF3Y'
+            var token = 'BQCUFL6erujeqB_XsyRIvFf4fj6ePdENv9Ue0O0nRVOX3SNQg6c5OGFcd9HbBnsPL-WFkbxtWegoDRtqG1O25WQ3uSyISDIO1kletoc0VGmWqV3pMU2czoL0JcHIDLx6StVqKKzZj_b4luI'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -25,21 +25,27 @@ const logic = {
     },
 
     searchArtists(query) {
-
+        if (typeof query !== 'string') throw TypeError(`${query} is not a string`)
+        if(!query.trim().length) throw Error(`query is empty or blank`)
         return this.call('https://api.spotify.com/v1/search?type=artist&query=' + query)
     },
 
     listAlbums(id) {
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if(!id.trim().length) throw Error(`query is empty or blank`)
         return this.call('https://api.spotify.com/v1/artists/' + id + '/albums')
     },
 
     listTracks(id) {
-
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if(!id.trim().length) throw Error(`query is empty or blank`)
         return this.call('https://api.spotify.com/v1/albums/' + id + '/tracks')
 
     },
 
     listTrackInfo(id) {
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if(!id.trim().length) throw Error(`query is empty or blank`)
         return this.call('https://api.spotify.com/v1/tracks/' + id)
     }
 }
