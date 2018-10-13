@@ -9,28 +9,38 @@ const search = new Search('Search Spotify', 'section', function() {
         artists.show('flex');
         albums.show('flex');
         search.hide();
+        tracks.hide();
         LOGIC.alignItems();
     });
 });
 
 const artists = new Artists('Artists', 'section', function(artist) {
-    console.log(artist);
+    LOGIC.artistAlbums(artist, function() {
+        albums.show('flex');
+        artists.hide();
+        tracks.hide();
+        search.hide();
+        LOGIC.alignItems();
+    });
 });
 const albums = new Albums('Albums', 'section', function(album) {
-    console.log(album);
+    LOGIC.albumTracks(album, function() {
+        tracks.show('flex');
+        albums.hide();
+        artists.hide();
+        search.hide();
+        LOGIC.alignItems();
+    });
 });
 
-/* const songs = new Songs('Songs', 'section', function() {
-    LOGIC.songs(function() {
-        welcome.hide();
-        login.show();
-    });
-}); */
+const tracks = new Tracks('Songs', 'section', function(track) {
+    console.log(track);
+});
 
 $(main.element).append(search.element);
 $(main.element).append(artists.element);
 $(main.element).append(albums.element);
-// $(main.element).append(songs.element);
+$(main.element).append(tracks.element);
 
 window.addEventListener('resize', function() {
     LOGIC.alignItems();

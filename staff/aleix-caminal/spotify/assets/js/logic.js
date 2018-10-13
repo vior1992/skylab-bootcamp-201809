@@ -3,10 +3,12 @@ const LOGIC = {
     search: function(callback) {
         if (typeof callback !== 'function') throw Error('callback is not a function');
         this.spotify.search($('#search input').val()).then(function(result) {
+            $(artists.body).html('');
             $.each(result.artists.items, function(i, artist) {
                 artists.printItem(artist);
             });
 
+            $(albums.body).html('');
             $.each(result.albums.items, function(i, album) {
                 albums.printItem(album);
             });
@@ -17,12 +19,24 @@ const LOGIC = {
     artistAlbums: function(artist, callback) {
         if (typeof callback !== 'function') throw Error('callback is not a function');
         this.spotify.getArtist(artist).then(function(result) {
-            callback(result.items);
+            $(albums.body).html('');
+            $.each(result.items, function(i, album) {
+                albums.printItem(album);
+            });
+
+            callback();
         }).catch(console.error);
     },
     albumTracks: function(album, callback) {
         if (typeof callback !== 'function') throw Error('callback is not a function');
-        callback();
+        this.spotify.getAlbum(album).then(function(result) {
+            $(tracks.body).html('');
+            $.each(result.items, function(i, track) {
+                tracks.printTrack(track);
+            });
+
+            callback();
+        }).catch(console.error);
     },
     alignItems: function() {
         $.each($('.panel__body'), function(i, main) {

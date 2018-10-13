@@ -171,6 +171,28 @@ class Tracks extends Panel {
     constructor(title, tag, callback) {
         super(title, tag, callback);
     }
+
+    printTrack(track) {
+        this.track = document.createElement('article');
+        $(this.track).addClass('container');
+        $(this.body).append(this.track);
+
+        this.wrapper = document.createElement('div');
+        $(this.wrapper).addClass('container__image');
+        $(this.wrapper).on('click', function() {
+            this.callback(track.id);
+        }.bind(this));
+        $(this.track).append(this.wrapper);
+
+        this.image = document.createElement('div');
+        $(this.image).css('background-image', 'url(assets/img/placeholder.png)');
+        $(this.wrapper).append(this.image);
+
+        this.title = document.createElement('h4');
+        $(this.title).addClass('container__title');
+        $(this.title).html(track.name);
+        $(this.track).append(this.title);
+    }
 }
 
 class Form {

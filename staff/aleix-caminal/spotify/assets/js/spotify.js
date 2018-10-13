@@ -49,7 +49,7 @@ class Spotify {
         return new Promise((resolve, reject) => {
             $.ajax({
                 method: 'GET',
-                url: 'https://api.spotify.com/v1/artists/'+artist+'/albums',
+                url: 'https://api.spotify.com/v1/artists/'+artist+'/albums?limit=50',
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader("Authorization", "Bearer " + token);
                 },
@@ -65,7 +65,7 @@ class Spotify {
         return new Promise((resolve, reject) => {
             $.ajax({
                 method: 'GET',
-                url: 'https://api.spotify.com/v1/albums/'+album+'/tracks',
+                url: 'https://api.spotify.com/v1/albums/'+album+'/tracks?limit=50',
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader("Authorization", "Bearer " + token);
                 },
