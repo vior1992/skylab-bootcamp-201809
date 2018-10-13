@@ -19,7 +19,9 @@ $form.submit(event => {
 
     logic.searchArtists(query)
         .then(artists => {
-            listArtist(artists)
+            var arr_artists = []
+            arr_artists.push(...artists.artists.items)
+            listArtist(arr_artists)
         })
         .catch(console.error)
 })
@@ -40,8 +42,9 @@ function listArtist(artists) {
 
             logic.listAlbums(id)
                 .then(albums => {
-                    //show albums en una lista
-                    showAlbums(albums, artistName)
+                    var arr_albums = []
+                    arr_albums.push(...albums.items)
+                    showAlbums(arr_albums, artistName)
                 })
                 .catch(console.error)
 
@@ -75,7 +78,9 @@ function showAlbums(albums, artistName) {
                 const albumid = album.id
                 logic.listTracks(albumid)
                     .then(tracks => {
-                        showTracks(tracks, albumName)
+                        var arr_tracks = []
+                        arr_tracks.push(...tracks.items)
+                        showTracks(arr_tracks, albumName)
                     })
                     .catch(console.error)
                 
@@ -105,7 +110,6 @@ function showTracks(tracks, albumName) {
         const $li_tracks = $('<li></li>')
 
         $a_tracks.click(() => {
-            console.log(track.id)
             const trackName = track.name
             const trackid = track.id
 
