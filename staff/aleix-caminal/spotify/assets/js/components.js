@@ -104,7 +104,6 @@ function Search(title, tag, callback) {
     this.form = new Form('search', [
         {
             element: 'input',
-            id: 'search',
             type: 'search',
             label: false,
             class: 'search__input'

@@ -1,11 +1,7 @@
 const LOGIC = {
-    search: function(form, callback) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+    search: function(callback) {
         if (typeof callback !== 'function') throw Error('callback is not a function');
-
-        form.querySelector('#name').value,
-        form.querySelector('#username').value,
-        form.querySelector('#password').value
+        console.log($('#search input').val());
         callback();
     },
 

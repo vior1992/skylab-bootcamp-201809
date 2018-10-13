@@ -4,15 +4,13 @@ document.body.appendChild(main.element);
 const footer = new Footer();
 document.body.appendChild(footer.element);
 
-const search = new Search('Search Spotify', 'section', function(form) {
-    LOGIC.search(form, function() {
+const search = new Search('Search Spotify', 'section', function() {
+    LOGIC.search(function() {
         search.hide();
-        artists.show();
-        albums.show();
     });
 });
 
-const artists = new Artists('Artists', 'section', function() {
+/* const artists = new Artists('Artists', 'section', function() {
     LOGIC.artists(function() {
         login.hide();
         welcome.show();
@@ -31,12 +29,12 @@ const songs = new Songs('Songs', 'section', function() {
         welcome.hide();
         login.show();
     });
-});
+}); */
 
 $(main.element).append(search.element);
-$(main.element).append(artists.element);
-$(main.element).append(albums.element);
-$(main.element).append(songs.element);
+// $(main.element).append(artists.element);
+// $(main.element).append(albums.element);
+// $(main.element).append(songs.element);
 
 window.addEventListener('resize', function() {
     LOGIC.alignAlbums();
