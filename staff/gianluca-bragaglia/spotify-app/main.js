@@ -2,6 +2,7 @@ const $artists = $('.artists')
 const $albums = $('.albums')
 const $tracks = $('.tracks')
 const $player = $('.player')
+const $form = $('form')
 
 let $ulAlbums = $albums.find('ul')
 let $liAlbums = $ulAlbums.find('li')
@@ -12,13 +13,15 @@ let $ulTracks = $tracks.find('ul')
 let $liTracks = $ulTracks.find('li')
 let $aTracks = $liTracks.find('a')
 let $audioTrack = $player.find('audio')
+let $pPlayer = $player.find('p')
+let $imgAlbums = $liAlbums.find('img')
 
 $artists.hide()
 $albums.hide()
 $tracks.hide()
 $player.hide()
+$pPlayer.hide()
 
-const $form = $('form')
 
 $form.submit(event => {
     event.preventDefault()
@@ -53,7 +56,7 @@ function listArtist(artists) {
 
             let id = artist.id
 
-            $albums.css('display', 'block')
+            $albums.show()
 
             logic.searchAlbums(id)
                 .then(albums => {
@@ -65,7 +68,6 @@ function listArtist(artists) {
         let $li = $('<li>')
         $li.addClass('list-group-item')
         $li.append($a)
-
         $ul.append($li)
 
     })
@@ -78,15 +80,19 @@ function listAlbums(albums) {
 
     albums.forEach(album => {
 
-        $aAlbums = $(`<a href="#">${album.name}</a>`)
 
+        $imgAlbums = $(`<img class='img-circle'/>`)
+        $imgAlbums.attr('src', '' + album.images[2].url + '')
+        $aAlbums = $(`<a href="#">${album.name}</a>`)
+        console.log(album.images[2].url);
+        //debugger;
         $aAlbums.click(() => {
             event.preventDefault()
 
             let idAlbum = album.id
-            
+
             $h4Track.text(album.name)
- 
+
             $tracks.show()
 
             logic.searchTracks(idAlbum)
@@ -99,13 +105,11 @@ function listAlbums(albums) {
 
 
         $liAlbums = $('<li>')
-
-        $liAlbums.addClass('list-group-item')
-
+        $liAlbums.addClass('list-group-item media')
+        $liAlbums.append($imgAlbums)
         $liAlbums.append($aAlbums)
-
         $ulAlbums.append($liAlbums)
-        
+
 
     })
 
@@ -115,23 +119,22 @@ function listAlbums(albums) {
 function listTracks(tracks) {
 
     $ulTracks.empty()
-    
+
 
     tracks.forEach(track => {
 
         $aTracks = $(`<a href="#">${track.name}</a>`)
 
-
         $aTracks.click(() => {
             event.preventDefault()
 
             $player.show()
-        
+
             $h5Track.text(track.name)
 
             let trackPlaying = track.preview_url
 
-            $audioTrack.attr('src', '' + trackPlaying + '')
+                !trackPlaying ? nullPreviewTrack() : $audioTrack.attr('src', '' + trackPlaying + '')
 
         })
 
@@ -145,5 +148,12 @@ function listTracks(tracks) {
         $ulTracks.append($liTracks)
 
     })
+
+    function nullPreviewTrack() {
+
+        $pPlayer.text('track avaiable only for premium users')
+        $audioTrack.hide()
+        $pPlayer.show()
+    }
 
 }

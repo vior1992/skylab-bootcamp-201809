@@ -1,4 +1,4 @@
-var token = 'BQDXvBucPEIyuDrwO41IZLc4K-AXEDWngnCMTypfhLlKO-qLYmZ8SA8StF2p434BDdthXhu59GIGwgehWeNQ81NMzIdngdJqd_l40GCUAlyk4Mw9ZJ_DWl-K5VIxEzgT-CJ1VNpHgLV75w'
+var token = 'BQB7KSxAQgDZDsCNIq-4tW6xoDMKJWyIIXPKxAyhMzxVsSTgjSiYWloK1LltOx-WR3y4_J6kl3rUkOJ9X2s8g7DAI9PrLdJy0WKHAHlVPQ7pl3lzyJyH3LleaRBcwOsUKzsw8-ltjSV97A'
 
 const logic = {
     searchArtists(query) {
@@ -12,7 +12,7 @@ const logic = {
             })
 
             xhr.addEventListener('error', function() {
-                reject() 
+                reject()
             })
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
@@ -77,6 +77,7 @@ const logic = {
                 var res = JSON.parse(xhr.responseText)
 
                 resolve(res.items)
+
 
             })
 
