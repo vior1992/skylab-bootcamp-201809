@@ -28,7 +28,6 @@ $form.submit(event => {
             listArtist(artists)
         })
         .catch(console.error)
-    
         const $title1 = $artists.find('h2')
         $title1.empty()
         const $title2 = $albums.find('h2')
@@ -38,7 +37,7 @@ $form.submit(event => {
         const $title4 = $preview.find('h2')
         $title4.empty()
         $preview.hide()
-        $source = ''
+        $source =$(`<source src="#" type="audio/mpeg">`)
     
 })
 
@@ -49,7 +48,7 @@ function listArtist(artists) {
 
     var $h2 = $artists.find('h2')
 
-    $h2.text('Artists')
+    // $h2.text('Artists')
 
     $ul.empty()
 
@@ -160,9 +159,10 @@ function listTracks(tracks){
 }
 
 function playTrack (trackUrl){
-    console.log(trackUrl)
     $preview.show()
-    const $audio = $preview.find('audio')
-    var $source =$(`<source src="${trackUrl}" type="audio/mpeg">`)
+    var $audio = $preview.find('audio')
+    $audio.empty()
+    var $source =(`<source src="${trackUrl}" type="audio/mpeg">`)
     $audio.append($source)
+    
 }
