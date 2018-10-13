@@ -1,3 +1,14 @@
+const $artists = $('.artists')
+$artists.hide()
+
+const $albums = $('.albums')
+$albums.hide()
+
+const $tracks = $('.tracks')
+$tracks.hide()
+
+const $oneTrack = $('.one-track')
+$oneTrack.hide()
 
 var view = {
     

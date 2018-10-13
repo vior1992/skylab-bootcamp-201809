@@ -11,9 +11,50 @@ describe('logic', () => {
                     expect(artists.length).toBeGreaterThan(0)
                 })
         })
+
+        it('should fail on undefined query', () => {
+            var param = undefined
+            expect(function(){logic.searchArtists(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+
+        it('should fail on empty query', () => {
+            var param = ''
+            expect(function(){logic.searchArtists(param)}).toThrowError(TypeError, param + ' is blank or empty string')
+
+        })
+
+        it('should fail on blank query', () => {
+            var param = '       '
+            expect(function(){logic.searchArtists(param)}).toThrowError(TypeError, param + ' is blank or empty string')
+
+        })
+
+        it('should fail on non-string query(number)', () => {
+            var param = 123
+            expect(function(){logic.searchArtists(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+        it('should fail on non-string query(object)', () => {
+            var param = {}
+            expect(function(){logic.searchArtists(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+        it('should fail on non-string query(boolean)', () => {
+            var param = true
+            expect(function(){logic.searchArtists(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+        it('should fail on non-string query(array)', () => {
+            var param = [123]
+            expect(function(){logic.searchArtists(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+
+
     })
 
-    true && describe('list albums', () => {
+   true && describe('list albums', () => {
         it('should succeed on matching query', () => {
             var id = '6tbjWDEIzxoDsBA1FuhfPW' // madonna
 
@@ -25,6 +66,44 @@ describe('logic', () => {
                     expect(albums.length).toBeGreaterThan(0)
                 })
         })
+
+        it('should fail on undefined id', () => {
+            var param = undefined
+            expect(function(){logic.searchAlbums(param)}).toThrowError(TypeError, param + ' is not a string')
+        
+        })
+
+        it('should fail on non-string id(number)', () => {
+            var param = 123
+            expect(function(){logic.searchAlbums(param)}).toThrowError(TypeError, param + ' is not a string')
+        
+        })
+        it('should fail on non-string id(object)', () => {
+            var param = {}
+            expect(function(){logic.searchAlbums(param)}).toThrowError(TypeError, param + ' is not a string')
+        
+        })
+        it('should fail on non-string id(boolean)', () => {
+            var param = true
+            expect(function(){logic.searchAlbums(param)}).toThrowError(TypeError, param + ' is not a string')
+        
+        })
+        it('should fail on non-string id(array)', () => {
+            var param = []
+            expect(function(){logic.searchAlbums(param)}).toThrowError(TypeError, param + ' is not a string')
+        
+        })
+        it('should fail on blank id', () => {
+            var param = '       '
+            expect(function(){logic.searchAlbums(param)}).toThrowError(TypeError, param + ' is blank or empty string')
+        
+        })
+        it('should fail on empty id', () => {
+            var param = ''
+            expect(function(){logic.searchAlbums(param)}).toThrowError(TypeError, param + ' is blank or empty string')
+        
+        })
+
     })
 
 
@@ -40,6 +119,56 @@ describe('logic', () => {
                     expect(tracks.length).toBeGreaterThan(0)
                 })
         })
+
+        it('should fail on undefined iq', () => {
+            var param = undefined
+
+            expect(function(){logic.searchTracks(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+
+        it('should fail on blank iq', () => {
+            var param = ''
+
+            expect(function(){logic.searchTracks(param)}).toThrowError(TypeError, param + ' is blank or empty string')
+
+        })
+
+        it('should fail on undefined iq', () => {
+            var param = '       '
+
+            expect(function(){logic.searchTracks(param)}).toThrowError(TypeError, param + ' is blank or empty string')
+
+        })
+
+        it('should fail on non-string iq(number)', () => {
+            var param = 123
+
+            expect(function(){logic.searchTracks(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+
+        it('should fail on non-string iq(object)', () => {
+            var param = {}
+
+            expect(function(){logic.searchTracks(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+
+        it('should fail on non-string iq(boolean)', () => {
+            var param = true
+
+            expect(function(){logic.searchTracks(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+
+        it('should fail on non-string iq(array)', () => {
+            var param = []
+
+            expect(function(){logic.searchTracks(param)}).toThrowError(TypeError, param + ' is not a string')
+
+        })
+
     })
 
 
