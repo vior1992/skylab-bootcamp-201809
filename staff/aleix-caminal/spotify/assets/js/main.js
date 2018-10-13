@@ -13,10 +13,10 @@ const search = new Search('Search Spotify', 'section', function() {
     });
 });
 
-const artists = new Artists('Artists', 'section', function() {
+const artists = new Artists('Artists', 'section', function(artist) {
     console.log(artist);
 });
-const albums = new Albums('Albums', 'section', function() {
+const albums = new Albums('Albums', 'section', function(album) {
     console.log(album);
 });
 

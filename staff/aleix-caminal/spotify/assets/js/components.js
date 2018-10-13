@@ -109,7 +109,7 @@ class Search extends Component {
 }
 
 class Panel extends Component {
-    constructor(title, tag) {
+    constructor(title, tag, callback) {
         super(tag, 'panel');
         $(this.element).hide();
 
@@ -121,16 +121,20 @@ class Panel extends Component {
         this.body = document.createElement('section');
         $(this.body).addClass('panel__body');
         $(this.element).append(this.body);
+
+        this.callback = callback;
     }
 
-    printItem(item, callback) {
+    printItem(item) {
         this.item = document.createElement('article');
         $(this.item).addClass('container');
         $(this.body).append(this.item);
 
         this.wrapper = document.createElement('div');
         $(this.wrapper).addClass('container__image');
-        $(this.wrapper).on('click', function() { callback() });
+        $(this.wrapper).on('click', function() {
+            this.callback(item.id);
+        }.bind(this));
         $(this.item).append(this.wrapper);
 
         this.image = document.createElement('div');
@@ -153,19 +157,19 @@ class Panel extends Component {
 
 class Artists extends Panel {
     constructor(title, tag, callback) {
-        super(title, tag);
+        super(title, tag, callback);
     }
 }
 
 class Albums extends Panel {
     constructor(title, tag, callback) {
-        super(title, tag);
+        super(title, tag, callback);
     }
 }
 
 class Tracks extends Panel {
     constructor(title, tag, callback) {
-        super(title, tag);
+        super(title, tag, callback);
     }
 }
 
