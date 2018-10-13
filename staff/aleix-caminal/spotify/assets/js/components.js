@@ -120,17 +120,35 @@ function Search(title, tag, callback) {
 Search.prototype = Object.create(Panel.prototype);
 Search.prototype.constructor = Search;
 
-function Artists(title, tag, callback) {
+function Artists(title, tag, items, callback) {
     Panel.call(this, title, tag);
-    $(this.element).hide();
+
+    this.body = document.createElement('section');
+    $(this.body).addClass('panel__body');
+    $(this.element).append(this.body);
+
+    var that = this;
+    $.each(items, function(i, item) {
+        that.item = new Item(item);
+        $(that.body).append(that.item);
+    });
 }
 
 Artists.prototype = Object.create(Panel.prototype);
 Artists.prototype.constructor = Artists;
 
-function Albums(title, tag, callback) {
+function Albums(title, tag, items, callback) {
     Panel.call(this, title, tag);
-    $(this.element).hide();
+
+    this.body = document.createElement('section');
+    $(this.body).addClass('panel__body');
+    $(this.element).append(this.body);
+
+    var that = this;
+    $.each(items, function(i, item) {
+        that.item = new Item(item);
+        $(that.body).append(that.item);
+    });
 }
 
 Albums.prototype = Object.create(Panel.prototype);
@@ -215,4 +233,31 @@ function Form(id, elements) {
     });
 
     return this.form;
+}
+
+function Item(item) {
+    this.item = document.createElement('article');
+    $(this.item).addClass('container');
+
+    this.wrapper = document.createElement('div');
+    $(this.wrapper).addClass('container__image');
+    $(this.item).append(this.wrapper);
+
+    this.image = document.createElement('div');
+    $(this.image).css('background-image', 'url(' + (item.images.length ? item.images[0].url : 'assets/img/placeholder.png') + ')');
+    $(this.wrapper).append(this.image);
+
+    this.title = document.createElement('h4');
+    $(this.title).addClass('container__title');
+    $(this.title).html(item.name);
+    $(this.item).append(this.title);
+
+    if (item.artists) {
+        this.small = document.createElement('small');
+        $(this.small).addClass('container__title container__title--small');
+        $(this.small).html(item.artists[0].name);
+        $(this.item).append(this.small);
+    }
+
+    return this.item;
 }

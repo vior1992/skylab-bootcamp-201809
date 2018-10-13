@@ -1,4 +1,4 @@
-body .current-song__image *, body .main__body .container__image * {
+body .current-song__image *, body .main .panel__body .container__image * {
   position: absolute;
   top: 0;
   left: 0;
@@ -97,89 +97,49 @@ body .main .search__input {
 body .main .search__input:focus {
   outline: 0;
 }
-body .main__header {
-  position: sticky;
-  top: 0;
+body .main .panel {
   display: flex;
-  justify-content: space-between;
-  align-self: flex-start;
-  height: 80px;
-  padding: 0 2rem;
-  z-index: 800;
-  background-color: #363e39;
+  flex-direction: column;
 }
-body .main__header .main-header__title {
+body .main .panel__title {
+  height: 60px;
   margin: 20px 0 0;
   line-height: 60px;
   font-size: 38px;
   font-weight: 400;
 }
-body .main__header .main-header__menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style-type: none;
-}
-body .main__header .main-header__menu li {
-  padding: 0 0.75rem;
-  height: 30px;
-  background-color: #363e39;
-  border: none;
-  color: #ffffff;
-  line-height: 28px;
-  cursor: pointer;
-  box-shadow: 1px 1px 1px #1e2320, 1px 1px 1px #1e2320;
-  background-image: linear-gradient(#424945 25%, #28302b 75%);
-}
-body .main__header .main-header__menu li:first-child {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-body .main__header .main-header__menu li:last-child {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-body .main__header .main-header__menu li + li {
-  border-left: 2px solid #363e39;
-}
-body .main__header .main-header__menu li:focus {
-  outline: 0;
-}
-body .main__header .main-header__menu li:active {
-  background-image: linear-gradient(#28302b 25%, #424945 75%);
-}
-body .main__body {
+body .main .panel__body {
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 1.5rem;
   padding: 0 1.5rem;
   min-width: 320px;
 }
-body .main__body .container {
+body .main .panel__body .container {
   min-width: 0;
 }
-body .main__body .container__image {
+body .main .panel__body .container__image {
   position: relative;
   padding-bottom: 100%;
   margin-bottom: 0.25rem;
   width: 100%;
   height: 0;
 }
-body .main__body .container__image * {
+body .main .panel__body .container__image * {
   border-radius: 0.75rem;
   cursor: pointer;
 }
-body .main__body .container__image *.selected {
+body .main .panel__body .container__image *.selected {
   border: 4px solid #6c0;
 }
-body .main__body .container__title {
+body .main .panel__body .container__title {
   margin: 0 0 0 0.25rem;
   font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-body .main__body .container__title--small {
+body .main .panel__body .container__title--small {
   font-size: 12px;
 }
 body .footer {

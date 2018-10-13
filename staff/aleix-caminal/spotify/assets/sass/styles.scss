@@ -115,105 +115,56 @@ body {
             }
         }
 
-        &__header {
-            position: sticky;
-            top: 0;
+        .panel {
             display: flex;
-            justify-content: space-between;
-            align-self: flex-start;
-            height: $header-height;
-            padding: 0 2rem;
-            z-index: 800;
-            background-color: $color-bg3;
+            flex-direction: column;
 
-            .main-header {
-                &__title {
-                    margin: 20px 0 0;
-                    line-height: 60px;
-                    font-size: 38px;
-                    font-weight: 400;
-                }
-
-                &__menu {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    list-style-type: none;
-
-                    li {
-                        padding: 0 .75rem;
-                        height: 30px;
-                        background-color: $color-bg3;
-                        border: none;
-                        color: $color-text;
-                        line-height: 28px;
-                        cursor: pointer;
-                        box-shadow: 1px 1px 1px darken($color-bg3, 10%), 1px 1px 1px darken($color-bg3, 10%);
-                        background-image: linear-gradient($color-bg4 25%, $color-bg2 75%);
-
-                        &:first-child {
-                            border-top-left-radius: 8px;
-                            border-bottom-left-radius: 8px;
-                        }
-
-                        &:last-child {
-                            border-top-right-radius: 8px;
-                            border-bottom-right-radius: 8px;
-                        }
-
-                        &+li {
-                            border-left: 2px solid $color-bg3
-                        }
-
-                        &:focus {
-                            outline: 0;
-                        }
-
-                        &:active {
-                            background-image: linear-gradient($color-bg2 25%, $color-bg4 75%);
-                        }
-                    }
-                }
+            &__title {
+                height: 60px;
+                margin: 20px 0 0;
+                line-height: 60px;
+                font-size: 38px;
+                font-weight: 400;
             }
-        }
 
-        &__body {
-            display: grid;
-            grid-auto-rows: min-content;
-            grid-gap: 1.5rem;
-            padding: 0 1.5rem;
-            min-width: 320px;
+            &__body {
+                display: grid;
+                grid-auto-rows: min-content;
+                grid-gap: 1.5rem;
+                padding: 0 1.5rem;
+                min-width: 320px;
 
-            .container {
-                min-width: 0;
+                .container {
+                    min-width: 0;
 
-                &__image {
-                    position: relative;
-                    padding-bottom: 100%;
-                    margin-bottom: .25rem;
-                    width: 100%;
-                    height: 0;
+                    &__image {
+                        position: relative;
+                        padding-bottom: 100%;
+                        margin-bottom: .25rem;
+                        width: 100%;
+                        height: 0;
 
-                    * {
-                        @extend %image-square;
-                        border-radius: .75rem;
-                        cursor: pointer;
+                        * {
+                            @extend %image-square;
+                            border-radius: .75rem;
+                            cursor: pointer;
 
-                        &.selected {
-                            border: 4px solid $color-primary;
+                            &.selected {
+                                border: 4px solid $color-primary;
+                            }
                         }
                     }
-                }
 
-                &__title {
-                    margin: 0 0 0 .25rem;
-                    font-size: 14px;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    overflow: hidden;
+                    &__title {
+                        margin: 0 0 0 .25rem;
+                        font-size: 14px;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
 
-                    &--small {
-                        font-size: 12px;
+                        &--small {
+                            font-size: 12px;
+                        }
                     }
                 }
             }

@@ -1,8 +1,10 @@
 const LOGIC = {
     search: function(callback) {
         if (typeof callback !== 'function') throw Error('callback is not a function');
-        console.log($('#search input').val());
-        callback();
+        var spotify = new Spotify();
+        spotify.search($('#search input').val()).then(function(result) {
+            callback({artists: result.artists.items, albums: result.albums.items});
+        }).catch(console.error);
     },
 
     artists: function(callback) {
@@ -20,7 +22,7 @@ const LOGIC = {
         callback();
     },
 
-    alignAlbums: function() {
+    alignItems: function() {
         var px, columns = 0;
         var width = main.offsetWidth - (parseFloat(getComputedStyle(main).paddingLeft) + parseFloat(getComputedStyle(main).paddingRight));
 
@@ -29,34 +31,5 @@ const LOGIC = {
             px = Math.floor(width / columns);
         } while (px > 240);
         main.style.gridTemplateColumns = "repeat(" + columns + ", " + columns + "fr)";
-    },
-
-    printAlbums: function() {
-        for (var i in albums) {
-            var article = document.createElement('article');
-            article.className = 'container';
-            main.appendChild(article);
-
-            var wrapper = document.createElement('div');
-            wrapper.className = 'container__image';
-            article.appendChild(wrapper);
-
-            var image = document.createElement('div');
-            image.style.backgroundImage = "url('assets/img/" + albums[i].cover + "')";
-            image.className = 'selectable';
-            wrapper.appendChild(image);
-
-            var small = document.createElement('small');
-            small.className = 'container__title container__title--small';
-            small.innerHTML = albums[i].author;
-            article.appendChild(small);
-
-            var title = document.createElement('h4');
-            title.className = 'container__title';
-            title.innerHTML = albums[i].title;
-            article.appendChild(title);
-        }
-
-        this.alignAlbums();
     }
 };
