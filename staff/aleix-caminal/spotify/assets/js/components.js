@@ -19,6 +19,10 @@ function Panel(title, tag) {
     $(this.title).html(title);
     $(this.title).addClass('panel__title');
     $(this.element).append(this.title);
+
+    this.body = document.createElement('section');
+    $(this.body).addClass('panel__body');
+    $(this.element).append(this.body);
 }
 
 Panel.prototype = Object.create(Component.prototype);
@@ -123,10 +127,6 @@ Search.prototype.constructor = Search;
 function Artists(title, tag, items, callback) {
     Panel.call(this, title, tag);
 
-    this.body = document.createElement('section');
-    $(this.body).addClass('panel__body');
-    $(this.element).append(this.body);
-
     var that = this;
     $.each(items, function(i, item) {
         that.item = new Item(item);
@@ -139,10 +139,6 @@ Artists.prototype.constructor = Artists;
 
 function Albums(title, tag, items, callback) {
     Panel.call(this, title, tag);
-
-    this.body = document.createElement('section');
-    $(this.body).addClass('panel__body');
-    $(this.element).append(this.body);
 
     var that = this;
     $.each(items, function(i, item) {
@@ -161,20 +157,6 @@ function Songs(title, tag, callback) {
 
 Songs.prototype = Object.create(Panel.prototype);
 Songs.prototype.constructor = Songs;
-
-function Welcome(title, tag, logoutCallback) {
-    Panel.call(this, title, tag);
-    $(this.element).hide();
-
-    this.logout = document.createElement('button');
-    $(this.logout).html('Log Out');
-    $(this.logout).addClass('panel__button');
-    $(this.logout).on('click', logoutCallback);
-    $(this.element).append(this.logout);
-}
-
-Welcome.prototype = Object.create(Panel.prototype);
-Welcome.prototype.constructor = Welcome;
 
 function Form(id, elements) {
     this.form = document.createElement('form');
