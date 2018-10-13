@@ -34,7 +34,8 @@ const albums = new Albums('Albums', 'section', function(album) {
 });
 
 const tracks = new Tracks('Songs', 'section', function(track) {
-    console.log(track);
+    $('#player').attr("src", track);
+    //$('#player').play();
 });
 
 $(main.element).append(search.element);

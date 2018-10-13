@@ -180,7 +180,7 @@ class Tracks extends Panel {
         this.wrapper = document.createElement('div');
         $(this.wrapper).addClass('container__image');
         $(this.wrapper).on('click', function() {
-            this.callback(track.id);
+            this.callback(track.preview_url);
         }.bind(this));
         $(this.track).append(this.wrapper);
 
