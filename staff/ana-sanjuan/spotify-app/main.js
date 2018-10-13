@@ -1,43 +1,30 @@
-const $artists = $('.artists')
+let query;
 
+const $artists = $('.artists')
 $artists.hide()
 
-const $form = $('form')
+const $albums = $('.albums')
+$albums.hide()
 
+const $tracks = $('.tracks')
+$tracks.hide()
+
+const $oneTrack = $('.one-track')
+$oneTrack.hide()
+
+const $form = $('form')
 $form.submit(event => {
     event.preventDefault()
 
     const $input = $form.find('input')
 
-    const query = $input.val()
+    query = $input.val()
 
     logic.searchArtists(query)
-        .then(artists => {
-            listArtist(artists)
+        .then((res) => {
+            var artists = res.artists.items
+            view.listArtist(artists)
         })
         .catch(console.error)
 })
 
-function listArtist(artists) {
-    $artists.show()
-
-    const $ul = $artists.find('ul')
-
-    $ul.empty()
-
-    artists.forEach(artist => {
-        const $a = $(`<a href="#">${artist.name}</a>`)
-
-        $a.click(() => {
-            console.log(artist)
-
-            // TODO search albums by artist id
-        })
-
-        const $li = $('<li>')
-
-        $li.append($a)
-
-        $ul.append($li)
-    })
-}
