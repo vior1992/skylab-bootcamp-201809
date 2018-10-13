@@ -12,6 +12,10 @@ const $tracks = $('.tracks')
 
 $tracks.hide()
 
+const $preview = $('.preview')
+
+$preview.hide()
+
 $form.submit(event => {
     event.preventDefault()
 
@@ -24,6 +28,18 @@ $form.submit(event => {
             listArtist(artists)
         })
         .catch(console.error)
+    
+        const $title1 = $artists.find('h2')
+        $title1.empty()
+        const $title2 = $albums.find('h2')
+        $title2.empty()
+        const $title3 = $tracks.find('h2')
+        $title3.empty()
+        const $title4 = $preview.find('h2')
+        $title4.empty()
+        $preview.hide()
+        $source = ''
+    
 })
 
 function listArtist(artists) {
@@ -31,12 +47,23 @@ function listArtist(artists) {
 
     const $ul = $artists.find('ul')
 
+    var $h2 = $artists.find('h2')
+
+    $h2.text('Artists')
+
     $ul.empty()
 
-    artists.forEach(artist => {
+artists.forEach(artist => {
         const $a = $(`<a href="#">${artist.name}</a>`)
 
         $a.click(() => {
+            $h2.empty() 
+
+            $h2 = $(`<h2>${artist.name}</h2>`)
+
+            $h2.appendTo($artists)
+
+            $ul.empty()
             
             const id = artist.id
 
@@ -58,17 +85,28 @@ function listArtist(artists) {
 }
 
 function listAlbums(albums){
-    
+
     $albums.show()
 
     const $ul = $albums.find('ul')
 
+    var $h2 = $albums.find('h2')
+
     $ul.empty()
 
     albums.forEach(album => {
+
         const $a = $(`<a href="#">${album.name}</a>`)
 
         $a.click(() => {
+      
+            $h2.empty() 
+
+            $h2 = $(`<h2>${album.name}</h2>`)
+
+            $h2.appendTo($albums)
+
+            $ul.empty()
             
             const albumId = album.id
 
@@ -94,22 +132,24 @@ function listTracks(tracks){
 
     const $ul = $tracks.find('ul')
 
+    var $h2 = $tracks.find('h2')
+
     $ul.empty()
 
     tracks.forEach(track => {
         const $a = $(`<a href="#">${track.name}</a>`)
+        
+        $a.click(() => { 
+            $h2.empty() 
 
-        // $a.click(() => {
-            
-        //     const trackUrl = preview.url
+            $h2 = $(`<h2>${track.name}</h2>`)
 
-        //     logic.searchTracks (albumId)
-        //         .then(tracks => {
-        //             listTracks(tracks)
-        //         })
-        //         .catch(console.error)
+            $h2.appendTo($tracks)
 
-        //         })
+            $ul.empty()
+            const trackUrl = track.preview_url
+            playTrack(trackUrl);
+        })        
 
         const $li = $('<li>')
 
@@ -117,4 +157,12 @@ function listTracks(tracks){
 
         $ul.append($li)
     })
+}
+
+function playTrack (trackUrl){
+    console.log(trackUrl)
+    $preview.show()
+    const $audio = $preview.find('audio')
+    var $source =$(`<source src="${trackUrl}" type="audio/mpeg">`)
+    $audio.append($source)
 }

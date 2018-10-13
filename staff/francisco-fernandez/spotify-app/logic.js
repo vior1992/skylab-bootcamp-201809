@@ -15,7 +15,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
 
-            var token = 'BQCJDU0HtUbAd9gagVC-Y4-yL9af9CjwbYj-dDRkmGG4aeccIBIh2waAPUCy3-UsBFMsOFGyhqIeEjlq9dCXjhxE2r2mpTK3hDB8aDEgfTe-CGvFKJ-JB17QY8qMFNT8N-ZbLXWoNJE0zWq8'
+            var token = 'BQAtihjPqJ_T44T5FOB3IgHpTrv-LZUvaAxtN2l2LtJ8XmS4XGSOWu1zxN2L2zfm0S2nS4PvrwoX1Qq5eaoqYkPxHSzg2LD5oOqEl5eF_Yx87yMDw_Ny_G-RFJ9GzKQw6Ox2ioOmyTgYoY3D'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -40,7 +40,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/artists/'+id+'/albums')
 
-            var token = 'BQCJDU0HtUbAd9gagVC-Y4-yL9af9CjwbYj-dDRkmGG4aeccIBIh2waAPUCy3-UsBFMsOFGyhqIeEjlq9dCXjhxE2r2mpTK3hDB8aDEgfTe-CGvFKJ-JB17QY8qMFNT8N-ZbLXWoNJE0zWq8'
+            var token = 'BQAtihjPqJ_T44T5FOB3IgHpTrv-LZUvaAxtN2l2LtJ8XmS4XGSOWu1zxN2L2zfm0S2nS4PvrwoX1Qq5eaoqYkPxHSzg2LD5oOqEl5eF_Yx87yMDw_Ny_G-RFJ9GzKQw6Ox2ioOmyTgYoY3D'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -65,7 +65,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/albums/'+albumId+'/tracks')
 
-            var token = 'BQCJDU0HtUbAd9gagVC-Y4-yL9af9CjwbYj-dDRkmGG4aeccIBIh2waAPUCy3-UsBFMsOFGyhqIeEjlq9dCXjhxE2r2mpTK3hDB8aDEgfTe-CGvFKJ-JB17QY8qMFNT8N-ZbLXWoNJE0zWq8'
+            var token = 'BQAtihjPqJ_T44T5FOB3IgHpTrv-LZUvaAxtN2l2LtJ8XmS4XGSOWu1zxN2L2zfm0S2nS4PvrwoX1Qq5eaoqYkPxHSzg2LD5oOqEl5eF_Yx87yMDw_Ny_G-RFJ9GzKQw6Ox2ioOmyTgYoY3D'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
