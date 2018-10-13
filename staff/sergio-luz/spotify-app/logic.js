@@ -1,75 +1,42 @@
+var token='BQD_Ubu5x3cd1YUO8pFdmi8qb_bufWGLJwGtxBI82cvJI2ulFBrCnxZZhOeIVx8Vv681yNECR4o63n5E86XD9YWIPNSowYBkl6JDGu2QtGnh7Z8y1OfLHPn_k8U4DjlJRbjllfnScjw';
 const logic = {
-    searchArtists(query) {
+    call(path) {
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
             xhr.addEventListener('load', function () {
                 var res = JSON.parse(xhr.responseText)
 
-                resolve(res.artists.items)
+                resolve(res)
             })
 
             xhr.addEventListener('error', function () {
                 reject() // TODO
             })
 
-            xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
-
-            var token = 'BQD44MKXFo0agFES2rfPEBPq8B_gOCvvQ5FPiKElj0KjOveocTbojOJDwBbwHKlq-sP5hpLrrfxaJKQ9maf0YbXvFlaiHPZLjd8t353Pf1HWgSwZdkDrDoZi-Pp893MNFT7isayNtj0'
+            xhr.open('get', path)
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
             xhr.send()
         })
+    },
+    searchArtists(query) {
+        if( typeof query!=='string') throw TypeError (query+ ' is not a string')
+        if( !query.trim().length) throw Error(query+ ' is not valid')
+
+        return this.call('https://api.spotify.com/v1/search?type=artist&query=' + query)
     },
 
     searchAlbums(id) {
-        // TODO
-        return new Promise((resolve, reject) => {
-            var xhr = new XMLHttpRequest()
+        if( typeof id!=='string') throw TypeError (id+ ' is not a string')
+        if( !id.trim().length) throw Error(id+ ' is not valid')
 
-            xhr.addEventListener('load', function () {
-                var res = JSON.parse(xhr.responseText)
-
-                resolve(res.items)
-            })
-
-            xhr.addEventListener('error', function () {
-                reject() // TODO
-            })
-
-            xhr.open('get', 'https://api.spotify.com/v1/artists/' + id + '/albums')
-
-            var token = 'BQD44MKXFo0agFES2rfPEBPq8B_gOCvvQ5FPiKElj0KjOveocTbojOJDwBbwHKlq-sP5hpLrrfxaJKQ9maf0YbXvFlaiHPZLjd8t353Pf1HWgSwZdkDrDoZi-Pp893MNFT7isayNtj0'
-
-            xhr.setRequestHeader('authorization', 'Bearer ' + token)
-
-            xhr.send()
-        })
+        return this.call('https://api.spotify.com/v1/artists/' + id + '/albums')
     },
 
     searchSongs(id) {
-        // TODO
-        return new Promise((resolve, reject) => {
-            var xhr = new XMLHttpRequest()
-
-            xhr.addEventListener('load', function () {
-                var res = JSON.parse(xhr.responseText)
-
-                resolve(res.items)
-            })
-
-            xhr.addEventListener('error', function () {
-                reject() // TODO
-            })
-
-            xhr.open('get', 'https://api.spotify.com/v1/albums/' + id + '/tracks')
-
-            var token = 'BQD44MKXFo0agFES2rfPEBPq8B_gOCvvQ5FPiKElj0KjOveocTbojOJDwBbwHKlq-sP5hpLrrfxaJKQ9maf0YbXvFlaiHPZLjd8t353Pf1HWgSwZdkDrDoZi-Pp893MNFT7isayNtj0'
-
-            xhr.setRequestHeader('authorization', 'Bearer ' + token)
-
-            xhr.send()
-        })
+        console.log(id);
+        return this.call('https://api.spotify.com/v1/albums/' + id + '/tracks')
     }
 }
