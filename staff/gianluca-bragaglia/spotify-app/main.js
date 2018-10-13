@@ -7,7 +7,10 @@ let $ulAlbums = $albums.find('ul')
 let $liAlbums = $ulAlbums.find('li')
 let $aAlbums = $liAlbums.find('a')
 let $h4Track = $tracks.find('h4')
-let $h5Track = $tracks.find('h5')
+let $h5Track = $player.find('h5')
+let $ulTracks = $tracks.find('ul')
+let $liTracks = $ulTracks.find('li')
+let $aTracks = $liTracks.find('a')
 let $audioTrack = $player.find('audio')
 
 $artists.hide()
@@ -24,6 +27,11 @@ $form.submit(event => {
 
     const query = $input.val()
 
+    $artists.hide()
+    $albums.hide()
+    $tracks.hide()
+    $player.hide()
+
     logic.searchArtists(query)
         .then(artists => {
             listArtist(artists)
@@ -32,7 +40,7 @@ $form.submit(event => {
 })
 
 function listArtist(artists) {
-    $artists.css('display', 'block')
+    $artists.show()
 
     const $ul = $artists.find('ul')
 
@@ -55,7 +63,7 @@ function listArtist(artists) {
         })
 
         let $li = $('<li>')
-
+        $li.addClass('list-group-item')
         $li.append($a)
 
         $ul.append($li)
@@ -66,6 +74,8 @@ function listArtist(artists) {
 
 function listAlbums(albums) {
 
+    $ulAlbums.empty()
+
     albums.forEach(album => {
 
         $aAlbums = $(`<a href="#">${album.name}</a>`)
@@ -74,12 +84,10 @@ function listAlbums(albums) {
             event.preventDefault()
 
             let idAlbum = album.id
-            let nameAlbum = album.name
-
-            $tracks.css('display', 'block')
-            $h4Track = $(`${nameAlbum}`)
-            $tracks.append($h4Track)
-
+            
+            $h4Track.text(album.name)
+ 
+            $tracks.show()
 
             logic.searchTracks(idAlbum)
                 .then((tracks) => {
@@ -89,11 +97,15 @@ function listAlbums(albums) {
 
         })
 
+
         $liAlbums = $('<li>')
+
+        $liAlbums.addClass('list-group-item')
 
         $liAlbums.append($aAlbums)
 
         $ulAlbums.append($liAlbums)
+        
 
     })
 
@@ -102,9 +114,8 @@ function listAlbums(albums) {
 
 function listTracks(tracks) {
 
-    let $ulTracks = $tracks.find('ul')
-    let $liTracks = $ulTracks.find('li')
-    let $aTracks = $liTracks.find('a')
+    $ulTracks.empty()
+    
 
     tracks.forEach(track => {
 
@@ -114,32 +125,25 @@ function listTracks(tracks) {
         $aTracks.click(() => {
             event.preventDefault()
 
-            let trackPlaying = track.preview_url
-            let nameTrack = track.name
-            let idTracks = track.id
+            $player.show()
+        
+            $h5Track.text(track.name)
 
-            $player.css('display', 'block')
-            $h5Track = $(`${nameTrack}`)
-            $tracks.append($h5Track)
+            let trackPlaying = track.preview_url
 
             $audioTrack.attr('src', '' + trackPlaying + '')
 
-            logic.playTrack(idTracks)
-                .then((tracks) => {
-                    //playingTrack(tracks)
-                })
-                .catch(console.error)
-
         })
 
+
         $liTracks = $('<li>')
+
+        $liTracks.addClass('list-group-item')
 
         $liTracks.append($aTracks)
 
         $ulTracks.append($liTracks)
 
     })
-
-
 
 }
