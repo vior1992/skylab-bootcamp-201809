@@ -88,17 +88,8 @@ function listSongs(songs, albumPic) {
 
         $a.click(() => {
             $audio.show()
-            
-
+            albumPicture(albumPic);
             logic.playSong(song.preview_url)
-
-        const $label = document.createElement('img');
-
-        $label.src = albumPic ? albumPic : 'https://visualpharm.com/assets/797/Beer-595b40b65ba036ed117d2949.svg';
-        $label.style.width = '300px';
-
-        $audio.append($label)
-        
         })
 
         const $li = $('<li>')
@@ -108,4 +99,18 @@ function listSongs(songs, albumPic) {
         $ul.append($li)
         
     })
+}
+
+function albumPicture(albumPic){
+
+    var $img = document.createElement('img')
+
+    $img = $img ? $img.remove() : console.log('lol')
+
+    $img = document.createElement('img')
+
+    $img.src = albumPic ? albumPic : 'https://cdn1.macworld.co.uk/cmsdata/features/3630990/sync_itunes_apple_music_thumb800.jpg'
+    $img.style.width = '300px'
+
+    $audio.append($img)
 }
