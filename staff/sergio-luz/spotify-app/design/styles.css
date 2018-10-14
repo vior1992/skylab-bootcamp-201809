@@ -13,7 +13,8 @@ img{
 
 ul{
     list-style:none;
-}
+    color:#56CC9D !important;
+} 
 .wrapper{
     display: flex;
     flex-wrap: wrap;
@@ -21,8 +22,10 @@ ul{
 
 .block{
     width: 50%;
+    height: 50vh;
     border-left: 10px solid #8bc34a24;
     border-bottom: 10px solid #8bc34a24;
+    overflow: auto;
 }
 
 .bg-green-light{
