@@ -18,8 +18,7 @@ function Panel(title, tag, classN) {
     Component.call(this, tag);
 
     $(this.element).addClass(classN);
-    $(this.element).addClass('panel');
-    $(this.element).addClass('container-fluid');
+    $(this.element).addClass(classN);
 
     this.title = $('<h2>');
     $(this.title).text(title);
@@ -35,9 +34,6 @@ function List(title, tag, classN) {
     Panel.call(this, title, tag, classN);
 
     $(this.title).addClass('list__title');
-
-    this.image = $('<img>');
-    $(this.element).append(this.image);
 
     this.body = $('<ul>');
     $(this.body).addClass('list__body');
@@ -56,21 +52,18 @@ function Search(title, tag, classN) {
     $(this.body).addClass('list__body');
 
     this.form = $('<form>');
-    // $(this.form).addClass('form-inline');
-
-    // this.div = $('<div>');
-    // $(this.div).addClass('form-group mb-2');
 
     this.input = $('<input>');
+
     $(this.input).attr('type', 'text')
-    // $(this.input).addClass('form-control');
 
     $(this.form).append(this.input);
-    // $(this.div).append(this.input);
 
     this.searchBtn = $('<button>');
+
     $(this.searchBtn).attr('type', 'submit');
-    // $(this.searchBtn).addClass('btn btn-outline-info mb-2');
+
+
     $(this.searchBtn).text('Search');
 
     $(this.form).append(this.searchBtn);

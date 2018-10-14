@@ -50,10 +50,12 @@ function listArtist(artists) {
                 $player.hide()
                 const $h3 = $albums.find('h3')
                 $h3.text(`${artist.name}`)
+                console.log(artist)
                 const id = artist.id
+                var img = artist.images[2].url
                 logic.listAlbums(id)
                     .then(albums => {
-                        showAlbums(albums)
+                        showAlbums(albums, img)
                     })
                     .catch(console.error)
             })
@@ -67,9 +69,11 @@ function listArtist(artists) {
     }
 }
 
-function showAlbums(albums) {
+function showAlbums(albums, img) {
     const $ulAlb = $albums.find('ul')
     $ulAlb.empty()
+    var $img = $albums.find('img')
+    $img.attr('src', img)
     var _albums = albums.items
     _albums.forEach(album => {
         const $aAlb = $(`<a href="#">${album.name}</a>`)
@@ -79,9 +83,11 @@ function showAlbums(albums) {
             $h4Sng = $songs.find('h4')
             $h4Sng.text(`${album.name}`)
             const idAlb = album.id
+            var img = album.images[2].url
+
             logic.listSongs(idAlb)
                 .then(songs => {
-                    showSongs(songs)
+                    showSongs(songs, img)
                 })
                 .catch(console.error)
         })
@@ -94,9 +100,11 @@ function showAlbums(albums) {
 
 } 
 
-function showSongs(songs) {
+function showSongs(songs, img) {
     const $ulSng = $songs.find('ul')
     $ulSng.empty()
+    var $img = $songs.find('img')
+    $img.attr('src', img)
     console.log(songs)
     var _songs = songs.items
     _songs.forEach(song => {
