@@ -19,6 +19,7 @@ const $player = $('.player')
 const $form = $('form')
 
 function listArtist(artists) {
+    $songs.hide()
     $artists.show()
 
     const $ul = $artists.find('ul')
@@ -103,9 +104,9 @@ function listSongs(songs, albumPic) {
 
 function albumPicture(albumPic){
 
-    var $img = document.createElement('img')
+    var $img = $audio.find('img')
 
-    $img = $img ? $img.remove() : console.log('lol')
+    $img.remove()
 
     $img = document.createElement('img')
 
@@ -114,3 +115,4 @@ function albumPicture(albumPic){
 
     $audio.append($img)
 }
+
