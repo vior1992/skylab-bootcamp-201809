@@ -1,6 +1,9 @@
-var token='BQBQAf3lvlVnqKsca2zAx9pOHR79NFu7tzCwOsivvcjEiqU4wDU1xKDf-bzFNv8WXGTmgG2q3Lr84uz7_GXtui4FmhbLtKdov5BRYHgsAz1xbMyW4Vq0UY2W7k7EDeHPTOsN3aYqYVw';
+var token='BQAR-b7FRAXj3UWwyQgjY-RmG3Z_Ts1znm7b6e9s0LYay8pgZhSTbm-75TtCCLbViOe0WlxAgfzBWAnZaVLDD5AgewesIonvrYXMxgTQxuSiZ3QvOC9vvRHHxvqQNTJB8rG125Gnhn0';
 const logic = {
     call(path) {
+        if( typeof path!=='string') throw TypeError (path+ ' is not a string')
+        if( !path.trim().length) throw Error(path+ ' is not valid')
+
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
