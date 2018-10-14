@@ -17,12 +17,17 @@ var logic = {
         xhr.send();
     },
     search: function(query, callback) {
-        if (callback === undefined ) throw Error('undefined is not a function')
+        if (typeof query !== 'string') throw TypeError(query + ' is not a string');
+
+        if (!query.trim().length) throw Error('query is empty or blank');
         this.call('/search/all?q=' + query, callback, []);
     },
     
     
     retrieveBeer: function(id, callback) {
+        if (typeof id !== 'string') throw TypeError(id + ' is not a string');
+
+        if (!id.trim().length) throw Error('id is empty or blank');
         this.call('/beer/' + id, callback);
     }
 }
