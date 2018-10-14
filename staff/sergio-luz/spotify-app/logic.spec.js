@@ -125,7 +125,7 @@ describe('logic', () => {
 
     describe('search songs', () => {
         it('should succeed on matching id', () => {
-            var id = '4GjdtlX0gGwOxf5vta6Jpk' 
+            var id = '0xrhBMCv1GbpTVIBXkNltA' 
 
             return logic.searchSongs(id)
                 .then(tracks => {
@@ -135,80 +135,53 @@ describe('logic', () => {
                 })
         })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        it('should fail on invalsong song (undefined)', () => {
-            var song = undefined
+        it('should fail on invalid song (undefined)', () => {
+            var id = undefined
             expect(function () {
-                logic.searchSongs(song);
-            }).toThrowError(TypeError, song+ ' is not a string');
+                logic.searchSongs(id);
+            }).toThrowError(TypeError, id+ ' is not a string');
         })
 
-        it('should fail on invalsong song (number)', () => {
-            var song = 12
+        it('should fail on invalid song (number)', () => {
+            var id = 12
             expect(function () {
-                logic.searchSongs(song);
-            }).toThrowError(TypeError, song+ ' is not a string');
+                logic.searchSongs(id);
+            }).toThrowError(TypeError, id+ ' is not a string');
         })
 
-        it('should fail on invalsong song (boolean)', () => {
-            var song = true
+        it('should fail on invalid song (boolean)', () => {
+            var id = true
             expect(function () {
-                logic.searchSongs(song);
-            }).toThrowError(TypeError, song+ ' is not a string');
+                logic.searchSongs(id);
+            }).toThrowError(TypeError, id+ ' is not a string');
         })
 
-        it('should fail on invalsong song (array)', () => {
-            var song = [1,2]
+        it('should fail on invalid song (array)', () => {
+            var id = [1,2]
             expect(function () {
-                logic.searchSongs(song);
-            }).toThrowError(TypeError, song+ ' is not a string');
+                logic.searchSongs(id);
+            }).toThrowError(TypeError, id+ ' is not a string');
         })
 
-        it('should fail on invalsong song (object)', () => {
-            var song = {ob:'ject'}
+        it('should fail on invalid song (object)', () => {
+            var id = {ob:'ject'}
             expect(function () {
-                logic.searchSongs(song);
-            }).toThrowError(TypeError, song+ ' is not a string');
+                logic.searchSongs(id);
+            }).toThrowError(TypeError, id+ ' is not a string');
         })
 
-        it('should fail on invalsong song (null)', () => {
-            var song = null
+        it('should fail on invalid song (null)', () => {
+            var id = null
             expect(function () {
-                logic.searchSongs(song);
-            }).toThrowError(TypeError, song+ ' is not a string');
+                logic.searchSongs(id);
+            }).toThrowError(TypeError, id+ ' is not a string');
         })
 
-        it('should fail on invalsong song (blank)', () => {
-            var song = '      \n\t'
+        it('should fail on invalid song (blank)', () => {
+            var id = '      \n\t'
             expect(function () {
-                logic.searchSongs(song);
-            }).toThrowError(Error, song+ ' is not valid');
+                logic.searchSongs(id);
+            }).toThrowError(Error, id+ ' is not valid');
         })
     })
 })

@@ -1,4 +1,4 @@
-var token='BQD_Ubu5x3cd1YUO8pFdmi8qb_bufWGLJwGtxBI82cvJI2ulFBrCnxZZhOeIVx8Vv681yNECR4o63n5E86XD9YWIPNSowYBkl6JDGu2QtGnh7Z8y1OfLHPn_k8U4DjlJRbjllfnScjw';
+var token='BQBQAf3lvlVnqKsca2zAx9pOHR79NFu7tzCwOsivvcjEiqU4wDU1xKDf-bzFNv8WXGTmgG2q3Lr84uz7_GXtui4FmhbLtKdov5BRYHgsAz1xbMyW4Vq0UY2W7k7EDeHPTOsN3aYqYVw';
 const logic = {
     call(path) {
         return new Promise((resolve, reject) => {
@@ -36,7 +36,9 @@ const logic = {
     },
 
     searchSongs(id) {
-        console.log(id);
+        if( typeof id!=='string') throw TypeError (id+ ' is not a string')
+        if( !id.trim().length) throw Error(id+ ' is not valid')
+
         return this.call('https://api.spotify.com/v1/albums/' + id + '/tracks')
     }
 }
