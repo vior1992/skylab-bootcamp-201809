@@ -34,6 +34,8 @@ class Search extends Component {
 
         this.form.appendChild(this.name);
     }
+
+
 }
 
 
@@ -50,6 +52,10 @@ class List extends Component {
         this.ul = document.createElement('ul')
         this.ul.className = 'list-group'
         this.element.appendChild(this.ul)
+    }
+
+    emptyList() {
+        while(this.ul.firstChild) this.ul.removeChild(this.ul.firstChild)
     }
 }
 
