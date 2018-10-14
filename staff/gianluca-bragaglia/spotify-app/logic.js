@@ -1,7 +1,9 @@
-var token = 'BQAIHu2kaxRBjjgTjO0FlAtcmY5VkVsgyBcWvZqJniqpqZ09ZBf0RCnY4tskinZxIKC0mdwtlwmfOBQpN8j0KHC8wdYFoQUDRXbeczWF0ykUgByLE8eMMqIbJGm_psNdcgqiGo8VoM26_Q'
+var token = 'BQAEyvPlWj1XNMypcWnyjH7OVezLyZCf0pt7Aob8dLcQbinBLzPXPgpvOYNMo2oeB0_qotFnWKGkGhCtuWuraSKNBShlPUd2MJVWa6IX2Y15FJyO0ueOZoNd1XQALMs1apm2GYoaT0titQ'
 
 const logic = {
     searchArtists(query) {
+        if (typeof query !== 'string') throw TypeError(`${query} is not a string`)
+        if (!query.trim().length) throw Error('query is empty or blank')
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
@@ -24,6 +26,8 @@ const logic = {
     },
 
     searchAlbums(id) {
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if (!id.trim().length) throw Error('id is empty or blank')
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
@@ -31,6 +35,8 @@ const logic = {
                 var res = JSON.parse(xhr.responseText)
 
                 resolve(res.items)
+                console.log(res.items);
+
 
             })
 
@@ -47,6 +53,8 @@ const logic = {
     },
 
     searchTracks(idAlbum) {
+        if (typeof idAlbum !== 'string') throw TypeError(`${idAlbum} is not a string`)
+        if (!idAlbum.trim().length) throw Error('id is empty or blank')
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
@@ -54,6 +62,7 @@ const logic = {
                 var res = JSON.parse(xhr.responseText)
 
                 resolve(res.items)
+                console.log(res.items);
 
             })
 
@@ -70,6 +79,8 @@ const logic = {
     },
 
     playTrack(idTracks) {
+        if (typeof idTracks !== 'string') throw TypeError(`${idTracks} is not a string`)
+        if (!idTracks.trim().length) throw Error('id is empty or blank')
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
