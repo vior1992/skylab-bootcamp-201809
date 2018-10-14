@@ -21,7 +21,7 @@ class Ayay {
         return extra;
     }
 
-    forEach(){
+    forEach(callback){
         if(!this.length) throw Error ('array can not be empty');
         if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
         
@@ -29,7 +29,7 @@ class Ayay {
 
     }
 
-    map(){
+    map(callback){
         if(!this.length) throw Error ('array can not be empty')
         if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
         
@@ -58,7 +58,7 @@ class Ayay {
         return this;
     }
 
-    filter(){
+    filter(callback){
         if(!this.length) throw Error ('array can not be empty');
         if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
         
@@ -72,7 +72,7 @@ class Ayay {
         return newAy;
     }
 
-    find(){
+    find(callback){
         if(!this.length) throw Error ('array can not be empty');
         if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
         
