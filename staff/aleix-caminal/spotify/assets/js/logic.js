@@ -27,12 +27,12 @@ const LOGIC = {
             callback();
         }).catch(console.error);
     },
-    albumTracks: function(album, callback) {
+    albumTracks: function(album, image, callback) {
         if (typeof callback !== 'function') throw Error('callback is not a function');
         this.spotify.getAlbum(album).then(function(result) {
             $(tracks.body).html('');
             $.each(result.items, function(i, track) {
-                tracks.printTrack(track);
+                tracks.printTrack(track, image);
             });
 
             callback();

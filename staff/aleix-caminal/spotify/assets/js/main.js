@@ -1,3 +1,5 @@
+let track_name, artist_name, album_name, artist_image, album_image;
+
 const main = new Component('main', 'main');
 document.body.appendChild(main.element);
 
@@ -14,8 +16,10 @@ const search = new Search('Search Spotify', 'section', function() {
     });
 });
 
-const artists = new Artists('Artists', 'section', function(artist) {
-    LOGIC.artistAlbums(artist, function() {
+const artists = new Artists('Artists', 'section', function(id, name, image) {
+    artist_name = name;
+    artist_image = image;
+    LOGIC.artistAlbums(id, function() {
         albums.show('flex');
         artists.hide();
         tracks.hide();
@@ -23,8 +27,10 @@ const artists = new Artists('Artists', 'section', function(artist) {
         LOGIC.alignItems();
     });
 });
-const albums = new Albums('Albums', 'section', function(album) {
-    LOGIC.albumTracks(album, function() {
+const albums = new Albums('Albums', 'section', function(id, name, image) {
+    album_name = name;
+    album_image = image;
+    LOGIC.albumTracks(id, album_image, function() {
         tracks.show('flex');
         albums.hide();
         artists.hide();
@@ -33,9 +39,11 @@ const albums = new Albums('Albums', 'section', function(album) {
     });
 });
 
-const tracks = new Tracks('Songs', 'section', function(track) {
-    $('#player').attr("src", track);
-    footer.printCurrent('assets/img/placeholder.png', 'Chains', 'Alice', 'God am');
+const tracks = new Tracks('Songs', 'section', function(url, name) {
+    track_name = name;
+    footer.printCurrent(album_image, track_name, artist_name, album_name);
+    $(PLAYER).attr("src", url);
+    PLAYER.play()
 });
 
 $(main.element).append(search.element);

@@ -148,6 +148,7 @@ class Panel extends Component {
     }
 
     printItem(item) {
+        let image  = item.images.length ? item.images[0].url : 'assets/img/placeholder.png';
         this.item = document.createElement('article');
         $(this.item).addClass('container');
         $(this.body).append(this.item);
@@ -155,12 +156,12 @@ class Panel extends Component {
         this.wrapper = document.createElement('div');
         $(this.wrapper).addClass('container__image');
         $(this.wrapper).on('click', function() {
-            this.callback(item.id);
+            this.callback(item.id, item.name, image);
         }.bind(this));
         $(this.item).append(this.wrapper);
 
         this.image = document.createElement('div');
-        $(this.image).css('background-image', 'url(' + (item.images.length ? item.images[0].url : 'assets/img/placeholder.png') + ')');
+        $(this.image).css('background-image', 'url(' + image + ')');
         $(this.wrapper).append(this.image);
 
         this.title = document.createElement('h4');
@@ -194,7 +195,7 @@ class Tracks extends Panel {
         super(title, tag, callback);
     }
 
-    printTrack(track) {
+    printTrack(track, image) {
         this.track = document.createElement('article');
         $(this.track).addClass('container');
         $(this.body).append(this.track);
@@ -202,12 +203,12 @@ class Tracks extends Panel {
         this.wrapper = document.createElement('div');
         $(this.wrapper).addClass('container__image');
         $(this.wrapper).on('click', function() {
-            this.callback(track.preview_url);
+            this.callback(track.preview_url, track.name);
         }.bind(this));
         $(this.track).append(this.wrapper);
 
         this.image = document.createElement('div');
-        $(this.image).css('background-image', 'url(assets/img/placeholder.png)');
+        $(this.image).css('background-image', 'url(' + image + ')');
         $(this.wrapper).append(this.image);
 
         this.title = document.createElement('h4');
