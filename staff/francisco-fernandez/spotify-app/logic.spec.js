@@ -16,7 +16,7 @@ describe('logic', () => {
         it('should succeed on matching query', () => {
             var id = '6tbjWDEIzxoDsBA1FuhfPW' // madonna
 
-            return logic.listAlbums(id)
+            return logic.searchAlbums(id)
                 .then(albums => {
                     expect(albums).toBeDefined()
 
