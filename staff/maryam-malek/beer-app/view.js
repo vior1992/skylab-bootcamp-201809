@@ -33,8 +33,11 @@ var view = {
 
                 a.addEventListener('click', function (event) {
                     event.preventDefault();
-                    logic.retrieveBeer(beer.id, this.detailBeer.bind(this));
-                }.bind(this));
+                    logic.retrieveBeer(beer.id)
+                     .then(this.detailBeer.bind(this))
+                     .catch(this.detailBeer.bind(this))
+                })
+
             }.bind(this));
 
             document.body.appendChild(ul);

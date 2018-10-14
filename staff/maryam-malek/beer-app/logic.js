@@ -1,27 +1,36 @@
 var logic = {
-    call: function(path, callback, defaultValueOnError){
-       if(typeof path !== 'string') throw TypeError('invalid path');
+    call: function(path, defaultValueOnError){
+        return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
     
         xhr.addEventListener("load", function () {
             var res = JSON.parse(xhr.responseText);
     
-            callback(res);
+            resolve(res);
         });
     
         xhr.addEventListener("error", function () {
-            callback(defaultValueOnError);
+            reject(defaultValueOnError);
         });
     
         xhr.open('get', 'https://quiet-inlet-67115.herokuapp.com/api' + path);
     
         xhr.send();
+        })
     },
-    search: function(query, callback){
-        this.call('/search/all?q=' + query, callback, []);
+    search: function(query){
+        if (typeof query !== 'string') throw TypeError(query + ' is not a string');
+
+        if (!query.trim().length) throw Error('query is empty or blank');
+
+        this.call('/search/all?q=' + query, []);
     },
     
-    retrieveBeer: function(id, callback) {
-        this.call('/beer/' + id, callback);
+    retrieveBeer: function(id) {
+        if (typeof id !== 'string') throw TypeError(id + ' is not a string');
+
+        if (!id.trim().length) throw Error('id is empty or blank');
+        
+        this.call('/beer/' + id);
     }
 };
