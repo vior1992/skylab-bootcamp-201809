@@ -16,7 +16,9 @@ var view = {
                 a.innerText = beer.name;
 
                 a.addEventListener('click', function () {
-                    logic.retrieveBeer(beer.id, this.showBeer.bind(this));
+                    logic.retrieveBeer(beer.id)
+                        .then(this.showBeer.bind(this))
+                        .catch(this.showBeer.bind(this))
                 }.bind(this));
 
                 li.appendChild(a);
