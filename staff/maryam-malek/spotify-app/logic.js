@@ -16,7 +16,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/' + path)
 
-            var token = 'BQASjSTIvwkmRY-ocCk_JaxkWr2k-9t3GMprKrxcbHhLgnP08_sK56w9gRYaPvt8C4PieDjJOZ9j0TTS33-ivGU_Ffvgzj-hec1wZdoK_sVzULsJOitT3Jo1yTGkI-xotrjVXztiSZu2AiHyCsmBtIepNejtMftlUw'
+            var token = 'BQB-4OncuiMCQb4FydIAllm9v10j8kYgIdV4c-kRHtX7caIXHYkkyaBQ_xAA9msEYAaHPq-8Nqes9K5HMBOzyxVVCNgvnpSzIwLS48pfPzMEyT4QRURH6KxFdxWGAcDRRI1rcQj4aS95F2aYTIwiphyfYXJ8jivbUQ'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 

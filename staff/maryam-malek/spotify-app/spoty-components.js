@@ -38,7 +38,7 @@ function List(titileTag, tag, classN) {
     $(this.titleBtn).attr('aria-haspopup', 'true');
     $(this.titleBtn).attr('aria-expanded', 'false');
 
-    $(this.titleBtn).addClass('btn btn-outline-info mb-2 dropdown-toggle');
+    $(this.titleBtn).addClass('btn btn-outline-info mb-2 mt-2 dropdown-toggle');
     // $(this.titleBtn).text('Show');
     $(this.div).append(this.titleBtn);
 
@@ -54,7 +54,7 @@ function Search(titileTag, tag, classN) {
     Panel.call(this, titileTag, tag, classN);
 
     this.nav = $('<nav>');
-    $(this.nav).addClass('navbar navbar-light bg-light');
+    $(this.nav).addClass('navbar navbar-dark bg-dark');
 
     $(this.title).addClass('navbar-brand');
     $(this.title).text('Spotify App 🎧');

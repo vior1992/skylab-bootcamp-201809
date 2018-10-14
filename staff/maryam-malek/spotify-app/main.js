@@ -13,7 +13,7 @@ $form.submit(event => {
 
     logic.searchArtists(query)
         .then(artists => {
-            listArtist(artists)
+            view.listArtist(artists)
         })
         .catch(console.error)
 })
