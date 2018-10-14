@@ -1,15 +1,15 @@
 function Component(tag) {
-    this.element = document.createElement(tag);
+    this.element = $('<' + tag + '>' + '</'+ tag + '>');
 };
 
 
-Component.prototype.show = function () {
-    $(this.element).css('display','block');
+Component.prototype.show = () => {  //ES6 arrow function
+    this.element.show() //jquery already has this method
 };
 
 
-Component.prototype.hide = function () {
-    $(this.element).css('display','none');
+Component.prototype.hide = () => {
+    this.element.hide(); //jquery already has this method
 };
 
 
@@ -20,7 +20,7 @@ function Panel(title, tag) {
 
     this.title = $('<h2></h2>').text(title).addClass('panel__title');
     
-    this.title.appendTo(title.body);
+    this.element.append(this.title);
 };
 
 Panel.prototype = Object.create(Component.prototype);
@@ -34,55 +34,43 @@ function Dialog(title, text, tag) {
 
     this.title = $('<h2></h2>').text(title).addClass('dialog__title');
 
-    this.text = $('<p></p>').text(text).addClass('dialog__body');
+    this.title.appendTo(this.body);
 
-    this.title.appendTo(title.body);
+    this.body = $('<p></p>').text(text).addClass('dialog__body');
 
-    this.text.appendTo(this.body);
+    this.element.append(this.body);
+
 }
 
 Dialog.prototype = Object.create(Panel.prototype);
 Dialog.prototype.constructor = Dialog;
 
 
-
 function Alert(title, text, tag, callback, error) {
     Dialog.call(this, title, text, tag);
 
-    this.element.className = error ? 'alert alert--danger' : 'alert';
+    this.element.addClass(error ? 'alert alert--danger' : 'alert');
 
-    this.title = $('<h2></h2>').text(title).addClass('alert__title');
+    this.title.addClass('alert__title');
 
-    this.text = $('<p></p>').text(text).addClass('alert__body');
+    this.body.addClass('alert__body');
 
-    this.accept = $('<button></button>').text('Accept').addClass('confirm__button--accept');
+    this.accept = $('<button></button>');
+    this.accept.text('Accept');
 
-    $('.alert__title').appendTo(this.body);
-
-    $(.'alert__body').appendTo(this.body);
-
-    $('.confirm__button--accept').appendTo(this.body);
-
-    // var self = this;
-
-    // this.accept.addEventListener('click', function(event) {
-    //     self.element.style.display = 'none';
-    // });
-
-    $('.alert__title').on('click', function () {
-        $(this.element).css('display','none');
+    this.accept.click(() => {
+        this.element.hide();
 
         callback();
-    }.bind(this));
+    });
 
     this.accept.addClass('alert__button');
 
-    this.accept.apendTo(this.body);
+    this.element.append(this.accept);
 }
 
 Alert.prototype = Object.create(Dialog.prototype);
 Alert.prototype.constructor = Alert;
-
 
 
 function Confirm(title, text, tag, acceptCallback, cancelCallback) {
@@ -91,29 +79,26 @@ function Confirm(title, text, tag, acceptCallback, cancelCallback) {
     this.element.addClass('confirm');
 
     this.title.addClass('confirm__title');
-
+    
     this.body.addClass('confirm__body');
+    
 
-    this.cancel = $('<button></button>').text('Cancel').addClass('confirm__button');
-
-    $('.confirm__button').on('click', function () {
-        this.element.style.display = 'none';
+    this.cancel = $('<button></button>').text('Cancel').addClass('confirm__button').click(() => {
+        this.element.hide();
 
         cancelCallback();
-    }.bind(this));
+    });
 
-    $('.confirm__button').appendTo(this.body);
+    this.cancel.appendTo(this.element);
 
-        
-    this.accept = $('<button></button>').text('Accept').addClass('confirm__button--accept');
 
-    $('.confirm__button--accept').on('click', function () {
-        this.element.style.display = 'none';
+    this.accept = $('<button></button>').text('Accept').addClass('confirm__button confirm__button--accept').click(() => {
+        this.element.hide()
 
         acceptCallback();
-    }.bind(this));
+    });
 
-    $('.confirm__button--accept').appendTo(this.body);
+    this.element.append(this.accept);
 }
 
 Confirm.prototype = Object.create(Dialog.prototype);
