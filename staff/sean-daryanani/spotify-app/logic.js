@@ -16,7 +16,7 @@ const logic = {
 
             xhr.open('get', path)
 
-            var token = 'BQCUFL6erujeqB_XsyRIvFf4fj6ePdENv9Ue0O0nRVOX3SNQg6c5OGFcd9HbBnsPL-WFkbxtWegoDRtqG1O25WQ3uSyISDIO1kletoc0VGmWqV3pMU2czoL0JcHIDLx6StVqKKzZj_b4luI'
+            var token = 'BQD83yhpj2J0NwlQ6YZJsbvxCMohFK6C6Mvz67toZPKAx0_-eO3_27B_NgldCS9b6z9oKSlU8OU47JWmW-PWjDb97EuHCdKYBlxVZOqHTXXOra6zrNaSTGcT0eDqD5wBQbYCClFD3Dn8RBQ'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -47,5 +47,12 @@ const logic = {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
         if(!id.trim().length) throw Error(`query is empty or blank`)
         return this.call('https://api.spotify.com/v1/tracks/' + id)
+    },
+
+    feelingLucky(id) {
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if(!id.trim().length) throw Error(`query is empty or blank`)
+        return this.call('https://api.spotify.com/v1/artists/' + id + '/related-artists')
     }
 }
+

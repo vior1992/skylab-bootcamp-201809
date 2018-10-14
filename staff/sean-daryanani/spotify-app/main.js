@@ -1,17 +1,18 @@
+const $feelingLucky = $('.lucky')
 const $artists = $('.artists')
 const $albums = $('.albums')
 const $tracks = $('.tracks')
 const $trackInfo = $('.trackInfo')
 const $audioTrack = $trackInfo.find('audio')
 const $form = $('form')
-
+let test = $('.album-img')
 view.hideEverything()
 
 $form.submit(event => {
     event.preventDefault()
 
     view.hideEverything()
-
+    
     view.soundPause()
     const $input = $form.find('input')
 

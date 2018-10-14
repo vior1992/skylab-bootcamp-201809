@@ -19,7 +19,7 @@ const view = {
                     .then(albums => {
                         var arr_albums = []
                         arr_albums.push(...albums.items)
-                        this.showAlbums(arr_albums, artistName)
+                        this.showAlbums(arr_albums, artistName, id)
                     })
                     .catch(console.error)
             })
@@ -33,11 +33,11 @@ const view = {
         })
     },
 
-    showAlbums(albums, artistName) {
+    showAlbums(albums, artistName, id) {
         $albums.show()
+        $feelingLucky.show()
         const $h3_albums = $albums.find('h3')
-        $h3_albums.text(artistName)
-        const $albumImg = $albums.find('img')
+        $h3_albums.text(`Albums by ${artistName}`)
         const $ul_albums = $albums.find('ul')
         
 
@@ -49,7 +49,9 @@ const view = {
                 $li_albums.addClass('list-group-item list-group-item-action')
                 const $a_albums = $(`<a href="#">${album.name}</a>`)
 
+
                 $a_albums.click((event) => {
+                    const $albumImg = album.images[0].url
                     event.preventDefault()
                     const albumName = album.name
                     const albumid = album.id
@@ -57,7 +59,7 @@ const view = {
                         .then(tracks => {
                             var arr_tracks = []
                             arr_tracks.push(...tracks.items)
-                            this.showTracks(arr_tracks, albumName)
+                            this.showTracks(arr_tracks, albumName, $albumImg)
                         })
                         .catch(console.error)
 
@@ -69,14 +71,25 @@ const view = {
             }
         })
 
+        $feelingLucky.click(() => {
+            this.hideEverything()
+            // $trackInfo.show()
+            logic.feelingLucky(id) 
+                .then(relArtists => {
+                    let relatedArtists = relArtists.artists
+                    this.listArtist(relatedArtists)
+                })
+                .catch(console.error)
+        })
+
     },
 
-    showTracks(tracks, albumName) {
+    showTracks(tracks, albumName, albumImg) {
 
         $tracks.show()
 
         const $h4_tracks = $tracks.find('h4')
-        $h4_tracks.text(albumName)
+        $h4_tracks.text(`songs in ${albumName}`)
 
         const $ul_tracks = $tracks.find('ul')
 
@@ -94,7 +107,7 @@ const view = {
 
                 logic.listTrackInfo(trackid)
                     .then(trackAudio => {
-                        this.showTrackInfo(trackAudio, trackName)
+                        this.showTrackInfo(trackAudio, trackName, albumImg)
                     })
                     .catch(console.error)
             })
@@ -104,16 +117,20 @@ const view = {
         })
     },
 
-    showTrackInfo(trackAudio, trackName) {
+    showTrackInfo(trackAudio, trackName, albumImg) {
+        console.log(albumImg)
         $trackInfo.show()
         const $h5_trackInfo = $trackInfo.find('h5')
         $h5_trackInfo.text(trackName)
         $audioTrack.attr('src', '' + trackAudio.preview_url + '')
+        
+        test.attr('src', albumImg)
 
     },
 
     hideEverything() {
         $artists.hide()
+        $feelingLucky.hide()
         $albums.hide()
         $tracks.hide()
         $trackInfo.hide()

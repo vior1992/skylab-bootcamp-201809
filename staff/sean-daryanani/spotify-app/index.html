@@ -1,44 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Spotify</title>
 </head>
+
 <body>
+
     <section>
-        <h1>Spotify App 🎧</h1>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </section>
+        <nav class="navbar navbar-light bg-light">
 
-    <section class="artists list-group">
-        <h2>Artists</h2>
-        <ul>
-        </ul>
-    </section>
+            <h1>Spotify <i class="fab fa-spotify"></i></h1>
+            <a class="nav-link lucky"  href="#">Feeling Lucky? Find related artists</span></a>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
 
-    <section class="albums list-group">
-        <h3></h3>
-        <img class=".album-img" src="" alt="">
-        <ul>
-        </ul>
     </section>
+    <div class="wrapper">
+        <section class="artists ">
+            <h2>Artists</h2>
+            <ul class="list-group">
+            </ul>
+        </section>
 
-    <section class="tracks list-group">
-        <h4>Pinocho</h4>
-        <ul>
-        </ul>
-    </section>
+        <section class="albums">
+            <h3></h3>
 
-<section class="trackInfo">
-        <h5>Digo mentiras</h5>
-        <audio controls autoplay loop></audio>
-    </section> 
+            <ul class="list-group">
+            </ul>
+        </section>
+
+        <section class="tracks">
+            <h4>Pinocho</h4>
+            <ul class="list-group">
+            </ul>
+        </section>
+
+        <section class="trackInfo">
+            <h5>Digo mentiras</h5>
+            <audio controls autoplay loop></audio>
+            <br>
+            <img width="400px" height="300px" class="album-img" src="" alt="">
+        </section>
+    </div>
 
     <script src="vendor/jquery/3.3.1/jquery-3.3.1.min.js"></script>
     <script src="view.js"></script>
@@ -46,4 +60,5 @@
 
     <script src="main.js"></script>
 </body>
+
 </html>
