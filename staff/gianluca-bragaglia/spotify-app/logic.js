@@ -1,4 +1,4 @@
-var token = 'BQAEyvPlWj1XNMypcWnyjH7OVezLyZCf0pt7Aob8dLcQbinBLzPXPgpvOYNMo2oeB0_qotFnWKGkGhCtuWuraSKNBShlPUd2MJVWa6IX2Y15FJyO0ueOZoNd1XQALMs1apm2GYoaT0titQ'
+var token = 'BQBCln5i2EgO_-1DKx-eQ7M5MdUD8jkMkKXlLQ7lx3q-NdckTvAEj5iWHjgLGhpG8l2jea-CGEvWeowGEJtnAYS87IvlDImtWmzhZWCrK9t9piRoiOPI31J6WOYwTT1DKXUfnVHVvuhZ1A'
 
 const logic = {
     searchArtists(query) {
@@ -8,13 +8,14 @@ const logic = {
             var xhr = new XMLHttpRequest()
 
             xhr.addEventListener('load', function() {
+
                 var res = JSON.parse(xhr.responseText)
 
                 resolve(res.artists.items)
             })
 
             xhr.addEventListener('error', function() {
-                reject()
+                reject(Error("Network Error"))
             })
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
@@ -32,16 +33,15 @@ const logic = {
             var xhr = new XMLHttpRequest()
 
             xhr.addEventListener('load', function() {
+
                 var res = JSON.parse(xhr.responseText)
 
                 resolve(res.items)
-                console.log(res.items);
-
 
             })
 
             xhr.addEventListener('error', function() {
-                reject() // TODO
+                reject(Error("Network Error"))
             })
 
             xhr.open('get', 'https://api.spotify.com/v1/artists/' + id + '/albums')
@@ -62,12 +62,11 @@ const logic = {
                 var res = JSON.parse(xhr.responseText)
 
                 resolve(res.items)
-                console.log(res.items);
 
             })
 
             xhr.addEventListener('error', function() {
-                reject() // TODO
+                reject(Error("Network Error"))
             })
 
             xhr.open('get', 'https://api.spotify.com/v1/albums/' + idAlbum + '/tracks')
@@ -89,11 +88,10 @@ const logic = {
 
                 resolve(res.items)
 
-
             })
 
             xhr.addEventListener('error', function() {
-                reject() // TODO
+                reject(Error("Network Error"))
             })
 
             xhr.open('get', 'https://api.spotify.com/v1/albums/' + idTracks + '/tracks')

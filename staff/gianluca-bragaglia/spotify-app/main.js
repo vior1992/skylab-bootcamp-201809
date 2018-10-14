@@ -4,14 +4,15 @@ const $tracks = $('.tracks')
 const $player = $('.player')
 const $form = $('form')
 
+let $ul = $artists.find('ul')
 let $ulAlbums = $albums.find('ul')
 let $liAlbums = $ulAlbums.find('li')
 let $aAlbums = $liAlbums.find('a')
 let $h4Track = $tracks.find('h4')
-let $h5Track = $player.find('h5')
 let $ulTracks = $tracks.find('ul')
 let $liTracks = $ulTracks.find('li')
 let $aTracks = $liTracks.find('a')
+let $h5Track = $player.find('h5')
 let $audioTrack = $player.find('audio')
 let $pPlayer = $player.find('p')
 let $imgAlbums = $liAlbums.find('img')
@@ -22,13 +23,12 @@ $tracks.hide()
 $player.hide()
 $pPlayer.hide()
 
-
+// capture input query
 $form.submit(event => {
     event.preventDefault()
 
     const $input = $form.find('input')
-
-    const query = $input.val()
+    const query = $input.val() //capture input query
 
     $artists.hide()
     $albums.hide()
@@ -37,22 +37,23 @@ $form.submit(event => {
     $pPlayer.hide()
     $audioTrack.attr('src', '')
 
-    logic.searchArtists(query)
+    logic.searchArtists(query) // send input query to logic
         .then(artists => {
             listArtist(artists)
         })
         .catch(console.error)
 })
 
-function listArtist(artists) {
+function listArtist(artists) { // use responde of ajax call to draw in html
+
     $artists.show()
-
-    const $ul = $artists.find('ul')
-
     $ul.empty()
 
-    artists.forEach(artist => {
-        let $a = $(`<a href="#">${artist.name}</a>`)
+    artists.forEach(artist => { // loop iteration throw response ajax
+
+        let $li = $('<li>') //create a list
+        $li.addClass('list-group-item')
+        let $a = $(`<a href="#">${artist.name}</a>`) //create artist name item of the list
 
         $a.click(() => {
 
@@ -64,16 +65,14 @@ function listArtist(artists) {
             $pPlayer.hide()
             $audioTrack.attr('src', '')
 
-            logic.searchAlbums(id)
+            logic.searchAlbums(id) //send id artist to logic
                 .then(albums => {
                     listAlbums(albums)
                 })
                 .catch(console.error)
         })
 
-        let $li = $('<li>')
-        $li.addClass('list-group-item')
-        $li.append($a)
+        $li.append($a) // draw in html
         $ul.append($li)
 
     })
@@ -82,10 +81,12 @@ function listArtist(artists) {
 
 function listAlbums(albums) {
 
-    $ulAlbums.empty()
+    $ulAlbums.empty() // empty the list
 
-    albums.forEach(album => {
+    albums.forEach(album => { // loop iteration throw response ajax
 
+        $liAlbums = $('<li>') // create li,img,a
+        $liAlbums.addClass('list-group-item media')
         $imgAlbums = $(`<img class='img-circle'/>`)
         $imgAlbums.attr('src', '' + album.images[2].url + '')
         $aAlbums = $(`<a href="#">${album.name}</a>`)
@@ -97,8 +98,10 @@ function listAlbums(albums) {
             $h4Track.text(album.name)
             $tracks.show()
             $audioTrack.attr('src', '')
+            $player.hide()
+            $pPlayer.hide()
 
-            logic.searchTracks(idAlbum)
+            logic.searchTracks(idAlbum) // send id of album to logic
                 .then((tracks) => {
                     listTracks(tracks)
                 })
@@ -106,9 +109,7 @@ function listAlbums(albums) {
 
         })
 
-        $liAlbums = $('<li>')
-        $liAlbums.addClass('list-group-item media')
-        $liAlbums.append($imgAlbums)
+        $liAlbums.append($imgAlbums) // draw in html
         $liAlbums.append($aAlbums)
         $ulAlbums.append($liAlbums)
 
@@ -121,8 +122,7 @@ function listTracks(tracks) {
 
     $ulTracks.empty()
 
-
-    tracks.forEach(track => {
+    tracks.forEach(track => { // loop iteration throw response ajax
 
         $aTracks = $(`<a href="#">${track.name}</a>`)
 
@@ -133,13 +133,12 @@ function listTracks(tracks) {
             $h5Track.text(track.name)
             let trackPlaying = track.preview_url
 
-                !trackPlaying ? nullPreviewTrack() : $audioTrack.attr('src', '' + trackPlaying + '')
+                !trackPlaying ? nullPreviewTrack() : $audioTrack.attr('src', '' + trackPlaying + '') //assign preview url to audio tag
 
         })
-
-        $liTracks = $('<li>')
+        $liTracks = $('<li>') //create li
         $liTracks.addClass('list-group-item')
-        $liTracks.append($aTracks)
+        $liTracks.append($aTracks) //draw to html
         $ulTracks.append($liTracks)
 
     })
