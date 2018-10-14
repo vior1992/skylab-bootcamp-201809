@@ -1,7 +1,6 @@
 const PLAYER = document.querySelector('#player');
 const PLAY = document.querySelector('#play');
-const PREV = document.querySelector('#prev');
-const NEXT = document.querySelector('#next');
+const STOP = document.querySelector('#stop');
 const PROGRESS = document.querySelector('#progress');
 const TIME_AHEAD = document.querySelector('#time-ahead');
 const TIME_LEFT = document.querySelector('#time-left');
@@ -14,6 +13,20 @@ function secondsToTime(time) {
 
 PLAY.addEventListener('click', function() {
     PLAYER.paused ? PLAYER.play() : PLAYER.pause();
+});
+
+STOP.addEventListener('click', function() {
+    PLAYER.pause();
+    PLAYER.removeAttribute('src');
+    TIME_AHEAD.innerHTML = '-:--';
+    TIME_LEFT.innerHTML = '-:--';
+    PROGRESS.style.width = 0;
+
+    $(footer.current).html('');
+    search.show('flex');
+    artists.hide();
+    albums.hide();
+    tracks.hide();
 });
 
 PLAYER.addEventListener('timeupdate', function() {

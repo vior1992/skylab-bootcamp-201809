@@ -182,20 +182,6 @@ body {
 
             &__button {
                 @extend %button;
-
-                &--sm {
-                    width: 45px;
-                    height: 45px;
-                    font-size: 22px;
-                    line-height: 37px;
-                }
-
-                &--xs {
-                    width: 30px;
-                    height: 30px;
-                    font-size: 16px;
-                    line-height: 22px;
-                }
             }
         }
 

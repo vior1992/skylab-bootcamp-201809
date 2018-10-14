@@ -30,6 +30,7 @@ const artists = new Artists('Artists', 'section', function(id, name, image) {
 const albums = new Albums('Albums', 'section', function(id, name, image) {
     album_name = name;
     album_image = image;
+    $(tracks.title).html(album_name);
     LOGIC.albumTracks(id, album_image, function() {
         tracks.show('flex');
         albums.hide();

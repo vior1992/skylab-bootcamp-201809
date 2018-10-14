@@ -22,23 +22,17 @@ class Footer extends Component {
         $(this.control).addClass('control');
         $(this.element).append(this.control);
 
-        this.prev = document.createElement('button');
-        $(this.prev).attr('id', 'prev');
-        $(this.prev).addClass('control__button control__button--sm');
-        $(this.prev).html('<');
-        $(this.control).append(this.prev);
-
         this.play = document.createElement('button');
         $(this.play).attr('id', 'play');
         $(this.play).addClass('control__button');
         $(this.play).html('P');
         $(this.control).append(this.play);
 
-        this.next = document.createElement('button');
-        $(this.next).attr('id', 'next');
-        $(this.next).addClass('control__button control__button--sm');
-        $(this.next).html('>');
-        $(this.control).append(this.next);
+        this.stop = document.createElement('button');
+        $(this.stop).attr('id', 'stop');
+        $(this.stop).addClass('control__button');
+        $(this.stop).html('S');
+        $(this.control).append(this.stop);
 
         // player section
         this.player = document.createElement('section');
