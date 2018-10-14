@@ -1,4 +1,4 @@
-var search = new Search('Search', 'section', 'search')
+var search = new Search('h1', 'section', 'search')
 
 $(document.body).append(search.element);
 

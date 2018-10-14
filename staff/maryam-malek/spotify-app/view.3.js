@@ -1,16 +1,16 @@
-var artists = new List('h2', 'section', 'artists')
+var artists = new List('Possible artists', 'section', 'artists')
 
 $(document.body).append(artists.element);
 
-var albums = new List('h3', 'section', 'albums')
+var albums = new List('Albums', 'section', 'albums')
 
 $(document.body).append(albums.element);
 
-var songs = new List('h4', 'section', 'songs')
+var songs = new List('Songs', 'section', 'songs')
 
 $(document.body).append(songs.element);
 
-var player = new Player('h5', 'section', 'player')
+var player = new Player('Player', 'section', 'player')
 
 $(document.body).append(player.element);
 
@@ -32,11 +32,7 @@ function listArtist(artists) {
     $albums.hide()
     $songs.hide()
     $player.hide()
-    const $titleArt = $artists.find('.panel__title')
-    $titleArt.text('Artists with that name')
     const $divArt = $artists.find('.dropdown-menu')
-    const $btnArt = $artists.find('button')
-    $btnArt.text('Show artists')
 
     $divArt.empty()
     if(artists.artists.total === 0) {
@@ -56,12 +52,12 @@ function listArtist(artists) {
                 $player.hide()
                 const $h3 = $albums.find('h3')
                 $h3.text(`${artist.name}`)
+                console.log(artist)
                 const id = artist.id
-                var name = artist.name
                 var img = artist.images[2].url
                 logic.listAlbums(id)
                     .then(albums => {
-                        showAlbums(albums, name, img)
+                        showAlbums(albums, img)
                     })
                     .catch(console.error)
             })
@@ -71,13 +67,9 @@ function listArtist(artists) {
     }
 }
 
-function showAlbums(albums, name, img) {
-    const $titleAlb = $albums.find('.panel__title')
-    $titleAlb.text(name)
+function showAlbums(albums, img) {
     const $divAlb = $albums.find('.dropdown-menu')
     $divAlb.empty()
-    const $btnAlb = $albums.find('button')
-    $btnAlb.text('Show albums')
     var $img = $albums.find('img')
     $img.attr('src', img)
     var _albums = albums.items
@@ -91,12 +83,11 @@ function showAlbums(albums, name, img) {
             $h4Sng = $songs.find('h4')
             $h4Sng.text(`${album.name}`)
             const idAlb = album.id
-            var name = album.name
             var img = album.images[2].url
 
             logic.listSongs(idAlb)
                 .then(songs => {
-                    showSongs(songs, name, img)
+                    showSongs(songs, img)
                 })
                 .catch(console.error)
         })
@@ -106,44 +97,36 @@ function showAlbums(albums, name, img) {
 
 } 
 
-function showSongs(songs, name, img) {
-    const $titleSng = $songs.find('.panel__title')
-    $titleSng.text(name)
+function showSongs(songs, img) {
     const $divSng = $songs.find('.dropdown-menu')
     $divSng.empty()
-    const $btnSng = $songs.find('button')
-    $btnSng.text('Show songs')
     var $img = $songs.find('img')
     $img.attr('src', img)
+    console.log(songs)
     var _songs = songs.items
     _songs.forEach(song => {
         const $aSng = $(`<a href="#">${song.name}</a>`)
         $aSng.addClass('dropdown-item');
 
         $aSng.click(() => {
+            console.log(song)
             $player.show()
             $h5 = $player.find('h5')
             $h5.text(`${song.name}`)
-            playSong(song, song.name)
+            playSong(song)
         })
 
         $divSng.append($aSng)
     })
 }
 
-function playSong(song, name){
-    // $player.empty()
-    const $titlePlayer = $player.find('.panel__title')
-    $titlePlayer.text(name)
+function playSong(song){
     const $audio = $player.find('audio')
     $audio.empty()
-    const $p = $('<p>')
-    $p.empty()
     console.log(song)
     const idPly = song.preview_url
     if(idPly === null) {
-        $audio.hide()
-        $p.text('Sorry but audio is notavailable for this song')
+        const $p = $('<p>Sorry but audio is notavailable for this song<p>')
         $player.append($p)
     }else{ 
         $audio.attr('src', '' +idPly+'')

@@ -1,16 +1,28 @@
 function Component(tag) {
     this.element = $('<' + tag + '>');
-
+    
 }
 
-function Panel(titileTag, tag, classN) {
+// Component.prototype.show = function () {
+//     //this.element.style.display = 'block';
+//     $(this.element).css('display', 'block');
+// };
+
+// Component.prototype.hide = function () {
+//     //this.element.style.display = 'none';
+//     $(this.element).css('display', 'none');
+
+// };
+
+function Panel(title, tag, classN) {
     Component.call(this, tag);
 
     $(this.element).addClass(classN);
-    $(this.element).addClass('panel bg-light text-dark');
+    $(this.element).addClass('panel');
     $(this.element).addClass('container-fluid');
 
-    this.title = $('<'+titileTag+'>');
+    this.title = $('<h2>');
+    $(this.title).text(title);
     $(this.title).addClass('panel__title');
 
     $(this.element).append(this.title);
@@ -19,8 +31,8 @@ function Panel(titileTag, tag, classN) {
 Panel.prototype = Object.create(Component.prototype);
 Panel.prototype.constructor = Panel;
 
-function List(titileTag, tag, classN) {
-    Panel.call(this, titileTag, tag, classN);
+function List(title, tag, classN) {
+    Panel.call(this, title, tag, classN);
 
     $(this.title).addClass('list__title');
 
@@ -39,7 +51,7 @@ function List(titileTag, tag, classN) {
     $(this.titleBtn).attr('aria-expanded', 'false');
 
     $(this.titleBtn).addClass('btn btn-outline-info mb-2 dropdown-toggle');
-    // $(this.titleBtn).text('Show');
+    $(this.titleBtn).text('Show');
     $(this.div).append(this.titleBtn);
 
     this.body = $('<div>');
@@ -50,39 +62,31 @@ function List(titileTag, tag, classN) {
 List.prototype = Object.create(Panel.prototype);
 List.prototype.constructor = List;
 
-function Search(titileTag, tag, classN) {
-    Panel.call(this, titileTag, tag, classN);
+function Search(title, tag, classN) {
+    Panel.call(this, title, tag, classN);
 
-    this.nav = $('<nav>');
-    $(this.nav).addClass('navbar navbar-light bg-light');
 
-    $(this.title).addClass('navbar-brand');
-    $(this.title).text('Spotify App 🎧');
-    $(this.nav).append(this.title);
+    $(this.title).addClass('search__title');
 
     $(this.body).addClass('list__body');
 
     this.form = $('<form>');
-    $(this.form).addClass('form-inline');
 
     this.input = $('<input>');
     $(this.input).attr('type', 'text')
-    $(this.input).addClass('form-control mr-sm-2');
 
     $(this.form).append(this.input);
 
     this.searchBtn = $('<button>');
     $(this.searchBtn).attr('type', 'submit');
-    $(this.searchBtn).addClass('btn btn-outline-info mr-sm-2');
+    $(this.searchBtn).addClass('btn btn-outline-info mb-2 ml-2');
     $(this.searchBtn).text('Search');
 
     $(this.form).append(this.searchBtn);
 
     $(this.searchBtn).addClass('search__button');
 
-    $(this.nav).append(this.form);
-    $(this.element).append(this.nav);
-
+    $(this.element).append(this.form);
 
 
 }
@@ -90,8 +94,8 @@ function Search(titileTag, tag, classN) {
 Search.prototype = Object.create(Panel.prototype);
 Search.prototype.constructor = Search;
 
-function Player(titileTag, tag, classN) {
-    Panel.call(this, titileTag, tag, classN);
+function Player(title, tag, classN) {
+    Panel.call(this, title, tag, classN);
 
     $(this.title).addClass('player__title');
 
