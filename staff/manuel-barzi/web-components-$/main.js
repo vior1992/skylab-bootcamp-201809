@@ -1,3 +1,5 @@
+// TODO translate to $
+
 var panel = new Panel('hola mundo', 'section');
 
 document.body.appendChild(panel.element);
