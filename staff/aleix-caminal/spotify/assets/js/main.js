@@ -35,7 +35,7 @@ const albums = new Albums('Albums', 'section', function(album) {
 
 const tracks = new Tracks('Songs', 'section', function(track) {
     $('#player').attr("src", track);
-    //$('#player').play();
+    footer.printCurrent('assets/img/placeholder.png', 'Chains', 'Alice', 'God am');
 });
 
 $(main.element).append(search.element);

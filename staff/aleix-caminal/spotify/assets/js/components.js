@@ -69,16 +69,38 @@ class Footer extends Component {
         $(this.left).html('-:--');
         $(this.player).append(this.left);
 
-        /* <section class="current-song">
-            <div class="current-song__image">
-                <div style="background-image: url('assets/img/cityofevil.jpg')"></div>
-            </div>
-            <div class="current-song__text">
-                <h1>Blinded in Chains</h1>
-                <p>Avenged Sevenfold Avenged Sevenfold</p>
-                <p>City of Evil</p>
-            </div>
-        </section> */
+        // current song
+        this.current = document.createElement('section');
+        $(this.current).addClass('current-song');
+        $(this.element).append(this.current);
+    }
+
+    printCurrent(image, track, artist, album) {
+        $(this.current).html('');
+
+        this.wrapper = document.createElement('div');
+        $(this.wrapper).addClass('current-song__image');
+        $(this.current).append(this.wrapper);
+
+        this.image = document.createElement('div');
+        $(this.image).css('background-image', 'url(' + image + ')');
+        $(this.wrapper).append(this.image);
+
+        this.text = document.createElement('div');
+        $(this.text).addClass('current-song__text');
+        $(this.current).append(this.text);
+
+        this.track = document.createElement('h1');
+        $(this.track).html(track);
+        $(this.text).append(this.track);
+
+        this.artist = document.createElement('p');
+        $(this.artist).html(album);
+        $(this.text).append(this.artist);
+
+        this.album = document.createElement('p');
+        $(this.album).html(artist);
+        $(this.text).append(this.album);
     }
 }
 

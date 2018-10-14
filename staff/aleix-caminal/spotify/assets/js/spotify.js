@@ -9,7 +9,7 @@ class Spotify {
     }
 
     getAccessToken() {
-        return 'BQBj6xEHZgN9YKDcNY1qS24B8KSPU7sq_QMZGo_rHsud0lsjmB66_9pMFrLHvI-TLXGrQRHKA4eIKXKB6imU5SDIRyTh1HXnaECbz1w1j2pTcOtfRW-BWIFtHH1r6mTTRUaWu4lqe79-FH8';
+        return 'BQAeCnEjhl0bVeB-gdISYVXdtsy5s6RnOVhSpe4-661nSLTyOIXSNPURBSQ_A2WPfSC-Evp8bzipYP93-htOugwEQJ4s5-iEShUQVUSmz2UyvgA4AH43M4rmP2pkfpjlomwdSMKCoVjs8WM';
         /* return new Promise((resolve, reject) => {
             $.ajax({
                 method: "POST",
