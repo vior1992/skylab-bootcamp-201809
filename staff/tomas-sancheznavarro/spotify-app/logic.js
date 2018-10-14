@@ -1,5 +1,11 @@
+var token = 'BQDZQF7M04jOxq1dR3BoS0il6i3hTyXxwssFLfd1JHFPYholre3fAaupvubes6d58bAvnPn8Tv8e7DYgpZWxazxYfwP144R392WbssK4rD-PWT7rbatJ1uZjpME37pplA0GCJilk05k'
+
 const logic = {
     searchArtists(query) {
+
+        if (typeof query !== 'string') throw TypeError(`${query} is not a string`)
+        if (!query.trim().length) throw Error(`query is empty or blank`)
+
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
@@ -15,8 +21,6 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
 
-            var token = 'BQAAOqEg0Fc95X_CE0WPnTE-doEQAUVJYv9tNc75jyGPRINQLGsJyokBpMSgFLHdgJOFiJVJFntWmytr3P5LDeXLFxoxBZ-Xco0oC5UwFQucQ7tJgt5lq4Zf5hDCQZ7OuAhQRnaSMTU'
-
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
             xhr.send()
@@ -24,6 +28,9 @@ const logic = {
     },
 
     searchAlbums(id) {
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if (!id.trim().length) throw Error(`query is empty or blank`)
+
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
@@ -40,8 +47,6 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/artists/' + id + '/albums')
 
-            var token = 'BQAAOqEg0Fc95X_CE0WPnTE-doEQAUVJYv9tNc75jyGPRINQLGsJyokBpMSgFLHdgJOFiJVJFntWmytr3P5LDeXLFxoxBZ-Xco0oC5UwFQucQ7tJgt5lq4Zf5hDCQZ7OuAhQRnaSMTU'
-
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
             xhr.send()
@@ -50,6 +55,9 @@ const logic = {
     },
 
     searchSongs(id) {
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if (!id.trim().length) throw Error(`query is empty or blank`)
+
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
 
@@ -67,12 +75,9 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/albums/' + id + '/tracks')
 
-            var token = 'BQAAOqEg0Fc95X_CE0WPnTE-doEQAUVJYv9tNc75jyGPRINQLGsJyokBpMSgFLHdgJOFiJVJFntWmytr3P5LDeXLFxoxBZ-Xco0oC5UwFQucQ7tJgt5lq4Zf5hDCQZ7OuAhQRnaSMTU'
-
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
             xhr.send()
         })
-        // TODO
     }
 }
