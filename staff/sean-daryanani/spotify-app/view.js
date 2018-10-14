@@ -124,7 +124,7 @@ const view = {
         $h5_trackInfo.text(trackName)
         $audioTrack.attr('src', '' + trackAudio.preview_url + '')
         
-        test.attr('src', albumImg)
+        albumCover.attr('src', albumImg)
 
     },
 

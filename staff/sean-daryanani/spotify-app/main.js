@@ -5,7 +5,7 @@ const $tracks = $('.tracks')
 const $trackInfo = $('.trackInfo')
 const $audioTrack = $trackInfo.find('audio')
 const $form = $('form')
-let test = $('.album-img')
+let albumCover = $('.album-img')
 view.hideEverything()
 
 $form.submit(event => {
