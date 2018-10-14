@@ -21,13 +21,19 @@ var logic = {
     },
 
     login: function (username, password, onSuccess, onFail) {
-        if (!username || !username.trim().length) onFail('invalid username');
-        else if (!password || !password.trim().length) onFail('invalid password');
+        if (typeof username != 'string' || !username || !username.trim().length) onFail('invalid username');
+        else if (typeof password != 'string' || !password || !password.trim().length) onFail('invalid password');
+        else if (typeof onSuccess !== 'function') throw TypeError(onSuccess + ' is not a function');
+        else if (typeof onFail !== 'function') throw TypeError(onFail + ' is not a function');
         else if (user) {
             if (user.username === username && user.password === password) {
-                onSuccess(user);
+                onSuccess({
+                    name: user.name,
+                    surname: user.surname,
+                    username: user.username
+                });
             }
-            else onFail('wrong credentials!');
+            else onFail('wrong credentials');
         }
     }
 };
