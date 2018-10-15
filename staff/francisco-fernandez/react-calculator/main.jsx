@@ -1,5 +1,5 @@
 function Button(props) {
-    return <button onClick={() => props.onClick(props.operation)}>{props.operation}</button>
+    return <button class="btn btn-outline-secondary" onClick={() => props.onClick(props.operation)}>{props.operation}</button>
 }
 
 class App extends React.Component {
@@ -43,16 +43,26 @@ class App extends React.Component {
 
     render() {
         return <div>
-            <input value={this.state.numberA} type="number" onChange={this.keepNumberA} tabIndex="0" />
-
+            <div class="container">
+            
+            <input class="number" value={this.state.numberA} type="number" onChange={this.keepNumberA} tabIndex="0" />
+            <p class="font-weight-bold">Number 1</p>
+            
+            <input class="number" value={this.state.numberB} type="number" onChange={this.keepNumberB} tabIndex="1" />
+            <p class="font-weight-bold">Number 2</p>
+            
             <Button operation="+" onClick={this.operate}></Button>
             <Button operation="-" onClick={this.operate}></Button>
             <Button operation="*" onClick={this.operate}></Button>
             <Button operation="/" onClick={this.operate}></Button>
+            <p class="font-weight-bold">Operation</p>
 
-            <input value={this.state.numberB} type="number" onChange={this.keepNumberB} tabIndex="1" />
+            <input class="number" value={this.state.result} type="result" disabled />
+            <p class="font-weight-bold">Result</p>
 
-            =<input value={this.state.result} type="result" disabled />
+            </div>
+
+            
         </div>
     }
 }
