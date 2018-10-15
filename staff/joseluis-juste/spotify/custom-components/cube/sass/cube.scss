@@ -32,36 +32,36 @@
   
   #cube .back {
     //background: hsla(0, 100%, 50%, 0.5);
-    background:black;
+    background: rgba(0,0,0,0.9);
     transform: rotateX(0deg) translateZ(-300px);
   }
   
   #cube .left {
     //background: hsla(60, 100%, 50%, 0.5);
-    background:black;
+    background: rgba(0,0,0,0.9);
     transform: rotateY(90deg) translateZ(-300px);
   }
   
   #cube .bottom {
    // background: hsla(120, 100%, 50%, 0.5);
-   background:black;
+   background: rgba(0,0,0,0.9);
     transform: rotateX(90deg) translateZ(-300px);
   }
   
   #cube .front {
    // background: hsla(180, 100%, 50%, 0.5);
-   background:black;
+   background: rgba(0,0,0,0.9);
     transform: rotateX(0deg) translateZ(300px);
   }
   
   #cube .right {
     //background: hsla(240, 100%, 50%, 0.5);
-    background:black;
+    background: rgba(0,0,0,0.9);
     transform: rotateY(90deg) translateZ(300px);
   }
   
   #cube .top {
     //background: hsla(300, 100%, 50%, 0.5);
-    background:black;
+    background: rgba(0,0,0,0.9);
     transform: rotateX(90deg) translateZ(300px);
   }
