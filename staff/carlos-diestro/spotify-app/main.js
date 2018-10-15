@@ -4,6 +4,8 @@ let $artists = $(".artists")
 let $albums = $(".albums")
 let $tracks = $(".tracks")
 let $player = $(".player")
+let currentArtist
+let currentAlbum
 
 $form.submit(event => {
   event.preventDefault()
@@ -39,7 +41,7 @@ function listArtist(artists) {
 
   artists.forEach(artist => {
     let id = artist.id
-    let image = (artist.images.length ? artist.images[1].url : "https://dummyimage.com/320x320/d6d6d6/000")
+    let image = (artist.images.length ? artist.images[1].url : "https://dummyimage.com/320x320/d6d6d6/000&text=+")
     let name = artist.name
     
     const $artist = $(`<div data-id="${id}" class="artist col-sm-3 py-3 text-center">
@@ -47,8 +49,10 @@ function listArtist(artists) {
                         <h6>${name}</h6>
                       </div>`)
 
-    $artist.click(() => {
+    $artist.click((event) => {
       const id = $artist.data("id")
+      console.log(event)
+      currentArtist = $(event.currentTarget).find("h6").text()
 
       logic.listAlbums(id)
         .then(response => {
@@ -62,13 +66,15 @@ function listArtist(artists) {
 }
 
 function listAlbums(albums) {
+  console.log(albums)
+
   if ($albums.length) $albums.remove()
   
   $artists.hide()
 
   $albums = $(`<section class="albums row justify-content-sm-center">
                         <div class="col-sm-12 col-md-8 py-3 text-center">
-                          <h2>Albums</h2>
+                          <h2>${currentArtist} > Albums</h2>
                           <a class="artists-back" href="#">Back</a>
                           <div class="album-list row"></div>
                         </div>
@@ -98,6 +104,7 @@ function listAlbums(albums) {
 
     $album.click(() => {
       const id = $album.data("id")
+      currentAlbum = $(event.currentTarget).find("h6").text()
 
       logic.listTracks(id)
         .then(response => {
@@ -111,13 +118,15 @@ function listAlbums(albums) {
 }
 
 function listTracks(tracks) {
+  console.log(tracks)
+
   if ($tracks.length) $tracks.remove()
   
   $albums.hide()
 
   $tracks = $(`<section class="tracks row justify-content-sm-center">
                         <div class="col-sm-12 col-md-8 py-3 text-center">
-                          <h2>Tracks</h2>
+                          <h2>${currentArtist} > ${currentAlbum} > Tracks</h2>
                           <a class="albums-back" href="#">Back</a>
                           <div class="row">
                           <div class="track-list list-group list-group-flush w-100 text-left"></div>

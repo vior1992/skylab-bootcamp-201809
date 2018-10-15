@@ -32,6 +32,17 @@ describe("logic", () => {
           expect(response.items.length).toBeGreaterThan(0)
         })
     })
+
+    it("should fail on searching empty id album", () => {
+      var query = ""
+
+      expect(function () {
+        return logic.listAlbums(query)
+          .then(response => {
+            throw Error("expected to fail")
+          })
+      }).toThrowError(TypeError, ' is empty or blank');
+    })
   })
 
   describe("list tracks", () => {
@@ -43,6 +54,17 @@ describe("logic", () => {
           expect(response).toBeDefined()
           expect(response.items.length).toBeGreaterThan(0)
         })
+    })
+
+    it("should fail on searching empty id tracks", () => {
+      var id = ""
+  
+      expect(function () {
+        return logic.listTracks(id)
+          .then(response => {
+            throw Error("expected to fail")
+          })
+      }).toThrowError(TypeError, ' is empty or blank');
     })
   })
 })

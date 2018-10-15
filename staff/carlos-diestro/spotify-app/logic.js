@@ -1,5 +1,5 @@
 const logic = {
-  token: "BQC8awFxFJDHwtnGduiRNhUaUPF7sgtDFhBTysrsBqOftOAzyuDYGtX9txXrwSxBAc4y3Ix-WuFm5a5XMQN_Z9CpQqUUcDBYvBFgh-Xo6jTtPqNFz-IDzHrwS0pK4fAqt1jh-ECVhsUapWb3XHLOF0j292PoCSCYgA",
+  token: "BQBPkrtwK0HmSrCu-RCK2E653BKdbqSjbL6xUVVPdNxVWaTwRXlrgTw0xEyUPxDE20vNP92FFWm_9Mc3mDhoZcELonqTjmKRYSkZmLMxaH1qtPbWctFX4WUGBk-ksDp_rm8ueslen0k3sYPVX7RDQmCtJhr3n_EV_g",
 
   call(path) {
     return new Promise((resolve, reject) => {
@@ -7,6 +7,8 @@ const logic = {
 
       xhr.addEventListener("load", function () {
           var response = JSON.parse(xhr.responseText)
+
+          if(response.error) return reject(new Error(response.error.message))
 
           resolve(response)
       })

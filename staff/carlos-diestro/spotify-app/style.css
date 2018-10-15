@@ -2,6 +2,11 @@ body {
   background-color: #f4f4f4; 
 }
 
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 .artists h6 {
   margin: .5rem 0;
 }
