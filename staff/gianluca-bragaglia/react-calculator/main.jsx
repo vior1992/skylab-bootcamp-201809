@@ -1,6 +1,5 @@
 function Button(props) {
-    console.log(props);
-    
+
     return <button className="btn-primary" onClick={props.whenClick}>{props.operation}</button>
 }
 
