@@ -1,6 +1,5 @@
 function Button(props) {
-
-    return <button className="btn-primary" onClick={props.whenClick}>{props.operation}</button>
+    return <button onClick={() => props.onClick(props.operation)}>{props.operation}</button>
 }
 
 class App extends React.Component {
@@ -18,52 +17,40 @@ class App extends React.Component {
         this.setState({ numberB })
     }
 
-    add = () => {
-        const numberA = parseFloat(this.state.numberA)
-        const numberB = parseFloat(this.state.numberB)
+    operate = operation => {
+        const { numberA, numberB } = this.state
 
-        const result = numberA + numberB
+        const a = parseFloat(numberA), b = parseFloat(numberB)
 
-        this.setState({ result })
-    }
+        let result
 
-    subtract = () => {
-        const numberA = parseFloat(this.state.numberA)
-        const numberB = parseFloat(this.state.numberB)
-
-        const result = numberA - numberB
-
-        this.setState({ result })
-    }
-
-    multiply = () => {
-        const numberA = parseFloat(this.state.numberA)
-        const numberB = parseFloat(this.state.numberB)
-
-        const result = numberA * numberB
-
-        this.setState({ result })
-    }
-
-    divide = () => {
-        const numberA = parseFloat(this.state.numberA)
-        const numberB = parseFloat(this.state.numberB)
-
-        const result = numberA / numberB
+        switch (operation) {
+            case '+':
+                result = a + b
+                break
+            case '-':
+                result = a - b
+                break
+            case '*':
+                result = a * b
+                break
+            case '/':
+                result = a / b
+        }
 
         this.setState({ result })
     }
 
     render() {
-        return <div className="container">
-            <input value={this.state.numberA} type="number" onChange={this.keepNumberA} />
+        return <div>
+            <input value={this.state.numberA} type="number" onChange={this.keepNumberA} tabIndex="0" />
 
-            <Button operation="+" whenClick={this.add}></Button>
-            <Button operation="-" whenClick={this.subtract}></Button>
-            <Button operation="*" whenClick={this.multiply}></Button>
-            <Button operation="/" whenClick={this.divide}></Button>
+            <Button operation="+" onClick={this.operate}></Button>
+            <Button operation="-" onClick={this.operate}></Button>
+            <Button operation="*" onClick={this.operate}></Button>
+            <Button operation="/" onClick={this.operate}></Button>
 
-            <input value={this.state.numberB} type="number" onChange={this.keepNumberB} />
+            <input value={this.state.numberB} type="number" onChange={this.keepNumberB} tabIndex="1" />
 
             =<input value={this.state.result} type="result" disabled />
         </div>

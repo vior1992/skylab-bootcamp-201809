@@ -1,60 +1,60 @@
-const root = document.getElementById('root')
-
-function HelloWorld(props) {
-    return <h1>Hello, {props.name}!</h1>
-}
-
-class Button extends React.Component {
-    state = { status: 'Off' }
-
-    whenClicked = () => {
-        const status = this.state.status === 'Off' ? 'On' : 'Off'
-
-        this.setState({ status })
-
-        this.props.whenClicked()
-    }
-
-    render() {
-        return <button onClick={this.whenClicked}>{this.state.status}</button>
-    }
-}
-
-class X extends React.Component {
-    state = { message: 'button is off' }
-
-    whenClicked = () => {
-        const message = this.state.message === 'button is off' ? 'button is on' : 'button is off'
-
-        this.setState({ message })
-    }
-
-    render() {
-        return <section>
-            <Button whenClicked={this.whenClicked} />
-            <h2>{this.state.message}</h2>
-        </section>
-    }
+function Button(props) {
+    return <button onClick={() => props.onClick(props.operation)}>{props.operation}</button>
 }
 
 class App extends React.Component {
-    state = { messageStatus: true }
+    state = { numberA: '', numberB: '', result: '' }
 
-    switchMessageStatus = () => {
-        const messageStatus = !this.state.messageStatus
+    keepNumberA = event => {
+        const numberA = event.target.value
 
-        this.setState({ messageStatus })
+        this.setState({ numberA })
+    }
+
+    keepNumberB = event => {
+        const numberB = event.target.value
+
+        this.setState({ numberB })
+    }
+
+    operate = operation => {
+        const { numberA, numberB } = this.state
+
+        const a = parseFloat(numberA), b = parseFloat(numberB)
+
+        let result
+
+        switch (operation) {
+            case '+':
+                result = a + b
+                break
+            case '-':
+                result = a - b
+                break
+            case '*':
+                result = a * b
+                break
+            case '/':
+                result = a / b
+        }
+
+        this.setState({ result })
     }
 
     render() {
-        return <section>
-            <Button whenClicked={this.switchMessageStatus} />
+        return <div>
+            <input value={this.state.numberA} type="number" onChange={this.keepNumberA} tabIndex="0" />
 
-            {this.state.messageStatus && <HelloWorld name="Peter" />}
+            <Button operation="+" onClick={this.operate}></Button>
+            <Button operation="-" onClick={this.operate}></Button>
+            <Button operation="*" onClick={this.operate}></Button>
+            <Button operation="/" onClick={this.operate}></Button>
 
-            <X />
-        </section>
+            <input value={this.state.numberB} type="number" onChange={this.keepNumberB} tabIndex="1" />
+
+            =<input value={this.state.result} type="result" disabled />
+        </div>
     }
 }
 
-ReactDOM.render(<App />, root)
+ReactDOM.render(<App />, document.getElementById('root'))
