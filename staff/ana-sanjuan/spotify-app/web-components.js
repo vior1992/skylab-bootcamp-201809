@@ -1,17 +1,17 @@
 function Component() {
-    this.element = $('<section>');
+    this.$element = $('<section>');
 }
 
 Component.prototype.show = function () {
-    this.element.css('display', 'block');
+    this.$element.css('display', 'block');
 };
 
 Component.prototype.hide = function () {
-    this.element.css('display', 'none');
+    this.$element.css('display', 'none');
 };
 
 
-function Artists(artists) {
+function Panel(itemsToList, classForSection, title, htag) {
 
     Component.call(this)
 //listArtist(artists) {
@@ -23,29 +23,27 @@ function Artists(artists) {
     if($albums.css('display') !== 'none') $albums.hide()
 
 
+    this.$element.hide()
+    this.element.addClass(`.${classForSection}`);
 
-    // const $artists = $('.artists')
-    // $artists.hide()
-
-    this.element.addClass('.artists');
 
     this.$ul = this.element.find('ul')
-    this.$title = this.element.find('h2')
-    this.$title.text('Artist: ' + query)
+    this.$title = this.element.find(`${htag}`)
+    this.$title.text(title)
 
     this.$ul.empty()
 
 
-    artists.forEach(artist => {
-        let artistName = artist.name
-        const $a = $(`<a href="#">${artistName}</a>`)
+    itemsToList.forEach(item => {
+        let itemName = item.name
+        const $a = $(`<a href="#">${itemName}</a>`)
 
         $a.click(() => {
-            var id = artist.id
+            var id = item.id
             logic.searchAlbums(id)
                 .then(res => {
-                    var albums = res.items
-                    view.listAlbums(albums,artistName)
+                    var retornItem = res.items
+                    view.listAlbums(retornItem,itemName)
                 })
                 .catch(console.error)
         })
