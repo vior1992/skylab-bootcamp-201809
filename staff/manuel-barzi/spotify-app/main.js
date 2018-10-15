@@ -1,3 +1,5 @@
+logic.token = 'BQBbUCEqEyq3y9COLDJMceLQJt9h6UEi3NsDGNkZ-aFjUKYZZ6x_byNH-UeN3EUIOuayJwAnk5B0ZNzmOyjRs-Vikg0fv3934FUWZ1AqKehrsTrIku7xJivngwM5hwGEJ3m-rhHBYInvNsA'
+
 const $artists = $('.artists')
 
 $artists.hide()
