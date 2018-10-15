@@ -19,7 +19,6 @@ const search = new Search('Search Spotify', 'section', function() {
 const artists = new Artists('Artists', 'section', function(id, name, image) {
     artist_name = name;
     artist_image = image;
-    console.log(albums.title);
     $(albums.title).html(artist_name);
     LOGIC.artistAlbums(id, function() {
         albums.show('flex');
