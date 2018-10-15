@@ -1,3 +1,7 @@
+const $artists = $('.artists')
+const $albums = $('.albums')
+const $tracklist = $('.tracklist')
+const $player = $('.player')
 const $form = $('form')
 
 $form.submit(event => {

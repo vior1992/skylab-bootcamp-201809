@@ -1,13 +1,6 @@
-const $artists = $('.artists')
 $artists.hide()
-
-const $albums = $('.albums')
 $albums.hide()
-
-const $tracklist = $('.tracklist')
 $tracklist.hide()
-
-const $player = $('.player')
 $player.hide()
 
 function listArtist(artists) {

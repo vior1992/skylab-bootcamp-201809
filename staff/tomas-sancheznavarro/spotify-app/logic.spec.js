@@ -54,7 +54,7 @@ describe('logic', () => {
     })
 
     describe('list albums', () => {
-        it('should succeed on matching query', () => {
+        it('should succeed on matching id', () => {
             var id = '6tbjWDEIzxoDsBA1FuhfPW' // madonna
 
             return logic.searchAlbums(id)
@@ -65,7 +65,7 @@ describe('logic', () => {
                 })
         })
 
-        it('should fail on invalid query', () => {
+        it('should fail on invalid id', () => {
             expect(function () {
                 logic.searchAlbums(undefined);
             }).toThrowError(TypeError, 'undefined is not a string');
@@ -109,7 +109,7 @@ describe('logic', () => {
     })
 
     describe('list songs', () => {
-        it('should succeed on matching query', () => {
+        it('should succeed on matching id', () => {
             var id = '0m6B5ZF9TTOR0mkxVH3DWz' // tom petty
 
             return logic.searchSongs(id)
