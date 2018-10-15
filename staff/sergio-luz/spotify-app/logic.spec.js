@@ -1,4 +1,9 @@
 describe('logic', () => {
+
+    beforeEach(() => {
+        logic.token = 'BQAR-b7FRAXj3UWwyQgjY-RmG3Z_Ts1znm7b6e9s0LYay8pgZhSTbm-75TtCCLbViOe0WlxAgfzBWAnZaVLDD5AgewesIonvrYXMxgTQxuSiZ3QvOC9vvRHHxvqQNTJB8rG125Gnhn0'
+    })
+
     describe('search artists', () => {
         it('should succeed on matching query', () => {
             var query = 'jackson'
@@ -10,6 +15,14 @@ describe('logic', () => {
                     expect(arr.artists.items.length).toBeGreaterThan(0)
                 })
         })
+        // 
+        //         
+        // 
+        //  COMPROBAR QUE INDICA CORRECTAMENTE QUE EL TOKEN ESTÁ CADUCADO
+        // 
+        // 
+        // 
+        //         
 
         it('should fail on invalid query (undefined)', () => {
             var query = undefined
