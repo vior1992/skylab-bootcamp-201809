@@ -20,23 +20,6 @@ class Button extends React.Component {
     }
 }
 
-class X extends React.Component {
-    state = { message: 'button is off' }
-
-    whenClicked = () => {
-        const message = this.state.message === 'button is off' ? 'button is on' : 'button is off'
-
-        this.setState({ message })
-    }
-
-    render() {
-        return <section>
-            <Button whenClicked={this.whenClicked} />
-            <h2>{this.state.message}</h2>
-        </section>
-    }
-}
-
 class App extends React.Component {
     state = { messageStatus: true }
 
@@ -51,8 +34,6 @@ class App extends React.Component {
             <Button whenClicked={this.switchMessageStatus} />
 
             {this.state.messageStatus && <HelloWorld name="Peter" />}
-
-            <X />
         </section>
     }
 }
