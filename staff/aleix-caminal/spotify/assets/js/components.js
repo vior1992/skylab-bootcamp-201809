@@ -158,10 +158,10 @@ class Panel extends Component {
         $(this.image).css('background-image', 'url(' + image + ')');
         $(this.wrapper).append(this.image);
 
-        this.title = document.createElement('h4');
-        $(this.title).addClass('container__title');
-        $(this.title).html(item.name);
-        $(this.item).append(this.title);
+        this.name = document.createElement('h4');
+        $(this.name).addClass('container__title');
+        $(this.name).html(item.name);
+        $(this.item).append(this.name);
 
         if (item.artists) {
             this.small = document.createElement('small');

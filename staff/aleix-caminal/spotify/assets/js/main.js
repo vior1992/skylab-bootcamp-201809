@@ -19,6 +19,8 @@ const search = new Search('Search Spotify', 'section', function() {
 const artists = new Artists('Artists', 'section', function(id, name, image) {
     artist_name = name;
     artist_image = image;
+    console.log(albums.title);
+    $(albums.title).html(artist_name);
     LOGIC.artistAlbums(id, function() {
         albums.show('flex');
         artists.hide();
@@ -44,7 +46,7 @@ const tracks = new Tracks('Songs', 'section', function(url, name) {
     track_name = name;
     footer.printCurrent(album_image, track_name, artist_name, album_name);
     $(PLAYER).attr("src", url);
-    PLAYER.play()
+    PLAYER.play();
 });
 
 $(main.element).append(search.element);
