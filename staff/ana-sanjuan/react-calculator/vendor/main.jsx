@@ -7,7 +7,7 @@ function HelloWorld(props) {
 class Button extends React.Component {
     state = { status: 'Off' }
 
-    whenClicked = () => {
+    whenUClicked = () => {
         const status = this.state.status === 'Off' ? 'On' : 'Off'
 
         this.setState({ status })
@@ -16,7 +16,7 @@ class Button extends React.Component {
     }
 
     render() {
-        return <button onClick={this.whenClicked}>{this.state.status}</button>
+        return <button onClick={this.whenUClicked}>{this.state.status}</button>
     }
 }
 

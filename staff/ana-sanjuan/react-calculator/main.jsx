@@ -1,42 +1,63 @@
-function NumberOne () {
-    return <input type = 'number' />
+function Button(props) {
+    return <button onClick = {()=> props.buttonClick(props.operation)}> {props.operation}</button>
+
 }
 
-function NumberTwo () {
-    return <input type = 'number' />
-}
+class App extends React.Component{
 
-function Result () {
-    return <input/>
-}
+    state = { numberA: '', numberB: '', result: ''}
 
-class Button extends React.Component {
-    state = { }
+    keepNumberA = event =>{
+        const numberA = event.target.value
+        
+        this.setState({numberA})
+    }
 
-    whenClicked = () => {
+    keepNumberB = event => {
+        const numberB = event.target.value
 
-        this.setState({ status })
+        this.setState({ numberB })
+    }
 
-        this.props.whenClicked()
+    operate = operation => {
+        const { numberA, numberB } = this.state
+
+        const a = parseFloat(numberA), b = parseFloat(numberB)
+
+        let result
+
+        switch (operation) {
+            case '+':
+                result = a + b
+                break
+            case '-':
+                result = a - b
+                break
+            case '*':
+                result = a * b
+                break
+            case '/':
+                result = a / b
+        }
+
+        this.setState({ result })
     }
 
     render() {
-        return <button onClick={this.whenClicked}>{this.state.status}</button>
-    }
-}
+        return (
+        <section>  
+            <input value = {this.state.numberA} type="number" onChange={this.keepNumberA} tabIndex= "0" />
+            
+            <Button operation="+" buttonClick={this.operate}></Button>
+            <Button operation="-" buttonClick={this.operate}></Button>
+            <Button operation="*" buttonClick={this.operate}></Button>
+            <Button operation="/" buttonClick={this.operate}></Button>
 
+            <input value={this.state.numberB} type="number" onChange={this.keepNumberB} tabIndex="1" />
 
-
-class App extends React.Component {
-    state = {status}
-    
-    render() {
-        return <section>  
-            <NumberOne/>
-            <Button/>
-            <NumberTwo/>
-            <Result/>
+            =<input value={this.state.result} type="result" disabled />
         </section>
+        )
     }
 
 }
