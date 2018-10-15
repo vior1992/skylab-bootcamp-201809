@@ -1,75 +1,51 @@
-@import 'vendor/web-components/1.1.0/web-components.sass'
+/* TODO implement styles from here following BEM */
+body
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    height: 97vh
+    background-color: #026aa7
 
-$landing_color: skyblue
-$landing_title_color: white
-$landing_border-color: teal
+.dialog
+    display: flex 
+    flex-direction: column
+    align-content: center
+    align-items: center
+    text-align: center
+    min-width: 40vw
+    min-height: 30vh
+    border: 5px solid #000c1d 
 
-$register_color: gold
-$register_title_color: white
-$register_border-color: orange
-    
-$login_color: plum
-$login_title_color: white
-$login_border-color: purple
+form
+    display: flex
+    flex-direction: column
+    align-items: center
+    max-width: 200px
+    align-self: center
+    margin: 0 auto
 
-$welcome_color: LightSeaGreen
-$welcome_title_color: white
-$welcome_border-color: turquoise
+input
+    text-align: center
 
-.landing
-    @extend .panel
+button
+    background-image: -webkit-linear-gradient(top, #EC6C53 0%, #EC6C53 50%, #E95C41 50%, #E95C41 100%)
+    border: 1px solid #50514B
+    width: 14em
 
-    background-color: $landing_color
-    border-color: $landing_border-color
+.register-error__message
+    padding: 2px
+    color: #840000
+    font-weight: normal
+    border-bottom: 1px solid rgba(9,45,66,.13)
+    position: relative
 
+.dialog
+    background-color: #32373c
     &__title
-        color: $landing_title_color
-    
-    &__button
-        padding: 10px
-        border-radius: 10px
+        color: #000c1d
 
-.register
-    @extend .panel
-
-    background-color: $register_color
-    border-color: $register_border-color
-
-    &__title
-        color: $register_title_color
-    
-    &__button
-        padding: 10px
-        border-radius: 10px
-    
-    &__input
-        padding: 10px
-        border-radius: 10px
-        display: block
-
-.login
-    @extend .panel
-
-    background-color: $login_color
-    border-color: $login_border-color
-
-    &__title
-        color: $login_title_color
-    
-    &__button
-        padding: 10px
-        border-radius: 10px
-    
-    &__input
-        padding: 10px
-        border-radius: 10px
-        display: block
-
-.welcome
-    @extend .panel
-
-    background-color: $welcome_color
-    border-color: $welcome_border-color
-
-    &__title
-        color: $welcome_title_color
+.panel
+    color: #000c1d 
+    border: 5px solid #000c1d 
+    background-color: #32373c

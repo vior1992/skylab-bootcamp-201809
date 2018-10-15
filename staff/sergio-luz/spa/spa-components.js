@@ -1,154 +1,192 @@
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: LANDING 
+// 
+
 function Landing(title, tag, registerCallback, loginCallback) {
     Panel.call(this, title, tag);
+    // this.element.className = 'dialog';
 
-    this.element.className = 'landing';
+    this.div = document.createElement('div');
+    this.div.className = 'dialog';
+    this.element.appendChild(this.div);
 
-    this.title.className = 'landing__title';
+    this.title.className = 'dialog__title';
+    this.div.appendChild(this.title);
 
     this.register = document.createElement('button');
     this.register.innerText = 'Register';
+    this.register.type = 'button';
     this.register.addEventListener('click', registerCallback);
-    this.register.className = 'landing__button';
+    this.register.className = 'confirm__button';
+    this.div.appendChild(this.register);
 
-    this.element.appendChild(this.register);
-
-    this.element.appendChild(document.createTextNode(' or '));
+    this.div.appendChild(document.createTextNode(' or '));
 
     this.login = document.createElement('button');
     this.login.innerText = 'Login';
     this.login.addEventListener('click', loginCallback);
-    this.login.className = 'landing__button';
-
-    this.element.appendChild(this.login);
+    this.login.className = 'confirm__button';
+    this.div.appendChild(this.login);
 }
-
 Landing.prototype = Object.create(Panel.prototype);
 Landing.prototype.constructor = Landing;
-
-function Register(title, tag, registerCallback, backCallback) {
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: REGISTER
+// 
+function Register(title, tag, submitCallback) {
     Panel.call(this, title, tag);
-
-    this.element.className = 'register';
-
-    this.title.className = 'register__title';
-
-    this.hide();
+    this.element.style.display = 'none';
+    this.element.className = 'dialog';
+    this.title.className = 'dialog__title';
 
     this.form = document.createElement('form');
-    this.form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var name = this.name.value;
-        var surname = this.surname.value;
-        var username = this.username.value;
-        var password = this.password.value;
-
-        registerCallback(name, surname, username, password);
-    }.bind(this));
-
     this.element.appendChild(this.form);
 
     this.name = document.createElement('input');
-    this.name.className = 'register__input';
-    this.name.placeholder = 'name';
-
+    this.name.name = '_name';
+    this.name.value = 'name';
     this.form.appendChild(this.name);
 
     this.surname = document.createElement('input');
-    this.surname.className = 'register__input';
-    this.surname.placeholder = 'surname';
-
+    this.surname.name = '_surname';
+    this.surname.value = 'surname';
     this.form.appendChild(this.surname);
 
     this.username = document.createElement('input');
-    this.username.className = 'register__input';
-    this.username.placeholder = 'username';
-
+    this.username.name = '_username';
+    this.username.value = 'username';
     this.form.appendChild(this.username);
 
     this.password = document.createElement('input');
-    this.password.className = 'register__input';
+    this.password.name = '_password';
+    this.password.value = 'password';
     this.password.type = 'password';
-    this.password.placeholder = 'password';
-
     this.form.appendChild(this.password);
 
-    this.register = document.createElement('button');
-    this.register.innerText = 'Register';
-    this.register.className = 'register__button';
+    this.repeatPass = document.createElement('input');
+    this.repeatPass.name = '_repeatPass';
+    this.repeatPass.value = 'password';
+    this.repeatPass.type = 'password';
+    this.form.appendChild(this.repeatPass);
 
-    this.form.appendChild(this.register);
 
-    this.back = document.createElement('a');
-    this.back.href = '#';
-    this.back.innerText = 'Back';
-    this.back.addEventListener('click', backCallback);
+    var Result_Callback;
 
-    this.element.appendChild(this.back);
+    this.submit = document.createElement('button');
+    this.submit.innerText = 'Submit';
+    this.submit.type = 'button';
+    this.submit.addEventListener('click', function (event) {
+        event.preventDefault();
+        submitCallback();
+    });
+    this.submit.className = 'confirm__button';
+    this.form.appendChild(this.submit);
+
+    this.errors = document.createElement('p');
+    this.errors.innerText = '';
+    this.errors.name = 'errors_register';
+    this.element.appendChild(this.errors);
 }
-
 Register.prototype = Object.create(Panel.prototype);
 Register.prototype.constructor = Register;
 
-function Login(title, tag, loginCallback, backCallback) {
+function Register_Errors(tag) {
+    Panel_Errors.call(this, tag);
+    // this.element.style.display='none';
+    this.element.className = 'register-error__message';
+    this.element.display = 'block';
+
+    this.message = document.createElement(tag);
+    this.message.innerText = 'hola';
+    this.element.appendChild(this.message);
+}
+Register_Errors.prototype = Object.create(Panel.prototype);
+Register_Errors.prototype.constructor = Register_Errors;
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: LOGIN
+// 
+
+function Login(title, tag, login_Callback) {
     Panel.call(this, title, tag);
+    this.element.className = 'dialog';
+    this.title.className = 'dialog__title';
 
-    this.element.className = 'login';
-
-    this.title.className = 'login__title';
-
-    this.hide();
+    this.element.style.display = 'none';
 
     this.form = document.createElement('form');
-    this.form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var username = this.username.value;
-        var password = this.password.value;
-
-        loginCallback(username, password);
-    }.bind(this));
-
     this.element.appendChild(this.form);
 
     this.username = document.createElement('input');
-    this.username.className = 'login__input';
-    this.username.placeholder = 'username';
-
+    this.username.name = 'confirm_username';
+    this.username.value = 'username';
     this.form.appendChild(this.username);
 
     this.password = document.createElement('input');
-    this.password.className = 'login__input';
+    this.password.name = 'confirm_password';
+    this.password.value = 'password';
     this.password.type = 'password';
-    this.password.placeholder = 'password';
-
     this.form.appendChild(this.password);
 
     this.login = document.createElement('button');
+    this.login.type = 'button';
+    this.login.addEventListener('click', function (event) {
+        event.preventDefault();
+        login_Callback()
+    });
+    this.login.className = 'confirm__button';
     this.login.innerText = 'Login';
-    this.login.className = 'login__button';
-
     this.form.appendChild(this.login);
-
-    this.back = document.createElement('a');
-    this.back.href = '#';
-    this.back.innerText = 'Back';
-    this.back.addEventListener('click', backCallback);
-
-    this.element.appendChild(this.back);
 }
-
 Login.prototype = Object.create(Panel.prototype);
 Login.prototype.constructor = Login;
 
-function Welcome(title, tag) {
+function Login_Errors(title, tag, error_Callback) {
     Panel.call(this, title, tag);
 
-    this.element.className = 'welcome';
-    this.hide();
+    this.errors = document.createElement(tag);
+    this.errors.innerText = '';
+    this.errors.classList.add("errors_login");
+    this.errors.name = 'errors_login';
+    this.element.style.display = 'none';
+    this.element.className = 'dialog alert alert--danger';
+    this.title.className = 'alert__title--danger';
+    this.element.appendChild(this.errors);
 
-    this.title.className = 'welcome__title';
+
+    this.but = document.createElement('button');
+    this.but.type = 'button';
+    this.but.addEventListener('click', error_Callback);
+    this.but.innerText = 'Confirm';
+    this.but.className = 'confirm__button';
+    this.element.appendChild(this.but);
+
 }
+Login_Errors.prototype = Object.create(Panel.prototype);
+Login_Errors.prototype.constructor = Login_Errors;
+// 
+// LOGICA DE PRESENTACION DE LA PANTALLA: WELCOME
+// 
+function Welcome(title, tag, WelcomeCallback) {
+    Panel.call(this, title, tag);
+    this.element.className = 'dialog alert';
+    this.title.className = 'alert__title';
 
+    this.element.style.display = 'none';
+
+    this.but = document.createElement('button');
+    this.but.type = 'button';
+    this.but.addEventListener('click', WelcomeCallback);
+    this.but.innerText = 'Confirm';
+    this.but.className = 'confirm__button';
+    this.element.appendChild(this.but);
+}
 Welcome.prototype = Object.create(Panel.prototype);
 Welcome.prototype.constructor = Welcome;
+
+//
+// LOGICA DE CREACION DE PANEL DE ERRORES
+//
+function Panel_Errors(tag) {
+    Component.call(this, tag);
+    this.element.className = 'panel';
+}
