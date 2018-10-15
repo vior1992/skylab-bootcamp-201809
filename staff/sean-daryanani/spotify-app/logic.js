@@ -16,7 +16,7 @@ const logic = {
 
             xhr.open('get', path)
 
-            var token = 'BQCUIIMCB-rVcVKZgmpeRddkbpaCNhLJtUJ4FY2I7VTut2-DVazDpDnSrTt_u0J00uQTYJN6fFifv0T8XLXhnBYm6Ik8ozIMP4cAGjih4inv1Tin3ImEbKNogEmj1ABf2JE5SzH6yaZKyek'
+            var token = 'BQD83yhpj2J0NwlQ6YZJsbvxCMohFK6C6Mvz67toZPKAx0_-eO3_27B_NgldCS9b6z9oKSlU8OU47JWmW-PWjDb97EuHCdKYBlxVZOqHTXXOra6zrNaSTGcT0eDqD5wBQbYCClFD3Dn8RBQ'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
