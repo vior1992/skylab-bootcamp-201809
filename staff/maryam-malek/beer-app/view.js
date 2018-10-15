@@ -36,7 +36,7 @@ var view = {
                     logic.retrieveBeer(beer.id)
                      .then(this.detailBeer.bind(this))
                      .catch(this.detailBeer.bind(this))
-                })
+                }.bind(this))
 
             }.bind(this));
 

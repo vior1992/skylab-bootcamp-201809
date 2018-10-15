@@ -9,6 +9,8 @@ form.addEventListener('submit', function (event) {
 
     var listBeers = view.listBeers;
     
-    logic.search(query, listBeers.bind(view));
+    logic.search(query)
+        .then(listBeers.bind(view))
+        .catch(listBeers.bind(view))
 });
 

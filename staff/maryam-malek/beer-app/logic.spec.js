@@ -82,7 +82,9 @@ describe('logic', function(){
         });
     });
     describe('retrieveBeer', function(){
-
+        it('should succeed on matching id', function(){
+            
+        });
     });
 });
 
