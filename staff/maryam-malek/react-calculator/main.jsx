@@ -1,97 +1,53 @@
 const root = document.getElementById('root')
 
-class Input extends React.Component {
-    getInitialState = () => {
-        return {
-          inputValue: ''
-        };
-        
-    } 
-     
-    render() {
-        return (
-          <input value={this.state.inputValue} onChange={this.updateInputValue}/>
-        );
-      }
-    
-    updateInputValue (event) {
-        this.setState({
-          inputValue: event.target.value
-        });
-    }
-    
+function Button (props) {
+    return <button onClick={()=>props.operate(props.operation)}>{props.operation}</button>
 }
 
-class In extends React.Component {
-    getInitialState = () => {
-        return {
-          inputValue: ''
-        };
-        
-    } 
-     
-    render() {
-        return (
-          <input value={this.state.inputValue} onChange={this.updateInputValue}/>
-        );
-      }
-    
-    updateInputValue (event) {
-        this.setState({
-          inputValue: event.target.value
-        });
-    }
-    
-}
-
-class Button extends React.Component {
-
-    render() {
-
-    }
-}
-
-class Plus extends React.Component {
-
-    render() {
-        return
-        <Button/>
-    }
-}
-class Minus extends React.Component {
-
-    render() {
-        return
-        <Button/>
-    }
-}
-class X extends React.Component {
-
-    render() {
-        return
-        <Button/>
-    }
-}
-class Div extends React.Component {
-
-    render() {
-        return
-        <Button/>
-    }
-}
 
 class App extends React.Component {
+
+    state = {numA: '', numB: '', result: ''}
+
+    getNumA = event => {
+        const numA = event.target.value 
+        this.setState({numA})
+    }
+    getNumB = event => {
+        const numB = event.target.value 
+        this.setState({numB})
+    }
+    operate = operation => {
+        const {numA, numB} = this.state
+        const a = parseFloat(numA), b = parseFloat(numB)
+        let result
+
+        switch (operation) {
+            case '+':
+                result = a + b
+                break
+            case '-':
+                result = a - b
+                break
+            case '*':
+                result = a * b
+                break
+            case '/':
+                result = a / b
+        }
+        this.setState({result})
+    }
 
     render() {
         return <section>
             <h1>Calculator</h1>
-            <Input/>
-            <Plus/>
-            <Minus/>
-            <X/>
-            <Div/>
-            <In/>
-            <input/>
+            <input value={this.state.numA} type="number" onChange={this.getNumA}/>
+            <Button operation='+' operate={this.operate}></Button>
+            <Button operation='-' operate={this.operate}></Button>
+            <Button operation='*' operate={this.operate}></Button>
+            <Button operation='/' operate={this.operate}></Button>            
+            <input value ={this.state.numB} type="number" onChange={this.getNumB}/>
+            =<input value={this.state.result} type="result"/>
         </section>
     }
 
