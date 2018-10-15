@@ -1,9 +1,9 @@
-const token = 'BQAY9zG9ExeRP0w4PTbNebUiq1QADVnSrpOYr4NENlsoKaoDh-GhKjwCAfbfbF5J_caqLUD5xUyiAM5zax_h22YW13SBgxV8hHD4QyL-jTgmU9eelVGjnC1RanH8b5PSFrBcRb504-lVxA'
-
 const logic = {
-    searchArtists(query) {
-        if (typeof query !== 'string') throw TypeError(query + ' is not a string');
-        if (!query.trim().length) throw Error(query + 'is empty or blank');
+    token:'BQBobJkH5xSM_lJ5BWsbzbPAjg_fSosqsYfZBEva54OgcAD_Q_BxBAKWkNA8BVYZuYaYc2Nabc6hlSqJ7RtF1YOIeQVSeZ0PErbuAMfJcapG8o3FkITrF0D58DhiFibs3XXncEZi5Gl6Eg',
+
+    call(path) {
+        // if (typeof path !== 'string') throw TypeError(path + ' is not a string');
+        // if (!path.trim().length) throw Error(path + 'is empty or blank');
 
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest()
@@ -11,71 +11,39 @@ const logic = {
             xhr.addEventListener('load', () => {
                 var res = JSON.parse(xhr.responseText)
 
-                resolve(res.artists.items)
+                if (res.error) return reject(new Error(res.error.message))
+
+                resolve(res)
             })
 
-            xhr.addEventListener('error', () => {
-                reject() 
-                
-            })
+            xhr.addEventListener('error', () => reject() )
 
-            if (!query) throw TypeError (query + 'is not valid search')
+            // if (!path) throw TypeError (path + 'is not valid search')
 
-            xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
+            xhr.open('get', `https://api.spotify.com/v1/${path}`)
 
-            xhr.setRequestHeader('authorization', 'Bearer ' + token)
+            xhr.setRequestHeader('authorization', `Bearer ${this.token}`)
 
             xhr.send()
         })
     },
 
     searchAlbums(id) {
-        if (typeof id !== 'string') throw TypeError(id + ' is not a string');
-        if (!id.trim().length) throw Error(id + 'is empty or blank');
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`);
+        if (!id.trim().length) throw Error(`${id} is empty or blank`);
 
-        return new Promise((resolve, reject) => {
-            var xhr = new XMLHttpRequest()
-
-            xhr.addEventListener('load', () => {
-                var res = JSON.parse(xhr.responseText)
-                resolve(res.items)
-            })
-
-            xhr.addEventListener('error', () => {
-                reject() // TODO
-            })
-
-            xhr.open('get', 'https://api.spotify.com/v1/artists/'+ id + '/albums')
-
-            xhr.setRequestHeader('authorization', 'Bearer ' + token)
-
-            xhr.send()
-        })
+        return this.call(`search?type=artist&query=${id}`)
+            .then(({ artists: { items } }) => items)
+        
     },
 
     searchSongs(albumId) {
         if (typeof albumId !== 'string') throw TypeError(albumId + ' is not a string');
         if (!albumId.trim().length) throw Error(albumId + 'is empty or blank');
 
-        return new Promise((resolve, reject) => {
-            var xhr = new XMLHttpRequest()
-
-            xhr.addEventListener('load', () => {
-                var res = JSON.parse(xhr.responseText)
-               
-                resolve(res.items)
-            })
-
-            xhr.addEventListener('error', () => {
-                reject() // TODO
-            })
-
-            xhr.open('get', 'https://api.spotify.com/v1/albums/'+ albumId + '/tracks/')
-
-            xhr.setRequestHeader('authorization', 'Bearer ' + token)
-
-            xhr.send()
-        })
+        return this.call(`artists/${id}/albums`)
+            .then(({ items }) => items)
+            
     },
 
     playSong(song) {$player.attr('src', song)}

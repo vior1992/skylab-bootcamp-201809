@@ -5,7 +5,7 @@ $form.submit(event => {
 
     const query = $input.val()
 
-    logic.searchArtists(query)
+    logic.call(query)
         .then(artists => {
             listArtist(artists)
         })
