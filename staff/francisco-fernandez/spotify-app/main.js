@@ -162,7 +162,8 @@ function playTrack (trackUrl){
     $preview.show()
     var $audio = $preview.find('audio')
     $audio.empty()
-    var $source =(`<source src="${trackUrl}" type="audio/mpeg">`)
+    // var $source =(`<source src="${trackUrl}" type="audio/mpeg">`)
+    $audio.attr('src',trackUrl)
     $audio.append($source)
     
 }
