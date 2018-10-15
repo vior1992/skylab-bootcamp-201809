@@ -10,6 +10,12 @@ describe('logic', () => {
                     expect(artists.length).toBeGreaterThan(0)
                 })
         })
+
+        it('should fail on undefinded query', () =>{
+            var query = 1223
+            
+
+        })
     })
 
     describe('list albums', () => {
