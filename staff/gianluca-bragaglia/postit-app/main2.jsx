@@ -10,34 +10,44 @@ class App extends React.Component {
 
     state = { 
         text: '',
-        status:''
+        status:'',
+        texts: []
         
     }
 
     handleChange = this.handleChange.bind(this)
-    handleSubmit = this.handleSubmit.bind(this)
+    addText = this.addText.bind(this)
 
     handleChange(event) {
         this.setState({text: event.target.value});
       }
     
-    handleSubmit(event) {
-        event.preventDefault();
-        this.setState({ status: event.target.name })
-
-      }
+    
+    addText() {       
+        this.setState({texts:[...this.state.texts, this.state.text]})
+            event.target.value = ''
+        }
 
 
     render() {
         return <div className="container">
             <h1>Post-It App</h1>
             <form>
+
                 <textarea placeholder="Write text here..." type="text" value={this.state.text} onChange={this.handleChange} />
-                <button type="submit" onClick={this.handleSubmit} value="Submit" name="yes">Create</button>
+
+                <button type="submit" onClick={this.addText} value="Submit" name="yes">Create</button>
             </form>
 
-            {this.state.status === "yes" && <PostIt text={this.state.text}></PostIt>}
-                       
+            {/* {this.state.status === "yes" && <PostIt text={this.state.text}></PostIt>} */}
+
+             {/* this.state.texts */}
+
+             {this.state.texts.map((text) => {
+                return <PostIt text={text} />
+            })}
+            
+            
         </div>
     }
 }
