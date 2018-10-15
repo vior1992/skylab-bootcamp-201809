@@ -74,9 +74,28 @@ describe('Logic', function () {
                 logic.search([], function () {});
             }).toThrowError(TypeError, ' is not a string');
         });
-
-
-
+    });
+    true && describe('function retrieve Beer', function () {
+        
+        true && describe('failing retrieve beer (slow test)', function () {
+            beforeEach(function () {
+                jasmine.DEFAULT_TIMEOUT_INTERVAL = 35000;
+                
+            });
+            
+            it('failing retrieving (slow test)', function () {
+                return logic.retrieveBeer('8Oucf')
+                .catch(function (){
+                    expect(res).toEqual(undefined);
+                })
+            });
+            
+            afterEach(function () {
+                jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
+                
+            });
+            
+        });
         // 
         // 
         // 
@@ -87,30 +106,6 @@ describe('Logic', function () {
         // 
         // 
         // 
-
-    });
-    true && describe('function retrieve Beer', function () {
-
-        true && describe('failing retrieve beer (slow test)', function () {
-            beforeEach(function () {
-                jasmine.DEFAULT_TIMEOUT_INTERVAL = 35000;
-
-            });
-
-            it('failing retrieving (slow test)', function () {
-                logic.retrieveBeer('8Oucf',
-                    function (res) {
-                        expect(res).toEqual(undefined);
-
-                    });
-            });
-
-            afterEach(function () {
-                jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
-
-            });
-
-        });
 
         it('should return no-undefined', function () {
             logic.retrieveBeer('8OucfG',
