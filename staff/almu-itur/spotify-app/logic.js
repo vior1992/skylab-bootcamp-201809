@@ -14,7 +14,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
 
-            var token = 'BQDa3zN1YXTgekpzOqmP2qq-ZJHaYPFQicthoRIN-j0muZ_ltGac1s6JA-6CcaIZ9R4moppp8BelSj7ZOxh9WBZrPBmsmFFIWTIuhib3jPZEfY_-jJNU_dZrHYx0zx8Ksx3_Bn5dBcio'
+            var token = 'BQCP0SHqNK4CoULA-NYN47AsQV8TLS20_n8MWH_tDPUX4GBTMcrJHMwXbozb50f0ElkbJlMPWyLN0GArTbeNuUIAOCuHP9oVBoombK31tgsvXZappTllEGDG8vt5NKWPcW8BBoGhjUJO'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -37,7 +37,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/artists/' + id + '/albums')
 
-            var token = 'BQDa3zN1YXTgekpzOqmP2qq-ZJHaYPFQicthoRIN-j0muZ_ltGac1s6JA-6CcaIZ9R4moppp8BelSj7ZOxh9WBZrPBmsmFFIWTIuhib3jPZEfY_-jJNU_dZrHYx0zx8Ksx3_Bn5dBcio'
+            var token = 'BQCP0SHqNK4CoULA-NYN47AsQV8TLS20_n8MWH_tDPUX4GBTMcrJHMwXbozb50f0ElkbJlMPWyLN0GArTbeNuUIAOCuHP9oVBoombK31tgsvXZappTllEGDG8vt5NKWPcW8BBoGhjUJO'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -60,7 +60,7 @@ const logic = {
         
             xhr.open('get', 'https://api.spotify.com/v1/albums/' + albumId + '/tracks')
 
-            var token = 'BQDa3zN1YXTgekpzOqmP2qq-ZJHaYPFQicthoRIN-j0muZ_ltGac1s6JA-6CcaIZ9R4moppp8BelSj7ZOxh9WBZrPBmsmFFIWTIuhib3jPZEfY_-jJNU_dZrHYx0zx8Ksx3_Bn5dBcio'
+            var token = 'BQCP0SHqNK4CoULA-NYN47AsQV8TLS20_n8MWH_tDPUX4GBTMcrJHMwXbozb50f0ElkbJlMPWyLN0GArTbeNuUIAOCuHP9oVBoombK31tgsvXZappTllEGDG8vt5NKWPcW8BBoGhjUJO'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -84,7 +84,7 @@ const logic = {
         
             xhr.open('get', 'https://api.spotify.com/v1/albums/' + idTracks + '/tracks')
 
-            var token = 'BQDa3zN1YXTgekpzOqmP2qq-ZJHaYPFQicthoRIN-j0muZ_ltGac1s6JA-6CcaIZ9R4moppp8BelSj7ZOxh9WBZrPBmsmFFIWTIuhib3jPZEfY_-jJNU_dZrHYx0zx8Ksx3_Bn5dBcio'
+            var token = 'BQCP0SHqNK4CoULA-NYN47AsQV8TLS20_n8MWH_tDPUX4GBTMcrJHMwXbozb50f0ElkbJlMPWyLN0GArTbeNuUIAOCuHP9oVBoombK31tgsvXZappTllEGDG8vt5NKWPcW8BBoGhjUJO'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
