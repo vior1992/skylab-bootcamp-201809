@@ -10,5 +10,4 @@ for(x=0;x<arr.length;x++){
         arr2[x] = callback(arr[x]);}
 
     }return arr2;
-    
 }
