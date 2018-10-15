@@ -16,7 +16,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/' + path)
 
-            var token = 'BQB-4OncuiMCQb4FydIAllm9v10j8kYgIdV4c-kRHtX7caIXHYkkyaBQ_xAA9msEYAaHPq-8Nqes9K5HMBOzyxVVCNgvnpSzIwLS48pfPzMEyT4QRURH6KxFdxWGAcDRRI1rcQj4aS95F2aYTIwiphyfYXJ8jivbUQ'
+            var token = 'BQAQNryd3d5XeypKw20yCD_Rg7Wby20F8RKQFSLJUBswy_TesIhGyTbI9tHXK3B3xwf4lUCUV9q_LdPEs2qpm4Oo7HiwlmGEBirKY7HKtLLMPNmMUaGBveoT89C54h9t0AW7_79rz2U3HQIvhhjpmuh7SoapTz6Acg'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -42,6 +42,9 @@ const logic = {
         return this.callApi(`albums/${id}/tracks`)
          
     }
+
+    //TODO retrieve track i agafar des d'aquest la cançó
+
     // searchArtists(query) {
     //     if(typeof query !== 'string' || query.trim().length === 0) throw TypeError (query + ' is not a valid query')
     //     return new Promise((resolve, reject) => {
