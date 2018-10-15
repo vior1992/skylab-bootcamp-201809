@@ -11,7 +11,7 @@ class PostItApp extends React.Component {
           <h1>Post-it App</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <textarea className="form-control" rows="3" placeholder="Write something..." onChange={this.handleChange}></textarea>
+              <textarea className="form-control" rows="3" placeholder="Write something..." onChange={this.handleChange}>{this.state.text}</textarea>
             </div>
             <button type="submit" className="btn btn-primary mb-2">Create a Post-it</button>
           </form>
@@ -37,7 +37,7 @@ class PostItApp extends React.Component {
     }
 
     this.setState(state => ({
-      item: state.items.push(newItem),
+      items: state.items.concat(newItem),
       text: ''
     }))
   }
@@ -47,7 +47,7 @@ class PostItList extends React.Component {
   render() {
     return (
       <div className="post-it">
-        {this.props.items.forEach(item => (
+        {this.props.items.map(item => (
           <div className="alert alert-warning" role="alert">{item.text}</div>
         ))}
       </div>
