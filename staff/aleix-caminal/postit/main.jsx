@@ -4,25 +4,41 @@ class Input extends React.Component {
     }
 
     render() {
-        return <input onChange={this.props.onChange} />
+        return <input onKeyPress={this.props.onKeyPress} />
+    }
+}
+
+class Post extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        return <article className="postit">{this.props.title}</article>
     }
 }
 
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {text: ''}
-        this.handleChange = this.handleChange.bind(this)
+        this.state = {posts: []}
+        this.handleKeyPress = this.handleKeyPress.bind(this)
     }
 
-    handleChange(event) {
-        this.setState({text:event.target.value})
+    handleKeyPress(event) {
+        if (event.key === 'Enter' && event.target.value) {
+            this.setState({posts:[...this.state.posts, event.target.value]})
+            event.target.value = '';
+        }
     }
 
     render() {
         return <section>
-            <Input onChange={this.handleChange} />
-            <p>{this.state.text}</p>
+            <h1>Post-It App</h1>
+            <Input onKeyPress={this.handleKeyPress} />
+            {this.state.posts.map((post) => {
+                return <Post title={post} />
+            })}
         </section>
     }
 }
