@@ -1,26 +1,28 @@
 class Input extends React.Component {
-    whenChanged = (event) => {
-        console.log(event.target.value);
+    constructor(props) {
+        super(props)
     }
 
     render() {
-        return <input onChange={this.whenChanged} />
-    }
-}
-
-class Output extends React.Component {
-    render() {
-        return <p>{this.props.text}</p>
+        return <input onChange={this.props.onChange} />
     }
 }
 
 class App extends React.Component {
-    output = ''
+    constructor(props) {
+        super(props)
+        this.state = {text: ''}
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(event) {
+        this.setState({text:event.target.value})
+    }
 
     render() {
         return <section>
-            <Input whenChanged={this.updateOutput} />
-            <Output text={this.output} />
+            <Input onChange={this.handleChange} />
+            <p>{this.state.text}</p>
         </section>
     }
 }
