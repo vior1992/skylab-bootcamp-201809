@@ -1,0 +1,22 @@
+.right{
+    padding: 1em;
+    overflow-y: scroll;
+    & .right__artists-inf{
+        border: 1px solid white;
+        margin-top: 2em;
+        & .right__artists-inf__main-section{
+            padding: 1em;
+            justify-content: space-between;
+            display: flex;
+            & .right__artists-inf__main-section__img-section{
+                width: 36%;
+            }
+            & .right__artists-inf__main-section__name-section{
+
+            }
+        }
+       
+        
+    }
+    
+}
