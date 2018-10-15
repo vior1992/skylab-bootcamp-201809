@@ -1,34 +1,46 @@
 
-function Button (props) {
-    return <button onClick={}>Create</button>
+function Button(props) {
+    return <button type='button' onClick={props.clicked}>Create</button>
 }
 
-function Form (props) {
-    state = {inputText: ''}
-    return <form>
-        <textarea value={this.state.inputText}></textarea>
-        <Button></Button>
-    </form>
+class Form extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { inputText: '' }
+    }
+
+    show = () => {
+        console.log(this.state.inputText)
+    }
+
+    keepText = () => {
+        const inputText = event.target.value
+        this.setState({inputText})
+    }
+
+    render() {
+        return <form>
+            <textarea value={this.state.inputText} onChange={this.keepText}></textarea>
+            <Button clicked={this.show}></Button>
+        </form>
+    }
 }
 
-function Section (props) {
+function Section() {
     return <section>
         <article></article>
     </section>
 }
 
-class App extends React.Component {
+function App() {
 
-    state = {}
-
-    render() {
-        return <section>
+    return <section>
         <h1>Post-It App</h1>
         <Form></Form>
         <Section></Section>
     </section>
-        
-    }
+
+
 }
 
 
