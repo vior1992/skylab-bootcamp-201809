@@ -41,3 +41,28 @@ function listArtist(artists) {
         $ul.append($li)
     })
 }
+
+
+function listArtist(artists) {
+    $artists.show()
+
+    const $ul = $artists.find('ul')
+
+    $ul.empty()
+
+    artists.forEach(artist => {
+        const $a = $(`<a href="#">${artist.name}</a>`)
+
+        $a.click(() => {
+            console.log(artist)
+
+            // TODO search albums by artist id
+        })
+
+        const $li = $('<li>')
+
+        $li.append($a)
+
+        $ul.append($li)
+    })
+}

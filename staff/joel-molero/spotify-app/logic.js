@@ -24,10 +24,11 @@ const logic = {
     },
 
     listAlbums(id) {
+        return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest()
 
             xhr.addEventListener('load', function () {
-                var res = JSON.parse(xhr.responseText)
+                const res = JSON.parse(xhr.responseText)
 
                 resolve(res.items)
             })
@@ -36,12 +37,13 @@ const logic = {
                 reject() // TODO
             })
 
-            xhr.open('get', 'https://api.spotify.com/v1/albums/' + id)
+            xhr.open('get', `https://api.spotify.com/v1/artists/${id}/albums`)  //'https://api.spotify.com/v1/artists/' + id + '/albums')
 
-            xhr.setRequestHeader('authorization', 'Bearer ' + token)
+            xhr.setRequestHeader('authorization', `Bearer ${this.token}`)
 
-            xhr.send()     
-    }
+            xhr.send()
+        })     
+    },
 
     listTracks(id) {
         var xhr = new XMLHttpRequest()
