@@ -8,44 +8,49 @@ var landing = new Landing('Choose an option', 'section',
         login.show();
     });
 
-document.body.appendChild(landing.element);
-
-var register = new Register('Register', 'section', function (name, surname, username, password) {
-    logic.register(name, surname, username, password,
-        function () {
-            register.hide();
-            login.show();
-        },
-        function (message) {
-            alert(message);
-        }
-    );
-}, function () {
-    register.hide();
-    landing.show();
-});
-
-document.body.appendChild(register.element);
+document.querySelector(".container").appendChild(landing.element);
 
 var login = new Login('Login', 'section', function (username, password) {
-    logic.login(username, password, 
-        function(user) {
-            login.hide();
+    logic.login(username, password, function () {
+        login.hide();
+        welcome.title.innerText = 'Welcome, ' + username + '. Enjoy!';
+        welcome.show();
+    }, function (message) {
+        wrongCredentials.title.innerText = message
+        wrongCredentials.show();
+    })
 
-            welcome.title.innerText = 'Welcome, ' + user.name + '!';
-            
-            welcome.show();
-        },
-        function(message) {
-            alert(message);
-        });
 }, function () {
     login.hide();
-    landing.show();
+    register.show();
+
 });
 
-document.body.appendChild(login.element);
+document.querySelector(".container").appendChild(login.element);
 
-var welcome = new Welcome('Welcome', 'section');
+var wrongCredentials = new Credentials('Wrong password!', 'section');
+document.querySelector(".login").appendChild(wrongCredentials.element);
 
-document.body.appendChild(welcome.element);
+var register = new Register('Register Now!', 'section', function (name, surname, username, password) {
+    logic.register(name, surname, username, password, function () {
+        register.hide();
+        login.show();
+    }, function (message) {
+        wrongRegister.title.innerText = message;
+        wrongRegister.show();
+    });
+}, function() {
+    register.hide();
+    landing.show();
+})
+
+document.querySelector(".container").appendChild(register.element);
+
+
+var wrongRegister = new Credentials("Can't have blank fields!", 'section');
+document.querySelector(".register").appendChild(wrongRegister.element);
+
+
+var welcome = new Welcome('Welcome to the app!', 'section');
+
+document.querySelector(".container").appendChild(welcome.element);
