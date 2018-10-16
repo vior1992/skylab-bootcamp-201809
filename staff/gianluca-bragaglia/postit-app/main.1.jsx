@@ -1,10 +1,30 @@
 
+// Model (domain)
+
+const storage = sessionStorage
+// const storage = localStorage
+
+if (!storage.getItem('postits'))
+    storage.setItem('postits', JSON.stringify([]))
+
+// function Postit(text) {
+//     this.text = text
+//     this.id = Date.now()
+// }
+
+class Postit {
+    constructor(text) {
+        this.text = text
+        this.id = Date.now()
+    }
+}
+
+
 function Post(props) {
    
     return <section>
                 <article className="article">{props.text}</article>
                 <button className="button-delete" onClick={() => props.onDeletePost(props.id)}>delete</button>
-                <button className="button-edit" onClick={() => props.onEditPost(props.id)}>edit</button>
             </section>        
 } 
 
@@ -12,7 +32,7 @@ function Post(props) {
 class App extends React.Component {
 
 
-    state = { postits: logic.listPostits(),
+    state = { postits: JSON.parse(storage.getItem('postits')),
             text: ''
     }
 
@@ -28,9 +48,15 @@ class App extends React.Component {
     handleSubmit = event => { 
         event.preventDefault()   
 
-        logic.createPostit(this.state.text)
+        const postit = new Postit(this.state.text)
 
-        this.setState({ postits: logic.listPostits() })
+        const postits = JSON.parse(storage.getItem('postits'))
+
+        postits.push(postit)
+
+        storage.setItem('postits', JSON.stringify(postits))
+
+        this.setState({ postits: JSON.parse(storage.getItem('postits')) })
 
         this.setState({text: ''})
 
@@ -39,16 +65,16 @@ class App extends React.Component {
 
     handleDeletePost = id => {  
         
-        logic.deletePostit(id)
+        let postits = JSON.parse(storage.getItem('postits'))
 
-        this.setState({ postits: logic.listPostits() })        
+        postits = postits.filter(postit => postit.id !== id)
+
+        storage.setItem('postits', JSON.stringify(postits))
+
+        this.setState({ postits: JSON.parse(storage.getItem('postits')) })
+
+        
        
-    }
-
-
-    handleEditPost = id => {
-        logic.editPostit(id)
-        this.setState({ postits: logic.listPostits() })
     }
 
     render() {
@@ -59,7 +85,7 @@ class App extends React.Component {
                 <button className="button" type="submit">Create</button>
             </form>
             <div className="posts-container">
-            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onEditPost={this.handleEditPost}/>)}
+            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
             </div>
                        
         </div>

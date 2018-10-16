@@ -35,6 +35,16 @@ textarea{
     border-radius: 5px;
     padding: 10px 15px;
     border: 0px;
-    margin-top: 95px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.button-edit{
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 0px;
+    margin-bottom: 10px;
 }
 
