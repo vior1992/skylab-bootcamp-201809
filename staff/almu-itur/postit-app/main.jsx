@@ -1,5 +1,5 @@
 function PostIt(props) {
-    return <article>{props.note}</article>
+    return <section><article>{props.note}</article></section>
 }
 
 class App extends React.Component {
