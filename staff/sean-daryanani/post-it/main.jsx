@@ -1,8 +1,47 @@
+class InputForm extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            input: ''
+        }
+
+        this.keepText = this.keepText.bind(this)
+
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    keepText(event) {
+        this.setState({
+            input : event.target.value
+        })
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+
+        this.props.onSubmit(this.state.input)
+
+        this.setState({input: ''})
+    }
+
+    render() {
+        return <form className="form-group" onSubmit={this.handleSubmit}>
+        <textarea className="form-control" cols="30"  value={this.state.input}  onChange={this.keepText} placeholder='' type="text"/>
+        <button className="btn btn-primary" type="submit">Submit</button>
+        </form>
+    }
+
+}
+
 function List(props) {
 
-    return <ul>
+    return <ul className="list-group">
     {props.items.map((el,index) => 
-    <li onClick = {(ev) => props.removeToDo(index)} key={index}>{el}</li>)}
+    <li className="list-group-item list-group-item-warning" 
+    
+     key={index}>{el}  <button onClick = {() => props.removeToDo(index)} className="close">&times;</button></li>)}
+    
     </ul>
 }
 
@@ -14,25 +53,17 @@ class App extends React.Component {
 
         this.state = {
 
-            input: '',
             items: []
         }
 
-        this.keepText = this.keepText.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.removeToDo = this.removeToDo.bind(this)
     }
 
-    keepText(event) {
-        this.setState({
-            input: event.target.value
-        })
-    }
 
-    onSubmit(event) {
-        event.preventDefault()
+    handleSubmit(input) {
         this.setState({
-            items : [...this.state.items, this.state.input],
+            items : [...this.state.items, input],
             input:''
         })
 
@@ -49,11 +80,9 @@ class App extends React.Component {
     }
 
     render() {
-        return <div>
-        <form  onSubmit={this.onSubmit}>
-        <textarea cols="40" rows="10" value={this.state.input}  onChange={this.keepText} placeholder='' type="text"/>
-        <button type="submit">Submit</button>
-        </form>
+        return <div className="container">
+        <h1>Post it App</h1>
+        <InputForm onSubmit = {this.handleSubmit} />
         <List items={this.state.items} removeToDo={this.removeToDo} />
         </div>
 
