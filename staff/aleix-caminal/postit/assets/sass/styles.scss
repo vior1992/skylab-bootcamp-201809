@@ -1,29 +1,65 @@
+$color-primary: #026aa7;
+$color-success: #5aac44;
+$color-board: #dfe3e6;
+$color-text: #17394d;
+
+%board {
+    min-width: 240px;
+    height: fit-content;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: $color-board;
+    border-radius: 1rem;
+}
+
+%post {
+    width: -webkit-fill-available;
+    padding: .5rem;
+    background-color: #fff;
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0px 3px 5px -3px rgba(0,0,0,0.75);
+}
+
 body {
     margin: 0;
     overflow: hidden;
-    font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 
     .main {
         display: grid;
-        grid-template-rows: 80px calc(100vh - 80px);
+        grid-template-rows: 60px calc(100vh - 60px);
+        background-color: $color_primary;
 
         &__title {
-            margin: 20px 0 0;
+            margin: 0;
             text-align: center;
             font-size: 48px;
             line-height: 60px;
+            color: #fff;
+            background-color: darken($color_primary, 10%);
         }
 
         &__boards {
-            .board {
-                &__title {
+            display: flex;
+            flex-direction: row;
+            padding: 1rem;
+            overflow-x: scroll;
+            min-width: 0;
 
+            .board {
+                @extend %board;
+
+                &__title {
+                    margin: 0 0 .5rem;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: $color-text;
                 }
 
                 &__post{
-                    background-color: yellow;
-                    width: 100px;
-                    height: 100px;
+                    @extend %post;
+                    margin-bottom: .5rem;
 
                     &__title {
 
@@ -31,17 +67,45 @@ body {
                 }
 
                 &__input {
-
+                    @extend %post;
                 }
             }
 
             .add {
-                &__input {
+                @extend %board;
 
+                &__input {
+                    width: -webkit-fill-available;
+                    height: 20px;
+                    margin: 0 0 .5rem;
+                    padding: 4px;
+                    font-size: 14px;
+                    border: 2px solid $color-primary;
+                    border-radius: .5rem;
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
 
                 &__button {
+                    padding: .5rem;
+                    border: none;
+                    border-radius: .5rem;
+                    background-color: $color-success;
+                    box-shadow: 0px 3px 5px -3px darken($color-success, 10%);
+                    color: #fff;
+                    font-size: 16px;
+                    transition: all .1s linear;
 
+                    &:hover {
+                        cursor: pointer;
+                        background-color: darken($color-success, 5%);
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
             }
         }

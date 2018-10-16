@@ -11,7 +11,7 @@ class Add extends React.Component {
         return <section className="add">
             <form onSubmit={this.props.onSubmit}>
                 <input className="add__input" type="text" placeholder="Add another board" />
-                <button className="add__button">New Board</button>
+                <button className="add__button">Add Board</button>
             </form>
         </section>
     }
@@ -60,11 +60,14 @@ class App extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
+        let input = event.target.querySelector('input');
+        this.setState({boards:[...this.state.boards, input.value]})
+        input.value = ''
     }
 
     render() {
         return <section className="main">
-            <h1 className="main__title">Cello</h1>
+            <h1 className="main__title">🎻 Cello</h1>
             <section className="main__boards">
                 {this.state.boards.map((board) => {
                     return <Board title={board} />
