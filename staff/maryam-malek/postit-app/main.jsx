@@ -1,3 +1,5 @@
+// Presentation (components)
+
 class InputForm extends React.Component {
     state = { text: '' }
 
@@ -18,36 +20,63 @@ class InputForm extends React.Component {
     render() {
         return <form onSubmit={this.handleSubmit}>
             <textarea placeholder='Write your text...' value={this.state.text} onChange={this.handleInput}></textarea>
-            <button type='submit'>Create</button>
+            <button type='submit'>Edit</button>
         </form>
     }
 }
 
-function PostIt(props) {
-    return <div className='postIt'>
-        <article >{props.paint}</article>
-        <button className='postIt__button' type='button' onClick={() => {props.onClick(props.index)}} >X</button>
-    </div>
+class PostIt extends React.Component {
+    state = { editText: '' }
+
+    handleInput = event => {
+        const editText = event.target.value
+        this.setState({editText})
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+
+        this.props.onSubmit(this.state.editText, this.props.id)
+
+        this.setState({ editText: '' })
+    }
+
+    render() {
+        return <div>
+            <article className='postIt'>
+                <p >{this.props.paint}</p>
+                <button className='postIt__button' type='button' onClick={() => { this.props.onClick(props.id) }} >X</button>
+                <button className='postIt__button--edit' type='button'>EDIT</button>
+            </article>
+            <form onSubmit={this.handleSubmit}>
+                <textarea value={this.state.text} onChange={this.handleInput}>{this.props.paint}</textarea>
+                <button type='submit'>Submit changes</button>
+            </form>
+        </div>
+    }
 }
 
 class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { inputText: [] }
-    }
+
+    state = { postits: logic.listPostits() }
 
     handleSubmit = text => {
-        this.setState(prevState => ({
-            inputText: [...prevState.inputText, text]
-        }))
+        const postit = new Postit(text)
+
+        logic.createPostit(postit)
+
+        this.setState({ postits: logic.listPostits() })
     }
 
-    handleClick = key => {
-        // const inputText = this.state.inputText.splice(this.state.inputText[key])
-        const newArr1 = this.state.inputText.slice(0, key)
-        const newArr2 = this.state.inputText.slice(key+1)
-        const inputText = newArr1.concat(newArr2)
-        this.setState({inputText})
+    handleClick = id => {
+        logic.deletePostit(id)
+
+        this.setState({ postits: logic.listPostits() })
+    }
+
+    handleEditSubmit = (text, id) => {
+        logic.changePostit(text, id)
+        this.setState({postits:logic.listPostits()})
     }
 
     render() {
@@ -57,7 +86,7 @@ class App extends React.Component {
             <InputForm onSubmit={this.handleSubmit} />
 
             <section className='postit-board'>
-                {this.state.inputText.map((x, index) => <PostIt paint={x} key={x} index={index} onClick={index => this.handleClick(index)}/>)}
+                {this.state.postits.map(postit => <PostIt onSubmit={this.handleEditSubmit} paint={postit.text} key={postit.id} id={postit.id} onClick={this.handleClick} />)}
             </section>
         </section >
     }
