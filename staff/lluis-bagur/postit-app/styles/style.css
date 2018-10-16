@@ -42,7 +42,7 @@ body .article_cont {
   max-width: 780px;
   flex-wrap: wrap;
 }
-body .article {
+body .article_cont .post {
   background-image: url("postit.png");
   display: flex;
   flex-direction: row;
@@ -50,7 +50,7 @@ body .article {
   margin-top: 30px;
   text-align: center;
   width: 200px;
-  height: 220px;
+  height: 190px;
   background-repeat: no-repeat;
 }
 
