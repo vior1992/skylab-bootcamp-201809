@@ -43,8 +43,8 @@ class Board extends React.Component {
     render() {
         return <section className="board">
             <h2 className="board__title">{this.props.title}</h2>
-            {this.state.posts.map((post) => {
-                return <Post title={post} />
+            {this.state.posts.map((post, i) => {
+                return <Post key={i} title={post} />
             })}
             <Input onKeyPress={this.handleKeyPress} />
         </section>
@@ -69,8 +69,8 @@ class App extends React.Component {
         return <section className="main">
             <h1 className="main__title">🎻 Cello</h1>
             <section className="main__boards">
-                {this.state.boards.map((board) => {
-                    return <Board title={board} />
+                {this.state.boards.map((board, i) => {
+                    return <Board key={i} title={board} />
                 })}
                 <Add onSubmit={this.handleSubmit} />
             </section>
