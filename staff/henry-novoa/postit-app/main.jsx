@@ -1,59 +1,71 @@
+class InputForm extends React.Component {
+    state = { text: '' }
 
-const root = document.getElementById('root')
+    handleInput = event => {
+        console.log('InputForm', 'handleInput (setState)')
+        
+        const text = event.target.value
 
-function Button(props) {
-    return <button type='button' onClick={props.onClick}>Hello World!</button>
+        this.setState({ text })
+    }
+
+    handleSubmit = event => {
+        console.log('InputForm', 'handleSubmit (setState)')
+
+        event.preventDefault()
+
+        this.props.onSubmit(this.state.text)
+
+        this.setState({ text: '' })
+    }
+
+    render() {
+        console.log('InputForm', 'render')
+
+        return <form className='form' onSubmit={this.handleSubmit}>
+            <textarea value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
+            <button type="submit">Create</button>
+        </form>
+    }
 }
 
-function PostIt(props){
-    
+function Post(props) {
+    console.log('Post', '"render"')
 
-    return  <article className='postit'>{props.text}</article>
+    return <article className="postit">{props.text}
+            <button onClick={()=>props.onDeletePost(props.index)}>Delete</button>
+            </article>
 }
-
 
 class App extends React.Component {
-    state = { comment: '',
-            text:[] }
+    state = { posts: [] }
 
-    keepText  = event => {
-        const comment = event.target.value
-        this.setState({ comment })
-        
-        
-    }
-   
-    createText =() =>{
-        
-       
-       
-       // this.setState({text:inputs});
-        this.setState(prevState => ({
-            text: [...prevState.text, this.state.comment]
-          })) 
+    handleSubmit = text => {
+        console.log('App', 'handleSubmit (setState)')
 
+        //const posts = this.state.posts.concat(text)
+        const posts = [...this.state.posts,text]
+        this.setState({ posts })
     }
 
-    
+    handleDelete = index =>{
+       const posts= this.state.posts.filter((post,_index)=>index !==_index )
+    }
+
     render() {
-        
-        return <div>  <h1>Post-It App</h1>
-        <form className='form'>
-        <textarea placeholder="Write text here..." onChange={this.keepText}></textarea>
-            <Button onClick={this.createText}></Button> 
-        </form>
-    
-        <section>
+        console.log('App', 'render')
 
-            {/* <PostIt text={this.state.text}></PostIt> */}
-            {
-            this.state.text.map((comment) => <PostIt text = {comment}></PostIt>) }
-        }
-        </section></div>
-        
-       
+        return <div>
+            <h1>Post-It App</h1>
+
+            <InputForm onSubmit={this.handleSubmit} />
+
+            <section>
+                {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
+                {this.state.posts.map((post, index) => <Post onDeletePost={this.handleDelete} index={index} key={index} text={post} />)}
+            </section>
+        </div>
     }
 }
-
 
 ReactDOM.render(<App />, document.getElementById('root'))
