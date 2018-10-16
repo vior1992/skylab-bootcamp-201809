@@ -1,49 +1,40 @@
+function PostIt (props) {
 
-function Button(props) {
-    return <button type='button' onClick={props.clicked}>Create</button>
+    return <section>
+        <article className='postIt'>{props.paint}</article>
+    </section> 
 }
 
-class Form extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { inputText: '' }
+        this.state = { inputText: [], text: '' }
     }
 
-    show = () => {
-        console.log(this.state.inputText)
+    show = event => {
+        event.preventDefault()     
+        this.setState(prevState => ({
+            inputText: [...prevState.inputText, this.state.text]
+          }))    
     }
 
-    keepText = () => {
-        const inputText = event.target.value
-        this.setState({inputText})
+    keepText = event => {
+        const text = event.target.value
+        this.setState({text})
+   
     }
 
     render() {
-        return <form>
-            <textarea value={this.state.inputText} onChange={this.keepText}></textarea>
-            <Button clicked={this.show}></Button>
-        </form>
+        return <section>
+            <h1>Post-It App</h1>
+            <form>
+                <textarea placeholder='Write your text...' value={this.state.text} onChange={this.keepText}></textarea>
+                <button type= 'button' onClick={this.show}>Create</button>
+            </form>
+            {this.state.inputText.map(x => <PostIt paint={x}/>)}
+        </section >
+
     }
 }
-
-function Section() {
-    return <section>
-        <article></article>
-    </section>
-}
-
-function App() {
-
-    return <section>
-        <h1>Post-It App</h1>
-        <Form></Form>
-        <Section></Section>
-    </section>
-
-
-}
-
-
-
 
 ReactDOM.render(<App />, document.getElementById('root'))
