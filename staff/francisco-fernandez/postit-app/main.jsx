@@ -1,5 +1,5 @@
 function Button(props) {
-    return <button onClick={props.addPostit}>{props.operation}</button>
+    return <button type="button" onClick={props.addPostit}>{props.operation}</button>
 }
 
 class App extends React.Component {
