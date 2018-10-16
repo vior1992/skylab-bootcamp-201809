@@ -1,35 +1,49 @@
-.main {
-    &__title {
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-    }
+    .main {
+        display: grid;
+        grid-template-rows: 80px calc(100vh - 80px);
 
-    .board {
         &__title {
-
+            margin: 20px 0 0;
+            text-align: center;
+            font-size: 48px;
+            line-height: 60px;
         }
 
-        &__post{
-            background-color: yellow;
-            width: 100px;
-            height: 100px;
+        &__boards {
+            .board {
+                &__title {
 
-            &__title {
+                }
 
+                &__post{
+                    background-color: yellow;
+                    width: 100px;
+                    height: 100px;
+
+                    &__title {
+
+                    }
+                }
+
+                &__input {
+
+                }
             }
-        }
-        
-        &__input {
 
-        }
-    }
+            .add {
+                &__input {
 
-    .add {
-        &__input {
+                }
 
-        }
+                &__button {
 
-        &__button {
-
+                }
+            }
         }
     }
 }

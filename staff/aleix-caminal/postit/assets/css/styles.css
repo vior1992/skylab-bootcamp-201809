@@ -1,4 +1,19 @@
-.main .board__post {
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body .main {
+  display: grid;
+  grid-template-rows: 80px calc(100vh - 80px);
+}
+body .main__title {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 48px;
+  line-height: 60px;
+}
+body .main__boards .board__post {
   background-color: yellow;
   width: 100px;
   height: 100px;

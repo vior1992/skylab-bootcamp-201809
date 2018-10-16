@@ -65,10 +65,12 @@ class App extends React.Component {
     render() {
         return <section className="main">
             <h1 className="main__title">Cello</h1>
-            {this.state.boards.map((board) => {
-                return <Board title={board} />
-            })}
-            <Add onSubmit={this.handleSubmit} />
+            <section className="main__boards">
+                {this.state.boards.map((board) => {
+                    return <Board title={board} />
+                })}
+                <Add onSubmit={this.handleSubmit} />
+            </section>
         </section>
     }
 }
