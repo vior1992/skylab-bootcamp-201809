@@ -23,8 +23,8 @@ class Post extends React.Component {
 
     render() {
         return <article className="post">
-            <h3 className="post__title">{this.props.title}</h3>
             <button className="post__button" onClick={this.props.onDelete}>X</button>
+            <h3 className="post__title">{this.props.title}</h3>
         </article>
     }
 }
@@ -50,10 +50,8 @@ class Board extends React.Component {
 
     render() {
         return <section className="board">
-            <header className="board__header">
-                <h2 className="board__title">{this.props.title}</h2>
-                <button className="board__button" onClick={this.props.onDelete}>X</button>
-            </header>
+            <button className="board__button" onClick={this.props.onDelete}>X</button>
+            <h2 className="board__title">{this.props.title}</h2>
             {this.state.posts.map((post, i) => {
                 return <Post key={i} title={post} onDelete={() => this.handleDelete(i)} />
             })}
