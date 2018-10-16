@@ -30,14 +30,15 @@ class App extends React.Component {
 
     }
 
-    render() {
-        return <form onSubmit={this.submit}>
-            <input value={this.state.writeHere} type="text" onChange={this.keepWords} />
+    render() {  //aqui aparecen las cosas
+        return <div>
+            <form onSubmit={this.submit}>
+            <input value={this.state.writeHere} type="text" onChange={this.keepWords}/>
             <Button onClick={this.submit}></Button>
         </form>
-       <div>
-           {this.state.postits.map(elements => {<PostIt />})}
-
+        <div>
+          {this.state.postits.map((element) => <PostIt key={element}/>)}
+        </div>
         </div>
     }
 
