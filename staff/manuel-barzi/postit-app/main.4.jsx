@@ -1,3 +1,22 @@
+// Model (domain)
+
+if (!sessionStorage.getItem('postits'))
+    sessionStorage.setItem('postits', JSON.stringify([]))
+
+// function Postit(text) {
+//     this.text = text
+//     this.id = Date.now()
+// }
+
+class Postit {
+    constructor(text) {
+        this.text = text
+        this.id = Date.now()
+    }
+}
+
+// Business (logic)?
+
 // Presentation (components)
 
 class InputForm extends React.Component {
@@ -43,20 +62,30 @@ function Post(props) {
 }
 
 class App extends React.Component {
-    state = { postits: logic.listPostits() }
+    state = { postits: JSON.parse(sessionStorage.getItem('postits')) }
 
     handleSubmit = text => {
         console.log('App', 'handleSubmit (setState)')
 
-        logic.createPostit(text)
+        const postit = new Postit(text)
 
-        this.setState({ postits: logic.listPostits() })
+        const postits = JSON.parse(sessionStorage.getItem('postits'))
+
+        postits.push(postit)
+
+        sessionStorage.setItem('postits', JSON.stringify(postits))
+
+        this.setState({ postits })
     }
 
     handleDeletePost = id => {
-        logic.deletePostit(id)
+        let postits = JSON.parse(sessionStorage.getItem('postits'))
 
-        this.setState({ postits: logic.listPostits() })
+        postits = postits.filter(postit => postit.id !== id)
+
+        sessionStorage.setItem('postits', JSON.stringify(postits))
+
+        this.setState({ postits })
     }
 
     render() {
