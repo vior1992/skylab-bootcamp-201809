@@ -49,19 +49,30 @@ class PostItApp extends React.Component {
       items: this.state.items.filter((item, itemIndex) => itemIndex !== index)
     })
   }
+  
+  // Capture event
+  // handleRemoveItem = event => {
+  //   console.log(event.nativeEvent)
+  // }
 }
 
 const PostItList = props => {
   return (
-    <div className="post-it">
-      {props.items.map((item, index) => (
-        <div className="alert alert-warning alert-dismissible fade show" key={index}>
-          {item.text}
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => props.onRemoveItem(index)}>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      ))}
+    <div className="post-it my-3">
+      <div className="row">
+        {props.items.map((item, index) => (
+          <div className="col-sm-12 col-md-6">
+            <div className="alert alert-warning alert-dismissible fade show" key={index}>
+              {item.text}
+              {/* Send event 
+              <button data-id={index} type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={props.onRemoveItem}></button> */}
+              <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => props.onRemoveItem(index)}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
