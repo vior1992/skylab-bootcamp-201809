@@ -1,42 +1,68 @@
-function PostIt(props) {
+
+function Post(props) {
+   
     return <section>
-                <article className="article">{props.text}</article>
-            </section>
-        
+                <div className="article"><p className="postText">{props.text}</p></div>
+                <div className="btn-container">
+                <button className="button-delete" onClick={() => props.onDeletePost(props.id)}>delete</button>
+                <button className="button-edit" onClick={() => props.onEditPost(props.id)}>edit</button>
+                </div>
+            </section>        
 } 
 
 
 class App extends React.Component {
 
-    state = { 
-        text: '',
-        status:''
-        
+
+    state = { postits: logic.listPostits(),
+            text: ''
     }
 
-    handleChange = this.handleChange.bind(this)
-    handleSubmit = this.handleSubmit.bind(this)
+    handleChange = event => {
+        
+        const text = event.target.value
 
-    handleChange(event) {
-        this.setState({text: event.target.value});
-      }
+        this.setState({ text })
+
+    }
     
-    handleSubmit(event) {
-        event.preventDefault();
-        this.setState({ status: event.target.name })
+    
+    handleSubmit = event => { 
+        event.preventDefault()   
 
-      }
+        logic.createPostit(this.state.text)
 
+        this.setState({ postits: logic.listPostits() })
+
+        this.setState({text: ''})
+
+    }
+
+
+    handleDeletePost = id => {  
+        
+        logic.deletePostit(id)
+
+        this.setState({ postits: logic.listPostits() })        
+       
+    }
+
+
+    handleEditPost = (id,index) => {
+        logic.editPostit(id,index)
+        this.setState({ postits: logic.listPostits() })
+    }
 
     render() {
         return <div className="container">
             <h1>Post-It App</h1>
-            <form>
-                <textarea placeholder="Write text here..." type="text" value={this.state.text} onChange={this.handleChange} />
-                <button type="submit" onClick={this.handleSubmit} value="Submit" name="yes">Create</button>
+            <form onSubmit={this.handleSubmit}>
+                <textarea placeholder="Write text here..." type="text" onChange={this.handleChange} value={this.state.text} /><br></br>
+                <button className="button" type="submit">Create</button>
             </form>
-
-            {this.state.status === "yes" && <PostIt text={this.state.text}></PostIt>}
+            <div className="posts-container">
+            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onEditPost={this.handleEditPost}/>)}
+            </div>
                        
         </div>
     }
