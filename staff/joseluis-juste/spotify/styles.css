@@ -12,3 +12,28 @@ body {
 img {
   width: 100%;
   height: auto; }
+
+.header {
+  padding: 1em;
+  border: 1px solid white;
+  border-radius: 5px; }
+  .header .header__logo img {
+    width: 30%; }
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 2em;
+  overflow-y: scroll;
+  height: 302px; }
+  .list li {
+    display: block;
+    padding: 1em 0;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.3); }
+    .list li:last-child {
+      border-bottom: 0; }
+    .list li a {
+      color: white;
+      display: block;
+      text-decoration: none; }
