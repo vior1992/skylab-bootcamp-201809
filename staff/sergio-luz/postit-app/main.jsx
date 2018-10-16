@@ -1,59 +1,20 @@
-function PostIt(props) {
-    return <section>
-        <article className="article">{props.text}</article>
-    </section>
-}
-
-function Button() {
-
-    return <button type="submit" onClick={this.props.props.onClick} value="Submit">Create</button>
-
-}
-
-class Menu extends React.Component {
-    onClicked = this.onClicked.bind(this)
-
-
-    state = {
-        ruta:""
-    }
-    constructor(){
-        super()
-    }
-
-    onClicked(event) {
-        event.preventDefault()
-        const ruta=this.props.onClick
-        this.setState({ruta})
-        ruta()
-        // {console.log('hola')}
-
-    }
-
-    render() {
-        return <form>
-            <textarea placeholder="Write text here..." type="text" onChange={this.props.onChange} /><br></br>
-            <button type="submit" onClick={this.onClicked} value="Submit">Create</button>
-
-            {/* <Button  onClick={this.props.onClick}></Button> */}
-        </form>
-    }
-}
+// CLASE PADRE DE TODOS
 
 class App extends React.Component {
 
     state = {
-        text: '',
         texts: []
 
     }
 
-    handleChange = this.handleChange.bind(this)
+    handleSubmit = this.handleSubmit.bind(this)
     addText = this.addText.bind(this)
+    handleDelete = this.handleDelete.bind(this)
 
-    handleChange(event) {
-        event.preventDefault()
-        this.setState({ text: event.target.value });
+    handleSubmit(event) {
+        const texts = this.state.texts.concat(event)
+
+        this.setState({ texts })
     }
 
 
@@ -64,19 +25,93 @@ class App extends React.Component {
         }))
     }
 
+    handleDelete(INDEXtoBeDeleted) {
+        const newTexts = this.state.texts.filter((item, index) => {
+            index !== INDEXtoBeDeleted
+        });
+        this.setState({ texts: newTexts })
+    }
+
 
     render() {
         return <div className="container">
             <h1>Post-It App</h1>
-            <Menu onChange={this.handleChange} onClick={this.addText} />
-            <div className="posts-container">
-                {this.state.texts.map((post) => {
-                    return <PostIt key={post} text={post} />
+            <Menu onSubmit={this.handleSubmit} onClick={this.addText} />
+            <section className="posts-container">
+                {this.state.texts.map((post, index) => {
+                    return <Notes key={index} text={post} index={index} handleDelete={this.handleDelete}/>
                 })}
-            </div>
+            </section>
 
         </div>
     }
 }
+
+// THIS FUNCTION IS A SON OF "App"
+
+function Post(props) {
+    return <article className="article">{props.text}</article>
+}
+
+// THIS CLASS IS A SON OF "App"
+
+class Menu extends React.Component {
+    state = { text: '' }
+
+    handleInput = event => {
+        console.log('InputForm', 'handleInput (setState)')
+
+        const text = event.target.value
+
+        this.setState({ text })
+    }
+
+    handleSubmit = event => {
+        console.log('InputForm', 'handleSubmit (setState)')
+
+        event.preventDefault()
+
+        this.props.onSubmit(this.state.text)
+
+        this.setState({ text: '' })
+    }
+
+    render() {
+        console.log('InputForm', 'render')
+
+        return <form onSubmit={this.handleSubmit}>
+            <textarea value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
+            <Button name={'Create'}/>
+        </form>
+    }
+}
+
+// THIS CLASS IS A SON OF "App"
+
+class Notes extends React.Component {
+
+    handleDelete = event => {
+        event.preventDefault()
+
+        this.props.handleDelete(this.props.index)
+
+    }
+
+    render() {
+        return <div>
+            <article className="article">{this.props.text}</article>
+            <button onClick={this.props.handleDelete} >X</button>
+            {/* <Button name={'X'}/> */}
+        </div>
+    }
+
+}
+// THIS FUNCTION IS A SON OF "MENU"
+
+function Button(props) {
+    return <button type="submit">{props.name}</button>
+}
+
+// RENFER APP
 
 ReactDOM.render(<App />, document.getElementById('root'))
