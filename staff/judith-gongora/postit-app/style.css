@@ -39,4 +39,11 @@ article {
   height: 197px;
 }
 
+.transparent {
+  height: 150px;
+  background: transparent;
+  border: none;
+  resize: none;
+}
+
 /*# sourceMappingURL=style.css.map */

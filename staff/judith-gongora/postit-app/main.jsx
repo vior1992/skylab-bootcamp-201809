@@ -30,10 +30,33 @@ class InputForm extends React.Component {
     }
 }
 
+// class Post extends React.Component{
+//     editAreaE= id => {
+//         document.getElementById(id).disabled = false;
+//     }
+
+//     editAreaD= id => {
+//         document.getElementById(id).disabled = true;
+//     }
+
+//     render(){
+//             return <article onClick={this.editAreaE(props.id)} onblur={this.editAreaD(props.id)} className="post">
+//                         <textarea id={props.id} disabled>{props.text}</textarea> 
+//                         <button onClick={() => props.onClickEdit(props.id,props.index)}>Edit</button>
+//                         <button onClick={() => props.onClick(props.id)}>x</button>
+//                     </article>
+//             }
+// }
+
 function Post(props) {
 
-    return <article onClick={() => props.onClick(props.id)} className="post">{props.text}</article>
+    return <article onClick={() => props.onClickAreaE(props.id)} onblur={() => props.onClickAreaD(props.id)} className="post">
+                <textarea className="transparent" id={props.id} disabled>{props.text}</textarea> 
+                <button onClick={() => props.onClickEdit(props.id,props.index)}>Edit</button>
+                <button onClick={() => props.onClick(props.id)}>x</button>
+            </article>
 }
+
 
 
 class App extends React.Component {
@@ -51,6 +74,20 @@ class App extends React.Component {
         this.setState({ postits: logic.listPostits() })
     }
 
+    handleEdit = (id,index) => {
+        logic.editPostit(id, index)
+
+        this.setState({ postits: logic.listPostits() })
+    }
+
+    handleAreaE = id => {
+        logic.editAreaE(id)
+    }
+
+    handleAreaD = id => {
+        logic.editAreaD(id)
+    }
+
     render() {
         return <div>
 
@@ -58,7 +95,7 @@ class App extends React.Component {
 
         <section>
             {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
-            {this.state.postits.map((postit) => <Post onClick = {this.handleDelete} key={postit.id} text={postit.text} id={postit.id} />)}
+            {this.state.postits.map((postit, index) => <Post onClick = {this.handleDelete} key={postit.id} index ={index} text={postit.text} id={postit.id} onClickAreaE = {this.handleAreaE} onClickAreaD = {this.handleAreaD} onClickEdit = {this.handleEdit}/>)}
         </section>
     </div>
     }
