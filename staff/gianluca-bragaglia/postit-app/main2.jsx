@@ -10,7 +10,6 @@ class App extends React.Component {
 
     state = { 
         text: '',
-        status:'',
         texts: []
         
     }
@@ -23,9 +22,16 @@ class App extends React.Component {
       }
     
     
-    addText() {       
-        this.setState({texts:[...this.state.texts, this.state.text]})
-            event.target.value = ''
+    addText() {        
+        //this.setState({ texts: [...this.state.texts, this.state.text] })
+        /* this.setState(prevState => ({
+            texts: [...prevState.texts, this.state.text]
+          })) */
+          fetch('http://localhost:8080')
+            .then(response => response.json())
+            .then(json => {
+            this.setState({texts: this.state.texts.push.apply(this.state.text, json)})
+})
         }
 
 
@@ -36,15 +42,15 @@ class App extends React.Component {
 
                 <textarea placeholder="Write text here..." type="text" value={this.state.text} onChange={this.handleChange} />
 
-                <button type="submit" onClick={this.addText} value="Submit" name="yes">Create</button>
+                <button type="submit" onClick={this.addText} value="Submit">Create</button>
             </form>
 
             {/* {this.state.status === "yes" && <PostIt text={this.state.text}></PostIt>} */}
 
              {/* this.state.texts */}
 
-             {this.state.texts.map((text) => {
-                return <PostIt text={text} />
+             {this.state.texts.map((post) => {
+                return <PostIt text={post} />
             })}
             
             
