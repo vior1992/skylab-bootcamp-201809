@@ -1,0 +1,35 @@
+.main {
+    &__title {
+
+    }
+
+    .board {
+        &__title {
+
+        }
+
+        &__post{
+            background-color: yellow;
+            width: 100px;
+            height: 100px;
+
+            &__title {
+
+            }
+        }
+        
+        &__input {
+
+        }
+    }
+
+    .add {
+        &__input {
+
+        }
+
+        &__button {
+
+        }
+    }
+}
