@@ -9,6 +9,12 @@ const LOGIC = {
         return element.delete(id)
     },
 
+    update(model, id) {
+        console.log(id);
+        /* const element = new window[model + 'Table']()
+        return element.update() */
+    },
+
     select(model) {
         const element = new window[model + 'Table']()
         return element.selectAll()

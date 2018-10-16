@@ -21,11 +21,30 @@ body .main__boards .board__input:focus, body .main__boards .board .post:focus {
 }
 
 body .main__boards .board .post__title, body .main__boards .board__title {
+  display: inline;
   margin: 0;
   font-size: 16px;
+  background-color: transparent;
+  border: none;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+body .main__boards .add__input, body .main__boards .board__title:focus {
+  width: -webkit-fill-available;
+  height: 20px;
+  margin: 0 0 0.5rem;
+  padding: 4px;
+  font-size: 14px;
+  color: #000;
+  background-color: #fff;
+  border: 2px solid #026aa7;
+  border-radius: 0.5rem;
+}
+body .main__boards .add__input:focus, body .main__boards .board__title:focus {
+  outline: 0;
 }
 
 body {
@@ -54,6 +73,7 @@ body .main__boards {
   min-width: 0;
 }
 body .main__boards .board__title {
+  height: 30px;
   margin-bottom: 0.5rem;
   color: #17394d;
 }
@@ -79,14 +99,14 @@ body .main__boards .board .post__button {
   cursor: pointer;
 }
 body .main__boards .board .post__button:focus {
-  outline: none;
+  outline: 0;
 }
 body .main__boards .board__button {
   position: absolute;
   top: 0;
   right: 0;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background-color: transparent;
   border: none;
   border-radius: 0.5rem;
@@ -95,19 +115,7 @@ body .main__boards .board__button {
   cursor: pointer;
 }
 body .main__boards .board__button:focus {
-  outline: none;
-}
-body .main__boards .add__input {
-  width: -webkit-fill-available;
-  height: 20px;
-  margin: 0 0 0.5rem;
-  padding: 4px;
-  font-size: 14px;
-  border: 2px solid #026aa7;
-  border-radius: 0.5rem;
-}
-body .main__boards .add__input:focus {
-  outline: none;
+  outline: 0;
 }
 body .main__boards .add__button {
   padding: 0.5rem;

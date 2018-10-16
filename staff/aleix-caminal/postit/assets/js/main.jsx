@@ -51,7 +51,7 @@ class Board extends React.Component {
     render() {
         return <section className="board">
             <button className="board__button" onClick={this.props.onDelete}>X</button>
-            <h2 className="board__title">{this.props.title}</h2>
+            <input className="board__title" defaultValue={this.props.title} onBlur={this.props.onUpdate} />
             {this.state.posts.map((post) => {
                 return <Post key={post.id} title={post.title} onDelete={() => this.handleDelete(post.id)} />
             })}
@@ -79,12 +79,17 @@ class App extends React.Component {
         this.setState({boards:LOGIC.delete('Boards', id)})
     }
 
+    handleUpdate(id) {
+        console.log(id);
+        //this.setState({boards:LOGIC.update('Boards', id)})
+    }
+
     render() {
         return <section className="main">
             <h1 className="main__title">🎻 Cello</h1>
             <section className="main__boards">
                 {this.state.boards.map((board) => {
-                    return <Board key={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} />
+                    return <Board key={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} onUpdate={() => this.handleUpdate(board.id)} />
                 })}
                 <Add onSubmit={this.handleSubmit} />
             </section>

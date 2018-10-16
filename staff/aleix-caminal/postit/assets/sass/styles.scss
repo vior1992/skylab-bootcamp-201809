@@ -27,11 +27,31 @@ $color-text: #17394d;
 }
 
 %title {
+    display: inline;
     margin: 0;
     font-size: 16px;
+    background-color: transparent;
+    border: none;
+    font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+%input {
+    width: -webkit-fill-available;
+    height: 20px;
+    margin: 0 0 .5rem;
+    padding: 4px;
+    font-size: 14px;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid $color-primary;
+    border-radius: .5rem;
+
+    &:focus {
+        outline: 0;
+    }
 }
 
 @mixin button($size) {
@@ -48,7 +68,7 @@ $color-text: #17394d;
     cursor: pointer;
 
     &:focus {
-        outline: none;
+        outline: 0;
     }
 }
 
@@ -83,8 +103,13 @@ body {
 
                 &__title {
                     @extend %title;
+                    height: 30px;
                     margin-bottom: .5rem;
                     color: $color-text;
+
+                    &:focus {
+                        @extend %input;
+                    }
                 }
 
                 .post{
@@ -108,7 +133,7 @@ body {
                 }
 
                 &__button {
-                    @include button(30px);
+                    @include button(25px);
                 }
             }
 
@@ -116,17 +141,7 @@ body {
                 @extend %board;
 
                 &__input {
-                    width: -webkit-fill-available;
-                    height: 20px;
-                    margin: 0 0 .5rem;
-                    padding: 4px;
-                    font-size: 14px;
-                    border: 2px solid $color-primary;
-                    border-radius: .5rem;
-
-                    &:focus {
-                        outline: none;
-                    }
+                    @extend %input;
                 }
 
                 &__button {
