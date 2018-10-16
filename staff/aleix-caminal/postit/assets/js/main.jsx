@@ -32,28 +32,28 @@ class Post extends React.Component {
 class Board extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {posts: []}
+        this.state = {posts:LOGIC.select('Posts')}
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleKeyPress(event) {
         if (event.key === 'Enter' && event.target.value) {
-            this.setState({posts:[...this.state.posts, event.target.value]})
+            this.setState({posts:LOGIC.add('Posts', event.target.value)})
             event.target.value = '';
         }
     }
 
-    handleDelete(index) {
-        this.setState({posts:this.state.posts.filter((_, i) => i !== index)})
+    handleDelete(id) {
+        this.setState({posts:LOGIC.delete('Posts', id)})
     }
 
     render() {
         return <section className="board">
             <button className="board__button" onClick={this.props.onDelete}>X</button>
             <h2 className="board__title">{this.props.title}</h2>
-            {this.state.posts.map((post, i) => {
-                return <Post key={i} title={post} onDelete={() => this.handleDelete(i)} />
+            {this.state.posts.map((post) => {
+                return <Post key={post.id} title={post.title} onDelete={() => this.handleDelete(post.id)} />
             })}
             <Input onKeyPress={this.handleKeyPress} />
         </section>
@@ -63,7 +63,7 @@ class Board extends React.Component {
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {boards: ['TODO', 'WIP', 'DONE']}
+        this.state = {boards:LOGIC.select('Boards')}
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
     }
@@ -71,20 +71,20 @@ class App extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
         let input = event.target.querySelector('input');
-        this.setState({boards:[...this.state.boards, input.value]})
+        this.setState({boards:LOGIC.add('Boards', input.value)})
         input.value = ''
     }
 
-    handleDelete(index) {
-        this.setState({boards:this.state.boards.filter((_, i) => i !== index)})
+    handleDelete(id) {
+        this.setState({boards:LOGIC.delete('Boards', id)})
     }
 
     render() {
         return <section className="main">
             <h1 className="main__title">🎻 Cello</h1>
             <section className="main__boards">
-                {this.state.boards.map((board, i) => {
-                    return <Board key={i} title={board} onDelete={() => this.handleDelete(i)} />
+                {this.state.boards.map((board) => {
+                    return <Board key={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} />
                 })}
                 <Add onSubmit={this.handleSubmit} />
             </section>
