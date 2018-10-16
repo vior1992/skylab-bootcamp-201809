@@ -27,11 +27,7 @@ class App extends React.Component {
         /* this.setState(prevState => ({
             texts: [...prevState.texts, this.state.text]
           })) */
-          fetch('http://localhost:8080')
-            .then(response => response.json())
-            .then(json => {
-            this.setState({texts: this.state.texts.push.apply(this.state.text, json)})
-})
+
         }
 
 
