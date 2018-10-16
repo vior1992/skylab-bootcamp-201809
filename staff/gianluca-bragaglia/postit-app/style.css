@@ -1,4 +1,12 @@
-.article{
+/* .article{
+    background-color: yellow; 
+    width: 100px; 
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+} */
+
+section{
     background-color: yellow; 
     width: 100px; 
     height: 100px;
@@ -18,5 +26,13 @@ textarea{
     display: flex;
     flex-wrap: wrap;
     text-align: left;
+}
+
+button{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 0px;
 }
 

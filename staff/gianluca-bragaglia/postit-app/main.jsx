@@ -1,6 +1,9 @@
 function PostIt(props) {
+    console.log(props.index);
+    
     return <section>
                 <article className="article">{props.text}</article>
+                <button onClick={() => props.delete(props.index)}>delete</button>
             </section>        
 } 
 
@@ -13,33 +16,45 @@ class App extends React.Component {
         
     }
 
-    handleChange = this.handleChange.bind(this)
-    addText = this.addText.bind(this)
-
-    handleChange(event) {
+    handleChange = event => {
         this.setState({text: event.target.value});
       }
     
     
-    addText(event) { 
-        event.preventDefault()     
+    handleSubmit = event => { 
+        event.preventDefault()   
         this.setState(prevState => ({
             texts: [...prevState.texts, this.state.text]
-          })) 
+          }))
+        this.setState({text: ''})
 
     }
 
+    /* deletePostit = index => {
+        const data = this.state.texts
+        this.setState({ 
+        texts: [...data.slice(0,index), ...data.slice(index+1)]
+        })
+    } */
+
+    deletePostit = index => {
+      //  console.log(index);
+        
+        this.state.texts.splice(index,1)
+        this.setState({texts:this.state.texts})
+    }
 
     render() {
         return <div className="container">
             <h1>Post-It App</h1>
-            <form>
-                <textarea placeholder="Write text here..." type="text" onChange={this.handleChange} /><br></br>
-                <button type="submit" onClick={this.addText} value="Submit">Create</button>
+            <form onSubmit={this.handleSubmit}>
+                <textarea placeholder="Write text here..." type="text" onChange={this.handleChange} value={this.state.text} /><br></br>
+                <button type="submit">Create</button>
             </form>
             <div className="posts-container">
-                {this.state.texts.map((post) => {
-                    return <PostIt key={post} text={post} />
+                {this.state.texts.map((post,index) => {
+                    return <PostIt delete={this.deletePostit} key={index} index ={index} text={post} />
+                        
                 })}
             </div>
                        
