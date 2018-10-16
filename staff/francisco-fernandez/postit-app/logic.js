@@ -27,7 +27,9 @@ const logic = {
         this.persistPostits(postits)
     },
 
-    editPostit(id){
-        // document.getElementById(id).disabled = false
+    editPostit(id, element){
+        const postits = this.listPostits()
+        postit = postits.filter(postit => postit.id == id)
+        // postit.text = element.text
     }
 }
