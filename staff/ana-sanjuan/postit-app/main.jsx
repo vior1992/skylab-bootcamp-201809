@@ -1,37 +1,70 @@
-function Article (props) {
-    return <section>
-        <article>{props.postItText}</article>
-        </section>
+class Article extends React.Component {
+    state = {}    
+
+    handleClick = event =>{
+        event.preventDefault()
+
+        this.props.DadDelete(this.props.index)
+
+    }
+    
+    render(){
+        return <article className="post">
+        <p>{this.props.postItText}</p>
+        <button className="btn btn-warning" onClick = {this.handleClick}>Delete Me</button>
+        </article>
+    }
+}
+
+class InputForm extends React.Component{
+    state = {textValue: "" }
+
+    handleInput = event => {
+        const textValue = event.target.value
+
+        this.setState({textValue})
+
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+
+        this.props.DadSubmit(this.state.textValue)
+
+        this.setState({ textValue: '' })
+      
+     }
+
+    render(){
+        return<form onSubmit={this.handleSubmit} >
+            <textarea placeholder="Write text here..." onChange={this.handleInput} value = {this.state.textValue}></textarea>
+            <button type= "submit">Create</button>
+        </form>
+    }
 }
 
 class App extends React.Component{
-    constructor(props) {
-        super(props)
-        this.state = { textValue: "", posts: []}
+    state = { posts: []}
+
+    handleSubmit = text => {
+        const posts = [...this.state.posts, text]
+
+        this.setState({ posts })
     }
+
+    handleDelete = index => {
+        this.state.posts.splice(index,1)
     
-    keepValue = event => {
-        const textValue = event.target.value
-        this.setState({textValue})
+        this.setState({posts: this.state.posts})
     }
-
-    createPostIt = event => {
-        event.preventDefault()
-        this.setState(prevState => ({
-            posts: [...prevState.posts, this.state.textValue]
-          }))    
-     }
-
     render() {
         return <section> 
-            <form>
-                <textarea placeholder="Write text here..." onChange={this.keepValue} value = {this.state.textValue}></textarea>
-                <button type= "button" onClick = {this.createPostIt}>Create</button>
-            </form>
-                {this.state.posts.map(post => <Article postItText= {post}/>)}
+            <InputForm DadSubmit={this.handleSubmit}/>
+                
+            {this.state.posts.map((post, index) => <Article key={index} index={index} postItText={post} DadDelete={this.handleDelete}/>)}
+            
         </section>
     }
-    
 }
 
 ReactDOM.render(<App />, root)

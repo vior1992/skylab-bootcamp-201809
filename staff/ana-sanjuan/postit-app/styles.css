@@ -1,0 +1,15 @@
+.post {
+    background-color: yellow;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    display: relative;
+}
+
+.button {
+    border-radius: 10px;
+    background-color:  #2EBD5E;
+    display: relative;
+    bottom: 10px;
+    color: white
+}
