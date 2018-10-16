@@ -1,8 +1,7 @@
 function PostIt(props) {
     return <section>
                 <article className="article">{props.text}</article>
-            </section>
-        
+            </section>        
 } 
 
 
@@ -28,23 +27,22 @@ class App extends React.Component {
             texts: [...prevState.texts, this.state.text]
           })) 
 
-        }
+    }
 
 
     render() {
         return <div className="container">
             <h1>Post-It App</h1>
             <form>
-
-                <textarea placeholder="Write text here..." type="text" value={this.state.text} onChange={this.handleChange} />
-
+                <textarea placeholder="Write text here..." type="text" onChange={this.handleChange} /><br></br>
                 <button type="submit" onClick={this.addText} value="Submit">Create</button>
             </form>
-             {this.state.texts.map((post) => {
-                return <PostIt text={post} />
-            })}
-            
-            
+            <div className="posts-container">
+                {this.state.texts.map((post) => {
+                    return <PostIt key={post} text={post} />
+                })}
+            </div>
+                       
         </div>
     }
 }
