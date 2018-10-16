@@ -27,5 +27,14 @@ const logic = {
 
         this.persistPostits(postits)
       
+    },
+
+    updatePost(id, text) {
+        const newPostit = new Postit(text)
+        const postits = JSON.parse(storage.getItem('postits'))
+        const index = postits.findIndex( el => el.id===id)
+        postits[index] = newPostit
+        this.persistPostits(postits)
+        
     }
 }
