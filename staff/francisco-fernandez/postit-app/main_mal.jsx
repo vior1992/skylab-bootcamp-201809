@@ -26,8 +26,8 @@ class InputForm extends React.Component{
 
 function PostIt(props) {
     return <section className="postit">
-                <article className="article">{props.text}</article>
-                <button>X</button>
+                <article className="article"><p>{props.text}</p></article>
+                <button onClick={()=>props.onDeletePost(index)}>X</button>
             </section>        
 } 
 
@@ -45,6 +45,12 @@ class App extends React.Component {
           this.setState({ texts })
         } 
 
+    handleDeletePost = index => {
+        const texts = this.state.texts.filter((text, _index)=> index !== _index)
+
+        this.setState({texts})
+    }
+
     render() {
         return <div>
             <h1>Post-It App</h1>
@@ -53,7 +59,7 @@ class App extends React.Component {
             
             <div className="posts-container">
                 {this.state.texts.map((post, index) => 
-                    <PostIt key={index} text={post} />
+                    <PostIt key={index} text={post} index={index} onDeletePost={this.handleDeletePost}/>
                 )}
             </div>
         </div>
