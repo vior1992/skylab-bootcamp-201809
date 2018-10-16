@@ -1,15 +1,8 @@
-/* .article{
-    background-color: yellow; 
-    width: 100px; 
-    height: 100px;
-    margin: 10px;
-    padding: 10px;
-} */
 
 section{
     background-color: yellow; 
-    width: 100px; 
-    height: 100px;
+    width: 150px; 
+    height: 150px;
     margin: 10px;
     padding: 10px;
 }
@@ -28,11 +21,20 @@ textarea{
     text-align: left;
 }
 
-button{
+.button{
     background-color: blueviolet;
     color: white;
     border-radius: 5px;
     padding: 10px 15px;
     border: 0px;
+}
+
+.button-delete{
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 0px;
+    margin-top: 95px;
 }
 
