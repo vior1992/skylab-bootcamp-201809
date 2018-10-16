@@ -1,6 +1,6 @@
 class PostItApp extends React.Component {
   state = {
-    items: []
+    items: logic.listPostIts()
   }
 
   render() {
@@ -16,15 +16,15 @@ class PostItApp extends React.Component {
   }
 
   handleSubmit = text => {
-    this.setState({
-      items: [...this.state.items, text]
-    })
+    logic.createPostIt(text)
+
+    this.setState({ items: logic.listPostIts() })
   }
 
-  handleRemoveItem = index => {
-    this.setState({
-      items: this.state.items.filter((item, itemIndex) => itemIndex !== index)
-    })
+  handleRemoveItem = id => {
+    logic.deletePostIt(id)
+
+    this.setState({ items: logic.listPostIts() })
   }
   
   // Capture event
@@ -72,13 +72,13 @@ const PostItList = props => {
   return (
     <div className="post-it my-3">
       <div className="row">
-        {props.items.map((item, index) => (
-          <div className="col-sm-12 col-md-6">
-            <div className="alert alert-warning alert-dismissible fade show" key={index}>
-              {item}
+        {props.items.map((item) => (
+          <div className="col-sm-12 col-md-6" key={item.id}>
+            <div className="alert alert-warning alert-dismissible fade show">
+              {item.text}
               {/* Send event 
               <button data-id={index} type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={props.onRemoveItem}></button> */}
-              <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => props.onRemoveItem(index)}>
+              <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => props.onRemoveItem(item.id)}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
