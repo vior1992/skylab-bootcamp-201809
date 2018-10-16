@@ -20,7 +20,7 @@ class InputForm extends React.Component {
     render() {
         return <form onSubmit={this.handleSubmit}>
             <textarea placeholder='Write your text...' value={this.state.text} onChange={this.handleInput}></textarea>
-            <button type='submit'>Edit</button>
+            <button type='submit'>Create</button>
         </form>
     }
 }
@@ -30,7 +30,7 @@ class PostIt extends React.Component {
 
     handleInput = event => {
         const editText = event.target.value
-        this.setState({editText})
+        this.setState({ editText })
     }
 
     handleSubmit = event => {
@@ -46,19 +46,20 @@ class PostIt extends React.Component {
             <article className='postIt'>
                 <p >{this.props.paint}</p>
                 <button className='postIt__button' type='button' onClick={() => { this.props.onClick(props.id) }} >X</button>
-                <button className='postIt__button--edit' type='button'>EDIT</button>
+                <button className='postIt__button--edit' type='button' onClick={this.props.onEditClick} >EDIT</button>
             </article>
-            <form onSubmit={this.handleSubmit}>
-                <textarea value={this.state.text} onChange={this.handleInput}>{this.props.paint}</textarea>
-                <button type='submit'>Submit changes</button>
-            </form>
+            {this.props.show?
+                <form onSubmit={this.handleSubmit}>
+                    <textarea value={this.state.text} onChange={this.handleInput}>{this.props.paint}</textarea>
+                    <button type='submit'>Submit changes</button>
+                </form> : null}
         </div>
     }
 }
 
 class App extends React.Component {
 
-    state = { postits: logic.listPostits() }
+    state = { postits: logic.listPostits(), show: true }
 
     handleSubmit = text => {
         const postit = new Postit(text)
@@ -76,7 +77,13 @@ class App extends React.Component {
 
     handleEditSubmit = (text, id) => {
         logic.changePostit(text, id)
-        this.setState({postits:logic.listPostits()})
+        this.setState({ postits: logic.listPostits(), show: false })
+
+    }
+
+    handleEditClick = () => {
+        this.setState({ show: true })
+
     }
 
     render() {
@@ -86,7 +93,7 @@ class App extends React.Component {
             <InputForm onSubmit={this.handleSubmit} />
 
             <section className='postit-board'>
-                {this.state.postits.map(postit => <PostIt onSubmit={this.handleEditSubmit} paint={postit.text} key={postit.id} id={postit.id} onClick={this.handleClick} />)}
+                {this.state.postits.map(postit => <PostIt show={this.show} onEditClick={this.handleEditClick} onSubmit={this.handleEditSubmit} paint={postit.text} key={postit.id} id={postit.id} onClick={this.handleClick} />)}
             </section>
         </section >
     }
