@@ -1,4 +1,4 @@
-// Business (logic)?
+// Business (logic)
 
 const logic = {
     createPostit(text) {
