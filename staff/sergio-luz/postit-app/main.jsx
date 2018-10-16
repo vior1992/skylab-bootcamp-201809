@@ -3,54 +3,48 @@
 class App extends React.Component {
 
     state = {
-        texts: []
-
+        texts: logic.listPostits()
     }
 
     handleSubmit = this.handleSubmit.bind(this)
-    addText = this.addText.bind(this)
     handleDelete = this.handleDelete.bind(this)
 
     handleSubmit(event) {
-        const texts = this.state.texts.concat(event)
+        logic.createPostit(event)
 
-        this.setState({ texts })
+        this.setState({ texts: logic.listPostits() })
     }
 
-
-    addText(event) {
-        event.preventDefault()
-        this.setState(prevState => ({
-            texts: [...prevState.texts, this.state.text]
-        }))
-    }
 
     handleDelete(INDEXtoBeDeleted) {
-        const newTexts = this.state.texts.filter((item, index) => {
-            index !== INDEXtoBeDeleted
-        });
-        this.setState({ texts: newTexts })
+        logic.deletePostit(INDEXtoBeDeleted)
+
+        this.setState({ texts: logic.listPostits() })
     }
+
+    // handleEditPost = id => {
+    //     let element = document.getElementById(id)
+    //     if (element.disabled) {
+    //         element.disabled = false
+    //     }
+    //     else
+    //         element.disabled = true
+            
+    // }
 
 
     render() {
         return <div className="container">
             <h1>Post-It App</h1>
-            <Menu onSubmit={this.handleSubmit} onClick={this.addText} />
+            <Menu onSubmit={this.handleSubmit} />
             <section className="posts-container">
-                {this.state.texts.map((post, index) => {
-                    return <Notes key={index} text={post} index={index} handleDelete={this.handleDelete}/>
+                {this.state.texts.map(postit => {
+                    return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.handleDelete}/>
                 })}
             </section>
 
         </div>
     }
-}
-
-// THIS FUNCTION IS A SON OF "App"
-
-function Post(props) {
-    return <article className="article">{props.text}</article>
 }
 
 // THIS CLASS IS A SON OF "App"
@@ -81,29 +75,24 @@ class Menu extends React.Component {
 
         return <form onSubmit={this.handleSubmit}>
             <textarea value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
-            <Button name={'Create'}/>
+            <Button name={'Create'} />
         </form>
     }
 }
 
 // THIS CLASS IS A SON OF "App"
 
-class Notes extends React.Component {
+function Notes(props) {
 
-    handleDelete = event => {
-        event.preventDefault()
+    return <article className="article">
+        <textarea name="" id={props.index} cols="30" rows="10" disabled>{props.text}</textarea>
 
-        this.props.handleDelete(this.props.index)
+        <button onClick={() => props.handleDelete(props.index)} >X</button>
 
-    }
+        <button onClick={() => props.handleEditPost(props.index)} >Edit</button>
 
-    render() {
-        return <div>
-            <article className="article">{this.props.text}</article>
-            <button onClick={this.props.handleDelete} >X</button>
-            {/* <Button name={'X'}/> */}
-        </div>
-    }
+        {/* <Button name={'X'}/> */}
+    </article>
 
 }
 // THIS FUNCTION IS A SON OF "MENU"
