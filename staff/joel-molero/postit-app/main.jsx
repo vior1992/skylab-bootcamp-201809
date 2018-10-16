@@ -20,7 +20,7 @@ class App extends React.Component {
         this.setState({ writeHere })
     }
 
-    submit = (event) => {
+    submit = (text) => {
         event.preventDefault()
         
         const writeHere = this.state.writeHere
@@ -32,16 +32,29 @@ class App extends React.Component {
 
     render() {  //aqui aparecen las cosas
         return <div>
-            <form onSubmit={this.submit}>
-            <input value={this.state.writeHere} type="text" onChange={this.keepWords}/>
-            <Button onClick={this.submit}></Button>
-        </form>
-        <div>
-          {this.state.postits.map((element) => <PostIt key={element}/>)}
-        </div>
+            <h1>Post it app</h1>
+
+            <InputForm onSubmit={this.handleSubmit} />
+
+            <section>
+                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
+            </section>
         </div>
     }
-
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
+
+
+
+/* render() {  //aqui aparecen las cosas
+    return <div>
+        <form onSubmit={this.submit}>
+        <input value={this.state.writeHere} type="text" onChange={this.keepWords}/>
+        <button type="submit" onClick={this.submit}></button>
+    </form>
+    <div>
+      {this.state.postits.map((element) => <PostIt key={element}/>)}
+    </div>
+    </div>
+} */
