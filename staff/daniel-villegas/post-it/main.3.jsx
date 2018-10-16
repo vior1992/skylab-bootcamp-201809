@@ -1,4 +1,9 @@
-// Presentation (components)
+// class PostId {
+//     constructor(text) {
+//         this.next = text
+//         this.id = Date.now()
+//     }
+// }
 
 class KeepMessage extends React.Component {
     state = { text: '' }
@@ -20,34 +25,32 @@ class KeepMessage extends React.Component {
     render () {
         return <form onSubmit={this.keepSubmit}>
         <input value={this.state.text} placeholder="Write your post it here" onChange={this.handleInput}/>
-        <button type="submit">Submit<i></i></button>
+        <button type="submit">Submit<i className="fas fa-plus"></i></button>
         </form>
     }
 }
 
 function Post(props) { 
+
     return <article className="post">
         <p>{props.text}</p>
-
-        <button className="editButton" onClick={() => a}>Edit<i></i></button>
-
-        <button className="deleteButton" onClick={() => props.onDeletePost(props.id)}>Delete<i></i></button>
+        <button onClick={() => props.onDeletePost(props.index)}><i className="deleteButton"></i></button>
     </article>
 }
 
 class PostIt extends React.Component {
-    state = { postits: logic.listPostits() }
+    state = { posts: [] }
 
     keepSubmit = text => {
-        logic.createPostit(text)
+        const posts = this.state.posts.concat(text)
 
-        this.setState({ postits: logic.listPostits() }) 
+        this.setState({ posts }) 
     }
 
-    deletePost = id => {
-        logic.deletePostit(id)
+    deletePost = (index) => {
+        const posts = this.state.posts.filter((post, _index) => index !== _index)
 
-        this.setState({ postits: logic.listPostits() })
+        this.setState({ posts })
     }
 
     render() {
@@ -57,10 +60,11 @@ class PostIt extends React.Component {
             <KeepMessage onSubmit={this.keepSubmit}/>
            
             <section>
-                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.deletePost} />)}
+                {this.state.posts.map((post, index) => <Post key={index} text={post} index={index} className='deleteButton' onDeletePost={this.deletePost} />)}
             </section>
 
         </div>
     }
 }
+
 ReactDOM.render(<PostIt />, document.getElementById('root'))
