@@ -1,45 +1,65 @@
-function Button(props) {
-    return <button type='button' onClick={props.onClick}>add post-it</button>
-}
-
-function Article (props) {
-    return <div>{props.posts}</div>
-}
-    
-class PostIt extends React.Component {
-    state = { text: '', posts: []}
+class KeepMessage extends React.Component {
+    state = { text: '' }
 
     keepMessage = event => {
         const text = event.target.value
-
+    
         this.setState({ text })
     }
 
-    print = () => {
+    handleInput = event => {
         event.preventDefault()
 
-        const posts = this.state.posts.concat(this.state.text)
+        this.props.onSubmit(this.state.text)
 
-        this.setState({posts})
-        // this.setState(prevState => ({
-        //     posts: [...prevState.posts, this.state.text]
-        // }))    
+        this.setState({ text: '' })
+    }
 
-        //con el setState le pasamos el estado de posts y se le añade text.
+    render () {
+        return <form className='' onSubmit={this.handleInput}>
+        <textarea placeholder="Write your post it here" value={this.state.text} onChange={this.keepMessage} tabIndex="0" />
+        <button type="submit">Create</button>
+        </form>
+    }
+}
+
+function Post(props) { 
+    return <article className="post">{props.text}</article>
+}
+
+class PostId {
+    constructor(text) {
+        this.next = text
+        this.id = Date.now()
+    }
+}
+    
+class PostIt extends React.Component {
+    state = { posts: [] }
+
+    handleInput = text => {
+        const posts = this.state.posts.concat(new PostId(text))
+
+        this.setState({ posts }) 
+    }
+
+    deletePost = (id) => {
+        const posts = this.state.posts.filter((postId) => postId.id !== id)
+
+        this.setState({ posts })
     }
 
     render() {
         return <div>
             <h1>Post-it or die trying</h1>
-            <form className=''>
-            <textarea placeholder="Write your post it here" value={this.state.text} type="text" onChange={this.keepMessage} tabIndex="0" />
-            <Button onClick={this.print}></Button>
-            </form>
 
+            <KeepMessage onSubmit={this.handleInput}/>
+           
             <section>
-                {this.state.posts.map((post, index) => <article key={index} className='post'>{post}</article>)}
-                {/* <Article posts = {this.state.posts}></Article> */}
+                {this.state.posts.map((post, index) => 
+                {return <div><Post key={PostId.id} text={PostId.text}/><div><button className='deleteButton' index={PostId.id} onClick={this.deletePost}>Delete</button></div></div>} )} 
             </section>
+
         </div>
     }
 }
