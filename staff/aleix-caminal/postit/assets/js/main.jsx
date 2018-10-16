@@ -32,9 +32,10 @@ class Post extends React.Component {
 class Board extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {posts:LOGIC.select('Posts')}
+        this.state = {title:this.props.title, posts:LOGIC.select('Posts')}
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleKeyPress(event) {
@@ -48,12 +49,16 @@ class Board extends React.Component {
         this.setState({posts:LOGIC.delete('Posts', id)})
     }
 
+    handleChange(event) {
+        this.setState({title: event.target.value});
+    }
+
     render() {
         return <section className="board">
             <button className="board__button" onClick={this.props.onDelete}>X</button>
-            <input className="board__title" defaultValue={this.props.title} onBlur={this.props.onUpdate} />
+            <input className="board__title" value={this.state.title} onChange={this.handleChange} onBlur={() => this.props.onUpdate(this.props.id, this.state.title)} />
             {this.state.posts.map((post) => {
-                return <Post key={post.id} title={post.title} onDelete={() => this.handleDelete(post.id)} />
+                return <Post key={post.id} id={post.id} title={post.title} onDelete={() => this.handleDelete(post.id)} />
             })}
             <Input onKeyPress={this.handleKeyPress} />
         </section>
@@ -66,6 +71,7 @@ class App extends React.Component {
         this.state = {boards:LOGIC.select('Boards')}
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleUpdate = this.handleUpdate.bind(this)
     }
 
     handleSubmit(event) {
@@ -79,9 +85,8 @@ class App extends React.Component {
         this.setState({boards:LOGIC.delete('Boards', id)})
     }
 
-    handleUpdate(id) {
-        console.log(id);
-        //this.setState({boards:LOGIC.update('Boards', id)})
+    handleUpdate(id, title) {
+        this.setState({boards:LOGIC.update('Boards', id, title)})
     }
 
     render() {
@@ -89,7 +94,7 @@ class App extends React.Component {
             <h1 className="main__title">🎻 Cello</h1>
             <section className="main__boards">
                 {this.state.boards.map((board) => {
-                    return <Board key={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} onUpdate={() => this.handleUpdate(board.id)} />
+                    return <Board key={board.id} id={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} onUpdate={this.handleUpdate} />
                 })}
                 <Add onSubmit={this.handleSubmit} />
             </section>

@@ -18,7 +18,7 @@ class PostsTable extends Model {
 
     delete(id) {
         let posts = this.selectAll()
-        sessionStorage.setItem('posts', JSON.stringify(posts.filter(posts => posts.id !== id)))
+        sessionStorage.setItem('posts', JSON.stringify(post.filter(post => post.id !== id)))
         return this.selectAll()
     }
 
@@ -41,7 +41,16 @@ class BoardsTable extends Model {
 
     delete(id) {
         let boards = this.selectAll()
-        sessionStorage.setItem('boards', JSON.stringify(boards.filter(boards => boards.id !== id)))
+        sessionStorage.setItem('boards', JSON.stringify(board.filter(board => board.id !== id)))
+        return this.selectAll()
+    }
+
+    update(id, title) {
+        let boards = this.selectAll()
+        boards.forEach(function(board) {
+            if (board.id === id) board.title = title
+        });
+        sessionStorage.setItem('boards', JSON.stringify(boards))
         return this.selectAll()
     }
 
