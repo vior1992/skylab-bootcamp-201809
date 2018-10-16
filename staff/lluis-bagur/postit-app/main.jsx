@@ -1,13 +1,19 @@
+// Presentation (components)
+
 class InputForm extends React.Component {
     state = { text: '' }
 
     handleInput = event => {
+        console.log('InputForm', 'handleInput (setState)')
+
         const text = event.target.value
 
         this.setState({ text })
     }
 
     handleSubmit = event => {
+        console.log('InputForm', 'handleSubmit (setState)')
+
         event.preventDefault()
 
         this.props.onSubmit(this.state.text)
@@ -16,39 +22,46 @@ class InputForm extends React.Component {
     }
 
     render() {
+        console.log('InputForm', 'render')
 
         return <form onSubmit={this.handleSubmit}>
-            <textarea className="textarea" value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
-            <button className="btn" type="submit">Create</button>
+        <textarea className="textarea" value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
+        <button className="btn" type="submit">Create</button>
         </form>
     }
 }
 
 function Post(props) {
-    return <div>
-            <article className="post">{props.text}</article>
-            <button  className="delete" type="submit" onClick={() => props.delete(props.index)}> <i className="fas fa-ban"></i> </button> 
-            </div>
+    console.log('Post', '"render"')
+
+    return<div>
+        <article className="post">
+        <p>{props.text}</p>
+        </article>
+
+        <button onClick={() => props.onDeletePost(props.id)}><i className="fas fa-ban"></i></button>
+        </div>    
 }
 
 class App extends React.Component {
-    state = { posts: [] }
+    state = { postits: logic.listPostits() }
 
     handleSubmit = text => {
+        console.log('App', 'handleSubmit (setState)')
 
-        const posts = this.state.posts.concat(text)
+        logic.createPostit(text)
 
-        this.setState({ posts })
+        this.setState({ postits: logic.listPostits() })
     }
 
-    handleDelete = index => {
+    handleDeletePost = id => {
+        logic.deletePostit(id)
 
-        const post = this.state.post.filter((post,_index)=> index !==_index)
-
-        this.setState({posts})
+        this.setState({ postits: logic.listPostits() })
     }
 
     render() {
+        console.log('App', 'render')
 
         return <div className="app_cont">
             <h1 className="title">Post-It App</h1>
@@ -57,54 +70,10 @@ class App extends React.Component {
             
 
             <section className="article_cont">
-                {this.state.posts.map((post, index) => <Post delete={this.handleDelete} key={index} index={index} text={post} />)}
+            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
             </section>
             </div>
-    }   
-
+    }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
-
-
-
-// function Button(props) {
-//     return <button className="btn" value="Add PostIt" onClick={props.onClick} > Add new PostIt </button>
-// }
-
-// class App extends React.Component {
-//     constructor (props) {
-//         super (props)
-//         this.state = { text: '', postit: []}
-//         this.handleChange = this.handleChange.bind(this)
-//         this.handleClick = this.handleClick.bind(this)
-//     }
-//     handleChange(event) {
-//         this.setState({text: event.target.value})
-//     }
-//     handleClick(){
-
-//         this.setState({postit:[...this.state.postit, this.state.text]})
-//         this.state.text=""
-//     }
-//     render() {
-//         return <div className="cont">
-
-//             <div className="app_cont">
-
-//                 <h1 className="title">Post-It App</h1>
-
-//                 <textarea className="textarea" value={this.state.text} onChange={this.handleChange} />
-
-//                 <Button onClick={this.handleClick}></Button>
-
-//             </div>
-//                 <div className="article_cont">
-//                     {this.state.postit.map((postit) =>{
-//                         return <article className="article">{postit}</article>
-//                     })}
-//             </div>
-//         </div>
-//         }
-// }   
-// ReactDOM.render(<App />, document.getElementById('root'))
