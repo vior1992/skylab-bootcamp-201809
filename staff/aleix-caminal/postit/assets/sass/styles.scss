@@ -4,6 +4,7 @@ $color-board: #dfe3e6;
 $color-text: #17394d;
 
 %board {
+    position: relative;
     min-width: 240px;
     height: fit-content;
     margin: 1rem;
@@ -19,6 +20,28 @@ $color-text: #17394d;
     border: none;
     border-radius: .5rem;
     box-shadow: 0px 3px 5px -3px rgba(0,0,0,0.75);
+
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin button($size) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $size;
+    height: $size;
+    background-color: transparent;
+    border: none;
+    border-radius: .5rem;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 body {
@@ -57,17 +80,29 @@ body {
                     color: $color-text;
                 }
 
-                &__post{
+                .post{
                     @extend %post;
+                    position: relative;
                     margin-bottom: .5rem;
 
                     &__title {
+                        display: inline-block;
+                        margin: 0;
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
 
+                    &__button {
+                        @include button(20px);
                     }
                 }
 
                 &__input {
                     @extend %post;
+                }
+
+                &__button {
+                    @include button(30px);
                 }
             }
 
