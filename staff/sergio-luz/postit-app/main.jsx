@@ -1,58 +1,80 @@
-function Button(props) {
-    return <button onClick={() => props.onClick(props.operation)}>{props.operation}</button>
+function PostIt(props) {
+    return <section>
+        <article className="article">{props.text}</article>
+    </section>
 }
 
-class App extends React.Component {
-    state = { numberA: '', numberB: '', result: '' }
+function Button() {
 
-    keepNumberA = event => {
-        const numberA = event.target.value
+    return <button type="submit" onClick={this.props.props.onClick} value="Submit">Create</button>
 
-        this.setState({ numberA })
+}
+
+class Menu extends React.Component {
+    onClicked = this.onClicked.bind(this)
+
+
+    state = {
+        ruta:""
+    }
+    constructor(){
+        super()
     }
 
-    keepNumberB = event => {
-        const numberB = event.target.value
+    onClicked(event) {
+        event.preventDefault()
+        const ruta=this.props.onClick
+        this.setState({ruta})
+        ruta()
+        // {console.log('hola')}
 
-        this.setState({ numberB })
-    }
-
-    operate = operation => {
-        const { numberA, numberB } = this.state
-
-        const a = parseFloat(numberA), b = parseFloat(numberB)
-
-        let result
-
-        switch (operation) {
-            case '+':
-                result = a + b
-                break
-            case '-':
-                result = a - b
-                break
-            case '*':
-                result = a * b
-                break
-            case '/':
-                result = a / b
-        }
-
-        this.setState({ result })
     }
 
     render() {
-        return <div>
-            <input value={this.state.numberA} type="number" onChange={this.keepNumberA} tabIndex="0" />
+        return <form>
+            <textarea placeholder="Write text here..." type="text" onChange={this.props.onChange} /><br></br>
+            <button type="submit" onClick={this.onClicked} value="Submit">Create</button>
 
-            <Button operation="+" onClick={this.operate}></Button>
-            <Button operation="-" onClick={this.operate}></Button>
-            <Button operation="*" onClick={this.operate}></Button>
-            <Button operation="/" onClick={this.operate}></Button>
+            {/* <Button  onClick={this.props.onClick}></Button> */}
+        </form>
+    }
+}
 
-            <input value={this.state.numberB} type="number" onChange={this.keepNumberB} tabIndex="1" />
+class App extends React.Component {
 
-            =<input value={this.state.result} type="result" disabled />
+    state = {
+        text: '',
+        texts: []
+
+    }
+
+    handleChange = this.handleChange.bind(this)
+    addText = this.addText.bind(this)
+
+    handleChange(event) {
+        event.preventDefault()
+        this.setState({ text: event.target.value });
+    }
+
+
+    addText(event) {
+        event.preventDefault()
+        this.setState(prevState => ({
+            texts: [...prevState.texts, this.state.text]
+        }))
+    }
+
+
+    render() {
+        return <div className="container">
+            <h1>Post-It App</h1>
+            <Menu onChange={this.handleChange} onClick={this.addText} />
+            <div className="posts-container">
+                {this.state.texts.map((post) => {
+                    return <PostIt key={post} text={post} />
+                })}
+            </div>
+
         </div>
     }
 }

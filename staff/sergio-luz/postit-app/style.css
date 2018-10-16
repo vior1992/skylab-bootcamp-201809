@@ -1,0 +1,22 @@
+.article{
+    background-color: yellow; 
+    width: 100px; 
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+}
+textarea{
+    margin-bottom: 10px;
+}
+
+.container{
+    margin: auto;
+    text-align: center;
+}
+
+.posts-container{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
