@@ -26,6 +26,14 @@ $color-text: #17394d;
     }
 }
 
+%title {
+    margin: 0;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @mixin button($size) {
     position: absolute;
     top: 0;
@@ -74,9 +82,8 @@ body {
                 @extend %board;
 
                 &__title {
-                    margin: 0 0 .5rem;
-                    font-size: 16px;
-                    line-height: 20px;
+                    @extend %title;
+                    margin-bottom: .5rem;
                     color: $color-text;
                 }
 
@@ -86,8 +93,7 @@ body {
                     margin-bottom: .5rem;
 
                     &__title {
-                        display: inline-block;
-                        margin: 0;
+                        @extend %title;
                         font-size: 14px;
                         font-weight: 400;
                     }
