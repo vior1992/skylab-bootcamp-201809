@@ -24,5 +24,18 @@ const logic={
         postits=postits.filter(postit=> postit.id !==id)
 
         this.persistPostits(postits)
+    },
+
+    modifyPostit(id){
+        let pos = document.getElementById(id)
+        
+        const postits=this.listPostits().map(posts => {
+            if(posts.id===id) {
+                posts.text=pos.textContent
+            }
+            return posts
+        })
+
+        this.persistPostits(postits)
     }
 }

@@ -27,15 +27,14 @@ class App extends React.Component {
         if (element.disabled) {
             element.disabled = false
         }
-        else {
+        else{
             logic.modifyPostit(id)
             // let temp_text= texts.filter(_id => id===_id)
             // temp_text.text=
             element.disabled = true
-            this.setState({ texts: logic.listPostits() })
         }
-
-
+        
+            
     }
 
 
@@ -45,7 +44,7 @@ class App extends React.Component {
             <Menu onSubmit={this.handleSubmit} />
             <section className="posts-container">
                 {this.state.texts.map(postit => {
-                    return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost} />
+                    return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.handleDelete}handleEditPost={this.handleEditPost}/>
                 })}
             </section>
 
@@ -88,34 +87,17 @@ class Menu extends React.Component {
 
 // THIS CLASS IS A SON OF "App"
 
-class Notes extends React.Component {
+function Notes(props) {
 
-    state = { text: this.props.text }
+    return <article className="article">
+        <textarea name="" id={props.index} cols="30" rows="10" disabled >{props.text}</textarea>
 
-    handleInput = event => {
-        this.setState({ text: event.target.value })
-    }
+        <button onClick={() => props.handleDelete(props.index)} >X</button>
 
-    handleSubmit = event => {
-        event.preventDefault()
+        <button onClick={() => props.handleEditPost(props.index)} >Edit</button>
 
-        // this.props.onUpdate(this.props.id, this.state.text)
+    </article>
 
-        // this.setState({ text: '' })
-
-    }
-
-    render() {
-        return <article className="article">
-            <textarea name="" id={this.props.index} cols="30" rows="10" disabled onChange={this.handleInput}
-            value={this.state.text}></textarea>
-
-            <button onClick={() => this.props.handleDelete(this.props.index)} >X</button>
-
-            <button onClick={() => this.props.handleEditPost(this.props.index)} >Edit</button>
-
-        </article>
-    }
 }
 // THIS FUNCTION IS A SON OF "MENU"
 
