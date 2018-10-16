@@ -51,12 +51,12 @@ class App extends React.Component {
     }
 
     render() {
-        return <section>
+        return <section className='main-section'>
             <h1>Post-It App</h1>
 
             <InputForm onSubmit={this.handleSubmit} />
 
-            <section>
+            <section className='postit-board'>
                 {this.state.inputText.map((x, index) => <PostIt paint={x} key={x} index={index} onClick={index => this.handleClick(index)}/>)}
             </section>
         </section >
