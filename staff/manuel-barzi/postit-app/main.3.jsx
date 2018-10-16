@@ -1,5 +1,3 @@
-// Presentation (components)
-
 class InputForm extends React.Component {
     state = { text: '' }
 
@@ -38,25 +36,26 @@ function Post(props) {
     return <article className="post">
         <p>{props.text}</p>
 
-        <button onClick={() => props.onDeletePost(props.id)}><i className="far fa-trash-alt"></i></button>
+        <button onClick={() => props.onDeletePost(props.index)}><i className="far fa-trash-alt"></i></button>
     </article>
 }
 
 class App extends React.Component {
-    state = { postits: logic.listPostits() }
+    state = { posts: [] }
 
     handleSubmit = text => {
         console.log('App', 'handleSubmit (setState)')
 
-        logic.createPostit(text)
+        // const posts = this.state.posts.concat(text)
+        const posts = [...this.state.posts, text]
 
-        this.setState({ postits: logic.listPostits() })
+        this.setState({ posts })
     }
 
-    handleDeletePost = id => {
-        logic.deletePostit(id)
+    handleDeletePost = index => {
+        const posts = this.state.posts.filter((post, _index) => index !== _index)
 
-        this.setState({ postits: logic.listPostits() })
+        this.setState({ posts })
     }
 
     render() {
@@ -69,7 +68,7 @@ class App extends React.Component {
 
             <section>
                 {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
-                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
+                {this.state.posts.map((post, index) => <Post key={index} text={post} index={index} onDeletePost={this.handleDeletePost} />)}
             </section>
         </div>
     }
