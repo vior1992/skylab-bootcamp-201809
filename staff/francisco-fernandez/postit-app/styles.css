@@ -1,7 +1,7 @@
 body {
   background-color: #f2e6e6; }
 
-article {
+.postit {
   width: 100px;
   height: 100px;
   background-color: yellow;

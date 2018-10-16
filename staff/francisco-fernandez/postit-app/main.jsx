@@ -3,9 +3,9 @@ function Button(props) {
 }
 
 function PostIt(props) {
-    return <section>
-                <article className="article">{props.text}<button>X</button></article>
-                
+    return <section className="postit">
+                <article className="article">{props.text}</article>
+                <button>X</button>
             </section>        
 } 
 
@@ -32,15 +32,15 @@ class App extends React.Component {
         return <div>
             <h1>Post-It App</h1>
             <form>
-                <textarea placeholder={this.state.text} onChange={this.setText}></textarea>
+                <textarea placeholder="Write text here..." onChange={this.setText}></textarea>
                 <Button operation="Add Postit" onClick={this.addPostit}></Button>
             </form>
             {/* <section>
                 <article>{this.state.result}</article>
             </section> */}
             <div className="posts-container">
-                {this.state.texts.map((post) => {
-                    return <PostIt key={post} text={post} />
+                {this.state.texts.map((post, index) => {
+                    return <PostIt key={index} text={post} />
                 })}
             </div>
         </div>
