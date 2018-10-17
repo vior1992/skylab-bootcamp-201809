@@ -1,10 +1,8 @@
 const LOGIC = {
     boards: new BoardsTable(),
     posts: new PostsTable(),
-    add(model, title) {
-        const entity = this[model].newEntity({
-            title: title
-        }).insert();
+    add(model, query) {
+        const entity = this[model].newEntity(query).insert();
         return this.all(model)
     },
     delete(model, id) {

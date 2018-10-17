@@ -1,7 +1,4 @@
 class Model {
-    constructor() {
-    }
-
     newEntity(values) {
         this.id = Date.now()
         const keys = Object.keys(values)
@@ -11,13 +8,6 @@ class Model {
 }
 
 class PostsTable extends Model {
-    constructor() {
-        super()
-        /* this.belongsTo('Boards', {
-            fk:'board_id'
-        }) */
-    }
-
     insert() {
         sessionStorage.setItem('posts', JSON.stringify([...this.all(), this]))
     }
@@ -52,7 +42,6 @@ class PostsTable extends Model {
 class BoardsTable extends Model {
     constructor() {
         super()
-        //this.hasMany = ['Posts']
     }
 
     insert() {
