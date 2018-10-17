@@ -56,10 +56,12 @@ class App extends Component {
 
     handleLogin(event) {
         event.preventDefault()
-        LOGIC.login(
-            event.target.querySelector('input[name="username"]').value,
-            event.target.querySelector('input[name="password"]').value
-        )
+        this.setState({
+            auth: LOGIC.login(
+                event.target.querySelector('input[name="username"]').value,
+                event.target.querySelector('input[name="password"]').value
+            )
+        })
     }
 
     handleRegister(event) {

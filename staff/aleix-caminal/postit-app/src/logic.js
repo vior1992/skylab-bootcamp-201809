@@ -55,7 +55,11 @@ const LOGIC = {
     },
 
     login(username, password) {
-        console.log(arguments);
+        const user_id = this.find('users', {
+            username: username,
+            password: password
+        })[0].id
+        return this.users.get(user_id)
     }
 }
 

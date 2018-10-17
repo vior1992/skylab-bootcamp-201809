@@ -29,6 +29,13 @@ export class UsersTable extends Model {
         sessionStorage.setItem('users', JSON.stringify(users))
     }
 
+    find(query) {
+        let users = this.all()
+        const keys = Object.keys(query)
+        keys.forEach(key => users = users.filter(user => user[key] === query[key]))
+        return users
+    }
+
     get(id) {
         this.all().find(user => {
             if (user.id === id) {
