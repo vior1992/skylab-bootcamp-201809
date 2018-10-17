@@ -68,7 +68,6 @@ class App extends React.Component {
             <InputForm onSubmit={this.handleSubmit} />
 
             <section>
-                {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
                 {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
             </section>
         </div>
