@@ -1,11 +1,3 @@
-var savedName;
-var savedPass;
-
-var usernLogin;
-var passLogin;
-
-
-
 var landing = new Landing('Choose an option', 'section',
     function() { //registerCallback
        landing.hide();
@@ -20,44 +12,46 @@ document.body.appendChild(landing.element);
 
 
 
-
-
-var login = new Login('Login', 'section',
-    function(){  //matchCallback tiene que comprobar que las var savedName y savedPass del global scope coincidan con el valor de los inputs del login
-
-        usernLogin = document.getElementsByClassName("userL")[0].value;
-        passLogin = document.getElementsByClassName("passL")[0].value;
-
-        if(usernLogin == savedName && passLogin == savedPass){
-            login.hide();
-            welcome.show();
+var register = new Register('Register','section', function(name, lname, pc, usern, pass, confirmpass){   //saveDataCallback tiene q guardar los datos del cliente
+    logic.register(name, lname, pc, usern, pass, confirmpass,
+            function() { //onSuccess
+            register.hide();
+            login.show();
+        },
+        function(message) { //onFail
+            alert(message);
         }
+    );  //fin logic
+
+    },          //fin callback saveDataCallback, 3º parametro del componente Register
+
+    function() {        //backCallback, 4º parametro del componente Register
+            register.hide();
+            landing.show();
     });
 
-document.body.appendChild(login.element);
-
-
-
-
-var register = new Register('Register','section',
-function(){   //saveDataCallback tiene q definir las var savedName y savedPass del global scope, y abrir pagina de Login
-
-    
-    if(!(savedName === '' || savedName === null ) && !(savedPass === '' || savedPass === null)) {
-
-            savedName = document.getElementsByClassName("userr")[0].value;
-            savedPass = document.getElementsByClassName("passs")[0].value;
-            
-            register.hide();
-            login.show(); 
-
-        } else {
-            alert("username and password are required!");
-        }
-        
-});
-
 document.body.appendChild(register.element);
+
+
+
+var login = new Login('Login', 'section', function(username, password){  //matchCallback
+        logic.login(username, password, function(user) { //onSuccess (1º callback del matchCallback)
+                login.hide();
+
+                welcome.title.innerText = 'Welcome, ' + user.name + '!';
+
+                welcome.show();
+            },
+            function(message) { //onFail (2º callback del matchCallback)
+                alert(message);
+            }); //fin logic y matchCallback
+
+        }, function() {  //
+            login.hide();
+            landing.show();
+        });
+
+document.body.appendChild(login.element);
 
 
 
