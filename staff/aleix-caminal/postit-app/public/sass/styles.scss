@@ -5,8 +5,6 @@ $color-text: #17394d;
 
 %board {
     position: relative;
-    min-width: 240px;
-    max-width: 240px;
     height: fit-content;
     margin: 1rem;
     padding: 1rem;
@@ -55,7 +53,27 @@ $color-text: #17394d;
     }
 }
 
-@mixin button($size) {
+%button {
+    padding: .5rem;
+    border: none;
+    border-radius: .5rem;
+    background-color: $color-success;
+    box-shadow: 0px 3px 5px -3px darken($color-success, 10%);
+    color: #fff;
+    font-size: 16px;
+    transition: all .1s linear;
+
+    &:hover {
+        cursor: pointer;
+        background-color: darken($color-success, 5%);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin delete($size) {
     position: absolute;
     top: 0;
     right: 0;
@@ -92,6 +110,44 @@ body {
             background-color: darken($color_primary, 10%);
         }
 
+        &__login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .login {
+                @extend %board;
+
+                &__title {
+                    margin: 0;
+                    font-size: 24px;
+                    margin-bottom: 1rem;
+                }
+
+                &__group {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                &__label {
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+
+                &__input {
+                    @extend %input;
+                    width: 400px;
+                    height: 30px;
+                    line-height: 30px;
+                }
+
+                &__button {
+                    @extend %button;
+                }
+            }
+        }
+
         &__boards {
             display: flex;
             flex-direction: row;
@@ -101,6 +157,8 @@ body {
 
             .board {
                 @extend %board;
+                min-width: 240px;
+                max-width: 240px;
 
                 &__title {
                     @extend %title;
@@ -125,7 +183,7 @@ body {
                     }
 
                     &__button {
-                        @include button(20px);
+                        @include delete(20px);
                     }
                 }
 
@@ -134,35 +192,21 @@ body {
                 }
 
                 &__button {
-                    @include button(25px);
+                    @include delete(25px);
                 }
             }
 
             .add {
                 @extend %board;
+                min-width: 240px;
+                max-width: 240px;
 
                 &__input {
                     @extend %input;
                 }
 
                 &__button {
-                    padding: .5rem;
-                    border: none;
-                    border-radius: .5rem;
-                    background-color: $color-success;
-                    box-shadow: 0px 3px 5px -3px darken($color-success, 10%);
-                    color: #fff;
-                    font-size: 16px;
-                    transition: all .1s linear;
-
-                    &:hover {
-                        cursor: pointer;
-                        background-color: darken($color-success, 5%);
-                    }
-
-                    &:focus {
-                        outline: none;
-                    }
+                    @extend %button;
                 }
             }
         }

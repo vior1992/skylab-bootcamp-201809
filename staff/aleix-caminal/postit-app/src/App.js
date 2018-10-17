@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LOGIC from './logic'
+import Login from './components/Login'
 import Board from './components/Board'
 
 function Add(props) {
@@ -52,12 +53,18 @@ class App extends Component {
     render() {
         return <section className="main">
             <h1 className="main__title"><span role="img" aria-label="jsx-a11y/accessible-emoji">🎻</span> Cello</h1>
-            <section className="main__boards">
-                {this.state.boards.map((board) => {
-                    return <Board key={board.id} id={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} onUpdate={this.handleUpdate} />
-                })}
-                <Add onSubmit={this.handleSubmit} />
-            </section>
+            {!this.state.login ? (
+                <section className="main__login">
+                    <Login />
+                </section>
+            ) : (
+                <section className="main__boards">
+                    {this.state.boards.map((board) => {
+                        return <Board key={board.id} id={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} onUpdate={this.handleUpdate} />
+                    })}
+                    <Add onSubmit={this.handleSubmit} />
+                </section>
+            )}
         </section>
     }
 }

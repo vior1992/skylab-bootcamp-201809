@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import LOGIC from '../logic'
 
-function Input(props) {
-    return <input className="board__input" onKeyPress={props.onKeyPress} placeholder="Add another post" />
-}
-
 function Post(props) {
     return <article className="post">
         <button className="post__button" onClick={props.onDelete}>X</button>
@@ -59,7 +55,7 @@ class Board extends Component {
             {this.state.posts.map((post) => {
                 return <Post key={post.id} id={post.id} title={post.title} onDelete={() => this.handleDelete(post.id)} />
             })}
-            <Input onKeyPress={this.handleKeyPress} />
+            <input className="board__input" onKeyPress={this.handleKeyPress} placeholder="Add another post" />
         </section>
     }
 }
