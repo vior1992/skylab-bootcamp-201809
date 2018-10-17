@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
-import {User} from './../data'
-import logic from './../logic'
 
 class Register extends Component {
-    state = { users: logic.listUsers() }
+    state = { name: '', surname: '', username: '', password: '' }
 
-    handleSubmit = (event) => {
+
+    handleNameChange = event => {
+        const name = event.target.value
+        this.setState({ name })
+    }
+    handleSurnameChange = event => {
+        const surname = event.target.value
+        this.setState({ surname })
+    }
+    handleUsernameChange = event => {
+        const username = event.target.value
+        this.setState({ username })
+    }
+    handlePasswordChange = event => {
+        const password = event.target.value
+        this.setState({ password })
+    }
+
+    handleSubmit = event => {
         event.preventDefault()
-
-        let name = event.target.name
-        let surname = event.target.surname
-        let username = event.target.username
-        let password = event.target.password
-
-        const user = new User(name, surname, username, password)
-
-        logic.createUser(user)
-
-        this.setState({ users: logic.listUsers() })
+        this.props.onSubmit(this.state.name, this.state.surname, this.state.username, this.state.password)
 
     }
 
     render() {
         return <section>
             <form onSubmit={this.handleSubmit}>
-                <input type='text' placeholder='Name...' onChange={name}></input>
-                <input type='text' placeholder='Surname...' onChange={surname}></input>
-                <input type='text' placeholder='Username...' onChange={username}></input>
-                <input type='password' placeholder='Password...' onChange={password}></input>
+                <input type='text' placeholder='Name...' onChange={this.handleNameChange}></input>
+                <input type='text' placeholder='Surname...' onChange={this.handleSurnameChange}></input>
+                <input type='text' placeholder='Username...' onChange={this.handleUsernameChange}></input>
+                <input type='password' placeholder='Password...' onChange={this.handlePasswordChange}></input>
                 <button type='submit'>Register</button>
             </form>
         </section >

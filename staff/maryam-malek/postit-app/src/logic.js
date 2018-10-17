@@ -1,6 +1,6 @@
 //Bussines logic
 
-import {storage} from './data'
+import {storage, User} from './data'
 
 const logic = {
     createPostit(postit) {
@@ -8,7 +8,7 @@ const logic = {
         
         postits.push(postit)
         
-        storage.setItem('postits', JSON.stringify(postits))
+        this.persistPostits(postits)
     },
 
     deletePostit(id) {
@@ -17,7 +17,11 @@ const logic = {
         
         postits = postits.filter(postit => postit.id !== id)
         
-        storage.setItem('postits', JSON.stringify(postits))
+        this.persistPostits(postits)
+    },
+
+    persistPostits(postits) {
+        return storage.setItem('postits', JSON.stringify(postits))
     },
 
     listPostits() {
@@ -33,8 +37,9 @@ const logic = {
 
         postits[index].show = show
 
-        storage.setItem('postits', JSON.stringify(postits))
+        this.persistPostits(postits)
     },
+   
     apearEdit(id, show) {
         let postits = JSON.parse(storage.getItem('postits'))
         
@@ -42,13 +47,41 @@ const logic = {
     
         postits[index].show = show
         
-        storage.setItem('postits', JSON.stringify(postits))
+        this.persistPostits(postits)
     },
+    
     listUsers() {
         return JSON.parse(storage.getItem('users'))
     },
-    createUser() {
+
+    persistUsers(users) {
+        return storage.setItem('users', JSON.stringify(users))
+    },
+
+    registerUser(name, surname, username, password) {
+        let users = this.listUsers()
         
+        let user = new User (name, surname, username, password)
+
+        users.push(user)
+
+        this.persistUsers(users)
+    },
+
+    loginUser(username, password) {
+        let users = this.listUsers()
+
+        let index = users.findIndex(user => user.username === username)
+
+        var message
+
+        if (index === -1){
+            message = 'username'
+        } else{
+            (users[index].password === password)?message = 'allright': message = 'password' 
+        }
+
+        return message
     }
 }
 
