@@ -71,17 +71,42 @@ class InputForm extends React.Component {
     }
 }
 
-function Article (props) {
+class Article extends React.Component {
 
-    return <article className="post">
-        <p>{props.postItText}</p>
-        <button className="btn btn-warning" onClick = {()=> props.DadDelete(props.id)}>Delete Me</button>
-        <button className="btn btn-warning" onClick = {()=> props.DadEdit(props.id)}>Edit Me</button>
-        <InputForm />
-       
-        {/* <button className="btn btn-warning" onClick = {()=> props.DadEdit(props.id)}>Edit Me</button> */}
+    state = {textValue: "" , }
+
+    handleInput = event => {
+        const textValue = event.target.value
+
+        this.setState({textValue})
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
         
-     </article>
+        this.props.DadSubmit(this.state.textValue)
+
+        this.setState({ textValue: '' })
+      
+    }
+
+    handleVisibility = () => {
+
+    }
+   
+
+    render(){
+        return <article className="post">
+            <p>{this.props.postItText}</p>
+            <button className="btn btn-warning" onClick = {()=> this.props.DadDelete(this.props.id)}>Delete Me</button>
+            <button className="btn btn-warning" onClick = {()=> this.handleVisibility()}>Edit Me</button>
+            <form className = 'editForm' onSubmit={this.handleSubmit} >
+                <textarea placeholder={this.props.postItText} onChange={this.handleInput} value = {this.state.textValue} ></textarea>
+                <button type= "submit" onClick = {()=> this.props.DadEdit(this.props.id)} >Submit Changes</button>
+            </form>
+            
+        </article>
+    }
 }
 
 class App extends React.Component {
@@ -102,6 +127,7 @@ class App extends React.Component {
 
     handleEdit = (newText, id) => {
 
+        
         let postits = JSON.parse(storage.getItem('postits'))
         
         let editPostit = postits.filter(postit => postit.id === id)
@@ -109,6 +135,8 @@ class App extends React.Component {
         editPostit.text = newText
         
         storage.setItem('postits', JSON.stringify(postits))
+
+
     }
 
 
