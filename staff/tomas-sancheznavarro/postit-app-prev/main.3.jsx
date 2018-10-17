@@ -1,6 +1,16 @@
-// cuarta iteración, esta vez guardando  las notas en Session Storage y separando la lógica en su propio archivo
+// tercera iteración, esta vez guardando  las notas en Session Storage
+//Model (domain)
+if (!sessionStorage.getItem('postits'))
+    sessionStorage.setItem('postits', JSON.stringify([]))
 
+class Postit {
+    constructor(text) {
+        this.text = text
+        this.id = Date.now()
+    }
+}
 
+//Business (logic)?
 
 class InputForm extends React.Component {
     state = { text: '' }
@@ -53,15 +63,25 @@ class App extends React.Component {
     handleSubmit = text => {
         console.log('App', 'handleSubmit(setState')
 
-        logic.createPostit(text)
+        const postit = new Postit(text)
 
-        this.setState({ postits: logic.listPostits() })
+        const postits = JSON.parse(sessionStorage.getItem('postits'))
+
+        postits.push(postit)
+
+        sessionStorage.setItem('postits', JSON.stringify(postits))
+
+        this.setState({ postits })
     }
 
     handleDeletePost = id => {
-        logic.deletePostit(id)
+        let postits = JSON.parse(sessionStorage.getItem('postits'))
 
-        this.setState({ postits: logic.listPostits() })
+        postits = postits.filter(postit => postit.id !== id)
+
+        sessionStorage.setItem('postits', JSON.stringify(postits))
+
+        this.setState({ postits })
     }
 
     render() {
