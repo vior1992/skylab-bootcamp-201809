@@ -2,42 +2,38 @@ import React, { Component } from 'react'
 import logic from './logic'
 import InputForm from './components/InputForm'
 import Post from './components/Post'
+import Login from './components/signinForm'
+import Register from './components/register'
 
 class App extends Component {
-  state = { postits: logic.listPostits() }
+    state = { register: false, login: false }
 
-  handleSubmit = text => {
-      console.log('App', 'handleSubmit (setState)')
+    handleSignin = text => {
+        logic.createPostit(text)
+  
+        this.setState({ postits: logic.listPostits() })
+    }
+  
+    handleRegister = () => {
+        this.state.register({register: true})
+    }
 
-      logic.createPostit(text)
+    handleRegisterClick = () =>{
 
-      this.setState({ postits: logic.listPostits() })
+    }
+  
+  
+    render() {
+  
+  return <div className="landingPage">
+            <h1 className="title">Post-It App </h1>
+            {!this.state.register && <section><button onClick={this.hundleRegister}>Register</button> or <button onClick={this.hundleRegister}> Register </button></section>}
+            {this.state.register && <Register onRegisterClick={this.handleRegisterClick}/>}
+            {this.state.login && <Login/>}     
+        </div>
+
+    }
   }
-
-  handleDeletePost = id => {
-      logic.deletePostit(id)
-
-      this.setState({ postits: logic.listPostits() })
-  }
-
-  handleUpdatePost = (id, text) => {
-      logic.updatePostit(id, text)
-
-      this.setState({ postits: logic.listPostits() })
-  }
-
-  render() {
-      console.log('App', 'render')
-
-      return <div className="app_cont">
-            <h1 className="title">Post-It App</h1>
-          <InputForm onSubmit={this.handleSubmit} />
-
-          <section className="article_cont">
-              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
-          </section>
-      </div>
-  }
-}
-
-export default App
+  
+  export default App
+  
