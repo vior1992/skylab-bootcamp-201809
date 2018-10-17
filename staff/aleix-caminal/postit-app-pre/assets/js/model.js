@@ -40,10 +40,6 @@ class PostsTable extends Model {
 }
 
 class BoardsTable extends Model {
-    constructor() {
-        super()
-    }
-
     insert() {
         sessionStorage.setItem('boards', JSON.stringify([...this.all(), this]))
     }
