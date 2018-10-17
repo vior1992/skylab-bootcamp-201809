@@ -1,8 +1,9 @@
-import {storage, Postit, User} from './data'
+import data from './data'
+const {storage, Postit, User} = data
 
 const logic = {
-    createPostit(text) {
-        const postit = new Postit(text)
+    createPostit(text, userID) {
+        const postit = new Postit(text, userID)
 
         const postits = JSON.parse(storage.getItem('postits'))
 
@@ -31,9 +32,13 @@ const logic = {
 
     updatePost(id, text) {
         const newPostit = new Postit(text)
+
         const postits = JSON.parse(storage.getItem('postits'))
+
         const index = postits.findIndex( el => el.id===id)
+
         postits[index] = newPostit
+
         this.persistPostits(postits)
         
     },
@@ -41,16 +46,20 @@ const logic = {
     completePost(id) {
         const postits = JSON.parse(storage.getItem('postits'))
         const index = postits.findIndex( el => el.id===id)
+
         postits[index].complete=true
+
         this.persistPostits(postits)
     },
 
-    createUser(name, email, username, password) {
-        const user = new User(name, email, username, password)
-        const users = JSON.parse(storage.getItem('users'))
+    createUser(name, surname, username, password) {
+        const user = new User(name, surname, username, password)
+
+        const users = this.listUsers()
+
         users.push(user)
-        storage.setItem('users', JSON.stringify(users))
-        this.listUsers(users)
+
+        this.persistUsers(users)
         
     },
 
@@ -61,7 +70,27 @@ const logic = {
 
     listUsers() {
         return JSON.parse(storage.getItem('users'))
-    }
+    },
+
+    validateUser(username, password) {
+        const user = {
+            username: username,
+            password: password
+        }
+        const users = this.listUsers()
+
+        let filtered = users.filter(el => el.username === user.username)
+
+        if (!filtered.length) return 'incorrect username'    
+
+        if (filtered[0].password===user.password) {
+            return ['correct password', filtered[0].id]
+        } 
+
+        else return 'incorrect password'  
+        
+    },
+
 }
 
 export default logic

@@ -1,67 +1,78 @@
 import React, { Component } from 'react'
-import logic from './logic'
-import InputForm from './components/InputForm'
-import Post from './components/Post'
-import Popup from './components/Popup'
 import Register from './components/Register'
-
+import Login from './components/Login'
+import logic from './logic'
+import Home from './components/Home'
 
 class App extends Component {
-  state = {
-       postits: logic.listPostits(),
-       users: logic.listUsers(),
-       showPopup: false,
-   }
+    state = {
+        register: false, 
+        login: false,
+        home: false,
+        passVerification: '',
+        userID : 0
+    }
 
-  handleSubmit = text => {
-      logic.createPostit(text)
-      
-      this.setState({ postits: logic.listPostits() })
-  }
+    handleRegister = () => {
+        this.setState({register: !this.state.register,
+        passVerification:''})
 
-  handleDeletePost = id => {
-      
-      logic.deletePostit(id)
+    }
+    
+    handleLogin = () => {
+        this.setState({login: !this.state.login,
+        passVerification:''})
+    }
 
-      this.setState({ postits : logic.listPostits(),
-      showPopup :false })
-  }
+    handleHome = () => {
+        this.setState({login: !this.state.home})
+    }
 
-  handleUpdatePost = (id, text) => {
-      logic.updatePost(id, text)
+    registerSubmit = (name, email, username, password) => {
+        logic.createUser(name, email, username, password)
 
-      this.setState({postits : logic.listPostits(),
-      showPopup : false})
-  }
+        this.setState({
+            login: true,
+            register: false
+        })
+    }
 
-  togglePopup = (id) => {
+    loginSubmit = (username, password) => {
+        const result = logic.validateUser(username, password)
+        if (typeof result==='object'){
+
+            const verificationMessage = result[0]
+            const userID = result[1]
+
+            this.setState({passVerification: verificationMessage, 
+                userID : userID}, console.log(this.state.passVerification, this.state.userID))
+        }
+
+        else {
+            this.setState({passVerification : result})
+        }
+
+        
+    }
      
-      this.setState({
-          showPopup : !this.state.showPopup,
-          clickedID : id
-      })
-  }
+    render() {
+        if (this.state.passVerification==='correct password') return <Home propUserID={this.state.userID} />
+        return <div>
+       
+        {!this.state.register && !this.state.login &&             
+            <section>
+            <h1>Welcome to the Postit App!</h1>
+            <button onClick={this.handleRegister}>Register</button>
+            <button onClick={this.handleLogin}>Login</button>
+            </section>}
+        {this.state.register && <Register onRegisterClick={this.registerSubmit} backHandle={this.handleRegister}/>}
+        {this.state.login && <Login onLoginClick={this.loginSubmit} backHandle={this.handleLogin} wrongPassword={this.state.passVerification} />} 
+        
 
-  registerSubmit = (name, email, username, password) => {
-      logic.createUser(name, email, username, password)
-      this.setState({ users: logic.listUsers() })
-  }
+        </div>
+    }
 
-
-
-  render() {
-
-      return <div className="container">
-      <h1>Post it App</h1>
-      {/* { <InputForm onSubmit = {this.handleSubmit} />
-      <div className="test">
-      {this.state.postits.map( postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost = {this.handleDeletePost} editing = {this.state.showPopup} popup = {this.togglePopup} complete={this.updateCompleted} completeState={this.state.completed} clickID={this.state.clickedID} />)}
-      {this.state.postits.map(postit => (this.state.showPopup && postit.id===this.state.clickedID) ? <Popup onUpdate={this.handleUpdatePost} key={postit.id} id={postit.id} text={postit.text}/> : null)}
-      </div> } */}
-      <Register onSubmitRegister={this.registerSubmit}/>
-      </div>
-
-  }
 }
 
-export default App;
+export default App
+
