@@ -1,7 +1,9 @@
 // Business (logic)?
-import { storage, Postit } from './data'
+import data from './data'
+
+const { storage, Postit, User } = data
+
 const logic = {
-    
     createPostit(text) {
         const postit = new Postit(text)
 
@@ -27,28 +29,55 @@ const logic = {
 
         this.persistPostits(postits)
     },
-    editPost(id){
-      
+
+    editPost(id) {
+
         let element = document.getElementById(id)
-        if(element.disabled){
-        element.disabled = false}
-        else{
+        if (element.disabled) {
+            element.disabled = false
+        }
+        else {
             const posits = this.listPostits()
             let input = element.value
-            let index = posits.findIndex(element => element.id ===id)
+            let index = posits.findIndex(element => element.id === id)
             posits[index].text = input
             this.persistPostits(posits)
-           
-            element.disabled = true}
 
+            element.disabled = true
+        }
+    },
 
-      
+    listUsers() {
+        return JSON.parse(storage.getItem('users'))
+    },
+
+    persistUsers(users) {
+        storage.setItem('users', JSON.stringify(users))
+    },
+
+    registerUser(name, surname, username, password) {
+        const user = new User(name, surname, username, password)
+
+        const users = this.listUsers()
+
+        users.push(user)
+
+        this.persistUsers(users)
+    },
+
+    loginUser(username,password){
+        console.log("he llegado",username,password)
         
-
-        // let postits=this.listPostits()
-        // postits = postits.filter(postit => postit.id == id)
-        // console.log(postits)
+        const pass = password
+        const users = this.listUsers()
+        debugger
+        const user = users.filter(person => person.username === username )
+        if(user[0].password === pass) return true
+        else return false
+        
+        
     }
 }
+
 
 export default logic

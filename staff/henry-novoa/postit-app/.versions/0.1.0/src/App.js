@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import './App.css';
 import logic from './logic.js'
 import InputForm from './components/InputForm.js'

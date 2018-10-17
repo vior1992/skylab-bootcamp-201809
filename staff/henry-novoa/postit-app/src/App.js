@@ -1,44 +1,38 @@
 import React, { Component } from 'react';
-
-
-class Register extends Component{
-    state = { name:'', username:'',password:''}
-
-    render(){
-        return <form>
-            <input type='text' placeholder='name'></input>
-            <input type='text' placeholder='name'></input>
-            <input type='text' placeholder='name'></input>
-        </form>
-    }
-}
-
-
+import Register from './components/Register'
+import Login from './components/Login'
+import logic from './logic'
+import Home from './components/Home'
 
 class App extends Component {
     
-    state ={ register: false }
+    state ={ register: false , login:false, home: false }
 
-
-
-    handleRegister =()=>{
-
+    handleRegister = () => {
+        this.setState({ register: true })
     }
 
-    
+    handleLogin = () => {
+        this.setState({ login: true })
+    }
+
+    handleRegisterClick = (name, surname, username, password) => {
+        logic.registerUser(name, surname, username, password)
+    }
+    handleLoginClick = (username,password) => {
+        let flag = false
+        flag=logic.loginUser(username,password)
+        if(flag === true) this.setState({home: true})
+        else console.log('wrong credentials')
+    }
+
+
     render (){
         return <section className='App' >
-                {!this.state.register && <section className='landing'>
-                <h2 className='title'>Choose an option</h2>
-                <button className='button' onClick={this.handleLogin}>Login</button>
-                <button className='button' onClick={this.handleRegister}>Register</button>
-                </section>}
-                {this.state.register && <Register />}
-                {/* <Login />
-                <Register />
-                <Home></Home> */}
-
-
+               {!this.state.register && !this.state.login && <section><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
+               {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
+               {this.state.login &&  <Login onLoginClick={this.handleLoginClick} />}
+            {this.state.home && <Home />}
         </section>
     }
 

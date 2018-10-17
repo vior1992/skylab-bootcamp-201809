@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
-import logic from './logic.js'
-import InputForm from './components/InputForm.js'
-import Post from './components/Post.js'
+import logic from '../logic'
+import InputForm from './InputForm'
+import Post from './Post'
 
-class App extends Component {
+class Home extends Component {
   state = { postits: logic.listPostits() }
 
   handleSubmit = text => {
@@ -43,7 +42,7 @@ class App extends Component {
   }
 }
 
-export default App
+export default Home
 
 //ReactDOM.render(<App />, document.getElementById('root'))
 
