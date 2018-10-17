@@ -33,8 +33,8 @@ class Board extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            title:this.props.title,
-            posts:LOGIC.find('posts', {
+            title: this.props.title,
+            posts: LOGIC.find('posts', {
                 board_id:this.props.id
             }
         )}
@@ -47,7 +47,7 @@ class Board extends React.Component {
     handleKeyPress(event) {
         if (event.key === 'Enter' && event.target.value) {
             this.setState({
-                posts:LOGIC.add('posts', {
+                posts:LOGIC.addPost({
                     title: event.target.value,
                     board_id: this.props.id
                 })
@@ -59,7 +59,7 @@ class Board extends React.Component {
 
     handleDelete(id) {
         this.setState({
-            posts:LOGIC.delete('posts', id)
+            posts:LOGIC.deletePost(id)
         })
     }
 
@@ -97,7 +97,7 @@ class App extends React.Component {
         event.preventDefault()
         let input = event.target.querySelector('input');
         this.setState({
-            boards:LOGIC.add('boards', {
+            boards:LOGIC.addBoard({
                 title: input.value
             })
         })
@@ -107,13 +107,15 @@ class App extends React.Component {
 
     handleDelete(id) {
         this.setState({
-            boards:LOGIC.delete('boards', id)
+            boards:LOGIC.deleteBoard(id)
         })
     }
 
     handleUpdate(id, title) {
         this.setState({
-            boards:LOGIC.update('boards', id, title)
+            boards:LOGIC.updateBoard(id, {
+                title: title
+            })
         })
     }
 

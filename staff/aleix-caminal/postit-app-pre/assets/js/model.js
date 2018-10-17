@@ -24,10 +24,10 @@ class PostsTable extends Model {
     }
 
     get(id) {
-        this.all().find(board => {
-            if (board.id === id) {
-                this.id = board.id
-                this.title = board.title
+        this.all().find(post => {
+            if (post.id === id) {
+                const keys = Object.keys(post)
+                keys.forEach(key => this[key] = post[key])
                 return
             }
         });
@@ -48,19 +48,23 @@ class BoardsTable extends Model {
         sessionStorage.setItem('boards', JSON.stringify(this.all().filter(board => board.id !== this.id)))
     }
 
-    update(id, title) {
+    update(query) {
         let boards = this.all()
-        boards.forEach(function(board) {
-            if (board.id === id) board.title = title
-        });
+        const keys = Object.keys(query)
+        boards.find(board => {
+            if (board.id === this.id) {
+                keys.forEach(key => board[key] = query[key])
+                return
+            }
+        })
         sessionStorage.setItem('boards', JSON.stringify(boards))
     }
 
     get(id) {
         this.all().find(board => {
             if (board.id === id) {
-                this.id = board.id
-                this.title = board.title
+                const keys = Object.keys(board)
+                keys.forEach(key => this[key] = board[key])
                 return
             }
         });

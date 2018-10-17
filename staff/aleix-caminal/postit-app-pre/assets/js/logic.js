@@ -1,19 +1,33 @@
 const LOGIC = {
     boards: new BoardsTable(),
     posts: new PostsTable(),
-    add(model, query) {
-        const entity = this[model].newEntity(query).insert();
-        return this.all(model)
+    addBoard(query) {
+        this.boards.newEntity(query).insert();
+        return this.all('boards')
     },
-    delete(model, id) {
-        this[model].get(id).delete()
-        return this.all(model)
+    deleteBoard(id) {
+        const board = this.boards.get(id)
+        board.delete()
+        return this.all('boards')
     },
-    update(model, id, title) {
-        const element = this[model].get(id)
-        element.title = title
-        element.update()
-        return this.all(model)
+    updateBoard(id, query) {
+        const board = this.boards.get(id)
+        board.update(query)
+        return this.all('boards')
+    },
+    addPost(query) {
+        const post = this.posts.newEntity(query)
+        post.insert();
+        return this.find('posts', {
+            board_id: post.board_id
+        })
+    },
+    deletePost(id) {
+        const post = this.posts.get(id)
+        post.delete()
+        return this.find('posts', {
+            board_id: post.board_id
+        })
     },
     find(model, query) {
         return this[model].find(query)
