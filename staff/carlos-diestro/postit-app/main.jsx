@@ -101,7 +101,7 @@ class PostItText extends React.Component {
       element = <textarea value={this.state.text} onChange={this.handleChange}></textarea>
       button = <button type="button" onClick={this.handleSaveClick}><i className="far fa-save"></i></button>
     } else {
-      element = <textarea value={this.state.text} disabled></textarea>
+      element = <p>{this.state.text}</p>
       button = <button type="button" onClick={this.handleEditClick}><i className="far fa-edit"></i></button>
     }
 
