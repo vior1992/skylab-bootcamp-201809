@@ -1,29 +1,53 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logic from './logic'
+import InputForm from './components/InputForm'
+import Post from './Post'
 
-class App extends Component {
+class App extends React.Component {
+  state = { postits: logic.listPostits() }
+
+  handleSubmit = text => {
+      console.log('App', 'handleSubmit (setState)')
+
+      logic.createPostit(text)
+
+      this.setState({ postits: logic.listPostits() })
+  }
+
+  handleDeletePost = id => {
+      logic.deletePostit(id)
+
+      this.setState({ postits: logic.listPostits() })
+  }
+
+  handleEditPost = id => {
+      let element = document.getElementById(id)
+      if(element.disabled){
+          element.disabled = false}
+          else
+          {
+          
+          logic.editPostit(id)
+          element.disabled = true
+          }
+      }
+  
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Hola Mundo</h1>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      console.log('App', 'render')
+
+      return <div>
+          <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
+
+          <InputForm onSubmit={this.handleSubmit} />
+
+          <section>
+              {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
+              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onEditPost={this.handleEditPost} />)}
+          </section>
       </div>
-    );
   }
 }
+
 
 export default App;
