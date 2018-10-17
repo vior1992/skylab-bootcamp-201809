@@ -25,14 +25,30 @@ class KeepMessage extends React.Component {
     }
 }
 
-function Post(props) { 
-    return <article className="post">
-        <p>{props.text}</p>
+class Post extends React.Component { 
+    state = { text: this.props.text }
 
-        <button className="editButton" onClick={() => a}>Edit<i></i></button>
+    keepChange = event => {
+        const text = event.target.value 
 
-        <button className="deleteButton" onClick={() => props.onDeletePost(props.id)}>Delete<i></i></button>
+        this.setState({ text })
+    }
+
+    keepBlur = () => {
+        this.props.editPost(this.props.id, this.state.text)
+    }
+
+    render() { 
+
+        return 
+        <article className="post">
+        <textarea defaultValue= {this.state.text} /> 
+
+        <button className="editButton" onClick={() => this.props.onEditPost(props.id)} onBlur={this.keepBlur}>Edit<i></i></button>
+        
+        <button className="deleteButton" onClick={() => this.props.onDeletePost(props.id)}>Delete<i></i></button>
     </article>
+    }
 }
 
 class PostIt extends React.Component {
@@ -44,11 +60,19 @@ class PostIt extends React.Component {
         this.setState({ postits: logic.listPostits() }) 
     }
 
+    editPost = (id, text) => {
+        logic.editPostit(id, text)
+
+        this.setState({ postits: logic.listPostits() })
+    }
+
     deletePost = id => {
         logic.deletePostit(id)
 
         this.setState({ postits: logic.listPostits() })
     }
+
+
 
     render() {
         return <div>
@@ -57,7 +81,7 @@ class PostIt extends React.Component {
             <KeepMessage onSubmit={this.keepSubmit}/>
            
             <section>
-                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.deletePost} />)}
+                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.deletePost} onEditPost={this.editPost} />)}
             </section>
 
         </div>

@@ -7,6 +7,15 @@
     margin-bottom: 10px;
 }
 
+.post textarea {
+    background: transparent;
+    border: none;
+    width: inherit;
+    height: inherit;
+    resize: none;
+
+}
+
 .deleteButton {
     width: 101px;
     height: 25px;
@@ -15,6 +24,7 @@
     background-color: red;
     color: black;
     border-top: 0px;
+    border-bottom: 100px
 }
 
 .editButton {
