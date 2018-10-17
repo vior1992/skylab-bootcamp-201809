@@ -1,29 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import InputForm from './components/InputForm'
+import Post from './components/Post'
+import logic from './logic/logic'
+
 
 class App extends Component {
+  state = { postits: JSON.parse(sessionStorage.getItem('postits')) }
+
+  handleSubmit = text => {
+    console.log('App', 'handleSubmit(setState')
+
+    logic.createPostit(text)
+
+    this.setState({ postits: logic.listPostits() })
+  }
+
+  handleDeletePost = id => {
+    logic.deletePostit(id)
+
+    this.setState({ postits: logic.listPostits() })
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Hola mundo!</h1>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    console.log('App', 'render')
+
+    return <div>
+      <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
+
+      <InputForm onSubmit={this.handleSubmit} />
+
+      <section>
+        {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
+      </section>
+    </div>
   }
 }
+
 
 export default App;
