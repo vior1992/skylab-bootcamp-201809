@@ -6,6 +6,7 @@ $color-text: #17394d;
 %board {
     position: relative;
     min-width: 240px;
+    max-width: 240px;
     height: fit-content;
     margin: 1rem;
     padding: 1rem;

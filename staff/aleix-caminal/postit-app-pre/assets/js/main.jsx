@@ -32,7 +32,13 @@ class Post extends React.Component {
 class Board extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {title:this.props.title, posts:LOGIC.find('posts', {board_id:this.props.id})}
+        this.state = {
+            title:this.props.title,
+            posts:LOGIC.find('posts', {
+                board_id:this.props.id
+            }
+        )}
+
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -40,20 +46,27 @@ class Board extends React.Component {
 
     handleKeyPress(event) {
         if (event.key === 'Enter' && event.target.value) {
-            this.setState({posts:LOGIC.add('posts', {
-                title: event.target.value,
-                board_id: this.props.id
-            })})
+            this.setState({
+                posts:LOGIC.add('posts', {
+                    title: event.target.value,
+                    board_id: this.props.id
+                })
+            })
+
             event.target.value = '';
         }
     }
 
     handleDelete(id) {
-        this.setState({posts:LOGIC.delete('posts', id)})
+        this.setState({
+            posts:LOGIC.delete('posts', id)
+        })
     }
 
     handleChange(event) {
-        this.setState({title: event.target.value});
+        this.setState({
+            title: event.target.value
+        })
     }
 
     render() {
@@ -71,7 +84,10 @@ class Board extends React.Component {
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {boards:LOGIC.all('boards')}
+        this.state = {
+            boards:LOGIC.all('boards')
+        }
+
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
@@ -80,16 +96,25 @@ class App extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
         let input = event.target.querySelector('input');
-        this.setState({boards:LOGIC.add('boards', input.value)})
+        this.setState({
+            boards:LOGIC.add('boards', {
+                title: input.value
+            })
+        })
+
         input.value = ''
     }
 
     handleDelete(id) {
-        this.setState({boards:LOGIC.delete('boards', id)})
+        this.setState({
+            boards:LOGIC.delete('boards', id)
+        })
     }
 
     handleUpdate(id, title) {
-        this.setState({boards:LOGIC.update('boards', id, title)})
+        this.setState({
+            boards:LOGIC.update('boards', id, title)
+        })
     }
 
     render() {
