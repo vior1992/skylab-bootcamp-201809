@@ -7,41 +7,48 @@ class Model {
     }
 }
 
-export class PostsTable extends Model {
+export class UsersTable extends Model {
     insert() {
-        sessionStorage.setItem('posts', JSON.stringify([...this.all(), this]))
+        sessionStorage.setItem('users', JSON.stringify([...this.all(), this]))
+        return this
     }
 
     delete() {
-        sessionStorage.setItem('posts', JSON.stringify(this.all().filter(post => post.id !== this.id)))
+        sessionStorage.setItem('users', JSON.stringify(this.all().filter(user => user.id !== this.id)))
     }
 
-    find(query) {
-        let posts = this.all()
+    update(query) {
+        let users = this.all()
         const keys = Object.keys(query)
-        keys.forEach(key => posts = posts.filter(post => post[key] === query[key]))
-        return posts
+        users.find(user => {
+            if (user.id === this.id) {
+                keys.forEach(key => user[key] = query[key])
+                return
+            }
+        })
+        sessionStorage.setItem('users', JSON.stringify(users))
     }
 
     get(id) {
-        this.all().find(post => {
-            if (post.id === id) {
-                const keys = Object.keys(post)
-                keys.forEach(key => this[key] = post[key])
+        this.all().find(user => {
+            if (user.id === id) {
+                const keys = Object.keys(user)
+                keys.forEach(key => this[key] = user[key])
                 return
             }
-        });
+        })
         return this
     }
 
     all() {
-        return JSON.parse(sessionStorage.getItem('posts')) || []
+        return JSON.parse(sessionStorage.getItem('users')) || []
     }
 }
 
 export class BoardsTable extends Model {
     insert() {
         sessionStorage.setItem('boards', JSON.stringify([...this.all(), this]))
+        return this
     }
 
     delete() {
@@ -73,5 +80,38 @@ export class BoardsTable extends Model {
 
     all() {
         return JSON.parse(sessionStorage.getItem('boards')) || []
+    }
+}
+
+export class PostsTable extends Model {
+    insert() {
+        sessionStorage.setItem('posts', JSON.stringify([...this.all(), this]))
+        return this
+    }
+
+    delete() {
+        sessionStorage.setItem('posts', JSON.stringify(this.all().filter(post => post.id !== this.id)))
+    }
+
+    find(query) {
+        let posts = this.all()
+        const keys = Object.keys(query)
+        keys.forEach(key => posts = posts.filter(post => post[key] === query[key]))
+        return posts
+    }
+
+    get(id) {
+        this.all().find(post => {
+            if (post.id === id) {
+                const keys = Object.keys(post)
+                keys.forEach(key => this[key] = post[key])
+                return
+            }
+        });
+        return this
+    }
+
+    all() {
+        return JSON.parse(sessionStorage.getItem('posts')) || []
     }
 }

@@ -24,6 +24,8 @@ class App extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
+        this.handleLogin = this.handleLogin.bind(this)
+        this.handleRegister = this.handleRegister.bind(this)
     }
 
     handleSubmit(event) {
@@ -54,12 +56,22 @@ class App extends Component {
 
     handleLogin(event) {
         event.preventDefault()
-        console.log(event.target);
+        LOGIC.login(
+            event.target.querySelector('input[name="username"]').value,
+            event.target.querySelector('input[name="password"]').value
+        )
     }
 
     handleRegister(event) {
         event.preventDefault()
-        console.log(event.target);
+        this.setState({
+            auth: LOGIC.register(
+                event.target.querySelector('input[name="name"]').value,
+                event.target.querySelector('input[name="username"]').value,
+                event.target.querySelector('input[name="password"]').value,
+                event.target.querySelector('input[name="confirm_password"]').value
+            )
+        });
     }
 
     render() {

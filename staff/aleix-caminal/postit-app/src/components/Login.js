@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import LOGIC from '../logic'
+import React from 'react'
 import Input from './Input'
 
 function Login(props) {
@@ -7,7 +6,7 @@ function Login(props) {
         <h2 className="login__title">Login to Cello</h2>
         <form className="form" onSubmit={props.onSubmit}>
             <Input name="username" />
-            <Input name="password" />
+            <Input name="password" type="password" />
             <button className="form__button">Log In</button>
             <p className="form__text">or <a onClick={props.onClick}>Sign Up</a></p>
         </form>

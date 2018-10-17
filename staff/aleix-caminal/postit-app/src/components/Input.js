@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import LOGIC from '../logic'
+import React from 'react'
 
 function formatLabel(label) {
     let words = label.split('_');
@@ -12,7 +11,7 @@ function formatLabel(label) {
 function Input(props) {
     return <div className="form__group">
         <label className="form__label">{formatLabel(props.name)}</label>
-        <input className="form__input" name={props.name} />
+        <input className="form__input" name={props.name} type={props.type ? props.type : 'text' } />
     </div>
 }
 

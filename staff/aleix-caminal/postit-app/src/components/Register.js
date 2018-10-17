@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import LOGIC from '../logic'
+import React from 'react'
 import Input from './Input'
 
 function Register(props) {
@@ -8,8 +7,8 @@ function Register(props) {
         <form className="form" onSubmit={props.onSubmit}>
             <Input name="name" />
             <Input name="username" />
-            <Input name="password" />
-            <Input name="confirm_password" />
+            <Input name="password" type="password" />
+            <Input name="confirm_password" type="password" />
             <button className="form__button">Sign Up</button>
             <p className="form__text">or <a onClick={props.onClick}>Log In</a></p>
         </form>

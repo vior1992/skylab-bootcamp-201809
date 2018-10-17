@@ -1,6 +1,7 @@
-import { BoardsTable, PostsTable } from './model'
+import { UsersTable, BoardsTable, PostsTable } from './model'
 
 const LOGIC = {
+    users: new UsersTable(),
     boards: new BoardsTable(),
     posts: new PostsTable(),
 
@@ -43,6 +44,18 @@ const LOGIC = {
 
     all(model) {
         return this[model].all()
+    },
+
+    register(name, username, password, confirm_password) {
+        return this.users.newEntity({
+            name: name,
+            username: username,
+            password: password
+        }).insert();
+    },
+
+    login(username, password) {
+        console.log(arguments);
     }
 }
 
