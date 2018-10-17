@@ -1,53 +1,32 @@
 import React, { Component } from 'react'
+import Register from './components/Register'
+import Login from './components/Login'
 import logic from './logic'
-import InputForm from './components/InputForm'
-import Post from './components/Post'
 
-class App extends React.Component {
-  state = { postits: logic.listPostits() }
 
-  handleSubmit = text => {
-      console.log('App', 'handleSubmit (setState)')
+class App extends Component {
+    state = { register: false, login: false }
 
-      logic.createPostit(text)
+    handleRegister = () => {
+        this.setState({ register: true })
+    }
 
-      this.setState({ postits: logic.listPostits() })
-  }
+    handleLogin = () => {
+        this.setState({ login: true })
+    }
 
-  handleDeletePost = id => {
-      logic.deletePostit(id)
+    handleRegisterClick = (name, surname, username, password) => {
+        logic.registerUser(name, surname, username, password)
+    }
 
-      this.setState({ postits: logic.listPostits() })
-  }
-
-  handleEditPost = id => {
-      let element = document.getElementById(id)
-      if(element.disabled){
-          element.disabled = false}
-          else
-          {
-          
-          logic.editPostit(id)
-          element.disabled = true
-          }
-      }
-  
-
-  render() {
-      console.log('App', 'render')
-
-      return <div>
-          <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
-
-          <InputForm onSubmit={this.handleSubmit} />
-
-          <section>
-              {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
-              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onEditPost={this.handleEditPost} />)}
-          </section>
-      </div>
-  }
+    render() {
+        return <div>
+            {!this.state.register && !this.state.login && <section><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
+            {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
+            {this.state.login && <Login />}
+            {/* TODO show Home on successful login */}
+        </div>
+    }
 }
 
-
-export default App;
+export default App
