@@ -1,4 +1,4 @@
-import {storage, Postit} from './data'
+import {storage, Postit, User} from './data'
 
 const logic = {
     
