@@ -5,31 +5,20 @@ function Input(props) {
     return <input className="board__input" onKeyPress={props.onKeyPress} placeholder="Add another post" />
 }
 
-class Add extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return <section className="add">
-            <form onSubmit={this.props.onSubmit}>
-                <input className="add__input" type="text" placeholder="Add another board" />
-                <button className="add__button">Add Board</button>
-            </form>
-        </section>
-    }
+function Add(props) {
+    return <section className="add">
+        <form onSubmit={props.onSubmit}>
+            <input className="add__input" type="text" placeholder="Add another board" />
+            <button className="add__button">Add Board</button>
+        </form>
+    </section>
 }
-class Post extends Component {
-    constructor(props) {
-        super(props)
-    }
 
-    render() {
-        return <article className="post">
-            <button className="post__button" onClick={this.props.onDelete}>X</button>
-            <h3 className="post__title">{this.props.title}</h3>
-        </article>
-    }
+function Post(props) {
+    return <article className="post">
+        <button className="post__button" onClick={props.onDelete}>X</button>
+        <h3 className="post__title">{props.title}</h3>
+    </article>
 }
 
 class Board extends Component {
@@ -124,7 +113,7 @@ class App extends Component {
 
     render() {
         return <section className="main">
-            <h1 className="main__title">🎻 Cello</h1>
+            <h1 className="main__title"><span role="img" aria-label="jsx-a11y/accessible-emoji">🎻</span> Cello</h1>
             <section className="main__boards">
                 {this.state.boards.map((board) => {
                     return <Board key={board.id} id={board.id} title={board.title} onDelete={() => this.handleDelete(board.id)} onUpdate={this.handleUpdate} />

@@ -28,8 +28,9 @@ export class PostsTable extends Model {
             if (post.id === id) {
                 const keys = Object.keys(post)
                 keys.forEach(key => this[key] = post[key])
-                return
+                return undefined
             }
+            return -1
         });
         return this
     }
@@ -54,8 +55,9 @@ export class BoardsTable extends Model {
         boards.find(board => {
             if (board.id === this.id) {
                 keys.forEach(key => board[key] = query[key])
-                return
+                return undefined
             }
+            return -1
         })
         sessionStorage.setItem('boards', JSON.stringify(boards))
     }
@@ -65,8 +67,9 @@ export class BoardsTable extends Model {
             if (board.id === id) {
                 const keys = Object.keys(board)
                 keys.forEach(key => this[key] = board[key])
-                return
+                return undefined
             }
+            return -1
         });
         return this
     }
