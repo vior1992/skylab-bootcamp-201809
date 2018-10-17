@@ -1,60 +1,88 @@
 class Model {
     constructor() {
+    }
+
+    newEntity(values) {
         this.id = Date.now()
+        const keys = Object.keys(values)
+        keys.forEach(key => this[key] = values[key])
+        return this
     }
 }
 
 class PostsTable extends Model {
-    constructor(title) {
+    constructor() {
         super()
-        this.title = title
+        /* this.belongsTo('Boards', {
+            fk:'board_id'
+        }) */
     }
 
     insert() {
-        let posts = this.selectAll()
-        sessionStorage.setItem('posts', JSON.stringify([...posts, this]))
-        return this.selectAll()
+        sessionStorage.setItem('posts', JSON.stringify([...this.all(), this]))
     }
 
-    delete(id) {
-        let posts = this.selectAll()
-        sessionStorage.setItem('posts', JSON.stringify(post.filter(post => post.id !== id)))
-        return this.selectAll()
+    delete() {
+        sessionStorage.setItem('posts', JSON.stringify(this.all().filter(post => post.id !== this.id)))
     }
 
-    selectAll() {
+    find(query) {
+        let posts = this.all()
+        const keys = Object.keys(query)
+        keys.forEach(key => posts = posts.filter(post => post[key] === query[key]))
+        return posts
+    }
+
+    get(id) {
+        this.all().find(board => {
+            if (board.id === id) {
+                this.id = board.id
+                this.title = board.title
+                return
+            }
+        });
+        return this
+    }
+
+    all() {
         return JSON.parse(sessionStorage.getItem('posts')) || []
     }
 }
 
 class BoardsTable extends Model {
-    constructor(title) {
+    constructor() {
         super()
-        this.title = title
+        //this.hasMany = ['Posts']
     }
 
     insert() {
-        let boards = this.selectAll()
-        sessionStorage.setItem('boards', JSON.stringify([...boards, this]))
-        return this.selectAll()
+        sessionStorage.setItem('boards', JSON.stringify([...this.all(), this]))
     }
 
-    delete(id) {
-        let boards = this.selectAll()
-        sessionStorage.setItem('boards', JSON.stringify(board.filter(board => board.id !== id)))
-        return this.selectAll()
+    delete() {
+        sessionStorage.setItem('boards', JSON.stringify(this.all().filter(board => board.id !== this.id)))
     }
 
     update(id, title) {
-        let boards = this.selectAll()
+        let boards = this.all()
         boards.forEach(function(board) {
             if (board.id === id) board.title = title
         });
         sessionStorage.setItem('boards', JSON.stringify(boards))
-        return this.selectAll()
     }
 
-    selectAll() {
+    get(id) {
+        this.all().find(board => {
+            if (board.id === id) {
+                this.id = board.id
+                this.title = board.title
+                return
+            }
+        });
+        return this
+    }
+
+    all() {
         return JSON.parse(sessionStorage.getItem('boards')) || []
     }
 }

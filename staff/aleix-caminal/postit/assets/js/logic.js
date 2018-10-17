@@ -1,21 +1,26 @@
 const LOGIC = {
+    boards: new BoardsTable(),
+    posts: new PostsTable(),
     add(model, title) {
-        const element = new window[model + 'Table'](title)
-        return element.insert();
+        const entity = this[model].newEntity({
+            title: title
+        }).insert();
+        return this.all(model)
     },
-
     delete(model, id) {
-        const element = new window[model + 'Table']()
-        return element.delete(id)
+        this[model].get(id).delete()
+        return this.all(model)
     },
-
     update(model, id, title) {
-        const element = new window[model + 'Table']()
-        return element.update(id, title)
+        const element = this[model].get(id)
+        element.title = title
+        element.update()
+        return this.all(model)
     },
-
-    select(model) {
-        const element = new window[model + 'Table']()
-        return element.selectAll()
+    find(model, query) {
+        return this[model].find(query)
+    },
+    all(model) {
+        return this[model].all()
     }
 }
