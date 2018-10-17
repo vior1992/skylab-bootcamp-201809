@@ -17,6 +17,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            view: 'login',
             boards: LOGIC.all('boards')
         }
 
@@ -51,15 +52,25 @@ class App extends Component {
         })
     }
 
+    handleLogin(event) {
+        event.preventDefault()
+        console.log(event.target);
+    }
+
+    handleRegister(event) {
+        event.preventDefault()
+        console.log(event.target);
+    }
+
     render() {
         return <section className="main">
             <h1 className="main__title"><span role="img" aria-label="jsx-a11y/accessible-emoji">🎻</span> Cello</h1>
-            {!this.state.login ? (
+            {!this.state.auth ? (
                 <section className="main__auth">
-                    {false ? (
-                        <Login />
+                    {this.state.view === 'login' ? (
+                        <Login onClick={() => this.setState({view:'register'})} onSubmit={this.handleLogin} />
                     ) : (
-                        <Register />
+                        <Register onClick={() => this.setState({view:'login'})} onSubmit={this.handleRegister} />
                     )}
                 </section>
             ) : (

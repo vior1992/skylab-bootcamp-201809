@@ -124,27 +124,40 @@ body {
                     margin-bottom: 1rem;
                 }
 
-                &__group {
-                    display: flex;
-                    flex-direction: column;
-                }
+                .form {
+                    &__group {
+                        display: flex;
+                        flex-direction: column;
+                    }
 
-                &__label {
-                    margin: 0;
-                    font-size: 14px;
-                    font-weight: 500;
-                }
+                    &__label {
+                        margin: 0;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
 
-                &__input {
-                    @extend %input;
-                    width: 400px;
-                    height: 30px;
-                    line-height: 30px;
-                    font-size: 16px;
-                }
+                    &__input {
+                        @extend %input;
+                        width: 400px;
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 16px;
+                    }
 
-                &__button {
-                    @extend %button;
+                    &__button {
+                        @extend %button;
+                    }
+
+                    &__text {
+                        display: inline-block;
+                        margin: 0 .5rem;
+                        color: $color-text;
+
+                        a:hover {
+                            text-decoration: underline;
+                            cursor: pointer;
+                        }
+                    }
                 }
             }
         }

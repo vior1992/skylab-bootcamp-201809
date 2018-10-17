@@ -31,7 +31,7 @@ body .main__boards .board .post__title, body .main__boards .board__title {
   text-overflow: ellipsis;
 }
 
-body .main__boards .add__input, body .main__boards .board__title:focus, body .main__auth .login__input, body .main__auth .register__input {
+body .main__boards .add__input, body .main__boards .board__title:focus, body .main__auth .login .form__input, body .main__auth .register .form__input {
   width: -webkit-fill-available;
   height: 20px;
   margin: 0 0 0.5rem;
@@ -42,11 +42,11 @@ body .main__boards .add__input, body .main__boards .board__title:focus, body .ma
   border: 2px solid #026aa7;
   border-radius: 0.5rem;
 }
-body .main__boards .add__input:focus, body .main__boards .board__title:focus, body .main__auth .login__input:focus, body .main__auth .register__input:focus {
+body .main__boards .add__input:focus, body .main__boards .board__title:focus, body .main__auth .login .form__input:focus, body .main__auth .register .form__input:focus {
   outline: 0;
 }
 
-body .main__boards .add__button, body .main__auth .login__button, body .main__auth .register__button {
+body .main__boards .add__button, body .main__auth .login .form__button, body .main__auth .register .form__button {
   padding: 0.5rem;
   border: none;
   border-radius: 0.5rem;
@@ -56,11 +56,11 @@ body .main__boards .add__button, body .main__auth .login__button, body .main__au
   font-size: 16px;
   transition: all 0.1s linear;
 }
-body .main__boards .add__button:hover, body .main__auth .login__button:hover, body .main__auth .register__button:hover {
+body .main__boards .add__button:hover, body .main__auth .login .form__button:hover, body .main__auth .register .form__button:hover {
   cursor: pointer;
   background-color: #509a3d;
 }
-body .main__boards .add__button:focus, body .main__auth .login__button:focus, body .main__auth .register__button:focus {
+body .main__boards .add__button:focus, body .main__auth .login .form__button:focus, body .main__auth .register .form__button:focus {
   outline: none;
 }
 
@@ -92,20 +92,29 @@ body .main__auth .login__title, body .main__auth .register__title {
   font-size: 24px;
   margin-bottom: 1rem;
 }
-body .main__auth .login__group, body .main__auth .register__group {
+body .main__auth .login .form__group, body .main__auth .register .form__group {
   display: flex;
   flex-direction: column;
 }
-body .main__auth .login__label, body .main__auth .register__label {
+body .main__auth .login .form__label, body .main__auth .register .form__label {
   margin: 0;
   font-size: 14px;
   font-weight: 500;
 }
-body .main__auth .login__input, body .main__auth .register__input {
+body .main__auth .login .form__input, body .main__auth .register .form__input {
   width: 400px;
   height: 30px;
   line-height: 30px;
   font-size: 16px;
+}
+body .main__auth .login .form__text, body .main__auth .register .form__text {
+  display: inline-block;
+  margin: 0 0.5rem;
+  color: #17394d;
+}
+body .main__auth .login .form__text a:hover, body .main__auth .register .form__text a:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 body .main__boards {
   display: flex;

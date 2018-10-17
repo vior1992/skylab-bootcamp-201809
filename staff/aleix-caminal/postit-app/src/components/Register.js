@@ -1,31 +1,19 @@
 import React, { Component } from 'react';
 import LOGIC from '../logic'
+import Input from './Input'
 
-function Input(props) {
-    return <div className="register__group">
-        <label className="register__label">{props.label}</label>
-        <input className="register__input" />
-    </div>
-}
-
-class Register extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { register: {} }
-    }
-
-    render() {
-        return <section className="register">
-            <h2 className="register__title">Register to Cello</h2>
-            <form>
-                <Input label="Name" />
-                <Input label="Username" />
-                <Input label="Password" />
-                <Input label="Repeat password" />
-                <button className="register__button">Sign Up</button>
-            </form>
-        </section>
-    }
+function Register(props) {
+    return <section className="register">
+        <h2 className="register__title">Register to Cello</h2>
+        <form className="form" onSubmit={props.onSubmit}>
+            <Input name="name" />
+            <Input name="username" />
+            <Input name="password" />
+            <Input name="confirm_password" />
+            <button className="form__button">Sign Up</button>
+            <p className="form__text">or <a onClick={props.onClick}>Log In</a></p>
+        </form>
+    </section>
 }
 
 export default Register;
