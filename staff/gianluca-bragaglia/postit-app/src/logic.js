@@ -1,4 +1,6 @@
-import { storage, Postit } from './data'
+import data from './data'
+
+const { storage, Postit, User } = data
 
 const logic = {
     createPostit(text) {
@@ -35,7 +37,36 @@ const logic = {
         postit.text = text
 
         this.persistPostits(postits)
+    },
+
+    listUsers() {
+        return JSON.parse(storage.getItem('users'))
+    },
+
+    persistUsers(users) {
+        storage.setItem('users', JSON.stringify(users))
+    },
+
+    registerUser(name, surname, username, password) {
+        const user = new User(name, surname, username, password)
+
+        const users = this.listUsers()
+
+        users.push(user)
+
+        this.persistUsers(users)
+    },
+
+    loginUser(username, password) {
+        const registredUsers = this.listUsers()
+        const _user = registredUsers.find(User => User.username === username)
+        if( _user.password === password) {
+            return true
+        }else{
+            alert('password incorrect')
+        }
     }
+
 }
 
 export default logic

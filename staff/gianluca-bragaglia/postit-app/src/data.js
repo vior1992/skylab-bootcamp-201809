@@ -1,24 +1,20 @@
-// Data - Model (domain)
-
-export const storage = sessionStorage
+const storage = sessionStorage
 // const storage = localStorage
 
 if (!storage.getItem('postits'))
     storage.setItem('postits', JSON.stringify([]))
 
-// function Postit(text) {
-//     this.text = text
-//     this.id = Date.now()
-// }
+if (!storage.getItem('users'))
+    storage.setItem('users', JSON.stringify([]))
 
-export class Postit {
+class Postit {
     constructor(text) {
         this.text = text
         this.id = Date.now()
     }
 }
 
-export class User {
+class User {
     constructor(name, surname, username, password) {
         this.name = name
         this.surname = surname
@@ -28,14 +24,8 @@ export class User {
     }
 }
 
-
-
-// export default {
-//     storage,
-//     Postit
-// }
-
-// module.exports = {
-//     storage,
-//     Postit
-// }
+export default {
+    storage,
+    Postit,
+    User
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class Post extends React.Component {
+class Post extends Component {
     state = {
          text: this.props.text
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logic from '../logic'
 import Post from './Post'
 
-class App extends Component {
+class Home extends Component {
 
 
   state = { 
@@ -62,5 +62,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
 
