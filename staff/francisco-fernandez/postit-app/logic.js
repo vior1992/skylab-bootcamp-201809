@@ -27,9 +27,16 @@ const logic = {
         this.persistPostits(postits)
     },
 
-    editPostit(id, element){
+    editPostit(id){
+        debugger
         const postits = this.listPostits()
         postit = postits.filter(postit => postit.id == id)
+        let element = document.getElementById(id)
+        let newtext = element.value
+        let index = postits.findIndex(element => element.id ===id)
+        // postit.text = newtext
+        postits[index].text=newtext
+        this.persistPostits(postits)
         // postit.text = element.text
     }
 }
