@@ -22,18 +22,18 @@ class Register extends Component {
 
         console.log(users)
         if (users === null) {
-            { users = [] }
+            users = [] 
             logic.persistUsers(users)
         }
     }
 
-    handleSubmit = this.handleSubmit.bind(this)
-    handleSubmit(event) {
+    handleRegister = this.handleRegister.bind(this)
+    handleRegister(event) {
         event.preventDefault()
-        console.log('entra\n=>', this.state._name, this.state._surname, this.state._username, this.state._password)
-        logic.createUser(this.state._name, this.state._surname, this.state._username, this.state._password)
 
-        //this.setState({ texts: logic.listPostits() })
+        console.log('entra\n=>', this.state._name, this.state._surname, this.state._username, this.state._password)
+
+        this.props.handleRegister(this.state._name, this.state._surname, this.state._username, this.state._password)
     }
 
     handleInput_Name = event => {
@@ -69,16 +69,16 @@ class Register extends Component {
     }
 
     render() {
-        return <form onSubmit={this.handleSubmit}>
-            <input onChange={this.handleInput_Name} value={this.state.name}></input>
+        return <form onSubmit={this.handleRegister}>
+            <input onChange={this.handleInput_Name} value={this.state.name} type="text" placeholder="Name"></input>
 
-            <input onChange={this.handleInput_Surname}></input>
+            <input onChange={this.handleInput_Surname} type="text" placeholder="Surname"></input>
 
-            <input onChange={this.handleInput_Username}></input>
+            <input onChange={this.handleInput_Username} type="text" placeholder="Username"></input>
 
-            <input onChange={this.handleInput_Password}></input>
+            <input onChange={this.handleInput_Password} type="password" placeholder="Password"></input>
 
-            <button type='submit' />
+            <button type='submit'> Register </button>
         </form>
     }
 }
