@@ -1,16 +1,4 @@
-// tercera iteración, esta vez guardando  las notas en Session Storage
-//Model (domain)
-if (!sessionStorage.getItem('postits'))
-    sessionStorage.setItem('postits', JSON.stringify([]))
-
-class Postit {
-    constructor(text) {
-        this.text = text
-        this.id = Date.now()
-    }
-}
-
-//Business (logic)?
+// segunda iteración, separada en componentes
 
 class InputForm extends React.Component {
     state = { text: '' }
@@ -38,7 +26,6 @@ class InputForm extends React.Component {
 
         return <form onSubmit={this.handleSubmit}>
             <textarea value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
-
             <button type="submit"><i className="fas fa-plus"></i>Post it!</button>
         </form>
     }
@@ -49,39 +36,32 @@ function Post(props) {
 
     return (
         <div>
-            <article className="post"><p>{props.text}</p>
-                <button onClick={() => props.onDeletePost(props.id)}><i className="far fa-trash-alt"></i></button>
-            </article>
+            <article className="post">{props.text}</article>
+            <button onClick={() => props.onDeletePost(props.index)}><i className="far fa-trash-alt"></i></button>
         </div>
     )
 }
 
 
 class App extends React.Component {
-    state = { postits: JSON.parse(sessionStorage.getItem('postits')) }
+    state = { posts: [] }
 
     handleSubmit = text => {
         console.log('App', 'handleSubmit(setState')
 
-        const postit = new Postit(text)
+        // const posts = this.state.posts.concat(text)
+        const posts = [...this.state.posts, text]
 
-        const postits = JSON.parse(sessionStorage.getItem('postits'))
-
-        postits.push(postit)
-
-        sessionStorage.setItem('postits', JSON.stringify(postits))
-
-        this.setState({ postits })
+        this.setState({ posts })
     }
 
-    handleDeletePost = id => {
-        let postits = JSON.parse(sessionStorage.getItem('postits'))
+    handleDeletePost = index => {
+        const posts = this.state.posts.filter((post, _index) => index !== _index)
 
-        postits = postits.filter(postit => postit.id !== id)
+        this.setState({ posts })
 
-        sessionStorage.setItem('postits', JSON.stringify(postits))
+        // this.setState({ posts: this.state.posts.filter((post, i) => i !== index) }) >> mi versión anterior
 
-        this.setState({ postits })
     }
 
     render() {
@@ -93,7 +73,7 @@ class App extends React.Component {
             <InputForm onSubmit={this.handleSubmit} />
 
             <section>
-                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
+                {this.state.posts.map((post, index) => <Post key={index} text={post} index={index} onDeletePost={this.handleDeletePost} />)}
             </section>
         </div>
     }
