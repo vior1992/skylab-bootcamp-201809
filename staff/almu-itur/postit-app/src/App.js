@@ -1,29 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Register from './components/Register'
+import Login from './components/Login'
+import logic from './logic'
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Hola Mundo</h1>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    state = { register: false, login: false }
+
+    handleRegister = () => {
+        this.setState({ register: true })
+    }
+
+    handleLogin = () => {
+        this.setState({ login: true })
+    }
+
+    handleRegisterClick = (name, surname, username, password) => {
+        logic.registerUser(name, surname, username, password)
+    }
+
+    render() {
+        return <div>
+            {!this.state.register && !this.state.login && <section><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
+            {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
+            {this.state.login && <Login />}
+            {/* TODO show Home on successful login */}
+        </div>
+    }
 }
 
-export default App;
+export default App
