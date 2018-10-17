@@ -1,7 +1,6 @@
 const storage = sessionStorage
 // const storage = localStorage
 
-
 //Model (domain)
 
 if (!storage.getItem('postits'))
@@ -22,12 +21,11 @@ const logic = {
     createPostit(text) {
         const postit = new Postit(text)
 
-        const postits = JSON.parse(storage.getItem('postits'))
+        const postits = this.listPostits()
 
         postits.push(postit)
 
-        storage.setItem('postits', JSON.stringify(postits))
-
+        this.persistPostits(postits)
     },
 
     listPostits(id) {
@@ -35,82 +33,81 @@ const logic = {
 
     },
 
+    persistPostits(postits) {
+        storage.setItem('postits', JSON.stringify(postits))
+    },
+
     deletePostit(id){
-        let postits = JSON.parse(storage.getItem('postits'))
+        let postits = this.listPostits()
 
         postits = postits.filter(postit => postit.id !== id)
 
         storage.setItem('postits', JSON.stringify(postits))
+    },
+
+    updatePostit(id, text) {
+        let postits = this.listPostits()
+
+        const postit = postits.find(postit => postit.id === id)
+
+        postit.text = text
+
+        this.persistPostits(postits)
     }
 }
 
-
+// Presentation (components)
 class InputForm extends React.Component {
-    state = {textValue: "" }
+    state = {text: "" }
 
     handleInput = event => {
-        const textValue = event.target.value
+        const text = event.target.value
 
-        this.setState({textValue})
+        this.setState({text})
     }
 
     handleSubmit = event => {
         event.preventDefault()
         
-        this.props.DadSubmit(this.state.textValue)
+        this.props.DadSubmit(this.state.text)
 
-        this.setState({ textValue: '' })
+        this.setState({ text: '' })
       
     }
 
     render(){
         return<form onSubmit={this.handleSubmit} >
-            <textarea placeholder="Write text here..." onChange={this.handleInput} value = {this.state.textValue}></textarea>
+            <input value = {this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
             <button type= "submit">Create</button>
         </form>
     }
 }
 
-class Article extends React.Component {
+class Post extends React.Component {
 
-    state = {textValue: "" , }
+    state = {text: this.props.text  }
 
-    handleInput = event => {
-        const textValue = event.target.value
+    handleChange = event => {
+        const text = event.target.value
 
-        this.setState({textValue})
+        this.setState({text})
     }
 
-    handleSubmit = event => {
-        event.preventDefault()
-        
-        this.props.DadSubmit(this.state.textValue)
-
-        this.setState({ textValue: '' })
+    handleBlur = event => {
+        this.props.onUpdatePost( this.state.text, this.props.id)
       
     }
 
-    handleVisibility = () => {
-
-    }
-   
-
     render(){
         return <article className="post">
-            <p>{this.props.postItText}</p>
-            <button className="btn btn-warning" onClick = {()=> this.props.DadDelete(this.props.id)}>Delete Me</button>
-            <button className="btn btn-warning" onClick = {()=> this.handleVisibility()}>Edit Me</button>
-            <form className = 'editForm' onSubmit={this.handleSubmit} >
-                <textarea placeholder={this.props.postItText} onChange={this.handleInput} value = {this.state.textValue} ></textarea>
-                <button type= "submit" onClick = {()=> this.props.DadEdit(this.props.id)} >Submit Changes</button>
-            </form>
-            
+            <textarea defaultValue={this.state.text} onChange={this.handleChange} onBlur={this.handleBlur} />
+            <button onClick={() => this.props.onDeletePost(this.props.id)}><i className="far fa-trash-alt"></i></button>      
         </article>
     }
 }
 
 class App extends React.Component {
-    state = { postits: JSON.parse(storage.getItem('postits'))}
+    state = { postits: logic.listPostits() }
 
     handleSubmit = text => {
         logic.createPostit(text)
@@ -125,27 +122,21 @@ class App extends React.Component {
         this.setState({ postits: logic.listPostits() })
     }
 
-    handleEdit = (newText, id) => {
+    handleUpdatePost = (text, id) => {
 
-        
-        let postits = JSON.parse(storage.getItem('postits'))
-        
-        let editPostit = postits.filter(postit => postit.id === id)
+        logic.updatePostit(id, text)
 
-        editPostit.text = newText
-        
-        storage.setItem('postits', JSON.stringify(postits))
+        this.setState({ postits: logic.listPostits() })
 
 
     }
-
 
     render() {
         return <section> 
             <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
             <InputForm DadSubmit={this.handleSubmit}/>
             <section>  
-                {this.state.postits.map(postit => <Article key={postit.id} id={postit.id} postItText={postit.text} DadDelete={this.handleDelete} DadEdit={this.handleEdit}/>)}
+                {this.state.postits.map(postit => <Post key={postit.id} id={postit.id} text={postit.text} onDeletePost={this.handleDelete} onUpdatePost={this.handleUpdatePost}/>)}
             </section> 
         </section>
     }
