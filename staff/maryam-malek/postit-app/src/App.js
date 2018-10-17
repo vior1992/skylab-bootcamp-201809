@@ -3,6 +3,7 @@ import logic from './logic'
 import InputForm from './components/InputForm'
 import PostIt from './components/Postit'
 import { Postit } from './data'
+import './App.css'
 
 class App extends Component {
 

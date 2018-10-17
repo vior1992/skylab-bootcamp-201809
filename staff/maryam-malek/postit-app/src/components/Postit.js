@@ -14,7 +14,7 @@ class PostIt extends Component {
 
         this.props.onSubmit(this.state.editText, this.props.id)
 
-        this.setState({ editText: this.state.text })
+        this.setState({ editText: this.state.editText })
     }
 
     render() {
@@ -27,7 +27,7 @@ class PostIt extends Component {
             {this.props.show &&
                 <form onSubmit={this.handleSubmit}>
                     {/* <textarea value={this.state.text} onChange={this.handleInput}>{this.props.paint}</textarea> */}
-                    <textarea defaultValue= {this.props.paint} value={this.state.text} onChange={this.handleInput}></textarea>
+                    <textarea  defaultValue={this.state.editText} onChange={this.handleInput}></textarea>
                     <button type='submit'>Submit changes</button>
                 </form> }
         </div>

@@ -1,9 +1,9 @@
 .postIt {
   background-color: gold;
-  width: fill-available;
+  width: 100px;
   height: 100px;
   border: 1px solid skyblue;
-  margin: 3%;
+  margin: 1em;
   border-radius: 10%;
   padding: 2%;
   position: relative;
@@ -19,13 +19,12 @@
 
 .postit-board {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: left;
   background-color: skyblue;
   border-radius: 10px;
-  width: 130px;
-  height: fit-content;
+  /* width: 130px;
+  height: fit-content; */
   padding: 1rem;
 }
-
-/*# sourceMappingURL=style.css.map */
