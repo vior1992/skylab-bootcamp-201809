@@ -59,10 +59,10 @@ class PostIt extends React.Component {
 
 class App extends React.Component {
 
-    state = { postits: logic.listPostits()}
+    state = { postits: logic.listPostits(), show: false }
 
     handleSubmit = text => {
-        const postit = new Postit(text, false)
+        const postit = new Postit(text)
 
         logic.createPostit(postit)
 
@@ -76,14 +76,13 @@ class App extends React.Component {
     }
 
     handleEditSubmit = (text, id) => {
-        logic.changePostit(text, id, false)
-        this.setState({ postits: logic.listPostits()})
+        logic.changePostit(text, id)
+        this.setState({ postits: logic.listPostits(), show: false })
 
     }
 
-    handleEditClick = (id) => {
-        logic.apearEdit(id, true)
-        this.setState({ postits: logic.listPostits()})
+    handleEditClick = () => {
+        this.setState({ show: true })
 
     }
 
@@ -94,7 +93,7 @@ class App extends React.Component {
             <InputForm onSubmit={this.handleSubmit} />
 
             <section className='postit-board'>
-                {this.state.postits.map(postit => <PostIt show={postit.show} onEditClick={() => {this.handleEditClick(postit.id)}} onSubmit={this.handleEditSubmit} paint={postit.text} key={postit.id} id={postit.id} onClick={this.handleClick} />)}
+                {this.state.postits.map(postit => <PostIt show={this.state.show} onEditClick={this.handleEditClick} onSubmit={this.handleEditSubmit} paint={postit.text} key={postit.id} id={postit.id} onClick={this.handleClick} />)}
             </section>
         </section >
     }

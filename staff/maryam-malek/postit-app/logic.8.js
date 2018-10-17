@@ -22,24 +22,13 @@ const logic = {
         return JSON.parse(storage.getItem('postits'))
     },
 
-    changePostit(textEdit, id, show) {
+    changePostit(textEdit, id) {
         let postits = JSON.parse(storage.getItem('postits'))
         
         let index = postits.findIndex(postit => postit.id == id)
     
         postits[index].text = textEdit
 
-        postits[index].show = show
-
-        storage.setItem('postits', JSON.stringify(postits))
-    },
-    apearEdit(id, show) {
-        let postits = JSON.parse(storage.getItem('postits'))
-        
-        let index = postits.findIndex(postit => postit.id == id)
-    
-        postits[index].show = show
-        
         storage.setItem('postits', JSON.stringify(postits))
     }
 }
