@@ -36,5 +36,12 @@ const logic = {
         postits[index] = newPostit
         this.persistPostits(postits)
         
+    },
+
+    completePost(id) {
+        const postits = JSON.parse(storage.getItem('postits'))
+        const index = postits.findIndex( el => el.id===id)
+        postits[index].complete=true
+        this.persistPostits(postits)
     }
 }

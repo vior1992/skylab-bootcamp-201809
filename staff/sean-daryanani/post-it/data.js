@@ -7,5 +7,8 @@ class Postit {
     constructor(text) {
         this.text = text
         this.id = Date.now()
+        this.complete = false
+
     }
 }
+
