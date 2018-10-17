@@ -35,9 +35,7 @@ const logic = {
         else{
             const posits = this.listPostits()
             let input = element.value
-            
             let index = posits.findIndex(element => element.id ===id)
-         
             posits[index].text = input
             this.persistPostits(posits)
            

@@ -36,7 +36,7 @@ function Post(props) {
     console.log('Post', '"render"')
 
     return <article className="post">
-        <textarea disabled id={props.id}>{props.text}</textarea>
+        <textarea className="textarea" disabled id={props.id} defaultValue={props.text}></textarea>
 
         <button onClick={() => props.onDeletePost(props.id)}><i className="far fa-trash-alt"></i></button>
         <button onClick={() => props.onEditPost(props.id)}><i className="far fa-edit"></i></button>
@@ -59,9 +59,9 @@ class App extends React.Component {
 
         this.setState({ postits: logic.listPostits() })
     }
-    handleEditPost = (id,index) =>{
+    handleEditPost = (id) =>{
         
-        logic.editPost(id,index)
+        logic.editPost(id)
 
         this.setState({ postits: logic.listPostits() })
     }
