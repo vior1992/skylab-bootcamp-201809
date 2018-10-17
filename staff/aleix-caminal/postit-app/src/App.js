@@ -17,9 +17,12 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            auth: LOGIC.getAuth(),
             view: 'login',
             boards: LOGIC.all('boards')
         }
+
+        console.log(this.state.auth.length);
 
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
@@ -79,7 +82,7 @@ class App extends Component {
     render() {
         return <section className="main">
             <h1 className="main__title"><span role="img" aria-label="jsx-a11y/accessible-emoji">🎻</span> Cello</h1>
-            {!this.state.auth ? (
+            {!this.state.auth || Object.keys(this.state.auth).length === 0 ? (
                 <section className="main__auth">
                     {this.state.view === 'login' ? (
                         <Login onClick={() => this.setState({view:'register'})} onSubmit={this.handleLogin} />

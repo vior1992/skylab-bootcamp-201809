@@ -59,7 +59,13 @@ const LOGIC = {
             username: username,
             password: password
         })[0].id
-        return this.users.get(user_id)
+        const auth = this.users.get(user_id)
+        sessionStorage.setItem('auth', JSON.stringify(auth))
+        return auth
+    },
+
+    getAuth() {
+        return JSON.parse(sessionStorage.getItem('auth')) || {}
     }
 }
 
