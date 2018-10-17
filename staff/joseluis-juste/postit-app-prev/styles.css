@@ -14,7 +14,7 @@ html {
 .board {
   margin: 0 auto;
   margin-top: 2em;
-  width: 70%;
+  width: 71.5%;
   border-radius: 5px;
   padding: 2em 2em;
   min-height: 100vh;
@@ -39,7 +39,7 @@ html {
   .board .board__panel-postits {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; }
+    justify-content: left; }
 
 .postit {
   position: relative;
@@ -73,7 +73,7 @@ html {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */ }
-  .postit button {
+  .postit > button {
     position: absolute;
     bottom: 15px;
     right: 15px; }
@@ -94,8 +94,9 @@ html {
   -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
   transform: matrix(-1, -0.1, 0, 1, 0, 0); }
 
-.postit:before {
+.postit a:before {
   content: "\63";
   top: -48px;
   position: absolute;
-  right: 6px; }
+  right: 6px;
+  color: black; }

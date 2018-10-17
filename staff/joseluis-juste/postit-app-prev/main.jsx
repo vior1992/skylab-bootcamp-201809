@@ -1,24 +1,93 @@
-class PostItComponent extends React.Component {
+class ModalComponent extends React.Component {
 
     constructor(props) {
-        super(props);
 
+        super(props);
+    }
+
+    onSubmitText = (value) => {
+
+        this.props.onSubmitText(value);
+        $('#' + this.props.id).modal('hide');
+       
+
+    }
+
+
+    render() {
+        return <div className="modal fade" id={this.props.id} tabIndex={-1} role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    {/* Modal Body */}
+                    <div className="modal-body">
+                        <form className="form-horizontal" role="form" onSubmit={(ev) => {
+                            ev.preventDefault();
+                            this.onSubmitText($(ev.target).find("#inputEmail3").val());
+
+                        }}>
+                            <div className="form-group">
+                                <div className="col-sm-10">
+                                    <input type="text" readOnly className="form-control"  placeholder={"OldValue: " + this.props.oldmessage}/>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="col-sm-10">
+                                    <input type="text" className="form-control" id="inputEmail3" placeholder="Text..."/>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" className="btn btn-default">Enviar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {/* Modal Footer */}
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-default" onClick = {(ev) => $('#' + this.props.id).modal('hide')}>
+                            Close
+        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
+class PostItComponent extends React.Component {
+
+    state = {message:''}
+    
+    constructor(props) {
+        super(props);
+        
     }
 
     componentDidMount() {
 
-        var pseudoBefore = window.getComputedStyle(this._reactInternalFiber.return.stateNode.getElementsByTagName("article")[0], ':before')
+        this.setState({message: this.props.message});
 
     }
 
     showModal = () => {
 
-        $('#myModalHorizontal').modal('show');
+        $('#' + this.props.id).modal('show');
 
     }
 
+    handleSubmitText = (text) => {
+
+        this.setState({message: text});
+        this.props.onUpdatePost(this.props.id, text);
+
+    }
+
+    
     render() {
-        return <article onClick={() => { /*this.props.onDeletePost(this.props.index) }*/ }} className="postit icon-x">{this.props.message}
+        return <article className="postit">{this.state.message}
+            <ModalComponent id = {this.props.id} oldmessage = {this.state.message} onSubmitText={this.handleSubmitText} />
+            <a  onClick={() => { this.props.onDeletePost(this.props.id) } } href="#" className="icon-x"></a>
             <button onClick={(ev) => this.showModal()} className="btn btn-primary btn-lg">Edit</button>
         </article>
     }
@@ -30,25 +99,41 @@ class BoardComponent extends React.Component {
 
     constructor(props) {
         super(props);
+                
+    }
+
+    componentDidMount() {
+
+        let postits = JSON.parse(window.sessionStorage.getItem("postits"));
+        if (postits && postits.length > 0)
+            this.setState({posts:  postits});
     }
 
     addPostIt = (message) => {
 
-        this.state.posts.push(new PostIt(message));
-        const postss =
-            this.setState({ posts: this.state.posts });
+        let postits = Array.from(this.state.posts);
+        postits.push(new PostIt(message));
+        this.setState({posts:  postits}, this.storeInSession);
+       
     }
 
-    deletePostIt = (index) => {
+    storeInSession = () => {
 
-        let filtered = this.state.posts.filter((post) => post.id !== index);
-        this.setState({ posts: filtered });
+        window.sessionStorage.setItem("postits", JSON.stringify(this.state.posts));
     }
 
-    editPostIt = (index) => {
+    deletePostIt = (id) => {
 
-        let filtered = this.state.posts.filter((post) => post.id !== index);
-        this.setState({ posts: filtered });
+        let postits = Array.from(this.state.posts);
+        postits = postits.filter((post) => post.id !== id);
+        this.setState({ posts: postits }, this.storeInSession);
+    }
+
+    editPostIt = (id, text) => {
+
+        let postit = this.state.posts.find((post) => post.id === id);
+        postit.text = text;
+        this.setState({posts:  this.state.posts}, this.storeInSession);
     }
 
 
@@ -57,40 +142,13 @@ class BoardComponent extends React.Component {
 
 
         return <section className="board">
-            <div className="modal fade" id="myModalHorizontal" tabIndex={-1} role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        {/* Modal Body */}
-                        <div className="modal-body">
-                            <form className="form-horizontal" role="form">
-                                <div className="form-group">
-                                    <div className="col-sm-10">
-                                        <input type="text" className="form-control" id="inputEmail3" placeholder="Text..." />
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" className="btn btn-default">Enviar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        {/* Modal Footer */}
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-default" data-dismiss="modal">
-                                Close
-                </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <form action="">
                 <input type="text" name="message" id="message" placeholder="Type your postit message..." />
                 <button onClick={(ev) => { ev.preventDefault(); this.addPostIt(document.getElementById("message").value) }}>Send...</button>
             </form>
             <section className="board__panel-postits">
                 {
-                    this.state.posts.map((post, index) => <PostItComponent key={post.id} index={post.id} onDeletePost={this.deletePost} message={post.text}></PostItComponent>)
+                    this.state.posts.map((post) => <PostItComponent key={post.id} id={post.id} onUpdatePost = {this.editPostIt} onDeletePost={this.deletePostIt} message={post.text}></PostItComponent>)
                 }
             </section>
 

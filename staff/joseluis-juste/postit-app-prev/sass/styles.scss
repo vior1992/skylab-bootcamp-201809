@@ -16,7 +16,7 @@ html{
 .board{
     margin: 0 auto;
     margin-top:2em;
-    width: 70%;
+    width: 71.5%;
     border-radius: 5px;
     padding: 2em 2em;
     min-height: 100vh;
@@ -47,9 +47,7 @@ html{
     & .board__panel-postits{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
-       
-        
+        justify-content: left;
     }
 }
 
@@ -77,10 +75,10 @@ html{
   background: -ms-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* IE10+ */
   background: linear-gradient(135deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    & button{
+    & > button{
         position: absolute;
-        bottom: 15px;
-        right: 15px;
+    bottom: 15px;
+       right: 15px;
     }
 }
   
@@ -100,9 +98,10 @@ html{
            transform: matrix(-1, -0.1, 0, 1, 0, 0);
   }
 
-  .postit:before{
+  .postit a:before{
     content: "\63";
     top: -48px;
     position: absolute;
     right: 6px;
+    color:black;
   }
