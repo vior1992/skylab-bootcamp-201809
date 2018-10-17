@@ -80,6 +80,10 @@ class PostItText extends React.Component {
   }
 
   handleSaveClick = event => {
+    if (!this.state.text.length) {
+      return
+    }
+
     this.setState({ edit: false })
 
     logic.editPostIt(this.state.id, this.state.text)
