@@ -1,6 +1,6 @@
-// Model (domain) - Data
+// Data - Model (domain)
 
-const storage = sessionStorage
+export const storage = sessionStorage
 // const storage = localStorage
 
 if (!storage.getItem('postits'))
@@ -11,9 +11,21 @@ if (!storage.getItem('postits'))
 //     this.id = Date.now()
 // }
 
-class Postit {
+export class Postit {
     constructor(text) {
         this.text = text
         this.id = Date.now()
     }
 }
+
+
+
+// export default {
+//     storage,
+//     Postit
+// }
+
+// module.exports = {
+//     storage,
+//     Postit
+// }
