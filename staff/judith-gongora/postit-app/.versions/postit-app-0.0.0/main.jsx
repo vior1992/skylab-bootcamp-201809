@@ -14,7 +14,7 @@ class InputForm extends React.Component {
         this.props.onClick(this.state.text)
 
         this.setState({ text: '' })
-     }
+    }
 
     render() {
         console.log('InputForm', 'render')
@@ -31,31 +31,37 @@ class InputForm extends React.Component {
 }
 
 class Post extends React.Component{
+
     state = { text: this.props.text }
 
-    handleChange = event => { //event aqui es el parametro de entrada
 
-        this.setState({ text : event.target.value})
-    
+    handleChange = event => {
+        const text = event.target.value
+
+        this.setState({ text })
     }
 
     handleBlur = () => {
-        this.props.onUpdatePost
+        this.props.onUpdatePost(this.props.id, this.props.index, this.state.text)
     }
 
-    editAreaE= id => {
-        document.getElementById(id).disabled = false;
+    handleEdit= () => {
+        this.props.onEdit(this.props.id)
     }
 
-    editAreaD= id => {
-        document.getElementById(id).disabled = true;
+    handleDelete= () => {
+        this.props.onDelete(this.props.id)
     }
+
+    // editAreaD= id => {
+    //     document.getElementById(id).disabled = true;
+    // }
 
     render(){
-            return <article onClick={this.editAreaE(props.id)} onblur={this.editAreaD(props.id)} className="post">
-                        <textarea onChange={this.handleChange} id={this.props.id} disabled>{this.props.text}</textarea> 
-                        <button onClick={() => props.onClickEdit(props.id,props.index)}>Edit</button>
-                        <button onClick={() => props.onClick(props.id)}>x</button>
+            return <article onClick={this.handleEdit} onBlur={this.handleBlur} className="post">
+                        <textarea onChange={this.handleChange} id={this.props.id} disabled className="transparent" defaultValue={this.props.text}></textarea> 
+                        {/* <button onClick={this.handleBlur}>Edit</button> */}
+                        <button onClick={this.handleDelete}>x</button>
                     </article>
             }
 }
@@ -86,20 +92,20 @@ class App extends React.Component {
         this.setState({ postits: logic.listPostits() })
     }
 
-    handleUpdatePost = (id,text) => {
-        logic.editPostit(id, text)
+    // handleUpdatePost = (id, text) => {
+    //     logic.updatePostit(id, text)
+  
+    //     this.setState({ postits: logic.listPostits() })
+    // }
+
+    handleUpdatePost = (id,index,text) => {
+        logic.UpdatePostit(id, index, text)
 
         this.setState({ postits: logic.listPostits() })
     }
 
-    handleEdit = (id,index) => {
-        logic.editPostit(id, index)
-
-        this.setState({ postits: logic.listPostits() })
-    }
-
-    handleAreaE = id => {
-        logic.editAreaE(id)
+    handleEdit = id => {
+        logic.editPost(id)
     }
 
     handleAreaD = id => {
@@ -113,7 +119,7 @@ class App extends React.Component {
 
         <section>
             {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
-            {this.state.postits.map((postit, index) => <Post onClick = {this.handleDelete} key={postit.id} index ={index} text={postit.text} id={postit.id} onClickAreaE = {this.handleAreaE} onClickAreaD = {this.handleAreaD} onClickEdit = {this.handleEdit} onUpdatePost = {this.handleUpdatePost}/>)}
+            {this.state.postits.map((postit, index) => <Post onDelete = {this.handleDelete} key={postit.id} index ={index} text={postit.text} id={postit.id} onEdit = {this.handleEdit} onClickAreaD = {this.handleAreaD} onUpdatePost = {this.handleUpdatePost}/>)}
         </section>
     </div>
     }
