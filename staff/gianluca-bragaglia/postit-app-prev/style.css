@@ -23,8 +23,10 @@ textarea{
     border-radius: 5px;
 }
 
-p.postText{
+.postText{
     width: 170px;
+    background: transparent;
+    border: none;
 }
 
 .container{

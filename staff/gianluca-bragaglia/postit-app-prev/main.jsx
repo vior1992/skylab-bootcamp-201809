@@ -14,7 +14,8 @@ function Post(props) {
 class App extends React.Component {
 
 
-    state = { postits: logic.listPostits(),
+    state = { 
+            postits: logic.listPostits(),
             text: ''
     }
 
@@ -48,8 +49,8 @@ class App extends React.Component {
     }
 
 
-    handleEditPost = (id,index) => {
-        logic.editPostit(id,index)
+    handleEditPost = (id) => {
+        logic.editPostit(id)
         this.setState({ postits: logic.listPostits() })
     }
 
