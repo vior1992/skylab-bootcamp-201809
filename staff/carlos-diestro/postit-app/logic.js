@@ -23,5 +23,18 @@ const logic = {
 
   listPostIts() {
     return JSON.parse(storage.getItem('postits'))
+  },
+
+  editPostIt(id, text) {
+    let postits = this.listPostIts()
+    let newPostits = []
+    // const postit = postits.find(item => item.id === id)
+    postits.forEach(item => {
+      if(item.id === id) item.text = text
+
+      newPostits.push(item)
+    })
+
+    this.persistPostIts(newPostits)
   }
 }

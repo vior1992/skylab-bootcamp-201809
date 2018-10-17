@@ -21,7 +21,7 @@ class PostItApp extends React.Component {
     this.setState({ items: logic.listPostIts() })
   }
 
-  handleRemoveItem = (id) => {
+  handleRemoveItem = id => {
     logic.deletePostIt(id)
 
     this.setState({ items: logic.listPostIts() })
@@ -68,67 +68,21 @@ class Form extends React.Component {
   }
 }
 
-class PostItText extends React.Component {
-  state = { 
-    id: this.props.id,
-    text: this.props.text,
-    edit: false
-  }
-
-  handleEditClick = event => {
-    this.setState({ edit: true })
-  }
-
-  handleSaveClick = event => {
-    this.setState({ edit: false })
-
-    logic.editPostIt(this.state.id, this.state.text)
-  }
-
-  handleChange = event => {
-    this.setState({ text: event.target.value })
-  }
-
-  handleRemoveItem = () => {
-    this.props.onRemoveItem(this.state.id)
-  }
-
-  render() {
-    let element
-    let button
-
-    if (this.state.edit) {
-      element = <textarea value={this.state.text} onChange={this.handleChange}></textarea>
-      button = <button type="button" onClick={this.handleSaveClick}><i className="far fa-save"></i></button>
-    } else {
-      element = <p>{this.state.text}</p>
-      button = <button type="button" onClick={this.handleEditClick}><i className="far fa-edit"></i></button>
-    }
-
-    return (
-      <div className="col-sm-12 col-md-6">
-        <div className="alert alert-warning">
-          <div className="text-right">
-            {button}
-            <button type="button" onClick={this.handleRemoveItem}><i className="far fa-trash-alt"></i></button>
-          </div>
-          {element}
-        </div>
-      </div>
-    )
-  }
-}
-
 const PostItList = props => {
-  const handleRemoveItem = (id) => {
-    props.onRemoveItem(id)
-  }
-
   return (
     <div className="post-it my-3">
       <div className="row">
         {props.items.map((item) => (
-          <PostItText id={item.id} text={item.text} key={item.id} onRemoveItem={handleRemoveItem} />
+          <div className="col-sm-12 col-md-6" key={item.id}>
+            <div className="alert alert-warning alert-dismissible fade show">
+              {item.text}
+              {/* Send event 
+              <button data-id={index} type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={props.onRemoveItem}></button> */}
+              <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => props.onRemoveItem(item.id)}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
         ))}
       </div>
     </div>
