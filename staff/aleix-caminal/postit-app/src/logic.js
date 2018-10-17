@@ -55,13 +55,17 @@ const LOGIC = {
     },
 
     login(username, password) {
-        const user_id = this.find('users', {
-            username: username,
-            password: password
-        })[0].id
-        const auth = this.users.get(user_id)
-        sessionStorage.setItem('auth', JSON.stringify(auth))
-        return auth
+        try {
+            const user_id = this.find('users', {
+                username: username,
+                password: password
+            })[0].id
+            const auth = this.users.get(user_id)
+            sessionStorage.setItem('auth', JSON.stringify(auth))
+            return auth
+        } catch (e) {
+            return {}
+        }
     },
 
     getAuth() {
