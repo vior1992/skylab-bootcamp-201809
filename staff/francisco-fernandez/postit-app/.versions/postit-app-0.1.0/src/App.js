@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logic from './logic'
 import InputForm from './components/InputForm'
-import Post from './components/Post'
+import Post from './Post'
 
 class App extends React.Component {
   state = { postits: logic.listPostits() }
