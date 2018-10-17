@@ -1,4 +1,4 @@
-// Model (domain) - Data
+// Data - Model (domain)
 
 const storage = sessionStorage
 // const storage = localStorage
