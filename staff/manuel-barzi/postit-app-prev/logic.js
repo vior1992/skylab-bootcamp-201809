@@ -1,4 +1,4 @@
-// Business (logic)?
+// Business (logic)
 
 const logic = {
     createPostit(text) {
@@ -23,6 +23,16 @@ const logic = {
         let postits = this.listPostits()
 
         postits = postits.filter(postit => postit.id !== id)
+
+        this.persistPostits(postits)
+    },
+
+    updatePostit(id, text) {
+        let postits = this.listPostits()
+
+        const postit = postits.find(postit => postit.id === id)
+
+        postit.text = text
 
         this.persistPostits(postits)
     }
