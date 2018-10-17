@@ -25,5 +25,15 @@ const logic = {
         postits = postits.filter(postit => postit.id !== id)
 
         this.persistPostits(postits)
+    },
+
+    updatePostit(id, text) {
+        let postits = this.listPostits()
+
+        postit = postits.find(postit => postit.id === id)
+
+        postit.text = text
+
+        this.persistPostits(postits)
     }
 }

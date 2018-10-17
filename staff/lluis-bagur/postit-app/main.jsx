@@ -31,16 +31,29 @@ class InputForm extends React.Component {
     }
 }
 
-function Post(props) {
+class Post extends React.Component {
+    state= { text: this.props.text}
+
+    handleEditPost = event => {
+     const text = event.target.value
+     this.state({text})   
+    }
+
+    handleblur = () => {
+        this.props.onUpdatePost(this.props.is, this.state.text)
+    }
+
+    render() {
     console.log('Post', '"render"')
 
-    return<div>
-        <article className="post">
-        <p>{props.text}</p>
-        </article>
+    return <div>
+            <article className="post">
+                <textarea className="postit" value={this.state.text} onchange={this.handleEditPost} onBlur={this.handleblur}></textarea>
+            </article>
 
-        <button onClick={() => props.onDeletePost(props.id)}><i className="fas fa-ban"></i></button>
+            <button onClick={() => props.onDeletePost(props.id)}><i className="fas fa-ban"></i></button>
         </div>    
+}
 }
 
 class App extends React.Component {
@@ -60,6 +73,12 @@ class App extends React.Component {
         this.setState({ postits: logic.listPostits() })
     }
 
+    handleUpdatePost = (id, text) => {
+        logic.updatePostit(id, text)
+
+        this.setState({ postits: logic.editPostits() })
+    }
+
     render() {
         console.log('App', 'render')
 
@@ -70,7 +89,7 @@ class App extends React.Component {
             
 
             <section className="article_cont">
-            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
+            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost}/>)}
             </section>
             </div>
     }

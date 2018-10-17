@@ -42,8 +42,10 @@ body .article_cont {
   max-width: 780px;
   flex-wrap: wrap;
 }
-body .article_cont .post {
+body .article_cont .postit {
   background-image: url("postit.png");
+  background-color: transparent;
+  border: none;
   display: flex;
   flex-direction: row;
   padding: 30px;
