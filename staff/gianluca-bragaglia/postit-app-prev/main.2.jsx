@@ -7,18 +7,18 @@ class Post extends React.Component {
 
    handleChange = event => {
     const text = event.target.value
-    this.setState({text})
+    this.setState({ text })
    }
 
    handleBlur = () => {
-       this.props.onUpdatePost(this.props.is, this.state.text)
+       this.props.onUpdatePost(this.props.id, this.state.text)
    }
 
    render() {
     return <section>
-                <div className="article"><textarea className="postText" defaultValue={props.text} onChange={this.handleChange} onBlur={this.handleBlur}/></div>
+                <div className="article"><textarea className="postText" defaultValue={this.state.text} onChange={this.handleChange} onBlur={this.handleBlur}/></div>
                 <div className="btn-container">
-                <button className="button-delete" onClick={() => props.onDeletePost(props.id)}>delete</button>
+                <button className="button-delete" onClick={() => this.props.onDeletePost(this.props.id)}>delete</button>
                 </div>
             </section>
    }
@@ -31,7 +31,8 @@ class Post extends React.Component {
 class App extends React.Component {
 
 
-    state = { postits: logic.listPostits(),
+    state = { 
+            postits: logic.listPostits(),
             text: ''
     }
 
@@ -59,14 +60,15 @@ class App extends React.Component {
     handleDeletePost = id => {  
         
         logic.deletePostit(id)
-        document.getElementsByClassName('postText').
 
         this.setState({ postits: logic.listPostits() })        
        
     }
 
-    handleUpdatePostit = (id, text) => {
+    handleUpdatePost = (id, text) => {
+        logic.updatePostit(id, text)
 
+        this.setState({ postits: logic.listPostits() })
     }
 
 
@@ -78,7 +80,7 @@ class App extends React.Component {
                 <button className="button" type="submit">Create</button>
             </form>
             <div className="posts-container">
-            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePostit} />)}
+            {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
             </div>
            
                        

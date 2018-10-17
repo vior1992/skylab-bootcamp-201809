@@ -1,5 +1,4 @@
-//Business
-
+import { storage, Postit } from './data'
 
 const logic = {
     createPostit(text) {
@@ -38,3 +37,5 @@ const logic = {
         this.persistPostits(postits)
     }
 }
+
+export default logic
