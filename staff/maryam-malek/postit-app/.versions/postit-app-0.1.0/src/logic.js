@@ -1,7 +1,6 @@
 //Bussines logic
 
 import {storage} from './data'
-
 const logic = {
     createPostit(postit) {
         const postits = JSON.parse(storage.getItem('postits'))
@@ -43,12 +42,6 @@ const logic = {
         postits[index].show = show
         
         storage.setItem('postits', JSON.stringify(postits))
-    },
-    listUsers() {
-        return JSON.parse(storage.getItem('users'))
-    },
-    createUser() {
-        
     }
 }
 
