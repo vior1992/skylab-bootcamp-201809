@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LOGIC from './logic'
 import Login from './components/Login'
+import Register from './components/Register'
 import Board from './components/Board'
 
 function Add(props) {
@@ -54,8 +55,12 @@ class App extends Component {
         return <section className="main">
             <h1 className="main__title"><span role="img" aria-label="jsx-a11y/accessible-emoji">🎻</span> Cello</h1>
             {!this.state.login ? (
-                <section className="main__login">
-                    <Login />
+                <section className="main__auth">
+                    {false ? (
+                        <Login />
+                    ) : (
+                        <Register />
+                    )}
                 </section>
             ) : (
                 <section className="main__boards">

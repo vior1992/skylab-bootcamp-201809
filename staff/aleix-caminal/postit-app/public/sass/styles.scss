@@ -110,12 +110,12 @@ body {
             background-color: darken($color_primary, 10%);
         }
 
-        &__login {
+        &__auth {
             display: flex;
             justify-content: center;
             align-items: center;
 
-            .login {
+            .login, .register {
                 @extend %board;
 
                 &__title {
@@ -140,6 +140,7 @@ body {
                     width: 400px;
                     height: 30px;
                     line-height: 30px;
+                    font-size: 16px;
                 }
 
                 &__button {
