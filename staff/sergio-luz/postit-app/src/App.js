@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import logic from './logic'
 import Menu from './components/Menu'
 import Notes from './components/Notes'
+import Register from './components/Register'
 
 class App extends Component {
 
@@ -38,16 +39,20 @@ class App extends Component {
   }
 
   render() {
-      return <div className="container">
-          <h1>Post-It App</h1>
-          <Menu onSubmit={this.handleSubmit} />
-          <section className="posts-container">
-              {this.state.texts.map(postit => {
-                  return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost} />
-                  })}
-          </section>
 
-      </div>
+        return <Register/>
+
+
+    //   return <div className="container">
+    //       <h1>Post-It App</h1>
+    //       <Menu onSubmit={this.handleSubmit} />
+    //       <section className="posts-container">
+    //           {this.state.texts.map(postit => {
+    //               return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost} />
+    //               })}
+    //       </section>
+
+    //   </div>
   }
 }
 
