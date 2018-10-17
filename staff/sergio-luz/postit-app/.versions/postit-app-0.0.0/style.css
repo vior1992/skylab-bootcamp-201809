@@ -9,6 +9,8 @@
 }
 textarea{
     margin-bottom: 10px;
+}
+textarea:disabled{
     background-color: #00ffff00;
     border-color: #00ffff00;
     resize: none;
