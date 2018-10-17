@@ -1,12 +1,19 @@
 .article{
-    background-color: yellow; 
-    width: 100px; 
-    height: 100px;
+    background-color: yellow;
+    display: flex;
+    width: 25vw;
+    height: 25vh;
     margin: 10px;
     padding: 10px;
+    flex-direction: column;
 }
 textarea{
     margin-bottom: 10px;
+}
+textarea:disabled{
+    background-color: #00ffff00;
+    border-color: #00ffff00;
+    resize: none;
 }
 
 .container{
@@ -18,5 +25,5 @@ textarea{
     display: flex;
     flex-wrap: wrap;
     text-align: left;
+    justify-content: center;
 }
-

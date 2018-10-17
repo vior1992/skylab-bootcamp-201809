@@ -22,7 +22,7 @@ class App extends React.Component {
         this.setState({ texts: logic.listPostits() })
     }
 
-    handleEditPost = (id, el) => {
+    handleEditPost = id => {
         let element = document.getElementById(id)
         if (element.childNodes[0].disabled) {
             element.childNodes[0].disabled = false
@@ -101,7 +101,7 @@ class Notes extends React.Component {
 
             <button onClick={() => this.props.handleDelete(this.props.index)} >Eliminate</button>
 
-            <button id={'edit'} onClick={() => this.props.handleEditPost(this.props.index, this.children)} >Edit</button>
+            <button id={'edit'} onClick={() => this.props.handleEditPost(this.props.index)} >Edit</button>
 
         </article>
     }

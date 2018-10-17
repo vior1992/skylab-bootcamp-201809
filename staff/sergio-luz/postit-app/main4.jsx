@@ -22,16 +22,14 @@ class App extends React.Component {
         this.setState({ texts: logic.listPostits() })
     }
 
-    handleEditPost = (id, el) => {
+    handleEditPost = id => {
         let element = document.getElementById(id)
-        if (element.childNodes[0].disabled) {
-            element.childNodes[0].disabled = false
-            element.childNodes[1].disabled = true
+        if (element.disabled) {
+            element.disabled = false
         }
         else {
             logic.modifyPostit(id)
-            element.childNodes[0].disabled = true
-            element.childNodes[1].disabled = false
+            element.disabled = true
             this.setState({ texts: logic.listPostits() })
         }
     }
@@ -95,13 +93,13 @@ class Notes extends React.Component {
     }
 
     render() {
-        return <article className="article" id={this.props.index}>
-            <textarea name="" cols="30" rows="10" disabled onChange={this.handleInput}
-                value={this.state.text}></textarea>
+        return <article className="article">
+            <textarea name="" id={this.props.index} cols="30" rows="10" disabled onChange={this.handleInput}
+            value={this.state.text}></textarea>
 
             <button onClick={() => this.props.handleDelete(this.props.index)} >Eliminate</button>
 
-            <button id={'edit'} onClick={() => this.props.handleEditPost(this.props.index, this.children)} >Edit</button>
+            <button onClick={() => this.props.handleEditPost(this.props.index)} >Edit</button>
 
         </article>
     }

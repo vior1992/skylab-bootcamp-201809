@@ -31,7 +31,7 @@ const logic={
         
         const postits=this.listPostits().map(posts => {
             if(posts.id===id) {
-                posts.text=pos.textContent
+                posts.text=pos.children[0].textContent
             }
             return posts
         })
