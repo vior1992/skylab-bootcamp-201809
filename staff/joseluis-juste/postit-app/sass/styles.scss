@@ -21,7 +21,7 @@ html{
     padding: 2em 2em;
     min-height: 100vh;
     background-image: url("./assets/fondo.jpg");
-    & form{
+    & > form{
         width: 30%;
         margin-bottom: 3em;
         & input{
@@ -54,6 +54,7 @@ html{
 }
 
 .postit {
+    position: relative;
     line-height: 1;
     text-align:center;     
     width: 275px;    
@@ -76,7 +77,12 @@ html{
   background: -ms-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* IE10+ */
   background: linear-gradient(135deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  }
+    & button{
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+    }
+}
   
   .postit:after {     
      content: "";
