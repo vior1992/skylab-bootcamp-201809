@@ -5,12 +5,11 @@ const logic = {
     createPostit(text) {
         const postit = new Postit(text)
 
-        const postits = JSON.parse(storage.getItem('postits'))
+        const postits = this.listPostits()
 
         postits.push(postit)
 
-        storage.setItem('postits', JSON.stringify(postits))
-
+        this.persistPostits(postits)
     },
 
     listPostits(id) {
@@ -18,13 +17,26 @@ const logic = {
 
     },
 
+    persistPostits(postits) {
+        storage.setItem('postits', JSON.stringify(postits))
+    },
+
     deletePostit(id){
-        let postits = JSON.parse(storage.getItem('postits'))
+        let postits = this.listPostits()
 
         postits = postits.filter(postit => postit.id !== id)
 
         storage.setItem('postits', JSON.stringify(postits))
+    },
+
+    updatePostit(id, text) {
+        let postits = this.listPostits()
+
+        const postit = postits.find(postit => postit.id === id)
+
+        postit.text = text
+
+        this.persistPostits(postits)
     }
 }
-
 export default logic
