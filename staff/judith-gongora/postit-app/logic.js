@@ -39,9 +39,9 @@ const logic = {
         let postits = this.listPostits()
 
         const input = document.getElementById(id).value;
-        console.log(postits)
+        // console.log(postits)
         postits.splice(index, 1, {text : input ,id : id});
-        document.getElementById(id).disabled = true;
+        // $('#' + id).attr.disabled = true;
 
 
         this.persistPostits(postits)
