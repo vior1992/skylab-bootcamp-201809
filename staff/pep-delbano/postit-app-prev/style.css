@@ -1,0 +1,76 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    margin:1em;
+    background:#666;
+}
+
+.post {
+    color:black;
+    font-size: 50px;
+    font-family:"Reenie Beanie",arial,sans-serif;
+    background:#ffc;
+    display:inline-block;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    padding: 50px;
+    /* Firefox */
+  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  /* Safari+Chrome */
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  /* Opera */
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+
+}
+
+form {
+    margin: 0 auto;
+    font-size: 25px;
+    
+}
+
+.post textarea {
+    background: transparent;
+    border: none;
+    width: inherit;
+    resize: none; /*so then it doesn't get bigger if there is a lot written inside, it makes scrollbar instead*/
+}
+
+.fa-sticky-note {
+    background-color: rgb(247, 247, 222)
+    
+}
+
+.textPostit {
+    display: block;
+}
+
+.textareaPostit {
+    display: block;
+}
+
+.fa-trash-alt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+}
+
+.fa-edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+
+}
