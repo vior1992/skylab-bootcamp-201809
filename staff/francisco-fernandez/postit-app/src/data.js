@@ -11,6 +11,7 @@ class Postit {
     constructor(text) {
         this.text = text
         this.id = Date.now()
+        this.userid = ''
     }
 }
 
@@ -21,6 +22,7 @@ class User {
         this.username = username
         this.password = password
         this.id = Date.now()
+        this.activated = false
     }
 }
 

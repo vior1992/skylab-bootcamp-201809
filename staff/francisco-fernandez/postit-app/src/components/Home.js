@@ -3,7 +3,7 @@ import logic from '../logic'
 import InputForm from './InputForm'
 import Post from './Post'
 
-class App extends React.Component {
+class Home extends React.Component {
   state = { postits: logic.listPostits() }
 
   handleSubmit = text => {
@@ -50,4 +50,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default Home

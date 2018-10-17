@@ -13,12 +13,21 @@ class Login extends Component {
         this.setState({password})
     }
 
-    render() {
-        return <form>
+    handleSubmit = event => {
+        event.preventDefault()
+
+        const { username, password } = this.state
+
+        this.props.onLoginClick(username, password)
+    }
+
+   render() {
+        return <form onSubmit={this.handleSubmit}>
             <input type="text" placeholder="Username" onChange={this.HandleUserChange}/>
             <input type="text" placeholder="Password" onChange={this.HandlePasswordChange}/>
             <button type="submit">Login</button>
         </form>
+        
     }
 }
 
