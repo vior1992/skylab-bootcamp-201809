@@ -1,27 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logic from './logic'
+import InputForm from './components/InputForm'
+import PostIt from './components/Postit'
+import { Postit } from './data'
 
 class App extends Component {
+
+  state = { postits: logic.listPostits()}
+
+  handleSubmit = text => {
+      const postit = new Postit(text, false)
+
+      logic.createPostit(postit)
+
+      this.setState({ postits: logic.listPostits() })
+  }
+
+  handleClick = id => {
+      logic.deletePostit(id)
+
+      this.setState({ postits: logic.listPostits() })
+  }
+
+  handleEditSubmit = (text, id) => {
+      logic.changePostit(text, id, false)
+      this.setState({ postits: logic.listPostits()})
+
+  }
+
+  handleEditClick = (id) => {
+      logic.apearEdit(id, true)
+      this.setState({ postits: logic.listPostits()})
+
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      return <section className='main-section'>
+          <h1>Post-It App</h1>
+
+          <InputForm onSubmit={this.handleSubmit} />
+
+          <section className='postit-board'>
+              {this.state.postits.map(postit => <PostIt show={postit.show} onEditClick={() => {this.handleEditClick(postit.id)}} onSubmit={this.handleEditSubmit} paint={postit.text} key={postit.id} id={postit.id} onClick={this.handleClick} />)}
+          </section>
+      </section >
   }
 }
 
