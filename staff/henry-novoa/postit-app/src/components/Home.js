@@ -13,7 +13,7 @@ class Home extends Component {
 
       logic.createPostit(text, this.props.userId)
 
-      this.setState({ postits: logic.listPostitsByUser() })
+      this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
   }
 
   handleDeletePost = id => {
@@ -28,6 +28,11 @@ class Home extends Component {
       this.setState({ postits: logic.listPostits() })
   }
 
+  handleLogout = () => {
+
+        this.props.onLogout() 
+  }
+
   render() {
       console.log('App', 'render')
 
@@ -35,7 +40,7 @@ class Home extends Component {
           <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
 
           <InputForm onSubmit={this.handleSubmit} />
-
+          <button onClick={this.handleLogout}>Log out</button>  
           <section>
               {/* {this.state.posts.map((post, index) => <article key={index} className="post">{post}</article>)} */}
               {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onEditPost={()=>this.handleEditPost(postit.id)} />)}

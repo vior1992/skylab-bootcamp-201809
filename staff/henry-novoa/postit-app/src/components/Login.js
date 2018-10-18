@@ -20,7 +20,7 @@ class Login extends Component {
 
         const { username, password } = this.state
 
-        this.props.onLoginClick(username, password)
+        this.props.onLogin(username, password)
     }
 
 

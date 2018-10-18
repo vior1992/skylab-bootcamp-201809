@@ -8,15 +8,15 @@ class App extends Component {
     
     state ={ register: false , login:false, home: false, userId: null }
 
-    handleRegister = () => {
+    handleRegisterClick = () => {
         this.setState({ register: true })
     }
 
-    handleLogin = () => {
+    handleLoginClick = () => {
         this.setState({ login: true })
     }
 
-    handleRegisterClick = (name, surname, username, password) => {
+    handleRegister = (name, surname, username, password) => {
         
         try {
             logic.registerUser(name, surname, username, password)
@@ -26,7 +26,7 @@ class App extends Component {
             console.error(err.message)
         }
     }
-    handleLoginClick = (username,password) => {
+    handleLogin = (username,password) => {
         
             
         try {
@@ -38,15 +38,19 @@ class App extends Component {
         }
     }
 
+    handleLogout = () => {
+            this.setState({userId : null , login: false, register:false, home:false})
+    }
+
 
     render (){
 
         const {register,login,userId,home} = this.state
         return <section className='App' >
-               { !register && !login && !userId && <section><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
-               {register && <Register onRegisterClick={this.handleRegisterClick} />}
-               {login &&  <Login onLoginClick={this.handleLoginClick} />}
-            {home && <Home userId={userId} />}
+               { !register && !login && !userId && <section><button onClick={this.handleRegisterClick}>Register</button> or <button onClick={this.handleLoginClick}>Login</button></section>}
+               {register && <Register onRegister={this.handleRegister} />}
+               {login &&  <Login onLogin={this.handleLogin} />}
+            {home && <Home userId={userId} onLogout={this.handleLogout} />}
         </section>
     }
 

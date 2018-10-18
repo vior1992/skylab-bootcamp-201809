@@ -4,15 +4,11 @@ import data from './data'
 const { storage, Postit, User } = data
 
 const logic = {
-    createPostit(text) {
+    createPostit(text,userId) {
         const postit = new Postit(text, userId)
 
         const postits = this.listPostits()
         
-        const users = this.listUsers()
-
-        postit.userid = user.id
-
         postits.push(postit)
 
         this.persistPostits(postits)
@@ -22,7 +18,9 @@ const logic = {
         return JSON.parse(storage.getItem('postits'))
     },
     listPostitsByUser(userId){
-        const postits = this.listPostits.filter(postit => postit.userId === userId)
+        if (typeof userId !== 'number') throw new TypeError(`${userId} is not a number`)
+
+        const postits = this.listPostits().filter(postit => postit.userId === userId)
 
         return postits
     },
@@ -40,7 +38,7 @@ const logic = {
     },
 
     editPost(id) {
-
+        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
         let element = document.getElementById(id)
         if (element.disabled) {
             element.disabled = false
@@ -75,17 +73,30 @@ const logic = {
         if (!surname.trim()) throw Error('surname is empty or blank')
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
-        
-        const user = new User(name, surname, username, password)
 
         const users = this.listUsers()
+        
+        let user
+        
+        user = users.find(user => user.username === username)
 
+        if (user) throw Error('username already exists')
+        
+        user = new User(name, surname, username, password)
+
+        
         users.push(user)
 
         this.persistUsers(users)
     },
 
-    loginUser(username,password){        
+    loginUser(username,password){    
+        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
+        
         const users = this.listUsers()
 
         const user = users.find(user => user.username === username && user.password === password)
@@ -93,10 +104,7 @@ const logic = {
         if (!user) throw Error('wrong credentials')
 
         return user.id
-        
-        
-        
-        
+            
     }
 }
 
