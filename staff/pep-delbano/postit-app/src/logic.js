@@ -71,9 +71,14 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        const user = new User(name, surname, username, password)
-
+        
         const users = this.listUsers()
+        
+        let user = users.find(user => user.username === username)
+
+        if(user) throw Error('username already exists') //otherwise, we can create another user with the same username and see the 
+
+        user = new User(name, surname, username, password)
 
         users.push(user)
 
