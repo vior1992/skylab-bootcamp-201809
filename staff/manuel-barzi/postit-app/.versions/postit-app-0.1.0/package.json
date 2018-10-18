@@ -1,6 +1,6 @@
 {
   "name": "postit-app",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.5.2",
@@ -21,9 +21,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "sessionstorage": "^0.1.0"
-  }
+  ]
 }
