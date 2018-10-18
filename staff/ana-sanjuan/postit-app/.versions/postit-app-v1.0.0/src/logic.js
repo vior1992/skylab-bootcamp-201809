@@ -54,7 +54,7 @@ const logic = {
 
         postit.text = text
 
-        this._persistPostits(postits)
+        this.persistPostits(postits)
     },
 
     listUsers() {
