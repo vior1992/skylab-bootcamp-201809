@@ -3,14 +3,16 @@ import React, {Component} from 'react'
 class Login extends Component {
     state = { username: '', password: '' }
 
-    HandleUserChange= event =>{
+    handleUsernameChange = event => {
         const username = event.target.value
-        this.setState({username})
+
+        this.setState({ username })
     }
 
-    HandlePasswordChange = event => {
+    handlePasswordChange = event => {
         const password = event.target.value
-        this.setState({password})
+
+        this.setState({ password })
     }
 
     handleSubmit = event => {
@@ -18,26 +20,15 @@ class Login extends Component {
 
         const { username, password } = this.state
 
-        this.props.onLoginClick(username, password)
+        this.props.onLogin(username, password)
     }
 
-    HandleLogout = event =>{
-       event.preventDefault()
-       this.props.onLogoutClick()
-    }
-
-    
-
-   render() {
-        return <div>
-        <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Username" onChange={this.HandleUserChange}/>
-            <input type="text" placeholder="Password" onChange={this.HandlePasswordChange}/>
+    render() {
+        return <form onSubmit={this.handleSubmit}>
+            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
             <button type="submit">Login</button>
         </form>
-        <button onClick={this.HandleLogout}>Logout</button>
-        </div>
-        
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class InputForm extends Component {
+class InputForm extends React.Component {
     state = { text: '' }
 
     handleInput = event => {
@@ -28,6 +28,7 @@ class InputForm extends Component {
             <input value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
 
             <button type="submit"><i className="fas fa-plus"></i></button>
+            
         </form>
     }
 }

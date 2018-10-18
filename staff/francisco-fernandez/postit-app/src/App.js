@@ -1,45 +1,64 @@
 import React, { Component } from 'react'
 import Register from './components/Register'
 import Login from './components/Login'
-import Home from './components/Home'
+import Postits from './components/Postits'
+import Error from './components/Error'
 import logic from './logic'
 
 
 class App extends Component {
-    state = { register: false, login: false, home: false }
+    state = { register: false, login: false, userId: this.getUserId(), error: null }
 
-    handleRegister = () => {
+    getUserId() {
+        const userId = sessionStorage.getItem('userId')
+
+        return userId ? parseInt(userId) : null
+    }
+
+    handleRegisterClick = () => {
         this.setState({ register: true })
     }
 
-    handleLogin = () => {
+    handleLoginClick = () => {
         this.setState({ login: true })
     }
 
-    handleRegisterClick = (name, surname, username, password) => {
-        logic.registerUser(name, surname, username, password)
+    handleRegister = (name, surname, username, password) => {
+        try {
+            logic.registerUser(name, surname, username, password)
+
+            this.setState({ login: true, register: false, error: null })
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
     }
 
-    handleLoginClick = (username, password) => {
-        
-        if (logic.loginUser(username, password)===true) {
-            this.setState({home:true})
-            
+    handleLogin = (username, password) => {
+        try {
+            const userId = logic.authenticate(username, password)
+
+            this.setState({ userId, login: false, register: false, error: null })
+
+            sessionStorage.setItem('userId', userId)
+        } catch (err) {
+            this.setState({ error: err.message })
         }
-    
-        
     }
-    
-    handleLogoutClick = () =>{
-        logic.logout()
-        }
+
+    handleLogoutClick = () => {
+        this.setState({ userId: null })
+    }
 
     render() {
+        const { register, login, userId, error } = this.state
+
         return <div>
-            {!this.state.register && !this.state.login && <section><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
-            {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
-            {this.state.login && <Login onLoginClick={this.handleLoginClick} onLogoutClick={this.handleLogoutClick}/>}
-            {this.state.home && <Home />}
+            {!register && !login && !userId && <section><button onClick={this.handleRegisterClick}>Register</button> or <button onClick={this.handleLoginClick}>Login</button></section>}
+            {register && <Register onRegister={this.handleRegister} />}
+            {login && <Login onLogin={this.handleLogin} />}
+            {error && <Error message={error} />}
+            {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
+            {userId && <Postits userId={userId} />}
         </div>
     }
 }

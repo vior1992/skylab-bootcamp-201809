@@ -1,13 +1,28 @@
 import React, { Component } from 'react'
 
-function Post(props) {
-    console.log('Post', '"render"')
+class Post extends Component {
+    state = { text: this.props.text }
 
-    return <article className="post">
-        <textarea type="input" disabled id={props.id}>{props.text}</textarea>
-        <button onClick={() => props.onDeletePost(props.id)}><i className="far fa-trash-alt"></i></button>
-        <button onClick={() => props.onEditPost(props.id)}><i className="far fa-edit"></i></button>
-    </article>
+
+    handleChange = event => {
+        const text = event.target.value
+
+        this.setState({ text })
+    }
+
+    handleBlur = () => {
+        this.props.onUpdatePost(this.props.id, this.state.text)
+    }
+
+    render() {
+        console.log('Post', '"render"')
+
+        return <article className="post">
+            <textarea defaultValue={this.state.text} onChange={this.handleChange} onBlur={this.handleBlur} />
+
+            <button onClick={() => this.props.onDeletePost(this.props.id)}><i className="far fa-trash-alt"></i></button>
+        </article>
+    }
 }
 
 export default Post

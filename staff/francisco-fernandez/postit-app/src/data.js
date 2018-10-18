@@ -1,17 +1,8 @@
-const storage = sessionStorage
-// const storage = localStorage
-
-if (!storage.getItem('postits'))
-    storage.setItem('postits', JSON.stringify([]))
-
-if (!storage.getItem('users'))
-    storage.setItem('users', JSON.stringify([]))
-
 class Postit {
-    constructor(text) {
+    constructor(text, userId) {
         this.text = text
         this.id = Date.now()
-        this.userid = ''
+        this.userId = userId
     }
 }
 
@@ -22,12 +13,9 @@ class User {
         this.username = username
         this.password = password
         this.id = Date.now()
-        this.activated = false
     }
 }
 
-export default {
-    storage,
-    Postit,
-    User
-}
+// export default { Postit, User }
+
+module.exports = { Postit, User }
