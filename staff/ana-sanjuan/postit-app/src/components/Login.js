@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 class Login extends Component {
-    state = {username: '', password: ''}
+    state = {username: '', password: '', id: ''}
 
     handleUsernameChange = event => {
         const username = event.target.value
@@ -18,9 +18,9 @@ class Login extends Component {
     handleSubmit = event =>{
         event.preventDefault()
 
-        const {name, surname, username, password} = this.state
+        const {username, password} = this.state
 
-        this.props.onLoginClick(name, surname, username, password)
+        this.props.onLoginClick(username, password)
 
     }
 

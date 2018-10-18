@@ -18,7 +18,7 @@ const logic = {
         return JSON.parse(storage.getItem('postits'))
     },
 
-    persistPostits(postits) {
+    _persistPostits(postits) {
         storage.setItem('postits', JSON.stringify(postits))
     },
 
@@ -40,12 +40,11 @@ const logic = {
         this.persistPostits(postits)
     },
 
-
     listUsers() {
         return JSON.parse(storage.getItem('users'))
     },
 
-    persistUsers(users) {
+    _persistUsers(users) {
         storage.setItem('users', JSON.stringify(users))
     },
 
@@ -59,18 +58,17 @@ const logic = {
         this.persistUsers(users)
     },
 
-    checkUserAndPassword(username, password){
+    authenticate(username, password){
         let users = this.listUsers()
+
         const user = users.find(user => user.username === username)
-        debugger
+        
         if(user) {
             if(user.password === password)
-            return true
+            return user.id
         }
         else {return false}
 
-    },
-
-    
+    }
 }
 export default logic

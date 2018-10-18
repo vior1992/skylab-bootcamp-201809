@@ -13,19 +13,16 @@ class Home extends Component {
         this.setState({ postits: logic.listPostits() })
     }
 
-    handleDelete = id => {
-        
+    handleDelete = id => {    
         logic.deletePostit(id)
 
         this.setState({ postits: logic.listPostits() })
     }
 
-    handleUpdatePost = (text, id) => {
-        
+    handleUpdatePost = (text, id) => {    
         logic.updatePostit(id, text)
 
         this.setState({ postits: logic.listPostits() })
-
 
     }
 
@@ -34,7 +31,7 @@ class Home extends Component {
             <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
             <InputForm DadSubmit={this.handleSubmit}/>
             <section>  
-                {this.state.postits.map(postit => <Post key={postit.id} id={postit.id} text={postit.text} onDeletePost={this.handleDelete} onUpdatePost={this.handleUpdatePost}/>)}
+                {this.state.postits.map(postit => <Post  key={postit.id} id={postit.id} text={postit.text} onDeletePost={this.handleDelete} onUpdatePost={this.handleUpdatePost}/>)}
             </section> 
         </section>
     }
