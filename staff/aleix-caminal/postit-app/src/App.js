@@ -83,12 +83,14 @@ class App extends Component {
     handleLogin(event) {
         event.preventDefault()
         const auth = LOGIC.login(event.target)
-        this.setState({
-            auth: auth,
-            boards: LOGIC.boards.find({
-                user_id: auth.id
+        if (auth) {
+            this.setState({
+                auth: auth,
+                boards: LOGIC.boards.find({
+                    user_id: auth.id
+                })
             })
-        })
+        }
     }
 
     handleRegister(event) {

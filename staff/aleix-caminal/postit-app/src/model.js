@@ -1,27 +1,23 @@
 class Model {
     newEntity(values) {
         this.id = Date.now()
-        const keys = Object.keys(values)
-        keys.forEach(key => this[key] = values[key])
+        for (var key in values) this[key] = values[key]
         return this
     }
 
     find(query) {
         let elements = this.all()
-        const keys = Object.keys(query)
-        keys.forEach(key => elements = elements.filter(element => element[key] === query[key]))
+        for (var key in query) elements = elements.filter(element => element[key] === query[key])
         return elements
     }
 
-    get(id) {
-        this.all().find(element => {
-            if (element.id === id) {
-                const keys = Object.keys(element)
-                keys.forEach(key => this[key] = element[key])
-                return
-            }
-        })
+    first(elements) {
+        for (var key in elements[0]) this[key] = elements[0][key]
         return this
+    }
+
+    get(id) {
+        return this.first(this.find({id:id}))
     }
 }
 
@@ -37,10 +33,9 @@ export class UsersTable extends Model {
 
     update(query) {
         let users = this.all()
-        const keys = Object.keys(query)
         users.find(user => {
             if (user.id === this.id) {
-                keys.forEach(key => user[key] = query[key])
+                for (var key in query) user[key] = query[key]
                 return
             }
         })
@@ -64,10 +59,9 @@ export class BoardsTable extends Model {
 
     update(query) {
         let boards = this.all()
-        const keys = Object.keys(query)
         boards.find(board => {
             if (board.id === this.id) {
-                keys.forEach(key => board[key] = query[key])
+                for (var key in query) board[key] = query[key]
                 return
             }
         })

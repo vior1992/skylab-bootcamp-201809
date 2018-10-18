@@ -71,7 +71,7 @@ const LOGIC = {
                 sessionStorage.setItem('auth', JSON.stringify(auth))
                 return auth
             } else {
-                this.error('Username or password are ivalid')
+                this.error('Username or password are invalid')
                 form.querySelector('input[name="username"]').classList.add('is-invalid')
                 form.querySelector('input[name="password"]').classList.add('is-invalid')
             }
@@ -89,7 +89,7 @@ const LOGIC = {
         try {
             const user_id = this.users.find({
                 username: username,
-                password:password
+                password: password
             })[0].id
             return this.users.get(user_id)
         } catch (e) {
