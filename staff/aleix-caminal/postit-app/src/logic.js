@@ -8,7 +8,7 @@ const LOGIC = {
 
     addBoard(query) {
         const board = this.boards.newEntity(query)
-        board.insert()
+        board.save()
         return this.boards.find({
             user_id: board.user_id
         })
@@ -22,9 +22,10 @@ const LOGIC = {
         })
     },
 
-    updateBoard(id, query) {
+    updateBoard(id, title) {
         const board = this.boards.get(id)
-        board.update(query)
+        board.title = title
+        board.save()
         return this.boards.find({
             user_id: board.user_id
         })
@@ -32,7 +33,7 @@ const LOGIC = {
 
     addPost(query) {
         const post = this.posts.newEntity(query)
-        post.insert();
+        post.save();
         return this.posts.find({
             board_id: post.board_id
         })
@@ -53,7 +54,7 @@ const LOGIC = {
                     name: form.querySelector('input[name="name"]').value,
                     username: form.querySelector('input[name="username"]').value,
                     password: sha256(form.querySelector('input[name="password"]').value)
-                }).insert();
+                }).save();
             } else {
                 this.error('Passwords do not match');
                 form.querySelector('input[name="password"]').classList.add('is-invalid')

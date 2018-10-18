@@ -7,7 +7,8 @@ class Model {
 
     find(query) {
         let elements = this.all()
-        for (var key in query) elements = elements.filter(element => element[key] === query[key])
+        const filter = elements => elements.filter(element => element[key] === query[key])
+        for (var key in query) elements = filter(elements)
         return elements
     }
 
@@ -22,68 +23,55 @@ class Model {
 }
 
 export class UsersTable extends Model {
-    insert() {
-        sessionStorage.setItem('users', JSON.stringify([...this.all(), this]))
+    all() {
+        return JSON.parse(sessionStorage.getItem('users')) || []
+    }
+
+    save() {
+        let users = this.all()
+        const index = users.findIndex(user => user.id === this.id)
+        index < 0 ? users.push(this) : users[index] = this
+        sessionStorage.setItem('users', JSON.stringify(users))
         return this
     }
 
     delete() {
         sessionStorage.setItem('users', JSON.stringify(this.all().filter(user => user.id !== this.id)))
     }
-
-    update(query) {
-        let users = this.all()
-        users.find(user => {
-            if (user.id === this.id) {
-                for (var key in query) user[key] = query[key]
-                return
-            }
-        })
-        sessionStorage.setItem('users', JSON.stringify(users))
-    }
-
-    all() {
-        return JSON.parse(sessionStorage.getItem('users')) || []
-    }
 }
 
 export class BoardsTable extends Model {
-    insert() {
-        sessionStorage.setItem('boards', JSON.stringify([...this.all(), this]))
+    all() {
+        return JSON.parse(sessionStorage.getItem('boards')) || []
+    }
+
+    save() {
+        let boards = this.all()
+        const index = boards.findIndex(board => board.id === this.id)
+        index < 0 ? boards.push(this) : boards[index] = this
+        sessionStorage.setItem('boards', JSON.stringify(boards))
         return this
     }
 
     delete() {
         sessionStorage.setItem('boards', JSON.stringify(this.all().filter(board => board.id !== this.id)))
     }
-
-    update(query) {
-        let boards = this.all()
-        boards.find(board => {
-            if (board.id === this.id) {
-                for (var key in query) board[key] = query[key]
-                return
-            }
-        })
-        sessionStorage.setItem('boards', JSON.stringify(boards))
-    }
-
-    all() {
-        return JSON.parse(sessionStorage.getItem('boards')) || []
-    }
 }
 
 export class PostsTable extends Model {
-    insert() {
-        sessionStorage.setItem('posts', JSON.stringify([...this.all(), this]))
+    all() {
+        return JSON.parse(sessionStorage.getItem('posts')) || []
+    }
+
+    save() {
+        let posts = this.all()
+        const index = posts.findIndex(post => post.id === this.id)
+        index < 0 ? posts.push(this) : posts[index] = this
+        sessionStorage.setItem('posts', JSON.stringify(posts))
         return this
     }
 
     delete() {
         sessionStorage.setItem('posts', JSON.stringify(this.all().filter(post => post.id !== this.id)))
-    }
-
-    all() {
-        return JSON.parse(sessionStorage.getItem('posts')) || []
     }
 }

@@ -74,9 +74,7 @@ class App extends Component {
 
     handleUpdate(id, title) {
         this.setState({
-            boards: LOGIC.updateBoard(id, {
-                title: title
-            })
+            boards: LOGIC.updateBoard(id, title)
         })
     }
 
