@@ -24,7 +24,7 @@ function Header(props) {
 function Add(props) {
     return <section className="add">
         <form onSubmit={props.onSubmit}>
-            <input className="add__input" type="text" placeholder="Add another board" />
+            <input className="add__input" type="text" name="title" placeholder="Add another board" />
             <button className="add__button">Add Board</button>
         </form>
     </section>
@@ -55,12 +55,9 @@ class App extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        let input = event.target.querySelector('input');
         this.setState({
-            boards: LOGIC.addBoard(input.value, this.state.auth.id)
+            boards: LOGIC.addBoard(event.target, this.state.auth.id)
         })
-
-        input.value = ''
     }
 
     handleDelete(id) {
