@@ -1,3 +1,0 @@
-# Post-it App
-
-// TODO
