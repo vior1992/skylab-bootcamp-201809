@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
-import logic from '../logic'
-import InputForm from './InputForm'
-import Post from './Post'
+import logic from './logic'
+import InputForm from './components/InputForm'
+import Post from './components/Post'
 
-class Home extends Component {
-
+class App extends Component {
   state = { postits: logic.listPostits() }
-
-  //state = { user: {} }
-
-//   componentDidMount() {
-//         this.setState({user:this.props.user})
-//     }
 
   handleSubmit = text => {
       console.log('App', 'handleSubmit (setState)')
@@ -42,10 +35,10 @@ class Home extends Component {
           <InputForm onSubmit={this.handleSubmit} />
 
           <section>
-              {this.props.user.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
           </section>
       </div>
   }
 }
 
-export default Home
+export default App

@@ -15,12 +15,11 @@ class Postit {
 }
 
 class User {
-    constructor(name, surname, username, password, postits) {
+    constructor(name, surname, username, password) {
         this.name = name
         this.surname = surname
         this.username = username
         this.password = password
-        this.postits = postits
         this.id = Date.now()
     }
 }

@@ -48,24 +48,13 @@ const logic = {
     },
 
     registerUser(name, surname, username, password) {
-        const user = new User(name, surname, username, password, [])
+        const user = new User(name, surname, username, password)
 
-        let users = this.listUsers()
+        const users = this.listUsers()
 
         users.push(user)
 
         this.persistUsers(users)
-    },
-
-    loginUser(username, password) {
-        
-        const users = this.listUsers()
-
-        console.log(users)
-
-        const foundUser = users.find(user =>  user.username === username && user.password === password)
-        
-        return foundUser
     }
 }
 

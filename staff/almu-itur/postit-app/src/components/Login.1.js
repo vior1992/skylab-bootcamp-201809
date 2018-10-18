@@ -5,12 +5,12 @@ class Login extends Component {
 
     handleNameChange = event => {
         const name = event.target.value
-        this.setState({ username: name })
+        this.setState({ name })
     }
 
     handlePasswordChange = event => {
         const password = event.target.value
-        this.setState({ password: password })
+        this.setState({ password })
     }
 
     handleSubmit = event => {

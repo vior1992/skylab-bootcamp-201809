@@ -48,12 +48,17 @@ const logic = {
     },
 
     registerUser(name, surname, username, password) {
-        const user = new User(name, surname, username, password, [])
+        let user = new User(name, surname, username, password, [])
+        //quitar los postits de aqui
+        user.postits.push(new Postit("uno"))
+        user.postits.push(new Postit("dos"))
+        user.postits.push(new Postit("tres"))
+
 
         let users = this.listUsers()
-
+        
         users.push(user)
-
+        console.log(users)
         this.persistUsers(users)
     },
 

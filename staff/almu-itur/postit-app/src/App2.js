@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Register from './components/Register'
 import Login from './components/Login'
-import logic from './logic'
+import logic from './logic2'
 import Home from './components/Home'
 
 
@@ -25,10 +25,9 @@ class App extends Component {
 
         this.user = logic.loginUser(username, password);
         if (this.user) { 
-            this.setState({ login: false , home: true})
-             
+            this.setState({ login: false , home: true})            
         }
-        else { alert('User is undefined') }
+        else { alert('not ok') }
     }
 
     render() {
