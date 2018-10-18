@@ -8,9 +8,10 @@ if (!storage.getItem('users'))
     storage.setItem('users', JSON.stringify([]))
 
 class Postit {
-    constructor(text) {
+    constructor(text, userId) {
         this.text = text
         this.id = Date.now()
+        this.userId = userId
     }
 }
 
@@ -29,3 +30,10 @@ export default {
     Postit,
     User
 }
+
+// for testing
+// module.exports = {
+//     storage,
+//     Postit,
+//     User
+// }

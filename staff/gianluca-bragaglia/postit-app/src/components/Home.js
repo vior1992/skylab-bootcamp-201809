@@ -6,7 +6,7 @@ class Home extends Component {
 
 
   state = { 
-          postits: logic.listPostits(),
+          postits: logic.listPostitsByUser(this.props.userId),
           text: '',
   }
 
@@ -20,11 +20,13 @@ class Home extends Component {
   
   
   handleSubmit = event => { 
-      event.preventDefault()   
+      event.preventDefault() 
+      
+      const { userId } = this.props
 
-      logic.createPostit(this.state.text)
+      logic.createPostit(this.state.text, userId)
 
-      this.setState({ postits: logic.listPostits() })
+      this.setState({ postits: logic.listPostitsByUser(userId) })
 
       this.setState({text: ''})
 
@@ -35,14 +37,14 @@ class Home extends Component {
       
       logic.deletePostit(id)
 
-      this.setState({ postits: logic.listPostits() })        
+      this.setState({ postits: logic.listPostitsByUser(this.props.userId) })        
      
   }
 
   handleUpdatePost = (id, text) => {
       logic.updatePostit(id, text)
 
-      this.setState({ postits: logic.listPostits() })
+      this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
   }
 
 
