@@ -5,7 +5,7 @@ import Home from './components/Home'
 import logic from './logic'
 
 class App extends Component {
-    state = { register: false, login: false, userId: null}
+    state = { register: false, login: false, home: false}
 
     handleRegister = () => { 
         this.setState({register: true})
@@ -16,24 +16,22 @@ class App extends Component {
     }
 
     handleRegisterClick = (name, surname, username, password) => {
-        try {
-            logic.registerUser(name, surname, username, password)
-            this.setState({register: false, login: true})
-        } catch(err) {
-            console.error(err.message)
-        }
-        
+        logic.registerUser(name, surname, username, password)
+        this.setState({register: false})
+        this.setState({login: true})
     }
 
     handleLoginClick = (username, password) => {
-        try {
-            const userId = logic.authenticate(username, password)
+        const gologin = logic.authenticate(username, password)
 
-            this.setState({userId, login: false, register: false})
-
-        } catch(err) {
-            console.error(err.message)
+        if(gologin) {
+            this.setState({home: true})
+            this.setState({login: false})
+           
+        } else {
+            alert('incorrect password or username')
         }
+
     }
 
     render() {

@@ -11,7 +11,7 @@ const logic = {
 
         postits.push(postit)
 
-        this._persistPostits(postits)
+        this.persistPostits(postits)
     },
 
     listPostits() {
@@ -49,23 +49,13 @@ const logic = {
     },
 
     registerUser(name, surname, username, password) {
-        if(typeof name !== 'string') throw TypeError (`${name} is not a string`)
-        if(typeof surname !== 'string') throw TypeError (`${surname} is not a string`)
-        if(typeof username !== 'string') throw TypeError (`${username} is not a string`)
-        if(typeof password !== 'string') throw TypeError (`${password} is not a string`)
-        
-        if(!name.trim()) throw Error ('name is empty or blank')
-        if(!surname.trim()) throw Error ('surname is empty or blank')
-        if(!username.trim()) throw Error ('username is empty or blank')
-        if(!password.trim()) throw Error ('password is empty or blank')
-
         const user = new User(name, surname, username, password)
 
         const users = this.listUsers()
 
         users.push(user)
 
-        this._persistUsers(users)
+        this.persistUsers(users)
     },
 
     authenticate(username, password){
@@ -73,9 +63,11 @@ const logic = {
 
         const user = users.find(user => user.username === username)
         
-        if(!user) throw Error('wrong credentials')
-
-        return user.id
+        if(user) {
+            if(user.password === password)
+            return user.id
+        }
+        else {return false}
 
     }
 }
