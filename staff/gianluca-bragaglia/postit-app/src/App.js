@@ -1,27 +1,28 @@
 import React, { Component } from 'react'
 import Register from './components/Register'
 import Login from './components/Login'
-import logic from './logic'
 import Home from './components/Home'
 import Error from './components/Error'
+import logic from './logic'
 
 
 class App extends Component {
 
-  state = { register: false, login: false,  userId:this.getUserId() }
+  state = { register: false, login: false,  userId: this.getUserId(), error: null }
 
 
   getUserId() {
-    const userId = sessionStorage.setItem('userId')
-      return userId ? parseInt(userId) : null
+    const userId = sessionStorage.getItem('userId')
+
+    return userId ? parseInt(userId) : null
   }
 
   handleRegister = () => {
-    this.setState({ register: true, error: null })
+    this.setState({ register: true })
   }
 
   handleLogin = () => {
-      this.setState({ login: true, register: false, error: null })
+      this.setState({ login: true, register: false })
      
   }
 
@@ -29,7 +30,7 @@ class App extends Component {
     try {
       logic.registerUser(name, surname, username, password)
 
-      this.setState({ login: true, register: false })
+      this.setState({ login: true, register: false, error: null })
   } catch (err) {
      this.setState({error: err.message})
   }
@@ -40,12 +41,16 @@ class App extends Component {
     
       try{
         const userId = logic.loginUser(username, password)
-        this.setState({userId, login: false})
+        this.setState({userId, login: false, register: false, error: null})
         sessionStorage.setItem('userId', userId)
       }catch(err) {
         this.setState({error: err.message})
       }
         
+  }
+
+  handleLogoutClick = () => {
+    this.setState({ userId: null })
   }
 
   render() {
@@ -59,8 +64,10 @@ class App extends Component {
                 </section>}
                 {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
                 {this.state.login && <Login onLoginClick={this.handleLoginClick}/>}
-                {this.state.userId && <Home userId={userId}/>}
                 {error && <Error message={error}/>}
+                {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
+                {this.state.userId && <Home userId={userId}/>}
+                
               </div>
       
       
