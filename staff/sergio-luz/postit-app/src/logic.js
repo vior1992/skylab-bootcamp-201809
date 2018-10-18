@@ -17,7 +17,8 @@ const logic = {
 
     listPostitsbyId(ID) {
         const list=JSON.parse(storage.getItem('postits'))
-        return list.filter((item)=> item.userId===ID)
+        const temp= list.filter((item)=> item.userId===ID)
+        return temp
     },
 
     persistPostits(postits) {
@@ -35,14 +36,15 @@ const logic = {
     modifyPostit(id) {
         let pos = document.getElementById(id)
 
-        const postits = this.listPostitsbyId(id).map(posts => {
+        const postits = this.listPostits()
+        const temp=postits.map(posts => {
             if (posts.id === id) {
                 posts.text = pos.children[0].textContent
             }
             return posts
         })
 
-        this.persistPostits(postits)
+        this.persistPostits(temp)
     },
 
 

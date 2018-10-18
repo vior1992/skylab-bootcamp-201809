@@ -9,33 +9,51 @@ import Home from './components/Home'
 class App extends Component {
 
     state = {
-        texts: [], userId:'', register:false, login:false, home:false
+        texts:this.getTexts() , userId: this.getUserId(), register: false, login: false, home: false, error: null
     }
 
-    
+
     handleSubmit = this.handleSubmit.bind(this)
     handleDelete = this.handleDelete.bind(this)
     handleLogin = this.handleLogin.bind(this)
-    
-    constructor() {
-        super()
-        let users = logic.listUsers()
-        let texts=logic.listPostitsbyId(this.state.userId)
 
-        if (users === null) {
-            users = []
-            logic.persistUsers(users)
-        }
-        if(texts===null){
-            texts=[]
-            logic.persistPostits(texts)
-        }
+    // constructor() {
+    //     super()
+    //     let userId = sessionStorage.getItem('userId')
+    //     let users = logic.listUsers()
+    //     let texts = logic.listPostits()
+    //     texts = texts.filter((item) => item.userId === userId)
+
+    //     if (users === null) {
+    //         users = []
+    //         logic.persistUsers(users)
+    //     }
+    //     if (texts === null) {
+    //         texts = []
+    //     }
+
+    //     this.setState({ texts })
+    // }
+
+    getTexts() {
+        const texts = JSON.parse(sessionStorage.getItem('postits'))
+
+        return texts ? (texts) : []
+    }
+
+    getUserId() {
+        const userId = sessionStorage.getItem('userId')
+
+        return userId ? parseInt(userId) : null
     }
 
     handleSubmit(text) {
         logic.createPostit(text, this.state.userId)
+        let texts=logic.listPostits()
+        const userId=this.state.userId
+        texts = texts.filter((item) => item.userId === userId)
 
-        this.setState({ texts: logic.listPostitsbyId(this.state.userId) })
+        this.setState({ texts })
     }
 
     handleDelete(INDEXtoBeDeleted) {
@@ -74,36 +92,48 @@ class App extends Component {
     }
 
     handleLogin(_username, _password) {
-        try{
-            const userId =logic.checkLogin(_username, _password)
-            const texts=logic.listPostitsbyId(userId)
-            this.setState({ texts, userId, login: false, register: false, home:true })
+        try {
+            const userId = logic.checkLogin(_username, _password)
+            let texts = logic.listPostits()
+            texts = texts.filter((item) => item.userId === userId)
 
-        }catch (err) {
+            this.setState({ texts, userId, login: false, register: false, home: true })
+
+            sessionStorage.setItem('userId', userId)
+        } catch (err) {
             console.error(err.message)
         }
     }
 
-    activateUser(){
-        const postits=logic.listPostitsbyId(this.state.userId)
-        if(postits!==undefined){
-            this.setState({postits})
-        }else{
-            this.setState({postits:[]})
+    handleLogoutClick = () => {
+        this.setState({ userId: null, userId: '', register: false, login: false, home: false })
+    }
+
+    activateUser() {
+        const texts = logic.listPostitsbyId(this.state.userId)
+        if (texts !== undefined) {
+            this.setState({ texts })
+        } else {
+            this.setState({ texts: [] })
         }
     }
 
     render() {
+        const { register, login, userId, error } = this.state
 
         return <div>
-            {!this.state.register && !this.state.login && <section><button onClick={this.OnHanldeRegister}>Register</button> or <button onClick={this.OnHandleLogin}>Login</button></section>}
+
+            {!register && !login && !userId && <section>
+                <button onClick={this.OnHanldeRegister}>Register</button> or <button onClick={this.OnHandleLogin}>Login</button></section>}
 
             {this.state.register && <Register handleRegister={this.handleRegister} />}
 
-            {this.state.login && <Login handleLogin={this.handleLogin} />} 
+            {this.state.login && <Login handleLogin={this.handleLogin} />}
+
+            {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
 
             {/* TODO show Home on successful login */}
-             {this.state.home && <Home texts={this.state.texts} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost}  handleSubmit={this.handleSubmit} />}
+            {userId && <Home texts={this.state.texts} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost} handleSubmit={this.handleSubmit} userId={userId} />}
         </div>
 
 

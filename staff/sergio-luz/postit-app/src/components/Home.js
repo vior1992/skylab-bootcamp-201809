@@ -6,7 +6,7 @@ import Notes from './Notes'
 class Home extends Component {
 
     state={
-        texts:this.props.postits
+        texts:this.props.texts
     }
 
 
