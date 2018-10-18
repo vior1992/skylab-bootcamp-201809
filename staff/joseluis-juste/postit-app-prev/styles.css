@@ -11,6 +11,20 @@ html {
 * {
   box-sizing: border-box; }
 
+#root {
+  background-color: bisque;
+  overflow: hidden; }
+
+.button {
+  padding: 0.5em 1em;
+  background-color: white;
+  color: black;
+  border-radius: 5px; }
+  .button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white; }
+
 .board {
   margin: 0 auto;
   margin-top: 2em;
@@ -19,23 +33,20 @@ html {
   padding: 2em 2em;
   min-height: 100vh;
   background-image: url("./assets/fondo.jpg"); }
-  .board > form {
-    width: 30%;
-    margin-bottom: 3em; }
-    .board > form input {
-      display: block;
-      padding: 0.5em 1em;
-      border-radius: 5px;
-      margin-bottom: 2em; }
-    .board > form button {
-      padding: 0.5em 1em;
-      background-color: white;
-      color: black;
-      border-radius: 5px; }
-      .board > form button:hover {
-        cursor: pointer;
-        background-color: black;
-        color: white; }
+  .board .board__forms {
+    display: flex;
+    justify-content: space-between; }
+    .board .board__forms .board__panel-buttons button:first-child {
+      margin-right: 2em; }
+    .board .board__forms form {
+      width: 30%;
+      margin-bottom: 3em; }
+      .board .board__forms form input {
+        display: block;
+        width: 100%;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        margin-bottom: 2em; }
   .board .board__panel-postits {
     display: flex;
     flex-wrap: wrap;

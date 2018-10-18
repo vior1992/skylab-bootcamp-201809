@@ -9,10 +9,31 @@ html{
     width: 100vw;
     height: 100vh;
 }
+
 *{
     box-sizing: border-box;
 
 }
+
+#root{
+
+    background-color: bisque;
+    overflow: hidden;
+}
+
+.button{
+    
+    padding: 0.5em 1em;
+    background-color: white;
+    color:black;
+    border-radius: 5px;
+    &:hover{
+        cursor: pointer;
+        background-color: black;
+        color:white;
+    }
+}
+
 .board{
     margin: 0 auto;
     margin-top:2em;
@@ -21,29 +42,28 @@ html{
     padding: 2em 2em;
     min-height: 100vh;
     background-image: url("./assets/fondo.jpg");
-    & > form{
-        width: 30%;
-        margin-bottom: 3em;
-        & input{
-            display: block;
-            //width: 100%;
-            padding: 0.5em 1em;
-            border-radius: 5px;
-            margin-bottom: 2em;
-        }
-        & button{
-
-            padding: 0.5em 1em;
-            background-color: white;
-            color:black;
-            border-radius: 5px;
-            &:hover{
-                cursor: pointer;
-                background-color: black;
-                color:white;
+    & .board__forms{
+        display: flex;
+        justify-content: space-between;
+        & .board__panel-buttons{
+            & button:first-child{
+                margin-right: 2em;
             }
         }
+        &  form{
+            width: 30%;
+            margin-bottom: 3em;
+            & input{
+                display: block;
+                width: 100%;
+                padding: 0.5em 1em;
+                border-radius: 5px;
+                margin-bottom: 2em;
+            }
+           
+        }
     }
+    
     & .board__panel-postits{
         display: flex;
         flex-wrap: wrap;
