@@ -7,6 +7,8 @@ const LOGIC = {
     posts: new PostsTable(),
 
     addBoard(form, user_id) {
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument')
+
         if (this.validate(form, ['title'])) {
             this.boards.newEntity({
                 title: form.querySelector('input[name="title"]').value,
@@ -25,6 +27,8 @@ const LOGIC = {
     },
 
     deleteBoard(id) {
+        if (!id) throw Error('id is not valid')
+
         const board = this.boards.get(id)
         board.delete()
         return this.boards.find({
@@ -33,6 +37,9 @@ const LOGIC = {
     },
 
     updateBoard(id, title) {
+        if (!id) throw Error('id is not valid')
+        if (!title) throw Error('title is not valid')
+
         const board = this.boards.get(id)
         board.title = title
         board.save()
@@ -42,6 +49,8 @@ const LOGIC = {
     },
 
     addPost(input, board_id) {
+        if (typeof form !== 'object' || form.tagName !== 'INPUT') throw Error('no input passed as argument')
+
         if (input) {
             this.posts.newEntity({
                 title: input.value,
@@ -56,6 +65,8 @@ const LOGIC = {
     },
 
     deletePost(id) {
+        if (!id) throw Error('id is not valid')
+
         const post = this.posts.get(id)
         post.delete()
         return this.posts.find({
@@ -64,7 +75,7 @@ const LOGIC = {
     },
 
     register(form) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument')
 
         if (this.validate(form, ['name', 'username', 'password', 'confirm_password'])) {
             if (form.querySelector('input[name="password"]').value === form.querySelector('input[name="confirm_password"]').value) {
@@ -84,8 +95,8 @@ const LOGIC = {
     },
 
     login(form) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
-        
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument')
+
         if (this.validate(form, ['username', 'password'])) {
             let auth = this.findAuth(form.querySelector('input[name="username"]').value, sha256(form.querySelector('input[name="password"]').value))
             if (auth) {
@@ -107,6 +118,9 @@ const LOGIC = {
     },
 
     findAuth(username, password) {
+        if (!username) throw Error('username is not valid')
+        if (!password) throw Error('password is not valid')
+
         try {
             const user_id = this.users.find({
                 username: username,
@@ -122,9 +136,9 @@ const LOGIC = {
         return JSON.parse(sessionStorage.getItem('auth')) || {}
     },
 
-    validate: function(form, inputs) {
-        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
-        if (!Array.isArray(inputs) || inputs.length < 1) throw Error('array is not valid');
+    validate(form, inputs) {
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument')
+        if (!Array.isArray(inputs) || inputs.length < 1) throw Error('array is not valid')
 
         var result = 1;
         for (var i in inputs) {
@@ -140,10 +154,10 @@ const LOGIC = {
         return result;
     },
 
-    error: function(message) {
-        if (!message) throw Error('message is not valid');
+    error(message) {
+        if (!message) throw Error('message is not valid')
 
-        alert(message);
+        alert(message)
     }
 }
 
