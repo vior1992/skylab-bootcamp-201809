@@ -1,20 +1,29 @@
 import data from './data'
+//const data = require('./data')
 
 const { storage, Postit, User } = data
 
 const logic = {
-    createPostit(text) {
-        const postit = new Postit(text)
+    createPostit(text, userId) {
+        const postit = new Postit(text, userId)
 
-        const postits = this.listPostits()
+        const postits = this._listPostits()
 
         postits.push(postit)
 
         this._persistPostits(postits)
     },
 
-    listPostits() {
+    _listPostits() {
         return JSON.parse(storage.getItem('postits'))
+    },
+
+    listPostitsByUser(userId) {
+        if (typeof userId !== 'number') throw new TypeError(`${userId} is not a number`)
+
+        const postits = this._listPostits()
+
+        return postits.filter(postit => postit.userId === userId)
     },
 
     _persistPostits(postits) {
@@ -22,7 +31,9 @@ const logic = {
     },
 
     deletePostit(id) {
-        let postits = this.listPostits()
+        // TODO validate inputs
+
+        let postits = this._listPostits()
 
         postits = postits.filter(postit => postit.id !== id)
 
@@ -30,7 +41,9 @@ const logic = {
     },
 
     updatePostit(id, text) {
-        let postits = this.listPostits()
+        // TODO validate inputs
+
+        let postits = this._listPostits()
 
         const postit = postits.find(postit => postit.id === id)
 
@@ -68,6 +81,8 @@ const logic = {
     },
 
     authenticate(username, password) {
+        // TODO validate inputs
+        
         const users = this.listUsers()
 
         const user = users.find(user => user.username === username && user.password === password)
@@ -79,3 +94,4 @@ const logic = {
 }
 
 export default logic
+// module.exports = logic
