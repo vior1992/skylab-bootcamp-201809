@@ -35,7 +35,7 @@ class App extends Component {
 
     handleLogin = (username, password) => {
         try {
-            const userId = logic.authenticate(username, password)
+            const userId = logic.loginUser(username, password)
 
             this.setState({ userId, login: false, register: false, error: null })
 
@@ -57,8 +57,7 @@ class App extends Component {
             {register && <Register onRegister={this.handleRegister} />}
             {login && <Login onLogin={this.handleLogin} />}
             {error && <Error message={error} />}
-            {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
-            {userId && <Postits userId={userId} />}
+            {userId && <Postits userId={userId} onLogout={this.handleLogoutClick}  />}
         </div>
     }
 }
