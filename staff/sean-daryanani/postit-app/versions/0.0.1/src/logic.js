@@ -1,5 +1,4 @@
 import data from './data'
-//const data = require('./data')
 const {storage, Postit, User} = data
 
 const logic = {
@@ -14,18 +13,8 @@ const logic = {
         this.persistPostits(postits)
     },
 
-    _listPostits() {
+    listPostits() {
         return JSON.parse(storage.getItem('postits'))
-    },
-
-    listPostitsByUser(userID) {
-        if (typeof userID !=='number') throw new TypeError (`${userID} is not a number`)
-
-        const postits = this._listPostits()
-
-        return postits.filter(postit => userID === postit.userID)
-
-        
     },
 
     persistPostits(postits) {
@@ -84,22 +73,24 @@ const logic = {
     },
 
     validateUser(username, password) {
-        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
-        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
-
-        if (!username.trim()) throw Error('username is empty or blank')
-        if (!password.trim()) throw Error('password is empty or blank')
-
+        const user = {
+            username: username,
+            password: password
+        }
         const users = this.listUsers()
 
-        const user = users.find(user => user.username === username && user.password === password)
+        let filtered = users.filter(el => el.username === user.username)
 
-        if (!user) throw Error ('wrong credentials')
+        if (!filtered.length) return 'incorrect username'    
 
-        return user.id        
+        if (filtered[0].password===user.password) {
+            return ['correct password', filtered[0].id]
+        } 
+
+        else return 'incorrect password'  
+        
     },
 
 }
 
 export default logic
-// module.exports = logic

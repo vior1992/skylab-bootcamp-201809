@@ -1,5 +1,4 @@
-const storage = sessionStorage
-// const storage = localStorage
+export const storage = sessionStorage
 
 if (!storage.getItem('postits'))
 storage.setItem('postits', JSON.stringify([]))
@@ -31,9 +30,3 @@ export default {
     Postit, 
     User
 }
-
-// module.exports = {
-//     storage,
-//     Postit,
-//     User
-// }

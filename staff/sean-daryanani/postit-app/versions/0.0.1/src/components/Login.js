@@ -27,7 +27,15 @@ class Login extends Component {
     
     }
 
-    render() {        
+    render() {
+        let wrongPass;
+
+        let wrongUser;
+
+        if (this.props.wrongPassword==='incorrect password') wrongPass=true
+
+        if (this.props.wrongPassword==='incorrect username') wrongUser=true
+        
         return <section className="login">
         <h1>Login</h1>
         
@@ -43,6 +51,8 @@ class Login extends Component {
             </div>
         </form>        
         <button className="btn-register btn btn-link" onClick={this.props.backHandle}>Back to home page</button>    
+        {wrongPass ? <p>Incorrect password!</p> : null}
+        {wrongUser ? <p>Incorrect username!</p> : null}
         </section>       
     }
 }
