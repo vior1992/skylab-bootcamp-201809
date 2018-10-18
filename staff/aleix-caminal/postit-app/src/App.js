@@ -57,10 +57,7 @@ class App extends Component {
         event.preventDefault()
         let input = event.target.querySelector('input');
         this.setState({
-            boards: LOGIC.addBoard({
-                title: input.value,
-                user_id: this.state.auth.id
-            })
+            boards: LOGIC.addBoard(input.value, this.state.auth.id)
         })
 
         input.value = ''

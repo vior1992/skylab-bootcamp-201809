@@ -6,9 +6,11 @@ const LOGIC = {
     boards: new BoardsTable(),
     posts: new PostsTable(),
 
-    addBoard(query) {
-        const board = this.boards.newEntity(query)
-        board.save()
+    addBoard(title, user_id) {
+        const board = this.boards.newEntity({
+            title: title,
+            user_id: user_id
+        }).save()
         return this.boards.find({
             user_id: board.user_id
         })
@@ -31,9 +33,11 @@ const LOGIC = {
         })
     },
 
-    addPost(query) {
-        const post = this.posts.newEntity(query)
-        post.save();
+    addPost(title, board_id) {
+        const post = this.posts.newEntity({
+            title: title,
+            board_id: board_id
+        }).save();
         return this.posts.find({
             board_id: post.board_id
         })
