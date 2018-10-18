@@ -26,10 +26,8 @@ class Board extends Component {
     handleKeyPress(event) {
         if (event.key === 'Enter' && event.target.value) {
             this.setState({
-                posts: LOGIC.addPost(event.target.value, this.props.id)
+                posts: LOGIC.addPost(event.target, this.props.id)
             })
-
-            event.target.value = '';
         }
     }
 

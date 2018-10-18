@@ -8,7 +8,7 @@ const LOGIC = {
 
     addBoard(form, user_id) {
         if (this.validate(form, ['title'])) {
-            const board = this.boards.newEntity({
+            this.boards.newEntity({
                 title: form.querySelector('input[name="title"]').value,
                 user_id: user_id
             }).save()
@@ -30,21 +30,22 @@ const LOGIC = {
 
     updateBoard(id, title) {
         const board = this.boards.get(id)
-        if (title) {
-            board.title = title
-            board.save()
-        }
-
+        board.title = title
+        board.save()
         return this.boards.find({
             user_id: board.user_id
         })
     },
 
-    addPost(title, board_id) {
-        const post = this.posts.newEntity({
-            title: title,
-            board_id: board_id
-        }).save();
+    addPost(input, board_id) {
+        if (input) {
+            this.posts.newEntity({
+                title: input.value,
+                board_id: board_id
+            }).save();
+        }
+
+        input.value = '';
         return this.posts.find({
             board_id: board_id
         })
