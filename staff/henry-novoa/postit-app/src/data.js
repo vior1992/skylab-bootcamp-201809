@@ -22,7 +22,7 @@ class User {
         this.username = username
         this.password = password
         this.id = Date.now()
-        this.activated = false
+       
     }
 }
 

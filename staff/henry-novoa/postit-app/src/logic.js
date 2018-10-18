@@ -8,7 +8,7 @@ const logic = {
         const postit = new Postit(text)
 
         const postits = this.listPostits()
-        debugger 
+        
         const users = this.listUsers()
 
         const user = users.filter(person => person.activated === true )
@@ -62,6 +62,16 @@ const logic = {
     },
 
     registerUser(name, surname, username, password) {
+
+        if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
+        if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+
+        if (!name.trim()) throw Error('name is empty or blank')
+        if (!surname.trim()) throw Error('surname is empty or blank')
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
         
         const user = new User(name, surname, username, password)
 
@@ -73,15 +83,15 @@ const logic = {
     },
 
     loginUser(username,password){        
-        const pass = password
-        
         const users = this.listUsers()
-        const user = users.filter(person => person.username === username )
-        debugger
-        if(user.length && user[0].password === pass){
-            user[0].activated = true
-         return true }
-        else {return false}
+
+        const user = users.find(user => user.username === username && user.password === password)
+
+        if (!user) throw Error('wrong credentials')
+
+        return user.id
+        
+        
         
         
     }
