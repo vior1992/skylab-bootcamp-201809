@@ -1,10 +1,10 @@
 import { storage, Postit, User } from './data'
 
 const logic = {
-    createPostit(text, id) {
+    createPostit(text) {
         const postit = new Postit(text)
 
-        const postits = this.listPostits(id)
+        const postits = this.listPostits(postit.id)
 
         postits.push(postit)
 
@@ -12,8 +12,8 @@ const logic = {
     },
 
     listPostits(ID) {
-        const list=JSON.parse(storage.getItem('postits'))
-        return list.filter((id)=> id===ID)
+        const list=JSON.parse(storage.getItem('users'))
+        return list.filter((id)=> id===ID).postits
     },
 
     persistPostits(postits) {
@@ -71,11 +71,15 @@ const logic = {
 
         const users = this.listUsers()
 
-        const user = users.find(user => user.username === username && user.password === password)
-        
-        if (!user) throw Error('wrong credentials')
+        const user= users.filter((user)=>{
+            if (user.password === password && user.username === username) {
+                return user
+            }
+        })
 
-        return user.id
+        console.log(user)
+        return user
+
     }
 
 

@@ -17,7 +17,7 @@ class Home extends Component {
 
             <h1>Post-It App</h1>
 
-            <Menu onSubmit={this.props.handleSubmit} />
+            <Menu onSubmit={this.handleSubmit} />
 
             <section className="posts-container">
                 <p>{this.props.postits}</p>
