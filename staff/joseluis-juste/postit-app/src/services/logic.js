@@ -1,5 +1,5 @@
-//let {User, storage, Postit} = require('../data/datalayer');
-
+import {User, storage, Postit} from '../data/datalayer'
+/*
 class Postit{
 
     constructor(_text){
@@ -27,6 +27,7 @@ if (!storage.getItem('users'))
         this.postits = postits
     }
 }
+*/
 
  const logic = {
 

@@ -2,45 +2,35 @@ require('isomorphic-fetch')
 
 const userService = {
 
-    registerUser(name, surname, email,phone,username, password){
+   
+    registerUser(name, surname, username, password) {
+        if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
+        if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
 
-        if (typeof name !== "string") throw TypeError (`${name} is not a string`)
-        if (typeof surname !== "string") throw TypeError (`${surname} is not a string`)
-        if (typeof username !== "string") throw TypeError (`${username} is not a string`)
-        if (typeof password !== "string") throw TypeError (`${password} is not a string`)
-        if (typeof email !== "string") throw TypeError (`${email} is not a string`)
-        if (typeof phone !== "string") throw TypeError (`${phone} is not a string`)
+        if (!name.trim()) throw Error('name is empty or blank')
+        if (!surname.trim()) throw Error('surname is empty or blank')
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
 
-        if (!name.trim()) throw TypeError (`${name} is empty`)
-        if (!surname.trim()) throw TypeError (`${surname} is empty`)
-        if (!username.trim()) throw TypeError (`${username} is empty`)
-        if (!password.trim()) throw TypeError (`${password} is empty`)
-        if (!phone.trim()) throw TypeError (`${phone} is empty`)
-        if (!email.trim()) throw TypeError (`${email} is empty`)
-                
-       
-       return fetch("https://skylabcoders.herokuapp.com/api/user",{
-
-            mehtod: "POST",
-            headers:{
+        return fetch('https://skylabcoders.herokuapp.com/api/user', {
+            method: 'POST',
+            headers: {
                 "Content-Type": "application/json; charset=utf-8"
             },
-            body:JSON.stringify({name, surname, email,phone,username, password})
-        }).then( res => {
-
-            return res.json();
-
-        }).then(res => {
-
-            if (res.status === "OK") 
-                return res.data.id   
-            else
-                throw Error(res.error)
-
+            body: JSON.stringify({ name, surname, username, password })
         })
+            .then(res => res.json())
+            .then(res => {
+                             
+                if (res.error) throw Error(res.error)
+
+                return res.data.id
+            })
     },
 
-    updateUser(id,token,name, surname, email,phone,username, password){
+    updateUser(id,token,name, surname, username, password){
 
         if (typeof id !== "string") throw TypeError (`${id} is not a string`)
         if (typeof token !== "string") throw TypeError (`${token} is not a string`)
@@ -48,8 +38,7 @@ const userService = {
         if (typeof surname !== "string") throw TypeError (`${surname} is not a string`)
         if (typeof username !== "string") throw TypeError (`${username} is not a string`)
         if (typeof password !== "string") throw TypeError (`${password} is not a string`)
-        if (typeof email !== "string") throw TypeError (`${email} is not a string`)
-        if (typeof phone !== "string") throw TypeError (`${phone} is not a string`)
+       
 
         if (!id.trim()) throw TypeError (`${id} is empty`)
         if (!token.trim()) throw TypeError (`${token} is empty`)
@@ -57,8 +46,7 @@ const userService = {
         if (!surname.trim()) throw TypeError (`${surname} is empty`)
         if (!username.trim()) throw TypeError (`${username} is empty`)
         if (!password.trim()) throw TypeError (`${password} is empty`)
-        if (!phone.trim()) throw TypeError (`${phone} is empty`)
-        if (!email.trim()) throw TypeError (`${email} is empty`)
+       
                 
        
        return fetch(`https://skylabcoders.herokuapp.com/api/user/${id}`,{
@@ -69,11 +57,7 @@ const userService = {
                 "Authorization": `Bearer ${token}`
             },
             body:JSON.stringify({name, surname, email,phone,username, password})
-        }).then( res => {
-
-            return res.json();
-
-        }).then(res => {
+        }).then( res => res.json()).then(res => {
 
             if (res.status === "OK") 
                 return true
@@ -99,11 +83,7 @@ const userService = {
                 "Content-Type": "application/json; charset=utf-8"
             },
             body:JSON.stringify({username, password})
-        }).then( res => {
-
-            return res.json();
-
-        }).then(res => {
+        }).then( res => res.json()).then(res => {
 
             if (res.status === "OK") 
                 return {token:res.data.token, id:res.id}   
@@ -128,11 +108,7 @@ const userService = {
                 "Authorization": `Bearer ${token}`
             },
            
-        }).then( res => {
-
-            return res.json();
-
-        }).then(res => {
+        }).then( res => res.json()).then(res => {
 
             if (res.status === "OK") 
                 return res.data
@@ -163,11 +139,7 @@ const userService = {
             },
             body
            
-        }).then( res => {
-
-            return res.json();
-
-        }).then(res => {
+        }).then( res => res.json()).then(res => {
 
             if (res.status === "OK") 
                 return true
@@ -179,6 +151,9 @@ const userService = {
 
 }
 
+// descomentar para la aplicacion
+//exports default userService
 
+//descomentar para test
 module.exports = userService
 
