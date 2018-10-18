@@ -46,7 +46,7 @@ class SigIn extends Component {
   render() {
     return (
       <form className="form-signin" onSubmit={this.handleSubmit}>
-        <h1 className="h3 mb-3 font-weight-normal text-center">Post-it</h1>
+        <h2 className="font-weight-normal text-center my-3">Post-<span className="badge badge-warning">it</span></h2>
         <input type="text" name="name" className="form-control" placeholder="Name" onChange={this.handleChange} autoFocus />
         <input type="text" name="email" className="form-control" placeholder="Email" onChange={this.handleChange} />
         <input type="password" name="password" className="form-control"  placeholder="Password" onChange={this.handleChange} />

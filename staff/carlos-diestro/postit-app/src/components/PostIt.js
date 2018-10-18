@@ -13,12 +13,12 @@ class PostIt extends Component {
     return (
       <div className="row justify-content-center my-3">
         <div className="col-6">
-          <div className="text-center my-3">
-            <h1 className="h3 mb-3 font-weight-normal d-inline">Post-it</h1>
-            <span className="badge badge-primary ml-2">{this.state.user.name}</span>
-            <button type="button" className="btn btn-sm btn-outline-primary d-inline ml-4 mb-2" onClick={this.handleClick}>Log Out</button>
+          <div className="text-center mt-3 mb-4">
+            <h2 className="font-weight-normal mt-3 mb-2">Post-<span className="badge badge-warning">it</span></h2>
+            <h5 className="text-center">de {this.state.user.name}</h5>
           </div>
           <Form onSubmit={this.handleSubmit} />
+          <a href="" onClick={this.handleClick}>Log Out</a>
           <PostItList items={this.state.items} onRemoveItem={this.handleRemoveItem} />
         </div>
       </div>
