@@ -4,41 +4,43 @@ import InputForm from './InputForm'
 import Post from './Post'
 
 class Home extends Component {
-  state = { postits: logic.listPostits() }
+    state = { postits: logic.listPostitsByUser(this.props.userId) }
 
-  handleSubmit = text => {
-      console.log('App', 'handleSubmit (setState)')
+    handleSubmit = text => {
+        console.log('App', 'handleSubmit (setState)')
 
-      logic.createPostit(text)
+        const { userId } = this.props
 
-      this.setState({ postits: logic.listPostits() })
-  }
+        logic.createPostit(text, userId)
 
-  handleDeletePost = id => {
-      logic.deletePostit(id)
+        this.setState({ postits: logic.listPostitsByUser(userId) })
+    }
 
-      this.setState({ postits: logic.listPostits() })
-  }
+    handleDeletePost = id => {
+        logic.deletePostit(id)
 
-  handleUpdatePost = (id, text) => {
-      logic.updatePostit(id, text)
+        this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
+    }
 
-      this.setState({ postits: logic.listPostits() })
-  }
+    handleUpdatePost = (id, text) => {
+        logic.updatePostit(id, text)
 
-  render() {
-      console.log('App', 'render')
+        this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
+    }
 
-      return <div>
-          <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
+    render() {
+        console.log('App', 'render')
 
-          <InputForm onSubmit={this.handleSubmit} />
+        return <div>
+            <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
 
-          <section>
-              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
-          </section>
-      </div>
-  }
+            <InputForm onSubmit={this.handleSubmit} />
+
+            <section>
+                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+            </section>
+        </div>
+    }
 }
 
 export default Home
