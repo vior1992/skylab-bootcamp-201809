@@ -68,14 +68,20 @@ const logic = {
         this.persistUsers(users)
     },
 
-    authenticate(username, password) {
+    loginUser(username, password) {
         let users = this.listUsers()
 
-        let index = users.findIndex(user => user.username === username && user.password === password)
+        let index = users.findIndex(user => user.username === username)
 
-        if (index === -1) throw Error ('wrong credentials')
+        var message
 
-        return users[index].id
+        if (index === -1){
+            message = 'username'
+        } else{
+            (users[index].password === password)?message = 'allright': message = 'password' 
+        }
+
+        return message
     }
 }
 

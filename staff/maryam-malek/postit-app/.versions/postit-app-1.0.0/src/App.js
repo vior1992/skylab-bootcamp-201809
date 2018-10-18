@@ -8,7 +8,7 @@ import logic from './logic'
 
 
 class App extends Component {
-    state={landing: true, register:false, login:false, home: false, userId: null}
+    state={landing: true, register:false, login:false, home: false}
 
     handleRegisterSubmit = (name, surname, username, password) => {
 
@@ -27,16 +27,18 @@ class App extends Component {
 
     handleLoginSubmit = (username, password) => {
 
-        try{
-            let userId = logic.authenticate(username, password)
-            this.setState({login: false, home: true})
-            this.setState({userId: userId})
-        } catch(err){
-            console.error(err.message)
-        }
-    }
+        let message = logic.loginUser(username, password)
 
-    handleHomeSubmit = () => {
+        if(message === 'allright'){
+            
+            this.setState({login: false, home: true})
+            
+        } else if(message === 'username'){
+            console.log('Wrong username')
+        } else{
+            console.log('Wrong password')
+        }
+
 
     }
 
@@ -45,7 +47,7 @@ class App extends Component {
             {this.state.landing && <Landing onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick}/>}
             {this.state.register && <Register onSubmit={this.handleRegisterSubmit} />}
             {this.state.login && <Login onSubmit={this.handleLoginSubmit}/>}
-            {this.state.home && <Home getUserPostit={this.state.user} onSubmit={this.handleHomeSubmit}/>}
+            {this.state.home && <Home />}
         </section >
     }
 }
