@@ -1,5 +1,6 @@
 $color-primary: #026aa7;
 $color-success: #5aac44;
+$color-danger: #d9534f;
 $color-board: #dfe3e6;
 $color-text: #17394d;
 
@@ -47,6 +48,10 @@ $color-text: #17394d;
     background-color: #fff;
     border: 2px solid $color-primary;
     border-radius: .5rem;
+
+    &.is-invalid {
+        border-color: $color-danger;
+    }
 
     &:focus {
         outline: 0;

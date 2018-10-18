@@ -42,6 +42,9 @@ body .main__boards .add__input, body .main__boards .board__title:focus, body .ma
   border: 2px solid #026aa7;
   border-radius: 0.5rem;
 }
+body .main__boards .is-invalid.add__input, body .main__boards .is-invalid.board__title:focus, body .main__auth .login .is-invalid.form__input, body .main__auth .register .is-invalid.form__input {
+  border-color: #d9534f;
+}
 body .main__boards .add__input:focus, body .main__boards .board__title:focus, body .main__auth .login .form__input:focus, body .main__auth .register .form__input:focus {
   outline: 0;
 }
