@@ -1,4 +1,6 @@
-import { storage, Postit, User } from './data'
+import data from './data'
+
+const { storage, Postit, User } = data
 
 const logic = {
     createPostit(text) {
@@ -45,37 +47,35 @@ const logic = {
         storage.setItem('users', JSON.stringify(users))
     },
 
-    registerUser(name, surname, username, password, id, onFail) {
-        // if (typeof name !== 'string' || !name || !name.trim().length) onFail('invalid name');
-        // else if (typeof surname !== 'string' || !surname || !surname.trim().length) onFail('invalid surname');
-        // else if (typeof username !== 'string' || !username || !username.trim().length) onFail('invalid username');
-        // else if (typeof password !== 'string' || !password || !password.trim().length) onFail('invalid password');
-        // else if (typeof onFail !== 'function') throw TypeError(onFail + ' is not a function');
+    registerUser(name, surname, username, password) {
+         if (typeof name !== 'string' || !name || !name.trim().length) throw TypeError (`${name} invalid name`)
+         else if (typeof surname !== 'string' || !surname || !surname.trim().length) throw TypeError (`${surname} invalid surname`)
+         else if (typeof username !== 'string' || !username || !username.trim().length) throw TypeError (`${username} invalid username`)
+         else if (typeof password !== 'string' || !password || !password.trim().length) throw TypeError (`${password} invalid password`)
         // else {
 
-        const user = new User(name, surname, username, password, id)
+        const user = new User(name, surname, username, password)
         const users = this.listUsers()
         users.push(user)
         this.persistUsers(users)
-        },
-    
+        return true
+    },
 
-    // login (username, password, onSuccess, onFail) {
-    //     if (typeof username !== 'string' || !username || !username.trim().length) onFail('invalid username');
-    //     else if (typeof password !== 'string' || !password || !password.trim().length) onFail('invalid password');
-    //     else if (typeof onSuccess !== 'function') throw TypeError(onSuccess + ' is not a function');
-    //     else if (typeof onFail !== 'function') throw TypeError(onFail + ' is not a function');
-    //     else if (user) {
-    //         if (user.username === username && user.password === password) {
-    //             onSuccess({
-    //                 name: user.name,
-    //                 surname: user.surname,
-    //                 username: user.username
-    //             });
-    //         }
-    //         else onFail('wrong credentials');
-    //     }
-    // }
+
+    loginUser(username, password) {
+        // if (typeof username !== 'string' || !username || !username.trim().length) onFail('invalid username');
+        // else if (typeof password !== 'string' || !password || !password.trim().length) onFail('invalid password');
+        // else if (typeof onSuccess !== 'function') throw TypeError(onSuccess + ' is not a function');
+        // else if (typeof onFail !== 'function') throw TypeError(onFail + ' is not a function');
+        // else if (user) {
+
+        const users = this.listUsers()
+
+        const user = users.find(user => user.username === username && user.password === password)
+        if (!user) throw Error ("wrong credentials")
+            
+        return user.id
+        }
 }
 
 export default logic

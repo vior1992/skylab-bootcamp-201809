@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class Register extends Component {
-    state = { username: '', name: '', surname: '', password: '', id: '' }
+    state = { username: '', name: '', surname: '', password: '' }
 
     handleNameChange = event => { //repetir para todos los campos
         const name = event.target.value
@@ -12,13 +12,13 @@ class Register extends Component {
     handleSurnameChange = event => { //repetir para todos los campos
         const surname = event.target.value
 
-        this.setState({ name })
+        this.setState({ surname })
     }
 
     handleUsernameChange = event => { //repetir para todos los campos
         const username = event.target.value
 
-        this.setState({ name })
+        this.setState({ username })
     }
 
     handlePasswordChange = event => { //repetir para todos los campos
@@ -27,11 +27,12 @@ class Register extends Component {
         this.setState({ password })
     }
 
-    handleSubmit = event =>{
+    handleSubmit = event => {
         event.preventDefault()
-        const {name, surname,username,password} = this.state
-        this.props.onRegisterClick()
 
+        const { name, surname, username, password } = this.state
+
+        this.props.onRegisterClick(name, surname, username, password)
     }
 
     
@@ -45,7 +46,7 @@ class Register extends Component {
         <input className="inputDates" type="text" placeholder="Username..."  onChange={this.handleUsernameChange}/>
         <input className="inputDates" type="password"  placeholder="password..."  onChange={this.handlePasswordChange}/>
 
-        <button onClick={ this.handleRegister}>Submit</button>
+        <button type="submit">Register</button>
     </form>
     }
 }

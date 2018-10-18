@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import InputForm from './InputForm'
-import signinForm from '.components/signinForm'
-import register from '.components/register'
-import app from '.components/App'
-import Post from './Post'
+import Post from './Post' 
 
-class landing extends Component {
+class Landing extends Component {
   state = { postits: logic.listPostits() }
 
   handleSubmit = text => {
@@ -44,4 +41,4 @@ class landing extends Component {
 }
 
 
-export default landing
+export default Landing
