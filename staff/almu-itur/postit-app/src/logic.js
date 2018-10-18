@@ -1,72 +1,97 @@
-import data from './data'
+// import data from './data'
+const data = require('./data')
 
 const { storage, Postit, User } = data
 
 const logic = {
-    createPostit(text) {
-        const postit = new Postit(text)
+    createPostit(text, userId) {
+        const postit = new Postit(text, userId)
 
-        const postits = this.listPostits()
+        const postits = this._listPostits()
 
         postits.push(postit)
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
-    listPostits() {
+    _listPostits() {
         return JSON.parse(storage.getItem('postits'))
     },
 
-    persistPostits(postits) {
+    listPostitsByUser(userId) {
+        if (typeof userId !== 'number') throw new TypeError(`${userId} is not a number`)
+
+        const postits = this._listPostits()
+
+        return postits.filter(postit => postit.userId === userId)
+    },
+
+    _persistPostits(postits) {
         storage.setItem('postits', JSON.stringify(postits))
     },
 
     deletePostit(id) {
-        let postits = this.listPostits()
+        // TODO validate inputs
+
+        let postits = this._listPostits()
 
         postits = postits.filter(postit => postit.id !== id)
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     updatePostit(id, text) {
-        let postits = this.listPostits()
+        // TODO validate inputs
+
+        let postits = this._listPostits()
 
         const postit = postits.find(postit => postit.id === id)
 
         postit.text = text
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     listUsers() {
         return JSON.parse(storage.getItem('users'))
     },
 
-    persistUsers(users) {
+    _persistUsers(users) {
         storage.setItem('users', JSON.stringify(users))
     },
 
     registerUser(name, surname, username, password) {
-        const user = new User(name, surname, username, password, [])
+        if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
+        if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
 
-        let users = this.listUsers()
+        if (!name.trim()) throw Error('name is empty or blank')
+        if (!surname.trim()) throw Error('surname is empty or blank')
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
+
+        const user = new User(name, surname, username, password)
+
+        const users = this.listUsers()
 
         users.push(user)
 
-        this.persistUsers(users)
+        this._persistUsers(users)
     },
 
-    loginUser(username, password) {
+    authenticate(username, password) {
+        // TODO validate inputs
         
         const users = this.listUsers()
 
-        console.log(users)
+        const user = users.find(user => user.username === username && user.password === password)
 
-        const foundUser = users.find(user =>  user.username === username && user.password === password)
-        
-        return foundUser
+        if (!user) throw Error('wrong credentials')
+
+        return user.id
     }
 }
 
-export default logic
+// export default logic
+module.exports = logic

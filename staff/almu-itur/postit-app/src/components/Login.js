@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 class Login extends Component {
-    state = { username: '', password: ''}
+    state = { username: '', password: '' }
 
-    handleNameChange = event => {
-        const name = event.target.value
-        this.setState({ username: name })
+    handleUsernameChange = event => {
+        const username = event.target.value
+
+        this.setState({ username })
     }
 
     handlePasswordChange = event => {
         const password = event.target.value
-        this.setState({ password: password })
+
+        this.setState({ password })
     }
 
     handleSubmit = event => {
@@ -18,15 +20,15 @@ class Login extends Component {
 
         const { username, password } = this.state
 
-        this.props.onLoginClick(username, password)
+        this.props.onLogin(username, password)
     }
-    
-render() {
-    return <form onSubmit= {this.handleSubmit}>
-    <input type="text" placeholder="Username" onChange={this.handleNameChange}></input>
-    <input type="password" placeholder="Password" onChange={this.handlePasswordChange}></input>
-    <button type="submit">Login</button>
-    </form>
+
+    render() {
+        return <form onSubmit={this.handleSubmit}>
+            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
+            <button type="submit">Login</button>
+        </form>
     }
 }
 

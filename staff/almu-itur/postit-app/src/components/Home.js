@@ -4,48 +4,44 @@ import InputForm from './InputForm'
 import Post from './Post'
 
 class Home extends Component {
+    state = { postits: logic.listPostitsByUser(this.props.userId) }
 
-  state = { postits: logic.listPostits() }
+    handleSubmit = text => {
+        console.log('App', 'handleSubmit (setState)')
 
-  //state = { user: {} }
+        const { userId } = this.props
 
-//   componentDidMount() {
-//         this.setState({user:this.props.user})
-//     }
+        logic.createPostit(text, userId)
 
-  handleSubmit = text => {
-      console.log('App', 'handleSubmit (setState)')
+        this.setState({ postits: logic.listPostitsByUser(userId) })
+    }
 
-      logic.createPostit(text)
+    handleDeletePost = id => {
+        logic.deletePostit(id)
 
-      this.setState({ postits: logic.listPostits() })
-  }
+        this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
+    }
 
-  handleDeletePost = id => {
-      logic.deletePostit(id)
+    handleUpdatePost = (id, text) => {
+        logic.updatePostit(id, text)
 
-      this.setState({ postits: logic.listPostits() })
-  }
+        this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
+    }
 
-  handleUpdatePost = (id, text) => {
-      logic.updatePostit(id, text)
+    render() {
+        console.log('App', 'render')
 
-      this.setState({ postits: logic.listPostits() })
-  }
+        return <div>
+            <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
 
-  render() {
-      console.log('App', 'render')
+            <InputForm onSubmit={this.handleSubmit} />
 
-      return <div>
-          <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
-
-          <InputForm onSubmit={this.handleSubmit} />
-
-          <section>
-              {this.props.user.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
-          </section>
-      </div>
-  }
+            <section>
+                {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+            </section>
+        </div>
+    }
 }
 
-export default Home
+// export default Home
+module.exports = Home

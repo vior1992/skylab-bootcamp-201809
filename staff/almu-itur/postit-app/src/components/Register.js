@@ -32,7 +32,7 @@ class Register extends Component {
 
         const { name, surname, username, password } = this.state
 
-        this.props.onRegisterClick(name, surname, username, password)
+        this.props.onRegister(name, surname, username, password)
     }
 
     render() {
@@ -46,4 +46,5 @@ class Register extends Component {
     }
 }
 
-export default Register
+// export default Register
+module.exports = Register
