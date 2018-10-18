@@ -1,14 +1,14 @@
 //data
 
-// export const storage = sessionStorage
+export const storage = sessionStorage
 
-// if (!storage.getItem('postits'))
-// storage.setItem('postits', JSON.stringify([]))
+if (!storage.getItem('postits'))
+storage.setItem('postits', JSON.stringify([]))
 
-// if (!storage.getItem('users'))
-// storage.setItem('users', JSON.stringify([]))
+if (!storage.getItem('users'))
+storage.setItem('users', JSON.stringify([]))
 
-class Postit {
+export class Postit {
     constructor(text, show, userId) {
         this.text = text
         this.id = Date.now()
@@ -17,7 +17,7 @@ class Postit {
     }
 }
 
-class User {
+export class User {
     constructor(name, surname, username, password) {
         this.name = name
         this.surname = surname
@@ -27,6 +27,3 @@ class User {
     }
 }
 
-// export default {Postit, User}
-
-module.exports = {Postit, User}

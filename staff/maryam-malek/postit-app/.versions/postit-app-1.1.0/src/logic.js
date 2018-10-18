@@ -1,19 +1,10 @@
 //Bussines logic
 
-// import {storage, User, Postit} from './data'
-
-const data = require('./data')
-
-const { Postit, User } = data
+import {storage, User, Postit} from './data'
 
 const logic = {
     createPostit(text, show, userId) {
-        if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
-        if (typeof show !== 'boolean') throw new TypeError(`${show} is not a number`)
-        if (typeof userId !== 'number') throw new TypeError(`${userId} is not a number`)
-
-        if (!text.trim()) throw Error('text is empty or blank')
-
+        //validar
         const postit = new Postit(text, show, userId)
 
         const postits = this._listPostits()
@@ -54,8 +45,6 @@ const logic = {
         if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
         if (typeof show !== 'boolean') throw new TypeError(`${show} is not a number`)
 
-        if (!text.trim()) throw Error('text is empty or blank')
-
         let postits = this._listPostits()
         
         let index = postits.findIndex(postit => postit.id === id)
@@ -68,9 +57,6 @@ const logic = {
     },
    
     apearEdit(id, show) {
-        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-        if (typeof show !== 'boolean') throw new TypeError(`${show} is not a number`)
-
         let postits = this._listPostits()
         
         let index = postits.findIndex(postit => postit.id === id)
@@ -99,20 +85,17 @@ const logic = {
         if (!username.trim().length) throw Error('username is empty or blank')
         if (!password.trim().length) throw Error('password is empty or blank')
         
-        return fetch('https://skylabcoders.herokuapp.com/api/user', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify({ name, surname, username, password })
-        })
-            .then(res => res.json())
-            .then(res => {
-                
-                if (res.error) throw Error(res.error)
+        let users = this.listUsers()
 
-                return res.data.id
-            })
+        let user = users.find(user => user.username === username)
+        
+        if(user) throw Error ('username already exists')
+        
+        user = new User (name, surname, username, password)
+
+        users.push(user)
+
+        this._persistUsers(users)
     },
 
     authenticate(username, password) {
@@ -122,22 +105,14 @@ const logic = {
         if (!username.trim().length) throw Error('username is empty or blank')
         if (!password.trim().length) throw Error('password is empty or blank')
 
-        return fetch('https://skylabcoders.herokuapp.com/api/auth', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify({ username, password })
-        })
-            .then(res => res.json())
-            .then(res => {
-                
-                if (res.error) throw Error(res.error)
+        let users = this.listUsers()
 
-                return res.status
-            })
+        let index = users.findIndex(user => user.username === username && user.password === password)
+
+        if (index === -1) throw Error ('wrong credentials')
+
+        return users[index].id
     }
 }
 
-// export default logic
-module.exports = logic
+export default logic
