@@ -4,6 +4,8 @@ import data from './data'
 const { storage, Postit, User } = data
 
 const logic = {
+    
+
     createPostit(text,userId) {
         const postit = new Postit(text, userId)
 

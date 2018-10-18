@@ -6,7 +6,7 @@ import Home from './components/Home'
 
 class App extends Component {
     
-    state ={ register: false , login:false, home: false, userId: null }
+    state ={ register: false , login:false, userId: sessionStorage.getUtem('userId') }
 
     handleRegisterClick = () => {
         this.setState({ register: true })
@@ -33,6 +33,8 @@ class App extends Component {
             const userId = logic.loginUser(username, password)
 
             this.setState({ userId, login: false, register: false, home: true })
+
+            sessionStorage.setItem(userId,'users')
         } catch (err) {
             console.error(err.message)
         }
@@ -45,12 +47,12 @@ class App extends Component {
 
     render (){
 
-        const {register,login,userId,home} = this.state
+        const {register,login,userId} = this.state
         return <section className='App' >
                { !register && !login && !userId && <section><button onClick={this.handleRegisterClick}>Register</button> or <button onClick={this.handleLoginClick}>Login</button></section>}
                {register && <Register onRegister={this.handleRegister} />}
                {login &&  <Login onLogin={this.handleLogin} />}
-            {home && <Home userId={userId} onLogout={this.handleLogout} />}
+            {userId && <Home userId={userId} onLogout={this.handleLogout} />}
         </section>
     }
 
