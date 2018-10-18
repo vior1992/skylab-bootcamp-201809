@@ -8,6 +8,12 @@ const logic = {
         const postit = new Postit(text)
 
         const postits = this.listPostits()
+        debugger 
+        const users = this.listUsers()
+
+        const user = users.filter(person => person.activated === true )
+
+        postit.userid = user.id
 
         postits.push(postit)
 
@@ -56,6 +62,7 @@ const logic = {
     },
 
     registerUser(name, surname, username, password) {
+        
         const user = new User(name, surname, username, password)
 
         const users = this.listUsers()
@@ -65,15 +72,16 @@ const logic = {
         this.persistUsers(users)
     },
 
-    loginUser(username,password){
-        console.log("he llegado",username,password)
-        
+    loginUser(username,password){        
         const pass = password
+        
         const users = this.listUsers()
-        debugger
         const user = users.filter(person => person.username === username )
-        if(user[0].password === pass) return true
-        else return false
+        debugger
+        if(user.length && user[0].password === pass){
+            user[0].activated = true
+         return true }
+        else {return false}
         
         
     }
