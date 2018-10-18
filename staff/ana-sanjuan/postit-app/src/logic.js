@@ -1,12 +1,13 @@
- import data from './data'
-//const data = require('./data')
+//  import data from './data'
+const data = require('./data')
 
-const {storage, Postit, User} = data
+const {Postit, User} = data
 
 const logic = {
     
     createPostit(text, userId) {
         if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
+        if (!text.trim()) throw Error('text is empty or blank')
         if (typeof userId !== 'number') throw TypeError(`${userId} is not a number`)
 
         const postit = new Postit(text, userId)
@@ -47,6 +48,7 @@ const logic = {
     updatePostit(id, text) {
         if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
         if (typeof id !== 'number') throw TypeError(`${id} is not a number`)
+        if (!text.trim()) throw Error('text is empty or blank')
 
         let postits = this._listPostits()
 
@@ -76,22 +78,28 @@ const logic = {
         if(!username.trim()) throw Error ('username is empty or blank')
         if(!password.trim()) throw Error ('password is empty or blank')
         
-        const users = this.listUsers()
+        return fetch('https://skylabcoders.herokuapp.com/api/user', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({ name, surname, username, password })
+        })
+            .then(res => res.json())
+            .then(res => {
+                
+                if (res.error) throw Error(res.error)
 
-        let user = users.find(user => user.username === username)
-
-        if(user) throw Error('username already exists')
-
-        user = new User(name, surname, username, password)
-       
-        users.push(user)
-
-        this._persistUsers(users)
+                return res.data.id
+            })
     },
 
     authenticate(username, password){
         if(typeof username !== 'string') throw TypeError (`${username} is not a string`)
         if(typeof password !== 'string') throw TypeError (`${password} is not a string`)
+
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
 
         let users = this.listUsers()
 
@@ -107,5 +115,5 @@ const logic = {
     }
 }
 
-export default logic
-//module.exports = logic
+// export default logic
+module.exports = logic
