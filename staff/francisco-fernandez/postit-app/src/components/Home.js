@@ -4,7 +4,8 @@ import InputForm from './InputForm'
 import Post from './Post'
 
 class Home extends React.Component {
-  state = { postits: logic.listPostitsUser() }
+debugger
+  state = { postits: logic.listPostits(), postitsUser: logic.listPostitsUser() }
 
   handleSubmit = text => {
       console.log('App', 'handleSubmit (setState)')

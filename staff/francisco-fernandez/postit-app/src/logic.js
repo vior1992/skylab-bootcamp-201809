@@ -28,6 +28,7 @@ const logic = {
         let index = users.findIndex(element => element.activated === true)
         let id = users[index].id
         let postits = this.listPostits()
+        debugger
         return postits.filter(postit => postit.id === id)
         
     },
