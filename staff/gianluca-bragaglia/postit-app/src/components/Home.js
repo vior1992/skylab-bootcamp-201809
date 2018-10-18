@@ -7,7 +7,8 @@ class Home extends Component {
 
   state = { 
           postits: logic.listPostits(),
-          text: ''
+          text: '',
+          idUser: ''
   }
 
   handleChange = event => {
