@@ -30,8 +30,8 @@ const logic = {
       
     },
 
-    updatePost(id, text) {
-        const newPostit = new Postit(text)
+    updatePost(id, text, userID) {
+        const newPostit = new Postit(text, userID)
 
         const postits = JSON.parse(storage.getItem('postits'))
 

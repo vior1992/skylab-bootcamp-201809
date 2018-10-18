@@ -1,13 +1,13 @@
 
 body {
-    background: url('./images/cool-background.png') no-repeat center center fixed;
+    background: url('./images/postit-background.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-#root {
+ #root {
     width: 50%;
     margin: 100px auto;
     text-align: center;
@@ -18,21 +18,7 @@ h1 {
     color: white;
 }
 
-form {
-    text-align: center;
-    display: flex;
 
-
-}
-
-.form-control {
-    height: 40px;
-}
-
-.btn-primary {
-    width: 100px
-
-}
 
 .container {
     text-align: center;
@@ -40,8 +26,8 @@ form {
 
 .list-group {
     display: flex;
-    flex-direction: row
-
+    flex-direction: row;
+    margin-top: 20px;
 }
 
 
@@ -50,12 +36,13 @@ form {
     flex: 0 0 80%
 }
 
+
 .btn-info{
     flex: 1;
     height: 50px;
     align-self: flex-end;
  
-}
+} 
 
 .popup {
     position: fixed;
@@ -69,7 +56,7 @@ form {
     background-color: rgba(0,0,0, 0.5);
   }
 
-.shadow-textarea {
+ .shadow-textarea {
     width: 50%;
     margin: 0 auto;
 }
@@ -78,6 +65,40 @@ form {
     width: 20%
 }
 
-.form-group {
-    margin-top: 200px;
+
+.landing-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid white;
+    padding: 30px;
+    border-radius: 10px;
+    height: 500px;
 }
+
+.btn-landing {
+    margin-top: 20px;
+    width: 50%;
+}
+
+.form-control {
+    width: 100%
+
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-and-login-container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.postit-form-group {
+    display: flex;
+}
+

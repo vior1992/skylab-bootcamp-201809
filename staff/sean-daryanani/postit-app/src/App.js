@@ -24,8 +24,13 @@ class App extends Component {
         passVerification:''})
     }
 
+    handleLogout = () => {
+        this.setState({home: !this.state.home})
+    }
+
     handleHome = () => {
-        this.setState({login: !this.state.home})
+        this.setState({home: !this.state.home,
+        login:this.state.login})
     }
 
     registerSubmit = (name, email, username, password) => {
@@ -45,7 +50,8 @@ class App extends Component {
             const userID = result[1]
 
             this.setState({passVerification: verificationMessage, 
-                userID : userID}, console.log(this.state.passVerification, this.state.userID))
+                userID : userID,
+            home:!this.state.home}, console.log(this.state.passVerification, this.state.userID))
         }
 
         else {
@@ -56,14 +62,14 @@ class App extends Component {
     }
      
     render() {
-        if (this.state.passVerification==='correct password') return <Home propUserID={this.state.userID} />
-        return <div>
+        if (this.state.passVerification==='correct password' && this.state.home===true) return <Home logOut={this.handleLogout} propUserID={this.state.userID} />
+        return <div className="register-and-login-container">
        
         {!this.state.register && !this.state.login &&             
-            <section>
+            <section className="landing-section">
             <h1>Welcome to the Postit App!</h1>
-            <button onClick={this.handleRegister}>Register</button>
-            <button onClick={this.handleLogin}>Login</button>
+            <button className="btn-landing btn btn-primary btn-lg" onClick={this.handleRegister}>Register</button>
+            <button className="btn-landing btn btn-primary btn-lg" onClick={this.handleLogin}>Login</button>
             </section>}
         {this.state.register && <Register onRegisterClick={this.registerSubmit} backHandle={this.handleRegister}/>}
         {this.state.login && <Login onLoginClick={this.loginSubmit} backHandle={this.handleLogin} wrongPassword={this.state.passVerification} />} 

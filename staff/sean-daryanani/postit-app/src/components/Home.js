@@ -25,12 +25,12 @@ class Home extends Component {
     }
 
     handleLogout = () => {
-        
+        this.props.logOut()
     }
   
-    handleUpdatePost = (id, text) => {
-        logic.updatePost(id, text)
-  
+    handleUpdatePost = (id, text, userID) => {
+        logic.updatePost(id, text, this.props.propUserID )
+    
         this.setState({postits : logic.listPostits(),
         showPopup : false})
     }
@@ -46,8 +46,6 @@ class Home extends Component {
     render() {
         const self = this
         let filteredList = this.state.postits.filter(postit =>  postit.userID === self.props.propUserID)
-        console.log(filteredList)
-
         return <div className="container">
         <h1>Post it App</h1>
         <InputForm onSubmit = {this.handleSubmit} />

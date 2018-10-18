@@ -28,9 +28,9 @@ class InputForm extends Component {
     }
 
     render() {
-        return <form className="form-group" onSubmit={this.handleSubmit}>
-        <textarea className="form-control" cols="30"  value={this.state.text}  onChange={this.handleInput} placeholder='' type="text"/>
-        <button className="btn btn-primary" type="submit">Submit</button>
+        return <form className="postit-form-group" onSubmit={this.handleSubmit}>
+        <textarea className="postit-form form-control" cols="30"  value={this.state.text}  onChange={this.handleInput} placeholder='' type="text"/>
+        <button className="postit-submit-btn btn btn-primary" type="submit">Submit</button>
         </form>
     }
 

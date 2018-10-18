@@ -23,24 +23,37 @@ class Login extends Component {
         event.preventDefault()
 
         this.props.onLoginClick(this.state.username, this.state.password)
+
+    
     }
 
     render() {
         let wrongPass;
+
         let wrongUser;
+
         if (this.props.wrongPassword==='incorrect password') wrongPass=true
+
         if (this.props.wrongPassword==='incorrect username') wrongUser=true
-        return <div>
+        
+        return <section className="login">
         <h1>Login</h1>
-        <form onSubmit={this.passwordValidation}>
-            <input required onChange={this.handleUsername} value={this.state.username} type="text" placeholder="username" />
-            <input onChange={this.handlePassword} value={this.state.password} type="password" placeholder="password" />
-            <button>Submit</button>
+        
+        <form className="form-group" onSubmit={this.passwordValidation}>
+             <div className="form-group">
+            <input className="form-control" required onChange={this.handleUsername} value={this.state.username} type="text" placeholder="username" />
+            </div>
+            <div className="form-group">
+            <input className="form-control" onChange={this.handlePassword} value={this.state.password} type="password" placeholder="password" />
+            </div>
+            <div className="form-group">
+            <button className="btn-register btn btn-primary">Submit</button>
+            </div>
         </form>        
-        <button onClick={this.props.backHandle}>Back to home page</button>    
+        <button className="btn-register btn btn-link" onClick={this.props.backHandle}>Back to home page</button>    
         {wrongPass ? <p>Incorrect password!</p> : null}
         {wrongUser ? <p>Incorrect username!</p> : null}
-        </div>       
+        </section>       
     }
 }
 
