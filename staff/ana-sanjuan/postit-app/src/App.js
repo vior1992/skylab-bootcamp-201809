@@ -18,11 +18,11 @@ class App extends Component {
     handleRegisterClick = (name, surname, username, password) => {
         try {
             logic.registerUser(name, surname, username, password)
+
             this.setState({register: false, login: true})
         } catch(err) {
             console.error(err.message)
-        }
-        
+        }  
     }
 
     handleLoginClick = (username, password) => {
@@ -37,14 +37,15 @@ class App extends Component {
     }
 
     render() {
+        const {register, login, userId} = this.state
         return <div> 
-            {!this.state.register && !this.state.login && !this.state.home && <section>
+            {!register && !login && !userId && <section>
                 <button onClick={this.handleRegister} >Register</button>
                 <button onClick={this.handleLogin}>Log In</button>
             </section>}
-            {this.state.register && <Register onRegisterClick = {this.handleRegisterClick}/>}
-            {this.state.login && <Login onLoginClick = {this.handleLoginClick}/>}
-            {this.state.home && <Home />}
+            {register && <Register onRegisterClick = {this.handleRegisterClick}/>}
+            {login && <Login onLoginClick = {this.handleLoginClick}/>}
+            {userId && <Home userId={userId}/>}
         </div>
     }
 }

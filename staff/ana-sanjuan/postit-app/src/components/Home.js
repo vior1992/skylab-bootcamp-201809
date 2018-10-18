@@ -5,25 +5,26 @@ import Post from './Post'
 
 
 class Home extends Component {
-    state = { postits: logic.listPostits() }
+    state = { postits: logic.listPostitsByUserId(this.props.userId) }
 
     handleSubmit = text => {
-        logic.createPostit(text)
+        const {userId} = this.props
 
-        this.setState({ postits: logic.listPostits() })
+        logic.createPostit(text, userId)
+
+        this.setState({ postits: logic.listPostitsByUserId(userId) })
     }
 
     handleDelete = id => {    
         logic.deletePostit(id)
 
-        this.setState({ postits: logic.listPostits() })
+        this.setState({ postits: logic.listPostitsByUserId(this.props.userId) })
     }
 
     handleUpdatePost = (text, id) => {    
         logic.updatePostit(id, text)
 
-        this.setState({ postits: logic.listPostits() })
-
+        this.setState({ postits: logic.listPostitsByUserId(this.props.userId) })
     }
 
     render() {
