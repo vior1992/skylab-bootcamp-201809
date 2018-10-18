@@ -1,9 +1,6 @@
-/*import  storage from '../data/datalayer'
-import  Postit from '../data/datalayer'
-import  User from '../data/datalayer'*/
+//let {User, storage, Postit} = require('../data/datalayer');
 
-
- class Postit{
+class Postit{
 
     constructor(_text){
 
@@ -12,8 +9,7 @@ import  User from '../data/datalayer'*/
 
     }
 }
-
-const storage = sessionStorage
+ const storage = sessionStorage
 
 
 if (!storage.getItem('users'))
@@ -31,7 +27,6 @@ if (!storage.getItem('users'))
         this.postits = postits
     }
 }
-
 
  const logic = {
 
@@ -133,6 +128,36 @@ if (!storage.getItem('users'))
            return users.find((user) => user.username === username && user.password === password)
         }
         return false
+    },
+
+
+    getUserById(userId){
+
+        return this.listUsers().find((user) => user === userId)
+    },
+
+    setLoggedUser(userId){
+
+        storage.setItem('userId', JSON.stringify(userId))
+
+    },
+
+    removeLoggedUser(){
+
+        storage.removeItem('userId')
+
+    },
+
+    isLogged(){
+
+        const userId = storage.getItem('userId')
+        if (!userId) return false
+        const users = this.listUsers()
+        const user = users.find((user) => user.id === parseInt(userId))
+        if (user)
+            return user
+        else 
+            return false
     }
 
     

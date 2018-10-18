@@ -1,3 +1,4 @@
+@import "https://file.myfontastic.com/TKhv4HW6qV8tGeVkfgpQ8R/icons.css";
 body {
   margin: 0;
   width: 100vw;
@@ -11,35 +12,46 @@ html {
 * {
   box-sizing: border-box; }
 
+#root {
+  background-color: bisque;
+  overflow: hidden; }
+
+.button {
+  padding: 0.5em 1em;
+  background-color: white;
+  color: black;
+  border-radius: 5px; }
+  .button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white; }
+
 .board {
   margin: 0 auto;
   margin-top: 2em;
-  width: 70%;
+  width: 71.5%;
   border-radius: 5px;
   padding: 2em 2em;
   min-height: 100vh;
   background-image: url("../img/fondo.jpg"); }
-  .board > form {
-    width: 30%;
-    margin-bottom: 3em; }
-    .board > form input {
-      display: block;
-      padding: 0.5em 1em;
-      border-radius: 5px;
-      margin-bottom: 2em; }
-    .board > form button {
-      padding: 0.5em 1em;
-      background-color: white;
-      color: black;
-      border-radius: 5px; }
-      .board > form button:hover {
-        cursor: pointer;
-        background-color: black;
-        color: white; }
+  .board .board__forms {
+    display: flex;
+    justify-content: space-between; }
+    .board .board__forms .board__panel-buttons button:first-child {
+      margin-right: 2em; }
+    .board .board__forms form {
+      width: 30%;
+      margin-bottom: 3em; }
+      .board .board__forms form input {
+        display: block;
+        width: 100%;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        margin-bottom: 2em; }
   .board .board__panel-postits {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; }
+    justify-content: left; }
 
 .postit {
   position: relative;
@@ -73,6 +85,10 @@ html {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */ }
+  .postit > button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px; }
 
 .postit:after {
   content: "";
@@ -90,10 +106,9 @@ html {
   -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
   transform: matrix(-1, -0.1, 0, 1, 0, 0); }
 
-.postit:before {
+.postit a:before {
   content: "\63";
   top: -48px;
   position: absolute;
-  right: 6px; }
-
-/*# sourceMappingURL=styles.css.map */
+  right: 6px;
+  color: black; }

@@ -1,4 +1,4 @@
-/*export default class Postit{
+ class Postit{
 
     constructor(_text){
 
@@ -7,15 +7,14 @@
 
     }
 }
-
-export const storage = sessionStorage
+ const storage = sessionStorage
 
 
 if (!storage.getItem('users'))
     storage.setItem('users', JSON.stringify([]))
 
 
-export class User {
+ class User {
      
     constructor(name, surname, username, password, postits) {
         this.name = name
@@ -25,11 +24,11 @@ export class User {
         this.id = Date.now()
         this.postits = postits
     }
-}*/
+}
 
-/*export default{
+export default {
 
     Postit,
     storage,
     User
-}*/
+}

@@ -12,6 +12,14 @@ class BoardComponent extends React.Component {
 
     state = {errorLoginMessage:"", logged:false, actual_user:{} }
 
+
+    componentWillMount() {
+
+        const user = logic.isLogged();
+        if (user)
+            this.setState({logged:true, actual_user:user});
+    }
+
     addPostIt = (message) => {
 
         this.setState({actual_user:  logic.createPostit(this.state.actual_user.id, message)})
@@ -45,6 +53,7 @@ class BoardComponent extends React.Component {
         const user = logic.loginUser(username, password)
         if (user){
             this.setState({logged:true, actual_user: user})
+            logic.setLoggedUser(user.id)
 
         }else{
             this.setState({errorLoginMessage: "The credentials entered are not correct..."})
@@ -63,6 +72,7 @@ class BoardComponent extends React.Component {
     logoutUser = () => {
 
         this.setState({logged:false, actual_user:{}})
+        logic.removeLoggedUser();
     }
 
     render() {
