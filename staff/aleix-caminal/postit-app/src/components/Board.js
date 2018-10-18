@@ -14,9 +14,9 @@ class Board extends Component {
         this.state = {
             title: this.props.title,
             posts: LOGIC.find('posts', {
-                board_id:this.props.id
-            }
-        )}
+                board_id: this.props.id
+            })
+        }
 
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleDelete = this.handleDelete.bind(this)

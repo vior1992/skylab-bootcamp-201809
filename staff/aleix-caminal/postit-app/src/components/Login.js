@@ -8,7 +8,7 @@ function Login(props) {
             <Input name="username" />
             <Input name="password" type="password" />
             <button className="form__button">Log In</button>
-            <p className="form__text">or <button className="form__link" onClick={props.onClick}>Sign Up</button></p>
+            <p className="form__text">or <button className="form__link" type="button" onClick={props.onClick}>Sign Up</button></p>
         </form>
     </section>
 }

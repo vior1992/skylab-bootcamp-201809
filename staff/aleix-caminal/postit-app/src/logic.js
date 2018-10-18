@@ -7,20 +7,27 @@ const LOGIC = {
     posts: new PostsTable(),
 
     addBoard(query) {
-        this.boards.newEntity(query).insert();
-        return this.all('boards')
+        const board = this.boards.newEntity(query)
+        board.insert()
+        return this.find('boards', {
+            user_id: board.user_id
+        })
     },
 
     deleteBoard(id) {
         const board = this.boards.get(id)
         board.delete()
-        return this.all('boards')
+        return this.find('boards', {
+            user_id: board.user_id
+        })
     },
 
     updateBoard(id, query) {
         const board = this.boards.get(id)
         board.update(query)
-        return this.all('boards')
+        return this.find('boards', {
+            user_id: board.user_id
+        })
     },
 
     addPost(query) {
@@ -69,7 +76,6 @@ const LOGIC = {
         if (this.validate(form, ['username', 'password'])) {
             let auth = this.findAuth(form.querySelector('input[name="username"]').value, sha256(form.querySelector('input[name="password"]').value))
             if (auth) {
-                console.log(auth);
                 sessionStorage.setItem('auth', JSON.stringify(auth))
                 return auth
             } else {

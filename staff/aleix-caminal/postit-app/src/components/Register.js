@@ -10,7 +10,7 @@ function Register(props) {
             <Input name="password" type="password" />
             <Input name="confirm_password" type="password" />
             <button className="form__button">Sign Up</button>
-            <p className="form__text">or <button className="form__link" onClick={props.onClick}>Log In</button></p>
+            <p className="form__text">or <button className="form__link" type="button" onClick={props.onClick}>Log In</button></p>
         </form>
     </section>
 }

@@ -74,6 +74,13 @@ export class BoardsTable extends Model {
         sessionStorage.setItem('boards', JSON.stringify(boards))
     }
 
+    find(query) {
+        let boards = this.all()
+        const keys = Object.keys(query)
+        keys.forEach(key => boards = boards.filter(board => board[key] === query[key]))
+        return boards
+    }
+
     get(id) {
         this.all().find(board => {
             if (board.id === id) {

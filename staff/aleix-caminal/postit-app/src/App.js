@@ -12,7 +12,7 @@ function Header(props) {
                 <span className="dropdown__title">{props.auth.name}</span>
                 <div className="dropdown__content">
                     <ul className="dropdown__list">
-                        <li><button className="dropdown__link" onClick={props.onLogout}>Logout</button></li>
+                        <li><button className="dropdown__link" onClick={props.onLogout}>Log Out</button></li>
                         {/* <li><button className="dropdown__link">Edit User</button></li> */}
                     </ul>
                 </div>
@@ -36,10 +36,14 @@ class App extends Component {
         this.state = {
             auth: LOGIC.getAuth(),
             view: 'login',
-            boards: LOGIC.all('boards')
+            boards: []
         }
 
-        console.log(this.state.auth.length);
+        if (this.state.auth && Object.keys(this.state.auth).length > 0) {
+            this.state.boards = LOGIC.find('boards', {
+                user_id: this.state.auth.id
+            })
+        }
 
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
@@ -54,7 +58,8 @@ class App extends Component {
         let input = event.target.querySelector('input');
         this.setState({
             boards: LOGIC.addBoard({
-                title: input.value
+                title: input.value,
+                user_id: this.state.auth.id
             })
         })
 
@@ -77,15 +82,19 @@ class App extends Component {
 
     handleLogin(event) {
         event.preventDefault()
+        const auth = LOGIC.login(event.target)
         this.setState({
-            auth: LOGIC.login(event.target)
+            auth: auth,
+            boards: LOGIC.find('boards', {
+                user_id: auth.id
+            })
         })
     }
 
     handleRegister(event) {
         event.preventDefault()
         this.setState({
-            auth: LOGIC.register(event.target)
+            view: LOGIC.register(event.target) ? 'login' : 'register'
         })
     }
 
