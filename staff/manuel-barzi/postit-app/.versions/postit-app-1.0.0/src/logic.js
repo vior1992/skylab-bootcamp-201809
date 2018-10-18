@@ -1,14 +1,14 @@
-// import data from './data'
-const data = require('./data')
+import data from './data'
+//const data = require('./data')
 
-const { Postit, User } = data
+const { storage, Postit, User } = data
 
 const logic = {
     createPostit(text, userId) {
         if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
 
         if (!text.trim()) throw Error('text is empty or blank')
-
+        
         if (typeof userId !== 'number') throw new TypeError(`${userId} is not a number`)
 
         const postit = new Postit(text, userId)
@@ -48,7 +48,7 @@ const logic = {
 
     updatePostit(id, text) {
         if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-
+        
         if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
 
         if (!text.trim()) throw Error('text is empty or blank')
@@ -81,21 +81,17 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        return fetch('https://skylabcoders.herokuapp.com/api/user', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify({ name, surname, username, password })
-        })
-            .then(res => res.json())
-            .then(res => {
-                debugger
-                
-                if (res.error) throw Error(res.error)
+        const users = this.listUsers()
 
-                return res.data.id
-            })
+        let user = users.find(user => user.username === username)
+
+        if (user) throw Error('username already exists')
+
+        user = new User(name, surname, username, password)
+
+        users.push(user)
+
+        this._persistUsers(users)
     },
 
     authenticate(username, password) {
@@ -115,5 +111,5 @@ const logic = {
     }
 }
 
-// export default logic
-module.exports = logic
+export default logic
+// module.exports = logic

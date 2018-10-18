@@ -3,7 +3,7 @@ import logic from '../logic'
 import InputForm from './InputForm'
 import Post from './Post'
 
-class Home extends Component {
+class Postits extends Component {
     state = { postits: logic.listPostitsByUser(this.props.userId) }
 
     handleSubmit = text => {
@@ -43,4 +43,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default Postits
