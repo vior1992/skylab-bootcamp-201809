@@ -4,16 +4,29 @@ import Menu from './components/Menu'
 import Notes from './components/Notes'
 import Register from './components/Register'
 import Login from './components/Login'
+import Home from './components/Home'
 
 class App extends Component {
 
     state = {
-        texts: [], now: {}
+        _Users: [], texts: [], now: {}, refister:false, login:false, home:false
     }
 
+    
     handleSubmit = this.handleSubmit.bind(this)
     handleDelete = this.handleDelete.bind(this)
     handleLogin = this.handleLogin.bind(this)
+    
+    constructor() {
+        super()
+        let users = logic.listUsers()
+
+        console.log(users)
+        if (users === null) {
+            users = []
+            logic.persistUsers(users)
+        }
+    }
 
     handleSubmit(event) {
         logic.createPostit(event)
@@ -47,6 +60,10 @@ class App extends Component {
         this.setState({ login: true })
     }
 
+    OnHandleHome = () => {
+        this.setState({ home: true })
+    }
+
     handleRegister(_name, _surname, _username, _password) {
 
         logic.createUser(_name, _surname, _username, _password)
@@ -59,6 +76,7 @@ class App extends Component {
         }
         else {
             console.log('true now ', now)
+            this.OnHandleHome()
         }
         this.setState({ now: now })
         this.setState({ texts: logic.listPostits(now.id) })
@@ -71,23 +89,13 @@ class App extends Component {
 
             {this.state.register && <Register handleRegister={this.handleRegister} />}
 
-            {this.state.login && <Login handleLogin={this.handleLogin} />}
+            {this.state.login && <Login handleLogin={this.handleLogin} />} 
 
             {/* TODO show Home on successful login */}
+             {this.state.home && <Home users={this.state._Users} postits={this.state.texts} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost}   />}
         </div>
 
 
-
-        //   return <div className="container">
-        //       <h1>Post-It App</h1>
-        //       <Menu onSubmit={this.handleSubmit} />
-        //       <section className="posts-container">
-        //           {this.state.texts.map(postit => {
-        //               return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost} />
-        //               })}
-        //       </section>
-
-        //   </div>
     }
 }
 
