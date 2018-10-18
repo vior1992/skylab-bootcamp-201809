@@ -20,8 +20,8 @@ class Home extends Component {
             <Menu onSubmit={this.props.handleSubmit} />
 
             <section className="posts-container">
-                <p>{this.props.postits}</p>
-                {/* {this.props.postits.map((postit) => { return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.props.handleDelete} handleEditPost={this.props.handleEditPost}   />})} */}
+                
+                 {this.props.texts.map((postit) => { return <Notes key={postit.id} text={postit.text} index={postit.id} handleDelete={this.props.handleDelete} handleEditPost={this.props.handleEditPost}   />})}
 
             </section>
 

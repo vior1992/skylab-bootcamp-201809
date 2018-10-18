@@ -9,7 +9,7 @@ import Home from './components/Home'
 class App extends Component {
 
     state = {
-        _Users: [], texts: [], userId:'', register:false, login:false, home:false
+        texts: [], userId:'', register:false, login:false, home:false
     }
 
     
@@ -20,18 +20,22 @@ class App extends Component {
     constructor() {
         super()
         let users = logic.listUsers()
+        let texts=logic.listPostitsbyId(this.state.userId)
 
-        console.log(users)
         if (users === null) {
             users = []
             logic.persistUsers(users)
+        }
+        if(texts===null){
+            texts=[]
+            logic.persistPostits(texts)
         }
     }
 
     handleSubmit(text) {
         logic.createPostit(text, this.state.userId)
 
-        this.setState({ texts: logic.listPostits(this.state.userId) })
+        this.setState({ texts: logic.listPostitsbyId(this.state.userId) })
     }
 
     handleDelete(INDEXtoBeDeleted) {
@@ -72,27 +76,16 @@ class App extends Component {
     handleLogin(_username, _password) {
         try{
             const userId =logic.checkLogin(_username, _password)
-
-            this.setState({ userId, login: false, register: false, home:true })
+            const texts=logic.listPostitsbyId(userId)
+            this.setState({ texts, userId, login: false, register: false, home:true })
 
         }catch (err) {
             console.error(err.message)
         }
-        // const now = logic.checkLogin(_username, _password)
-        
-        // if (!now.length) {
-        //     console.log('false now ', now)
-        // }
-        // else {
-        //     console.log('true now ', now)
-        //     this.OnHandleHome()
-        // }
-        // this.setState({ now: now })
-        // this.setState({ texts: logic.listPostits(now.id) })
     }
 
     activateUser(){
-        const postits=logic.listPostits(this.state.userId)
+        const postits=logic.listPostitsbyId(this.state.userId)
         if(postits!==undefined){
             this.setState({postits})
         }else{
@@ -110,7 +103,7 @@ class App extends Component {
             {this.state.login && <Login handleLogin={this.handleLogin} />} 
 
             {/* TODO show Home on successful login */}
-             {this.state.home && <Home users={this.state._Users} postits={this.state.postits} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost}  handleSubmit={this.handleSubmit} />}
+             {this.state.home && <Home texts={this.state.texts} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost}  handleSubmit={this.handleSubmit} />}
         </div>
 
 

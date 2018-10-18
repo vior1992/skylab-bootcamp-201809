@@ -2,18 +2,22 @@ import { storage, Postit, User } from './data'
 
 const logic = {
     createPostit(text, id) {
-        const postit = new Postit(text)
+        const postit = new Postit(text, id)
 
-        const postits = this.listPostits(id)
+        const postits = this.listPostits()
 
         postits.push(postit)
 
         this.persistPostits(postits)
     },
 
-    listPostits(ID) {
+    listPostits() {
+        return JSON.parse(storage.getItem('postits'))
+    },
+
+    listPostitsbyId(ID) {
         const list=JSON.parse(storage.getItem('postits'))
-        return list.filter((id)=> id===ID)
+        return list.filter((item)=> item.userId===ID)
     },
 
     persistPostits(postits) {
@@ -21,7 +25,7 @@ const logic = {
     },
 
     deletePostit(id) {
-        let postits = this.listPostits(id)
+        let postits = this.listPostits()
 
         postits = postits.filter(postit => postit.id !== id)
 
@@ -31,7 +35,7 @@ const logic = {
     modifyPostit(id) {
         let pos = document.getElementById(id)
 
-        const postits = this.listPostits(id).map(posts => {
+        const postits = this.listPostitsbyId(id).map(posts => {
             if (posts.id === id) {
                 posts.text = pos.children[0].textContent
             }
