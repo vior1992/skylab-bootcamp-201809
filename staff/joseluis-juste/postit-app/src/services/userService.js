@@ -75,22 +75,21 @@ const userService = {
         if (typeof password !== "string") throw TypeError (`${password} is not a string`)
         if (!username.trim()) throw TypeError (`${username} is empty`)
         if (!password.trim()) throw TypeError (`${password} is empty`)
-
-        return fetch("https://skylabcoders.herokuapp.com/api/auth",{
-
-            mehtod: "POST",
-            headers:{
+      
+        return fetch('https://skylabcoders.herokuapp.com/api/auth', {
+            method: 'POST',
+            headers: {
                 "Content-Type": "application/json; charset=utf-8"
             },
-            body:JSON.stringify({username, password})
-        }).then( res => res.json()).then(res => {
-
-            if (res.status === "OK") 
-                return {token:res.data.token, id:res.id}   
-            else
-                throw Error(res.error)
-
+            body: JSON.stringify({username, password })
         })
+            .then(res => res.json())
+            .then(res => {
+                             
+                if (res.error) throw Error(res.error)
+
+                return res.data.id
+            })
     },
 
     getUserInfo(id, token){
@@ -108,7 +107,9 @@ const userService = {
                 "Authorization": `Bearer ${token}`
             },
            
-        }).then( res => res.json()).then(res => {
+        })
+        .then( res => res.json())
+        .then(res => {
 
             if (res.status === "OK") 
                 return res.data

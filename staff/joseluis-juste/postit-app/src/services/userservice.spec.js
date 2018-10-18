@@ -37,7 +37,7 @@ describe('logic', () => {
                     })
             })
 
-            false && it('should fail on undefined name', () => {
+            it('should fail on undefined name', () => {
                 expect(() =>
                     logic.registerUser(undefined, 'Doe', 'jd', '123')
                 ).to.throw(TypeError, 'undefined is not a string')
@@ -46,22 +46,35 @@ describe('logic', () => {
             // TODO other cases
         })
 
-        false && describe('authenticate', () => {
+        describe('authenticate', () => {
             beforeEach(() => {
                 const user = { name: 'John', surname: 'Doe', username: 'jd', password: '123', id: Date.now() }
+              
+            })
 
-                const users = [user]
+            it('should not succeed on incorrect data', () => {
+               
+                    logic.authenticateUser("pedrito", "1234").catch(error => {
 
-                sessionStorage.setItem('users', JSON.stringify(users))
+                        expect(error.message).to.be.equal("username and/or password wrong")
+                    
+                    })
+                    
+               
             })
 
             it('should succeed on correct data', () => {
-                expect(() =>
-                    logic.authenticate('jd', '123')
-                ).not.to.throw()
+               
+                logic.authenticateUser("pedrito", "123").then(res => {
+
+                    expect(res).to.be.a("string")
+                
+                })
+                
+           
             })
 
-            it('should fail on undefined username', () => {
+            false && it('should fail on undefined username', () => {
                 expect(() =>
                     logic.authenticate(undefined, '123')
                 ).to.throw(Error, 'wrong credentials')
