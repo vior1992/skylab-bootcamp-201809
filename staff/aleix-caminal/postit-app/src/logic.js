@@ -14,6 +14,10 @@ const LOGIC = {
             }).save()
         }
 
+        setTimeout(function() {
+            form.querySelector('input[name="title"]').classList.remove('is-invalid')
+        }, 3000)
+
         form.querySelector('input[name="title"]').value = ''
         return this.boards.find({
             user_id: user_id

@@ -27,7 +27,6 @@ $color-text: #17394d;
 }
 
 %title {
-    display: inline;
     margin: 0;
     font-size: 16px;
     background-color: transparent;
@@ -48,9 +47,11 @@ $color-text: #17394d;
     background-color: #fff;
     border: 2px solid $color-primary;
     border-radius: .5rem;
+    transition: border-color 1s linear;
 
     &.is-invalid {
         border-color: $color-danger;
+        transition: border-color .1s linear;
     }
 
     &:focus {
