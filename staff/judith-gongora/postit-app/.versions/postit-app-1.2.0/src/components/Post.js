@@ -30,5 +30,5 @@ class Post extends Component{
                     </article>
             }
 }
-module.exports = Post
-// export default Post
+
+export default Post

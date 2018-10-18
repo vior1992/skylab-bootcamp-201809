@@ -35,14 +35,8 @@ class User {
 
 }
 
-module.exports = {
+export default {
     storage,
     Postit,
     User
 }
-
-// export default {
-//     storage,
-//     Postit,
-//     User
-// }

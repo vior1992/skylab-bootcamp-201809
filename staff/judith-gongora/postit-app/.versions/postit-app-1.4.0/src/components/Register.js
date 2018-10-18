@@ -70,5 +70,5 @@ class Register extends Component {
  
     }
 } 
-module.exports = Register
-// export default Register;
+
+export default Register;

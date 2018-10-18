@@ -45,5 +45,5 @@ class Home extends Component {
     </div>
     }
 } 
-module.exports = Home
-// export default Home;
+
+export default Home;

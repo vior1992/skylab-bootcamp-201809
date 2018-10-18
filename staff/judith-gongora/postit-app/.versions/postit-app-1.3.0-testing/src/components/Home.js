@@ -8,7 +8,6 @@ class Home extends Component {
 
     handleClick = (text) => {
         logic.createPostit(text, this.props.onHomeClick)
-        console.log(this.props.onHomeClick)
 
         this.setState({ postits: logic.listPostitsByUser(this.props.onHomeClick) }) //Si hay parametros para enviar tiene esta sintaxis
         

@@ -34,7 +34,6 @@ class User {
     }
 
 }
-
 module.exports = {
     storage,
     Postit,
