@@ -7,15 +7,17 @@ import Board from './components/Board'
 function Header(props) {
     return <header className="header">
         <h1 className="header__title"><span role="img" aria-label="jsx-a11y/accessible-emoji">🎻</span> Cello</h1>
-        <div className="dropdown">
-            <span className="dropdown__title">ALEIX</span>
-            <div className="dropdown__content">
-                <ul className="dropdown__list">
-                    <li><button className="dropdown__link">Logout</button></li>
-                    <li><button className="dropdown__link">Edit User</button></li>
-                </ul>
+        {props.auth && Object.keys(props.auth).length > 0 && (
+            <div className="dropdown">
+                <span className="dropdown__title">{props.auth.name}</span>
+                <div className="dropdown__content">
+                    <ul className="dropdown__list">
+                        <li><button className="dropdown__link" onClick={props.onLogout}>Logout</button></li>
+                        {/* <li><button className="dropdown__link">Edit User</button></li> */}
+                    </ul>
+                </div>
             </div>
-        </div>
+        )}
     </header>
 }
 
@@ -44,6 +46,7 @@ class App extends Component {
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
         this.handleRegister = this.handleRegister.bind(this)
+        this.handleLogout = this.handleLogout.bind(this)
     }
 
     handleSubmit(event) {
@@ -86,9 +89,15 @@ class App extends Component {
         })
     }
 
+    handleLogout() {
+        this.setState({
+            auth: LOGIC.logout()
+        })
+    }
+
     render() {
         return <section className="main">
-            <Header />
+            <Header auth={this.state.auth} onLogout={this.handleLogout} />
             {!this.state.auth || Object.keys(this.state.auth).length === 0 ? (
                 <section className="main__auth">
                     {this.state.view === 'login' ? (

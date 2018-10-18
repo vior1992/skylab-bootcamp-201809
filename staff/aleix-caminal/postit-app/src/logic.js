@@ -69,6 +69,7 @@ const LOGIC = {
         if (this.validate(form, ['username', 'password'])) {
             let auth = this.findAuth(form.querySelector('input[name="username"]').value, sha256(form.querySelector('input[name="password"]').value))
             if (auth) {
+                console.log(auth);
                 sessionStorage.setItem('auth', JSON.stringify(auth))
                 return auth
             } else {
@@ -81,12 +82,18 @@ const LOGIC = {
         }
     },
 
+    logout() {
+        sessionStorage.removeItem('auth')
+        return {}
+    },
+
     findAuth(username, password) {
         try {
-            return  this.find('users', {
+            const user_id = this.find('users', {
                 username: username,
                 password:password
             })[0].id
+            return this.users.get(user_id)
         } catch (e) {
             return false
         }
