@@ -10,14 +10,14 @@ const logic = {
 
         postits.push(postit)
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     listPostits() {
         return JSON.parse(storage.getItem('postits'))
     },
 
-    persistPostits(postits) {
+    _persistPostits(postits) {
         storage.setItem('postits', JSON.stringify(postits))
     },
 
@@ -26,7 +26,7 @@ const logic = {
 
         postits = postits.filter(postit => postit.id !== id)
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     updatePostit(id, text) {
@@ -36,35 +36,44 @@ const logic = {
 
         postit.text = text
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     listUsers() {
         return JSON.parse(storage.getItem('users'))
     },
 
-    persistUsers(users) {
+    _persistUsers(users) {
         storage.setItem('users', JSON.stringify(users))
     },
 
     registerUser(name, surname, username, password) {
+        if(typeof name !== 'string') throw TypeError(`${name} is not a string`)
+        if(typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+        if(typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if(typeof password !== 'string') throw TypeError(`${password} is not a string`)
+
+        if(typeof name.trim()) throw Error(`name is empty or blank`)
+        if(typeof surname.trim()) throw Error(`surname is empty or blank`)
+        if(typeof username.trim()) throw Error(`username is empty or blank`)
+        if(typeof password.trim()) throw Error(`password is empty or blank`)
         const user = new User(name, surname, username, password)
 
         const users = this.listUsers()
 
         users.push(user)
 
-        this.persistUsers(users)
+        this._persistUsers(users)
     },
 
     loginUser(username, password) {
         const registredUsers = this.listUsers()
-        const _user = registredUsers.find(User => User.username === username)
-        if( _user.password === password) {
-            return true
-        }else{
-            alert('password incorrect')
-        }
+        const user = registredUsers.find(user => user.username === username && user.password === password)
+
+        if (!user) throw Error('wrong credentials')
+
+            return user.id
+
     }
 
 }

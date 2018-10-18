@@ -6,41 +6,43 @@ import Home from './components/Home'
 
 class App extends Component {
 
-  state = { register: false, login: false, home:false }
+  state = { register: false, login: false,  userId: null }
 
   handleRegister = () => {
     this.setState({ register: true })
   }
 
   handleLogin = () => {
-      this.setState({ login: true })
-      this.setState({ register: false })
+      this.setState({ login: true, register: false })
+     
   }
 
   handleRegisterClick = (name, surname, username, password) => {
       logic.registerUser(name, surname, username, password)
-      this.setState({ register: false })
-      this.setState({ login: true })
+      this.setState({ register: false, login: true })
+     
   }
 
   handleLoginClick = (username, password) => {
     
-      logic.loginUser(username, password)
-
-      if(logic.loginUser(username,password) === true) {
-        this.setState({ home: true, login: false })}
+      try{
+        const userId = logic.loginUser(username, password)
+        this.setState({userId, login: false})
+      }catch(err) {
+        console.error(err.message)
+      }
         
   }
 
   render() {
       return  <div className="container">
-                {!this.state.register && !this.state.login && !this.state.home && <section>
+                {!this.state.register && !this.state.login && !this.state.userId && <section>
                   <button onClick={this.handleRegister}>Register</button> 
                 or <button onClick={this.handleLogin}>Login</button>
                 </section>}
                 {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
                 {this.state.login && <Login onLoginClick={this.handleLoginClick}/>}
-                {this.state.home && <Home/>}
+                {this.state.userId && <Home/>}
                 {/* TODO show Home on successful login */}
               </div>
       
