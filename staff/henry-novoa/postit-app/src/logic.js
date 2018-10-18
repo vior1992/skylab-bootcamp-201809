@@ -90,7 +90,7 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                debugger
+             
                 
                 if (res.error) throw Error(res.error)
 
@@ -105,13 +105,44 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        const users = this.listUsers()
 
-        const user = users.find(user => user.username === username && user.password === password)
+      
+        return fetch('https://skylabcoders.herokuapp.com/api/auth', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({username, password })
+        })
+            .then(res => res.json())
+            .then(res => {
+ 
+                if (res.error) throw Error(res.error)
+ 
+                return res.data.id
+         })
+        // return fetch('https://skylabcoders.herokuapp.com/api/auth', {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/json; charset=utf-8"
+        //     },
+        //     body: JSON.stringify({ username,password })
+        //     .then(res => res.json())
+        //     .then(res =>{
+        //         debugger
+        //         if (res.error) throw Error(res.error)
 
-        if (!user) throw Error('wrong credentials')
+        //         return res.data.id
+        //     })
+        //   })
 
-        return user.id
+        // const users = this.listUsers()
+
+        // const user = users.find(user => user.username === username && user.password === password)
+
+        // if (!user) throw Error('wrong credentials')
+
+        // return user.id
     }
 }
 
