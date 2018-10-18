@@ -1,3 +1,12 @@
+const storage = sessionStorage
+// const storage = localStorage
+
+if (!storage.getItem('postits'))
+    storage.setItem('postits', JSON.stringify([]))
+
+if (!storage.getItem('users'))
+    storage.setItem('users', JSON.stringify([]))
+
 class Postit {
     constructor(text, userId) {
         this.text = text
@@ -16,6 +25,14 @@ class User {
     }
 }
 
-// export default { Postit, User }
+export default {
+    storage,
+    Postit,
+    User
+}
 
-module.exports = { Postit, User }
+// module.exports = {
+//     storage,
+//     Postit,
+//     User
+// }
