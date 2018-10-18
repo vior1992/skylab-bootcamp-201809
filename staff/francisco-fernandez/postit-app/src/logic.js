@@ -29,7 +29,8 @@ const logic = {
         let id = users[index].id
         let postits = this.listPostits()
         debugger
-        return postits.filter(postit => postit.id === id)
+        postits = postits.filter(postit => postit.userid === id)
+        return postits
         
     },
 

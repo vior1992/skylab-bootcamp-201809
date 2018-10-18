@@ -5,20 +5,20 @@ import Post from './Post'
 
 class Home extends React.Component {
 debugger
-  state = { postits: logic.listPostits(), postitsUser: logic.listPostitsUser() }
+  state = { postits: logic.listPostitsUser() }
 
   handleSubmit = text => {
       console.log('App', 'handleSubmit (setState)')
 
       logic.createPostit(text)
 
-      this.setState({ postits: logic.listPostits() })
+      this.setState({ postits: logic.listPostitsUser() })
   }
 
   handleDeletePost = id => {
       logic.deletePostit(id)
 
-      this.setState({ postits: logic.listPostits() })
+      this.setState({ postits: logic.listPostitsUser() })
   }
 
   handleEditPost = id => {
