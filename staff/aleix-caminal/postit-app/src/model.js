@@ -5,6 +5,24 @@ class Model {
         keys.forEach(key => this[key] = values[key])
         return this
     }
+
+    find(query) {
+        let elements = this.all()
+        const keys = Object.keys(query)
+        keys.forEach(key => elements = elements.filter(element => element[key] === query[key]))
+        return elements
+    }
+
+    get(id) {
+        this.all().find(element => {
+            if (element.id === id) {
+                const keys = Object.keys(element)
+                keys.forEach(key => this[key] = element[key])
+                return
+            }
+        })
+        return this
+    }
 }
 
 export class UsersTable extends Model {
@@ -27,24 +45,6 @@ export class UsersTable extends Model {
             }
         })
         sessionStorage.setItem('users', JSON.stringify(users))
-    }
-
-    find(query) {
-        let users = this.all()
-        const keys = Object.keys(query)
-        keys.forEach(key => users = users.filter(user => user[key] === query[key]))
-        return users
-    }
-
-    get(id) {
-        this.all().find(user => {
-            if (user.id === id) {
-                const keys = Object.keys(user)
-                keys.forEach(key => this[key] = user[key])
-                return
-            }
-        })
-        return this
     }
 
     all() {
@@ -74,24 +74,6 @@ export class BoardsTable extends Model {
         sessionStorage.setItem('boards', JSON.stringify(boards))
     }
 
-    find(query) {
-        let boards = this.all()
-        const keys = Object.keys(query)
-        keys.forEach(key => boards = boards.filter(board => board[key] === query[key]))
-        return boards
-    }
-
-    get(id) {
-        this.all().find(board => {
-            if (board.id === id) {
-                const keys = Object.keys(board)
-                keys.forEach(key => this[key] = board[key])
-                return
-            }
-        })
-        return this
-    }
-
     all() {
         return JSON.parse(sessionStorage.getItem('boards')) || []
     }
@@ -105,24 +87,6 @@ export class PostsTable extends Model {
 
     delete() {
         sessionStorage.setItem('posts', JSON.stringify(this.all().filter(post => post.id !== this.id)))
-    }
-
-    find(query) {
-        let posts = this.all()
-        const keys = Object.keys(query)
-        keys.forEach(key => posts = posts.filter(post => post[key] === query[key]))
-        return posts
-    }
-
-    get(id) {
-        this.all().find(post => {
-            if (post.id === id) {
-                const keys = Object.keys(post)
-                keys.forEach(key => this[key] = post[key])
-                return
-            }
-        });
-        return this
     }
 
     all() {

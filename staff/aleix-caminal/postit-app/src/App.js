@@ -40,7 +40,7 @@ class App extends Component {
         }
 
         if (this.state.auth && Object.keys(this.state.auth).length > 0) {
-            this.state.boards = LOGIC.find('boards', {
+            this.state.boards = LOGIC.boards.find({
                 user_id: this.state.auth.id
             })
         }
@@ -85,7 +85,7 @@ class App extends Component {
         const auth = LOGIC.login(event.target)
         this.setState({
             auth: auth,
-            boards: LOGIC.find('boards', {
+            boards: LOGIC.boards.find({
                 user_id: auth.id
             })
         })

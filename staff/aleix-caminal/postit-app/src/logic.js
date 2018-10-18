@@ -9,7 +9,7 @@ const LOGIC = {
     addBoard(query) {
         const board = this.boards.newEntity(query)
         board.insert()
-        return this.find('boards', {
+        return this.boards.find({
             user_id: board.user_id
         })
     },
@@ -17,7 +17,7 @@ const LOGIC = {
     deleteBoard(id) {
         const board = this.boards.get(id)
         board.delete()
-        return this.find('boards', {
+        return this.boards.find({
             user_id: board.user_id
         })
     },
@@ -25,7 +25,7 @@ const LOGIC = {
     updateBoard(id, query) {
         const board = this.boards.get(id)
         board.update(query)
-        return this.find('boards', {
+        return this.boards.find({
             user_id: board.user_id
         })
     },
@@ -33,7 +33,7 @@ const LOGIC = {
     addPost(query) {
         const post = this.posts.newEntity(query)
         post.insert();
-        return this.find('posts', {
+        return this.posts.find({
             board_id: post.board_id
         })
     },
@@ -41,17 +41,9 @@ const LOGIC = {
     deletePost(id) {
         const post = this.posts.get(id)
         post.delete()
-        return this.find('posts', {
+        return this.posts.find({
             board_id: post.board_id
         })
-    },
-
-    find(model, query) {
-        return this[model].find(query)
-    },
-
-    all(model) {
-        return this[model].all()
     },
 
     register(form) {
@@ -95,7 +87,7 @@ const LOGIC = {
 
     findAuth(username, password) {
         try {
-            const user_id = this.find('users', {
+            const user_id = this.users.find({
                 username: username,
                 password:password
             })[0].id

@@ -13,7 +13,7 @@ class Board extends Component {
         super(props)
         this.state = {
             title: this.props.title,
-            posts: LOGIC.find('posts', {
+            posts: LOGIC.posts.find({
                 board_id: this.props.id
             })
         }
