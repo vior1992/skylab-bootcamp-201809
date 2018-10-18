@@ -21,12 +21,22 @@ class Login extends Component {
         this.props.onLoginClick(username, password)
     }
 
+    HandleLogout = event =>{
+       event.preventDefault()
+       this.props.onLogoutClick()
+    }
+
+    
+
    render() {
-        return <form onSubmit={this.handleSubmit}>
+        return <div>
+        <form onSubmit={this.handleSubmit}>
             <input type="text" placeholder="Username" onChange={this.HandleUserChange}/>
             <input type="text" placeholder="Password" onChange={this.HandlePasswordChange}/>
             <button type="submit">Login</button>
         </form>
+        <button onClick={this.HandleLogout}>Logout</button>
+        </div>
         
     }
 }

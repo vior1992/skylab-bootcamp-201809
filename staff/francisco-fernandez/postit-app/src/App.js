@@ -27,13 +27,18 @@ class App extends Component {
             
         }
     
-  }
+        
+    }
+    
+    handleLogoutClick = () =>{
+        logic.logout()
+        }
 
     render() {
         return <div>
             {!this.state.register && !this.state.login && <section><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
             {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
-            {this.state.login && <Login onLoginClick={this.handleLoginClick} />}
+            {this.state.login && <Login onLoginClick={this.handleLoginClick} onLogoutClick={this.handleLogoutClick}/>}
             {this.state.home && <Home />}
         </div>
     }

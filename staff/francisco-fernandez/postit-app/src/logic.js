@@ -16,14 +16,23 @@ const logic = {
 
         postits.push(postit)
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     listPostits() {
         return JSON.parse(storage.getItem('postits'))
     },
 
-    persistPostits(postits) {
+    listPostitsUser(){
+        const users = this.listUsers()
+        let index = users.findIndex(element => element.activated === true)
+        let id = users[index].id
+        let postits = this.listPostits()
+        return postits.filter(postit => postit.id === id)
+        
+    },
+
+    _persistPostits(postits) {
         storage.setItem('postits', JSON.stringify(postits))
     },
 
@@ -32,7 +41,7 @@ const logic = {
 
         postits = postits.filter(postit => postit.id !== id)
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     editPostit(id){
@@ -47,7 +56,7 @@ const logic = {
         
        
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
         // postit.text = element.text
     },
 
@@ -55,7 +64,7 @@ const logic = {
         return JSON.parse(storage.getItem('users'))
     },
 
-    persistUsers(users) {
+    _persistUsers(users) {
         storage.setItem('users', JSON.stringify(users))
     },
 
@@ -66,7 +75,7 @@ const logic = {
 
         users.push(user)
 
-        this.persistUsers(users)
+        this._persistUsers(users)
     },
 
     loginUser(username, password){
@@ -76,19 +85,22 @@ const logic = {
 
         if (users[index].password === password) {
             users[index].activated = true
-            this.persistUsers(users)
+            this._persistUsers(users)
             return (true)
         }
     },
 
-    // logout(){
-    //     const users = this.listUsers()
+    logout(){
+        debugger
+         const users = this.listUsers()
 
-    //     let index = users.findIndex(element => element.activated === true)
+         let index = users.findIndex(element => element.activated === true)
         
-    //     users[index].activated = false
+         users[index].activated = false
 
-    // }
+         this._persistUsers(users)
+
+     }
 }
 
 export default logic
