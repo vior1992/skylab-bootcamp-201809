@@ -1,44 +1,51 @@
 import React, { Component } from 'react'
+import Register from './components/Register'
+import Login from './components/Login'
+import Home from './components/Home'
 import logic from './logic'
-import InputForm from './components/InputForm'
-import Post from './components/Post'
+
 
 class App extends Component {
-  state = { postits: logic.listPostits() }
+    state = { register: false, login: false, userId: null }
 
-  handleSubmit = text => {
-      console.log('App', 'handleSubmit (setState)')
+    handleRegisterClick = () => {
+        this.setState({ register: true })
+    }
 
-      logic.createPostit(text)
+    handleLoginClick = () => {
+        this.setState({ login: true })
+    }
 
-      this.setState({ postits: logic.listPostits() })
-  }
+    handleRegister = (name, surname, username, password) => {
+        try {
+            logic.registerUser(name, surname, username, password)
 
-  handleDeletePost = id => {
-      logic.deletePostit(id)
+            this.setState({ login: true, register: false })
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
 
-      this.setState({ postits: logic.listPostits() })
-  }
+    handleLogin = (username, password) => {
+        try {
+            const userId = logic.authenticate(username, password)
 
-  handleUpdatePost = (id, text) => {
-      logic.updatePostit(id, text)
+            this.setState({ userId, login: false, register: false })
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
 
-      this.setState({ postits: logic.listPostits() })
-  }
+    render() {
+        const { register, login, userId } = this.state
 
-  render() {
-      console.log('App', 'render')
-
-      return <div>
-          <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
-
-          <InputForm onSubmit={this.handleSubmit} />
-
-          <section>
-              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
-          </section>
-      </div>
-  }
+        return <div>
+            {!register && !login && !userId && <section><button onClick={this.handleRegisterClick}>Register</button> or <button onClick={this.handleLoginClick}>Login</button></section>}
+            {register && <Register onRegister={this.handleRegister} />}
+            {login && <Login onLogin={this.handleLogin} />}
+            {userId && <Home />}
+        </div>
+    }
 }
 
 export default App

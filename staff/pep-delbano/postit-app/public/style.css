@@ -15,4 +15,18 @@
 
 .fa-sticky-note {
     color: gold;
+<<<<<<< HEAD
+=======
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+}
+
+.register {
+    display: block;
+>>>>>>> develop
 }
