@@ -1,39 +1,21 @@
 import React, { Component } from 'react'
 import logic from './logic'
-import Menu from './components/Menu'
-import Notes from './components/Notes'
 import Register from './components/Register'
 import Login from './components/Login'
 import Home from './components/Home'
+import Error from './components/Error'
+
 
 class App extends Component {
 
     state = {
-        texts:this.getTexts() , userId: this.getUserId(), register: false, login: false, home: false, error: null
+        texts: this.getTexts(), userId: this.getUserId(), register: false, login: false, error: null
     }
 
 
     handleSubmit = this.handleSubmit.bind(this)
     handleDelete = this.handleDelete.bind(this)
     handleLogin = this.handleLogin.bind(this)
-
-    // constructor() {
-    //     super()
-    //     let userId = sessionStorage.getItem('userId')
-    //     let users = logic.listUsers()
-    //     let texts = logic.listPostits()
-    //     texts = texts.filter((item) => item.userId === userId)
-
-    //     if (users === null) {
-    //         users = []
-    //         logic.persistUsers(users)
-    //     }
-    //     if (texts === null) {
-    //         texts = []
-    //     }
-
-    //     this.setState({ texts })
-    // }
 
     getTexts() {
         const texts = JSON.parse(sessionStorage.getItem('postits'))
@@ -49,8 +31,8 @@ class App extends Component {
 
     handleSubmit(text) {
         logic.createPostit(text, this.state.userId)
-        let texts=logic.listPostits()
-        const userId=this.state.userId
+        let texts = logic.listPostits()
+        const userId = this.state.userId
         texts = texts.filter((item) => item.userId === userId)
 
         this.setState({ texts })
@@ -75,19 +57,14 @@ class App extends Component {
     }
 
     OnHanldeRegister = () => {
-        this.setState({ register: true })
+        this.setState({ register: !this.state.register })
     }
 
     OnHandleLogin = () => {
-        this.setState({ login: true })
-    }
-
-    OnHandleHome = () => {
-        this.setState({ home: true })
+        this.setState({ login: !this.state.login, error: null })
     }
 
     handleRegister(_name, _surname, _username, _password) {
-
         logic.createUser(_name, _surname, _username, _password)
     }
 
@@ -97,16 +74,18 @@ class App extends Component {
             let texts = logic.listPostits()
             texts = texts.filter((item) => item.userId === userId)
 
-            this.setState({ texts, userId, login: false, register: false, home: true })
+            this.setState({ texts, userId, login: false, register: false })
 
             sessionStorage.setItem('userId', userId)
         } catch (err) {
-            console.error(err.message)
+            this.setState({error : err.message })
         }
     }
 
     handleLogoutClick = () => {
-        this.setState({ userId: null, userId: '', register: false, login: false, home: false })
+
+        this.setState({ userId: '', register: false, login: false })
+        sessionStorage.setItem('userId', '')
     }
 
     activateUser() {
@@ -130,10 +109,13 @@ class App extends Component {
 
             {this.state.login && <Login handleLogin={this.handleLogin} />}
 
+            {error && <Error message={error} />}
+
             {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
 
             {/* TODO show Home on successful login */}
             {userId && <Home texts={this.state.texts} handleDelete={this.handleDelete} handleEditPost={this.handleEditPost} handleSubmit={this.handleSubmit} userId={userId} />}
+
         </div>
 
 
