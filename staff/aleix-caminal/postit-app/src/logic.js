@@ -1,4 +1,5 @@
 import { UsersTable, BoardsTable, PostsTable } from './model'
+import sha256 from 'js-sha256';
 
 const LOGIC = {
     users: new UsersTable(),
@@ -52,7 +53,7 @@ const LOGIC = {
                 return this.users.newEntity({
                     name: form.querySelector('input[name="name"]').value,
                     username: form.querySelector('input[name="username"]').value,
-                    password: form.querySelector('input[name="password"]').value
+                    password: sha256(form.querySelector('input[name="password"]').value)
                 }).insert();
             } else {
                 this.error('Passwords do not match');
@@ -66,15 +67,28 @@ const LOGIC = {
 
     login(form) {
         if (this.validate(form, ['username', 'password'])) {
-            const user_id = this.find('users', {
-                username: form.querySelector('input[name="username"]').value,
-                password: form.querySelector('input[name="password"]').value
-            })[0].id
-            const auth = this.users.get(user_id)
-            sessionStorage.setItem('auth', JSON.stringify(auth))
-            return auth
+            let auth = this.findAuth(form.querySelector('input[name="username"]').value, sha256(form.querySelector('input[name="password"]').value))
+            if (auth) {
+                sessionStorage.setItem('auth', JSON.stringify(auth))
+                return auth
+            } else {
+                this.error('Username or password are ivalid')
+                form.querySelector('input[name="username"]').classList.add('is-invalid')
+                form.querySelector('input[name="password"]').classList.add('is-invalid')
+            }
         } else {
             this.error('Fields in red are mandatory')
+        }
+    },
+
+    findAuth(username, password) {
+        try {
+            return  this.find('users', {
+                username: username,
+                password:password
+            })[0].id
+        } catch (e) {
+            return false
         }
     },
 
