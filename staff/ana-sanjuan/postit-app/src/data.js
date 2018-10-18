@@ -30,3 +30,9 @@ export default {
     Postit,
     User
 }
+
+// module.exports = {
+//     storage, 
+//     Postit,
+//     User
+// }
