@@ -1,40 +1,40 @@
 import React, { Component } from 'react'
-import InputForm from './components/InputForm'
-import Post from './components/Post'
-import logic from './logic/logic'
+import Register from './components/Register'
+import Login from './components/Login'
+import logic from './logic'
 
 
 class App extends Component {
-  state = { postits: JSON.parse(sessionStorage.getItem('postits')) }
+    state = { register: false, login: false }
 
-  handleSubmit = text => {
-    console.log('App', 'handleSubmit(setState')
+    handleRegister = () => {
+        this.setState({ register: true })
+    }
 
-    logic.createPostit(text)
+    handleLogin = () => {
+        this.setState({ login: true })
+    }
 
-    this.setState({ postits: logic.listPostits() })
-  }
+    handleRegisterClick = (name, surname, username, password) => {
+        logic.registerUser(name, surname, username, password)
 
-  handleDeletePost = id => {
-    logic.deletePostit(id)
+        this.setState({ login: true })
+        this.setState({ register: false })
+    }
 
-    this.setState({ postits: logic.listPostits() })
-  }
 
-  render() {
-    console.log('App', 'render')
 
-    return <div>
-      <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
+    render() {
+        return <div>
+            {!this.state.register && !this.state.login && <section>
+                <button onClick={this.handleRegister}>Register</button>
+                or <button onClick={this.handleLogin}>Login</button></section>}
+            {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
+            {this.state.login && <Login />}
 
-      <InputForm onSubmit={this.handleSubmit} />
-
-      <section>
-        {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} />)}
-      </section>
-    </div>
-  }
+            {/* TODO show Home on successful login */}
+        </div>
+    }
 }
 
-
-export default App;
+export default App

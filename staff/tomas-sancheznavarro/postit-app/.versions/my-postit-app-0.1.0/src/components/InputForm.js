@@ -12,7 +12,7 @@ class InputForm extends Component {
     }
 
     handleSubmit = event => {
-        console.log('InputForm', 'handleSubmit (setState)')
+        console.log('InputForm', 'handleSubmit(setState)')
 
         event.preventDefault()
 
@@ -25,9 +25,9 @@ class InputForm extends Component {
         console.log('InputForm', 'render')
 
         return <form onSubmit={this.handleSubmit}>
-            <input value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
+            <textarea value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
 
-            <button type="submit"><i className="fas fa-plus"></i></button>
+            <button type="submit"><i className="fas fa-plus"></i>Post it!</button>
         </form>
     }
 }

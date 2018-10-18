@@ -11,6 +11,7 @@
     width: inherit;
     height: inherit;
     resize: none;
+    padding: 10px;
 }
 
 .fa-sticky-note {
