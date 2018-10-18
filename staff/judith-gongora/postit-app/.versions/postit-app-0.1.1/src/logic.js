@@ -15,13 +15,12 @@ const logic = {
     loginUser(user, password) {
         const users = this.listUsers()
         const found = users.find(User => User.username === user)
-        let usr = 'false'
+ 
         if(found.password === password){
-            usr = found.id
-            return usr
+            return true
         }else {
             alert('incorrect') 
-            return usr}
+            return false}
         
     },
     listUsers() {
@@ -33,9 +32,9 @@ const logic = {
     },
 
     //POSTITS
-    createPostit(text, user) {
-        const postit = new Postit(text, user)
- 
+    createPostit(text) {
+        const postit = new Postit(text)
+
         const postits = this.listPostits()
 
         postits.push(postit)
@@ -47,13 +46,12 @@ const logic = {
     },
 
     persistPostits(postits) {
- 
         storage.setItem('postits', JSON.stringify(postits))
     },
 
     deletePostit(id) {
-  
         let postits = this.listPostits()
+
         postits = postits.filter(postit => postit.id !== id)
 
         this.persistPostits(postits)

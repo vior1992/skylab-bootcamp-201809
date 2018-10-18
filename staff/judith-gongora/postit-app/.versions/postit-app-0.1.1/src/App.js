@@ -5,7 +5,7 @@ import Home from './components/Home'
 import logic from './logic'
 
 class App extends Component {
-    state = { register : false, login : false, home : false, user: '', post: '', postits: logic.listPostits()}
+    state = { register : false, login : false, home : false}
 
     handleRegister = () =>{
         this.setState({register :true })
@@ -23,16 +23,8 @@ class App extends Component {
         this.setState({login :true })
     }
 
-    handleLoginClick = (username, password) => {
-        const log = logic.loginUser(username, password) 
-        if (log!=='false') {
-            this.setState({ user : log })
-
-            const result = this.state.postits.filter(postit => postit.user === log)
-
-            this.setState({post : result}, this.handleHome)
-            
-        }
+    handleLoginClick = (user, password) => {
+        if(logic.loginUser(user, password)) this.handleHome()
         else alert('incorrect')
     }
 
@@ -42,7 +34,7 @@ class App extends Component {
                 {!this.state.register && !this.state.login && !this.state.home &&<button type="button" className="btn btn-secondary btn-lg" onClick={this.handleLogin}>Login</button>}
                 {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
                 {this.state.login && <Login onLoginClick={this.handleLoginClick} />}
-                {this.state.home && <Home onHomeClick={this.state.user} onPostits={this.state.post}/>}
+                {this.state.home && <Home onHomeClick={this.handleHomeClick} />}
             </section>
     }
 } 

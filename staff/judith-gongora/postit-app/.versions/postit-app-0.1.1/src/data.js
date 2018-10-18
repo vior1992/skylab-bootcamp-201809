@@ -15,10 +15,10 @@ if (!storage.getItem('users'))
 // }
 
 class Postit {
-    constructor(text, user) {
+    constructor(text) {
         this.text = text
         this.id = Date.now()
-        this.user = user
+
     }
 } 
 
