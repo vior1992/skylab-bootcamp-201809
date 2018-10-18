@@ -59,6 +59,16 @@ const logic = {
     },
 
     registerUser(name, surname, username, password) {
+        if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
+        if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+
+        if (!name.trim()) throw Error('name is empty or blank')
+        if (!surname.trim()) throw Error('surname is empty or blank')
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
+        
         let users = this.listUsers()
         
         let user = new User (name, surname, username, password)

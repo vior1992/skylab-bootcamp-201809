@@ -11,10 +11,14 @@ class App extends Component {
     state={landing: true, register:false, login:false, home: false, userId: null}
 
     handleRegisterSubmit = (name, surname, username, password) => {
+        try{
+            logic.registerUser(name, surname, username, password)
+            
+            this.setState({register: false, login:true})
+        } catch(err){
+            console.error(err.message)
+        }
 
-        logic.registerUser(name, surname, username, password)
-
-        this.setState({register: false, login:true})
     }
 
     handleLoginClick = login => {
