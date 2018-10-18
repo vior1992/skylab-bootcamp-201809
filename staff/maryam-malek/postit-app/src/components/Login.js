@@ -5,15 +5,18 @@ class Login extends Component {
   
   handleUsernameChange = event => {
     const username = event.target.value
+   
     this.setState({ username })
   }
   handlePasswordChange = event => {
     const password = event.target.value
+  
     this.setState({ password })
   }
 
   handleSubmit = event => {
     event.preventDefault()
+ 
     this.props.onSubmit(this.state.username, this.state.password)
   }
 
@@ -24,6 +27,7 @@ class Login extends Component {
         <input type='password' placeholder='Password...' onChange={this.handlePasswordChange}></input>
         <button type='submit'>Login</button>
       </form>
+
     </section >
   }
 }

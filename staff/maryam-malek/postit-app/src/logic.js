@@ -1,35 +1,51 @@
 //Bussines logic
 
-import {storage, User} from './data'
+import {storage, User, Postit} from './data'
 
 const logic = {
-    createPostit(postit) {
-        const postits = JSON.parse(storage.getItem('postits'))
+    createPostit(text, show, userId) {
+        //validar
+        const postit = new Postit(text, show, userId)
+
+        const postits = this._listPostits()
         
         postits.push(postit)
         
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
     deletePostit(id) {
+        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
 
-        let postits = JSON.parse(storage.getItem('postits'))
+        let postits = this._listPostits()
         
         postits = postits.filter(postit => postit.id !== id)
         
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
 
-    persistPostits(postits) {
-        return storage.setItem('postits', JSON.stringify(postits))
+    _persistPostits(postits) {
+        storage.setItem('postits', JSON.stringify(postits))
     },
 
-    listPostits() {
+    _listPostits() {
         return JSON.parse(storage.getItem('postits'))
     },
 
+    listPostits(userId) {
+        if (typeof userId !== 'number') throw new TypeError(`${userId} is not a number`)
+
+        const postits = this._listPostits()
+
+        return postits.filter(postit => postit.userId === userId) 
+    },
+
     changePostit(textEdit, id, show) {
-        let postits = JSON.parse(storage.getItem('postits'))
+        if (typeof textEdit !== 'string') throw TypeError(`${textEdit} is not a string`)
+        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
+        if (typeof show !== 'boolean') throw new TypeError(`${show} is not a number`)
+
+        let postits = this._listPostits()
         
         let index = postits.findIndex(postit => postit.id === id)
     
@@ -37,25 +53,25 @@ const logic = {
 
         postits[index].show = show
 
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
    
     apearEdit(id, show) {
-        let postits = JSON.parse(storage.getItem('postits'))
+        let postits = this._listPostits()
         
         let index = postits.findIndex(postit => postit.id === id)
     
         postits[index].show = show
         
-        this.persistPostits(postits)
+        this._persistPostits(postits)
     },
     
     listUsers() {
         return JSON.parse(storage.getItem('users'))
     },
 
-    persistUsers(users) {
-        return storage.setItem('users', JSON.stringify(users))
+    _persistUsers(users) {
+        storage.setItem('users', JSON.stringify(users))
     },
 
     registerUser(name, surname, username, password) {
@@ -64,21 +80,31 @@ const logic = {
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
         if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
 
-        if (!name.trim()) throw Error('name is empty or blank')
-        if (!surname.trim()) throw Error('surname is empty or blank')
-        if (!username.trim()) throw Error('username is empty or blank')
-        if (!password.trim()) throw Error('password is empty or blank')
+        if (!name.trim().length) throw Error('name is empty or blank')
+        if (!surname.trim().length) throw Error('surname is empty or blank')
+        if (!username.trim().length) throw Error('username is empty or blank')
+        if (!password.trim().length) throw Error('password is empty or blank')
         
         let users = this.listUsers()
+
+        let user = users.find(user => user.username === username)
         
-        let user = new User (name, surname, username, password)
+        if(user) throw Error ('username already exists')
+        
+        user = new User (name, surname, username, password)
 
         users.push(user)
 
-        this.persistUsers(users)
+        this._persistUsers(users)
     },
 
     authenticate(username, password) {
+        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+
+        if (!username.trim().length) throw Error('username is empty or blank')
+        if (!password.trim().length) throw Error('password is empty or blank')
+
         let users = this.listUsers()
 
         let index = users.findIndex(user => user.username === username && user.password === password)

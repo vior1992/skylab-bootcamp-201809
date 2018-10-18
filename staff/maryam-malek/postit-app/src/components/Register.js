@@ -6,25 +6,29 @@ class Register extends Component {
 
     handleNameChange = event => {
         const name = event.target.value
+  
         this.setState({ name })
     }
     handleSurnameChange = event => {
         const surname = event.target.value
+  
         this.setState({ surname })
     }
     handleUsernameChange = event => {
         const username = event.target.value
+  
         this.setState({ username })
     }
     handlePasswordChange = event => {
         const password = event.target.value
+   
         this.setState({ password })
     }
 
     handleSubmit = event => {
         event.preventDefault()
-        this.props.onSubmit(this.state.name, this.state.surname, this.state.username, this.state.password)
 
+        this.props.onSubmit(this.state.name, this.state.surname, this.state.username, this.state.password)
     }
 
     render() {
@@ -36,6 +40,7 @@ class Register extends Component {
                 <input type='password' placeholder='Password...' onChange={this.handlePasswordChange}></input>
                 <button type='submit'>Register</button>
             </form>
+
         </section >
     }
 }

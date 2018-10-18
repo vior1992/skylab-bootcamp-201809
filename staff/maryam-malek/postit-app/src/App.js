@@ -4,11 +4,12 @@ import Landing from './components/Landing'
 import Register from './components/Register'
 import Login from './components/Login'
 import logic from './logic'
+import {storage} from './data'
 
 
 
 class App extends Component {
-    state={landing: true, register:false, login:false, home: false, userId: null}
+    state={landing: true, register:false, login:false, home: false, userId: JSON.parse(storage.getItem('userId'))}
 
     handleRegisterSubmit = (name, surname, username, password) => {
         try{
@@ -33,23 +34,31 @@ class App extends Component {
 
         try{
             let userId = logic.authenticate(username, password)
-            this.setState({login: false, home: true})
-            this.setState({userId: userId})
+
+            this.setState({userId, login: false, home: true})
+
+            storage.setItem('userId', JSON.stringify(userId))
         } catch(err){
             console.error(err.message)
         }
     }
 
-    handleHomeSubmit = () => {
+    handleLogOutClick = () => {
+        this.setState({home: false, landing: true})
+    }
 
+    handleLReturnClick = () => {
+        this.setState({login: false, register: false, landing: true})
     }
 
     render() {
         return <section>
             {this.state.landing && <Landing onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick}/>}
-            {this.state.register && <Register onSubmit={this.handleRegisterSubmit} />}
-            {this.state.login && <Login onSubmit={this.handleLoginSubmit}/>}
-            {this.state.home && <Home getUserPostit={this.state.user} onSubmit={this.handleHomeSubmit}/>}
+            {this.state.register && <Register onReturnClick={this.handleReturnClick} onSubmit={this.handleRegisterSubmit} />}
+            {this.state.login && <Login onReturnClick={this.handleReturnClick} onSubmit={this.handleLoginSubmit}/>}
+            {!this.state.landing && !this.state.home && <button onClick={this.handleReturnClick}>Return</button>}            
+            {this.state.userId && <Home userId={this.state.userId}/>}
+            {this.state.home && <button onClick={this.handleLogOutClick}>Log Out</button>}
         </section >
     }
 }

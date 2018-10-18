@@ -2,36 +2,35 @@ import React, { Component } from 'react';
 import logic from './../logic'
 import InputForm from './InputForm'
 import PostIt from './Postit'
-import { Postit } from './../data'
 import './Home.css'
 
 class Home extends Component {
 
-  state = { postits: logic.listPostits()}
+  state = { postits: logic.listPostits(this.props.userId)}
 
   handleSubmit = text => {
-      const postit = new Postit(text, false)
+    const {userId} = this.props
 
-      logic.createPostit(postit)
+      logic.createPostit(text, false, userId)
 
-      this.setState({ postits: logic.listPostits() })
+      this.setState({ postits: logic.listPostits(userId) })
   }
 
   handleClick = id => {
       logic.deletePostit(id)
 
-      this.setState({ postits: logic.listPostits() })
+      this.setState({ postits: logic.listPostits(this.props.userId) })
   }
 
   handleEditSubmit = (text, id) => {
       logic.changePostit(text, id, false)
-      this.setState({ postits: logic.listPostits()})
+      this.setState({ postits: logic.listPostits(this.props.userId)})
 
   }
 
   handleEditClick = (id) => {
       logic.apearEdit(id, true)
-      this.setState({ postits: logic.listPostits()})
+      this.setState({ postits: logic.listPostits(this.props.userId)})
 
   }
 

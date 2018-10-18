@@ -9,10 +9,11 @@ if (!storage.getItem('users'))
 storage.setItem('users', JSON.stringify([]))
 
 export class Postit {
-    constructor(text, show) {
+    constructor(text, show, userId) {
         this.text = text
         this.id = Date.now()
-        this.show = show
+        this.show = show //Això no caldria. fer-li una ullada
+        this.userId = userId
     }
 }
 
