@@ -9,7 +9,7 @@ class Landing extends Component {
   handleSubmit = text => {
       console.log('App', 'handleSubmit (setState)')
 
-      logic.createPostit(text)
+      logic.createPostit(text, this.props.userid)
 
       this.setState({ postits: logic.listPostits() })
   }

@@ -9,7 +9,6 @@ class App extends Component {
 
     handleRegister = () => {
         this.setState({ register: true })
-
     }
 
     handleLogin = () => {
@@ -20,22 +19,17 @@ class App extends Component {
         try {
             logic.registerUser(name, surname, username, password)
             this.setState({ register: false, app: true })
-        }
-    
-       catch (err) {
-        //to DO            
+        }catch (err) {
+            console.error(err.message)       
        }
-
     }
 
     handleLoginClick = (username, password) => {
         try {
             const userid = logic.loginUser(username, password)
-            console.log(userid)
             this.setState({ userid, login: false, landing: true })
-        }
-        catch (err){
-            alert("Wrong credentials")
+        }catch (err){
+            console.error(err.message)
         }
     }
 
@@ -45,7 +39,7 @@ class App extends Component {
             {!this.state.register && !this.state.login && !this.state.landing && <section><h1 className="title">Post-It App </h1><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
             {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
             {this.state.login && <Login onLoginClick={this.handleLoginClick} />}
-            {this.state.landing && <Landing />}
+            {this.state.landing && <Landing user={userid} />}
         </div>
     }
 }

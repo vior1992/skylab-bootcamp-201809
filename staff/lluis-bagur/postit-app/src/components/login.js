@@ -6,13 +6,11 @@ class Login extends Component {
 
     handleUsernameChange = event => { //repetir para todos los campos
         const username = event.target.value
-
         this.setState({ username })
     }
 
     handlePasswordChange = event => { //repetir para todos los campos
         const password = event.target.value
-
         this.setState({ password })
     }
 
@@ -23,7 +21,6 @@ class Login extends Component {
 
         this.props.onLoginClick(username, password)
     }
-
 
     render() {
         console.log('Post', '"render"')
