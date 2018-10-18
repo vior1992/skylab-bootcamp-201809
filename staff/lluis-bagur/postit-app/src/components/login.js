@@ -4,13 +4,15 @@ class Login extends Component {
     state = { username: '', password: '' }
 
 
-    handleUsernameChange = event => { //repetir para todos los campos
+       handleUsernameChange = event => {
         const username = event.target.value
+
         this.setState({ username })
     }
 
-    handlePasswordChange = event => { //repetir para todos los campos
+    handlePasswordChange = event => {
         const password = event.target.value
+
         this.setState({ password })
     }
 

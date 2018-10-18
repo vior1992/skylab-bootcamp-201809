@@ -4,27 +4,30 @@ import InputForm from './InputForm'
 import Post from './Post' 
 
 class Landing extends Component {
-  state = { postits: logic.listPostits() }
+    state = { postits: logic.listPostitsByUser(this.props.userId) }
 
+    
   handleSubmit = text => {
-      console.log('App', 'handleSubmit (setState)')
+    console.log('App', 'handleSubmit (setState)')
 
-      logic.createPostit(text, this.props.userid)
+    const { userId } = this.props
 
-      this.setState({ postits: logic.listPostits() })
-  }
+    logic.createPostit(text, userId)
+
+    this.setState({ postits: logic.listPostitsByUser(userId) })
+}
 
   handleDeletePost = id => {
       logic.deletePostit(id)
 
-      this.setState({ postits: logic.listPostits() })
-  }
+      this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
+    }
 
   handleUpdatePost = (id, text) => {
       logic.updatePostit(id, text)
 
-      this.setState({ postits: logic.listPostits() })
-  }
+      this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
+    }
 
   render() {
       console.log('App', 'render')
@@ -34,7 +37,7 @@ class Landing extends Component {
           <InputForm onSubmit={this.handleSubmit} />
 
           <section className="article_cont">
-              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+              {this.state.postits.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}          
           </section>
       </div>
   }

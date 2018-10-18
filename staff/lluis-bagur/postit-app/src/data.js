@@ -10,10 +10,10 @@ if (!storage.getItem('users'))
     storage.setItem('users', JSON.stringify([]))
 
 class Postit {
-    constructor(text,userid) {
+    constructor(text,userId) {
         this.text = text
         this.id = Date.now()
-        this.userid = userid
+        this.userId = userId
     }
 }
 

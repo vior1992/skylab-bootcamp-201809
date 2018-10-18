@@ -5,7 +5,7 @@ import Register from './components/register'
 import Landing from './components/landing';
 
 class App extends Component {
-    state = { app: true, register: false, login: false, landing: false, userid: null }
+    state = { register: false, login: false, userId: null }
 
     handleRegister = () => {
         this.setState({ register: true })
@@ -26,20 +26,22 @@ class App extends Component {
 
     handleLoginClick = (username, password) => {
         try {
-            const userid = logic.loginUser(username, password)
-            this.setState({ userid, login: false, landing: true })
-        }catch (err){
+            const userId = logic.loginUser(username, password)
+            console.log(logic.listPostitsByUser(userId))            
+            this.setState({ userId, login: false, register: false })
+        }  catch (err) {
             console.error(err.message)
         }
     }
 
     render() {
+        const { register, login, userId } = this.state
         return <div className="landingPage">
 
-            {!this.state.register && !this.state.login && !this.state.landing && <section><h1 className="title">Post-It App </h1><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
-            {this.state.register && <Register onRegisterClick={this.handleRegisterClick} />}
-            {this.state.login && <Login onLoginClick={this.handleLoginClick} />}
-            {this.state.landing && <Landing user={userid} />}
+            {!register && !login && !userId && <section><h1 className="title">Post-It App </h1><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
+            {register && <Register onRegisterClick={this.handleRegisterClick} />}
+            {login && <Login onLoginClick={this.handleLoginClick} />}
+            {userId && <Landing userId={userId} />}
         </div>
     }
 }
