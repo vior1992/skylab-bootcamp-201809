@@ -78,6 +78,24 @@ $color-text: #17394d;
     }
 }
 
+%link {
+    padding: 0;
+    border: none;
+    border-radius: .5rem;
+    background-color: transparent;
+    color: $color-text;
+    font-size: 16px;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
 @mixin delete($size) {
     position: absolute;
     top: 0;
@@ -106,13 +124,58 @@ body {
         grid-template-rows: 60px calc(100vh - 60px);
         background-color: $color_primary;
 
-        &__title {
-            margin: 0;
-            text-align: center;
-            font-size: 48px;
-            line-height: 60px;
-            color: #fff;
+        .header {
+            position: relative;
             background-color: darken($color_primary, 10%);
+
+            &__title {
+                margin: 0;
+                text-align: center;
+                font-size: 48px;
+                line-height: 60px;
+                color: #fff;
+            }
+
+            .dropdown {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                height: 40px;
+                color: $color-text;
+
+                &__title {
+                    @extend %title;
+                    padding: 10px 15px;
+                    line-height: 40px;
+                    border-radius: 1rem;
+                    background-color: $color-board;
+                    text-transform: uppercase;
+                }
+
+                &__content {
+                    position: absolute;
+                    right: 0;
+                    display: none;
+                    border-radius: 1rem;
+                    background-color: $color-board;
+                }
+
+                &__list {
+                    width: max-content;
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 10px;
+                }
+
+                &__link {
+                    @extend %link;
+                    padding: .25rem .5rem;
+                }
+
+                &:hover .dropdown__content {
+                    display: block;
+                }
+            }
         }
 
         &__auth {
@@ -126,7 +189,7 @@ body {
                 &__title {
                     margin: 0;
                     font-size: 24px;
-                    margin-bottom: 1rem;
+                    margin-bottom: .5rem;
                 }
 
                 .form {
@@ -157,11 +220,10 @@ body {
                         display: inline-block;
                         margin: 0 .5rem;
                         color: $color-text;
+                    }
 
-                        a:hover {
-                            text-decoration: underline;
-                            cursor: pointer;
-                        }
+                    &__link {
+                        @extend %link;
                     }
                 }
             }

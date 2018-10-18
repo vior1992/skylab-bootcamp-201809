@@ -19,7 +19,7 @@ body .main__boards .board__input:focus, body .main__boards .board .post:focus {
   outline: none;
 }
 
-body .main__boards .board .post__title, body .main__boards .board__title {
+body .main__boards .board .post__title, body .main__boards .board__title, body .main .header .dropdown__title {
   display: inline;
   margin: 0;
   font-size: 16px;
@@ -67,6 +67,22 @@ body .main__boards .add__button:focus, body .main__auth .login .form__button:foc
   outline: none;
 }
 
+body .main__auth .login .form__link, body .main__auth .register .form__link, body .main .header .dropdown__link {
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #17394d;
+  font-size: 16px;
+}
+body .main__auth .login .form__link:hover, body .main__auth .register .form__link:hover, body .main .header .dropdown__link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+body .main__auth .login .form__link:focus, body .main__auth .register .form__link:focus, body .main .header .dropdown__link:focus {
+  outline: none;
+}
+
 body {
   margin: 0;
   overflow: hidden;
@@ -77,13 +93,49 @@ body .main {
   grid-template-rows: 60px calc(100vh - 60px);
   background-color: #026aa7;
 }
-body .main__title {
+body .main .header {
+  position: relative;
+  background-color: #014a75;
+}
+body .main .header__title {
   margin: 0;
   text-align: center;
   font-size: 48px;
   line-height: 60px;
   color: #fff;
-  background-color: #014a75;
+}
+body .main .header .dropdown {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 40px;
+  color: #17394d;
+}
+body .main .header .dropdown__title {
+  padding: 10px 15px;
+  line-height: 40px;
+  border-radius: 1rem;
+  background-color: #dfe3e6;
+  text-transform: uppercase;
+}
+body .main .header .dropdown__content {
+  position: absolute;
+  right: 0;
+  display: none;
+  border-radius: 1rem;
+  background-color: #dfe3e6;
+}
+body .main .header .dropdown__list {
+  width: max-content;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+body .main .header .dropdown__link {
+  padding: 0.25rem 0.5rem;
+}
+body .main .header .dropdown:hover .dropdown__content {
+  display: block;
 }
 body .main__auth {
   display: flex;
@@ -93,7 +145,7 @@ body .main__auth {
 body .main__auth .login__title, body .main__auth .register__title {
   margin: 0;
   font-size: 24px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 body .main__auth .login .form__group, body .main__auth .register .form__group {
   display: flex;
@@ -114,10 +166,6 @@ body .main__auth .login .form__text, body .main__auth .register .form__text {
   display: inline-block;
   margin: 0 0.5rem;
   color: #17394d;
-}
-body .main__auth .login .form__text a:hover, body .main__auth .register .form__text a:hover {
-  text-decoration: underline;
-  cursor: pointer;
 }
 body .main__boards {
   display: flex;
