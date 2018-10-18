@@ -4,14 +4,16 @@ import InputForm from './InputForm'
 import Post from './Post'
 
 class Home extends Component {
-  state = { postits: logic.listPostits() }
+  state = { postits: logic.listPostitsByUser(this.props.userId) }
 
   handleSubmit = text => {
       console.log('App', 'handleSubmit (setState)')
+      
+      
 
-      logic.createPostit(text)
+      logic.createPostit(text, this.props.userId)
 
-      this.setState({ postits: logic.listPostits() })
+      this.setState({ postits: logic.listPostitsByUser() })
   }
 
   handleDeletePost = id => {

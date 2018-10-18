@@ -46,7 +46,7 @@ class App extends Component {
                { !register && !login && !userId && <section><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
                {register && <Register onRegisterClick={this.handleRegisterClick} />}
                {login &&  <Login onLoginClick={this.handleLoginClick} />}
-            {home && <Home />}
+            {home && <Home userId={userId} />}
         </section>
     }
 

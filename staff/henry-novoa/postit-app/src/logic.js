@@ -5,13 +5,11 @@ const { storage, Postit, User } = data
 
 const logic = {
     createPostit(text) {
-        const postit = new Postit(text)
+        const postit = new Postit(text, userId)
 
         const postits = this.listPostits()
         
         const users = this.listUsers()
-
-        const user = users.filter(person => person.activated === true )
 
         postit.userid = user.id
 
@@ -22,6 +20,11 @@ const logic = {
 
     listPostits() {
         return JSON.parse(storage.getItem('postits'))
+    },
+    listPostitsByUser(userId){
+        const postits = this.listPostits.filter(postit => postit.userId === userId)
+
+        return postits
     },
 
     persistPostits(postits) {
