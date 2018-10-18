@@ -1,5 +1,5 @@
-import { UsersTable, BoardsTable, PostsTable } from './model'
-import sha256 from 'js-sha256';
+const { UsersTable, BoardsTable, PostsTable } = require('./model')
+const { sha256 } = require('js-sha256')
 
 const LOGIC = {
     users: new UsersTable(),
@@ -64,6 +64,8 @@ const LOGIC = {
     },
 
     register(form) {
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+
         if (this.validate(form, ['name', 'username', 'password', 'confirm_password'])) {
             if (form.querySelector('input[name="password"]').value === form.querySelector('input[name="confirm_password"]').value) {
                 return this.users.newEntity({
@@ -82,6 +84,8 @@ const LOGIC = {
     },
 
     login(form) {
+        if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument');
+        
         if (this.validate(form, ['username', 'password'])) {
             let auth = this.findAuth(form.querySelector('input[name="username"]').value, sha256(form.querySelector('input[name="password"]').value))
             if (auth) {
@@ -143,4 +147,4 @@ const LOGIC = {
     }
 }
 
-export default LOGIC
+module.exports = LOGIC

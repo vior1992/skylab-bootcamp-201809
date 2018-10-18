@@ -22,7 +22,7 @@ class Model {
     }
 }
 
-export class UsersTable extends Model {
+class UsersTable extends Model {
     all() {
         return JSON.parse(sessionStorage.getItem('users')) || []
     }
@@ -40,7 +40,7 @@ export class UsersTable extends Model {
     }
 }
 
-export class BoardsTable extends Model {
+class BoardsTable extends Model {
     all() {
         return JSON.parse(sessionStorage.getItem('boards')) || []
     }
@@ -58,7 +58,7 @@ export class BoardsTable extends Model {
     }
 }
 
-export class PostsTable extends Model {
+class PostsTable extends Model {
     all() {
         return JSON.parse(sessionStorage.getItem('posts')) || []
     }
@@ -75,3 +75,7 @@ export class PostsTable extends Model {
         sessionStorage.setItem('posts', JSON.stringify(this.all().filter(post => post.id !== this.id)))
     }
 }
+
+// export { UsersTable, BoardsTable, PostsTable }
+
+module.exports = { UsersTable, BoardsTable, PostsTable }
