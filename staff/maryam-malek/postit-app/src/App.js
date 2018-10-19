@@ -20,9 +20,10 @@ class App extends Component {
    
     handleRegisterSubmit = (name, surname, username, password) => {
         try{
-            logic.registerUser(name, surname, username, password)
-            
-            this.setState({register: false, login:true})
+            return logic.registerUser(name, surname, username, password)
+            .then(() => this.setState({register: false, login:true}))
+            .catch(() => this.setState({ error: err.message }))
+    
         } catch(err){
             this.setState({ error: err.message })
         }
@@ -51,6 +52,8 @@ class App extends Component {
 
     handleLogOutClick = () => {
         this.setState({home: false, landing: true, userId: null})
+
+        sessionStorage.removeItem('userId')
     }
 
     handleLReturnClick = () => {

@@ -51,7 +51,7 @@ describe('logic', () => {
 
             true && it('should fail on undefined username', () => {
                 expect(() =>
-                    logic.registerUser('John', 'Doe', username, '123')
+                    logic.registerUser('John', 'Doe', undefined, '123')
                 ).to.throw(TypeError, 'undefined is not a string')
             })
 
@@ -65,39 +65,43 @@ describe('logic', () => {
         })
 
         true && describe('authenticate', () => {
-            let username = `jd-${Math.random()}`
-             
-            beforeEach(() => {
-                username = `jd-${Math.random()}`
-                return logic.registerUser('John', 'Doe', username, '123')       
-            })
+            
+            describe('with existin user', () => {
 
-            it('should succeed on correct data', () => 
+                let username = `jd-${Math.random()}`
+                
+                beforeEach(() => {
+                    username = `jd-${Math.random()}`
+                    return logic.registerUser('John', 'Doe', username, '123')       
+                })
+                
+                it('should succeed on correct data', () => 
                 logic.authenticate(username, '123')
-                    .then(status => expect(status).to.equal('OK'))
-            )
-
-            it('should fail on unregistered name user', () => {
-                const userName = `jd-${Math.random()}`
-
-                return logic.authenticate(userName, '123')
+                .then(status => expect(status).to.equal('OK'))
+                )
+                
+                it('should fail on unregistered name user', () => {
+                    const userName = `jd-${Math.random()}`
+                    
+                    return logic.authenticate(userName, '123')
                     .then(status => expect(status).to.equal('KO'))
                     .catch(err => {
                         expect(err).not.to.be.undefined
                         expect(err.message).to.equal(`user with username "${userName}" does not exist`)
                     })
-            })
-
-            it('should fail on registered name user but wrong password', () => {
-
-                return logic.authenticate(username, '12')
+                })
+                
+                it('should fail on registered name user but wrong password', () => {
+                    
+                    return logic.authenticate(username, '12')
                     .then(status => expect(status).to.equal('KO'))
                     .catch(err => {
                         expect(err).not.to.be.undefined
                         expect(err.message).to.equal("username and/or password wrong")
                     })
+                })
             })
-
+                
             true && it('should fail on undefined username', () => {
                 expect(() =>
                     logic.authenticate(undefined, '123')
@@ -106,7 +110,7 @@ describe('logic', () => {
 
             true && it('should fail on undefined password', () => {
                 expect(() =>
-                    logic.authenticate(username, undefined)
+                    logic.authenticate('username', undefined)
                 ).to.throw(Error, 'undefined is not a string')
             })
 
