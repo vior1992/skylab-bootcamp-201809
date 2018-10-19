@@ -7,13 +7,13 @@ import logic from './logic'
 
 
 class App extends Component {
-    state = { register: false, login: false, userId: this.getUserId(), error: null }
+    state = { register: false, login: false, userId: null/*this.getUserId()*/, error: null }
 
-    getUserId() {
-        const userId = sessionStorage.getItem('userId')
+    // getUserId() {
+    //     const userId = sessionStorage.getItem('userId')
 
-        return userId ? parseInt(userId) : null
-    }
+    //     return userId ? parseInt(userId) : null
+    // }
 
     handleRegisterClick = () => {
         this.setState({ register: true })
@@ -26,8 +26,8 @@ class App extends Component {
     handleRegister = (name, surname, username, password) => {
         try {
             logic.registerUser(name, surname, username, password)
-
-            this.setState({ login: true, register: false, error: null })
+                .then(() => this.setState({ login: true, register: false, error: null }))
+                .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
         }
@@ -35,11 +35,14 @@ class App extends Component {
 
     handleLogin = (username, password) => {
         try {
-            const userId = logic.authenticate(username, password)
-
-            this.setState({ userId, login: false, register: false, error: null })
-
-            sessionStorage.setItem('userId', userId)
+            logic.authenticate(username, password)
+                .then(({id, token}) => {
+                    sessionStorage.setItem('userId', id)
+                    sessionStorage.setItem('token', token)
+                    
+                    this.setState({ userId: id, token, login: false, register: false, error: null })
+                })
+                .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
         }
@@ -47,10 +50,12 @@ class App extends Component {
 
     handleLogoutClick = () => {
         this.setState({ userId: null })
+
+        sessionStorage.removeItem('userId')
     }
 
     render() {
-        const { register, login, userId, error } = this.state
+        const { register, login, userId, token, error } = this.state
 
         return <div>
             {!register && !login && !userId && <section><button onClick={this.handleRegisterClick}>Register</button> or <button onClick={this.handleLoginClick}>Login</button></section>}
@@ -58,7 +63,7 @@ class App extends Component {
             {login && <Login onLogin={this.handleLogin} />}
             {error && <Error message={error} />}
             {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
-            {userId && <Postits userId={userId} />}
+            {userId && <Postits userId={userId} token={token} />}
         </div>
     }
 }
