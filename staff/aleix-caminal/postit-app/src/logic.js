@@ -49,7 +49,7 @@ const LOGIC = {
     },
 
     addPost(input, board_id) {
-        if (typeof form !== 'object' || form.tagName !== 'INPUT') throw Error('no input passed as argument')
+        if (typeof input !== 'object' || input.tagName !== 'INPUT') throw Error('no input passed as argument')
 
         if (input) {
             this.posts.newEntity({

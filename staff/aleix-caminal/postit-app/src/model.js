@@ -1,4 +1,20 @@
 class Model {
+    _all(table) {
+        return JSON.parse(sessionStorage.getItem(table)) || []
+    }
+
+    _save(table) {
+        let elements = this.all()
+        const index = elements.findIndex(element => element.id === this.id)
+        index < 0 ? elements.push(this) : elements[index] = this
+        sessionStorage.setItem(table, JSON.stringify(elements))
+        return this
+    }
+
+    _delete(table) {
+        sessionStorage.setItem(table, JSON.stringify(this.all().filter(element => element.id !== this.id)))
+    }
+
     newEntity(values) {
         this.id = Date.now()
         for (var key in values) this[key] = values[key]
@@ -24,58 +40,46 @@ class Model {
 
 class UsersTable extends Model {
     all() {
-        return JSON.parse(sessionStorage.getItem('users')) || []
+        return this._all('users')
     }
 
     save() {
-        let users = this.all()
-        const index = users.findIndex(user => user.id === this.id)
-        index < 0 ? users.push(this) : users[index] = this
-        sessionStorage.setItem('users', JSON.stringify(users))
-        return this
+        return this._save('users')
     }
 
     delete() {
-        sessionStorage.setItem('users', JSON.stringify(this.all().filter(user => user.id !== this.id)))
+        return this._delete('users')
     }
 }
 
 class BoardsTable extends Model {
     all() {
-        return JSON.parse(sessionStorage.getItem('boards')) || []
+        return this._all('boards')
     }
 
     save() {
-        let boards = this.all()
-        const index = boards.findIndex(board => board.id === this.id)
-        index < 0 ? boards.push(this) : boards[index] = this
-        sessionStorage.setItem('boards', JSON.stringify(boards))
-        return this
+        return this._save('boards')
     }
 
     delete() {
-        sessionStorage.setItem('boards', JSON.stringify(this.all().filter(board => board.id !== this.id)))
+        return this._delete('boards')
     }
 }
 
 class PostsTable extends Model {
     all() {
-        return JSON.parse(sessionStorage.getItem('posts')) || []
+        return this._all('posts')
     }
 
     save() {
-        let posts = this.all()
-        const index = posts.findIndex(post => post.id === this.id)
-        index < 0 ? posts.push(this) : posts[index] = this
-        sessionStorage.setItem('posts', JSON.stringify(posts))
-        return this
+        return this._save('posts')
     }
 
     delete() {
-        sessionStorage.setItem('posts', JSON.stringify(this.all().filter(post => post.id !== this.id)))
+        return this._delete('posts')
     }
 }
 
-// export { UsersTable, BoardsTable, PostsTable }
+export { UsersTable, BoardsTable, PostsTable }
 
-module.exports = { UsersTable, BoardsTable, PostsTable }
+// module.exports = { UsersTable, BoardsTable, PostsTable }
