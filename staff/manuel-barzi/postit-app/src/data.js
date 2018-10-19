@@ -1,8 +1,7 @@
 class Postit {
-    constructor(text, userId) {
+    constructor(text) {
         this.text = text
         this.id = Date.now()
-        this.userId = userId
     }
 }
 
