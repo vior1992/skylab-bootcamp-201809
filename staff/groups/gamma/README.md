@@ -4,4 +4,4 @@
 
 - Paco
 - Lluís
-- Sergio
+- Sergio (admin)

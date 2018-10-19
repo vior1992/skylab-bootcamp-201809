@@ -4,4 +4,4 @@
 
 - Jose Luís
 - Fede
-- Pep
+- Pep (admin)
