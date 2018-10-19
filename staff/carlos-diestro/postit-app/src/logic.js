@@ -88,6 +88,62 @@ const logic = {
 
   getSession() {
     return JSON.parse(storage.getItem('session'))
+  },
+
+  createUser(username, email, name, surname, password) {
+    if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+    if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
+    if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
+    if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+    if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+
+    if (!username.trim()) throw Error('username is empty or blank')
+    if (!email.trim()) throw Error('email is empty or blank')
+    if (!name.trim()) throw Error('name is empty or blank')
+    if (!surname.trim()) throw Error('surname is empty or blank')
+    if (!password.trim()) throw Error('password is empty or blank')
+
+    const endpoint = 'https://skylabcoders.herokuapp.com/api/user'
+    const params = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, email, name, surname, password })
+    }
+
+    return fetch(endpoint, params)
+      .then(response => response.json())
+      .then(response => {
+        if (response.error) throw Error(response.error)
+
+        return response.data.id
+    })
+  },
+
+  authUser(username, password) {
+    if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+    if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+    
+    if (!username.trim()) throw Error('username is empty or blank')
+    if (!password.trim()) throw Error('password is empty or blank')
+
+    const endpoint = 'https://skylabcoders.herokuapp.com/api/auth'
+    const params = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    }
+
+    return fetch(endpoint, params)
+      .then(response => response.json())
+      .then(response => {
+        if (response.error) throw Error(response.error)
+
+        return response.data
+      })
   }
 }
 

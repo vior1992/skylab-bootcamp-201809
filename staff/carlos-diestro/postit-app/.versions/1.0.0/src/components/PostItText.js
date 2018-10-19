@@ -30,6 +30,11 @@ class PostItText extends Component {
     this.props.onRemoveItem(this.state.id)
   }
 
+  handleDragStart = event => {
+    // debugger
+    
+  }
+
   render() {
     let element
     let button
@@ -44,7 +49,7 @@ class PostItText extends Component {
 
     return (
       <div className="col-sm-12 col-md-6">
-        <div className="alert alert-warning">
+        <div className="alert alert-warning" draggable onDragStart={this.handleDragStart}>
           <div className="text-right">
             {button}
             <button type="button" onClick={this.handleRemoveItem}><i className="far fa-trash-alt"></i></button>

@@ -12,13 +12,15 @@ class App extends Component {
     user: {}
   }
 
-  handleSigInSubmit = (username, email, name, surname, password) => {
+  handleSigInSubmit = (name, email, password) => {
     // debugger
 
-    return logic.createUser(username, email, name, surname, password)
-      .then(() =>
-        this.setState({ signIn: false, logIn: true })
-      )
+    logic.signIn(name, email, password)
+
+    this.setState({
+      signIn: false,
+      logIn: true
+    })
   }
 
   handleSigInClick = () => {
@@ -28,13 +30,23 @@ class App extends Component {
     })
   }
 
-  handleLogInSubmit = (username, password) => {
+  handleLogInSubmit = (name, password) => {
     // debugger
 
-    return logic.authUser(username, password)
-      .then(id =>
-        this.setState({ logIn: false, isLoggedIn: true })
-      )
+    const user = logic.logIn(name, password)
+
+    if (user) {
+      this.setState({
+        logIn: false,
+        isLoggedIn: true,
+        user: {
+          id: user.id,
+          name: user.name
+        }
+      })
+    } else {
+      console.log('bad login')
+    }
   }
 
   handleLogInClick = () => {
