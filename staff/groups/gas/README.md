@@ -3,5 +3,5 @@
 ## Group components
 
 - Gianluca
-- Almudena
+- Almudena[almuitur](https://github.com/almuitur)
 - Sean (admin)
