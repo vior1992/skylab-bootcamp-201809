@@ -2,6 +2,6 @@
 
 ## Group components
 
-- Gianluca
+- Gianluca  [b-rage](https://github.com/b-rage)
 - Almudena
 - Sean (admin)
