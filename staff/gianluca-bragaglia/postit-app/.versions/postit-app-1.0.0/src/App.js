@@ -51,6 +51,7 @@ class App extends Component {
 
   handleLogoutClick = () => {
     this.setState({ userId: null })
+    sessionStorage.removeItem('userId')
   }
 
   render() {
