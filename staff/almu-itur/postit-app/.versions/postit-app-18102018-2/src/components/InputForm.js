@@ -32,4 +32,5 @@ class InputForm extends Component {
     }
 }
 
-export default InputForm
+// export default InputForm
+module.exports = InputForm

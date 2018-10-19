@@ -1,16 +1,10 @@
 // import data from './data'
 const data = require('./data')
 
-const { Postit, User } = data
+const { storage, Postit, User } = data
 
 const logic = {
     createPostit(text, userId) {
-        if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
-
-        if (!text.trim()) throw Error('text is empty or blank')
-
-        if (typeof userId !== 'number') throw new TypeError(`${userId} is not a number`)
-
         const postit = new Postit(text, userId)
 
         const postits = this._listPostits()
@@ -37,7 +31,7 @@ const logic = {
     },
 
     deletePostit(id) {
-        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
+        // TODO validate inputs
 
         let postits = this._listPostits()
 
@@ -47,11 +41,7 @@ const logic = {
     },
 
     updatePostit(id, text) {
-        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-
-        if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
-
-        if (!text.trim()) throw Error('text is empty or blank')
+        // TODO validate inputs
 
         let postits = this._listPostits()
 
@@ -81,30 +71,18 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        return fetch('https://skylabcoders.herokuapp.com/api/user', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify({ name, surname, username, password })
-        })
-            .then(res => res.json())
-            .then(res => {
-                debugger
-                
-                if (res.error) throw Error(res.error)
+        const user = new User(name, surname, username, password)
 
-                return res.data.id
-            })
+        const users = this.listUsers()
+
+        users.push(user)
+
+        this._persistUsers(users)
     },
 
     authenticate(username, password) {
-        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
-        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
-
-        if (!username.trim()) throw Error('username is empty or blank')
-        if (!password.trim()) throw Error('password is empty or blank')
-
+        // TODO validate inputs
+        
         const users = this.listUsers()
 
         const user = users.find(user => user.username === username && user.password === password)
