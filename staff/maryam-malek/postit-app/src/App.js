@@ -5,69 +5,74 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Error from './components/Error'
 import logic from './logic'
-import {storage} from './data'
+import { storage } from './data'
 
 
 
 class App extends Component {
-    state={landing: true, register:false, login:false, home: false, userId: this.getUserId(), error: null}
-    
+    state = { landing: true, register: false, login: false, home: false, userId: this.getUserId(), error: null }
+
     getUserId() {
         const userId = sessionStorage.getItem('userId')
 
         return userId ? parseInt(userId) : null
     }
-   
+
     handleRegisterSubmit = (name, surname, username, password) => {
-        try{
-            return logic.registerUser(name, surname, username, password)
-            .then(() => this.setState({register: false, login:true}))
-            .catch(() => this.setState({ error: err.message }))
-    
-        } catch(err){
+        try {
+            logic.registerUser(name, surname, username, password)
+                .then(() => this.setState({ register: false, login: true, error: null }))
+                .catch(() => this.setState({ error: err.message }))
+
+        } catch (err) {
             this.setState({ error: err.message })
         }
     }
 
     handleLoginClick = login => {
-        login && this.setState({login: true, landing: false})
+        login && this.setState({ login: true, landing: false })
     }
 
     handleRegisterClick = register => {
-        register && this.setState({register: true, landing: false})   
+        register && this.setState({ register: true, landing: false })
     }
 
     handleLoginSubmit = (username, password) => {
 
-        try{
-            let userId = logic.authenticate(username, password)
+        try {
+            logic.authenticate(username, password)
+                .then((userId) => {
+                    this.setState({ userId, login: false, home: true, error: null })
 
-            this.setState({userId, login: false, home: true})
+                    storage.setItem('userId', userId)
 
-            storage.setItem('userId', JSON.stringify(userId))
-        } catch(err){
+                })
+                .catch(err => this.setState({ error: err.message }))
+
+
+        } catch (err) {
             this.setState({ error: err.message })
         }
     }
 
     handleLogOutClick = () => {
-        this.setState({home: false, landing: true, userId: null})
+        this.setState({ home: false, landing: true, userId: null })
 
         sessionStorage.removeItem('userId')
     }
 
     handleLReturnClick = () => {
-        this.setState({login: false, register: false, landing: true})
+        this.setState({ login: false, register: false, landing: true })
     }
 
     render() {
         return <section>
-            {this.state.landing && !this.state.userId && <Landing onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick}/>}
+            {this.state.landing && !this.state.userId && <Landing onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} />}
             {this.state.register && <Register onReturnClick={this.handleReturnClick} onSubmit={this.handleRegisterSubmit} />}
-            {this.state.login && <Login onReturnClick={this.handleReturnClick} onSubmit={this.handleLoginSubmit}/>}
-            {!this.state.landing && !this.state.home && <button onClick={this.handleReturnClick}>Return</button>}            
-            {this.state.error && <Error message={this.state.error} />}            
-            {this.state.userId && <Home userId={this.state.userId}/>}
+            {this.state.login && <Login onReturnClick={this.handleReturnClick} onSubmit={this.handleLoginSubmit} />}
+            {!this.state.landing && !this.state.home && <button onClick={this.handleReturnClick}>Return</button>}
+            {this.state.error && <Error message={this.state.error} />}
+            {this.state.userId && <Home userId={this.state.userId} />}
             {this.state.userId && <button onClick={this.handleLogOutClick}>Log Out</button>}
         </section >
     }
