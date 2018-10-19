@@ -2,6 +2,6 @@
 
 ## Group components
 
-- Ismael
+- Ismael (admin)
 - Tomas
 - Joel
