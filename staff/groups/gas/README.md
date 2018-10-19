@@ -4,4 +4,4 @@
 
 - Gianluca
 - Almudena
-- Sean (admin)
+- Sean (admin) [seand52](https://github.com/seand52)
