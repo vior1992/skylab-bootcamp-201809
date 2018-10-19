@@ -3,5 +3,5 @@
 ## Group components
 
 - Paco
-- Lluís
+- Lluís [LluisBagur](https://github.com/LluisBagur)
 - Sergio (admin)
