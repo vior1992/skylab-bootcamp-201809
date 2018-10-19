@@ -88,7 +88,7 @@ const logic = {
             },
             body: JSON.stringify({ name, surname, username, password })
         })
-            .then(res => res.json())
+            .then(res => res.json())   //transforma en un objeto JSON
             .then(res => {
              
                 

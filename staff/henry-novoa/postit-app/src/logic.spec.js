@@ -68,6 +68,20 @@ describe('logic', () => {
 
 
             )
+
+            it('should fail on incorrect password', () => {
+               
+                return  logic.authenticate(username,'54354675434674')
+                .catch(err => {
+                    expect(err).not.to.be.undefined
+                    expect(err.message).to.equal(`username and/or password wrong`)
+                   
+                })
+                
+                         
+        })
+            
+
             
             
             // it('should fail on incorrect password', () => {
@@ -85,15 +99,19 @@ describe('logic', () => {
             //     })
              
             // })
-            it('should fail on incorrect password', () => {
-               
+            it('should fail on inexistent username', () => {
+
+                    const username = 'sdkljfhsdkfjsdhfds'
                     return  logic.authenticate(username,'54354675434674')
                     .catch(err => {
                         expect(err).not.to.be.undefined
-                        expect(err.message).to.equal(`username and/or password wrong`)
+                        expect(err.message).to.equal(`user with the username ${username} does not exist`)
                     })
+                    
                              
             })
+
+            
 
 
 
@@ -134,7 +152,7 @@ describe('logic', () => {
         })
     })
 
-    describe('users', () => {
-        // TODO  
+    describe('postits', () => {
+         
     })
 })
