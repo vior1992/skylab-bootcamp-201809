@@ -1,33 +1,6 @@
-import {User, storage, Postit} from '../data/datalayer'
-/*
-class Postit{
+import data from '../data/datalayer'
 
-    constructor(_text){
-
-        this.text = _text
-        this.id = Date.now()
-
-    }
-}
- const storage = sessionStorage
-
-
-if (!storage.getItem('users'))
-    storage.setItem('users', JSON.stringify([]))
-
-
- class User {
-     
-    constructor(name, surname, username, password, postits) {
-        this.name = name
-        this.surname = surname
-        this.username = username
-        this.password =password
-        this.id = Date.now()
-        this.postits = postits
-    }
-}
-*/
+const {User, storage, Postit} = data
 
  const logic = {
 
@@ -135,18 +108,6 @@ if (!storage.getItem('users'))
     getUserById(userId){
 
         return this.listUsers().find((user) => user === userId)
-    },
-
-    setLoggedUser(userId){
-
-        storage.setItem('userId', JSON.stringify(userId))
-
-    },
-
-    removeLoggedUser(){
-
-        storage.removeItem('userId')
-
     },
 
     isLogged(){

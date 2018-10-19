@@ -1,5 +1,6 @@
 import React from 'react'
 import logic from '../services/logic'
+import userService from '../services/userService'
 import LoginModalComponent from './loginmodal'
 import RegisterModalComponent from './registermodal'
 import ModalComponent from './modal'
@@ -10,7 +11,7 @@ import $ from 'jquery'
 
 class BoardComponent extends React.Component {
 
-    state = {errorLoginMessage:"", logged:false, actual_user:{} }
+    state = {modalTitle:"", modalMessage:"", token:{}, logged:false, actual_user:{}}
 
 
     componentWillMount() {
@@ -22,18 +23,99 @@ class BoardComponent extends React.Component {
 
     addPostIt = (message) => {
 
-        this.setState({actual_user:  logic.createPostit(this.state.actual_user.id, message)})
+        const {id, token} = this.state.token
+        userService.getUserInfo(id, token).then(data => {
+            
+        try {
+            userService.addPostIt(message, data)
+        } catch (error) {
+            this.setState({modalTitle:"Error", modalMessage: error.message});
+            $("#modal").modal("show");
+            return
+        }
+           
+        userService.updateUser(id, token, data).then(resp => {
+            
+            this.setState({modalTitle:"PostIt", modalMessage: "PostIt added...", actual_user: data});
+            $("#modal").modal("show");
+            
+
+        }).catch(error => {
+
+            this.setState({modalTitle:"Error Updating User", modalMessage: error.message});
+            $("#modal").modal("show");
+
+        });
+       
+       }).catch(error => {
+          
+           this.setState({modalTitle:"Error GetUserInfo", modalMessage: error.message});
+           $("#modal").modal("show");
+       })     
        
     }
 
-    deletePostIt = (id) => {
+    deletePostIt = (postit_id) => {
 
-         this.setState({actual_user:  logic.deletePostit(this.state.actual_user.id, id)})
+        const {id, token} = this.state.token
+        userService.getUserInfo(id, token).then(data => {
+        try {
+            userService.deletePostIt(postit_id, data)
+        } catch (error) {
+            this.setState({modalTitle:"Error", modalMessage: error.message});
+            $("#modal").modal("show");
+            return
+        }
+        userService.updateUser(id, token, data).then(resp => {
+        
+            this.setState({modalTitle:"PostIt", modalMessage: "PostIt deleted...", actual_user: data});
+            $("#modal").modal("show");
+            
+
+        }).catch(error => {
+
+            this.setState({modalTitle:"Error Updating User", modalMessage: error.message});
+            $("#modal").modal("show");
+
+        });
+       
+       }).catch(error => {
+          
+           this.setState({modalTitle:"Error GetUserInfo", modalMessage: error.message});
+           $("#modal").modal("show");
+       })     
     }
 
-    editPostIt = (id, text) => {
+    editPostIt = (postit_id, text) => {
 
-        this.setState({actual_user:  logic.updatePostit(this.state.actual_user.id, id, text)})
+        const {id, token} = this.state.token
+        userService.getUserInfo(id, token).then(data => {
+       
+        try {
+            userService.editPostIt(postit_id, data, text)
+        } catch (error) {
+            this.setState({modalTitle:"Error", modalMessage: error.message});
+            $("#modal").modal("show");
+            return
+        }
+        userService.updateUser(id, token, data).then(resp => {
+        
+            this.setState({modalTitle:"PostIt", modalMessage: "PostIt updated...", actual_user: data});
+            $("#modal").modal("show");
+            
+
+        }).catch(error => {
+
+            this.setState({modalTitle:"Error Updating User", modalMessage: error.message});
+            $("#modal").modal("show");
+
+        });
+       
+       }).catch(error => {
+          
+           this.setState({modalTitle:"Error GetUserInfo", modalMessage: error.message});
+           $("#modal").modal("show");
+       })     
     }
 
     showModalRegister = () => {
@@ -50,38 +132,57 @@ class BoardComponent extends React.Component {
 
     loginUser  = (username, password) => {
 
-        const user = logic.loginUser(username, password)
-        if (user){
-            this.setState({logged:true, actual_user: user})
-            logic.setLoggedUser(user.id)
+        userService.authenticateUser(username, password).then(res => {
+          
+             userService.getUserInfo(res.id, res.token).then(data => {
+                
+                this.setState({logged:true, token:res, actual_user: data});
+               
 
-        }else{
-            this.setState({errorLoginMessage: "The credentials entered are not correct..."})
-            $('#modal').modal('show')
-        }
+            }).catch(error => {
 
+                throw error
+
+            });
+        
+        }).catch(error => {
+           
+            this.setState({modalTitle:"Login", modalMessage: error.message});
+            $("#modal").modal("show");
+        })
+      
     }
 
     registerUser = (name, surname, username, password) => {
         
-        const user = logic.registerUser(name, surname, username, password)
-        this.setState({actual_user:user})
+        userService.registerUser(name, surname, username, password).then(res => {
+
+            this.setState({modalTitle:"Register User", modalMessage:"His account been created correctly..."});
+            $("#modal").modal("show");
+
+        }).catch(error => {
+
+            this.setState({modalTitle:"Register User", modalMessage: error.message});
+            $("#modal").modal("show");
+        })
+       
         
     }
     
     logoutUser = () => {
 
         this.setState({logged:false, actual_user:{}})
-        logic.removeLoggedUser();
+        
     }
 
     render() {
-        const {logged, errorLoginMessage, actual_user} = this.state
+
+        const {logged, modalTitle,modalMessage, actual_user} = this.state
 
         return <section className="board">
             <RegisterModalComponent key="registerModal" onRegisterUser = {this.registerUser}></RegisterModalComponent>
             <LoginModalComponent key="loginModal" onLoginUser = {this.loginUser}></LoginModalComponent>
-             <ModalComponent key="modal" title ="Error Login" message = {errorLoginMessage}/>
+             <ModalComponent key="modal" title = {modalTitle} message = {modalMessage}/>
             <section className="board__forms">
                 {logged && <form action="">
                     <input type="text" name="message" id="message" placeholder="Type your postit message..." />

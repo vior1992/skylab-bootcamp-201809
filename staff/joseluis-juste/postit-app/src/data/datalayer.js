@@ -7,14 +7,15 @@
 
     }
 }
- const storage = sessionStorage
+
+const storage = sessionStorage
 
 
 if (!storage.getItem('users'))
     storage.setItem('users', JSON.stringify([]))
 
 
- class User {
+class User {
      
     constructor(name, surname, username, password, postits) {
         this.name = name
@@ -27,8 +28,9 @@ if (!storage.getItem('users'))
 }
 
 export default {
-
+    
     Postit,
     storage,
     User
 }
+

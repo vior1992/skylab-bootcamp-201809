@@ -43,48 +43,99 @@ describe('logic', () => {
                 ).to.throw(TypeError, 'undefined is not a string')
             })
 
-            // TODO other cases
+            
         })
 
         describe('authenticate', () => {
+            
+            let name = "John"
+            let surname = "Doe"
+            let username = "username-"  + Math.random()    
+            let password = "123-" + Math.random()
+
+            //podemos ejecutar una funcion que devuelve una promise en el beforeEach si necesitamos que los it ejecuten una lógica previa.
+            //hay que poner el return dado que no estamos interceptando el then o e catch de la promise en **
             beforeEach(() => {
-                const user = { name: 'John', surname: 'Doe', username: 'jd', password: '123', id: Date.now() }
-              
+                
+                name = "John"
+                surname = "Doe"
+                username = "username-"  + Math.random()    
+                password = "123-" + Math.random()
+
+                //**
+                return logic.registerUser(name, surname, username, password)
+
             })
 
             it('should not succeed on incorrect data', () => {
                
-                    logic.authenticateUser("pedrito", "1234").catch(error => {
+                logic.authenticateUser(username, "adssadasd").catch(error => {
 
-                        expect(error.message).to.be.equal("username and/or password wrong")
-                    
-                    })
-                    
-               
+                    expect(error.message).to.be.equal("username and/or password wrong")
+                
+                })
+
             })
 
             it('should succeed on correct data', () => {
                
-                logic.authenticateUser("pedrito", "123").then(res => {
+                logic.authenticateUser(username, password).then(res => {
 
-                    expect(res).to.be.a("string")
+                    expect(res.id).to.be.a("string")
+                    expect(res.token).to.be.a("string")
                 
                 })
+
+            })
+
+            it('should fail on wrong username', () => {
+               
+                logic.authenticateUser("ffff", password).catch(error => {
+
+                    expect(error).not.to.be.undefined
+                    expect(error.message).to.be.equal(`user with username "ffff" does not exist`)
                 
-           
+                })
+
             })
 
-            false && it('should fail on undefined username', () => {
+            it('should fail on wrong password', () => {
+               
+                logic.authenticateUser(username, "rerer").catch(error => {
+
+                    expect(error).not.to.be.undefined
+                    expect(error.message).to.be.equal("username and/or password wrong")
+                
+                })
+
+            })
+
+            it('should fail on undefined username', () => {
                 expect(() =>
-                    logic.authenticate(undefined, '123')
-                ).to.throw(Error, 'wrong credentials')
+                    logic.authenticateUser(undefined, '123')
+                ).to.throw(Error, 'undefined is not a string')
             })
 
-            // TODO other cases
+            it('should fail on undefined username', () => {
+                expect(() =>
+                    logic.authenticateUser("jose", undefined)
+                ).to.throw(Error, 'undefined is not a string')
+            })
+
+            it('should fail on empty username', () => {
+                expect(() =>
+                    logic.authenticateUser("", '123')
+                ).to.throw(Error, 'username is empty')
+            })
+
+            it('should fail on empty password', () => {
+                expect(() =>
+                    logic.authenticateUser("jose", "")
+                ).to.throw(Error, 'password is empty')
+            })
+
+            
         })
     })
 
-    describe('users', () => {
-        // TODO  
-    })
 })
