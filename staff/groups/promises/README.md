@@ -3,5 +3,5 @@
 ## Group components
 
 - Ana
-- Aleix (admin)
+- Aleix (admin) [aleixcam](https://github.com/aleixcam)
 - Dani
