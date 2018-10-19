@@ -3,4 +3,4 @@
 ## Group components
 
 - Maryam (admin)
-- Carlos
+- Carlos [Diesttro](https://github.com/Diesttro)
