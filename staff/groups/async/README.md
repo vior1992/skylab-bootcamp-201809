@@ -2,6 +2,6 @@
 
 ## Group components
 
-- Ismael (admin)
+- Ismael (admin) [Arcoders](https://github/arcoders)
 - Tomas
 - Joel
