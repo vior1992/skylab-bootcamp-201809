@@ -1,27 +1,29 @@
 import React, { Component } from 'react'
+import Register from './components/Register'
+import Login from './components/Login'
+import Postits from './components/Postits'
+import Error from './components/Error'
 import logic from './logic'
-import Login from './components/login'
-import Register from './components/register'
-import Landing from './components/landing';
+
 
 class App extends Component {
-    state = { register: false, login: false, userId: this.getUserId(), error: null }
+    state = { register: false, login: false, userId: null/*this.getUserId()*/, error: null }
 
-    getUserId() {
-        const userId = sessionStorage.getItem('userId')
+    // getUserId() {
+    //     const userId = sessionStorage.getItem('userId')
 
-        return userId ? parseInt(userId) : null
-    }
+    //     return userId ? parseInt(userId) : null
+    // }
 
-    handleRegister = () => {
+    handleRegisterClick = () => {
         this.setState({ register: true })
     }
 
-    handleLogin = () => {
+    handleLoginClick = () => {
         this.setState({ login: true })
     }
 
-    handleRegisterClick = (name, surname, username, password) => {
+    handleRegister = (name, surname, username, password) => {
         try {
             logic.registerUser(name, surname, username, password)
                 .then(() => this.setState({ login: true, register: false, error: null }))
@@ -31,13 +33,14 @@ class App extends Component {
         }
     }
 
-    handleLoginClick = (username, password) => {
+    handleLogin = (username, password) => {
         try {
             logic.authenticate(username, password)
-                .then(userId => {
-                    this.setState({ userId, login: false, register: false, error: null })
-
-                    sessionStorage.setItem('userId', userId)
+                .then(({id, token}) => {
+                    sessionStorage.setItem('userId', id)
+                    sessionStorage.setItem('token', token)
+                    
+                    this.setState({ userId: id, token, login: false, register: false, error: null })
                 })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
@@ -52,15 +55,17 @@ class App extends Component {
     }
 
     render() {
-        const { register, login, userId } = this.state
-        return <div className="landingPage">
+        const { register, login, userId, token, error } = this.state
 
-            {!register && !login && !userId && <section><h1 className="title">Post-It App </h1><button onClick={this.handleRegister}>Register</button> or <button onClick={this.handleLogin}>Login</button></section>}
-            {register && <Register onRegisterClick={this.handleRegisterClick} />}
-            {login && <Login onLoginClick={this.handleLoginClick} />}
+        return <div>
+            {!register && !login && !userId && <section><button onClick={this.handleRegisterClick}>Register</button> or <button onClick={this.handleLoginClick}>Login</button></section>}
+            {register && <Register onRegister={this.handleRegister} />}
+            {login && <Login onLogin={this.handleLogin} />}
+            {error && <Error message={error} />}
             {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
-            {userId && <Landing userId={userId} />}
+            {userId && <Postits userId={userId} token={token} />}
         </div>
     }
 }
+
 export default App

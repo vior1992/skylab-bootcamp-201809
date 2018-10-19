@@ -25,9 +25,9 @@ class InputForm extends Component {
         console.log('InputForm', 'render')
 
         return <form onSubmit={this.handleSubmit}>
-            <textarea className="textarea" value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
+            <input value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
 
-            <button className="btn" type="submit"><i className="fas fa-plus"></i></button>
+            <button type="submit"><i className="fas fa-plus"></i></button>
         </form>
     }
 }

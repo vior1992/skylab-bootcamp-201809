@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 
 class Register extends Component {
-    state = { username: '', name: '', surname: '', password: '' }
+    state = { name: '', surname: '', username: '', password: '' }
 
-    handleNameChange = event => { //repetir para todos los campos
+    handleNameChange = event => {
         const name = event.target.value
 
         this.setState({ name })
     }
 
-    handleSurnameChange = event => { //repetir para todos los campos
+    handleSurnameChange = event => {
         const surname = event.target.value
 
         this.setState({ surname })
     }
 
-    handleUsernameChange = event => { //repetir para todos los campos
+    handleUsernameChange = event => {
         const username = event.target.value
 
         this.setState({ username })
     }
 
-    handlePasswordChange = event => { //repetir para todos los campos
+    handlePasswordChange = event => {
         const password = event.target.value
 
         this.setState({ password })
@@ -32,22 +32,17 @@ class Register extends Component {
 
         const { name, surname, username, password } = this.state
 
-        this.props.onRegisterClick(name, surname, username, password)
+        this.props.onRegister(name, surname, username, password)
     }
 
-    
-
-
     render() {
-
         return <form onSubmit={this.handleSubmit}>
-        <input className="inputDates" type="text" placeholder="Name..."  onChange={this.handleNameChange}/>
-        <input className="inputDates" type="text"  placeholder="Surname..."  onChange={this.handleSurnameChange}/>
-        <input className="inputDates" type="text" placeholder="Username..."  onChange={this.handleUsernameChange}/>
-        <input className="inputDates" type="password"  placeholder="password..."  onChange={this.handlePasswordChange}/>
-
-        <button type="submit">Register</button>
-    </form>
+            <input type="text" placeholder="Name" onChange={this.handleNameChange} />
+            <input type="text" placeholder="Surname" onChange={this.handleSurnameChange} />
+            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
+            <button type="submit">Register</button>
+        </form>
     }
 }
 

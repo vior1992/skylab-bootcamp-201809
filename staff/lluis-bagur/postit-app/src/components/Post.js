@@ -18,9 +18,9 @@ class Post extends Component {
         console.log('Post', '"render"')
 
         return <article className="post">
-            <textarea className="postit" defaultValue={this.state.text} onChange={this.handleChange} onBlur={this.handleBlur} />
+            <textarea defaultValue={this.state.text} onChange={this.handleChange} onBlur={this.handleBlur} />
 
-            <button onClick={() => this.props.onDeletePost(this.props.id)}><i className="fas fa-ban"></i></button>
+            <button onClick={() => this.props.onDeletePost(this.props.id)}><i className="far fa-trash-alt"></i></button>
         </article>
     }
 }
