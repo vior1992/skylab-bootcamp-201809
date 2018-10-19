@@ -7,49 +7,36 @@ class Postits extends Component {
     state = { postits: [] }
 
     componentDidMount() {
-        console.log('Postits', 'componentDidMount')
-
-        const { userId, token } = this.props
-
-        logic.listPostitsByUser(userId, token)
+        logic.listPostits()
             .then(postits => { this.setState({ postits }) })
 
         // TODO error handling!
     }
 
-    handleSubmit = text => {
-        const { userId, token } = this.props
-
-        logic.createPostit(text, userId, token)
-            .then(() => logic.listPostitsByUser(userId, token))
+    handleSubmit = text =>
+        logic.createPostit(text)
+            .then(() => logic.listPostits())
             .then(postits => this.setState({ postits }))
 
-        // TODO error handling!
-    }
+    // TODO error handling!
 
-    handleDeletePost = id => {
-        const { userId, token } = this.props
-
-        logic.deletePostit(id, userId, token)
-            .then(() => logic.listPostitsByUser(userId, token))
+    handleDeletePost = id =>
+        logic.deletePostit(id)
+            .then(() => logic.listPostits())
             .then(postits => this.setState({ postits }))
 
-        // TODO error handling!
-    }
+    // TODO error handling!
 
-    handleUpdatePost = (id, text) => {
-        const { userId, token } = this.props
 
-        logic.updatePostit(id, text, userId, token)
-            .then(() => logic.listPostitsByUser(userId, token))
+    handleUpdatePost = (id, text) =>
+        logic.updatePostit(id, text)
+            .then(() => logic.listPostits())
             .then(postits => this.setState({ postits }))
 
-        // TODO error handling!
-    }
+    // TODO error handling!
+
 
     render() {
-        console.log('Postits', 'render')
-
         return <div>
             <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
 

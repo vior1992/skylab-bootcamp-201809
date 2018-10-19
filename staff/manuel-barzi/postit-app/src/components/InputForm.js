@@ -4,16 +4,12 @@ class InputForm extends Component {
     state = { text: '' }
 
     handleInput = event => {
-        console.log('InputForm', 'handleInput (setState)')
-
         const text = event.target.value
 
         this.setState({ text })
     }
 
     handleSubmit = event => {
-        console.log('InputForm', 'handleSubmit (setState)')
-
         event.preventDefault()
 
         this.props.onSubmit(this.state.text)
@@ -22,8 +18,6 @@ class InputForm extends Component {
     }
 
     render() {
-        console.log('InputForm', 'render')
-
         return <form onSubmit={this.handleSubmit}>
             <input value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
 
