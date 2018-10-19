@@ -3,5 +3,5 @@
 ## Group components
 
 - Ismael (admin)
-- Tomas
+- Tomas [calvinoxsn] (https://github.com/calvinoxsn)
 - Joel
