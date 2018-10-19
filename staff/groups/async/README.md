@@ -3,5 +3,5 @@
 ## Group components
 
 - Ismael (admin) [Arcoders](https://github/arcoders)
-- Tomas
+- Tomas [calvinoxsn] (https://github.com/calvinoxsn)
 - Joel
