@@ -2,6 +2,6 @@
 
 ## Group components
 
-- Paco
+- Paco [Pacoscript](https://github.com/Pacoscript)
 - Lluís
 - Sergio (admin)
