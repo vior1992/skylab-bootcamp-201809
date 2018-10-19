@@ -2,5 +2,5 @@
 
 ## Group components
 
-- Maryam (admin)
+- Maryam (admin) [maryammdot](https://github.com/maryammdot)
 - Carlos
