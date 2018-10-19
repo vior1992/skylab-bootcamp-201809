@@ -16,6 +16,6 @@ class User {
     }
 }
 
-// export default { Postit, User }
+export default { Postit, User }
 
-module.exports = { Postit, User }
+// module.exports = { Postit, User }
