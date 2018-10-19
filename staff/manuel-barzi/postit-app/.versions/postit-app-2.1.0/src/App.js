@@ -9,7 +9,19 @@ import { Route, withRouter, Redirect } from 'react-router-dom'
 
 
 class App extends Component {
-    state = { error: null }
+    state = { userId: this.getUserId(), token: this.getToken(), error: null }
+
+    getUserId() {
+        const userId = sessionStorage.getItem('userId')
+
+        return userId ? userId : null
+    }
+
+    getToken() {
+        const token = sessionStorage.getItem('token')
+
+        return token ? token : null
+    }
 
     handleRegisterClick = () => this.props.history.push('/register')
 
@@ -29,8 +41,13 @@ class App extends Component {
 
     handleLogin = (username, password) => {
         try {
-            logic.login(username, password)
-                .then(() =>  this.props.history.push('/postits'))
+            logic.authenticate(username, password)
+                .then(({ id, token }) => {
+                    sessionStorage.setItem('userId', id)
+                    sessionStorage.setItem('token', token)
+
+                    this.setState({ userId: id, token, error: null }, () => this.props.history.push('/postits'))
+                })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
@@ -38,25 +55,25 @@ class App extends Component {
     }
 
     handleLogoutClick = () => {
-        logic.logout()
+        sessionStorage.removeItem('userId')
 
-        this.props.history.push('/')
+        this.setState({ userId: null, token: null }, () => this.props.history.push('/'))
     }
 
     handleGoBack = () => this.props.history.push('/')
 
     render() {
-        const { error } = this.state
+        const { userId, token, error } = this.state
 
         return <div>
-            <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/postits" />} />
-            <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/postits" />} />
-            <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/postits" />} />
+            <Route exact path="/" render={() => !userId ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/postits" />} />
+            <Route path="/register" render={() => !userId ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/postits" />} />
+            <Route path="/login" render={() => !userId ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/postits" />} />
             {error && <Error message={error} />}
 
-            <Route path="/postits" render={() => logic.loggedIn ? <div>
+            <Route path="/postits" render={() => userId ? <div>
                 <section><button onClick={this.handleLogoutClick}>Logout</button></section>
-                <Postits />
+                <Postits userId={userId} token={token} />
             </div> : <Redirect to="/" />} />
 
         </div>
