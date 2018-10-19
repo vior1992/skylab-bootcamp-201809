@@ -21,7 +21,7 @@ const logic = {
     },
 
     _listPostits() {
-        return JSON.parse(storage.getItem('postits'))
+        // return JSON.parse(storage.getItem('postits'))
     },
 
     listPostitsByUser(userId) {
@@ -33,7 +33,7 @@ const logic = {
     },
 
     _persistPostits(postits) {
-        storage.setItem('postits', JSON.stringify(postits))
+        // storage.setItem('postits', JSON.stringify(postits))
     },
 
     deletePostit(id) {
@@ -62,14 +62,6 @@ const logic = {
         this._persistPostits(postits)
     },
 
-    listUsers() {
-        return JSON.parse(storage.getItem('users'))
-    },
-
-    _persistUsers(users) {
-        storage.setItem('users', JSON.stringify(users))
-    },
-
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
         if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
@@ -90,8 +82,6 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                debugger
-                
                 if (res.error) throw Error(res.error)
 
                 return res.data.id
@@ -105,13 +95,19 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        const users = this.listUsers()
+        return fetch('https://skylabcoders.herokuapp.com/api/auth', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({ username, password })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
 
-        const user = users.find(user => user.username === username && user.password === password)
-
-        if (!user) throw Error('wrong credentials')
-
-        return user.id
+                return res.data.id
+            })
     }
 }
 
