@@ -1,81 +1,71 @@
 import React, { Component } from 'react'
-import Home from './components/Home'
-import Landing from './components/Landing'
 import Register from './components/Register'
 import Login from './components/Login'
+import Postits from './components/Postits'
 import Error from './components/Error'
 import logic from './logic'
-import { storage } from './data'
-
 
 
 class App extends Component {
-    state = { landing: true, register: false, login: false, home: false, userId: this.getUserId(), error: null }
+    state = { register: false, login: false, userId: null/*this.getUserId()*/, error: null }
 
-    getUserId() {
-        const userId = sessionStorage.getItem('userId')
+    // getUserId() {
+    //     const userId = sessionStorage.getItem('userId')
 
-        return userId ? parseInt(userId) : null
+    //     return userId ? parseInt(userId) : null
+    // }
+
+    handleRegisterClick = () => {
+        this.setState({ register: true })
     }
 
-    handleRegisterSubmit = (name, surname, username, password) => {
+    handleLoginClick = () => {
+        this.setState({ login: true })
+    }
+
+    handleRegister = (name, surname, username, password) => {
         try {
             logic.registerUser(name, surname, username, password)
-                .then(() => this.setState({ register: false, login: true, error: null }))
-                .catch(() => this.setState({ error: err.message }))
-
+                .then(() => this.setState({ login: true, register: false, error: null }))
+                .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
         }
     }
 
-    handleLoginClick = login => {
-        login && this.setState({ login: true, landing: false })
-    }
-
-    handleRegisterClick = register => {
-        register && this.setState({ register: true, landing: false })
-    }
-
-    handleLoginSubmit = (username, password) => {
-
+    handleLogin = (username, password) => {
         try {
             logic.authenticate(username, password)
-                .then((userId) => {
-                    this.setState({ userId, login: false, home: true, error: null })
-
-                    storage.setItem('userId', userId)
-
+                .then(({id, token}) => {
+                    sessionStorage.setItem('userId', id)
+                    sessionStorage.setItem('token', token)
+                    
+                    this.setState({ userId: id, token, login: false, register: false, error: null })
                 })
                 .catch(err => this.setState({ error: err.message }))
-
-
         } catch (err) {
             this.setState({ error: err.message })
         }
     }
 
-    handleLogOutClick = () => {
-        this.setState({ home: false, landing: true, userId: null })
+    handleLogoutClick = () => {
+        this.setState({ userId: null })
 
         sessionStorage.removeItem('userId')
     }
 
-    handleLReturnClick = () => {
-        this.setState({ login: false, register: false, landing: true })
-    }
-
     render() {
-        return <section>
-            {this.state.landing && !this.state.userId && <Landing onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} />}
-            {this.state.register && <Register onReturnClick={this.handleReturnClick} onSubmit={this.handleRegisterSubmit} />}
-            {this.state.login && <Login onReturnClick={this.handleReturnClick} onSubmit={this.handleLoginSubmit} />}
-            {!this.state.landing && !this.state.home && <button onClick={this.handleReturnClick}>Return</button>}
-            {this.state.error && <Error message={this.state.error} />}
-            {this.state.userId && <Home userId={this.state.userId} />}
-            {this.state.userId && <button onClick={this.handleLogOutClick}>Log Out</button>}
-        </section >
+        const { register, login, userId, token, error } = this.state
+
+        return <div>
+            {!register && !login && !userId && <section><button onClick={this.handleRegisterClick}>Register</button> or <button onClick={this.handleLoginClick}>Login</button></section>}
+            {register && <Register onRegister={this.handleRegister} />}
+            {login && <Login onLogin={this.handleLogin} />}
+            {error && <Error message={error} />}
+            {userId && <section><button onClick={this.handleLogoutClick}>Logout</button></section>}
+            {userId && <Postits userId={userId} token={token} />}
+        </div>
     }
 }
 
-export default App;
+export default App
