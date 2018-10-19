@@ -26,8 +26,8 @@ class App extends Component {
     handleRegister = (name, surname, username, password) => {
         try {
             logic.registerUser(name, surname, username, password)
-
-            this.setState({ login: true, register: false, error: null })
+                .then(() => this.setState({ login: true, register: false, error: null }))
+                .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
         }
@@ -35,11 +35,13 @@ class App extends Component {
 
     handleLogin = (username, password) => {
         try {
-            const userId = logic.authenticate(username, password)
+            logic.authenticate(username, password)
+                .then(userId => {
+                    this.setState({ userId, login: false, register: false, error: null })
 
-            this.setState({ userId, login: false, register: false, error: null })
-
-            sessionStorage.setItem('userId', userId)
+                    sessionStorage.setItem('userId', userId)
+                })
+                .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
         }
@@ -47,6 +49,8 @@ class App extends Component {
 
     handleLogoutClick = () => {
         this.setState({ userId: null })
+
+        sessionStorage.removeItem('userId')
     }
 
     render() {
