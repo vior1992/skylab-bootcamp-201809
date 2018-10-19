@@ -4,4 +4,4 @@
 
 - Jose Luís
 - Fede
-- Pep (admin)
+- Pep (admin) [pepdbm7](https://github.com/pepdbm7)
