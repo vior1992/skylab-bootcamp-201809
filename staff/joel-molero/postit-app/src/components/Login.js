@@ -20,13 +20,13 @@ class Login extends Component {
 
         const { username, password } = this.state
 
-        this.props.onLoginClick(username, password)
+        this.props.onLogin(username, password)
     }
 
     render() {
-        return <form>
-            <input type="text" placeholder="Username" onChange={this.handleUsernameChange}/>
-            <input type="text" placeholder="Password" onChange={this.handlePasswordChange}/>
+        return <form onSubmit={this.handleSubmit}>
+            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
             <button type="submit">Login</button>
         </form>
     }
