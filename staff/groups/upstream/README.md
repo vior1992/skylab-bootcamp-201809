@@ -3,5 +3,5 @@
 ## Group components
 
 - Jose Luís
-- Fede
+- Fede [fedeCucchiararo](https://github.com/fedeCucchiararo)
 - Pep (admin)
