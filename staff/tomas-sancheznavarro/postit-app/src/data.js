@@ -1,8 +1,7 @@
 class Postit {
-    constructor(text, userId) {
+    constructor(text) {
         this.text = text
         this.id = Date.now()
-        this.userId = userId
     }
 }
 
@@ -16,6 +15,6 @@ class User {
     }
 }
 
-// export default { Postit, User }
+export default { Postit, User }
 
-module.exports = { Postit, User }
+// module.exports = { Postit, User }
