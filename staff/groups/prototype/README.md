@@ -2,5 +2,5 @@
 
 ## Group components
 
-- Maryam
+- Maryam (admin)
 - Carlos

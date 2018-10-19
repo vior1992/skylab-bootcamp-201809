@@ -3,5 +3,5 @@
 ## Group components
 
 - Ana
-- Aleix
+- Aleix (admin)
 - Dani
