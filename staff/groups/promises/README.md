@@ -2,6 +2,6 @@
 
 ## Group components
 
-- Ana
+- Ana [anasanjuan](https://github.com/anasanjuan)
 - Aleix (admin)
 - Dani
