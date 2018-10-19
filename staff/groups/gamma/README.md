@@ -4,4 +4,4 @@
 
 - Paco
 - Lluís
-- Sergio (admin)
+- Sergio (admin) [Sergioluz90](htttps://github.com/sergioluz90)
