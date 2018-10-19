@@ -11,11 +11,7 @@ const { expect } = require('chai')
 // debug -> $ mocha debug src/logic.spec.js --timeout 10000
 
 describe('logic', () => {
-    beforeEach(() => {
-        // ?
-    })
-
-    describe('users', () => {
+    false && describe('users', () => {
         describe('register', () => {
             it('should succeed on correct data', () =>
                 logic.registerUser('John', 'Doe', `jd-${Math.random()}`, '123')
@@ -61,11 +57,14 @@ describe('logic', () => {
 
                 it('should succeed on correct data', () =>
                     logic.authenticate(username, password)
-                        .then(id => expect(id).to.be.a('string'))
+                        .then(({ id, token }) => {
+                            expect(id).to.be.a('string')
+                            expect(token).to.be.a('string')
+                        })
                 )
 
-                it('should fail on wrong username', () =>{
-                    username  = 'pepito'
+                it('should fail on wrong username', () => {
+                    username = `dummy-${Math.random()}`
 
                     return logic.authenticate(username, password)
                         .catch(err => {
@@ -74,8 +73,8 @@ describe('logic', () => {
                         })
                 })
 
-                it('should fail on wrong password', () =>{
-                    password  = 'pepito'
+                it('should fail on wrong password', () => {
+                    password = 'pepito'
 
                     return logic.authenticate(username, password)
                         .catch(err => {
@@ -113,7 +112,109 @@ describe('logic', () => {
         })
     })
 
-    describe('users', () => {
-        // TODO  
+    describe('postits', () => {
+        false && describe('create', () => {
+            describe('with existing user', () => {
+                let username, password, userId, _token, text
+
+                beforeEach(() => {
+                    const name = 'John', surname = 'Doe'
+
+                    username = `jd-${Math.random()}`
+                    password = `123-${Math.random()}`
+
+                    text = `hello ${Math.random()}`
+
+                    return logic.registerUser(name, surname, username, password)
+                        .then(() => logic.authenticate(username, password))
+                        .then(({ id, token }) => {
+                            userId = id
+                            _token = token
+                        })
+                })
+
+                it('should succeed on correct data', () =>
+                    logic.createPostit(text, userId, _token)
+                        .then(() => expect(true).to.be.true)
+                )
+            })
+        })
+
+        false && describe('list', () => {
+            describe('with existing user', () => {
+                let username, password, userId, _token, text
+
+                beforeEach(() => {
+                    const name = 'John', surname = 'Doe'
+
+                    username = `jd-${Math.random()}`
+                    password = `123-${Math.random()}`
+
+                    text = `hello ${Math.random()}`
+
+                    return logic.registerUser(name, surname, username, password)
+                        .then(() => logic.authenticate(username, password))
+                        .then(({ id, token }) => {
+                            userId = id
+                            _token = token
+                        })
+                })
+
+                describe('with existing postit', () => {
+                    beforeEach(() => logic.createPostit(text, userId, _token))
+
+                    it('should return postits', () =>
+                        logic.listPostitsByUser(userId, _token)
+                            .then(postits => {
+                                expect(postits).not.to.be.undefined
+                                expect(postits.length).to.equal(1)
+                            })
+                    )
+                })
+
+                it('should return no postits', () =>
+                    logic.listPostitsByUser(userId, _token)
+                        .then(postits => {
+                            expect(postits).not.to.be.undefined
+                            expect(postits.length).to.equal(0)
+                        })
+                )
+            })
+        })
+
+        describe('delete', () => {
+            describe('with existing user', () => {
+                let username, password, userId, _token, text, postitId
+
+                beforeEach(() => {
+                    const name = 'John', surname = 'Doe'
+
+                    username = `jd-${Math.random()}`
+                    password = `123-${Math.random()}`
+
+                    text = `hello ${Math.random()}`
+
+                    return logic.registerUser(name, surname, username, password)
+                        .then(() => logic.authenticate(username, password))
+                        .then(({ id, token }) => {
+                            userId = id
+                            _token = token
+                        })
+                })
+
+                describe('with existing postit', () => {
+                    beforeEach(() => 
+                        logic.createPostit(text, userId, _token)
+                            .then(() => logic.listPostitsByUser(userId, _token))
+                            .then(postits => postitId = postits[0].id)
+                    )
+
+                    it('should succeed', () =>
+                        logic.deletePostit(postitId, userId, _token)
+                            .then(() => expect(true).to.be.true)
+                    )
+                })
+            })
+        })
     })
 })
