@@ -4,4 +4,4 @@
 
 - Ana
 - Aleix (admin)
-- Dani
+- Dani [vior1992](https://github.com/vior1992)
