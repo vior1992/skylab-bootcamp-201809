@@ -1,16 +1,22 @@
-import data from './data'
-//const data = require('./data')
+// import data from './data'
+const data = require('./data')
+
+
 const {storage, Postit, User} = data
 
 const logic = {
     createPostit(text, userID) {
+        if (typeof text !=='string') throw TypeError(`${text} is not a string`)
+
+        if (!text.trim()) throw Error('text is empty or blank')
+
+        if (typeof userID !=='number') throw new TypeError(`${userID} is not a number`)
         const postit = new Postit(text, userID)
 
-        const postits = JSON.parse(storage.getItem('postits'))
+        const postits = this._listPostits()
 
         postits.push(postit)
 
-        storage.setItem('postits', JSON.stringify(postits))
         this.persistPostits(postits)
     },
 
@@ -33,6 +39,8 @@ const logic = {
     },
 
     deletePostit(id) {
+        if (typeof id !=='number') throw new TypeError(`${id} is not a number`)
+
         let postits = JSON.parse(storage.getItem('postits'))
 
         postits = postits.filter(postit => postit.id !== id)
@@ -42,6 +50,12 @@ const logic = {
     },
 
     updatePost(id, text, userID) {
+        if (typeof id!==`number`) throw new TypeError(`${id} is not a number`)
+
+        if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
+
+        if (typeof userID !== 'string') throw TypeError(`${text} is not a string`)
+
         const newPostit = new Postit(text, userID)
 
         const postits = JSON.parse(storage.getItem('postits'))
@@ -54,25 +68,46 @@ const logic = {
         
     },
 
-    completePost(id) {
-        const postits = JSON.parse(storage.getItem('postits'))
-        const index = postits.findIndex( el => el.id===id)
+    // completePost(id) {
+    //     if (typeof id !=='number') throw new TypeError(`${id} is not a number`)
 
-        postits[index].complete=true
+    //     const postits = JSON.parse(storage.getItem('postits'))
 
-        this.persistPostits(postits)
-    },
+    //     const index = postits.findIndex( el => el.id===id)
+
+    //     postits[index].complete=true
+
+    //     this.persistPostits(postits)
+    // },
 
     createUser(name, surname, username, password) {
-        const user = new User(name, surname, username, password)
+        if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
+        if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
 
-        const users = this.listUsers()
+        if (!name.trim()) throw Error('name is empty or blank')
+        if (!surname.trim()) throw Error('surname is empty or blank')
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
 
-        users.push(user)
+        return fetch('https://skylabcoders.herokuapp.com/api/user', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({ name, surname, username, password })
+        })
+            .then(res => res.json())
+            .then(res => {
+                debugger
+                
+                if (res.error) throw Error(res.error)
 
-        this.persistUsers(users)
-        
-    },
+                return res.data.id
+            })
+        },
+
 
     persistUsers(users) {
         storage.setItem('users', JSON.stringify(users))
@@ -101,5 +136,5 @@ const logic = {
 
 }
 
-export default logic
-// module.exports = logic
+// export default logic
+module.exports = logic
