@@ -4,4 +4,4 @@
 
 - Gianluca
 - Almudena
-- Sean
+- Sean (admin)
