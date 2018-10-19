@@ -15,6 +15,8 @@ class Post extends Component {
     }
 
     render() {
+        console.log('Post', '"render"')
+
         return <article className="post">
             <textarea defaultValue={this.state.text} onChange={this.handleChange} onBlur={this.handleBlur} />
 
