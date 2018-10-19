@@ -3,4 +3,4 @@
 ## Group components
 
 - Judith (admin)
-- Henry
+- Henry [HenryNovoa] (https://github.com/HenryNovoa)
