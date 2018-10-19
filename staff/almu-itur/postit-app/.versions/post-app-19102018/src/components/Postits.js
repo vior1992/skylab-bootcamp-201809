@@ -4,31 +4,22 @@ import InputForm from './InputForm'
 import Post from './Post'
 
 class Postits extends Component {
-    state = { postits: [] }
-
-    componentDidMount() {
-        console.log('Postits', 'componentDidMount')
-
-        const { userId, token } = this.props
-
-        logic.listPostitsByUser(userId, token)
-            .then(postits => { this.setState({ postits }) })
-    }
+    state = { postits: logic.listPostitsByUser(this.props.userId) }
 
     handleSubmit = text => {
-        const { userId, token } = this.props
+        console.log('App', 'handleSubmit (setState)')
 
-        logic.createPostit(text, userId, token)
-            .then(() => logic.listPostitsByUser(userId, token))
-            .then(postits => this.setState({ postits }))
+        const { userId } = this.props
+
+        logic.createPostit(text, userId)
+
+        this.setState({ postits: logic.listPostitsByUser(userId) })
     }
 
     handleDeletePost = id => {
-        const { userId, token } = this.props
+        logic.deletePostit(id)
 
-        logic.deletePostit(id, userId, token)
-            .then(() => logic.listPostitsByUser(userId, token))
-            .then(postits => this.setState({ postits }))
+        this.setState({ postits: logic.listPostitsByUser(this.props.userId) })
     }
 
     handleUpdatePost = (id, text) => {
@@ -38,7 +29,7 @@ class Postits extends Component {
     }
 
     render() {
-        console.log('Postits', 'render')
+        console.log('App', 'render')
 
         return <div>
             <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
