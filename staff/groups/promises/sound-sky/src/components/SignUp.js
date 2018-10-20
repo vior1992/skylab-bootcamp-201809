@@ -53,7 +53,7 @@ class SignUp extends Component {
        
         if (password === repPassword) {
            
-            this.props.onFormSubmit(name, surname, username, email, password)
+            this.props.onSigUpSubmit(name, surname, username, email, password)
             this.setState({ wrongRepPas: false})
             
         } else {  //TODO shall we put this in the logic??
