@@ -4,4 +4,4 @@
 
 - Ismael (admin)
 - Tomas
-- Joel
+- Joel [joel-molero](https://github.com/joel-molero)
