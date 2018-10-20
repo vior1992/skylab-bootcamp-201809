@@ -1,6 +1,7 @@
 import data from "./data"
 
 const { User } = data
+
 const logic = {
 
     _user: "",
@@ -25,8 +26,9 @@ const logic = {
         })
     },
 
+    loginUser(username, password){
 
-
+    }
 }
 
 export default logic
