@@ -41,18 +41,18 @@ class App extends Component {
 	}
 
 	handleLogInButton = () => {
-		this.setState( () => this.props.history.push('/login'))
+		this.setState({error: null},  () => this.props.history.push('/login'))
 	} 
 
 	handleSignUpButton = () => {
-		this.setState( () => this.props.history.push('/signup'))
+		this.setState({error: null}, () => this.props.history.push('/signup'))
 
 	}
 
 	handleOnLogOut = () => {
 		logic.userLogOut()
 		
-		this.setState( () => this.props.history.push('/'))
+		this.setState({error: null}, () => this.props.history.push('/'))
 	}
 
     render() {
@@ -63,13 +63,12 @@ class App extends Component {
                 <header className="App-header">
                     <h1>Hola SoundSky</h1>
 					<Route exact path='/' render={() => !logic.loggedIn() ? <Landing onSignUpSubmit={this.handleSignUpSubmit} onClickLogInButton={this.handleLogInButton} onClickSignUpButton={this.handleSignUpButton}/> : <Redirect to='/main'/>}/>
-
-
-				<div>
                     <Route path='/signup' render={() => !logic.loggedIn() ? <SignUp onSignUpSubmit={this.handleSignUpSubmit}/>: <Redirect to='/main'/>}/>
 					<Route path='/login' render={() => !logic.loggedIn() ? <LogIn onLogInSubmit={this.handleLogInSubmit}/>: <Redirect to='/main'/>}/>
+					{this.state.error && <p>{this.state.error}</p>}
+
 					<Route path='/main' render={() => logic.loggedIn() ? <Main onLogOut={this.handleOnLogOut} />: <Redirect to='/login'/>}/>
-				</div>
+				
 				</header>
             </div>
         );
