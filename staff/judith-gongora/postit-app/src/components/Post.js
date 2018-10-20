@@ -1,7 +1,6 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react'
 
-class Post extends Component{
-
+class Post extends Component {
     state = { text: this.props.text }
 
 
@@ -12,24 +11,16 @@ class Post extends Component{
     }
 
     handleBlur = () => {
-        this.props.onUpdatePost(this.props.id, this.props.index, this.state.text)
+        this.props.onUpdatePost(this.props.id, this.state.text)
     }
 
-    handleEdit= () => {
-        this.props.onEdit(this.props.id)
-    }
+    render() {
+        return <article className="post">
+            <textarea defaultValue={this.state.text} onChange={this.handleChange} onBlur={this.handleBlur} />
 
-    handleDelete= () => {
-        this.props.onDelete(this.props.id)
+            <button onClick={() => this.props.onDeletePost(this.props.id)}><i className="far fa-trash-alt"></i></button>
+        </article>
     }
-
-    render(){
-            return <article onClick={this.handleEdit} onBlur={this.handleBlur} className="post">
-                        <textarea onChange={this.handleChange} id={this.props.id} className="transparent" defaultValue={this.props.text}></textarea> 
-                        <button onClick={this.handleDelete}>x</button>
-                    </article>
-            }
 }
 
-module.exports = Post
-// export default Post
+export default Post

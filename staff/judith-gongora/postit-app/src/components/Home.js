@@ -1,63 +1,77 @@
 import React, { Component } from 'react'
 import logic from '../logic'
-import InputForm from './InputForm'
 import Post from './Post'
 
 class Home extends Component {
-    state = { postits: []}
+    state = { posts: [], img: null }
 
-    componentDidMount() {
-        console.log('Postits', 'componentDidMount')
+    // componentDidMount() {
+    //     // logic.listAllPosts()
+    //     //     .then(posts => { this.setState({ posts }) })
+    //         // Request for images tagged xmas       
+    //         axios.get('https://res.cloudinary.com/christekh/image/list/xmas.json')
+    //             .then(res => {
+    //                 console.log(res.data.resources);
+    //                 this.setState({posts: res.data.resources});
+    //             });
+    //     // TODO error handling!
+    // }
 
-        const { userId, token } = this.props
+    uploadWidget() {
 
-        logic.listPostits(userId, token)
-            .then(postits => { this.setState({ postits }) })
-    }
-
-    handleClick = (text) => {
-        const { userId, token } = this.props
-
-        logic.createPostit(text, userId, token)
-            .then(() => logic.listPostits(userId, token))
-            .then(postits => this.setState({ postits }))
-        
-    }
-
-    handleDelete = id => {
-
-        const { userId, token } = this.props
-
-        logic.deletePostit(id, userId, token)
-            .then(() => logic.listPostits(userId, token))
-            .then(postits => this.setState({ postits }))
-        
-    }
-
-    handleUpdatePost = (id, index , text) => {
-        const { userId, token} = this.props
-
-        logic.UpdatePostit(userId, token, id, index, text)
-            .then(() => logic.listPostits(userId, token))
-            .then(postits => this.setState({ postits }))
+        window.cloudinary.openUploadWidget({ cloud_name: 'skylabcoders', upload_preset: 'wqmshx2h', tags:['pintegram']},
+            function(error, result) {
             
+                if (result.event === "success") {
+                    console.log(result.info.url);
+                    // result.info.url
+                    
+    
+                }
+            })
+            console.log()
     }
 
-    handleEdit = id => {
-        logic.editPost(id)
-    }
-    
+    handleSubmit = text =>
+        logic.createPost(text)
+            .then(() => logic.listPosts())
+            .then(posts => this.setState({ posts }))
+
+    // TODO error handling!
+
+    handleDeletePost = id =>
+        logic.deletePost(id)
+            .then(() => logic.listPosts())
+            .then(posts => this.setState({ posts }))
+
+    // TODO error handling!
+
+
+    handleUpdatePost = (id, text) =>
+        logic.updatePost(id, text)
+            .then(() => logic.listPosts())
+            .then(posts => this.setState({ posts }))
+
+    // TODO error handling!
+
 
     render() {
-        return <div>
+        return <div className="div-home">
+            <h1>Pintegram App <i className="fas fa-sticky-note"></i></h1>
 
-        <InputForm onClick={this.handleClick}/>
+            <div className="upload">
+                <img src={this.state.img} ></img>
+                <textarea />
+                <button onClick={this.uploadWidget} className="upload-button">
+                    Add Image
+                </button>
+            </div>
 
-        <section className="section-articles" >  
-            {this.state.postits.map((postit, index) => <Post onDelete = {this.handleDelete} key={postit.id} index ={index} text={postit.text} id={postit.id} onEdit = {this.handleEdit} onUpdatePost = {this.handleUpdatePost}/>)}
-        </section>
-    </div>
+            {/* <section>
+                {this.state.posts.map(post => <Post key={post.id} text={post.text} id={post.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+            </section> */}
+        </div>
     }
-} 
-module.exports = Home
-// export default Home;
+}
+
+export default Home
