@@ -1,35 +1,39 @@
-import React, { Component } from 'react'
+import React,{ Component } from 'react'
 
 class InputForm extends Component {
-    state = { text: '' }
+    constructor(props) {
+        super(props)
 
-    handleInput = event => {
-        console.log('InputForm', 'handleInput (setState)')
+        this.state = {
+            text: ''
+        }
 
-        const text = event.target.value
+        this.handleInput = this.handleInput.bind(this)
 
-        this.setState({ text })
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleSubmit = event => {
-        console.log('InputForm', 'handleSubmit (setState)')
+    handleInput(event) {
+        this.setState({
+            text : event.target.value
+        })
+    }
 
+    handleSubmit(event) {
         event.preventDefault()
 
         this.props.onSubmit(this.state.text)
 
-        this.setState({ text: '' })
+        this.setState({text: ''})
     }
 
     render() {
-        console.log('InputForm', 'render')
-
-        return <form onSubmit={this.handleSubmit}>
-            <input value={this.state.text} placeholder="Write text here..." onChange={this.handleInput} />
-
-            <button type="submit"><i className="fas fa-plus"></i></button>
+        return <form className="postit-form-group" onSubmit={this.handleSubmit}>
+        <textarea className="postit-form form-control" cols="30"  value={this.state.text}  onChange={this.handleInput} placeholder='' type="text"/>
+        <button className="postit-submit-btn btn btn-primary" type="submit">Submit</button>
         </form>
     }
+
 }
 
 export default InputForm

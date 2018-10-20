@@ -1,34 +1,49 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 class Login extends Component {
-    state = { username: '', password: '' }
+    state = {
+        username: '',
+        password: '',
 
-    handleUsernameChange = event => {
+    }
+
+    handleUsername = event => {
         const username = event.target.value
 
-        this.setState({ username })
+        this.setState({username})
     }
 
-    handlePasswordChange = event => {
+    handlePassword = event => {
         const password = event.target.value
 
-        this.setState({ password })
+        this.setState({password})
     }
 
-    handleSubmit = event => {
+    passwordValidation = (event) => {
         event.preventDefault()
 
-        const { username, password } = this.state
+        this.props.onLoginClick(this.state.username, this.state.password)
 
-        this.props.onLogin(username, password)
+    
     }
 
-    render() {
-        return <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-            <button type="submit">Login</button>
-        </form>
+    render() {        
+        return <section className="login">
+        <h1>Login</h1>
+        
+        <form className="form-group" onSubmit={this.passwordValidation}>
+             <div className="form-group">
+            <input className="form-control" required onChange={this.handleUsername} value={this.state.username} type="text" placeholder="username" />
+            </div>
+            <div className="form-group">
+            <input className="form-control" onChange={this.handlePassword} value={this.state.password} type="password" placeholder="password" />
+            </div>
+            <div className="form-group">
+            <button className="btn-register btn btn-primary">Submit</button>
+            </div>
+        </form>        
+        <button className="btn-register btn btn-link" onClick={this.props.backHandle}>Back to home page</button>    
+        </section>       
     }
 }
 
