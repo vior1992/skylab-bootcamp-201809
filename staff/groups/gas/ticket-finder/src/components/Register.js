@@ -38,7 +38,7 @@ class Register extends Component {
     render() {
         return <form onSubmit={this.handleSubmit}>
             <input type="text" placeholder="Name" onChange={this.handleNameChange} />
-            <input type="email" placeholder="Email" onChange={this.handleEmailChange} />
+            <input type="text" placeholder="Email" onChange={this.handleEmailChange} />
             <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
             <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
             <button type="submit">Register</button> <a href="#" onClick={this.props.onGoBack}>back</a>

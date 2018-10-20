@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Register from './components/Register'
 import Login from './components/Login'
-// import Error from './components/Error'
+import Error from './components/Error'
 import Landing from './components/Landing'
 import logic from './logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
@@ -46,6 +46,9 @@ handleLogin = (username, password) => {
 // handleGoBack = () => this.props.history.push('/')
 
   render() {
+    
+    const { error } = this.state
+
     return <div>
     <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/home" />} />
     <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
