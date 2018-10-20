@@ -3,6 +3,7 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Error from './components/Error'
 import Landing from './components/Landing'
+import Home from './components/Home'
 import logic from './logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
@@ -55,6 +56,7 @@ handleLogin = (username, password) => {
     <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     {error && <Error message={error} />}
     {/* <section><button onClick={this.handleLogoutClick}>Logout</button></section> */}
+    <Route path="/home" render={() => logic.loggedIn ? <Home /> : <Redirect to="/" />} />
     </div>
   }
 }

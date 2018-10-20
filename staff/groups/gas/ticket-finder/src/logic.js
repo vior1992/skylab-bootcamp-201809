@@ -95,20 +95,29 @@ const logic = {
     //         })
     // },
 
-    // listPostits() {
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Authorization': `Bearer ${this._token}`
-    //         }
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             if (res.error) throw Error(res.error)
+    showEvents() {
+        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=ES&apikey=ELXA0H0YPzUTFYrjeH4AG5g6y4eWTVSO&size=200`, {
+            method: 'GET',
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
 
-    //             return this._events = res.data.postits || []
-    //         })
-    // },
+                return this._events = res._embedded.events || []
+            })
+    },
+
+    searchEvents(query) {
+        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
+            method: 'GET',
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return this._events = res._embedded.events || []
+            })
+    },
 
     // deletePostit(id) {
     //     if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
