@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import {FrontSide} from './frontside/frontside'
-import {BackSide} from './frontside/frontside'
-import {BottomSide} from './frontside/frontside'
-import {TopSide} from './frontside/frontside'
-import {RightSide} from './frontside/frontside'
-import {LeftSide} from './frontside/frontside'
+import FrontSide from './frontside/frontside'
+import BackSide from './backside/backside'
+import BottomSide from './bottomside/bottomside'
+import TopSide from './topside/topside'
+import RightSide from './rightside/rightside'
+import LeftSide from './leftside/leftside'
 
-export class Cube extends Component{
+export default class Cube extends Component{
 
     state = {}
 

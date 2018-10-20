@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import { Cube } from '../cube/cube';
+import  Cube  from '../cube/cube';
 
 
-export class App extends Component{
+export default class App extends Component{
 
     state = {}
 
     render(){
-        <Cube></Cube>
+       return <Cube></Cube>
     }
 }

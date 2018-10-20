@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 
-export class LeftSide extends Comment{
+export default class LeftSide extends Component{
 
     render() {
         return (

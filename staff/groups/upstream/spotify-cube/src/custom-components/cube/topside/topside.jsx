@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 
 
-export class TopSide extends Comment{
+export default class TopSide extends Component{
 
     state = {}
 
     render(){
         return (
-
-           <h1>TOP</h1>
+            <section className="top">
+                <h1>TOP</h1>
+           </section>
         );
     }
 }

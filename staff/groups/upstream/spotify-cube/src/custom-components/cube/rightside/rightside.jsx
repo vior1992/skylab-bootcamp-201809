@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 
-export class RightSide extends Comment{
+export default class RightSide extends Component{
 
     state = {}
 
