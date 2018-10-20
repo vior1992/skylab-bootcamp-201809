@@ -4,7 +4,7 @@ const logic = {
 
 
     registerUser(name, surname, username, email, password) {
-
+        
         //TODO validations
 
         return fetch('https://skylabcoders.herokuapp.com/api/user', {
@@ -42,8 +42,6 @@ const logic = {
             })
         })
 
-
-
     },
 
     LogInUser(username, password) {
@@ -78,9 +76,11 @@ const logic = {
 
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('userId')
-    }
+    },
 
-    
+    loggedIn() {
+        return !!this._userId
+    }
     
 }
 

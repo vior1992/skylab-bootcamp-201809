@@ -4,18 +4,21 @@ import SignUp from './components/SignUp'
 import logic from './logic'
 import Main from './components/Main'
 import LogIn from './components/LogIn'
+import { Route, withRouter, Redirect } from 'react-router-dom'
+import Landing from './components/Landing';
 
 class App extends Component {
-    state = {  error: null , buttons: true, signUp: true, logIn: false, main: false, userId: ''}
+    state = {  error: null }
 
     handleSignUpSubmit = (name, surname, username, email, password) => {
 		try {
 			logic.registerUser(name, surname, username, email, password)
 				.then(() => {
-					this.setState({ signUp: false, main: true})
+					this.setState({ error: null}, () => this.props.history.push('/main'))
 
 				})
 				.catch(err => this.setState({ error: err.message }))
+		
 		} catch (err) { 
 			this.setState({error: err.message })
 
@@ -28,7 +31,7 @@ class App extends Component {
 		try {
 			logic.LogInUser(username, password)
 				.then(() => {
-					this.setState({signUp: false, logIn: false, main: true})
+					this.setState({ error: null }, () => this.props.history.push('/main'))
 				})
 				.catch(err => this.setState({ error: err.message}))
 
@@ -37,38 +40,35 @@ class App extends Component {
 		}
 	}
 
-	onClickLogInButton = () => {
-		this.setState({logIn: true, signUp: false, main: false, buttons: false})
+	handleLogInButton = () => {
+		this.setState( () => this.props.history.push('/login'))
 	} 
 
-	onClickSignUpButton = () => {
-		this.setState({logIn: false, signUp: true, main: false, buttons: false})
+	handleSignUpButton = () => {
+		this.setState( () => this.props.history.push('/signup'))
 
 	}
 
 	handleOnLogOut = () => {
 		logic.userLogOut()
 		
-		this.setState({main: false, signUp: true, buttons: true})
+		this.setState( () => this.props.history.push('/'))
 	}
 
     render() {
 
-		const { signUp, logIn, main, buttons } = this.state
         return (
 
             <div className="App">
                 <header className="App-header">
                     <h1>Hola SoundSky</h1>
-					{buttons && !logIn && !main &&
-					<div>
-					<button onClick={this.onClickLogInButton}>Log In</button> or <button onClick={this.onClickSignUpButton}>Sign Up</button>
-					</div>}
+					<Route exact path='/' render={() => !logic.loggedIn() ? <Landing onSignUpSubmit={this.handleSignUpSubmit} onClickLogInButton={this.handleLogInButton} onClickSignUpButton={this.handleSignUpButton}/> : <Redirect to='/main'/>}/>
+
 
 				<div>
-                    {signUp && <SignUp onSigUpSubmit={this.handleSignUpSubmit}/>}
-					{logIn && <LogIn onLogInSubmit={this.handleLogInSubmit}/>}
-					{main && <Main onLogOut={this.handleOnLogOut} />}
+                    <Route path='/signup' render={() => !logic.loggedIn() ? <SignUp onSignUpSubmit={this.handleSignUpSubmit}/>: <Redirect to='/main'/>}/>
+					<Route path='/login' render={() => !logic.loggedIn() ? <LogIn onLogInSubmit={this.handleLogInSubmit}/>: <Redirect to='/main'/>}/>
+					<Route path='/main' render={() => logic.loggedIn() ? <Main onLogOut={this.handleOnLogOut} />: <Redirect to='/login'/>}/>
 				</div>
 				</header>
             </div>
@@ -76,4 +76,4 @@ class App extends Component {
       }
 }
 
-export default App;
+export default withRouter(App);
