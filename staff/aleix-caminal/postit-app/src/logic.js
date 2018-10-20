@@ -5,6 +5,7 @@ const LOGIC = {
     users: new UsersTable(),
     boards: new BoardsTable(),
     posts: new PostsTable(),
+    auth: JSON.parse(sessionStorage.getItem('auth')) || {},
 
     addBoard(form, user_id) {
         if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument')
@@ -74,16 +75,17 @@ const LOGIC = {
         })
     },
 
-    register(form) {
+    register(form, callback) {
         if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument')
 
         if (this.validate(form, ['name', 'username', 'password', 'confirm_password'])) {
             if (form.querySelector('input[name="password"]').value === form.querySelector('input[name="confirm_password"]').value) {
-                return this.users.newEntity({
+                this.users.newEntity({
                     name: form.querySelector('input[name="name"]').value,
                     username: form.querySelector('input[name="username"]').value,
                     password: sha256(form.querySelector('input[name="password"]').value)
-                }).save();
+                }).save()
+                callback()
             } else {
                 this.error('Passwords do not match');
                 form.querySelector('input[name="password"]').classList.add('is-invalid')
@@ -94,14 +96,15 @@ const LOGIC = {
         }
     },
 
-    login(form) {
+    login(form, callback) {
         if (typeof form !== 'object' || form.tagName !== 'FORM') throw Error('no form passed as argument')
 
         if (this.validate(form, ['username', 'password'])) {
             let auth = this.findAuth(form.querySelector('input[name="username"]').value, sha256(form.querySelector('input[name="password"]').value))
             if (auth) {
                 sessionStorage.setItem('auth', JSON.stringify(auth))
-                return auth
+                this.auth = auth
+                callback(auth)
             } else {
                 this.error('Username or password are invalid')
                 form.querySelector('input[name="username"]').classList.add('is-invalid')
@@ -112,9 +115,10 @@ const LOGIC = {
         }
     },
 
-    logout() {
+    logout(callback) {
         sessionStorage.removeItem('auth')
-        return {}
+        this.auth = {}
+        callback()
     },
 
     findAuth(username, password) {
@@ -132,8 +136,8 @@ const LOGIC = {
         }
     },
 
-    getAuth() {
-        return JSON.parse(sessionStorage.getItem('auth')) || {}
+    isAuthenticated() {
+        return this.auth && Object.keys(this.auth).length > 0
     },
 
     validate(form, inputs) {
