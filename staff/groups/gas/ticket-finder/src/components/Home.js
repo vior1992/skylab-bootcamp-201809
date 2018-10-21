@@ -4,9 +4,10 @@ import InputForm from './InputForm'
 import Event from './Event'
 import Error from './Error'
 import Header from './Header'
+import EventInfo from './EventInfo'
 
 class Home extends Component {
-    state = { events: [], error: null, carousel: [] }
+    state = { events: [], error: null, carousel: [], eventInfoArray: [], flag: false }
     
     componentDidMount() {
         logic.showEvents()
@@ -26,26 +27,16 @@ class Home extends Component {
         this.setState({ events: [], error: null })
     }
 
-    // TODO error handling!
+    addToInfoArray = (id) => {
 
-    // handleDeletePost = id =>
-    //     logic.deletePostit(id)
-    //         .then(() => logic.listevents())
-    //         .then(events => this.setState({ events }))
-
-    // // TODO error handling!
-
-
-    // handleUpdatePost = (id, query) =>
-    //     logic.updatePostit(id, query)
-    //         .then(() => logic.listevents())
-    //         .then(events => this.setState({ events }))
-
-    // // TODO error handling!
+        logic.searchEventInfo(id)
+        .then(eventInfo =>  this.setState({ eventInfoArray: eventInfo, flag: true}) )
+    }
     
 
     render() {
-        const { error } = this.state
+        console.log(this.state.eventInfoArray)
+        const { error, eventInfoArray } = this.state
 
         return <div>
             <Header logout = { this.props.onLogout }></Header>
@@ -53,12 +44,18 @@ class Home extends Component {
             <InputForm onSubmit={this.handleSubmit} />
             {error && <Error message={error} />}
 
-            <section>
-                {this.state.events.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventUrl={event.url} eventId={event.id}  />)}
+            {!this.state.flag && <section>
+                {this.state.events.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventMinPrice={event.priceRanges[0].min} eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
+            </section>}
 
+            {this.state.flag && <section>
+                <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name} eventMinPrice={eventInfoArray.priceRanges[0].min} eventGetTickets={eventInfoArray.url} />
             </section>
+            }
         </div>
     }
 }
 
 export default Home
+
+// eventSeatMap={eventInfoArray.seatmap.staticUrl

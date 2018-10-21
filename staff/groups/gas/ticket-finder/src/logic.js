@@ -129,17 +129,16 @@ const logic = {
             })
     },
 
-/*     searchEventInfo(id) {
+    searchEventInfo(id) {
         return fetch(`https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp`, {
             method: 'GET',
         })
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
-                console.log(res)
                 return res
             })
-    } */
+    } 
 
     // deletePostit(id) {
     //     if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)

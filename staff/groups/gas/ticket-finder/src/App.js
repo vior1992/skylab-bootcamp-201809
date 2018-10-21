@@ -54,7 +54,7 @@ handleLogoutClick = () => {
         this.setState({ error: err.message })
     }
 } */
-// handleGoBack = () => this.props.history.push('/')
+handleGoBack = () => this.props.history.push('/')
 
   render() {
     
