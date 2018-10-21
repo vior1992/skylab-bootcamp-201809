@@ -34,7 +34,7 @@ const logic = {
             if (res.error) throw Error(res.error)
         })
         .then( () => {
-            this.LogInUser(username, password)
+            return this.LogInUser(username, password)
         })
 
     },
@@ -85,5 +85,5 @@ const logic = {
 }
 
 
-// export default logic
-module.exports = logic
+export default logic
+// module.exports = logic
