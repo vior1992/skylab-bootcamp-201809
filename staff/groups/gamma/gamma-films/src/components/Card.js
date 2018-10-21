@@ -4,16 +4,20 @@ import { Route, withRouter, Redirect } from 'react-router-dom'
 
 
 function Card(props) {
-    return <div>
-        <img />
 
-        <div>
+    return <div className="card"  >
 
-            <h5>{props.title}</h5>
+        <article className="card-body">
 
-            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 className="card-title">{props.title}</h5>
 
-        </div>
+            <p className="card-text">{props.release}</p>
+
+            <p className="card-text">{props.description}</p>
+
+            <img className="card-img-top" src={'https://image.tmdb.org/t/p/w500/'+props.imgRoute} />
+
+        </article>
 
     </div>
 }
