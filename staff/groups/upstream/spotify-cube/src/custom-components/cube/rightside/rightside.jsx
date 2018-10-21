@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Header from '../../header/header';
+import SideTitle from '../../sidetitle/sidetitle';
 
 
 export default class RightSide extends Component{
@@ -9,45 +11,30 @@ export default class RightSide extends Component{
         return (
     
           <section className="right">
-            <header className="header">
-              <div className="header__logo">
-                <img src="./assets/img/logo.png" alt />
-              </div>
-            </header>
-            <section className="right__artists-inf">
-              <section className="right__artists-inf__main-section">
-                <section className="right__artists-inf__main-section__img-section">
-                  <img src="./assets/img/metallica.png" alt />
-                </section>
-                <section className="right__artists-inf__main-section__name-section">
-                  <h1>
-                    Metallica
-                  </h1>
-                </section>
+            <Header></Header>
+            <SideTitle title="Artists List" image="metallica.png"></SideTitle>
+              <section className="right__artists-list">
+                <ul className="list">
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                </ul>
               </section>
-            </section>
-            <section className="right__artists-list">
-              <ul className="list">
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-              </ul>
-            </section>
           </section>
         );
       }

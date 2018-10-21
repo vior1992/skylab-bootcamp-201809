@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-
+import Login from '../../login/login';
+import Header from '../../header/header'
 
 export default class TopSide extends Component{
 
@@ -8,7 +9,8 @@ export default class TopSide extends Component{
     render(){
         return (
             <section className="top">
-                <h1>TOP</h1>
+                <Header></Header>
+                <Login></Login>
            </section>
         );
     }
