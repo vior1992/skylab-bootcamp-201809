@@ -3,6 +3,7 @@ import { Route, withRouter, Redirect } from 'react-router-dom'
 import Register from './components/Register'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
+import Home from './components/Home'
 import logic from './logic'
 
 class App extends Component {
@@ -21,6 +22,8 @@ class App extends Component {
             <Route path="/register" render={() => !logic.loggedIn ? <Register />:<Redirect to="/" />} />
 
             <Route path="/login" render={() => !logic.loggedIn ? <Login/>: <Redirect to="/" />} />
+
+            <Home />
         </div>
     }
 }

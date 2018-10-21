@@ -5,8 +5,9 @@ const { User } = data
 const logic = {
 
     _user: "",
-    _userId:"",
-    _token:"",
+    _userId: "",
+    _token: "",
+    _movies: "",
 
 
     registUser(name, surname, username, password) {
@@ -22,13 +23,13 @@ const logic = {
             },
             body: JSON.stringify({ name, surname, username, password })
         })
-        .then(res => res.json())
-        .then(res => {
-            if (res.error) throw Error(res.error)
-        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+            })
     },
 
-    loginUser(username, password){
+    loginUser(username, password) {
         return fetch('https://skylabcoders.herokuapp.com/api/auth', {
             method: 'POST',
             headers: {
@@ -36,24 +37,46 @@ const logic = {
             },
             body: JSON.stringify({ username, password })
         })
-        .then(res => res.json())
-        .then(res => {
-            if (res.error) throw Error(res.error)
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
 
-            const { id, token } = res.data
+                const { id, token } = res.data
 
-            this._userId = id
-            this._token = token
-            debugger
-            console.log(this._token)
+                this._userId = id
+                this._token = token
+                console.log(this._token)
 
-            // sessionStorage.setItem('userId', id)
-            // sessionStorage.setItem('token', token)
-        })
+                // sessionStorage.setItem('userId', id)
+                // sessionStorage.setItem('token', token)
+            })
     },
 
     get loggedIn() {
         return !!this._userId
+    },
+
+    searchMovies(query) {
+
+        console.log(query)
+        return fetch('https://api.themoviedb.org/3/search/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&query=hola' , {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                const results= res.results
+
+                this._movies=results;
+            })
+    },
+
+    get movies() {
+        return this._movies
     }
 }
 
