@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-
+import Register from '../../register/register'
+import Header from '../../header/header'
 
 export default class BottomSide extends Component{
 
@@ -9,7 +10,10 @@ export default class BottomSide extends Component{
         return (
 
             <section className="bottom">
-                <h1>BOTTOM</h1>
+                <div className="rotateX-180">
+                    <Header></Header>
+                    <Register></Register>
+                </div>
             </section>
         );
     }

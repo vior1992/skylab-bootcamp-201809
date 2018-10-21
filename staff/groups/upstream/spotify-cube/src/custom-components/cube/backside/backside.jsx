@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Header from '../../header/header'
+import SideTitle from '../../sidetitle/sidetitle'
 
 export default class BackSide extends Component{
 
@@ -8,45 +10,33 @@ export default class BackSide extends Component{
         return (
     
           <section className="back">
-            <header className="header">
-              <div className="header__logo">
-                <img src="./assets/img/logo.png" alt="" />
-              </div>
-            </header>
-            <section className="back__albums-inf">
-              <section className="back__albums-inf__main-section">
-                <section className="back__albums-inf__main-section__img-section">
-                  <img src="./assets/img/metallica.png" alt="" />
-                </section>
-                <section className="back__albums-inf__main-section__name-section">
-                  <h1>
-                    Album list
-                  </h1>
-                </section>
+            <div className = "rotateY-180">
+              <Header></Header>
+              <SideTitle title="Albums list" image ="metallica.png"></SideTitle>
+              <section className="back__albums-list">
+                <ul className="list">
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                  <li><a href="#">lorem ipsum jajajaja</a></li>
+                </ul>
               </section>
-            </section>
-            <section className="back__albums-list">
-              <ul className="list">
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-              </ul>
-            </section>
+            </div>
+            
           </section>
         )
       }
