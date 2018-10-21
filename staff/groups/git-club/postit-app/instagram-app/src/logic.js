@@ -81,7 +81,7 @@ const logic = {
 
         if (!url.trim()) throw Error('document is empty or blank')
         if (!description.trim()) throw Error('Description is empty or blank')
-
+        debugger
         this._posts.push(new Post(this._userId, url, description))
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
