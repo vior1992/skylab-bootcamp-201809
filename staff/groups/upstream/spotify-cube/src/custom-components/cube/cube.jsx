@@ -12,7 +12,7 @@ export default class Cube extends Component{
 
     render(){
 
-        return <section class="container">
+        return <section className="container">
             <section id="cube">
                 <FrontSide></FrontSide>
                 <BackSide></BackSide>
