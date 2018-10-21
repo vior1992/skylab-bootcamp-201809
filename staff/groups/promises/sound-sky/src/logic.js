@@ -34,25 +34,7 @@ const logic = {
             if (res.error) throw Error(res.error)
         })
         .then( () => {
-            return fetch ('https://skylabcoders.herokuapp.com/api/auth', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({ username, password })
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-
-                const {id, token} = res.data
-                
-                this._userId = id
-                this._token = token
-                
-                sessionStorage.setItem('userId', id)
-                sessionStorage.setItem('token', token)
-            })
+            this.LogInUser(username, password)
         })
 
     },
@@ -103,4 +85,5 @@ const logic = {
 }
 
 
-export default logic
+// export default logic
+module.exports = logic
