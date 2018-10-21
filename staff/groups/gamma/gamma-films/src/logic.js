@@ -7,7 +7,7 @@ const logic = {
     _user: "",
     _userId: "",
     _token: "",
-    _movies: "",
+    results: "",
 
 
     registUser(name, surname, username, password) {
@@ -58,8 +58,8 @@ const logic = {
 
     searchMovies(query) {
 
-        console.log(query)
-        return fetch('https://api.themoviedb.org/3/search/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&query=hola' , {
+        console.log('query'+query)
+        return fetch('https://api.themoviedb.org/3/search/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&query='+query, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -67,16 +67,13 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                if (res.error) throw Error(res.error)
+                if (res === 'undefined') throw Error(res.error)
 
-                const results= res.results
+                const results = res.results
 
-                this._movies=results;
+                return results;
+             
             })
-    },
-
-    get movies() {
-        return this._movies
     }
 }
 
