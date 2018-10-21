@@ -3,12 +3,11 @@ import logic from '../logic'
 import EventInfo from './EventInfo'
 
 class Event extends Component {
-    state = { eventInfoArray: [] }
-
+    
     handleSearchEvent = e => {
         e.preventDefault()
-        logic.searchEventInfo(this.props.eventId)
-            .then(eventInfo =>  this.setState({ eventInfoArray: eventInfo}) )
+        this.props.test(this.props.eventId)
+
     }
 
     changeDate = () => {
