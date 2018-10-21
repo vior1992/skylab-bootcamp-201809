@@ -9,7 +9,9 @@ class Home extends Component {
         
         logic.listPosts()
             .then(posts=>{this.setState({posts})})
-    //     // logic.listAllPosts()
+   
+                //Esto es tuyo de antes, por si acaso no lo toco.
+            //     // logic.listAllPosts()
     //     //     .then(posts => { this.setState({ posts }) })
     //     //     Request for images tagged xmas       
     //     //     axios.get('https://res.cloudinary.com/christekh/image/list/xmas.json')
@@ -26,18 +28,20 @@ class Home extends Component {
 
     uploadWidget =() => {
 
-        let _this= this
+       // let _this= this
 
         window.cloudinary.openUploadWidget({ cloud_name: 'skylabcoders', upload_preset: 'wqmshx2h', tags:['pintegram']},
             function(error, result) {
                
                 if (result.event === "success") {
-                    debugger
+                
                     logic.createPost(result.info.secure_url,"#")
-                    const gallery = _this.state.gallery.concat(result)
-                     const img = result.info.secure_url
+                   
+                    //Éste codigo era para intentar guardar lo que llegaba en un objeto, al final he utilizado tu lógica
+                    // const gallery = _this.state.gallery.concat(result)
+                   //  const img = result.info.secure_url
 
-                     _this.setState({ gallery , img })
+                   //  _this.setState({ gallery , img })
                     // result.info.url
                     
     
@@ -80,13 +84,19 @@ class Home extends Component {
                     Add Image
                 </button>     
             </div>
-          
+            
+            {/* Aquí estoy intentando crear un componente Post, esta en construccion
+            { <section>
+                {this.state.posts.map(post => <Post url={post.url} onDeletePost={this.handleDeletePost} onChangePrivate={this.handleChangePrivacy} />)}
+            </section> } */}
+
              { <section>
                 {this.state.posts.map(post => <div><img src={post.url}></img></div>)}
             </section> }
 
-
-            {/* { <section>
+            
+            {/* Esto lo dejo para recordarme como se comunican los componentes.
+             { <section>
                 {this.state.gallery.map(post => <Post key={post.id} text={post.text} id={post.id} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
             </section> } */}
         </div>
