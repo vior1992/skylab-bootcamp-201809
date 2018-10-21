@@ -54,7 +54,7 @@ class Home extends Component {
             {error && <Error message={error} />}
 
             <section>
-                {this.state.events.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventUrl={event.url} eventId={event.id}  />)}
+                {this.state.events.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventMinPrice={event.priceRanges[0].min}eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate}  />)}
 
             </section>
         </div>
