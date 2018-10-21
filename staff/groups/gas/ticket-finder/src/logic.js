@@ -65,14 +65,16 @@ const logic = {
         return !!this._userId
     },
 
-    // logout() {
-    //     this._events = []
-    //     this._userId = null
-    //     this._token = null
+    
 
-    //     sessionStorage.removeItem('userId')
-    //     sessionStorage.removeItem('token')
-    // },
+    logout() {
+        this._events = []
+        this._userId = null
+        this._token = null
+
+        sessionStorage.removeItem('userId')
+        sessionStorage.removeItem('token')
+    },
 
     // createPostit(text) {
     //     if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
@@ -103,8 +105,16 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-                return this._events = res._embedded.events || []
+                this._events = res._embedded.events || []
+                return this.randomEvents()
             })
+    },
+
+    randomEvents() {
+        let randomArray = Array.from(this._events)
+        randomArray.sort(() => .5 - Math.random())
+        let randomArrayCarousel = randomArray.slice(0,5)
+        return randomArrayCarousel
     },
 
     searchEvents(query) {
@@ -118,6 +128,18 @@ const logic = {
                 return this._events = res._embedded.events || []
             })
     },
+
+/*     searchEventInfo(id) {
+        return fetch(`https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp`, {
+            method: 'GET',
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                console.log(res)
+                return res
+            })
+    } */
 
     // deletePostit(id) {
     //     if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)

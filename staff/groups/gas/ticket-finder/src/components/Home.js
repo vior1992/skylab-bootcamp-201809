@@ -2,22 +2,29 @@ import React, { Component } from 'react'
 import logic from '../logic'
 import InputForm from './InputForm'
 import Event from './Event'
+import Error from './Error'
+import Header from './Header'
 
 class Home extends Component {
-    state = { events: [] }
+    state = { events: [], error: null, carousel: [] }
     
-    // componentDidMount() {
-    //     logic.showEvents()
-        
-    //         .then(events =>  this.setState({ events }) )
+    componentDidMount() {
+        logic.showEvents()
+        .then(events =>  this.setState({ events }) )          
 
-    //     // TODO error handling!
-    // }
+        // TODO error handling!
+    }
 
-    handleSubmit = query =>
-        logic.searchEvents(query)
+    handleSubmit = query => {
+        try{
+            logic.searchEvents(query)
             
             .then(events => this.setState({ events }))
+            .catch(err => this.setState({ error: `There are no events for this search :'(`}))
+        }
+        catch(err) { alert('Please write in English') }
+        this.setState({ events: [], error: null })
+    }
 
     // TODO error handling!
 
@@ -35,17 +42,20 @@ class Home extends Component {
     //         .then(events => this.setState({ events }))
 
     // // TODO error handling!
-
+    
 
     render() {
-        console.log(this.state.events)
+        const { error } = this.state
+
         return <div>
-            <h1>Home page</h1>
+            <Header logout = { this.props.onLogout }></Header>
 
             <InputForm onSubmit={this.handleSubmit} />
+            {error && <Error message={error} />}
 
             <section>
-                {this.state.events.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventUrl={event.url} eventId={event.id} />)}
+                {this.state.events.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventUrl={event.url} eventId={event.id}  />)}
+
             </section>
         </div>
     }
