@@ -7,6 +7,10 @@ body {
   height: 100%;
   margin: 0; }
 
+#root, #root > div:first-child {
+  width: 100%;
+  height: 100%; }
+
 img {
   width: 100%;
   height: auto; }
@@ -39,7 +43,8 @@ img {
   position: relative;
   perspective: 1161px;
   margin-top: 10em;
-  color: white; }
+  color: white;
+  background-color: black; }
 
 #cube {
   width: 100%;
@@ -90,7 +95,8 @@ img {
   position: relative;
   perspective: 1161px;
   margin-top: 10em;
-  color: white; }
+  color: white;
+  background-color: black; }
 
 #cube {
   width: 100%;
@@ -220,3 +226,87 @@ img {
         width: 36%; }
       .right .right__artists-inf .right__artists-inf__main-section .right__artists-inf__main-section__name-section {
         max-width: 60%; }
+
+.landing--parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.landing--bg-img {
+  position: absolute;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url("../img/concert.jpg");
+  filter: grayscale(65%) blur(7px);
+  z-index: -1; }
+
+.landing--content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center; }
+
+.title--landing {
+  font: bold 120px sans-serif;
+  color: #2f84e6; }
+
+.btn-primary {
+  font-size: 25px;
+  padding: 15px;
+  width: 170px;
+  right: 0; }
+
+.little--cube {
+  -webkit-transform-style: preserve-3d;
+  -webkit-animation: spin 3s infinite linear;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: 23px;
+  margin-left: -50px;
+  margin-top: -50px; }
+  .little--cube div {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    box-shadow: inset 0px 0px 0px 3px #d6e5ff;
+    background: #2f84e6;
+    display: block;
+    position: absolute; }
+
+.little--top {
+  -webkit-transform: rotateX(90deg);
+  margin-top: -50px; }
+
+.little--right {
+  -webkit-transform: rotateY(90deg);
+  margin-left: 50px; }
+
+.little--bottom {
+  -webkit-transform: rotateX(-90deg);
+  margin-top: 50px; }
+
+.little--left {
+  -webkit-transform: rotateY(-90deg);
+  margin-left: -50px; }
+
+.little--front {
+  -webkit-transform: translateZ(50px); }
+
+.little--back {
+  -webkit-transform: translateZ(-50px) rotateX(180deg); }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotateX(-20deg) rotateY(20deg); }
+  100% {
+    -webkit-transform: rotateX(-20deg) rotateY(740deg); } }

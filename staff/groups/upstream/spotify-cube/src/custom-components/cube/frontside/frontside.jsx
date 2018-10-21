@@ -11,7 +11,7 @@ export default class FrontSide extends Component{
             <section className="front">
             <header className="header">
                 <div className="header__logo">
-                <img src="./assets/img/logo.png" alt />
+                <img src="../../../assets/img/logo.svg" alt="logo" />
                 </div>
             </header>
             <form className="front__search-form">
