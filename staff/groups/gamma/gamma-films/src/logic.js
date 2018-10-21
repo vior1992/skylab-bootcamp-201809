@@ -13,7 +13,7 @@ const logic = {
         console.log(name, surname, username, password)
         this._user = user
         console.log(this._user)
-        return fetch('https.//skylabcoders.herokuapp.com/api/user', {
+        return fetch('https://skylabcoders.herokuapp.com/api/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json; charset=utf-8'

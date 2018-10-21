@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import { Route, withRouter, Redirect } from 'react-router-dom'
+
 
 class Register extends Component {
 
