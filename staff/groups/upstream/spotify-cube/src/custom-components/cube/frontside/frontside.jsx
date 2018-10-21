@@ -10,8 +10,10 @@ export default class FrontSide extends Component{
         return (
 
             <section className="front">
+
                 <Header></Header>
                 <Search></Search>
+
             </section>
         );
     }

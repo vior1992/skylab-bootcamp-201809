@@ -13,7 +13,9 @@ export default class Cube extends Component{
     render(){
 
         return <section className="container">
+
             <section className="cube">
+
                 <FrontSide></FrontSide>
                 <BackSide></BackSide>
                 <LeftSide></LeftSide>
