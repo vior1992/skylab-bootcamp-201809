@@ -1,6 +1,6 @@
 const logic = {
 
-    // var token: 'BQDrLOTMDs3my8C1Ev9uL7hVeU89UgBNfHaP0bsBujMQHAlt-865FLQB-48Hu6EKMMTDvd5sPdgmqKfwg3OT1yX8BCLPqD4mgRj7RaRBUcT03dfMR0Z5alr2_yzzAC5ufQqWIpmJrlPF2A',
+    // var token: 'BQCdxDt99_KeAyV1t0rUhU1EpErQem8UzlAKOmlsA5a5QQGh9fOkd8fyDoV1uPU0coYB-gGE7b_5b7ADiis_TidsPDMyegeGLEEVmmJtIoEsKHOY0ReoLuyrLnq_hTZ9s_n9ntCEvNBjY5baiZE9CgMJZPa2ntKCX97V3W6bWjqkz_bUNDk6QNpc4SHzDV1-4wxrD6ThiW3RNNk_',
 
     searchArtists(query) {
         return new Promise((resolve, reject) => {
@@ -18,7 +18,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
 
-            token = 'BQDrLOTMDs3my8C1Ev9uL7hVeU89UgBNfHaP0bsBujMQHAlt-865FLQB-48Hu6EKMMTDvd5sPdgmqKfwg3OT1yX8BCLPqD4mgRj7RaRBUcT03dfMR0Z5alr2_yzzAC5ufQqWIpmJrlPF2A'
+            token = 'BQCdxDt99_KeAyV1t0rUhU1EpErQem8UzlAKOmlsA5a5QQGh9fOkd8fyDoV1uPU0coYB-gGE7b_5b7ADiis_TidsPDMyegeGLEEVmmJtIoEsKHOY0ReoLuyrLnq_hTZ9s_n9ntCEvNBjY5baiZE9CgMJZPa2ntKCX97V3W6bWjqkz_bUNDk6QNpc4SHzDV1-4wxrD6ThiW3RNNk_'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -42,7 +42,7 @@ const logic = {
 
             xhr.open('get', 'https://api.spotify.com/v1/artists/' + id + '/albums')
 
-            var token = 'BQDrLOTMDs3my8C1Ev9uL7hVeU89UgBNfHaP0bsBujMQHAlt-865FLQB-48Hu6EKMMTDvd5sPdgmqKfwg3OT1yX8BCLPqD4mgRj7RaRBUcT03dfMR0Z5alr2_yzzAC5ufQqWIpmJrlPF2A'
+            var token = 'BQCdxDt99_KeAyV1t0rUhU1EpErQem8UzlAKOmlsA5a5QQGh9fOkd8fyDoV1uPU0coYB-gGE7b_5b7ADiis_TidsPDMyegeGLEEVmmJtIoEsKHOY0ReoLuyrLnq_hTZ9s_n9ntCEvNBjY5baiZE9CgMJZPa2ntKCX97V3W6bWjqkz_bUNDk6QNpc4SHzDV1-4wxrD6ThiW3RNNk_'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
@@ -66,7 +66,7 @@ const logic = {
 
             xhr.open('get', `https://api.spotify.com/v1/albums/${id}/tracks`)
 
-            var token = 'BQDrLOTMDs3my8C1Ev9uL7hVeU89UgBNfHaP0bsBujMQHAlt-865FLQB-48Hu6EKMMTDvd5sPdgmqKfwg3OT1yX8BCLPqD4mgRj7RaRBUcT03dfMR0Z5alr2_yzzAC5ufQqWIpmJrlPF2A'
+            var token = 'BQCdxDt99_KeAyV1t0rUhU1EpErQem8UzlAKOmlsA5a5QQGh9fOkd8fyDoV1uPU0coYB-gGE7b_5b7ADiis_TidsPDMyegeGLEEVmmJtIoEsKHOY0ReoLuyrLnq_hTZ9s_n9ntCEvNBjY5baiZE9CgMJZPa2ntKCX97V3W6bWjqkz_bUNDk6QNpc4SHzDV1-4wxrD6ThiW3RNNk_'
 
             xhr.setRequestHeader('authorization', 'Bearer ' + token)
 
