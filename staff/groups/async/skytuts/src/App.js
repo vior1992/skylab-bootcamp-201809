@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
-import Home from './components/Home';
+import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 
+import './App.css'
 
-
-
-import './App.css';
 
 class App extends Component {
+
   render() {
     return (
       <BrowserRouter>
