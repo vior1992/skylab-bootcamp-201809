@@ -1,0 +1,12 @@
+.bottom{
+    background: rgba(0,0,0,0.9);
+    transform: rotateX(90deg) translateZ(-300px);
+    & .rotateX-180{
+        padding: 1em;
+        transform: rotateX(180deg);
+        position: absolute;
+        bottom:0;
+        left: 0;
+       
+    }
+}

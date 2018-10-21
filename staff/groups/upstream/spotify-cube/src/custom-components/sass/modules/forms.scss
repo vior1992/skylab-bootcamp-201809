@@ -1,0 +1,24 @@
+.custom-form{
+   
+    padding: 1em;
+    border: 1px solid white;
+    border-radius: 5px;
+    & label{
+        color: white;
+    }
+    & input[type="text"]:focus,input[type="password"]:focus{
+
+        border-color:green;
+    }
+    & button{
+        background: white;
+        color: green;
+        border-color: green;
+        &:hover{
+            background-color: green;
+            color:white;
+        }
+            
+        }
+    
+}
