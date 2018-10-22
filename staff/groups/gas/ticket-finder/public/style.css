@@ -39,22 +39,17 @@ li {
     text-align: center;
 }
 
+.container-landing-left-claim {
+    margin-top: 40%;
+}
+
 ul {
     list-style: none;
     text-align: center;
 }
 
-.container-landing-right {
-    margin: auto;
-    text-align: center;
-}
-
-.container-landing-left-claim {
-    margin-top: 40%;
-}
-
 .landing-claim {
-    font-family: Arial;
+    font-family: "Roboto";
     font-size: 1.1em;
     color: white;
     font-weight: bold;
@@ -63,12 +58,34 @@ ul {
 .landing-title {
     font-size: 4em;
 }
+.container-landing-right {
+    margin: auto;
+    text-align: center;
+}
 
 .login-container {
     margin: 0 auto;
     text-align: center;
     width: 30%;
+    margin-top: 8%;
+}
+
+.register-container {
+    margin: 0 auto;
+    text-align: center;
+    width: 30%;
+    margin-top: 8%;
+}
+
+.button-container {
     margin-top: 10%;
+}
+
+.error {
+    margin: 0 auto;
+    text-align: left;
+    width: 30%;
+    color: #880e4f;
 }
 
 @media screen and (max-width: 768px) {
@@ -88,6 +105,12 @@ ul {
 
 @media screen and (max-width: 400px) {
     .login-container {
+        margin: 0 auto;
+        text-align: center;
+        width: 80%;
+        margin-top: 10%;
+    }
+    .register-container {
         margin: 0 auto;
         text-align: center;
         width: 80%;

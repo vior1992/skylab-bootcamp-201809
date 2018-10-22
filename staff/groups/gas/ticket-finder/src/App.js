@@ -19,9 +19,9 @@ class App extends Component {
   handleLoginClick = () => this.props.history.push('/login')
 
 
-  handleRegister = (name, email, username, password) => {
+  handleRegister = (name, email, username, password, passwordRepeat) => {
     try {
-        logic.registerUser(name, email, username, password)
+        logic.registerUser(name, email, username, password, passwordRepeat)
             .then(() => {
                 this.setState({ error: null }, () => this.props.history.push('/login'))
             })
@@ -34,7 +34,9 @@ class App extends Component {
 handleLogin = (username, password) => {
     try {
         logic.login(username, password)
-            .then(() =>  this.props.history.push('/home'))
+            .then(() =>  {
+            this.setState({ error: null }, () => this.props.history.push('/home'))
+        })
             .catch(err => this.setState({ error: err.message }))
     } catch (err) {
         this.setState({ error: err.message })
