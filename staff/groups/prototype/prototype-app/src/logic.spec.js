@@ -118,6 +118,28 @@ describe('logic', () => {
                 })
             })
 
+            describe('update user pending movies list', () => {
+                it('should update the list of user seen movies', () => {
+                    const movie = {id: '123', name: 'the great film'}
+                    logic.updateUserPending(movie)
+                        .then(() => {
+                            expect(true).to.be.true
+                            expect(this._userPending.length).to.equal(1)
+                        })
+                })
+            })
+
+            describe('update user favourites movies list', () => {
+                it('should update the list of user seen movies', () => {
+                    const movie = {id: '123', name: 'the great film'}
+                    logic.updateUserFavourites(movie)
+                        .then(() => {
+                            expect(true).to.be.true
+                            expect(this._userFavourites.length).to.equal(1)
+                        })
+                })
+            })
+
             describe('retrieve user seen list movies', () => {
                 beforeEach(() => {
                     const movie = {id: '123', name: 'the great film'}

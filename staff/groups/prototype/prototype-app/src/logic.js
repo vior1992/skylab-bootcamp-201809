@@ -8,9 +8,8 @@ var logic = {
     _trendingMovies: [],
     _inTheatreMovies: [],
     _popularMovies: [],
-    _userSeen: [],
-    _userPending: [],
-    _userFavourites: [],
+    _userData: sessionStorage.getItem('userData') || null,
+    // _userFavourites: [],
   
     signIn(username, email, name, surname, password) {
       if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
@@ -142,7 +141,7 @@ var logic = {
         })
     },
   
-    retrieveUserMovies() {
+    retrieveUserData() {
       const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
       const params = {
         method: 'GET',
@@ -158,7 +157,7 @@ var logic = {
   
           this._userSeen = response.data.movies_seen || []
           this._userPending = response.data.movies_pending || []
-          this._userFavourites = response.data.movies_favourites || []
+        //   this._userFavourites = response.data.movies_favourites || []
         })
     },
   
@@ -202,29 +201,29 @@ var logic = {
       })
   },
 
-  updateUserFavourites(movie) {
-    this._userFavourites.push(movie)
+//   updateUserFavourites(movie) {
+//     this._userFavourites.push(movie)
 
-    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
-    const params = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this._token}`
-      },
-      body: JSON.stringify({ movies_favourites: this._userFavourites})
-    }
+//     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+//     const params = {
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${this._token}`
+//       },
+//       body: JSON.stringify({ movies_favourites: this._userFavourites})
+//     }
 
-    return fetch(endpoint, params)
-      .then(response => response.json())
-      .then(response => {
-        if (response.error) throw Error(response.error)
-      })
-  },
+//     return fetch(endpoint, params)
+//       .then(response => response.json())
+//       .then(response => {
+//         if (response.error) throw Error(response.error)
+//       })
+//   },
 
-  updateUserData() {
+//   updateUserData() {
     
-  }
+//   }
   }
 
 // export default logic
