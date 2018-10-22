@@ -8,7 +8,7 @@ class Post {
         this.description = description
         this.comments = []
         this.likes = []
-        this.publicPost = false
+        this.publicPost = true
     }
 }
 

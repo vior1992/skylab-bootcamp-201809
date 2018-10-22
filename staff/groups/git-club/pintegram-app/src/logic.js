@@ -7,7 +7,10 @@ const logic = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
     _posts: [],
+    _postsUser: [],
+    _postsAllUsers: [],
     _follows:[],
+    _likes:[],
     _followers:[],
 
     registerUser(name, surname, username, password) {
@@ -26,7 +29,7 @@ const logic = {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
-            body: JSON.stringify({ app:'pintegram', name, surname, username, password })
+            body: JSON.stringify({ app:'pintegram', name, surname, username, password, profilePublic: true })
         })
             .then(res => res.json())
             .then(res => {
@@ -68,6 +71,8 @@ const logic = {
 
     logout() {
         this._posts = []
+        this._postsUser = []
+        this._postsAllUser = []
         this._userId = null
         this._token = null
 
@@ -98,6 +103,45 @@ const logic = {
             })
     },
 
+    addLike(postId) {
+
+        if (typeof postId !== 'number') throw TypeError(`${postId} is not a string`)
+
+        this._likes.push(postId)
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${this._token}`
+            },
+            body: JSON.stringify({ likes: this._likes })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+            })
+    },
+
+    likedPost(postId) {
+
+        if (typeof postId !== 'number') throw TypeError(`${postId} is not a string`)
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                let liked = res.data.likes.some(like => like===postId)
+                return liked
+            })
+           
+    },
+
     retriveUser (userId) {
         return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
             method: 'GET',
@@ -125,7 +169,7 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-                return this._posts = res.data.posts || []
+                return this._postsUser = res.data.posts || []
             })
     },
 
@@ -150,7 +194,47 @@ const logic = {
                         }
                     }
                 })   
-                return this._posts = postsUsers || []
+                return this._postsAllUser = postsUsers || []
+            })
+    },
+
+    retrieveProfile() {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return res.data || []
+            })
+    },
+
+    likesPost(postId) {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                
+                if (res.error) throw Error(res.error)
+                let users = res.data.filter(user => user.app)
+                let appUsers = users.filter(user => user.app === 'pintegram')
+                let countLikes = []
+                appUsers.forEach(user => {
+                    if(user.likes){
+                        for (let i = 0; i < user.likes.length ; i++){
+                            if(user.likes[i] === postId) countLikes.push(user.posts[i])
+                        }
+                    }
+                })   
+                return countLikes || []
             })
     },
 

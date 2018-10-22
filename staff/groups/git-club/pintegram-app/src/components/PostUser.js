@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
+import logic from '../logic'
 
 class PostUser extends Component {
-    state = { postId:this.props.id, url:this.props.url, text: this.props.text, like: null}
+    state = { postId:this.props.id, url:this.props.url, text: this.props.text, likes: null}
 
+    componentDidMount() {
+        logic.listPosts()
+            .then(posts => { this.setState({ posts }) })
+
+        logic.likesPost(this.state.postId)
+            .then(likes => { this.setState({ likes }) })
+    }
 
     handleLikePost = () => {
         // logic.likedPost(postId)
@@ -10,11 +18,11 @@ class PostUser extends Component {
     }
 
     render() {
-        return <article className="post">
-            <img src={this.state.url}></img>
-            <p>{this.state.text}</p>
-            <button onClick={this.handleLikePost}>{!this.state.like ? <i className="far fa-heart"></i> : <i class="fas fa-heart"></i>}</button>
-        </article>
+        return <section className="gallery__user">
+            <img className="user__img" src={this.state.url}></img>
+            <div classNam="user__likes"><i className="fas fa-heart icon"></i>{this.state.likes ? this.state.likes.length : 0}</div>
+
+        </section>
     }
 }
 

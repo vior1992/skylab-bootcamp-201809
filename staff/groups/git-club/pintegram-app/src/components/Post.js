@@ -2,25 +2,39 @@ import React, { Component } from 'react'
 import logic from '../logic'
 
 class Post extends Component {
-    state = { postId:this.props.id, url:this.props.url, text: this.props.text, like: null, user: null}
+    state = { postId:this.props.id, url:this.props.url, text: this.props.text, liked: null, likes: undefined, user: null}
 
     componentDidMount() {
         logic.retriveUser(this.props.user)
-        .then(user => { this.setState({ user }) })
+            .then(user => { this.setState({ user }) })
+        
+        logic.likesPost(this.state.postId)
+            .then(likes => { this.setState({ likes }) })
+       
+        logic.likedPost(this.state.postId)
+            .then(liked => { this.setState({ liked }) })
         
     }
 
     handleLikePost = () => {
-        // logic.likedPost(postId)
-        this.setState({ like: true })
+        logic.addLike(this.state.postId)
+            .then(logic.likesPost(this.state.postId))
+            .then(likes => { this.setState({ likes })})
     }
 
     render() {
         return <article className="post">
-            <p>{this.state.user}</p>
-            <img src={this.state.url}></img>
-            <p>{this.state.text}</p>
-            <button onClick={this.handleLikePost}>{!this.state.like ? <i className="far fa-heart"></i> : <i class="fas fa-heart"></i>}</button>
+            <div className="post__justify">
+            <div className="post__center">
+            <h1 className="post__text">{this.state.user}</h1>
+            <img className="post__img" src={this.state.url}></img>
+            <div className="post__icon">
+            {!this.state.liked ? <i onClick={this.handleLikePost} className="far fa-heart icon"></i> : <i className="fas fa-heart icon"></i>}{this.state.likes ? this.state.likes.length : 0}
+            <i className="fas fa-comment icon"></i>
+            </div>
+            <p className="post__text post__text-margin">{this.state.text}</p>      
+            </div> 
+            </div>    
         </article>
     }
 }
