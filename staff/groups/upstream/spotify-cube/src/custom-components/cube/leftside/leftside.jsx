@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Header from '../../header/header'
 import SideTitle from '../../sidetitle/sidetitle'
+import List from '../../list/list';
 
 export default class LeftSide extends Component{
 
@@ -8,32 +9,11 @@ export default class LeftSide extends Component{
         return (
     
           <section className="left">
-          <div className="rotateY--180">
-          <Header></Header>
-            <SideTitle image="metallica.png" title="Track List"></SideTitle>
-            <section className="left__albums-list">
-              <ul className="list">
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-                <li><a href="#">lorem ipsum jajajaja</a></li>
-              </ul>
-            </section>
-          </div>
+            <div className="rotateY--180">
+              <Header showPlayer = {true}></Header>
+                <SideTitle image="metallica.png" title="Track List"></SideTitle>
+                <List></List>
+            </div>
             
           </section>
         );
