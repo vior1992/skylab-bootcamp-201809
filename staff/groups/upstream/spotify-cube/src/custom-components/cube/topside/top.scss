@@ -3,4 +3,12 @@
     background: rgba(0,0,0,0.9);
     transform: rotateX(90deg) translateZ(300px);
     padding: 1em;
+    & .top__seccion-button{
+      height: 100%;
+      & .btn{
+        margin:0 auto;
+        margin-top:7em;
+        display: block; 
+      }
+    }
   }
