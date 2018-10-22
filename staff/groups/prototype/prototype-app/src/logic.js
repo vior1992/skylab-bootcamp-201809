@@ -1,6 +1,6 @@
 const logic = {
   _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
-  _user: {},
+  _user: JSON.parse(sessionStorage.getItem('user')) || {},
   _trendingMovies: [],
   _inTheatreMovies: [],
   _popularMovies: [],
