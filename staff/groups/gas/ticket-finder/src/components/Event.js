@@ -10,6 +10,10 @@ class Event extends Component {
 
     }
 
+    getFavouriteId = () => {
+        this.props.addToFavourites(this.props.eventId)
+    }
+
     changeDate = () => {
         const monthNames = ['', "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         const tempDate = this.props.eventDate.split('-')
@@ -36,6 +40,7 @@ class Event extends Component {
                     <p> { this.props.eventCity } </p>
                     <p className="card-text"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
                     <p> {this.props.eventMinPrice ? priceMessage : TBAmessage} </p>
+                    <button onClick = {this. getFavouriteId}>Add to favourites</button>
                 </div>
         </div>       
     </li>
