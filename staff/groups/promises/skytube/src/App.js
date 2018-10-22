@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Profile from './components/Profile'
 import LogIn from './components/LogIn'
 import logic from './logic'
+import Masthead from './components/Masthead';
 
 class App extends Component {
     state = { error: null }
@@ -35,7 +36,7 @@ class App extends Component {
 		}
 	}
 
-	handleOnLogOut = () => {
+	handleLogOut = () => {
 		logic.userLogOut()
 
 		this.setState({error: null}, () => this.props.history.push('/login'))
@@ -55,7 +56,7 @@ class App extends Component {
     }
 
     renderHome() {
-        return <Profile onLogOut={this.handleOnLogOut} />
+        return <Masthead onLogOut={this.handleOnLogOut} />
     }
 
     render() {
