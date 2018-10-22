@@ -112,54 +112,30 @@ describe('logic', () => {
         describe('not user intervention', () => {
             describe('trending-slider', () => {
                 it('should return trending movies', () => {
-                    logic.retrieveTrending(path)
+                    logic.retrieveTrending()
                         .then(movies => {
                             expect(movies).not.to.be.undefined
                             expect(movies.length).to.be.above(0)
                         })
                 })
-                it('should failon undefined path', () => {
-                    const path = undefined
-                    expect(() =>
-                        logic.retrieveTrending(path)
-                    ).to.throw(Error, `${path} is not a valid path`)
-
-                })
-                //TODO other cases 
             })
             describe('in theatre', () => {
                 it('should return in theatre movies', () => {
-                    logic.retrieveInTheatre(path)
+                    logic.retrieveInTheatre()
                         .then(movies => {
                             expect(movies).not.to.be.undefined
                             expect(movies.length).to.be.above(0)
                         })
                 })
-                it('should failon undefined path', () => {
-                    const path = undefined
-                    expect(() =>
-                        logic.retrieveInTheatre(path)
-                    ).to.throw(Error, `${path} is not a valid path`)
-
-                })
-                //TODO other cases 
             })
             describe('populars', () => {
                 it('should return popular movies', () => {
-                    logic.retrievePopular(path)
+                    logic.retrievePopular()
                         .then(movies => {
                             expect(movies).not.to.be.undefined
                             expect(movies.length).to.be.above(0)
                         })
                 })
-                it('should failon undefined path', () => {
-                    const path = undefined
-                    expect(() =>
-                        logic.retrievePopular(path)
-                    ).to.throw(Error, `${path} is not a valid path`)
-
-                })
-                //TODO other cases 
             })
 
         })

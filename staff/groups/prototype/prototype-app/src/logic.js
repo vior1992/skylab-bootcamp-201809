@@ -1,12 +1,15 @@
 import data from './data'
 // const data = require('./data')
 
-const { Postit } = data
 
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
-    _postits: [],
+    _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
+    _trendingMovies: [],
+    _inTheatreMovies: [],
+    _popularMovies: [],
+    _movies: [],
 
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
@@ -72,86 +75,77 @@ const logic = {
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
     },
-
-    createPostit(text) {
-        if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
-
-        if (!text.trim()) throw Error('text is empty or blank')
-
-        this._postits.push(new Postit(text))
-
-        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${this._token}`
-            },
-            body: JSON.stringify({ postits: this._postits })
+  
+    retrieveTrending() {
+      const basePath = 'https://api.themoviedb.org/3/trending/movie/week'
+  
+      return fetch(`${basePath}?api_key=${this._apiKey}`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(response => {
+          if (response.status_message) throw Error(response.status_message)
+  
+          return this._trendingMovies = response.results || []
         })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-            })
     },
-
-    listPostits() {
-        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${this._token}`
-            }
+  
+    retrieveInTheatre() {
+      const basePath = 'https://api.themoviedb.org/3/movie/now_playing'
+  
+      return fetch(`${basePath}?api_key=${this._apiKey}`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(response => {
+          if (response.status_message) throw Error(response.status_message)
+  
+          return this._inTheatreMovies = response.results || []
         })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-
-                return this._postits = res.data.postits || []
-            })
     },
-
-    deletePostit(id) {
-        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-
-        this._postits = this._postits.filter(postit => postit.id !== id)
-
-        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${this._token}`
-            },
-            body: JSON.stringify({ postits: this._postits })
+  
+    retrievePopular() {
+      const basePath = 'https://api.themoviedb.org/3/movie/popular'
+  
+      return fetch(`${basePath}?api_key=${this._apiKey}`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(response => {
+          if (response.status_message) throw Error(response.status_message)
+  
+          return this._popularMovies = response.results || []
         })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-            })
     },
-
-    updatePostit(id, text) {
-        if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-
-        if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
-
-        if (!text.trim()) throw Error('text is empty or blank')
-
-        const postit = this._postits.find(postit => postit.id === id)
-
-        postit.text = text
-
-        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${this._token}`
-            },
-            body: JSON.stringify({ postits: this._postits })
+  
+    retrieveMovies(query, page) {
+      const basePath = 'https://api.themoviedb.org/3/search/movie'
+  
+      return fetch(`${basePath}?api_key=${this._apiKey}&query=${query}&page=${page}`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(response => {
+          if (response.status_message) throw Error(response.status_message)
+  
+          return response.results || []
         })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-            })
+    },
+  
+    retrieveMovie(id) {
+      const basePath = 'https://api.themoviedb.org/3/movie/'
+  
+      return fetch(`${basePath}${id}?api_key=${this._apiKey}&append_to_response=credits`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(response => {
+          if (response.status_message) throw Error(response.status_message)
+  
+          return response || {}
+        })
     }
+
 }
 
 export default logic
