@@ -30,7 +30,6 @@ class Login extends Component {
         const { username, password } = this.state
 
         console.log('username y password: ' + username + password)
-        debugger
         try {
             logic.loginUser(username, password)
                 .then(() => this.setState({ error: "" }))
@@ -41,7 +40,6 @@ class Login extends Component {
             this.setState({ error: err.message })
         }
         console.log(this.props.isLoggedIn)
-        debugger
         this.props.isLoggedIn()
     }
 
