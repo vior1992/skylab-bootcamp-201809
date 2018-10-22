@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Header from '../../header/header'
 import SideTitle from '../../sidetitle/sidetitle'
+import List from '../../list/list';
 
 export default class BackSide extends Component{
 
@@ -13,28 +14,7 @@ export default class BackSide extends Component{
             <div className = "rotateY-180">
               <Header></Header>
               <SideTitle title="Albums list" image ="metallica.png"></SideTitle>
-              <section className="back__albums-list">
-                <ul className="list">
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                  <li><a href="#">lorem ipsum jajajaja</a></li>
-                </ul>
-              </section>
+             <List></List>
             </div>
             
           </section>

@@ -3,7 +3,8 @@ import React, {Component} from 'react'
 
 export default class Header extends Component{
 
-    state = {}
+    state = {showPlayer:this.props.showPlayer}
+
 
     render(){
         return (
@@ -12,7 +13,7 @@ export default class Header extends Component{
                 <div className="header__logo">
                     <img src={require('../../assets/img/logo.png')} />
                 </div>
-                <audio className="header__audio" controls autoPlay ></audio>
+                {this.state.showPlayer && <audio className="header__audio" controls autoPlay ></audio>}
             </header>
 
            
