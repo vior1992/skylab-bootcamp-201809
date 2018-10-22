@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import logic from '../logic'
-import { Route, withRouter, Redirect } from 'react-router-dom'
-
 
 class Register extends Component {
 
@@ -65,26 +63,28 @@ class Register extends Component {
     render() {
 
 
-        return <form onSubmit={this.handleSubmit}>
+        return <div className="login_component">
+            <form className="login_form" onSubmit={this.handleSubmit}>
 
-            <label>Name</label>
-            <input type='text' placeholder="Name" onChange={this.handleNameChange}></input>
+                <label className="login_back">Name</label>
+                <input className="login_input" type='text' placeholder="Name" onChange={this.handleNameChange}></input>
 
-            <label>Surname</label>
-            <input type='text' placeholder="Surname" onChange={this.handleSurnameChange}></input>
+                <label className="login_back">Surname</label>
+                <input className="login_input" type='text' placeholder="Surname" onChange={this.handleSurnameChange}></input>
 
-            <label>Username</label>
-            <input type='text' placeholder="Username" onChange={this.handleUserNameChange}></input>
+                <label className="login_back">Username</label>
+                <input className="login_input" type='text' placeholder="Username" onChange={this.handleUserNameChange}></input>
 
-            <label>Password</label>
-            <input type='password' placeholder="Password" onChange={this.handlePasswordChange}></input>
+                <label className="login_back">Password</label>
+                <input className="login_input" type='password' placeholder="Password" onChange={this.handlePasswordChange}></input>
 
-            <label>Repeat password</label>
-            <input type='password' placeholder="Repeat password" onChange={this.handleRepeatPasswordChange}></input>
+                <label className="login_back">Repeat password</label>
+                <input className="login_input" type='password' placeholder="Repeat password" onChange={this.handleRepeatPasswordChange}></input>
 
-            <button type='submit'>Register</button>
+                <button className="login_btn" type='submit'>Register</button>
 
-        </form>
+            </form>
+        </div>
 
     }
 }

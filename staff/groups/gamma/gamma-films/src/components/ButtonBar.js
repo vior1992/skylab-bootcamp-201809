@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import logic from '../logic'
-import { Route, withRouter, Redirect } from 'react-router-dom'
-
 
 class ButtonBar extends Component {
 
@@ -12,7 +9,7 @@ class ButtonBar extends Component {
     }
 
     render() {
-        return <a href='#' onClick={this.handleClick} > Hola</a>
+        return <a href='#' onClick={this.handleClick} >{this.props.name}</a>
     }
 }
 

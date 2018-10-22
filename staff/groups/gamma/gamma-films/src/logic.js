@@ -84,7 +84,23 @@ const logic = {
         })
         .then(res=> res.json())
         .then(res => {
-            debugger
+            if(res=== 'undefined') throw Error (res.error)
+
+            const results=res.results
+
+            return results
+        })
+    },
+
+    searchPopularMovies(date) {
+        return fetch('https://api.themoviedb.org/3/trending/movie/'+date+'?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+        .then(res=> res.json())
+        .then(res => {
             if(res=== 'undefined') throw Error (res.error)
 
             const results=res.results
@@ -92,6 +108,7 @@ const logic = {
             return results
         })
     }
+
 }
 
 export default logic

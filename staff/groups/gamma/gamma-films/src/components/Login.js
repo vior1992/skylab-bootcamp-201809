@@ -32,8 +32,8 @@ class Login extends Component {
 
         try {
             logic.loginUser(username, password)
-                .then(()=> this.setState({error:""}))
-                .then(() =>  this.props.history.push('/login'))
+                .then(() => this.setState({ error: "" }))
+                .then(() => this.props.history.push('/login'))
                 .catch(err => this.setState({ error: err.message }))
 
         } catch (err) {
@@ -47,16 +47,15 @@ class Login extends Component {
     }
 
     render() {
-        return <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-            <button type="submit">Login</button> 
-            <a href="#" onClick={this.props.onGoBack}>back</a>
+        return <div className="login_component">
 
-
-            <button type="button" onClick={this.verResultados}>Ver</button> 
-
-        </form>
+            <form className="login_form" onSubmit={this.handleSubmit}>
+                <input className="login_input" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+                <input className="login_input" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
+                <button className="login_btn" type="submit">Login</button>
+                <a className="login_back" href="#" onClick={this.props.onGoBack}>back</a>
+            </form>
+        </div>
     }
 }
 

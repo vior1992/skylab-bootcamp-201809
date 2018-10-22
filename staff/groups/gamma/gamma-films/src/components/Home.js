@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import Card from './Card'
-import { Route, withRouter, Redirect } from 'react-router-dom'
 import Sidebar from './Sidebar';
 
 class Home extends Component {
@@ -45,10 +44,10 @@ class Home extends Component {
 
 
     render() {
-        return <div>
-            <form onSubmit={this.handleSubmit}>
-                <input type='text' placeholder='write a title' onChange={this.handleQueryChange}></input>
-                <button type='submit'>Search Title</button>
+        return <div className="home">
+            <form className="form_search" onSubmit={this.handleSubmit}>
+                <input className="input_search" type='text' placeholder='write a title' onChange={this.handleQueryChange}></input>
+                <button className="button_search" type='submit'>Search Title</button>
             </form>
 
             <Sidebar/>
@@ -56,7 +55,6 @@ class Home extends Component {
             <section>
                 {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} />)}
             </section>
-            <button type="button" onClick={this.verResultados}>Ver</button> 
 
         </div>
     }
