@@ -39,7 +39,6 @@ class Home extends Component {
         const { error, eventInfoArray } = this.state
 
         return <div>
-            <Header logout = { this.props.onLogout }></Header>
 
             <InputForm onSubmit={this.handleSubmit} />
             {error && <Error message={error} />}

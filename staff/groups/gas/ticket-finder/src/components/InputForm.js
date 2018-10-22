@@ -21,18 +21,10 @@ class InputForm extends Component {
    render() {
        return <form onSubmit={this.handleSubmit}>
        <div className='container'>
-       <Input label="Search events" value={this.state.query}  onChange={this.handleInput}/>
-       <Button type="submit"  color="unique">Search</Button>
+       <Input label="Search events" value={this.state.query} onChange={this.handleInput}/>
+       <Button type="submit" color="unique">Search</Button>
        </div>
      </form>
-
-
-
-           /* <form onSubmit={this.handleSubmit}>
-           <input value={this.state.query} placeholder="Search events" onChange={this.handleInput} />
-
-           <button type="submit"></button>
-       </form> */
    }
 }
 

@@ -1,3 +1,31 @@
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.aLink{
+    text-decoration: none !important;
+    color: white;  
+}
+
+.aLink:hover{
+    text-decoration: none !important;
+    color: rgb(224, 219, 219);  
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width: 80%;
+    text-align: center;
+}
+
 .container-landing {
     display: flex;
 }

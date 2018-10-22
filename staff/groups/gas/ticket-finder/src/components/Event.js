@@ -17,7 +17,7 @@ class Event extends Component {
         return date
     }
     render(){    
-    return <li>
+    return <div className="container">
         <div className="card">
             
             <a onClick={this.handleSearchEvent} href="#"><img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /></a>
@@ -29,7 +29,7 @@ class Event extends Component {
                     <p>From { this.props.eventMinPrice } EUR</p>
                 </div>
         </div>       
-    </li>
+    </div>
     }
 }     
         
