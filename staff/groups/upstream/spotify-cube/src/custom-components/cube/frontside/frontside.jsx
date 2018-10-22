@@ -6,14 +6,18 @@ export default class FrontSide extends Component{
 
     state = {}
 
+    constructor(props){
+        super(props)
+    }
+
+   
     render(){
+       
         return (
 
             <section className="front">
-
-                <Header></Header>
+                <Header ></Header>
                 <Search></Search>
-
             </section>
         );
     }
