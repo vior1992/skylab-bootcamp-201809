@@ -56,5 +56,5 @@ const logicAuth = {
 
 }
 
-export default logicAuth
-// module.exports = logic
+// export default logicAuth
+module.exports = logicAuth

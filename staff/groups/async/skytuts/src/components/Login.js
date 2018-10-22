@@ -10,7 +10,6 @@ class Login extends Component {
 
 
     handleLogin = (username, password) => {
-        console.log(this.props)
         try {
             logicAuth.login(username, password)
                 .then(() => this.props.history.push('/'))
