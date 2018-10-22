@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import logic from '../logic'
-import EventInfo from './EventInfo'
 
 class Event extends Component {
     
@@ -10,6 +8,11 @@ class Event extends Component {
 
     }
 
+    getFavouriteId = () => {
+        this.props.addToFavourites(this.props.eventId)
+        this.props.sendFavourites(this.props.eventId)
+    }
+
     changeDate = () => {
         const monthNames = ['', "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         const tempDate = this.props.eventDate.split('-')
@@ -17,6 +20,15 @@ class Event extends Component {
         return date
     }
     render(){    
+    let priceMessage =""
+
+    let TBAmessage = ""
+    if (this.props.eventMinPrice) {
+        priceMessage = <span>From {this.props.eventMinPrice} EUR</span>
+    }
+    if (!this.props.eventMinPrice) {
+        TBAmessage = <span>Price to be announced</span>
+    }
     return <li>
         <div className="card">
             
@@ -26,7 +38,8 @@ class Event extends Component {
                     <p>{this.changeDate()}</p>
                     <p> { this.props.eventCity } </p>
                     <p className="card-text"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
-                    <p>From { this.props.eventMinPrice } EUR</p>
+                    <p> {this.props.eventMinPrice ? priceMessage : TBAmessage} </p>
+                    <button onClick = {this.getFavouriteId}>Add to favourites</button>
                 </div>
         </div>       
     </li>
