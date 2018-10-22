@@ -76,27 +76,6 @@ const logic = {
         sessionStorage.removeItem('token')
     },
 
-    // createPostit(text) {
-    //     if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
-
-    //     if (!text.trim()) throw Error('text is empty or blank')
-
-    //     this._events.push(new Postit(text))
-
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json; charset=utf-8',
-    //             'Authorization': `Bearer ${this._token}`
-    //         },
-    //         body: JSON.stringify({ postits: this._events })
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             if (res.error) throw Error(res.error)
-    //         })
-    // },
-
     showEvents() {
         return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=ES&apikey=ELXA0H0YPzUTFYrjeH4AG5g6y4eWTVSO&size=200`, {
             method: 'GET',
@@ -118,7 +97,7 @@ const logic = {
     },
 
     searchEvents(query) {
-        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
+        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?size=30&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
             method: 'GET',
         })
             .then(res => res.json())

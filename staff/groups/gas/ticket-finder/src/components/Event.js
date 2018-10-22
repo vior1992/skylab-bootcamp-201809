@@ -17,7 +17,16 @@ class Event extends Component {
         return date
     }
     render(){    
-    return <div className="container">
+    let priceMessage =""
+
+    let TBAmessage = ""
+    if (this.props.eventMinPrice) {
+        priceMessage = <span>From {this.props.eventMinPrice} EUR</span>
+    }
+    if (!this.props.eventMinPrice) {
+        TBAmessage = <span>Price to be announced</span>
+    }
+    return <li>
         <div className="card">
             
             <a onClick={this.handleSearchEvent} href="#"><img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /></a>
@@ -26,10 +35,10 @@ class Event extends Component {
                     <p>{this.changeDate()}</p>
                     <p> { this.props.eventCity } </p>
                     <p className="card-text"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
-                    <p>From { this.props.eventMinPrice } EUR</p>
+                    <p> {this.props.eventMinPrice ? priceMessage : TBAmessage} </p>
                 </div>
         </div>       
-    </div>
+    </li>
     }
 }     
         
