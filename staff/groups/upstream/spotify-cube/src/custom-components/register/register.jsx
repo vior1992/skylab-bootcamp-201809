@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import User from '../../datalayer/user'
 
 
+
 export default class Register extends Component{
+
 
     constructor(props){
         super(props)
@@ -45,6 +47,7 @@ export default class Register extends Component{
 
         this.props.handleRegister(this.state)
     }
+
 
     render(){
         return (  <form className="custom-form" onSubmit={this.handleSubmit}>
