@@ -65,7 +65,7 @@ class App extends Component {
     renderHome() {
         return <div>
             <Masthead onLogOut={this.handleLogOut} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
-            <Sidenav favourites={this.state.user_info.favourites} watch_later={this.state.user_info.watch_later} playlists={this.state.user_info.playlists} />
+            <Sidenav onClickFavourites={undefined} onClickWatchLater={undefined} playlists={this.state.user_info.playlists} />
         </div>
     }
 
