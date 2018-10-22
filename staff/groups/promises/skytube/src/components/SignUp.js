@@ -58,12 +58,12 @@ class SignUp extends Component {
 
     render() {
         return <form onSubmit={this.handleSubmit}>
-            <input placeholder= 'name' onChange={this.handleNameChange}/>
-            <input placeholder= 'surname' onChange={this.handleSurnameChange}/>
-            <input placeholder= 'username' onChange={this.handleUsernameChange}/>
+            <input placeholder='name' onChange={this.handleNameChange}/>
+            <input placeholder='surname' onChange={this.handleSurnameChange}/>
+            <input placeholder='username' onChange={this.handleUsernameChange}/>
             <input type='email' placeholder='email' onChange={this.handleEmailChange}/>
-            <input type='password' placeholder= 'password' onChange={this.handlePasswordChange}/>
-            <input type='password' placeholder= 'repeat password' onChange={this.handleRepPasswordChange}/>
+            <input type='password' placeholder='password' onChange={this.handlePasswordChange}/>
+            <input type='password' placeholder='repeat password' onChange={this.handleRepPasswordChange}/>
             {this.state.wrongRepPas && <p>Passwords are not the same</p>}
             <button type='submit'>Sign Up</button>
         </form>
