@@ -8,7 +8,7 @@ import LeftSide from './leftside/leftside'
 
 export default class Cube extends Component{
 
-    state = {}
+    state = { session: {} } 
 
     render(){
 
