@@ -1,79 +1,75 @@
-import data from './data'
 // const data = require('./data')
 
 
-const logic = {
+var logic = {
+    _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
-    _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
     _trendingMovies: [],
     _inTheatreMovies: [],
     _popularMovies: [],
-    _movies: [],
-
-    registerUser(name, surname, username, password) {
-        if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
-        if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
-        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
-        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
-
-        if (!name.trim()) throw Error('name is empty or blank')
-        if (!surname.trim()) throw Error('surname is empty or blank')
-        if (!username.trim()) throw Error('username is empty or blank')
-        if (!password.trim()) throw Error('password is empty or blank')
-
-        return fetch('https://skylabcoders.herokuapp.com/api/user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({ name, surname, username, password })
+    _userSeen: [],
+    _userPending: [],
+    _userFavourites: [],
+  
+    signIn(username, email, name, surname, password) {
+      if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+      if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
+      if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
+      if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
+      if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+  
+      if (!username.trim()) throw Error('username is empty or blank')
+      if (!email.trim()) throw Error('email is empty or blank')
+      if (!name.trim()) throw Error('name is empty or blank')
+      if (!surname.trim()) throw Error('surname is empty or blank')
+      if (!password.trim()) throw Error('password is empty or blank')
+  
+      const endpoint = 'https://skylabcoders.herokuapp.com/api/user'
+      const params = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, name, surname, password })
+      }
+  
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+      })
+    },
+  
+    logIn(username, password) {
+      if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
+      if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+      
+      if (!username.trim()) throw Error('username is empty or blank')
+      if (!password.trim()) throw Error('password is empty or blank')
+  
+      const endpoint = 'https://skylabcoders.herokuapp.com/api/auth'
+      const params = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      }
+  
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+  
+          const {id, token} = response.data
+  
+          this._userId = id
+          this._token = token
+  
+          sessionStorage.setItem('userId', id)
+          sessionStorage.setItem('token', token)
         })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-            })
-    },
-
-    login(username, password) {
-        if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
-        if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
-
-        if (!username.trim()) throw Error('username is empty or blank')
-        if (!password.trim()) throw Error('password is empty or blank')
-
-        return fetch('https://skylabcoders.herokuapp.com/api/auth', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({ username, password })
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-
-                const { id, token } = res.data
-
-                this._userId = id
-                this._token = token
-
-                sessionStorage.setItem('userId', id)
-                sessionStorage.setItem('token', token)
-            })
-    },
-
-    get loggedIn() {
-        return !!this._userId
-    },
-
-    logout() {
-        this._postits = []
-        this._userId = null
-        this._token = null
-
-        sessionStorage.removeItem('userId')
-        sessionStorage.removeItem('token')
     },
   
     retrieveTrending() {
@@ -144,9 +140,92 @@ const logic = {
   
           return response || {}
         })
+    },
+  
+    retrieveUserMovies() {
+      const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+      const params = {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this._token}`
+        }
+      }
+    
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+  
+          this._userSeen = response.data.movies_seen || []
+          this._userPending = response.data.movies_pending || []
+          this._userFavourites = response.data.movies_favourites || []
+        })
+    },
+  
+    updateUserSeen(movie) {
+      this._userSeen.push(movie)
+  
+      const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+      const params = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this._token}`
+        },
+        body: JSON.stringify({movies_seen: this._userSeen})
+      }
+  
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+        })
+    },
+
+  updateUserPending(movie) {
+    this._userPending.push(movie)
+
+    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+    const params = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this._token}`
+      },
+      body: JSON.stringify({ movies_pending: this._userPending})
     }
 
-}
+    return fetch(endpoint, params)
+      .then(response => response.json())
+      .then(response => {
+        if (response.error) throw Error(response.error)
+      })
+  },
 
-export default logic
-// module.exports = logic
+  updateUserFavourites(movie) {
+    this._userFavourites.push(movie)
+
+    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+    const params = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this._token}`
+      },
+      body: JSON.stringify({ movies_favourites: this._userFavourites})
+    }
+
+    return fetch(endpoint, params)
+      .then(response => response.json())
+      .then(response => {
+        if (response.error) throw Error(response.error)
+      })
+  },
+
+  updateUserData() {
+    
+  }
+  }
+
+// export default logic
+module.exports = logic
