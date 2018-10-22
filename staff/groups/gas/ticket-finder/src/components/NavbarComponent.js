@@ -14,7 +14,9 @@ class NavbarComponent extends Component {
    goToProfile = () => this.props.history.push('/profile')
 
 
-   goToFavourites = () => this.props.history.push('/favourites')
+   goToFavourites = () =>  this.props.history.push('/favourites')
+
+   
 
 
    onClickNav = () => this.setState({ collapse: !this.state.collapse })
@@ -31,7 +33,7 @@ class NavbarComponent extends Component {
                <Collapse isOpen = { this.state.collapse } navbar>
                    <NavbarNav right>
                        <NavItem >
-                           <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites }><i className="fa fa-star"></i> Favourites</a>
+                           <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites } ><i className="fa fa-star"></i> Favourites</a>
                        </NavItem>
                        <NavItem>
                            <a className="nav-link waves-effect waves-light" onClick = { this.goToProfile } ><i className="fa fa-user"></i> Profile </a>

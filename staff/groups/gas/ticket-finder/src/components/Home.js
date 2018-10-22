@@ -71,7 +71,7 @@ class Home extends Component {
             {!this.state.flag && <section>
                 {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
 
-                {this.state.reducedEvents.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} addToFavourites={this.handleAddToFavourites} />)}
+                {this.state.reducedEvents.map(event => <Event sendFavourites = {this.props.sendFavourites} key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} addToFavourites={this.handleAddToFavourites} />)}
                 
                 {!this.state.flag && <button onClick={this.goToPreviousPage}>Previous page</button>}
                 

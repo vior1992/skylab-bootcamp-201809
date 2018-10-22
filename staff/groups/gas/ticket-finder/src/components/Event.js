@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import logic from '../logic'
-import EventInfo from './EventInfo'
 
 class Event extends Component {
     
@@ -12,6 +10,7 @@ class Event extends Component {
 
     getFavouriteId = () => {
         this.props.addToFavourites(this.props.eventId)
+        this.props.sendFavourites(this.props.eventId)
     }
 
     changeDate = () => {
@@ -40,7 +39,7 @@ class Event extends Component {
                     <p> { this.props.eventCity } </p>
                     <p className="card-text"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
                     <p> {this.props.eventMinPrice ? priceMessage : TBAmessage} </p>
-                    <button onClick = {this. getFavouriteId}>Add to favourites</button>
+                    <button onClick = {this.getFavouriteId}>Add to favourites</button>
                 </div>
         </div>       
     </li>
