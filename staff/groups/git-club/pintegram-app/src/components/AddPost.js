@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
+import logic from '../logic'
 
 class AddPost extends Component {
     state = { img: null, text: null}
 
-    // componentDidMount() {
-    //     // logic.listAllPosts()
-    //     //     .then(posts => { this.setState({ posts }) })
-    //         // Request for images tagged xmas       
-    //         axios.get('https://res.cloudinary.com/christekh/image/list/xmas.json')
-    //             .then(res => {
-    //                 console.log(res.data.resources);
-    //                 this.setState({posts: res.data.resources});
-    //             });
-    //     // TODO error handling!
-    // }
+    componentDidMount() {
+        logic.listPosts() 
+    }
+    
     handleContentChange = event => {
         const text = event.target.value
 
