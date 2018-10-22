@@ -36,13 +36,18 @@ class Register extends Component {
     }
 
     render() {
-        return <form onSubmit={this.handleSubmit}>
+        return <div className="register__page">
+            <div className="register">
+             <h1>Register</h1>
+            <form onSubmit={this.handleSubmit}>
             <input type="text" placeholder="Name" onChange={this.handleNameChange} />
             <input type="text" placeholder="Surname" onChange={this.handleSurnameChange} />
             <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
             <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-            <button type="submit">Register</button> <a href="#" onClick={this.props.onGoBack}>back</a>
+            <button className="register__submit" type="submit">Register</button> <a className="register__back" href="#" onClick={this.props.onGoBack}>back</a>
         </form>
+        </div>
+        </div> 
     }
 }
 
