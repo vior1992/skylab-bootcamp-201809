@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Redirect, Link } from 'react-router-dom'
-import Header from './components/Header';
-import Profile from './components/Profile'
+import Header from './components/Header'
 import LogIn from './components/LogIn'
 import logic from './logic'
-import Masthead from './components/Masthead';
+import Masthead from './components/Masthead'
+import HomeList from './components/HomeList'
+import SongPlayer from './components/SongPlayer'
 
 class App extends Component {
-    state = { error: null }
+    state = { error: null, videoList: [] , video: ''}
 
     handleSignUpSubmit = (name, surname, username, email, password) => {
 		try {
@@ -42,6 +43,24 @@ class App extends Component {
 		this.setState({error: null}, () => this.props.history.push('/login'))
 	}
 
+	handleSearch = searchQuery => {
+		logic.search(searchQuery)
+			.then(res => this.setState({videoList: res}))
+			
+	}
+
+	handleVideoClick = videoId =>{
+		logic.retrieveSong(videoId)
+			.then(res => {
+				
+				console.log(res)
+				this.setState({video: res})
+				
+			})
+
+	}
+
+
     renderLanding() {
         return <div>
             <nav>
@@ -56,7 +75,12 @@ class App extends Component {
     }
 
     renderHome() {
-        return <Masthead onLogOut={this.handleOnLogOut} />
+        return <div><Masthead onSearch={this.handleSearch} onLogOut={this.handleOnLogOut} />
+			
+			<HomeList onVideoClick={this.handleVideoClick} videoList={this.state.videoList}/>
+			<SongPlayer video={this.state.video}/>
+			</div>
+
     }
 
     render() {

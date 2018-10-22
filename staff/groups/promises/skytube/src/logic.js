@@ -1,7 +1,10 @@
+// import Youtube from './youtube'
+
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
-
+    api_key: 'AIzaSyAieX4rBBAB612ai2A1HJYKK9416cd8f2U', 
+    root_url:"https://www.googleapis.com/youtube/v3/",
 
     registerUser(name, surname, username, email, password) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
@@ -80,10 +83,26 @@ const logic = {
 
     loggedIn() {
         return !!this._userId
-    }
+    },
     
+    search(query) {
+        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&q='+query+'&videoCategoryId=10&type=video', {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then (res => res.items)
+       
+    },
+
+    retrieveSong(video_id) {
+        // return fetch(this.root_url + 'videos?part=player&key='+this.api_key+'&id='+video_id, {
+        //     method: 'GET'
+        // })
+        // .then(res => res.json())
+        // .then(res => res)
+    }
 }
 
 
-// export default logic
-module.exports = logic
+export default logic
+//module.exports = logic
