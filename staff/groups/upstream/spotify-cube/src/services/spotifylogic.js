@@ -1,5 +1,5 @@
 const logic = {
-    token: 'BQAGaZckUEjwMkGfl4CofsRAhUetdz3YzoINmgPfv2LhFaKkit8w_EoH-8jMyY8Ku_TyaBUMa2ms6v7yoEgFEy1N8kJp_x00IFzhyZvZd5-6H-fTNk9d3QXWLuQvVtxXEKfPK0sK6ggdrVAk4gADzzwHL56v-XyLkg45nmNOBbl3bqTYphnWZzjEnJlWl4Etst-n2jR6tpaY93K6',
+    token: 'BQDWBmxjaSXjHqam7ZBMkcTkd9eyrH9EPPGJ57iq9QsJja-TfUGDsoiXd_zcixtU-tdrEbtYJ6lXgA8NNWg_xYC0ESJtBNJYD9PFB4_D3KA1VuEYHgo2RrDDYqrLzG8g2llGFzfPEi5GEGa_iV3iiE7Fd5EoDxuQ3JAn2tiCxUWZbBP5B_Xwr5kTS8fib2DrZfPgaDpaVW1BnE0k',
 
     getArtistById(id) {
         return fetch(`	https://api.spotify.com/v1/artists/${id}`, {
