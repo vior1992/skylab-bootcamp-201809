@@ -1,0 +1,68 @@
+.container-landing {
+    display: flex;
+}
+
+.container-landing-left {
+    
+    background-image: url("./images/landing-image.png");
+    width: 50%;
+    height: 580px;
+    background-color: #880e4f;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    text-align: center;
+}
+
+.container-landing-right {
+    margin: auto;
+    text-align: center;
+}
+
+.container-landing-left-claim {
+    margin-top: 40%;
+}
+
+.landing-claim {
+    font-family: Arial;
+    font-size: 1.1em;
+    color: white;
+    font-weight: bold;
+}
+
+.landing-title {
+    font-size: 4em;
+}
+
+.login-container {
+    margin: 0 auto;
+    text-align: center;
+    width: 30%;
+    margin-top: 10%;
+}
+
+@media screen and (max-width: 768px) {
+    .container-landing {
+        display: block;
+        margin: auto;
+        margin-top: 27%;
+    } 
+    .container-landing-left {
+        display: none; 
+    }
+    .landing-title {
+        font-size: 3em;
+    }
+    
+}
+
+@media screen and (max-width: 400px) {
+    .login-container {
+        margin: 0 auto;
+        text-align: center;
+        width: 80%;
+        margin-top: 10%;
+    }
+}

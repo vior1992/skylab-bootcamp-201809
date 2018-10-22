@@ -1,29 +1,39 @@
 import React, { Component } from 'react'
+import { Button, Input } from "mdbreact"
 
 class InputForm extends Component {
-    state = { query: '' }
+   state = { query: '' }
 
-    handleInput = event => {
-        const query = event.target.value
+   handleInput = event => {
+       const query = event.target.value
 
-        this.setState({ query })
-    }
+       this.setState({ query })
+   }
 
-    handleSubmit = event => {
-        event.preventDefault()
+   handleSubmit = event => {
+       event.preventDefault()
 
-        this.props.onSubmit(this.state.query)
+       this.props.onSubmit(this.state.query)
 
-        this.setState({ query: '' })
-    }
+       this.setState({ query: '' })
+   }
 
-    render() {
-        return <form onSubmit={this.handleSubmit}>
-            <input value={this.state.query} placeholder="Search events" onChange={this.handleInput} />
+   render() {
+       return <form onSubmit={this.handleSubmit}>
+       <div className='container'>
+       <Input label="Search events" value={this.state.query}  onChange={this.handleInput}/>
+       <Button type="submit"  color="unique">Search</Button>
+       </div>
+     </form>
 
-            <button type="submit"></button>
-        </form>
-    }
+
+
+           /* <form onSubmit={this.handleSubmit}>
+           <input value={this.state.query} placeholder="Search events" onChange={this.handleInput} />
+
+           <button type="submit"></button>
+       </form> */
+   }
 }
 
 export default InputForm

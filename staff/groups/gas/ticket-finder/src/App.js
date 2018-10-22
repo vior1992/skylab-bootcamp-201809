@@ -7,6 +7,7 @@ import Home from './components/Home'
 import logic from './logic'
 import Profile from './components/Profile'
 import Favourites from './components/Favourites'
+import NavbarComponent from './components/NavbarComponent'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
 class App extends Component {
@@ -61,6 +62,7 @@ handleGoBack = () => this.props.history.push('/')
     const { error } = this.state
 
     return <div>
+        {logic.loggedIn && <NavbarComponent onLogout={this.handleLogoutClick}></NavbarComponent>}
     <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/home" />} />
     <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
