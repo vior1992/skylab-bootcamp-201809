@@ -3,6 +3,7 @@ import Skylab from './skylab'
 const logic = {
     skylab: new Skylab(),
     auth: JSON.parse(sessionStorage.getItem('auth')) || {},
+    user_info: JSON.parse(sessionStorage.getItem('user_info')) || {},
 
     registerUser(name, surname, username, email, password) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
@@ -41,9 +42,17 @@ const logic = {
             password: password
         })
             .then(data => {
-                this.auth.user_id = data.id
+                this.auth.id = data.id
                 this.auth.token = data.token
-                sessionStorage.setItem('auth', JSON.stringify({user_id: data.id, token: data.token}))
+                sessionStorage.setItem('auth', JSON.stringify(this.auth))
+                return this.skylab.info(this.auth.id, this.auth.token)
+                    .then(info => {
+                        sessionStorage.setItem('user_info', JSON.stringify(info))
+                        return info
+                    })
+                    .catch(error => {
+                        throw Error(error)
+                    })
             })
     },
 
@@ -57,7 +66,7 @@ const logic = {
     },
 
     addPlaylist(playlist) {
-        return this.skylab.update(playlist, this.auth.token)
+        return this.skylab.update(playlist, this.auth.id, this.auth.token)
     }
 }
 

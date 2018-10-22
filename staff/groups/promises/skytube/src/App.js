@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import { Route, withRouter, Redirect, Link } from 'react-router-dom'
 import Header from './components/Header';
 import LogIn from './components/LogIn'
-import logic from './logic'
 import Masthead from './components/Masthead';
+import Sidenav from './components/Sidenav';
+import logic from './logic'
 
 class App extends Component {
-    state = { error: null }
+    constructor(props) {
+        super(props)
+        this.state = {
+            error: null,
+            user_info: logic.user_info
+        }
+    }
 
     handleRegister = (name, surname, username, email, password) => {
 		try {
@@ -24,7 +31,12 @@ class App extends Component {
 	handleLogIn = (username, password) => {
 		try {
 			logic.loginUser(username, password)
-				.then(() => this.setState({error: null}))
+				.then(info => {
+                    this.setState({
+                        error: null,
+                        user_info: info
+                    })
+                })
 				.catch(error => console.error(error))
 		} catch (err) {
 			this.setState({error: err.message})
@@ -51,7 +63,10 @@ class App extends Component {
     }
 
     renderHome() {
-        return <Masthead onLogOut={this.handleLogOut} />
+        return <div>
+            <Masthead onLogOut={this.handleLogOut} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
+            <Sidenav favourites={this.state.user_info.favourites} watch_later={this.state.user_info.watch_later} playlists={this.state.user_info.playlists} />
+        </div>
     }
 
     render() {

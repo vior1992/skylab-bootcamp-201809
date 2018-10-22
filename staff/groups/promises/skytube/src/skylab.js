@@ -33,6 +33,21 @@ class Skylab {
         })
     }
 
+    info(id, token) {
+        return fetch(this.root_id + 'user/' + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(result => {
+            return result.json()
+        }).then(json => {
+            if (json.status === 'OK') return json.data
+            throw Error(json.error)
+        })
+    }
+
     update(query, token) {
         return fetch(this.root_id + 'auth', {
             method: 'PUT',

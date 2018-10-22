@@ -8,7 +8,7 @@ function Masthead(props) {
             <input type="search" placeholder="Search..."></input>
             <button><span>ICON</span></button>
         </div>
-        <Profile onLogOut={props.onLogOut}/>
+        <Profile onLogOut={props.onLogOut} user={props.user} />
     </header>
 }
 
