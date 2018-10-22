@@ -21,8 +21,8 @@ class Login extends Component {
 
     }
 
-    handleSubmit=this.handleSubmit.bind(this)
-    handleSubmit (event) {
+    handleSubmit = this.handleSubmit.bind(this)
+    handleSubmit(event) {
         event.preventDefault()
 
         console.log('iniciando login')
@@ -40,7 +40,9 @@ class Login extends Component {
         } catch (err) {
             this.setState({ error: err.message })
         }
+        console.log(this.props.isLoggedIn)
         debugger
+        this.props.isLoggedIn()
     }
 
     verResultados = event => {

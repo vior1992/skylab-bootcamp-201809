@@ -9,20 +9,28 @@ import logic from './logic'
 
 class App extends Component {
 
+    state={
+        loggedIn:false
+    }
+
     handleLoginClick = () => this.props.history.push('/login')
 
     handleRegisterClick = () => this.props.history.push('/register')
+
+    handleLoggedIn = () => {
+        this.setState({loggedIn:true})
+    }
 
 
 
     render() {
 
         return <div className="body">
-            <Route exact path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} />} />
+            <Route exact path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn}/>} />
 
             <Route path="/register" render={() => !logic.loggedIn ? <Register  history={this.props.history}/> : <Redirect to="/" />} />
 
-            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} /> : <Redirect to="/" />} />
+            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn}/> : <Redirect to="/" />} />
 
             {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
 
