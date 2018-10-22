@@ -1,37 +1,32 @@
 import React, { Component } from 'react';
-import './App.css';
-import SignUp from './components/SignUp'
-import logic from './logic'
-import Main from './components/Main'
+import { Route, withRouter, Redirect, Link } from 'react-router-dom'
+import Header from './components/Header';
+import Profile from './components/Profile'
 import LogIn from './components/LogIn'
-import { Route, withRouter, Redirect } from 'react-router-dom'
-import Landing from './components/Landing';
+import logic from './logic'
 
 class App extends Component {
-    state = {  error: null }
+    state = { error: null }
 
     handleSignUpSubmit = (name, surname, username, email, password) => {
 		try {
 			logic.registerUser(name, surname, username, email, password)
 				.then(() => {
-					this.setState({ error: null}, () => this.props.history.push('/main'))
+					this.setState({ error: null}, () => this.props.history.push('/home'))
 
 				})
 				.catch(err => this.setState({ error: err.message }))
-		
-		} catch (err) { 
+		} catch (err) {
 			this.setState({error: err.message })
-
 		}
-
 	}
-	
+
 
 	handleLogInSubmit = (username, password) => {
 		try {
 			logic.LogInUser(username, password)
 				.then(() => {
-					this.setState({ error: null }, () => this.props.history.push('/main'))
+					this.setState({ error: null }, () => this.props.history.push('/home'))
 				})
 				.catch(err => this.setState({ error: err.message}))
 
@@ -40,39 +35,37 @@ class App extends Component {
 		}
 	}
 
-	handleLogInButton = () => {
-		this.setState({error: null},  () => this.props.history.push('/login'))
-	} 
-
-	handleSignUpButton = () => {
-		this.setState({error: null}, () => this.props.history.push('/signup'))
-
-	}
-
 	handleOnLogOut = () => {
 		logic.userLogOut()
-		
-		this.setState({error: null}, () => this.props.history.push('/'))
+
+		this.setState({error: null}, () => this.props.history.push('/login'))
 	}
 
+    renderLanding() {
+        return <div>
+            <nav>
+                <ul>
+                    <li><Link to='/#register'>Sign Up</Link></li>
+                    <li><Link to='/login'>Log In</Link></li>
+                </ul>
+            </nav>
+
+            <Header onSubmitSignUp={this.handleSignUpSubmit} />
+        </div>
+    }
+
+    renderHome() {
+        return <Profile onLogOut={this.handleOnLogOut} />
+    }
+
     render() {
-
-        return (
-
-            <div className="App">
-                <header className="App-header">
-                    <h1>Hola SoundSky</h1>
-					<Route exact path='/' render={() => !logic.loggedIn() ? <Landing onSignUpSubmit={this.handleSignUpSubmit} onClickLogInButton={this.handleLogInButton} onClickSignUpButton={this.handleSignUpButton}/> : <Redirect to='/main'/>}/>
-                    <Route path='/signup' render={() => !logic.loggedIn() ? <SignUp onSignUpSubmit={this.handleSignUpSubmit}/>: <Redirect to='/main'/>}/>
-					<Route path='/login' render={() => !logic.loggedIn() ? <LogIn onLogInSubmit={this.handleLogInSubmit}/>: <Redirect to='/main'/>}/>
-					{this.state.error && <p>{this.state.error}</p>}
-
-					<Route path='/main' render={() => logic.loggedIn() ? <Main onLogOut={this.handleOnLogOut} />: <Redirect to='/login'/>}/>
-				
-				</header>
-            </div>
-        );
-      }
+        return <div className="App">
+            <Route exact path='/' render={() => !logic.loggedIn() ? this.renderLanding() : <Redirect to='/home'/>} />
+            <Route path='/home' render={() => logic.loggedIn() ? this.renderHome() : <Redirect to='/login' />} />
+            <Route path='/login' render={() => !logic.loggedIn() ? <LogIn onLogInSubmit={this.handleLogInSubmit}/> : <Redirect to='/home' />} />
+            {this.state.error && <p>{this.state.error}</p>}
+        </div>
+    }
 }
 
 export default withRouter(App);
