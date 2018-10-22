@@ -14,7 +14,6 @@ class Home extends Component {
             eventInfoArray: [], 
             flag: false,
             pageNumber:1,
-            priceControl: true
          }
     
     componentDidMount() {
@@ -28,8 +27,6 @@ class Home extends Component {
         try{
             logic.searchEvents(query)
             .then(events => {
-            if (events[0].priceRanges===undefined) this.setState({carousel: [], events: events, reducedEvents: [...events], control:false})
-            // else this.setState({carousel: [], events: events, reducedEvents: [...events], control: true})
             this.setState({carousel: [], events: events, reducedEvents: [ ...events.slice(0,6)]})
                 
         })      
@@ -70,7 +67,7 @@ class Home extends Component {
             {!this.state.flag && <section>
                 {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
 
-                {this.state.reducedEvents.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={this.state.control ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
+                {this.state.reducedEvents.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
                 
                 {!this.state.flag && <button onClick={this.goToPreviousPage}>Previous page</button>}
                 
@@ -80,7 +77,7 @@ class Home extends Component {
             </section>}
 
             {this.state.flag && <section>
-                <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name}  eventGetTickets={eventInfoArray.url} eventMinPrice={this.state.control ? eventInfoArray.priceRanges[0].min : false } />
+                <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name}  eventGetTickets={eventInfoArray.url} eventMinPrice={ !!eventInfoArray.priceRanges ? eventInfoArray.priceRanges[0].min : false } />
             </section>
             }
         </div>
