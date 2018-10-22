@@ -1,13 +1,9 @@
 const logic = {
   _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
-  _userId: sessionStorage.getItem('userId') || null,
-  _token: sessionStorage.getItem('token') || null,
+  _user: {},
   _trendingMovies: [],
   _inTheatreMovies: [],
   _popularMovies: [],
-  _userSeen: [],
-  _userPending: [],
-  _userFavourites: [],
 
   signIn(username, email, name, surname, password) {
     if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
@@ -61,11 +57,10 @@ const logic = {
 
         const {id, token} = response.data
 
-        this._userId = id
-        this._token = token
+        this._user.id = id
+        this._user.token = token
 
-        sessionStorage.setItem('userId', id)
-        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('user', JSON.stringify(this._user))
       })
   },
 
@@ -139,12 +134,12 @@ const logic = {
       })
   },
 
-  retrieveUserMovies() {
-    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+  retrieveUserData() {
+    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${this._token}`
+        'Authorization': `Bearer ${this._user.token}`
       }
     }
 
@@ -153,21 +148,25 @@ const logic = {
       .then(response => {
         if (response.error) throw Error(response.error)
 
-        this._userSeen = response.data.movies_seen || []
-        this._userPending = response.data.movies_pending || []
-        this._userFavourites = response.data.movies_favourites || []
+        this._user.username = response.data.username || ''
+        this._user.email = response.data.email || ''
+        this._user.name = response.data.name || ''
+        this._user.surname = response.data.surname || ''
+        this._user.seen = response.data.movies_seen || []
+        this._user.pending = response.data.movies_pending || []
+        // this._userFavourites = response.data.movies_favourites || []
       })
   },
 
   updateUserSeen(movie) {
     this._userSeen.push(movie)
 
-    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this._token}`
+        'Authorization': `Bearer ${this._user.token}`
       },
       body: JSON.stringify({ movies_seen: this._userSeen})
     }
@@ -182,12 +181,12 @@ const logic = {
   updateUserPending(movie) {
     this._userPending.push(movie)
 
-    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this._token}`
+        'Authorization': `Bearer ${this._user.token}`
       },
       body: JSON.stringify({ movies_pending: this._userPending})
     }
@@ -199,17 +198,35 @@ const logic = {
       })
   },
 
-  updateUserFavourites(movie) {
-    this._userFavourites.push(movie)
+  // updateUserFavourites(movie) {
+  //   this._userFavourites.push(movie)
 
-    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._userId}`
+  //   const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
+  //   const params = {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${this._user.token}`
+  //     },
+  //     body: JSON.stringify({ movies_favourites: this._userFavourites})
+  //   }
+
+  //   return fetch(endpoint, params)
+  //     .then(response => response.json())
+  //     .then(response => {
+  //       if (response.error) throw Error(response.error)
+  //     })
+  // },
+
+  updateUserData(data) {
+    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this._token}`
+        'Authorization': `Bearer ${this._user.token}`
       },
-      body: JSON.stringify({ movies_favourites: this._userFavourites})
+      body: JSON.stringify(data)
     }
 
     return fetch(endpoint, params)
@@ -217,9 +234,5 @@ const logic = {
       .then(response => {
         if (response.error) throw Error(response.error)
       })
-  },
-
-  updateUserData() {
-    
   }
 }
