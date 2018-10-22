@@ -9,7 +9,7 @@ import $ from 'jquery'
 
 export default class Cube extends Component{
 
-    state = {}
+    state = { session: {} } 
 
     constructor(props){
 
