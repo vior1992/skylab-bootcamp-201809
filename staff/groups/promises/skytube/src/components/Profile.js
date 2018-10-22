@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 
-class Main extends Component {
-
-    state= {}
-
+class Profile extends Component {
     handleLogOut = () => {
         this.props.onLogOut()
     }
@@ -11,7 +8,6 @@ class Main extends Component {
     render() {
         return <button onClick={this.handleLogOut}>Log Out</button>
     }
-
 }
 
-export default Main
+export default Profile
