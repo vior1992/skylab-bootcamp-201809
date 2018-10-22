@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import { Route, withRouter, Redirect } from 'react-router-dom'
+
 
 class Register extends Component {
 
@@ -43,16 +45,18 @@ class Register extends Component {
         console.log(repeatPassword)
     }
 
-    handleSubmit = event => {
+    handleSubmit=this.handleSubmit.bind(this)
+
+    handleSubmit (event){
         event.preventDefault()
         console.log("hola  " + this.state.surname)
         const { name, surname, username, password } = this.state
         console.log("hola2  " + this.state.name + this.state.surname + this.state.username + this.state.password)
+        debugger
         try {
             logic.registUser(name, surname, username, password)
-                .then(() => {
-                    this.setState({ error: null }, () => this.props.history.push('/login'))
-                })
+                .then(() => this.setState({ error: null }))
+                .then(() => this.props.history.push('/login'))
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })

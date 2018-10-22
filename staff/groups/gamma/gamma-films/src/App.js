@@ -18,13 +18,13 @@ class App extends Component {
     render() {
 
         return <div className="body">
-            <Route exact path="/" render={() => !logic.loggedIn ? <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} /> : <Redirect to="/" />} />
+            <Route exact path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} />} />
 
-            <Route path="/register" render={() => !logic.loggedIn ? <Register /> : <Redirect to="/" />} />
+            <Route path="/register" render={() => !logic.loggedIn ? <Register  history={this.props.history}/> : <Redirect to="/" />} />
 
-            <Route path="/login" render={() => !logic.loggedIn ? <Login /> : <Redirect to="/" />} />
+            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} /> : <Redirect to="/" />} />
 
-            <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} />
+            {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
 
             <Home />
         </div>
