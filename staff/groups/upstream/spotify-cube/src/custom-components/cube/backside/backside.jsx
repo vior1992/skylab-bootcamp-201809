@@ -7,6 +7,13 @@ export default class BackSide extends Component{
 
   state = {albums:this.props.albumlist}
 
+    componentWillReceiveProps(props){
+
+        this.setState({albums:props.albumlist})
+
+    }
+
+
     render() {
         return (
     
@@ -14,7 +21,7 @@ export default class BackSide extends Component{
             <div className = "rotateY-180">
               <Header></Header>
               <SideTitle title="Albums list" image ="metallica.png"></SideTitle>
-              <List type="album" list={this.state.albums}></List>
+              <List type="tracks" list={this.state.albums}></List>
             </div>
             
           </section>

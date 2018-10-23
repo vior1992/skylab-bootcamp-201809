@@ -1,26 +1,22 @@
 import React, {Component} from 'react'
 
 
-export default class SideTitle extends Component{
+export default function SideTitle(props){
 
-    state = {}
-
-    render() {
-       
+    
         return (
             
             <section className="panel-inf">
                 <section className="panel-inf__main-section">
                     <section className="panel-inf__main-section__img-section">
-                        <img src={require("../../assets/img/" + this.props.image)} />    
+                        <img src={require("../../assets/img/" + props.image)} />    
                     </section>
                     <section className="panel-inf__main-section__name-section">
                         <h1>
-                            {this.props.title}
+                            {props.title}
                         </h1>
                     </section>
                 </section>
             </section>
-        )
-      }
+        )    
 }

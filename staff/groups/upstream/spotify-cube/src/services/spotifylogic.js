@@ -1,11 +1,13 @@
 
 const spotifyLogic = {
-    token: 'BQACm7ir4NZLzqhKWhayNKF5WXpggso9_jsZOwY2D-8yz1DRGc73bl7Qv7tQaPy7iqMxTU51Lakn2_7rCjdzfFSdf-lidibBnzENR8Ce8k6RNrD00_4XrL6hVcfbimzLit3v2BIVVv5dEWD1tcnKCFqYr28eEeFUiawiNWWNgqrrUbIOC0BBa4R1JGaIvn1bSJLgg4UJ3TBOCWvi',
+
+    token: 'BQBvNMVEkphkXnSNyEKE9wMJWqYmxcowT6g5A7zF6A1Xus6_PBvMU2et2X8gbEP0U2xbfKUmkc_TcHOB1ykQ-vAFnUFY_XCklvMY_nQzNuzZiglkTWTqZ1nVuRRXjQi84exfiF28gxHL5Dtbi_xTJm4juN9GKCj9FdaOQEjw0_JpoFNiEgr0nOIMMTt7SJo1-gVbXXWlAXOyVJYK-6eXI66Uucu4gBYrRmlRchfUqMzTZ75EP0TUYNcbxpOv0T9Flz434tbz0Q4',
 
     getArtistById(id) {
 
         if(!(typeof id === 'string')) throw Error ('id is not a a string')
         if(!(id.length)) throw Error ('id is empty or blank')
+        
         return fetch(`https://api.spotify.com/v1/artists/${id}`, {
             method: 'GET',
             headers: {
@@ -32,7 +34,7 @@ const spotifyLogic = {
            
         })
             .then(res => res.json())
-            .then(res => res)
+            .catch(err => {throw Error(err.message)})
     },
 
     getPlaylistsTracks(playlistId) {

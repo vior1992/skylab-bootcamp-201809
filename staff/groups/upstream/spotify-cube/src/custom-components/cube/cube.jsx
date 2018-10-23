@@ -5,32 +5,40 @@ import BottomSide from './bottomside/bottomside'
 import TopSide from './topside/topside'
 import RightSide from './rightside/rightside'
 import LeftSide from './leftside/leftside'
-import $ from 'jquery'
+
 
 export default class Cube extends Component{
 
-    state = {artists:[], tracks:[], albums:[]} 
+    state = {artists:[], tracks:[], albums:[], playlists:[], isLogged:false} 
 
     constructor(props){
 
         super(props)
         this.xdeg = 0
-        this.face = "front"
-        document.addEventListener("keypress", this.cubeControler)
+        this.face = "top"
+        document.addEventListener("keypress", (ev) => this.cubeControler(ev.keyCode, this.face))
     }
 
-    cubeControler = (ev) => {
+    componentDidMount(){
+        this.addRotation("rotateX--90")
+    }
 
-            switch(ev.keyCode){
+
+    cubeControler = (keyCode, face) => {
+           
+            
+            switch(keyCode){
+                
 
                 case 87,119:  //UP
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.addRotation("rotateX--90")
                             this.face = "top"
                         break;
                         case "bottom":
+                            debugger
                             this.addRotation("rotateX-0")
                             this.face = "front"
                         break;
@@ -38,7 +46,7 @@ export default class Cube extends Component{
                 break;
 
                 case 83,115:  //DOWN
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.addRotation("rotateX-90")
@@ -53,7 +61,7 @@ export default class Cube extends Component{
                 break;
 
                 case 100: //LEFT
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.xdeg += -90
@@ -79,7 +87,7 @@ export default class Cube extends Component{
                 break;
 
                 case 97: //RIGHT
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.xdeg += 90
@@ -114,24 +122,96 @@ export default class Cube extends Component{
       
     }
 
-    handlerArtistFound = (data) => {
-        
+    handlerArtistFound = (data) => {        
     
-      this.setState({artists:data})
-         
+      this.setState({artists:data}, () => {
+
+            this.addRotation("rotateY--90")
+            this.face = "right"
+      })         
     }
+
+    handlerAlbumsFound = (data) => {        
+    
+        this.setState({albums:data}, () => {
+  
+              this.addRotation("rotateY--180")
+              this.face = "right"
+        })         
+      }
+
+      handlerTracksFound = (data) => {        
+    
+        this.setState({tracks:data}, () => {
+  
+              this.addRotation("rotateY--270")
+              this.face = "left"
+        })         
+      }
+
+      handleLogin = (isLogged) =>{
+
+        let data
+        if (isLogged){
+            data = [{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""}];
+              
+        }
+       
+        this.setState({playlists:data, isLogged:isLogged}, () =>{
+
+                this.addRotation("rotateX-0")
+                this.face = "front"
+              
+               
+            })
+      }
+
+      handleLogout = () =>{
+
+        this.setState({isLogged:false}, () => {
+            
+           
+            
+            
+        })
+        
+ 
+       }
+
+       handleRegister = () =>{
+            
+            this.addRotation("rotateX-90")
+            this.face = "bottom"
+
+       }
+
+       handleClickRegisterLogin = () =>{
+
+            this.addRotation("rotateX--90")
+            this.face = "top"
+       }
+
+       handleAlbums = (albums) =>{
+            this.setState({albums:albums}, () =>{
+
+                this.addRotation("rotateY--180")
+                this.face = "back"
+            
+            
+            })
+       }
 
     render(){
 
         return <section className="container">
             <section className={`cube ${this.state.rotationClass}`}>
-
                 <FrontSide onArtistFound = {this.handlerArtistFound}></FrontSide>
                 <BackSide albumlist = {this.state.albums}></BackSide>
                 <LeftSide tracks = {this.state.tracks}></LeftSide>
-                <RightSide artists = {this.state.artists}></RightSide>
-                <TopSide></TopSide>
-                <BottomSide></BottomSide>    
+                <RightSide onAlbums = {this.handleAlbums} artists = {this.state.artists}></RightSide>
+                <TopSide onLogout={this.handleLogout} onLogin={this.handleLogin} onClickRegister = {this.handleRegister}></TopSide>
+                <BottomSide playlists = {this.state.playlists} onClickLogin = {this.handleClickRegisterLogin} isLogged = {this.state.isLogged}></BottomSide>    
+
             </section>
         </section>
             
