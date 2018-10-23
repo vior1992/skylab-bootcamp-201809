@@ -11,6 +11,7 @@
   width: 100%;
   height: 350px;
   margin-bottom: 20px;
+  padding: 0px;
 }
 .body .navbar .header_background {
   background: url("header-nav.png");
@@ -22,10 +23,14 @@
 }
 .body .navbar .navbar_buttons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   width: 100%;
+  font-weight: bold;
+}
+.body .navbar .btn-outline-secondary {
+  border: 0px;
   font-weight: bold;
 }
 .body .navbar .header {
@@ -59,19 +64,6 @@
   width: 100%;
   margin-bottom: 20px;
 }
-.body .home .form_search .button_search {
-  background-color: #fff;
-  padding: 1px 15px;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-  height: 25px;
-}
-.body .home .form_search .input_search {
-  height: 19px;
-  width: 50%;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-}
 .body .login_component {
   background: url("header-nav.png");
   background-position: center;
@@ -92,21 +84,11 @@
   width: 100%;
   margin-bottom: 20px;
 }
-.body .login_component .login_form .login_input {
-  height: 19px;
-  width: 50%;
-  max-width: 300px;
-  border-radius: 5px;
-  margin: 10px;
+.body .btn {
+  margin-bottom: 15px;
 }
-.body .login_component .login_form .login_btn {
-  background-color: #fff;
-  padding: 1px 15px;
-  border-radius: 5px;
-  height: 25px;
-}
-.body .login_component .login_form .login_back {
-  color: #fff;
+.body .form-control {
+  max-width: 500px;
 }
 .body .slide1 {
   display: flex;

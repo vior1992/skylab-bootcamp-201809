@@ -21,8 +21,8 @@ class Login extends Component {
 
     }
 
-    handleSubmit=this.handleSubmit.bind(this)
-    handleSubmit (event) {
+    handleSubmit = this.handleSubmit.bind(this)
+    handleSubmit(event) {
         event.preventDefault()
 
         console.log('iniciando login')
@@ -30,7 +30,6 @@ class Login extends Component {
         const { username, password } = this.state
 
         console.log('username y password: ' + username + password)
-        debugger
         try {
             logic.loginUser(username, password)
                 .then(() => this.setState({ error: "" }))
@@ -40,7 +39,8 @@ class Login extends Component {
         } catch (err) {
             this.setState({ error: err.message })
         }
-        debugger
+        console.log(this.props.isLoggedIn)
+        this.props.isLoggedIn()
     }
 
     verResultados = event => {
@@ -50,15 +50,16 @@ class Login extends Component {
 
     render() {
         return <div className="login_component">
-
-            <form className="login_form" onSubmit={this.handleSubmit}>
-                <input className="login_input" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-                <input className="login_input" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-                <button className="login_btn" type="submit">Login</button>
-                <a className="login_back" href="#" onClick={this.props.onGoBack}>back</a>
-            </form>
-        </div>
-    }
-}
-
+                        <form className="login_form" onSubmit={this.handleSubmit}>
+                            <input type="text" class="form-control" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+                            <br></br>
+                            <input type="password" class="form-control" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
+                            <br></br>
+                            <button class="btn btn-outline-secondary" type="submit">Login</button>
+                            <a className="btn btn-link" href="#" onClick={this.props.onGoBack}>back</a>
+                        </form>
+                    </div>
+                    }
+                }
+                
 export default Login

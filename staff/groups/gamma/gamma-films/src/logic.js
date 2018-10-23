@@ -52,8 +52,33 @@ const logic = {
             })
     },
 
+    retrieveUser(){
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error (res.error)
+
+                const {data} = res
+                
+                this._user = data
+                console.log(this._user)
+            })
+
+    },
+
     get loggedIn() {
         return !!this._userId
+    },
+
+    get user(){
+        this.retrieveUser()
+        .then(res => res)
+
     },
 
     searchMovies(query) {
