@@ -20,7 +20,7 @@ class PostUser extends Component {
     render() {
         return <section className="gallery__user">
             <img className="user__img" src={this.state.url}></img>
-            <div classNam="user__likes"><i className="fas fa-heart icon"></i>{this.state.likes ? this.state.likes.length : 0}</div>
+            <div classNam="user__likes"><i className="fas fa-heart icon"></i>{this.state.likes}</div>
 
         </section>
     }

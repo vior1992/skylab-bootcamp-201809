@@ -82,10 +82,9 @@ const logic = {
 
     createPost(url, description) {
         if (typeof url !== 'string') throw TypeError(`${url} is not a string`)
-        if (typeof description !== 'string') throw TypeError(`${description} is not a string`)
 
         if (!url.trim()) throw Error('document is empty or blank')
-        if (!description.trim()) throw Error('Description is empty or blank')
+        
 
         this._posts.push(new Post(this._userId, url, description))
 
@@ -136,8 +135,9 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
+                if(res.data.likes){
                 let liked = res.data.likes.some(like => like===postId)
-                return liked
+                return liked}
             })
            
     },
@@ -222,15 +222,15 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                
+                debugger
                 if (res.error) throw Error(res.error)
                 let users = res.data.filter(user => user.app)
                 let appUsers = users.filter(user => user.app === 'pintegram')
-                let countLikes = []
+                let countLikes = 0
                 appUsers.forEach(user => {
                     if(user.likes){
                         for (let i = 0; i < user.likes.length ; i++){
-                            if(user.likes[i] === postId) countLikes.push(user.posts[i])
+                            if(user.likes[i] === postId) countLikes++ 
                         }
                     }
                 })   
