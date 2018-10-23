@@ -15,7 +15,6 @@ class Search extends Component {
     event.preventDefault()
     
     const query = this.state.query.replace(/\s/g, '+')
-
     this.props.history.push(`/search/${query}`)
   }
 

@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import logic from '../logic'
 
 class LogIn extends Component {
   state = {
@@ -34,9 +35,11 @@ class LogIn extends Component {
     event.preventDefault()
 
     try {
-      this.props.onSubmit(this.state.username, this.state.password)
+      logic.logIn(this.state.username, this.state.password)
+        .then(() => { logic.retrieveUserData() })
+        .then(() => { this.props.history.push('/') })
         .catch(error => this.setState({ status: error.message }))
-    } catch(error) {
+    } catch (error) {
       this.setState({ status: error.message })
     }
   }
@@ -54,4 +57,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn
+export default withRouter(LogIn)
