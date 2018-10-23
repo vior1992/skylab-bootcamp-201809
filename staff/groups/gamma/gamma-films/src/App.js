@@ -33,11 +33,16 @@ class App extends Component {
         }
     }
 
+    handleLogoutClick = () => {
+        this.setState({loggedIn: false})
+        this.setState({user:''})
+    }
+
 
     render() {
 
         return <div className="body">
-            <Route exact path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} name={this.state.user.name}  />} />
+            <Route exact path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
 
             <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
 

@@ -50,6 +50,13 @@ const logic = {
             })
     },
 
+    logout(){
+        this._user=''
+        this._userId=''
+        this._token=''
+        this.results=[]
+    },
+
     retrieveUser() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'GET',
