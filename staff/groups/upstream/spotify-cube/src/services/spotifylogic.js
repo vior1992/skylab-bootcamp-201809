@@ -1,8 +1,8 @@
-const logic = {
-    token: 'BQDWBmxjaSXjHqam7ZBMkcTkd9eyrH9EPPGJ57iq9QsJja-TfUGDsoiXd_zcixtU-tdrEbtYJ6lXgA8NNWg_xYC0ESJtBNJYD9PFB4_D3KA1VuEYHgo2RrDDYqrLzG8g2llGFzfPEi5GEGa_iV3iiE7Fd5EoDxuQ3JAn2tiCxUWZbBP5B_Xwr5kTS8fib2DrZfPgaDpaVW1BnE0k',
+const spotifyLogic = {
+    token: 'BQCYw93iFR12L0c8X2A7PnWscsTUEFc4bTfIwV5br-Lio02NQnl1O2nPVzDjrd-gT_6Lh7ef8i2igeZe_9jbwH6b48W7_ul6O3lchLXAYfQJIv5R-QXovPHMGNXKp4XqQpy627FLwfz6RmffYW8c-XAq2qRnHzQetXLD775KFZr-pwl0BH_TOrJDCFKOSH4jTM4iUfAt18bGP3RwN45JKc93OnMQJ02HLd4N0S8jLOSNoXZd4UEgI_E8HAxculW3MjCFwtUTeQE',
 
     getArtistById(id) {
-        return fetch(`	https://api.spotify.com/v1/artists/${id}`, {
+        return fetch(`https://api.spotify.com/v1/artists/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -12,6 +12,21 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => res)
+    },
+
+    getArtists(search) {
+        
+        return fetch(`https://api.spotify.com/v1/search?q=${search}&type=artist`, {
+            method: 'GET',
+            headers: {
+               
+                'Authorization': 'Bearer ' + this.token
+            },
+           
+        })
+            .then(res => res.json())
+            .then(res => res)
+            .catch(err => {throw Error(err.message)})
     },
 
     getPlaylistsTracks(playlistId) {
@@ -66,4 +81,6 @@ const logic = {
     }
 }
 
-module.exports = logic
+export default spotifyLogic
+
+//module.exports = logic

@@ -5,6 +5,10 @@ import List from '../../list/list';
 
 export default class LeftSide extends Component{
 
+
+  state = {tracks:this.props.tracks}
+
+
     render() {
         return (
     
@@ -12,7 +16,7 @@ export default class LeftSide extends Component{
             <div className="rotateY--180">
               <Header showPlayer = {true}></Header>
                 <SideTitle image="metallica.png" title="Track List"></SideTitle>
-                <List></List>
+                <List type="tracks" list = {this.state.tracks}></List>
             </div>
             
           </section>

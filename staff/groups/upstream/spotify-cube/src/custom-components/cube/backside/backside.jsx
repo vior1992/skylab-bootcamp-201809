@@ -5,7 +5,7 @@ import List from '../../list/list';
 
 export default class BackSide extends Component{
 
-    state = {}
+  state = {albums:this.props.albumlist}
 
     render() {
         return (
@@ -14,7 +14,7 @@ export default class BackSide extends Component{
             <div className = "rotateY-180">
               <Header></Header>
               <SideTitle title="Albums list" image ="metallica.png"></SideTitle>
-             <List></List>
+              <List type="album" list={this.state.albums}></List>
             </div>
             
           </section>
