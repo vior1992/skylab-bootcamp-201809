@@ -2,7 +2,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: #f0f9fb;
+  background-image: -webkit-gradient(linear, left top, right top, from(#f0f9fb), to(white));
+  background-image: linear-gradient(to right, #f0f9fb, white);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -63,7 +64,7 @@ nav ul li a {
   outline: 0;
 }
 
-main {
+.main {
   width: calc(100% - 300px);
   padding: 50px 150px;
   display: -webkit-box;
@@ -71,7 +72,7 @@ main {
   display: flex;
 }
 
-main .list-container {
+.main .list-container {
   width: 30%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -83,7 +84,7 @@ main .list-container {
           flex-direction: column;
 }
 
-main .list-container span {
+.main .list-container span {
   color: #666d6f;
   font-size: 1.3em;
   padding: 20px 10px;
@@ -92,13 +93,13 @@ main .list-container span {
   transition: 0.2s;
 }
 
-main .list-container span:hover {
+.main .list-container span:hover {
   color: #01b3e3;
   -webkit-box-shadow: -6px 0px 0px 0px #01b3e3;
           box-shadow: -6px 0px 0px 0px #01b3e3;
 }
 
-main .cards-container {
+.main .cards-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -109,7 +110,7 @@ main .cards-container {
   width: 70%;
 }
 
-main .cards-container .card {
+.main .cards-container .card {
   position: relative;
   background: white;
   width: calc(100% - 50px);
@@ -133,7 +134,7 @@ main .cards-container .card {
           box-shadow: 4px 4px 20px 3px rgba(0, 0, 0, 0.15);
 }
 
-main .cards-container .card::after {
+.main .cards-container .card::after {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -148,13 +149,13 @@ main .cards-container .card::after {
   border-radius: 50%;
 }
 
-main .cards-container .card .card-top {
+.main .cards-container .card .card-top {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-main .cards-container .card .card-top img {
+.main .cards-container .card .card-top img {
   width: 170px;
   height: 100px;
   min-width: 170px;
@@ -166,30 +167,30 @@ main .cards-container .card .card-top img {
           box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
 
-main .cards-container .card .card-top .card-info {
+.main .cards-container .card .card-top .card-info {
   padding-left: 20px;
 }
 
-main .cards-container .card .card-top .card-info .title {
+.main .cards-container .card .card-top .card-info .title {
   cursor: pointer;
   margin: 0;
 }
 
-main .cards-container .card .card-top .card-info .title:hover {
+.main .cards-container .card .card-top .card-info .title:hover {
   color: #7d97ad;
 }
 
-main .cards-container .card .card-top .card-info .subtitle {
+.main .cards-container .card .card-top .card-info .subtitle {
   margin: 0;
   margin-top: 10px;
 }
 
-main .cards-container .card .card-top .card-info .short-summary {
+.main .cards-container .card .card-top .card-info .short-summary {
   font-size: 14px;
   color: #666d6f;
 }
 
-main .cards-container .card .card-middle {
+.main .cards-container .card .card-middle {
   font-weight: bold;
   display: -webkit-box;
   display: -ms-flexbox;

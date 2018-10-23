@@ -11,6 +11,7 @@ class Card extends Component {
             subtitle: 'No Subtitle Available',
             short_summary: 'No Summary Available',
             summary: 'No Description Available',
+            level: 'beginner'
         }
 
         return (
@@ -26,7 +27,7 @@ class Card extends Component {
 
                 <div className="card-middle">
                     <span>+  Course Details</span>
-                    <span>Level</span>
+                    <span>{course.level || _default.level}</span>
                 </div>
             </div>
 
