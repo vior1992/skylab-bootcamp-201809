@@ -1,8 +1,8 @@
+
 const logicUdacity = {
     _courses: sessionStorage.getItem('courses'),
 
     getCourses(url = 'https://www.udacity.com/public-api/v0/courses') {
-        debugger
         return fetch(url).then(response => {
             return response.json()
         }).then(data => {
@@ -13,10 +13,9 @@ const logicUdacity = {
             .catch(err => {
                 if (err) throw Error('Unable to load courses')
             })
+
     }
 }
 
-// export default logicUdacity
-module.exports = logicUdacity
-
-///////////////////////////////////
+export default logicUdacity
+// module.exports = logicUdacity
