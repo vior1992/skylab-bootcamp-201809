@@ -9,4 +9,5 @@ class Player extends Component {
         return <div id='player' dangerouslySetInnerHTML={this.iframe()}></div>
     }
 }
+
 export default Player
