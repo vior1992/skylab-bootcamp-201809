@@ -181,6 +181,12 @@ input[type=text], input[type=password] {
   display: flex;
   flex-direction: column;
 }
+.search {
+    background-image: url("./search.png");
+    background-repeat: no-repeat;
+    background-position: 95%;
+
+  }
 
 .home__post{
   display: flex;

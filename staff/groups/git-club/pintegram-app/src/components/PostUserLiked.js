@@ -5,6 +5,7 @@ class PostUserLiked extends Component {
     state = { postId:this.props.id, url:this.props.url, text: this.props.text, likes: null}
 
     componentDidMount() {
+     
         logic.listPosts()
             .then(posts => { this.setState({ posts }) })
 

@@ -17,12 +17,12 @@ class Post extends Component {
     }
 
     handleLikePost = () => {
-            debugger
+        
         logic.addLike(this.state.postId)
             .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
+            .then(logic.likedPost(this.state.postId).then(liked => { this.setState({ liked })}))
            
-            // .then(logic.likedPost(this.state.postId))
-            // .then(liked => { this.setState({ liked }) })
+            
         
 
     }
@@ -31,7 +31,7 @@ class Post extends Component {
         return <article className="post">
             <div className="post__justify">
             <div className="post__center">
-            <h1 className="post__text">{this.state.user}</h1>
+            <a className="post__text">{this.state.user}</a>
             <img className="post__img" src={this.state.url}></img>
             <div className="post__icon">
             {!this.state.liked ? <i onClick={this.handleLikePost} className="far fa-heart icon"></i> : <i className="fas fa-heart icon"></i>}{this.state.likes}

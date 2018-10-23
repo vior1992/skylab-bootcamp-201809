@@ -117,8 +117,14 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
+                
+                let sortedUsers=[]
+                if(res.data.likes) sortedUsers=res.data.posts.sort(function (a, b) {
+                    return b.id - a.id;
+                });
 
-                return this._likes = res.data.likes || []
+
+                return this._likes = sortedUsers || []
             })
     },
 
@@ -177,6 +183,25 @@ const logic = {
                 return  name || null
             })
     },
+   
+   
+    searchUserByName(username) {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                let userName = res.data.filter(user => user.username === username)
+                let name = userName[0]
+                return  name || null
+            })
+    },
+
+
 
     listPosts() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -211,10 +236,10 @@ const logic = {
                 let postsUsers = []
                 appUsers.forEach(user => {
                     if(user.posts){
-                        for (let i = 0; i < user.posts.length ; i++){
-                            if(user.posts[i].publicPost) postsUsers.push(user.posts[i])
-                            
-                        }
+                        user.posts.forEach((post)=>{
+                            if(post.publicPost) postsUsers.push(post)
+                        })
+                       
                     }
                 })   
                 
