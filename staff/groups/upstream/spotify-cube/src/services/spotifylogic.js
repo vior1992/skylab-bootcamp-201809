@@ -83,6 +83,6 @@ const spotifyLogic = {
     }
 }
 
-export default spotifyLogic
+// export default spotifyLogic
 
-//module.exports = logic
+module.exports = spotifyLogic

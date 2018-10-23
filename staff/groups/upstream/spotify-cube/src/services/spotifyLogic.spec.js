@@ -11,9 +11,10 @@ const logic = require('./spotifyLogic')
 describe('spotifyLogic', () => {
     describe('getArtistById', () => {
 
-        let id = '6J7biCazzYhU3gM9j1wfid'
+        
         it('should succeed on retrieving correct artist', () => {
 
+            let id = '6J7biCazzYhU3gM9j1wfid'
             logic.getArtistById(id)
                 .then((res) => expect(res.name).to.equal('Jamiroquai'))
             // .then(res => console.log(res))
@@ -21,7 +22,9 @@ describe('spotifyLogic', () => {
 
         it('should fail on empty query', () => {
 
-            logic
+            let id = ''
+            logic.getArtistById(id)
+                .then((res) => console.log(res))
         })
         // TODO other cases
     })
