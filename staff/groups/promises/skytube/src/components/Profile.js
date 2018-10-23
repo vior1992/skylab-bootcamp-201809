@@ -13,12 +13,17 @@ class Profile extends Component {
             <button onClick={this.handleClick} className="profile__button">{this.props.user.username}</button>
             <div className={this.state.open ? "profile__content profile__content--open" : "profile__content"}>
                 <section className="profile__info">
-                    <img className="profile__image" src="/img/default-user-profile.png" alt="profile"></img>
-                    <h1 className="profile__title">{this.props.user.name}</h1>
-                    <p className="profile__text">{this.props.user.email}</p>
-                    <Link to='/edit' className="profile__link">Return</Link>
+                    <div className="profile__image">
+                        <img src="/img/default-user-profile.png" alt="profile"></img>
+                    </div>
+
+                    <div className="profile__text">
+                        <h1>{this.props.user.name}</h1>
+                        <p>{this.props.user.email}</p>
+                        <Link to='/edit'>Edit profile</Link>
+                    </div>
                 </section>
-                <footer className="profile__footer">
+                <footer className="profile-footer">
                     <button onClick={this.props.onLogOut} className="profile-footer__button">Log Out</button>
                 </footer>
             </div>

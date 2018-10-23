@@ -95,7 +95,7 @@ class App extends Component {
     }
 
     renderLanding() {
-        return <section>
+        return <div className="landing">
             <nav>
                 <ul>
                     <li><Link to='/#register'>Sign Up</Link></li>
@@ -104,20 +104,20 @@ class App extends Component {
             </nav>
 
             <Header onSubmitSignUp={this.handleRegister} />
-        </section>
+        </div>
     }
 
     renderHome() {
-        return <section className="home">
+        return <div className="home">
             <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
             <Search onSearch={this.handleSearch}/>
             <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
-            <div className = 'main'>
+            <main className = 'main'>
                 <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
                 <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
                 <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
-            </div>
-        </section>
+            </main>
+        </div>
 	}
 
     render() {
