@@ -9,13 +9,19 @@ class Masthead extends Component {
     }
 
     render() {
-        return <header className="masthead">
-                <h1 className="masthead__title">SkyTube</h1>
-                <div>
-                    <input type="search" value={this.state.search} placeholder="Search" onChange={this.handleOnChange}></input>
-                    <button onClick={() => this.props.onSearch(this.state.search)}><span>ICON</span></button>
-                </div>
-                <Profile onLogOut={this.props.onLogOut} user={this.props.user}/>
+        return <header className="container">
+                <div className="row">
+                    <div className="col">
+                        <h1 className="masthead__title">SkyTube</h1>
+                    </div>
+                    <div className="col-6">
+                        <input type="search" value={this.state.search} placeholder="Search" onChange={this.handleOnChange}></input>
+                        <button onClick={() => this.props.onSearch(this.state.search)}><span>ICON</span></button>
+                    </div>
+                    <div className="col">
+                        <Profile onClickProfile={this.props.onClickProfile} onLogOut={this.props.onLogOut} user={this.props.user}/>
+                    </div>
+                </div> 
         </header>
     }
 }
