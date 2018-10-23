@@ -11,8 +11,8 @@ const Navbar = () => {
             <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
             <ul className="menu">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/now_playing">Now playing</Link></li>
-              <li><Link to="/popular">Popular</Link></li>
+              <li><Link to="/movies/now_playing">Now playing</Link></li>
+              <li><Link to="/movies/popular">Popular</Link></li>
             </ul>
           </div>
           <div className="logo">
