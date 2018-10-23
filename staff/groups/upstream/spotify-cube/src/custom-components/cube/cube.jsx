@@ -23,18 +23,22 @@ export default class Cube extends Component{
         this.addRotation("rotateX--90")
     }
 
-    cubeControler = (ev) => {
 
-            switch(ev.keyCode){
+    cubeControler = (keyCode, face) => {
+           
+            
+            switch(keyCode){
+                
 
                 case 87,119:  //UP
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.addRotation("rotateX--90")
                             this.face = "top"
                         break;
                         case "bottom":
+                            debugger
                             this.addRotation("rotateX-0")
                             this.face = "front"
                         break;
@@ -42,7 +46,7 @@ export default class Cube extends Component{
                 break;
 
                 case 83,115:  //DOWN
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.addRotation("rotateX-90")
@@ -57,7 +61,7 @@ export default class Cube extends Component{
                 break;
 
                 case 100: //LEFT
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.xdeg += -90
@@ -83,7 +87,7 @@ export default class Cube extends Component{
                 break;
 
                 case 97: //RIGHT
-                    switch(this.face){
+                    switch(face){
 
                         case "front":
                             this.xdeg += 90
@@ -207,6 +211,7 @@ export default class Cube extends Component{
                 <RightSide onAlbums = {this.handleAlbums} artists = {this.state.artists}></RightSide>
                 <TopSide onLogout={this.handleLogout} onLogin={this.handleLogin} onClickRegister = {this.handleRegister}></TopSide>
                 <BottomSide playlists = {this.state.playlists} onClickLogin = {this.handleClickRegisterLogin} isLogged = {this.state.isLogged}></BottomSide>    
+
             </section>
         </section>
             

@@ -3,8 +3,7 @@ import React, {Component} from 'react'
 
 export default function SideTitle(props){
 
-       
-       
+    
         return (
             
             <section className="panel-inf">
@@ -19,6 +18,5 @@ export default function SideTitle(props){
                     </section>
                 </section>
             </section>
-        )
-      
+        )    
 }

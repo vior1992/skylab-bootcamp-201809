@@ -59,7 +59,7 @@ const userService = {
             
             .then(res => {
                            
-                console.log(res.status)
+               
                 if (res.error) throw Error(res.error)
 
                 return true

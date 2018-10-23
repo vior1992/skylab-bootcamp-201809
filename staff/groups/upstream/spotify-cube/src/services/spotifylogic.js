@@ -1,6 +1,6 @@
 
 const spotifyLogic = {
-    token: 'BQDxi5vQKyXsMe8UtGNtJOrr1Z93kXodYrnqS0hsIkc3vw2q_mlQyB4RP4oVn678DdSBRq-_rUYyOViN4AizFPu_mz5W6XgWoakL7BNqQWE5Lx0Yk-i9G3upXKQL_MqpdfcVfT4itj25gsHOAEPnWbkuF_yNwNYeUvY_U6X6n5PG3EO-IPapi0kTqh2aVCHlikql39K3YQ9daYs5z4uCM4aPDzJihgm9RfA1VmZWkQspasxlqQ9kxh_O8gEnn-xxgoNG7RhIlL4',
+    token: 'BQBvNMVEkphkXnSNyEKE9wMJWqYmxcowT6g5A7zF6A1Xus6_PBvMU2et2X8gbEP0U2xbfKUmkc_TcHOB1ykQ-vAFnUFY_XCklvMY_nQzNuzZiglkTWTqZ1nVuRRXjQi84exfiF28gxHL5Dtbi_xTJm4juN9GKCj9FdaOQEjw0_JpoFNiEgr0nOIMMTt7SJo1-gVbXXWlAXOyVJYK-6eXI66Uucu4gBYrRmlRchfUqMzTZ75EP0TUYNcbxpOv0T9Flz434tbz0Q4',
 
     getArtistById(id) {
         return fetch(`https://api.spotify.com/v1/artists/${id}`, {

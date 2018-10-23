@@ -23,7 +23,8 @@ export default class BottomSide extends Component{
                 .then(() => {
                     //mostrar modal avisando que el registro ha sido correcto
                     // rotar el cubo hacia la cara de login
-                    alert("creado");
+                    this.props.showLogin(87, "bottom")
+                    this.props.showLogin(87, "front")
                 })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
