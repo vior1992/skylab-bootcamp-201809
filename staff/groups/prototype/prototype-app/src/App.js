@@ -7,7 +7,10 @@ import ListedMovies from './components/ListedMovies'
 // import UserData from './components/UserData'
 // import Footer from './components/Footer'
 import Navbar from './components/Navbar'
-// import Home from './components/Home'
+import SignIn from './components/SignIn'
+import LogIn from './components/LogIn'
+import Home from './components/Home'
+// import Search from './components/Search'
 
 class App extends Component {
 
@@ -16,7 +19,9 @@ class App extends Component {
   render() {
     return <div>
       <Route path="/" render={() => <Navbar />} />
-      {/* <Route path="/home" render={() => <Home/>} /> */}
+      <Route exact path="/" render={() => <Home />} />
+      <Route path="/signin" render={() => <SignIn />} />
+      <Route path="/login" render={() => <LogIn />} />
       <Route path='/movie/:id' render={(props) => <MovieDetail id={props.match.params.id}/> } />
       {/* <Route exact path="/user" render={() => !logic._user ?<UserData/> : <Redirect to="/home" />} /> */}
       {/* <Route exact path="/user/movies" render={() => !logic._user ?<UserMovies/> : <Redirect to="/home" />} /> */}

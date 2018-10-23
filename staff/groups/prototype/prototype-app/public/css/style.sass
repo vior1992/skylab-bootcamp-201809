@@ -34,6 +34,7 @@ body
     text-align: center
     max-height: 0
     transition: max-height .2s ease-out
+    z-index: 10
 
   .menu-icon
     cursor: pointer
@@ -113,7 +114,7 @@ body
     max-width: 700px
     padding: 20px 30px
     text-align: center
-    color: #E0E0E0
+    color: #bdbdbd
     border: none
     border-radius: 16px
     font-size: 28px
@@ -122,4 +123,39 @@ body
     outline: 0 none
 
   input::placeholder
-    color: #E0E0E0
+    color: #bdbdbd
+
+.form-signin
+  width: 100%
+  max-width: 330px
+  padding: 15px
+  margin: 40px auto
+
+  .checkbox 
+    font-weight: 400
+
+  .form-control 
+    position: relative
+    box-sizing: border-box
+    height: auto
+    padding: 10px
+    font-size: 16px
+
+  .form-control:focus
+    box-shadow: none
+    border-color: #707070
+    z-index: 2
+
+  input 
+    margin-bottom: -2px
+    border-radius: 0
+
+  input:first-of-type 
+    margin-bottom: -1px
+    border-top-right-radius: .25rem
+    border-top-left-radius: .25rem
+
+  input:last-of-type 
+    margin-bottom: 10px
+    border-bottom-left-radius: .25rem
+    border-bottom-right-radius: .25rem

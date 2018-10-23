@@ -44,7 +44,6 @@ class LogIn extends Component {
   render() {
     return (
       <form className="form-signin" onSubmit={this.handleSubmit}>
-        <h2 className="font-weight-normal text-center my-3">Post-<span className="badge badge-warning">it</span></h2>
         <input type="text" name="username" className="form-control" placeholder="Username" onChange={this.handleChange} autoFocus />
         <input type="password" name="password" className="form-control" placeholder="Password" onChange={this.handleChange} />
         <div className="invalid-feedback d-block my-3 text-center">{this.state.status}</div>
