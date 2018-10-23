@@ -116,6 +116,10 @@ const logic = {
         this.skylab.update({favourites: this.favourites.all()}, this.auth.id, this.auth.token)
     },
 
+    getMostPopular(){
+       return this.youtube.mostPopular()
+    },
+  
     addWatchLater(video_id) {
         this.watch_later.newEntity({
             video_id: video_id
