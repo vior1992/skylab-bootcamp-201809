@@ -18,7 +18,7 @@ function Input(props) {
 class Form {
     constructor() {
         this.state = {
-            'error' = ''
+            error: ''
         }
     }
 

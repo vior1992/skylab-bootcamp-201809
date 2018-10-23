@@ -1,15 +1,23 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Profile from './Profile'
 
-function Masthead(props) {
-    return <header className="masthead">
-        <h1 className="masthead__title">SkyTube</h1>
-        <div>
-            <input type="search" placeholder="Search..."></input>
-            <button><span>ICON</span></button>
-        </div>
-        <Profile onLogOut={props.onLogOut} user={props.user} />
-    </header>
+class Masthead extends Component {
+    state = {search: ''}
+
+    handleOnChange = event => {
+        this.setState({search: event.target.value})
+    }
+
+    render() {
+        return <header className="">
+                <h1>SkyTube</h1>
+                <div>
+                    <input type="search" value={this.state.search} placeholder="Search" onChange={this.handleOnChange}></input>
+                    <button onClick={() => this.props.onSearch(this.state.search)}><span>ICON</span></button>
+                </div>
+                <Profile onLogOut={this.props.onLogOut}/>
+        </header>
+    }
 }
 
 export default Masthead
