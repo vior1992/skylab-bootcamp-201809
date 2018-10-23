@@ -54,9 +54,9 @@ class Home extends Component {
 
 
             <section>
-            <Route path="/movie/:id" render={() => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} movieId={film.Id} />} />
+            {/* <Route path="/movie/:id" render={() => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} movieId={film.Id} />} /> */}
 
-                {/* {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} />)} */}
+                {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} />)}
             </section>
 
         </div>
