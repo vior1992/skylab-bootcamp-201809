@@ -10,9 +10,9 @@ import logic from './logic'
 
 class App extends Component {
 
-    state={
-        loggedIn:false,
-        user:''
+    state = {
+        loggedIn: false,
+        user: ''
     }
 
     handleLoginClick = () => this.props.history.push('/login')
@@ -20,14 +20,18 @@ class App extends Component {
     handleRegisterClick = () => this.props.history.push('/register')
 
     handleLoggedIn = () => {
-        this.setState({loggedIn:true})
+        this.setState({ loggedIn: true })
         this.getUser()
     }
 
-    getUser(){
-        logic.retrieveUser()
-            .then(user => { this.setState({ user }) })
-            .then(()=> console.log(this.state.user))
+    getUser() {
+        try {
+            logic.retrieveUser()
+                .then(user => { this.setState({ user }) })
+                .then(() => console.log(this.state.user))
+        } catch (err) {
+            if (err.message) throw Error(err.message)
+        }
     }
 
     handleLogoutClick = () => {
@@ -43,7 +47,7 @@ class App extends Component {
 
             <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
 
-            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn}/> : <Redirect to="/" name={this.state.user.name} />} />
+            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/" name={this.state.user.name} />} />
 
             {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
 
