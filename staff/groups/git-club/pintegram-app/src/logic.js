@@ -12,6 +12,7 @@ const logic = {
     _follows:[],
     _likes:[],
     _followers:[],
+    _postLiked:[],
 
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
@@ -73,8 +74,12 @@ const logic = {
         this._posts = []
         this._postsUser = []
         this._postsAllUser = []
+        this._likes = []
+        this._follows = []
+        this._followers = []
         this._userId = null
         this._token = null
+        this._postLiked = []
 
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
@@ -84,9 +89,9 @@ const logic = {
         if (typeof url !== 'string') throw TypeError(`${url} is not a string`)
 
         if (!url.trim()) throw Error('document is empty or blank')
-        
-
-        this._posts.push(new Post(this._userId, url, description))
+        debugger
+        if(!description) description=""
+        this._postsUser.push(new Post(this._userId, url, description))
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'PUT',
@@ -94,11 +99,26 @@ const logic = {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': `Bearer ${this._token}`
             },
-            body: JSON.stringify({ posts: this._posts })
+            body: JSON.stringify({ posts: this._postsUser })
         })
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
+            })
+    },
+
+    listLikes() {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return this._likes = res.data.likes || []
             })
     },
 
@@ -168,12 +188,46 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
-
-                return this._postsUser = res.data.posts || []
+                let sortedUsers=[]
+                if(res.data.posts) sortedUsers=res.data.posts.sort(function (a, b) {
+                    return b.id - a.id;
+                });
+                return this._postsUser = sortedUsers || []
             })
     },
 
     listAllPosts() {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => { 
+                if (res.error) throw Error(res.error)
+                let users = res.data.filter(user => user.app)
+                let appUsers = users.filter(user => user.app === 'pintegram')
+                let postsUsers = []
+                appUsers.forEach(user => {
+                    if(user.posts){
+                        for (let i = 0; i < user.posts.length ; i++){
+                            if(user.posts[i].publicPost) postsUsers.push(user.posts[i])
+                            
+                        }
+                    }
+                })   
+                
+                let sortedUsers=postsUsers.sort(function (a, b) {
+                    return b.id - a.id;
+                });
+            
+                return this._postsAllUser = sortedUsers || []
+            })
+    },
+
+    
+    retrievePosts(postsId) {
         return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
             method: 'GET',
             headers: {
@@ -190,11 +244,13 @@ const logic = {
                 appUsers.forEach(user => {
                     if(user.posts){
                         for (let i = 0; i < user.posts.length ; i++){
-                            if(user.posts[i].publicPost) postsUsers.push(user.posts[i])
+                            for (let e = 0; e < postsId.length ; e++){
+                                if(user.posts[i].id === postsId[e]) postsUsers.push(user.posts[i])
+                            }
                         }
                     }
                 })   
-                return this._postsAllUser = postsUsers || []
+                return this._postLiked = postsUsers || []
             })
     },
 
@@ -214,6 +270,7 @@ const logic = {
     },
 
     likesPost(postId) {
+
         return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
             method: 'GET',
             headers: {
@@ -222,19 +279,20 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                debugger
+                
                 if (res.error) throw Error(res.error)
                 let users = res.data.filter(user => user.app)
                 let appUsers = users.filter(user => user.app === 'pintegram')
                 let countLikes = 0
                 appUsers.forEach(user => {
+                    
                     if(user.likes){
                         for (let i = 0; i < user.likes.length ; i++){
                             if(user.likes[i] === postId) countLikes++ 
                         }
                     }
                 })   
-                return countLikes || []
+                return countLikes || 0
             })
     },
 

@@ -4,12 +4,15 @@ import logic from '../logic'
 import Post from './Post'
 
 class Home extends Component {
-    state = { posts: []}
+    state = { posts: [], liked : []}
 
     componentDidMount() {
         logic.listAllPosts()
         .then(posts => this.setState({ posts }))
         // TODO error handling!
+        .then(logic.listLikes())
+        .then(logic.listPosts())
+     
     }
     
 
@@ -23,7 +26,7 @@ class Home extends Component {
             </div>
             </nav>
             <section className="home__post">
-                {this.state.posts.map(post => <Post key={post.id} text={post.text} id={post.id} url={post.url} text={post.description} user={post.userId} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+                {this.state.posts.map(post => <Post key={post.id} id={post.id} url={post.url} text={post.description} user={post.userId} />)}
             </section>
         </div>
     }

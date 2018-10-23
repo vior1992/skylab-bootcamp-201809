@@ -54,6 +54,8 @@ class App extends Component {
 
     handleAddPost = (url, text) =>{
         logic.createPost(url, text)
+        .then(this.setState({post : false, profile: false}))
+        
     }
 
     handleLogoutClick = () => {
@@ -80,7 +82,7 @@ class App extends Component {
             {error && <Error message={error} />}
             <Route path="/home" render={() => logic.loggedIn && !post && !profile ? <Home onLogout={this.handleLogoutClick} onPost={this.handlePost} onProfile={this.handleProfile} onGoBack={this.handleGoBack}/> : <Redirect to="/" />} />
             <Route path="/addpost" render={() => logic.loggedIn && post && !profile ? <AddPost onPost={this.handleAddPost} onGoBack={this.handleGoBack2}/> : <Redirect to="/home" />} />
-            <Route path="/profile" render={() =>logic.loggedIn && profile && !post? <Profile onLogout={this.handleLogoutClick} onGoBack={this.handleGoBack2}/> : <Redirect to="/home" />} />
+            <Route path="/profile" render={() =>logic.loggedIn && profile && !post? <Profile onLogout={this.handleLogoutClick} onPost={this.handlePost} onGoBack={this.handleGoBack2}/> : <Redirect to="/home" />} />
         </div>
     }
 }
