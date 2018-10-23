@@ -11,7 +11,6 @@ class MoviesList extends Component {
     }
 
     render() {
-debugger
         return <div>
         {this.props.movies.map(movie => 
             <Link to={`/movie/${movie.id}`} onClick={event => this.handleClick(event, movie.id)}><img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} /></Link>
