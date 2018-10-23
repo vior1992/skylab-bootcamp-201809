@@ -14,9 +14,7 @@ class Profile extends Component {
             .then(user => { this.setState({ user }) })
         
         logic.listLikes()
-            .then(postsLiked => { this.setState({ postsLiked }) })
-            // .then(logic.retrievePosts(this.state.postsLiked))
-            //     .then(postsLiked => { this.setState({ postsLiked }) })
+        .then(postsLiked => logic.retrievePosts(postsLiked) .then(postsLiked => { this.setState({ postsLiked }) }))
     }
 
     handleGallery = () => {
@@ -32,7 +30,7 @@ class Profile extends Component {
             <nav className="nav"><h1 onClick={this.props.onGoBack}>Pintegram App</h1>
             <div className="menu">
                 <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
-                <i onClick={this.props.onProfile} className="menu__button fas fa-user"></i>
+                <i className="menu__button fas fa-user"></i>
                 <i onClick={this.props.onLogout} className="menu__button fas fa-sign-out-alt"></i>
             </div>
             </nav>
@@ -59,7 +57,7 @@ class Profile extends Component {
             </section>}
 
            {!this.state.grid && this.state.liked && <section className="gallery">
-                {this.state.postsLiked.map(post => <PostUserLiked key={post.id + '1'} id={post.id} url={post.url} text={post.description} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+                {this.state.postsLiked.map((post,index) => <PostUserLiked key={index} id={post.id} url={post.url} text={post.description} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
             </section>}
         </div>
     }

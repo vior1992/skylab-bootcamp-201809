@@ -17,10 +17,9 @@ class Post extends Component {
     }
 
     handleLikePost = () => {
-        
         logic.addLike(this.state.postId)
-            .then(logic.likesPost(this.state.postId))
-            .then(likes => { this.setState({ likes })})
+           .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
+           .then(logic.likedPost(this.state.postId).then(liked => { this.setState({ liked })}))
     }
 
     render() {

@@ -191,8 +191,11 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
-
-                return this._postsUser = res.data.posts || []
+                let sortedUsers=[]
+                if(res.data.posts) sortedUsers=res.data.posts.sort(function (a, b) {
+                    return b.id - a.id;
+                });
+                return this._postsUser = sortedUsers || []
             })
     },
 
@@ -217,7 +220,10 @@ const logic = {
                         }
                     }
                 })   
-                return this._postsAllUser = postsUsers || []
+                let sortedUsers=postsUsers.sort(function (a, b) {
+                    return b.id - a.id;
+                });
+                return this._postsAllUser = sortedUsers || []
             })
     },
     retrievePosts(postsId) {
