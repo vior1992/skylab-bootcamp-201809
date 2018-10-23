@@ -29,6 +29,6 @@ class YouTube {
     }
 }
 
-// export default YouTube
+export default YouTube
 
-module.exports = YouTube
+// module.exports = YouTube

@@ -1,6 +1,6 @@
-const { Favourites, WatchLater, Playlists, History } = require('./model')
-const Skylab = require('./skylab')
-const YouTube = require('./youtube')
+import { Favourites, WatchLater, Playlists, History } from './model'
+import Skylab from './skylab'
+import YouTube from './youtube'
 
 const logic = {
     skylab: new Skylab(),
@@ -151,6 +151,6 @@ const logic = {
     }
 }
 
-// export default logic
+export default logic
 
-module.exports = logic
+// module.exports = logic

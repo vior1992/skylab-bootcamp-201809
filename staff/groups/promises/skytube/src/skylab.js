@@ -65,6 +65,6 @@ class Skylab {
     }
 }
 
-// export default Skylab
+export default Skylab
 
-module.exports = Skylab
+// module.exports = Skylab
