@@ -9,7 +9,7 @@ const logic = {
     _events: [],
     _favouritesEventsArray: [],
 
-    registerUser(name, email, username, password, passwordRepeat) {
+        registerUser(name, email, username, password, passwordRepeat) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
         if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
         if (email.match(/^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)===null) throw Error(`${email} is an invalid email`)
@@ -101,6 +101,7 @@ const logic = {
     },
 
     searchEvents(query) {
+        if (query===undefined) throw Error(`${query} is not a valid query`)
         return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?size=30&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
             method: 'GET',
         })

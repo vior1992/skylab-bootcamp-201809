@@ -38,7 +38,6 @@ handleLogin = (username, password) => {
             .then(() =>  {
             this.setState({ error: null }, () => this.props.history.push('/home'))
         })
-            // .then(() => this.setState({favouritesArray : logic._favouritesEventsArray}))
             .catch(err => this.setState({ error: err.message }))
     } catch (err) {
         this.setState({ error: err.message })
@@ -53,12 +52,9 @@ handleLogoutClick = () => {
 }
 
 handleFavourites = (id) => {
-    debugger
     logic.storeFavourites(id)
         .then(res => this.setState({favouritesArray:res}))
-        .catch(err => console.log(err))
-
-    // this.setState({favouritesArray: logic._favouritesEventsArray})
+        .catch(err => this.setState({error: err}))
 }
 
 handleFavouriteState = (newArr) => {
@@ -70,8 +66,7 @@ handleGoBack = () => this.props.history.push('/')
 handleDeleteFavourite = (id) => {
     logic.deleteFavourite(id)
         .then(res => this.setState({favouritesArray: res}))
-        .catch(err => console.log(err))
-    
+        .catch(err => this.setState({error: err}))    
 }
 
 
