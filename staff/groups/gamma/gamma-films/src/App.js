@@ -4,10 +4,11 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
+import TopRatedSlide from './components/TopRatedSlide'
 import Profile from './components/Profile'
 import logic from './logic'
-import TopRatedSlide from './components/TopRatedSlide'
-
+import Movie from './components/Movie'
+import SearchResults from './components/SearchResults'
 
 class App extends Component {
 
@@ -40,7 +41,6 @@ class App extends Component {
         this.setState({user:''})
     }
 
-
     render() {
 
         return <div className="body">
@@ -50,15 +50,10 @@ class App extends Component {
 
             <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/" name={this.state.user.name} />} />
 
-            {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
-
             <Home />
 
-            <TopRatedSlide/>
-            <TopRatedSlide/>
-            <TopRatedSlide/>
+            {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
             
-
         </div>
     }
 }

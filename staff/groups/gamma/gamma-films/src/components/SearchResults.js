@@ -3,7 +3,10 @@ import Card from './Card'
 import logic from '../logic'
 
 class SearchResults extends Component {
-    state = { movies: [], error: null }
+    state = {
+        movies: [],
+        error: null,
+    }
 
     componentDidMount() {
         this.searchMovies(this.props.query)
@@ -25,9 +28,16 @@ class SearchResults extends Component {
     }
 
     render() {
-        return <section>
-            {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} />)}
-        </section>
+        return <div class="contain">
+        <div class="row">
+        <h4>Your search:</h4>
+            <div class="row__inner">
+                {this.state.movies.map((film) => { return <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} />
+                    
+                })}
+            </div>
+        </div>
+        </div>
     }
 }
 
