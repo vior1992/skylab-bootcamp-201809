@@ -15,7 +15,8 @@ class App extends Component {
             error: null,
             auth_info: logic.authInfo(),
             video_list: logic.video_search,
-            video: logic.current_video
+            video: logic.current_video,
+            most_popular: []
         }
     }
 
@@ -26,7 +27,7 @@ class App extends Component {
                     this.setState({error: null})
                     this.props.history.push('/login')
                 })
-				.catch(error => console.error(error))
+				.catch(error => console.error(error)) 
 		} catch (err) {
 			this.setState({error: err.message})
 		}
@@ -41,6 +42,8 @@ class App extends Component {
                         auth_info: info
                     })
                 })
+                .then(()=> logic.getMostPopular())
+                .then(res => this.setState({most_popular: res}))
 				.catch(error => console.error(error))
 		} catch (err) {
 			this.setState({error: err.message})
@@ -67,7 +70,7 @@ class App extends Component {
 		logic.retrieveSong(video_id)
 			.then(result => this.setState({video: result}, () => this.props.history.push('/home/player')))
             .catch(error => console.error(error))
-	}
+    }
 
     handleNewFavourite = video_id => {
         logic.addFavourite(video_id)
@@ -111,6 +114,7 @@ class App extends Component {
         return <div>
             <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} onClickProfile={this.handleClickProfile} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}} />
             <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
+            <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} /> 
             <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
             <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
 		</div>

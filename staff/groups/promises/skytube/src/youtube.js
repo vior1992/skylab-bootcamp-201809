@@ -27,6 +27,17 @@ class YouTube {
             throw Error(json.error.message)
         })
     }
+
+    mostPopular() {
+        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&char=mostPopular&videoCategoryId=10&type=video', {
+            method: 'GET'
+        }).then(result => {
+            return result.json()
+        }).then(json => {
+            if (!json.error) return json.items
+            throw Error(json.error.message)
+        })
+    }
 }
 
 export default YouTube
