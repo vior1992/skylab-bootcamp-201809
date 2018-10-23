@@ -12,7 +12,8 @@ import { Route, withRouter, Redirect } from 'react-router-dom'
 
 class App extends Component {
 
-  state = { error: null, favouritesArray:[]}
+  state = { error: null,
+            favouritesArray: []}
 
   handleRegisterClick = () => this.props.history.push('/register')
 
@@ -37,38 +38,43 @@ handleLogin = (username, password) => {
             .then(() =>  {
             this.setState({ error: null }, () => this.props.history.push('/home'))
         })
+            // .then(() => this.setState({favouritesArray : logic._favouritesEventsArray}))
             .catch(err => this.setState({ error: err.message }))
     } catch (err) {
         this.setState({ error: err.message })
     }
+
 }
 
 handleLogoutClick = () => {
     logic.logout()
-    this.setState({favouritesArray:[]})
+    this.setState({favouritesArray: []})
     this.props.history.push('/')
 }
-/* handleFindEventInfo = (id) => {
-    try {
-        logic.searchEventInfo(id)
-            .then(() => console.log(id))
-            .catch(err => this.setState({ error: err.message }))
-    } catch (err) {
-        this.setState({ error: err.message })
-    }
-} */
-handleGoBack = () => this.props.history.push('/')
 
 handleFavourites = (id) => {
-        try {
-            logic.searchEventInfo(id)
-                .then(events => this.setState({favouritesArray: [...this.state.favouritesArray, events]}))
-                .catch(err => this.setState({error: err}))
+    debugger
+    logic.storeFavourites(id)
+        .then(res => this.setState({favouritesArray:res}))
+        .catch(err => console.log(err))
 
-        } catch(err) {
-            throw Error (err)
-        }
-    }
+    // this.setState({favouritesArray: logic._favouritesEventsArray})
+}
+
+handleFavouriteState = (newArr) => {
+    this.setState({favouritesArray : newArr})
+}
+
+handleGoBack = () => this.props.history.push('/')
+
+handleDeleteFavourite = (id) => {
+    logic.deleteFavourite(id)
+        .then(res => this.setState({favouritesArray: res}))
+        .catch(err => console.log(err))
+    
+}
+
+
   render() {
     
     const { error } = this.state
@@ -79,10 +85,10 @@ handleFavourites = (id) => {
     <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     {error && <Error message={error} />}
-    {/* <section><button onClick={this.handleLogoutClick}>Logout</button></section> */}
-    <Route path="/home" render={() => logic.loggedIn ? <Home sendFavourites={this.handleFavourites} onLogout={this.handleLogoutClick}  /> : <Redirect to="/" />} />
-    <Route path="/favourites" render={() => logic.loggedIn ? <Favourites favouritesList={this.state.favouritesArray} /> : <Redirect to="/" />} />
-    <Route path="/profile" render={() => logic.loggedIn ? <Profile/> : <Redirect to="/" />} />
+    <Route path="/home" render={() => logic.loggedIn ? <Home favouriteState={this.handleFavouriteState} favourites={this.handleFavourites}  onLogout={this.handleLogoutClick}  /> : <Redirect to="/" />} />
+    <Route path="/favourites" render={() => logic.loggedIn ? <Favourites deleteFavourite={this.handleDeleteFavourite} favouritesList={this.state.favouritesArray} /> : <Redirect to="/" />} />
+
+    {/* <Route path="/profile" render={() => logic.loggedIn ? <Profile/> : <Redirect to="/" />} /> */}
     </div>
   }
 }

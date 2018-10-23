@@ -123,29 +123,34 @@ const logic = {
             })
     },
 
-    storeEventFavourites(favouriteId) { 
-        if (typeof favouriteId !== 'string') throw TypeError(`${favouriteId} not a string`)
-        if (!favouriteId.trim()) throw Error(`favouriteId is empty or blank`)
-        
-        const self=this
-        this.searchEventInfo(favouriteId)
-            .then(res =>  self._favouritesEventsArray.push(res) )
-            .catch (err => console.log(err))
-        // this._favouritesEventsArray.push(this.searchEventInfo(favouriteId))
-        console.log(this._favouritesEventsArray)
-        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${this._token}`
-            },
-            body: JSON.stringify({ favouritesEventsArray: this._favouritesEventsArray })
-        })
+    storeFavourites(favouriteId) {
+        // this._favouritesEventsArray.forEach(item => {
+        //     if (item.id ===favouriteId) throw TypeError('this event is already in favourites')
+        // })
+        const self = this
+        return this.searchEventInfo(favouriteId)
+            .then(res => {
+                self._favouritesEventsArray.push(res)
+                return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Authorization': `Bearer ${self._token}`
+                    },
+                    body: JSON.stringify({
+                        favouritesEventsArray: self._favouritesEventsArray
+                    })
+                })
+            })
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
+                return self._favouritesEventsArray
             })
+            .catch(err => console.log(err))
     },
+
+
 
     retrieveFavouriteEvents() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -160,52 +165,31 @@ const logic = {
 
             return this._favouritesEventsArray = res.data.favouritesEventsArray || []
             })
-    }
-
-    // deletePostit(id) {
-    //     if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-
-    //     this._events = this._events.filter(postit => postit.id !== id)
-
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json; charset=utf-8',
-    //             'Authorization': `Bearer ${this._token}`
-    //         },
-    //         body: JSON.stringify({ postits: this._events })
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             if (res.error) throw Error(res.error)
-    //         })
-    // },
-
-    // updatePostit(id, text) {
-    //     if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-
-    //     if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
-
-    //     if (!text.trim()) throw Error('text is empty or blank')
-
-    //     const postit = this._events.find(postit => postit.id === id)
-
-    //     postit.text = text
-
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json; charset=utf-8',
-    //             'Authorization': `Bearer ${this._token}`
-    //         },
-    //         body: JSON.stringify({ postits: this._events })
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             if (res.error) throw Error(res.error)
-    //         })
-    // }
+    },
+    
+    deleteFavourite(id) {
+        var index = this._favouritesEventsArray.findIndex(item => item.id===id)
+        this._favouritesEventsArray.splice(index,1)
+        const self = this
+            return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': `Bearer ${self._token}`
+                },
+                body: JSON.stringify({ favouritesEventsArray: self._favouritesEventsArray})
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.error) throw Error(res.error)
+                    return self._favouritesEventsArray
+                })
+      
+        .catch(err => console.log(err)) 
+        }
 }
 
 export default logic
 // module.exports = logic
+
+
