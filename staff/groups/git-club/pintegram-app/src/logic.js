@@ -13,6 +13,7 @@ const logic = {
     _likes:[],
     _followers:[],
     _postLiked:[],
+    _comments: [],
 
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
@@ -286,6 +287,68 @@ const logic = {
                     }
                 })   
                 return countLikes || 0
+            })
+    },
+
+    listComments() {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return this._comments = res.data.comments || []
+            })
+    },
+
+    addComment(postId, content) {
+        if (typeof postId !== 'number') throw TypeError(`${postId} is not a string`)
+        if (typeof content !== 'string') throw TypeError(`${content} is not a string`)
+        
+        if (!content.trim()) throw Error('document is empty or blank')
+        
+        this._comments.push(new Comment(postId,content))
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${this._token}`
+            },
+            body: JSON.stringify({ comments: this._comments })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+            })
+    },
+    commentsPost(postId) {
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                
+                if (res.error) throw Error(res.error)
+                
+                let countComments = 0
+                res.data.forEach(user => {
+                   
+                    if(user.comments){
+                        for (let i = 0; i < user.comments.length ; i++){
+                            if(user.comments[i].postId === postId) countComments++
+                        }
+                    }
+                })   
+                return countComments || 0
             })
     },
 

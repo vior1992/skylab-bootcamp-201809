@@ -376,7 +376,11 @@ body{
 
 
 /*ADD COMMENT*/
+.div__comments{
+    display:flex;
+    flex-direction: column;
 
+}
 .comment{
-    display:none;
+    width: 395px;
 }

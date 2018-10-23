@@ -6,16 +6,14 @@ class Post {
         this.userId =userId
         this.url = url
         this.description = description
-        this.comments = []
-        this.likes = []
         this.publicPost = true
     }
 }
 
 class Comment {
-    constructor(userId, content) {
+    constructor(postId, content) {
         this.id = Date.now()
-        this.userId =userId
+        this.postId =postId
         this.content= content
     }
 }

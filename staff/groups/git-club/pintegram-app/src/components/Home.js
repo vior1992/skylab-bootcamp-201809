@@ -12,6 +12,7 @@ class Home extends Component {
         // TODO error handling!
         logic.listLikes()
         logic.listPosts()
+        logic.listComments()
      
     }
     
