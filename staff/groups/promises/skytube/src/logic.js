@@ -1,9 +1,11 @@
-// import Youtube from './youtube'
+import Skylab from './skylab'
+import YouTube from './youtube'
 
 const logic = {
-    _userId: sessionStorage.getItem('userId') || null,
-    _token: sessionStorage.getItem('token') || null,
-    api_key: 'AIzaSyAieX4rBBAB612ai2A1HJYKK9416cd8f2U', 
+    skylab: new Skylab(),
+    youtube: new YouTube(),
+    auth: JSON.parse(sessionStorage.getItem('auth')) || {},
+    user_info: JSON.parse(sessionStorage.getItem('user_info')) || {},
     root_url:"https://www.googleapis.com/youtube/v3/",
 
     registerUser(name, surname, username, email, password) {
@@ -22,87 +24,63 @@ const logic = {
         if(typeof password !=='string') throw TypeError (`${password} is not a string`)
         if (!password.trim()) throw Error ('password is blank or empty')
 
-
-        return fetch('https://skylabcoders.herokuapp.com/api/user', {
-
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({ name, surname, username, email, password})
-
+        return this.skylab.register({
+            name: name,
+            surname: surname,
+            username: username,
+            email: email,
+            password: password
         })
-        .then(res => res.json())
-        .then(res => {
-            if (res.error) throw Error(res.error)
-        })
-        .then( () => {
-            return this.LogInUser(username, password)
-        })
-
     },
 
-    LogInUser(username, password) {
+    loginUser(username, password) {
         if(typeof username !=='string') throw TypeError (`${username} is not a string`)
         if (!username.trim()) throw Error ('username is blank or empty')
 
         if(typeof password !=='string') throw TypeError (`${password} is not a string`)
         if (!password.trim()) throw Error ('password is blank or empty')
 
-        
-
-        return fetch ('https://skylabcoders.herokuapp.com/api/auth', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({ username, password })
+        return this.skylab.login({
+            username: username,
+            password: password
         })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-
-                const {id, token} = res.data
-                
-                this._userId = id
-                this._token = token
-                
-                sessionStorage.setItem('userId', id)
-                sessionStorage.setItem('token', token)
+            .then(data => {
+                this.auth.id = data.id
+                this.auth.token = data.token
+                sessionStorage.setItem('auth', JSON.stringify(this.auth))
+                return this.skylab.info(this.auth.id, this.auth.token)
+                    .then(info => {
+                        sessionStorage.setItem('user_info', JSON.stringify(info))
+                        return info
+                    })
+                    .catch(error => {
+                        throw Error(error)
+                    })
             })
-
     },
 
-    userLogOut() {
-        this._token = null
-        this._userId = null
-
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('userId')
+    logoutUser() {
+        sessionStorage.removeItem('auth')
+        this.auth = {}
     },
 
-    loggedIn() {
-        return !!this._userId
+    isAuthenticated() {
+        return this.auth && Object.keys(this.auth).length > 0
     },
-    
+
     search(query) {
-        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&q='+query+'&videoCategoryId=10&type=video', {
-            method: 'GET'
-        })
-        .then(res => res.json())
-        .then (res => res.items)
-       
+        return this.youtube.search(query)
     },
 
-    retrieveSong(video_id) {
-        return fetch(this.root_url + 'videos?part=player&key='+this.api_key+'&id='+video_id, {
-            method: 'GET'
-        })
-        .then(res => res.json())
-        .then(res => res)
+    retrieveSong(id) {
+        return this.youtube.getVideo(id)
+    },
+
+    addPlaylist(playlist) {
+        return this.skylab.update(playlist, this.auth.id, this.auth.token)
     }
 }
 
-
 export default logic
-//module.exports = logic
+
+// module.exports = logic

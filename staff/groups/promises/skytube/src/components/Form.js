@@ -26,7 +26,7 @@ class Form {
         return <form className="form">
             <fieldset>
                 {this.props.inputs.map(input => {
-                    return <Input {...input}></Input>
+                    return <Input {...input} />
                 })}
             </fieldset>
 

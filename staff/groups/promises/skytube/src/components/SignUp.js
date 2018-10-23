@@ -14,7 +14,6 @@ class SignUp extends Component {
         const surname = event.target.value
 
         this.setState({surname})
-
     }
 
     handleUsernameChange = event => {
