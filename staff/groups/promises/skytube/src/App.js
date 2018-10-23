@@ -66,16 +66,28 @@ class App extends Component {
 	}
 
     handleNewFavourite = video_id => {
-        console.log(video_id);
+        logic.addFavourite(video_id)
+        this.setState({auth_info: logic.authInfo()})
     }
 
     handleNewWatchLater = video_id => {
-        console.log(video_id);
+        logic.addWatchLater(video_id)
+        this.setState({auth_info: logic.authInfo()})
     }
 
     handleNewPlaylist = title => {
         logic.addPlaylist(title)
         this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleClickFavourites = () => {
+        const favourites = logic.getFavourites()
+        console.log(favourites);
+    }
+
+    handleClickWatchLater = () => {
+        const watch_later = logic.getWatchLater()
+        console.log(watch_later);
     }
 
     renderLanding() {
@@ -94,7 +106,7 @@ class App extends Component {
     renderHome() {
         return <div>
             <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}} />
-            <Sidenav onClickFavourites={undefined} onClickWatchLater={undefined} playlists={this.state.auth_info.playlists} />
+            <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
             <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
             <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
 		</div>

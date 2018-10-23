@@ -101,12 +101,26 @@ const logic = {
             })
     },
 
-    retrieveSong(id) {
-        return this.youtube.getVideo(id)
+    retrieveSong(video_id) {
+        return this.youtube.getVideo(video_id)
             .then(result => {
                 sessionStorage.setItem('current_video', JSON.stringify(result[0]))
                 return result[0]
             })
+    },
+
+    addFavourite(video_id) {
+        this.favourites.newEntity({
+            video_id: video_id
+        }).save()
+        this.skylab.update({favourites: this.favourites.all()}, this.auth.id, this.auth.token)
+    },
+
+    addWatchLater(video_id) {
+        this.watch_later.newEntity({
+            video_id: video_id
+        }).save()
+        this.skylab.update({watch_later: this.watch_later.all()}, this.auth.id, this.auth.token)
     },
 
     addPlaylist(title) {
@@ -114,6 +128,14 @@ const logic = {
             title: title
         }).save()
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+    },
+
+    getFavourites() {
+        return this.favourites.all()
+    },
+
+    getWatchLater() {
+        return this.watch_later.all()
     },
 
     authInfo() {
