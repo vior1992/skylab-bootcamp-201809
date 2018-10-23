@@ -123,9 +123,12 @@ const logic = {
             })
     },
 
-    storeFavourites(id) {
+    storeFavourites(favouriteId) {
+        // this._favouritesEventsArray.forEach(item => {
+        //     if (item.id ===favouriteId) throw TypeError('this event is already in favourites')
+        // })
         const self = this
-        this.searchEventInfo(id)
+        this.searchEventInfo(favouriteId)
         .then(res => {
             self._favouritesEventsArray.push(res)
             return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
@@ -146,29 +149,6 @@ const logic = {
     },
 
 
-    // storeEventFavourites(favouriteId) { 
-    //     if (typeof favouriteId !== 'string') throw TypeError(`${favouriteId} not a string`)
-    //     if (!favouriteId.trim()) throw Error(`favouriteId is empty or blank`)
-        
-    //     const self=this
-    //     this.searchEventInfo(favouriteId)
-    //         .then(res =>  self._favouritesEventsArray.push(res) )
-    //         .catch (err => console.log(err))
-    //     // this._favouritesEventsArray.push(this.searchEventInfo(favouriteId))
-    //     console.log(this._favouritesEventsArray)
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json; charset=utf-8',
-    //             'Authorization': `Bearer ${this._token}`
-    //         },
-    //         body: JSON.stringify({ favouritesEventsArray: this._favouritesEventsArray })
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             if (res.error) throw Error(res.error)
-    //         })
-    // },
 
     retrieveFavouriteEvents() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -183,9 +163,7 @@ const logic = {
 
             return this._favouritesEventsArray = res.data.favouritesEventsArray || []
             })
-    }
-
-    
+    }    
 }
 
 export default logic
