@@ -78,6 +78,10 @@ const logic = {
 
     addPlaylist(playlist) {
         return this.skylab.update(playlist, this.auth.id, this.auth.token)
+    },
+
+    getMostPopular(){
+       return this.youtube.mostPopular()
     }
 }
 

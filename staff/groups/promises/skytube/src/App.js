@@ -15,7 +15,8 @@ class App extends Component {
             error: null,
             user_info: logic.user_info,
             video_list: [],
-            video: ''
+            video: '',
+            most_popular: []
         }
     }
 
@@ -26,7 +27,7 @@ class App extends Component {
                     this.setState({error: null})
                     this.props.history.push('/login')
                 })
-				.catch(error => console.error(error))
+				.catch(error => console.error(error)) 
 		} catch (err) {
 			this.setState({error: err.message})
 		}
@@ -41,6 +42,8 @@ class App extends Component {
                         user_info: info
                     })
                 })
+                .then(()=> logic.getMostPopular())
+                .then(res => this.setState({most_popular: res}))
 				.catch(error => console.error(error))
 		} catch (err) {
 			this.setState({error: err.message})
@@ -59,11 +62,11 @@ class App extends Component {
             .catch(error => console.error(error))
 	}
 
-	handleVideoClick = video_id =>{
+	handleVideoClick = video_id => {
 		logic.retrieveSong(video_id)
 			.then(res => this.setState({video: res}, () => this.props.history.push('/home/player')))
             .catch(error => console.error(error))
-	}
+    }
 
     renderLanding() {
         return <div>
@@ -82,6 +85,7 @@ class App extends Component {
         return <div>
             <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
             <Sidenav onClickFavourites={undefined} onClickWatchLater={undefined} playlists={this.state.user_info.playlists} />
+            <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular}/> 
             <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
             <Route path='/home/player' render={() => <Player video={this.state.video} />} />
 		</div>
