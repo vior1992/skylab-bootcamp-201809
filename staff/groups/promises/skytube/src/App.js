@@ -4,7 +4,7 @@ import Header from './components/Header'
 import LogIn from './components/LogIn'
 import Masthead from './components/Masthead';
 import Sidenav from './components/Sidenav';
-import HomeList from './components/HomeList'
+import VideoList from './components/VideoList'
 import Player from './components/Player'
 import logic from './logic'
 
@@ -82,7 +82,7 @@ class App extends Component {
         return <div>
             <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
             <Sidenav onClickFavourites={undefined} onClickWatchLater={undefined} playlists={this.state.user_info.playlists} />
-            <Route path='/home/search' render={() => <HomeList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
+            <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
             <Route path='/home/player' render={() => <Player video={this.state.video} />} />
 		</div>
 	}
