@@ -11,7 +11,7 @@ class ListedMovies extends Component {
             logic.retrieveTrending()
                 .then(movies => { this.setState({ movies, title: 'Trending movies' }) })
             break
-            case 'inTheatre':
+            case 'now_playing':
             logic.retrieveInTheatre()
                 .then(movies => { this.setState({ movies, title: 'In theatre movies' }) })
             break
@@ -19,6 +19,10 @@ class ListedMovies extends Component {
             logic.retrievePopular()
                 .then(movies => { this.setState({ movies, title: 'Popular movies' }) })
             break
+            default:
+            logic.retrieveMovies(this.props.kind)
+                .then(movies => { this.setState({ movies, title: this.props.kind }) })
+
         }
     }
 
