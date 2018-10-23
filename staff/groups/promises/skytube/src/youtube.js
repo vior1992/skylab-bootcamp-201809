@@ -1,4 +1,4 @@
-import CONFIG from './config'
+const CONFIG = require('./config')
 
 class YouTube {
     constructor(api = 'default') {
@@ -42,4 +42,4 @@ class YouTube {
 
 export default YouTube
 
-// module.exports = Youtube
+// module.exports = YouTube
