@@ -4,7 +4,6 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import TopRatedSlide from './components/topRatedSlide'
 import Profile from './components/Profile'
 import logic from './logic'
 
@@ -43,7 +42,7 @@ class App extends Component {
     render() {
 
         return <div className="body">
-            <Route exact path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
+            <Route path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
 
             <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
 
@@ -52,9 +51,7 @@ class App extends Component {
             {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
 
             <Home />
-            <TopRatedSlide/>
-            <TopRatedSlide/>
-            <TopRatedSlide/>
+            
 
         </div>
     }
