@@ -1,5 +1,5 @@
 const spotifyLogic = {
-    token: 'BQCYw93iFR12L0c8X2A7PnWscsTUEFc4bTfIwV5br-Lio02NQnl1O2nPVzDjrd-gT_6Lh7ef8i2igeZe_9jbwH6b48W7_ul6O3lchLXAYfQJIv5R-QXovPHMGNXKp4XqQpy627FLwfz6RmffYW8c-XAq2qRnHzQetXLD775KFZr-pwl0BH_TOrJDCFKOSH4jTM4iUfAt18bGP3RwN45JKc93OnMQJ02HLd4N0S8jLOSNoXZd4UEgI_E8HAxculW3MjCFwtUTeQE',
+    token: 'BQDxi5vQKyXsMe8UtGNtJOrr1Z93kXodYrnqS0hsIkc3vw2q_mlQyB4RP4oVn678DdSBRq-_rUYyOViN4AizFPu_mz5W6XgWoakL7BNqQWE5Lx0Yk-i9G3upXKQL_MqpdfcVfT4itj25gsHOAEPnWbkuF_yNwNYeUvY_U6X6n5PG3EO-IPapi0kTqh2aVCHlikql39K3YQ9daYs5z4uCM4aPDzJihgm9RfA1VmZWkQspasxlqQ9kxh_O8gEnn-xxgoNG7RhIlL4',
 
     getArtistById(id) {
         return fetch(`https://api.spotify.com/v1/artists/${id}`, {
@@ -25,7 +25,6 @@ const spotifyLogic = {
            
         })
             .then(res => res.json())
-            .then(res => res)
             .catch(err => {throw Error(err.message)})
     },
 

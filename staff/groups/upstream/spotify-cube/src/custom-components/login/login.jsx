@@ -3,10 +3,7 @@ import React, {Component} from 'react'
 
 export default class Login extends Component{
     
-    constructor(props){
-        super(props)
-    }
-
+   
     state = { username: '', password: '' }
     
     handleUsername = event => {
@@ -24,7 +21,7 @@ export default class Login extends Component{
     handleSubmit = event => {      //envia el state (que son los value de los inputs guardados con las funciones de arriba) al padre mediante la callback handleLogin que nos ha pasado éste mediante props
         event.preventDefault();
 
-        this.props.handleLogin(this.state)
+        this.props.onLogin(this.state)
     }
     
 
@@ -42,6 +39,7 @@ export default class Login extends Component{
                     <input type="password" className="form-control" aria-describedby="emailHelp" placeholder="Password" onChange={this.handlePassword} />
                     </div>
                     <button type="submit" className="btn btn-primary">Login</button>
+                    <button onClick={this.props.onClickRegister} type="button" className="btn btn-primary">Register</button>
                 </form>
            
         );
