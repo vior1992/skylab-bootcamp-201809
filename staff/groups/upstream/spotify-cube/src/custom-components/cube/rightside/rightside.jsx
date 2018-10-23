@@ -6,15 +6,23 @@ import List from '../../list/list';
 
 export default class RightSide extends Component{
 
-    state = {}
+  state = {artists:this.props.artists}
+
+    
+    componentWillReceiveProps(props){
+
+       this.setState({artists:props.artists})
+
+     }
 
     render() {
+      
         return (
     
           <section className="right">
             <Header></Header>
             <SideTitle title="Artists List" image="metallica.png"></SideTitle>
-              <List></List>
+            <List type="artists" list = {this.state.artists}></List>
           </section>
         );
       }

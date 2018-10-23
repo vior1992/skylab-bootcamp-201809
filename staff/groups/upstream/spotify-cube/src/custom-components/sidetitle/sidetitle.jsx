@@ -6,7 +6,7 @@ export default class SideTitle extends Component{
     state = {}
 
     render() {
-        console.log(this.props)
+       
         return (
             
             <section className="panel-inf">

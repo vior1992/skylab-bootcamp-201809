@@ -18,6 +18,11 @@ describe('spotifyLogic', () => {
                 .then((res) => expect(res.name).to.equal('Jamiroquai'))
             // .then(res => console.log(res))
         })
+
+        it('should fail on empty query', () => {
+
+            logic
+        })
         // TODO other cases
     })
 

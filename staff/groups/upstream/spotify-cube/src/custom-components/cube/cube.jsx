@@ -9,7 +9,7 @@ import $ from 'jquery'
 
 export default class Cube extends Component{
 
-    state = { session: {} } 
+    state = {artists:[], tracks:[], albums:[]} 
 
     constructor(props){
 
@@ -114,15 +114,22 @@ export default class Cube extends Component{
       
     }
 
+    handlerArtistFound = (data) => {
+        
+    
+      this.setState({artists:data})
+         
+    }
+
     render(){
 
         return <section className="container">
             <section className={`cube ${this.state.rotationClass}`}>
 
-                <FrontSide></FrontSide>
-                <BackSide></BackSide>
-                <LeftSide></LeftSide>
-                <RightSide></RightSide>
+                <FrontSide onArtistFound = {this.handlerArtistFound}></FrontSide>
+                <BackSide albumlist = {this.state.albums}></BackSide>
+                <LeftSide tracks = {this.state.tracks}></LeftSide>
+                <RightSide artists = {this.state.artists}></RightSide>
                 <TopSide></TopSide>
                 <BottomSide></BottomSide>    
             </section>
