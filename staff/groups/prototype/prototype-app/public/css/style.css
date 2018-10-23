@@ -163,4 +163,34 @@ body {
   border-bottom-right-radius: 0.25rem;
 }
 
+.movie-profile {
+  background-color: #F3F3F3;
+  border: 0;
+  display: flex;
+  flex-direction: row;
+}
+.card__poster {
+  max-width: 342px;
+  margin-left: 12%;
+  margin-top: 24%;
+  border-radius: 10px !important;
+}
+
+.card__info {
+  margin-top: 24%;
+}
+
+.backdrop {
+  max-width: 780px;
+  border-radius: 25px !important;
+}
+
+.sinopsis-title, .sinopsis-text, .cast-title, .cast-text {
+  color: #686868 !important;
+}
+
+.cardtitle, .cardtext {
+  color: white !important;
+}
+
 /*# sourceMappingURL=style.css.map */

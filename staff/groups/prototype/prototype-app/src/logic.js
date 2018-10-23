@@ -3,7 +3,8 @@
 
 const logic = {
     _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
-    _user: JSON.parse(sessionStorage.getItem('user')) || {},
+    _user: {},
+    // _user: JSON.parse(sessionStorage.getItem('user')) || {},
     _trendingMovies: [],
     _inTheatreMovies: [],
     _popularMovies: [],
@@ -63,7 +64,7 @@ const logic = {
           this._user.id = id
           this._user.token = token
   
-          sessionStorage.setItem('user', JSON.stringify(this._user))
+          // sessionStorage.setItem('user', JSON.stringify(this._user))
         })
     },
   
