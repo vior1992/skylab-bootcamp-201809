@@ -2,6 +2,10 @@ import React from 'react'
 
 function Sidenav(props) {
     return <aside className="sidenav">
+        <div className="sidenav__head">
+            <h1 className="head__title">SkyTube</h1>
+        </div>
+        
         <button className="sidenav__title" onClick={props.onClickFavourites}>Favourites</button>
         <button className="sidenav__title" onClick={props.onClickHistory}>History</button>
 
