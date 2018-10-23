@@ -115,7 +115,6 @@ describe('logicUdacity', () => {
         it('should fetch courses', () => {
             return logicUdacity.getCourses()
                 .then((res) => {
-                    debugger
                     expect(res).to.be.true
                 })
         })
@@ -123,11 +122,9 @@ describe('logicUdacity', () => {
         it('should fail on incorrect URL', () => {
             return logicUdacity.getCourses('https://www.fake-udacity.com/public-api/v0/courses')
                 .then(() => {
-                    debugger
                     expect(false).to.be.true
                 })
                 .catch(err => {
-                    debugger
                     expect(err.message).to.equal('Unable to load courses')
                 })
         })
