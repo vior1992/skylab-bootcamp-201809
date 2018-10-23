@@ -53,11 +53,12 @@ handleLogoutClick = () => {
 }
 
 handleFavourites = (id) => {
+    debugger
     logic.storeFavourites(id)
-        .then(res => console.log(res))
+        .then(res => this.setState({favouritesArray:res}))
         .catch(err => console.log(err))
 
-    this.setState({favouritesArray: logic._favouritesEventsArray})
+    // this.setState({favouritesArray: logic._favouritesEventsArray})
 }
 
 handleFavouriteState = (newArr) => {
@@ -66,8 +67,11 @@ handleFavouriteState = (newArr) => {
 
 handleGoBack = () => this.props.history.push('/')
 
-handleDeleteFavourite = () => {
-
+handleDeleteFavourite = (id) => {
+    logic.deleteFavourite(id)
+        .then(res => this.setState({favouritesArray: res}))
+        .catch(err => console.log(err))
+    
 }
 
 

@@ -9,6 +9,7 @@ class Event extends Component {
     }
 
     storeFavourites = () => {
+        debugger
         this.props.favourites(this.props.eventId)
     }
 

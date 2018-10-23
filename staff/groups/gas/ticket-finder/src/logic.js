@@ -128,24 +128,26 @@ const logic = {
         //     if (item.id ===favouriteId) throw TypeError('this event is already in favourites')
         // })
         const self = this
-        this.searchEventInfo(favouriteId)
-        .then(res => {
-            self._favouritesEventsArray.push(res)
-            return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                    'Authorization': `Bearer ${self._token}`
-                },
-                body: JSON.stringify({ favouritesEventsArray: self._favouritesEventsArray})
-            })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.error) throw Error(res.error)
-                    return self._favouritesEventsArray
+        return this.searchEventInfo(favouriteId)
+            .then(res => {
+                self._favouritesEventsArray.push(res)
+                return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Authorization': `Bearer ${self._token}`
+                    },
+                    body: JSON.stringify({
+                        favouritesEventsArray: self._favouritesEventsArray
+                    })
                 })
-        })
-        .catch(err => console.log(err))       
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                return self._favouritesEventsArray
+            })
+            .catch(err => console.log(err))
     },
 
 
@@ -163,8 +165,31 @@ const logic = {
 
             return this._favouritesEventsArray = res.data.favouritesEventsArray || []
             })
-    }    
+    },
+    
+    deleteFavourite(id) {
+        var index = this._favouritesEventsArray.findIndex(item => item.id===id)
+        this._favouritesEventsArray.splice(index,1)
+        const self = this
+            return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': `Bearer ${self._token}`
+                },
+                body: JSON.stringify({ favouritesEventsArray: self._favouritesEventsArray})
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.error) throw Error(res.error)
+                    return self._favouritesEventsArray
+                })
+      
+        .catch(err => console.log(err)) 
+        }
 }
 
 export default logic
 // module.exports = logic
+
+
