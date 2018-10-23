@@ -6,6 +6,7 @@ import { Route, withRouter } from 'react-router-dom'
 import Movie from './Movie'
 import SearchResults from './SearchResults'
 import TopRatedSlide from './TopRatedSlide'
+import CategoryAction from './CategoryAction'
 
 class Home extends Component {
 
@@ -37,9 +38,6 @@ class Home extends Component {
     }
 
     handleCardClick = id => {
-        this.state.flag = true
-        // this.setState({ flag })
-        //console.log(this.state.flag)
         this.props.history.push(`/movie/${id}`)
     }
 
@@ -50,17 +48,15 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
-            <TopRatedSlide/>
-            <TopRatedSlide/>
-            <TopRatedSlide/>
+            {/* <TopRatedSlide/> */}
 
-            <Route path="/search/:query" render={props =>{
-                return <div>
-                     {/* <Sidebar/> */}
-                    <SearchResults query={props.match.params.query}/>
-                    </div>
-            }
-        }/>
+            {/* <Sidebar/> */}
+            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+
+            <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
+
             <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
 
         </div>
