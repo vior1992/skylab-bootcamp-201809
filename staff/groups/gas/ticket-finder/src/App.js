@@ -45,7 +45,7 @@ handleLogin = (username, password) => {
 
 handleLogoutClick = () => {
     logic.logout()
-
+    this.setState({favouritesArray:[]})
     this.props.history.push('/')
 }
 /* handleFindEventInfo = (id) => {

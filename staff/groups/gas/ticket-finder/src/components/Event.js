@@ -8,7 +8,7 @@ class Event extends Component {
 
     }
 
-    getFavouriteId = () => {
+    getFavouriteEvent = () => {
         this.props.addToFavourites(this.props.eventId)
         this.props.sendFavourites(this.props.eventId)
     }
@@ -20,15 +20,7 @@ class Event extends Component {
         return date
     }
     render(){    
-    let priceMessage =""
-
-    let TBAmessage = ""
-    if (this.props.eventMinPrice) {
-        priceMessage = <span>From {this.props.eventMinPrice} EUR</span>
-    }
-    if (!this.props.eventMinPrice) {
-        TBAmessage = <span>Price to be announced</span>
-    }
+    
     return <li>
         <div className="card">
             
@@ -38,8 +30,8 @@ class Event extends Component {
                     <p>{this.changeDate()}</p>
                     <p> { this.props.eventCity } </p>
                     <p className="card-text"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
-                    <p> {this.props.eventMinPrice ? priceMessage : TBAmessage} </p>
-                    <button onClick = {this.getFavouriteId}>Add to favourites</button>
+                    <p>{this.props.eventMinPrice ? <span>From {this.props.eventMinPrice} EUR</span> : <span>Price to be announced</span>}</p>
+                    <button onClick = {this.getFavouriteEvent}>Add to favourites</button>
                 </div>
         </div>       
     </li>
