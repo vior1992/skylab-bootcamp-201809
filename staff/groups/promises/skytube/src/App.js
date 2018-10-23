@@ -98,7 +98,7 @@ class App extends Component {
     }
 
     renderLanding() {
-        return <div>
+        return <section>
             <nav>
                 <ul>
                     <li><Link to='/#register'>Sign Up</Link></li>
@@ -107,21 +107,21 @@ class App extends Component {
             </nav>
 
             <Header onSubmitSignUp={this.handleRegister} />
-        </div>
+        </section>
     }
 
     renderHome() {
-        return <div>
+        return <section className="home">
             <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} onClickProfile={this.handleClickProfile} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}} />
             <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
             <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
             <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
             <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
-		</div>
+		</section>
 	}
 
     render() {
-        return <div className="App">
+        return <div>
             <Route exact path='/' render={() => !logic.isAuthenticated() ? this.renderLanding() : <Redirect to='/home'/>} />
             <Route path='/home' render={() => logic.isAuthenticated() ? this.renderHome() : <Redirect to='/login' />} />
             <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
