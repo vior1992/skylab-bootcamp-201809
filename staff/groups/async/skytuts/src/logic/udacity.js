@@ -1,3 +1,4 @@
+
 const logicUdacity = {
     _courses: sessionStorage.getItem('courses'),
 
@@ -18,6 +19,3 @@ const logicUdacity = {
 
 export default logicUdacity
 // module.exports = logicUdacity
-
-
-
