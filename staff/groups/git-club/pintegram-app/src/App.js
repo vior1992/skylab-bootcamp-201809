@@ -11,7 +11,7 @@ import { Route, withRouter, Redirect } from 'react-router-dom'
 
 
 class App extends Component {
-    state = { error: null, post : false, profile: false }
+    state = { error: null, post : false, profile: false , profile:null }
 
     handleRegisterClick = () => this.props.history.push('/register')
 
@@ -76,11 +76,13 @@ class App extends Component {
         const { error, post, profile } = this.state
 
         return <div>
+            
             <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/home" />} />
             <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
             <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
             {error && <Error message={error} />}
             <Route path="/home" render={() => logic.loggedIn && !post && !profile ? <Home onLogout={this.handleLogoutClick} onPost={this.handlePost} onProfile={this.handleProfile} onGoBack={this.handleGoBack}/> : <Redirect to="/" />} />
+            {/* <Route path="/profile/:profile" render={()=>log.loggedIn && !post && !profile && profile ? <otherProfile id={this.props.params.profile} onLogout={this.handleLogoutClick} onGoBack={this.handleGoBack2}/> :<Redirect to="/home"/>}/> */}
             <Route path="/addpost" render={() => logic.loggedIn && post && !profile ? <AddPost onPost={this.handleAddPost} onGoBack={this.handleGoBack2}/> : <Redirect to="/home" />} />
             <Route path="/profile" render={() =>logic.loggedIn && profile && !post? <Profile onLogout={this.handleLogoutClick} onPost={this.handlePost} onGoBack={this.handleGoBack2}/> : <Redirect to="/home" />} />
         </div>

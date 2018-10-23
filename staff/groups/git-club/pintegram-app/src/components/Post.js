@@ -17,10 +17,15 @@ class Post extends Component {
     }
 
     handleLikePost = () => {
-        
+      
         logic.addLike(this.state.postId)
-            .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
-            .then(logic.likedPost(this.state.postId).then(liked => { this.setState({ liked })}))
+       .then(Promise.all([logic.likesPost(this.state.postId), logic.likedPost(this.state.postId)])
+           .then(([likes, liked]) => {
+               this.setState({ likes, liked})
+           }))
+        // logic.addLike(this.state.postId)
+        //     .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
+        //     .then(logic.likedPost(this.state.postId).then(liked => { this.setState({ liked })}))
            
             
         
