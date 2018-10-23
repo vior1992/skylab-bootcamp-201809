@@ -44,13 +44,15 @@ const logicAuth = {
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-                const { id, token } = res.data
+                const { id, token, faves } = res.data
 
                 this._userId = id
                 this._token = token
+                
 
                 sessionStorage.setItem('userId', id)
                 sessionStorage.setItem('token', token)
+                sessionStorage.setItem('faves', faves || JSON.stringify([]))
             })
     },
 

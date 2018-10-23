@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class Card extends Component {
 
@@ -16,7 +17,7 @@ class Card extends Component {
         return (
             <div className="card">
                 <div className="card-top">
-                    <img src={course.image || _default.image} alt="todo"></img>
+                    <img src={course.image || _default.image} alt="course-img"></img>
                     <div className="card-info">
                         <h3 className="title">{course.title || _default.title}</h3>
                         <h5 className="subtitle">{course.subtitle || _default.subtitle}</h5>
@@ -25,7 +26,7 @@ class Card extends Component {
                 </div>
 
                 <div className="card-middle">
-                    <span>+  Course Details</span>
+                    <Link to={`/course/${course.slug}`}><span>+  Course Details</span></Link>
                     <span>Level</span>
                 </div>
             </div>

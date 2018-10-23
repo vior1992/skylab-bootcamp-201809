@@ -6,7 +6,7 @@ global.sessionStorage = require('sessionstorage')
 
 const logicAuth = require('./logic/auth')
 
-// const logicUdacity = require('./logic/udacity')
+const logicUdacity = require('./logic/udacity')
 
 const { expect } = require('chai')
 
@@ -16,7 +16,7 @@ const { expect } = require('chai')
 
 describe('logicAuth', () => {
     describe('users', () => {
-        !false && describe('register', () => {
+        false && describe('register', () => {
             it('should succeed on correct data', () =>
                 logicAuth.registerUser('John', 'Doe', `jd-${Math.random()}`, '123')
                     .then(() => expect(true).to.be.true)
@@ -42,7 +42,7 @@ describe('logicAuth', () => {
             // TODO other cases
         })
 
-        !false && describe('login', () => {
+        false && describe('login', () => {
             describe('with existing user', () => {
                 let username, password
 
@@ -108,4 +108,22 @@ describe('logicAuth', () => {
             // TODO other cases
         })
     })
+})
+
+describe('logicUdacity', () => {
+    describe('connect to the API', () => {
+        it('should fetch courses', () => {
+            return logicUdacity.getCourses()
+                .then((res) => expect(res).to.be.true)
+        })
+
+        it('should fail on incorrect URL', () => {
+            return logicUdacity.getCourses()
+                .catch(err => {
+                    expect(err.message).to.equal('Unable to load courses')
+                    console.log('2')
+                })
+        })
+    })
+
 })

@@ -9,6 +9,10 @@ class Login extends Component {
     state = { username: '', password: '', error: null }
 
 
+    componentWillMount() {
+        if (sessionStorage.getItem('userId') || sessionStorage.getItem('token') ) this.props.history.push('/')
+    }
+
     handleLogin = (username, password) => {
         try {
             logicAuth.login(username, password)

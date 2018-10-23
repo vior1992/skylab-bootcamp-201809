@@ -8,6 +8,11 @@ class Register extends Component {
 
     state = { name: '', surname: '', username: '', password: '', error: null }
 
+
+    componentWillMount() {
+        if (sessionStorage.getItem('userId') || sessionStorage.getItem('token') ) this.props.history.push('/')
+    }
+
     handleRegister = (name, surname, username, password) => {
         try {
             logicAuth.registerUser(name, surname, username, password)
