@@ -153,5 +153,5 @@ const logic = {
 
 }
 
-export default logic
-// module.exports = logic
+// export default logic
+module.exports = logic
