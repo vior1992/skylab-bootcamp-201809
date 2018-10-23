@@ -71,21 +71,22 @@ class Register extends Component {
             <form className="login_form" onSubmit={this.handleSubmit}>
 
                 <label className="login_back">Name</label>
-                <input className="login_input" type='text' placeholder="Name" onChange={this.handleNameChange}></input>
+                <input className="form-control" type='text' placeholder="Name" onChange={this.handleNameChange}></input>
 
                 <label className="login_back">Surname</label>
-                <input className="login_input" type='text' placeholder="Surname" onChange={this.handleSurnameChange}></input>
+                <input className="form-control" type='text' placeholder="Surname" onChange={this.handleSurnameChange}></input>
 
                 <label className="login_back">Username</label>
-                <input className="login_input" type='text' placeholder="Username" onChange={this.handleUserNameChange}></input>
+                <input className="form-control" type='text' placeholder="Username" onChange={this.handleUserNameChange}></input>
 
                 <label className="login_back">Password</label>
-                <input className="login_input" type='password' placeholder="Password" onChange={this.handlePasswordChange}></input>
+                <input className="form-control" type='password' placeholder="Password" onChange={this.handlePasswordChange}></input>
 
                 <label className="login_back">Repeat password</label>
-                <input className="login_input" type='password' placeholder="Repeat password" onChange={this.handleRepeatPasswordChange}></input>
+                <input className="form-control" type='password' placeholder="Repeat password" onChange={this.handleRepeatPasswordChange}></input>
 
-                <button className="login_btn" type='submit'>Register</button>
+                <button className="btn btn-outline-secondary" type='submit'>Register</button>
+                <a className="btn btn-link" href="#" onClick={this.props.onGoBack}>back</a>
 
             </form>
         </div>

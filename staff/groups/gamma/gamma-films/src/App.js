@@ -4,6 +4,7 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
+import TopRatedSlide from './components/topRatedSlide'
 import Profile from './components/Profile'
 import logic from './logic'
 
@@ -51,6 +52,10 @@ class App extends Component {
             {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
 
             <Home />
+            <TopRatedSlide/>
+            <TopRatedSlide/>
+            <TopRatedSlide/>
+
         </div>
     }
 }

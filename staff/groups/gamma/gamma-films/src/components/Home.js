@@ -50,10 +50,13 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
-            <Sidebar/>
+            {/* <Sidebar/> */}
+
 
             <section>
-                {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} />)}
+            <Route path="/movie/:id" render={() => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} movieId={film.Id} />} />
+
+                {/* {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} />)} */}
             </section>
 
         </div>
