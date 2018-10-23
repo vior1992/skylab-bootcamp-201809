@@ -102,6 +102,10 @@ const logic = {
     },
 
     retrieveSong(video_id) {
+        if (typeof video_id !== 'string') throw TypeError(`${video_id} is not a string`)
+        if (!video_id.trim()) throw Error ('video_id is blank or empty')
+        if (!video_id.length === 11) throw Error ('video_id length is not valid')
+
         return this.youtube.getVideo(video_id)
             .then(result => {
                 sessionStorage.setItem('current_video', JSON.stringify(result[0]))
@@ -155,6 +159,6 @@ const logic = {
     }
 }
 
-export default logic
+// export default logic
 
-// module.exports = logic
+module.exports = logic

@@ -483,4 +483,33 @@ describe ('logic', () => {
             expect(auth).to.equal(null)
         })
     })
+
+    describe(' retrieveSong ', () => {
+        it('should succed on correct data', () => {
+            const video_id = 'BaP1wDvkA6E'
+
+            logic.retrieveSong(video_id)
+        
+            expect(video_id).to.equal('BaP1wDvkA6E')
+            expect(video_id).to.be(true)
+            expect(video_id.length).to.be(11)
+            
+        })
+
+        it('should fail on incorrect length (11)', () => {
+            const video_id = '123456789'
+
+            expect(() => 
+                login.retrieveSong(video_id)
+            ).to.throw(Error, 'video_id length is not valid')
+        })
+
+        it('should fail on undefined video_id', () => {
+            const video_id = undefined
+
+            expect(() => 
+                logic.retrieveSong(video_id)
+            ).to.throw(TypeError, 'undefined is not a string')
+        })
+    })
 })
