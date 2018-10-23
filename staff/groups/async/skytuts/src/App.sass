@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto')
+
+$color_lightblue: #f0f9fb 
+$color_card: white
+$color_greyblue: #7d97ad
+    
+body
+    margin: 0
+    padding: 0
+    background: $color_lightblue
+    font-family: 'Roboto', sans-serif 
+
+nav
+    box-shadow: 0 3px 1px 0 rgba(0,0,0, .1)
+    width: 100%
+    background-color: white
+    line-height: 50px
+    margin-top: 0
+    ul
+        padding: 0 10%
+        margin: 0
+        display: flex
+        justify-content: flex-end
+        li
+            list-style: none
+            padding: 0 20px
+            a 
+                text-decoration: none
+                font-weight: bold
+                color: black
+
+.search
+    width: 100%
+    height: 400px
+    background-image: url("https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") // todo blueish filter
+    background-size: cover
+    background-position: 0 30%   // todo img scroll
+    display: flex
+    justify-content: center
+    align-items: center
+    input 
+        height: 40px
+        width: 380px
+        padding-left: 20px
+        border-radius: 10px
+        border: 1px solid skyblue
+        outline: 0
+
+/// MAIN /////////////////////////////
+main
+    width: calc(100% - 80px)
+    padding: 40px
+
+    .cards-container
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-around
+        width: 100%
+        .card
+            position: relative
+            background: $color_card
+            width: calc(45% - 50px)
+            height: 200px
+            max-height: 200px
+            min-height: 200px
+            margin: 25px
+            padding: 25px
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            border-radius: 7px
+            box-shadow: 4px 4px 20px 3px rgba(0, 0, 0, .15)
+            &::after
+                position: absolute
+                top: 10px
+                left: 10px
+                width: 35px
+                height: 35px
+                content: ""
+                background-image: url('https://www.skylabcoders.com/skylab-coders-academy_408.png')
+                background-size: 60%
+                background-position: 7px 7px
+                background-repeat: no-repeat
+                background-color: white
+                border-radius: 50%
+            .card-top
+                display: flex
+                img
+                    width: 170px
+                    height: 100px
+                    min-width: 170px
+                    min-height: 100px
+                    max-width: 170px
+                    max-height: 100px
+                    border-radius: 7px
+                    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .1)
+                .card-info
+                    padding-left: 20px
+                    .title
+                        cursor: pointer
+                        margin: 0
+                        &:hover
+                            color: #7d97ad
+                    .subtitle
+                        margin: 0
+                        margin-top: 10px
+                    .short-summary
+                        font-size: 14px
+                        color: #666d6f
+            .card-middle
+                font-weight: bold
+                display: flex
+                justify-content: space-between
+                padding-top: 15px
+                box-shadow: 0 -1px 0 0 rgba(125, 151, 173, .3)
+                color: $color_greyblue
+
+
+
+
+
+
