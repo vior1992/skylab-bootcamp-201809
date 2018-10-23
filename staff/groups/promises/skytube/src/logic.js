@@ -2,6 +2,10 @@ import { Favourites, WatchLater, Playlists, History } from './model'
 import Skylab from './skylab'
 import YouTube from './youtube'
 
+// const { Favourites, WatchLater, Playlists, History }  = require('./model')
+// const  Skylab = require( './skylab')
+// const YouTube = require('./youtube')
+
 const logic = {
     skylab: new Skylab(),
     youtube: new YouTube(),
@@ -94,6 +98,9 @@ const logic = {
     },
 
     search(query) {
+        if(typeof query !== 'string') throw TypeError(`${query} is not a string`)
+        if(!query.trim()) throw Error ('query is black or empty')
+
         return this.youtube.search(query)
             .then(result => {
                 sessionStorage.setItem('video_search', JSON.stringify(result))
@@ -102,6 +109,10 @@ const logic = {
     },
 
     retrieveSong(video_id) {
+        if (typeof video_id !== 'string') throw TypeError(`${video_id} is not a string`)
+        if (!video_id.trim()) throw Error ('video_id is blank or empty')
+        if (!video_id.length === 11) throw Error ('video_id length is not valid')
+
         return this.youtube.getVideo(video_id)
             .then(result => {
                 sessionStorage.setItem('current_video', JSON.stringify(result[0]))
@@ -114,6 +125,10 @@ const logic = {
             video_id: video_id
         }).save()
         this.skylab.update({favourites: this.favourites.all()}, this.auth.id, this.auth.token)
+    },
+
+    getMostPopular(){
+       return this.youtube.mostPopular()
     },
 
     addWatchLater(video_id) {

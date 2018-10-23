@@ -14,7 +14,7 @@ const {expect} = require('chai')
 
 
 describe ('logic', () => {
-    !false && describe('register', () => {
+    false && describe('register', () => {
         it('should suceed on correct data', () => {
             return logic.registerUser('ana','san', `as-${Math.random()}`,'a@a','123')
                 .then(() => expect(true).to.be.true)
@@ -298,7 +298,7 @@ describe ('logic', () => {
         })
     })
 
-    !false && describe('login', () => {
+    false && describe('login', () => {
         describe('test on autenticating existent user', () => {
             let username, password
 
@@ -464,7 +464,7 @@ describe ('logic', () => {
             ).to.throw(TypeError, ' is not a string')
         })
     })
-
+  
     describe('logoutUser', () => {
         beforeEach(() => {
             sessionStorage.setItem('auth', JSON.stringify({
@@ -481,6 +481,50 @@ describe ('logic', () => {
 
             auth = sessionStorage.getItem('auth')
             expect(auth).to.equal(null)
+        })
+    })
+
+    describe(' retrieveSong ', () => {
+        it('should succed on correct data', () => {
+            const video_id = 'BaP1wDvkA6E'
+
+            logic.retrieveSong(video_id)
+        
+            expect(video_id).to.equal('BaP1wDvkA6E')
+            expect(video_id).to.be(true)
+            expect(video_id.length).to.be(11)
+            
+        })
+
+        it('should fail on incorrect length (11)', () => {
+            const video_id = '123456789'
+
+            expect(() => 
+                login.retrieveSong(video_id)
+            ).to.throw(Error, 'video_id length is not valid')
+        })
+
+        it('should fail on undefined video_id', () => {
+            const video_id = undefined
+
+            expect(() => 
+                logic.retrieveSong(video_id)
+            ).to.throw(TypeError, 'undefined is not a string')
+        })
+    })
+  
+    describe ('search by query', () => {
+        it('should succed on searching videos by query', () => {
+            const query = 'Madonna'
+            return logic.search(query)
+                .then(res => 
+                    expect(res).not.to.be.undefined()
+                )
+        })
+
+        it('shoul fail on undefined query', () => {
+            const query = undefined
+            
         })
     })
 })

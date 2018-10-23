@@ -1,9 +1,9 @@
 import React from 'react'
 
 function VideoListItem(props) {
-    return <article className="video-list__video">
+    return <article className = 'video-item' onClick={() => props.onClick(props.id)} >
         <img src={props.img} alt="thumbnail"></img>
-        <p onClick={() => props.onClick(props.id)}>{props.title}</p>
+        <p >{props.title}</p>
     </article>
 }
 

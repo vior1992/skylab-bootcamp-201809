@@ -3,7 +3,7 @@ import SignUp from './SignUp'
 
 function Header(props) {
     return <header className="App-header">
-        <div>
+        <div className="container">
             <h1>Hola SoundSky</h1>
         </div>
         <SignUp onSubmit={props.onSubmitSignUp}/>
