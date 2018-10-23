@@ -51,7 +51,11 @@ class App extends Component {
 		logic.logoutUser()
 
 		this.setState({error: null})
-	}
+    }
+    
+    handleProfile = () => {
+        console.log('funcionalidad sin usar')
+    }
 
 	handleSearch = query => {
 		logic.search(query)
@@ -80,7 +84,7 @@ class App extends Component {
 
     renderHome() {
         return <div>
-            <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
+            <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} onClickProfile={this.handleProfile} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
             <Sidenav onClickFavourites={undefined} onClickWatchLater={undefined} playlists={this.state.user_info.playlists} />
             <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
             <Route path='/home/player' render={() => <Player video={this.state.video} />} />

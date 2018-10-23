@@ -1,14 +1,14 @@
 import React from 'react'
 
 function Profile(props) {
-    return <div className="dropwdown">
-        <button className="userpic">{props.user.username}</button>
-        <div className="dropdown-content">
+    return <div className="btn-group">
+        <button onClick={props.onClickProfile} className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{props.user.username}</button>
+        <div className="dropdown-menu">
             <div>
-                <img alt="profile"></img>
-                <h1>{props.user.name}</h1>
-                <p>{props.user.email}</p>
-                <a href="/edit">edit user</a>
+                <img className="dropdown-item" src="/styles/default-user-profile.png" href="#" alt="profile"></img>
+                <h1 className="dropdown-item" href="#">{props.user.name}</h1>
+                <p className="dropdown-item" href="#">{props.user.email}</p>
+                <a className="dropdown-item" href="/edit">edit user</a>
             </div>
             <div>
                 <button onClick={props.onLogOut}>Log Out</button>

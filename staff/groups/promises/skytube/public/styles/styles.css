@@ -1,0 +1,7 @@
+.row {
+    display: grid;
+    margin-right: 0%;
+    margin-left: 0%;
+    grid-template-columns: 100%;
+    background-color: blue;
+}
