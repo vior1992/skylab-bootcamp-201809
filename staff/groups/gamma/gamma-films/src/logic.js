@@ -46,13 +46,10 @@ const logic = {
                 this._userId = id
                 this._token = token
                 console.log(this._token)
-
-                // sessionStorage.setItem('userId', id)
-                // sessionStorage.setItem('token', token)
             })
     },
 
-    retrieveUser(){
+    retrieveUser() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'GET',
             headers: {
@@ -61,23 +58,19 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                if (res.error) throw Error (res.error)
+                if (res.error) throw Error(res.error)
 
-                const {data} = res
-                
-                this._user = data
-                console.log(this._user)
+                console.log('respuesta retrieve: ' + res)
+                return this._user = res.data || []
             })
-
     },
 
     get loggedIn() {
         return !!this._userId
     },
 
-    get user(){
-        this.retrieveUser()
-        .then(res => res)
+    get user() {
+        return this._user
 
     },
 
@@ -96,42 +89,41 @@ const logic = {
                 const results = res.results
 
                 return results;
-
             })
     },
 
     searchMoviesByCategories(genres) {
-        return fetch('https://api.themoviedb.org/3/discover/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&with_genres='+genres, {
+        return fetch('https://api.themoviedb.org/3/discover/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&with_genres=' + genres, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             }
         })
-        .then(res=> res.json())
-        .then(res => {
-            if(res=== 'undefined') throw Error (res.error)
+            .then(res => res.json())
+            .then(res => {
+                if (res === 'undefined') throw Error(res.error)
 
-            const results=res.results
+                const results = res.results
 
-            return results
-        })
+                return results
+            })
     },
 
     searchPopularMovies(date) {
-        return fetch('https://api.themoviedb.org/3/trending/movie/'+date+'?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
+        return fetch('https://api.themoviedb.org/3/trending/movie/' + date + '?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             }
         })
-        .then(res=> res.json())
-        .then(res => {
-            if(res=== 'undefined') throw Error (res.error)
+            .then(res => res.json())
+            .then(res => {
+                if (res === 'undefined') throw Error(res.error)
 
-            const results=res.results
+                const results = res.results
 
-            return results
-        })
+                return results
+            })
     }
 
 }
