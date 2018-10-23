@@ -29,7 +29,7 @@ class Post extends Component {
             <h1 className="post__text">{this.state.user}</h1>
             <img className="post__img" src={this.state.url}></img>
             <div className="post__icon">
-            {!this.state.liked ? <i onClick={this.handleLikePost} className="far fa-heart icon"></i> : <i className="fas fa-heart icon"></i>}{this.state.likes ? this.state.likes.length : 0}
+            {!this.state.liked ? <i onClick={this.handleLikePost} className="far fa-heart icon"></i> : <i className="fas fa-heart icon"></i>}{this.state.likes}
             <i className="fas fa-comment icon"></i>
             </div>
             <p className="post__text post__text-margin">{this.state.text}</p>      

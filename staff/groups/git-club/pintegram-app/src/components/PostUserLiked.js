@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 
-class PostUser extends Component {
+class PostUserLiked extends Component {
     state = { postId:this.props.id, url:this.props.url, text: this.props.text, likes: null}
 
     componentDidMount() {
@@ -26,4 +26,4 @@ class PostUser extends Component {
     }
 }
 
-export default PostUser
+export default PostUserLiked

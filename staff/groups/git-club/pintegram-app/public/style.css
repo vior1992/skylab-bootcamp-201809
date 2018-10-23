@@ -69,6 +69,7 @@ body{
 
 .icon{
     margin:10px;
+    cursor: pointer;
 }
 
 .post__icon{
@@ -126,6 +127,7 @@ body{
 .gallery__user{
     min-width: 0;
     margin: 5px;
+    position: relative;
 }
 
 .user__img{
@@ -134,12 +136,19 @@ body{
     max-height: 250px;
 }
 
+.user__img:hover{
+    opacity:0.5;
+}
+
 .user__likes{
-    display: none !important;
+    display: none;
+    position: absolute;
+    top:40%;
+    left:40%;
 }
 
 .user__img:hover + .user__likes {
-    display: block;
+    display: block;  
 }
 
 
@@ -150,9 +159,15 @@ body{
 
 
 /* UPLOAD POST */
+.upload{
+    display: flex;
+    justify-content: center;
+}
+    
 .upload__img{
-    height: 200px;
-    width: 100%;
+    height: 250px;
+    max-width: 100%; 
+    max-height: 250px;
 }
 
 

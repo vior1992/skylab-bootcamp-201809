@@ -43,8 +43,13 @@ class AddPost extends Component {
 
     render() {
         return <div className="div-home">
-            <a href="#" onClick={this.props.onGoBack}>back</a>
-            <h1>Pintegram App</h1>
+            <nav className="nav"><h1 onClick={this.props.onGoBack}>Pintegram App</h1>
+            <div className="menu">
+                <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
+                <i onClick={this.props.onProfile} className="menu__button fas fa-user"></i>
+                <i onClick={this.props.onLogout} className="menu__button fas fa-sign-out-alt"></i>
+            </div>
+            </nav>
             <div className="upload">
                 <img className="upload__img" src={this.state.img} ></img>
                 <textarea defaultValue={this.state.text} onChange={this.handleContentChange}/>

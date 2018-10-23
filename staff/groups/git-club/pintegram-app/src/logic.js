@@ -12,6 +12,7 @@ const logic = {
     _follows:[],
     _likes:[],
     _followers:[],
+    _postLiked:[],
 
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
@@ -73,8 +74,12 @@ const logic = {
         this._posts = []
         this._postsUser = []
         this._postsAllUser = []
+        this._likes = []
+        this._follows = []
+        this._followers = []
         this._userId = null
         this._token = null
+        this._postLiked = []
 
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
@@ -82,10 +87,8 @@ const logic = {
 
     createPost(url, description) {
         if (typeof url !== 'string') throw TypeError(`${url} is not a string`)
-        if (typeof description !== 'string') throw TypeError(`${description} is not a string`)
 
         if (!url.trim()) throw Error('document is empty or blank')
-        if (!description.trim()) throw Error('Description is empty or blank')
 
         this._posts.push(new Post(this._userId, url, description))
 
@@ -100,6 +103,21 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
+            })
+    },
+
+    listLikes() {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return this._likes = res.data.likes || []
             })
     },
 
@@ -136,8 +154,11 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
-                let liked = res.data.likes.some(like => like===postId)
-                return liked
+                if (res.data.likes){
+                    let liked = res.data.likes.some(like => like===postId)
+                    return liked
+                }
+                
             })
            
     },
@@ -197,6 +218,32 @@ const logic = {
                 return this._postsAllUser = postsUsers || []
             })
     },
+    retrievePosts(postsId) {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                
+                if (res.error) throw Error(res.error)
+                let users = res.data.filter(user => user.app)
+                let appUsers = users.filter(user => user.app === 'pintegram')
+                let postsUsers = []
+                appUsers.forEach(user => {
+                    if(user.posts){
+                        for (let i = 0; i < user.posts.length ; i++){
+                            for (let e = 0; e < postsId.length ; e++){
+                                if(user.posts[i].id === postsId[e]) postsUsers.push(user.posts[i])
+                            }
+                        }
+                    }
+                })   
+                return this._postLiked = postsUsers || []
+            })
+    },
 
     retrieveProfile() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -214,6 +261,7 @@ const logic = {
     },
 
     likesPost(postId) {
+
         return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
             method: 'GET',
             headers: {
@@ -226,15 +274,16 @@ const logic = {
                 if (res.error) throw Error(res.error)
                 let users = res.data.filter(user => user.app)
                 let appUsers = users.filter(user => user.app === 'pintegram')
-                let countLikes = []
+                let countLikes = 0
                 appUsers.forEach(user => {
+                    
                     if(user.likes){
                         for (let i = 0; i < user.likes.length ; i++){
-                            if(user.likes[i] === postId) countLikes.push(user.posts[i])
+                            if(user.likes[i] === postId) countLikes++
                         }
                     }
                 })   
-                return countLikes || []
+                return countLikes || 0
             })
     },
 
