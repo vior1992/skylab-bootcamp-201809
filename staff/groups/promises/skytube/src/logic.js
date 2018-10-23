@@ -1,6 +1,12 @@
-import { Favourites, WatchLater, Playlists, History } from './model'
-import Skylab from './skylab'
-import YouTube from './youtube'
+// import { Favourites, WatchLater, Playlists, History } from './model'
+// import Skylab from './skylab'
+// import YouTube from './youtube'
+
+const { Favourites, WatchLater, Playlists, History }  = require('./model')
+const  Skylab = require( './skylab')
+const YouTube = require('./youtube')
+
+
 
 const logic = {
     skylab: new Skylab(),
@@ -94,6 +100,9 @@ const logic = {
     },
 
     search(query) {
+        if(typeof query !== 'string') throw TypeError(`${query} is not a string`)
+        if(!query.trim()) throw Error ('query is black or empty')
+
         return this.youtube.search(query)
             .then(result => {
                 sessionStorage.setItem('video_search', JSON.stringify(result))

@@ -7,7 +7,7 @@ class YouTube {
     }
 
     search(query) {
-        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&q='+query+'&videoCategoryId=10&type=video', {
+        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&q='+query+'&videoCategoryId=10&type=video&maxResults=18', {
             method: 'GET'
         }).then(result => {
             return result.json()
@@ -29,7 +29,7 @@ class YouTube {
     }
 
     mostPopular() {
-        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&char=mostPopular&videoCategoryId=10&type=video', {
+        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&char=mostPopular&videoCategoryId=10&type=video&maxResults=18', {
             method: 'GET'
         }).then(result => {
             return result.json()
