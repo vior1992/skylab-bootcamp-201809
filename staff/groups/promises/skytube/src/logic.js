@@ -1,12 +1,10 @@
-// import { Favourites, WatchLater, Playlists, History } from './model'
-// import Skylab from './skylab'
-// import YouTube from './youtube'
+import { Favourites, WatchLater, Playlists, History } from './model'
+import Skylab from './skylab'
+import YouTube from './youtube'
 
-const { Favourites, WatchLater, Playlists, History }  = require('./model')
-const  Skylab = require( './skylab')
-const YouTube = require('./youtube')
-
-
+// const { Favourites, WatchLater, Playlists, History }  = require('./model')
+// const  Skylab = require( './skylab')
+// const YouTube = require('./youtube')
 
 const logic = {
     skylab: new Skylab(),
@@ -132,7 +130,7 @@ const logic = {
     getMostPopular(){
        return this.youtube.mostPopular()
     },
-  
+
     addWatchLater(video_id) {
         this.watch_later.newEntity({
             video_id: video_id
@@ -168,6 +166,6 @@ const logic = {
     }
 }
 
-// export default logic
+export default logic
 
-module.exports = logic
+// module.exports = logic
