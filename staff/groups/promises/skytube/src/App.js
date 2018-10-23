@@ -52,10 +52,8 @@ class App extends Component {
 	handleVideoClick = videoId =>{
 		logic.retrieveSong(videoId)
 			.then(res => {
-				
 				console.log(res)
-				this.setState({video: res})
-				
+				this.setState({video: res}, () => this.props.history.push('/songPlayer'))
 			})
 
 	}
@@ -76,9 +74,14 @@ class App extends Component {
 
     renderHome() {
         return <div><Masthead onSearch={this.handleSearch} onLogOut={this.handleOnLogOut} />
-			
 			<HomeList onVideoClick={this.handleVideoClick} videoList={this.state.videoList}/>
-			<SongPlayer video={this.state.video}/>
+			</div>
+
+	}
+	
+	renderSongPlayer() {
+        return <div><Masthead onSearch={this.handleSearch} onLogOut={this.handleOnLogOut} />
+			 <SongPlayer video={this.state.video}/>
 			</div>
 
     }
@@ -88,7 +91,9 @@ class App extends Component {
             <Route exact path='/' render={() => !logic.loggedIn() ? this.renderLanding() : <Redirect to='/home'/>} />
             <Route path='/home' render={() => logic.loggedIn() ? this.renderHome() : <Redirect to='/login' />} />
             <Route path='/login' render={() => !logic.loggedIn() ? <LogIn onLogInSubmit={this.handleLogInSubmit}/> : <Redirect to='/home' />} />
-            {this.state.error && <p>{this.state.error}</p>}
+			{this.state.error && <p>{this.state.error}</p>}
+			<Route path='/songPlayer' render={() => this.state.video? this.renderSongPlayer() : <Redirect to='/home'/>} />
+			
         </div>
     }
 }

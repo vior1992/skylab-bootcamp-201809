@@ -95,11 +95,11 @@ const logic = {
     },
 
     retrieveSong(video_id) {
-        // return fetch(this.root_url + 'videos?part=player&key='+this.api_key+'&id='+video_id, {
-        //     method: 'GET'
-        // })
-        // .then(res => res.json())
-        // .then(res => res)
+        return fetch(this.root_url + 'videos?part=player&key='+this.api_key+'&id='+video_id, {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(res => res)
     }
 }
 
