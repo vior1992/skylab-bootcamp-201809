@@ -6,16 +6,16 @@ import ListedMovies from './components/ListedMovies'
 // import UserMovies from './components/UserMovies'
 // import UserData from './components/UserData'
 // import Footer from './components/Footer'
-// import NavBar from './components/NavBar'
+import Navbar from './components/Navbar'
 // import Home from './components/Home'
 
 class App extends Component {
 
-  state={}
+  state = {}
 
   render() {
     return <div>
-      {/* <Route path="/" render={() => <NavBar/>} /> */}
+      <Route path="/" render={() => <Navbar />} />
       {/* <Route path="/home" render={() => <Home/>} /> */}
       {/* <Route path='/movie/:id' render={() => <MovieDetail id={this.props.params.id}/> } /> */}
       {/* <Route exact path="/user" render={() => !logic._user ?<UserData/> : <Redirect to="/home" />} /> */}

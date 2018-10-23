@@ -5,55 +5,55 @@ body {
   color: #707070;
 }
 
+.bg-gray {
+  background-color: #E0E0E0;
+}
+
 .navbar ul {
   margin: 0;
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: #fff;
+  background-color: #F3F3F3;
+  font-size: 22px;
 }
-
 .navbar li a {
   display: block;
   padding: 20px 20px;
   text-decoration: none;
 }
-
 .navbar li a:hover,
 .navbar .menu-btn:hover {
-  background-color: #f4f4f4;
+  background-color: #aeaeae;
 }
-
 .navbar .menu {
   position: absolute;
-  top: 50px;
+  margin-top: 8px;
   left: 0;
   width: 100%;
   text-align: center;
   max-height: 0;
   transition: max-height 0.2s ease-out;
 }
-
 .navbar .menu-icon {
   cursor: pointer;
   display: inline-block;
-  padding: 28px 20px;
+  margin-top: 10px;
+  padding: 10px 8px;
   position: relative;
   user-select: none;
 }
-
 .navbar .menu-icon .navicon {
-  background: #212121;
+  background: #707070;
   display: block;
   height: 2px;
   position: relative;
   transition: background 0.2s ease-out;
   width: 18px;
 }
-
 .navbar .menu-icon .navicon:before,
 .navbar .menu-icon .navicon:after {
-  background: #212121;
+  background: #707070;
   content: "";
   display: block;
   height: 100%;
@@ -61,38 +61,69 @@ body {
   transition: all 0.2s ease-out;
   width: 100%;
 }
-
 .navbar .menu-icon .navicon:before {
   top: 5px;
 }
-
 .navbar .menu-icon .navicon:after {
   top: -5px;
 }
-
 .navbar .menu-btn {
   display: none;
 }
-
 .navbar .menu-btn:checked ~ .menu {
   max-height: 240px;
 }
-
 .navbar .menu-btn:checked ~ .menu-icon .navicon {
   background: transparent;
 }
-
 .navbar .menu-btn:checked ~ .menu-icon .navicon:before {
   transform: rotate(-45deg);
 }
-
 .navbar .menu-btn:checked ~ .menu-icon .navicon:after {
   transform: rotate(45deg);
 }
-
 .navbar .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
 .navbar .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
   top: 0;
+}
+.navbar .logo {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+}
+.navbar .logo > span {
+  display: block;
+}
+
+.search {
+  width: 100%;
+  text-align: center;
+  margin-top: -170px;
+  padding: 0 20px;
+}
+.search h2 {
+  margin: 10px 0 40px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+}
+.search input {
+  overflow: visible;
+  width: 100%;
+  max-width: 700px;
+  padding: 20px 30px;
+  text-align: center;
+  color: #E0E0E0;
+  border: none;
+  border-radius: 16px;
+  font-size: 28px;
+}
+.search input:focus {
+  outline: 0 none;
+}
+.search input::placeholder {
+  color: #E0E0E0;
 }
 
 /*# sourceMappingURL=style.css.map */
