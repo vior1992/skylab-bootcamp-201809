@@ -32,7 +32,7 @@ class Home extends Component {
         return <div className="div-home">
             <nav className="nav"><h1>Pintegram App</h1>
                 <form onSubmit={this.handleSearch}>
-                    <input class="search" type="text" placeholder="Search" onChange={this.handleNameChange}></input>
+                    <input className="search" type="text" placeholder="Search" onChange={this.handleNameChange}></input>
                 </form>
                 <div className="menu">
                     <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
