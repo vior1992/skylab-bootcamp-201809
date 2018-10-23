@@ -57,10 +57,6 @@ class App extends Component {
 		this.setState({error: null})
     }
 
-    handleClickProfile = () => {
-        console.log('funcionalidad sin usar')
-    }
-
 	handleSearch = query => {
 		logic.search(query)
 			.then(result => this.setState({video_list: result}, () => this.props.history.push('/home/search')))
@@ -115,7 +111,7 @@ class App extends Component {
         return <section className="home">
             <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
             <Search onSearch={this.handleSearch}/>
-            <Profile onClickProfile={this.handleClickProfile} onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
+            <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
             <div className = 'main'>
                 <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
                 <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
