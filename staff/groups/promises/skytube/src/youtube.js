@@ -23,7 +23,7 @@ class YouTube {
         }).then(result => {
             return result.json()
         }).then(json => {
-            if (!json.error) return json
+            if (!json.error) return json.items
             throw Error(json.error.message)
         })
     }
@@ -31,4 +31,4 @@ class YouTube {
 
 export default YouTube
 
-//module.exports = Youtube
+// module.exports = Youtube

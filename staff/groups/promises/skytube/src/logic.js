@@ -1,11 +1,17 @@
+import { Favourites, WatchLater, Playlists, History } from './model'
 import Skylab from './skylab'
 import YouTube from './youtube'
 
 const logic = {
     skylab: new Skylab(),
     youtube: new YouTube(),
+    favourites: new Favourites(),
+    watch_later: new WatchLater(),
+    playlists: new Playlists(),
+    history: new History(),
     auth: JSON.parse(sessionStorage.getItem('auth')) || {},
-    user_info: JSON.parse(sessionStorage.getItem('user_info')) || {},
+    video_search: JSON.parse(sessionStorage.getItem('video_search')) || [],
+    current_video: JSON.parse(sessionStorage.getItem('current_video')) || [],
 
     registerUser(name, surname, username, email, password) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
@@ -49,8 +55,23 @@ const logic = {
                 sessionStorage.setItem('auth', JSON.stringify(this.auth))
                 return this.skylab.info(this.auth.id, this.auth.token)
                     .then(info => {
-                        sessionStorage.setItem('user_info', JSON.stringify(info))
-                        return info
+                        let auth_info = {
+                            username: info.username,
+                            name: info.name,
+                            surname: info.surname,
+                            email: info.email
+                        }
+
+                        sessionStorage.setItem('auth_info', JSON.stringify(auth_info))
+                        auth_info.favourites = info.favourites || []
+                        sessionStorage.setItem('favourites', JSON.stringify(auth_info.favourites))
+                        auth_info.watch_later = info.watch_later || []
+                        sessionStorage.setItem('watch_later', JSON.stringify(auth_info.watch_later))
+                        auth_info.playlists = info.playlists || []
+                        sessionStorage.setItem('playlists', JSON.stringify(auth_info.playlists))
+                        auth_info.history = info.history || []
+                        sessionStorage.setItem('history', JSON.stringify(auth_info.history))
+                        return auth_info
                     })
                     .catch(error => {
                         throw Error(error)
@@ -60,6 +81,11 @@ const logic = {
 
     logoutUser() {
         sessionStorage.removeItem('auth')
+        sessionStorage.removeItem('auth_info')
+        sessionStorage.removeItem('favourites')
+        sessionStorage.removeItem('watch_later')
+        sessionStorage.removeItem('playlists')
+        sessionStorage.removeItem('history')
         this.auth = {}
     },
 
@@ -69,15 +95,37 @@ const logic = {
 
     search(query) {
         return this.youtube.search(query)
+            .then(result => {
+                sessionStorage.setItem('video_search', JSON.stringify(result))
+                return result
+            })
     },
 
     retrieveSong(id) {
         return this.youtube.getVideo(id)
+            .then(result => {
+                sessionStorage.setItem('current_video', JSON.stringify(result[0]))
+                return result[0]
+            })
     },
 
-    addPlaylist(playlist) {
-        this.skylab.update(this.info, this.auth.id, this.auth.token)
-            .then(() => sessionStorage.setItem('user_info', JSON.stringify(this.info)))
+    addPlaylist(title) {
+        this.playlists.newEntity({
+            title: title
+        }).save()
+        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+    },
+
+    authInfo() {
+        let info = JSON.parse(sessionStorage.getItem('auth_info')) || {}
+        if (info && Object.keys(info).length > 0) {
+            info.favourites = JSON.parse(sessionStorage.getItem('favourites'))
+            info.watch_later = JSON.parse(sessionStorage.getItem('watch_later'))
+            info.playlists = JSON.parse(sessionStorage.getItem('playlists'))
+            info.history = JSON.parse(sessionStorage.getItem('history'))
+        }
+
+        return info
     }
 }
 

@@ -14,8 +14,8 @@ function Sidenav(props) {
 
                 {props.playlists && props.playlists.length > 0 && (
                     props.playlists.map(playlist => {
-                        return <li className="sidenav__item">
-                            <button onClick={() => props.onClickPlaylist(playlist.id)}>{playlist.name}</button>
+                        return <li key={playlist.id} className="sidenav__item">
+                            <button onClick={() => props.onClickPlaylist(playlist.id)}>{playlist.title}</button>
                         </li>
                     })
                 )}
