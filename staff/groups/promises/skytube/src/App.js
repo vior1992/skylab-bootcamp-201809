@@ -13,9 +13,9 @@ class App extends Component {
         super(props)
         this.state = {
             error: null,
-            user_info: logic.user_info,
-            video_list: [],
-            video: ''
+            auth_info: logic.authInfo(),
+            video_list: logic.video_search,
+            video: logic.current_video
         }
     }
 
@@ -38,7 +38,7 @@ class App extends Component {
 				.then(info => {
                     this.setState({
                         error: null,
-                        user_info: info
+                        auth_info: info
                     })
                 })
 				.catch(error => console.error(error))
@@ -53,21 +53,46 @@ class App extends Component {
 		this.setState({error: null})
     }
     
-    handleProfile = () => {
+    handleClickProfile = () => {
         console.log('funcionalidad sin usar')
     }
 
 	handleSearch = query => {
 		logic.search(query)
-			.then(res => this.setState({video_list: res}, () => this.props.history.push('/home/search')))
+			.then(result => this.setState({video_list: result}, () => this.props.history.push('/home/search')))
             .catch(error => console.error(error))
 	}
 
-	handleVideoClick = video_id =>{
+	handleVideoClick = video_id => {
 		logic.retrieveSong(video_id)
-			.then(res => this.setState({video: res}, () => this.props.history.push('/home/player')))
+			.then(result => this.setState({video: result}, () => this.props.history.push('/home/player')))
             .catch(error => console.error(error))
 	}
+
+    handleNewFavourite = video_id => {
+        logic.addFavourite(video_id)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleNewWatchLater = video_id => {
+        logic.addWatchLater(video_id)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleNewPlaylist = title => {
+        logic.addPlaylist(title)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleClickFavourites = () => {
+        const favourites = logic.getFavourites()
+        console.log(favourites);
+    }
+
+    handleClickWatchLater = () => {
+        const watch_later = logic.getWatchLater()
+        console.log(watch_later);
+    }
 
     renderLanding() {
         return <div>
@@ -84,10 +109,10 @@ class App extends Component {
 
     renderHome() {
         return <div>
-            <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} onClickProfile={this.handleProfile} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
-            <Sidenav onClickFavourites={undefined} onClickWatchLater={undefined} playlists={this.state.user_info.playlists} />
+            <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} onClickProfile={this.handleClickProfile} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}} />
+            <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
             <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
-            <Route path='/home/player' render={() => <Player video={this.state.video} />} />
+            <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
 		</div>
 	}
 
