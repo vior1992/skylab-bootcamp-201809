@@ -34,13 +34,13 @@ class Login extends Component {
             logic.loginUser(username, password)
                 .then(() => this.setState({ error: "" }))
                 .then(() => this.props.history.push('/'))
+                .then(() => this.props.isLoggedIn())
                 .catch(err => this.setState({ error: err.message }))
 
         } catch (err) {
             this.setState({ error: err.message })
         }
         console.log(this.props.isLoggedIn)
-        this.props.isLoggedIn()
     }
 
     verResultados = event => {
