@@ -10,18 +10,22 @@ class Main extends Component {
     state = {
         courses: [],
         tracks: [],
+        track: null,
         error: null
     }
 
 
     filterCoursesByTrack = (track) => {
-        this.setState({ courses:  filterCourses().byTrack(track)})
+        this.setState({ courses:  filterCourses().byTrack(track), track})
     }
 
     filterCoursesByLevel = (level) => {
-        this.setState({ courses:  filterCourses(this.state.courses).byLevel(level)})
+        this.setState({ courses:  filterCourses().byLevel(level, this.state.track)})
     }
 
+    filterPersonalized = (event) => {
+        this.setState({ courses: filterCourses().personalized(event.target.value)})
+    }
 
     listCourses = () => {
         try {
@@ -55,21 +59,28 @@ class Main extends Component {
     render() {
         return (
             <main>
-                <section className="list-container">
 
-                {(this.state.tracks || []).map((track, index) => <span onClick={() => this.filterCoursesByTrack(track)} key={index}>{track.name}</span>)}
-                    <span onClick={() => this.filterCoursesByLevel('beginner')}>beginner</span>
-                    <span onClick={() => this.filterCoursesByLevel('intermediate')}>intermediate</span>
-                    <span onClick={() => this.filterCoursesByLevel('advanced')}>advanced</span>
-                {this.state.error &&
-                    <p>{this.state.error}</p>
-                }
+                <div className="search">
+                    <input onChange={this.filterPersonalized} type="text" placeholder="Search course..." />
+                </div>
 
-                </section>
+                <div className="main">
+                    <section className="list-container">
 
-                < section className="cards-container" >
-                    {(this.state.courses || []).map((course, index) => <Card course={course} key={index} />)}
-                </section >
+                    {(this.state.tracks || []).map((track, index) => <span onClick={() => this.filterCoursesByTrack(track)} key={index}>{track.name}</span>)}
+                        <span onClick={() => this.filterCoursesByLevel('beginner')}>beginner</span>
+                        <span onClick={() => this.filterCoursesByLevel('intermediate')}>intermediate</span>
+                        <span onClick={() => this.filterCoursesByLevel('advanced')}>advanced</span>
+                    {this.state.error &&
+                        <p>{this.state.error}</p>
+                    }
+
+                    </section>
+
+                    < section className="cards-container" >
+                        {(this.state.courses || []).map((course, index) => <Card course={course} key={index} />)}
+                    </section >
+                </div>
             </main >
         )
     }
