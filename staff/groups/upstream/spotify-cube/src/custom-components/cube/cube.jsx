@@ -16,7 +16,7 @@ export default class Cube extends Component{
         super(props)
         this.xdeg = 0
         this.face = "top"
-        document.addEventListener("keypress", this.cubeControler)
+        document.addEventListener("keypress", (ev) => this.cubeControler(ev.keyCode, this.face))
     }
 
     componentDidMount(){
