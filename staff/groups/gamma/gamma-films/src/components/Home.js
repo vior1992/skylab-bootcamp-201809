@@ -50,7 +50,7 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
-            {/* <Sidebar/> */}
+            <Sidebar/>
 
 
             <section>
