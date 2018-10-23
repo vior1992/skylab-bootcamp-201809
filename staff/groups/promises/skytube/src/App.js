@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Route, withRouter, Redirect, Link } from 'react-router-dom'
 import Header from './components/Header'
 import LogIn from './components/LogIn'
-import Masthead from './components/Masthead';
-import Sidenav from './components/Sidenav';
+import Sidenav from './components/Sidenav'
+import Search from './components/Search'
+import Profile from './components/Profile'
 import VideoList from './components/VideoList'
 import Player from './components/Player'
 import logic from './logic'
@@ -56,10 +57,6 @@ class App extends Component {
 		this.setState({error: null})
     }
 
-    handleClickProfile = () => {
-        console.log('funcionalidad sin usar')
-    }
-
 	handleSearch = query => {
 		logic.search(query)
 			.then(result => this.setState({video_list: result}, () => this.props.history.push('/home/search')))
@@ -98,7 +95,7 @@ class App extends Component {
     }
 
     renderLanding() {
-        return <section>
+        return <div className="landing">
             <nav>
                 <ul>
                     <li><Link to='/#register'>Sign Up</Link></li>
@@ -107,17 +104,20 @@ class App extends Component {
             </nav>
 
             <Header onSubmitSignUp={this.handleRegister} />
-        </section>
+        </div>
     }
 
     renderHome() {
-        return <section className="home">
-            <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} onClickProfile={this.handleClickProfile} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}} />
+        return <div className="home">
             <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
-            <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
-            <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
-            <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
-		</section>
+            <Search onSearch={this.handleSearch}/>
+            <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
+            <main className = 'main'>
+                <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
+                <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
+                <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
+            </main>
+        </div>
 	}
 
     render() {
