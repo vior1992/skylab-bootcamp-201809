@@ -21,11 +21,13 @@ class Home extends Component {
         logic.showEvents()
             .then(events =>  this.setState({ carousel: events }) )         
             .catch(err => this.setState({ error: err}))
+
         logic.retrieveFavouriteEvents()
-            .then(events => {
-                this.setState({ favouriteEvents: events })
-            })         
-            .catch(err => console.log(err))
+            .then( res => this.setState({favouriteEvents: res }))
+            .then (() =>  this.props.favouriteState(this.state.favouriteEvents))
+            .catch(err => this.setState({ error: err}))
+
+           
     }
 
     handleSubmit = query => {
@@ -61,9 +63,9 @@ class Home extends Component {
         }
     }
 
-    handleAddToFavourites = (id) => {
-        logic.storeEventFavourites(id)
-    }
+    // sendFavouriteStatetoApp = () => {
+        
+    // }
 
     render() {
         console.log(this.state.eventInfoArray)
@@ -77,7 +79,7 @@ class Home extends Component {
             {!this.state.flag && <section>
                 {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
 
-                {this.state.reducedEvents.map(event => <Event sendFavourites = {this.props.sendFavourites} key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} addToFavourites={this.handleAddToFavourites} />)}
+                {this.state.reducedEvents.map(event => <Event favourites = {this.props.favourites}  key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
                 
                 {!this.state.flag && <button onClick={this.goToPreviousPage}>Previous page</button>}
                 

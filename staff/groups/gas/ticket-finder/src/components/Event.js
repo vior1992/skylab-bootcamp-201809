@@ -8,9 +8,8 @@ class Event extends Component {
 
     }
 
-    getFavouriteEvent = () => {
-        this.props.addToFavourites(this.props.eventId)
-        this.props.sendFavourites(this.props.eventId)
+    storeFavourites = () => {
+        this.props.favourites(this.props.eventId)
     }
 
     changeDate = () => {
@@ -31,7 +30,7 @@ class Event extends Component {
                     <p> { this.props.eventCity } </p>
                     <p className="card-text"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
                     <p>{this.props.eventMinPrice ? <span>From {this.props.eventMinPrice} EUR</span> : <span>Price to be announced</span>}</p>
-                    <button onClick = {this.getFavouriteEvent}>Add to favourites</button>
+                    <button onClick = {this.storeFavourites}>Add to favourites</button>
                 </div>
         </div>       
     </li>
