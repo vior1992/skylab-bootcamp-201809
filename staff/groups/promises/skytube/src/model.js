@@ -38,48 +38,62 @@ class Model {
     }
 }
 
-class UsersTable extends Model {
+class Favourites extends Model {
     all() {
-        return this._all('users')
+        return this._all('favourites')
     }
 
     save() {
-        return this._save('users')
+        return this._save('favourites')
     }
 
     delete() {
-        return this._delete('users')
+        return this._delete('favourites')
     }
 }
 
-class BoardsTable extends Model {
+class WatchLater extends Model {
     all() {
-        return this._all('boards')
+        return this._all('watch_later')
     }
 
     save() {
-        return this._save('boards')
+        return this._save('watch_later')
     }
 
     delete() {
-        return this._delete('boards')
+        return this._delete('watch_later')
     }
 }
 
-class PostsTable extends Model {
+class Playlists extends Model {
     all() {
-        return this._all('posts')
+        return this._all('playlists')
     }
 
     save() {
-        return this._save('posts')
+        return this._save('playlists')
     }
 
     delete() {
-        return this._delete('posts')
+        return this._delete('playlists')
     }
 }
 
-export { UsersTable, BoardsTable, PostsTable }
+class History extends Model {
+    all() {
+        return this._all('history')
+    }
 
-// module.exports = { UsersTable, BoardsTable, PostsTable }
+    save() {
+        return this._save('history')
+    }
+
+    delete() {
+        return this._delete('history')
+    }
+}
+
+export { Favourites, WatchLater, Playlists, History }
+
+// module.exports = { Favourites, WatchLater, Playlists, History }
