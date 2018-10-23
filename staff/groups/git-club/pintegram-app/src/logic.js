@@ -89,8 +89,9 @@ const logic = {
         if (typeof url !== 'string') throw TypeError(`${url} is not a string`)
 
         if (!url.trim()) throw Error('document is empty or blank')
-        debugger
-        if(!description) description=""
+
+        if (!description) description = ''
+        
         this._postsUser.push(new Post(this._userId, url, description))
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -229,10 +230,9 @@ const logic = {
             }
         })
             .then(res => res.json())
-            .then(res => { 
-                if (res.error) throw Error(res.error)
-                
+            .then(res => {
                 let postsUsers = []
+                if (res.error) throw Error(res.error)
                 res.data.forEach(user => {
                     if(user.posts){
                         user.posts.forEach((post)=>{
@@ -241,11 +241,9 @@ const logic = {
                        
                     }
                 })   
-                
                 let sortedUsers=postsUsers.sort(function (a, b) {
                     return b.id - a.id;
                 });
-            
                 return this._postsAllUser = sortedUsers || []
             })
     },
@@ -262,7 +260,6 @@ const logic = {
             .then(res => {
                 
                 if (res.error) throw Error(res.error)
-                
                 let postsUsers = []
                 res.data.forEach(user => {
                     if(user.posts){

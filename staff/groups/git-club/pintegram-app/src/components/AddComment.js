@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 
-class AddPost extends Component {
+class AddComment extends Component {
     state = { img: null, text: null}
 
     // componentDidMount() {
@@ -64,4 +64,4 @@ class AddPost extends Component {
     }
 }
 
-export default AddPost
+export default AddComment

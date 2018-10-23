@@ -36,18 +36,23 @@ class Register extends Component {
     }
 
     render() {
-        return <div className="register__page">
-            <div className="register">
-             <h1>Register</h1>
-            <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Name" onChange={this.handleNameChange} />
-            <input type="text" placeholder="Surname" onChange={this.handleSurnameChange} />
-            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-            <button className="register__submit" type="submit">Register</button> <a className="register__back" href="#" onClick={this.props.onGoBack}>back</a>
-        </form>
+        return <div className="landing"> 
+            <div className="landing__page">
+                <div className="group__register">
+                    <div className="login__center">  
+                    <h1 className="login__header">Register</h1>       
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" placeholder="Name" onChange={this.handleNameChange} />
+                            <input type="text" placeholder="Surname" onChange={this.handleSurnameChange} />
+                            <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+                            <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
+                            <button className="login__submit" type="submit">Register</button> 
+                        </form>
+                        <a className="login__back" href="#" onClick={this.props.onGoBack}>Si ya estás logeado. Inicia sensión aquí.</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div> 
     }
 }
 

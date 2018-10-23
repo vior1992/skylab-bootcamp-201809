@@ -7,6 +7,8 @@ class Profile extends Component {
     state = { posts: [], user: [], postsLiked: [], grid: true, liked: false }
 
     componentDidMount() {
+        // progressive loading
+
         logic.listPosts()
             .then(posts => { this.setState({ posts }) })
 
@@ -14,7 +16,14 @@ class Profile extends Component {
             .then(user => { this.setState({ user }) })
 
         logic.listLikes()
-            .then(postsLiked => logic.retrievePosts(postsLiked).then(postsLiked => { this.setState({ postsLiked }) }))
+        .then(postsLiked => logic.retrievePosts(postsLiked) .then(postsLiked => { this.setState({ postsLiked }) }))
+
+        // one-shot loading
+
+        // Promise.all([logic.listPosts(), logic.retrieveProfile(), logic.listLikes().then(postsLiked => logic.retrievePosts(postsLiked))])
+        //     .then(([posts, user, postsLiked]) => {
+        //         this.setState({ posts, user, postsLiked })
+        //     })
     }
 
     handleGallery = () => {
@@ -30,7 +39,7 @@ class Profile extends Component {
             <nav className="nav"><h1 onClick={this.props.onGoBack}>Pintegram App</h1>
                 <div className="menu">
                     <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
-                    <i onClick={this.props.onProfile} className="menu__button fas fa-user"></i>
+                    <i className="menu__button fas fa-user"></i>
                     <i onClick={this.props.onLogout} className="menu__button fas fa-sign-out-alt"></i>
                 </div>
             </nav>
