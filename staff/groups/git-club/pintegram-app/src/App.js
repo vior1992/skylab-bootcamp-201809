@@ -80,8 +80,9 @@ class App extends Component {
             <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
             {error && <Error message={error} />}
             <Route path="/home" render={() => logic.loggedIn && !post && !profile ? <Home onLogout={this.handleLogoutClick} onPost={this.handlePost} onProfile={this.handleProfile} /> : <Redirect to="/" />} />
-            <Route path="/addpost" render={() => logic.loggedIn && post && !profile ? <AddPost onLogout={this.handleLogoutClick} onProfile={this.handleProfile} onGoBack={this.handleGoBack2} /> : <Redirect to="/home" />} />
+            <Route path="/addpost" render={() => logic.loggedIn && post && !profile ? <AddPost onLogout={this.handleLogoutClick} onProfile={this.handleProfile} onPost={this.handleAddPost} onGoBack={this.handleGoBack2} /> : <Redirect to="/home" />} />
             <Route path="/profile" render={() =>logic.loggedIn && profile && !post? <Profile onLogout={this.handleLogoutClick} onPost={this.handlePost} onGoBack={this.handleGoBack2} /> : <Redirect to="/home" />} />
+            {/* {this.state.comment && <AddComment />} */}
         </div>
     }
 }

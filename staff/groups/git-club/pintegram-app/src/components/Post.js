@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+// import AddComment from './AddComment'
 
 class Post extends Component {
-    state = { postId:this.props.id, url:this.props.url, text: this.props.text, liked: null, likes: undefined, user: null, comment: false}
+    state = { postId:this.props.id, url:this.props.url, text: this.props.text, liked: null, likes: undefined, user: null}
 
     componentDidMount() {
         logic.retriveUser(this.props.user)
@@ -18,17 +19,22 @@ class Post extends Component {
 
     handleLikePost = () => {
         logic.addLike(this.state.postId)
-           .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
-           .then(logic.likedPost(this.state.postId).then(liked => { this.setState({ liked })}))
+        .then(Promise.all([logic.likesPost(this.state.postId), logic.likedPost(this.state.postId)])
+            .then(([likes, liked]) => {
+                this.setState({ likes, liked})
+            }))
+
+        // logic.addLike(this.state.postId)
+        //    .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
+        //    .then(logic.likedPost(this.state.postId).then(liked => { this.setState({ liked })}))
     }
 
     handleAddComment = () => {
-        logic.addComment(this.state.postId, )
-           .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
-           
+        
     }
 
     handleComment = () => {
+        document.getElementsByClassName("comment").style.display="block"
         
     }
 
@@ -44,7 +50,7 @@ class Post extends Component {
             </div>
             <p className="post__text post__text-margin">{this.state.text}</p> 
             {/* <p className="comments"></p> */}
-            {!this.state.comment && <AddComment />}
+            <textarea className="comment"/>
             </div> 
             </div>    
         </article>
