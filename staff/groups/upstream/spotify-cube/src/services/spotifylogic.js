@@ -1,3 +1,4 @@
+
 const spotifyLogic = {
     token: 'BQDxi5vQKyXsMe8UtGNtJOrr1Z93kXodYrnqS0hsIkc3vw2q_mlQyB4RP4oVn678DdSBRq-_rUYyOViN4AizFPu_mz5W6XgWoakL7BNqQWE5Lx0Yk-i9G3upXKQL_MqpdfcVfT4itj25gsHOAEPnWbkuF_yNwNYeUvY_U6X6n5PG3EO-IPapi0kTqh2aVCHlikql39K3YQ9daYs5z4uCM4aPDzJihgm9RfA1VmZWkQspasxlqQ9kxh_O8gEnn-xxgoNG7RhIlL4',
 
@@ -12,6 +13,7 @@ const spotifyLogic = {
         })
             .then(res => res.json())
             .then(res => res)
+            .catch(res => res)
     },
 
     getArtists(search) {
