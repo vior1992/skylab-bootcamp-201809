@@ -219,6 +219,18 @@ const logic = {
     //       if (response.error) throw Error(response.error)
     //     })
     // },
+
+    checkMovieStatus(id) {
+      let status = undefined
+
+      if(this._user.seen.find(movie => movie.id === id)) {
+        status = 'seen'
+      } else if(this._user.pending.find(movie => movie.id === id)) {
+        status = 'pending'
+      }
+
+      return status
+    },
   
     updateUserData(data) {
       const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
