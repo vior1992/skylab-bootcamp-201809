@@ -1,13 +1,13 @@
 
 const spotifyLogic = {
 
-    token: 'BQBvNMVEkphkXnSNyEKE9wMJWqYmxcowT6g5A7zF6A1Xus6_PBvMU2et2X8gbEP0U2xbfKUmkc_TcHOB1ykQ-vAFnUFY_XCklvMY_nQzNuzZiglkTWTqZ1nVuRRXjQi84exfiF28gxHL5Dtbi_xTJm4juN9GKCj9FdaOQEjw0_JpoFNiEgr0nOIMMTt7SJo1-gVbXXWlAXOyVJYK-6eXI66Uucu4gBYrRmlRchfUqMzTZ75EP0TUYNcbxpOv0T9Flz434tbz0Q4',
+    token: 'BQDXIQ31x9Z-B9lBldvxrgnXpea-vhcanJmcVonoR9019mJBzhN9R3vnxv4NLPpP7zEytSWrqKgiRgdO_7guZOmCQKIART5kee2n3RT-6HyOC3LsS_nm1CpvLdZItGf80d-JWH0sQlTbTXauTT3hrh9JCKf4Kj2iIDkWKIKipYb9TSUdgzolOeau3Fs9H0CH9JW5StT_3Zd9GI6z',
 
     getArtistById(id) {
 
         if(!(typeof id === 'string')) throw Error ('id is not a a string')
         if(!(id.length)) throw Error ('id is empty or blank')
-        
+
         return fetch(`https://api.spotify.com/v1/artists/${id}`, {
             method: 'GET',
             headers: {

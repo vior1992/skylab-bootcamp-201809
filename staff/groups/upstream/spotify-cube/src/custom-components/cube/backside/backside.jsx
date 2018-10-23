@@ -21,7 +21,7 @@ export default class BackSide extends Component{
             <div className = "rotateY-180">
               <Header></Header>
               <SideTitle title="Albums list" image ="metallica.png"></SideTitle>
-              <List type="tracks" list={this.state.albums}></List>
+              <List onTracks={this.props.onTracks} type="tracks" list={this.state.albums}></List>
             </div>
             
           </section>
