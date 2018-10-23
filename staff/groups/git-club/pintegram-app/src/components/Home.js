@@ -11,6 +11,7 @@ class Home extends Component {
         .then(posts => this.setState({ posts }))
         // TODO error handling!
         logic.listLikes()
+        logic.listPosts()
      
     }
     

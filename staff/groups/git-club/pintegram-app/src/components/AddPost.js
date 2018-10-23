@@ -34,7 +34,7 @@ class AddPost extends Component {
 
     handlePost = event => {
         event.preventDefault()
-
+        
         const { img, text } = this.state
 
         this.props.onPost(img, text)

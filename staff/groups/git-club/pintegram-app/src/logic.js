@@ -90,7 +90,9 @@ const logic = {
 
         if (!url.trim()) throw Error('document is empty or blank')
 
-        this._posts.push(new Post(this._userId, url, description))
+        if (!description) description = ''
+        
+        this._postsUser.push(new Post(this._userId, url, description))
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'PUT',
@@ -98,7 +100,7 @@ const logic = {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': `Bearer ${this._token}`
             },
-            body: JSON.stringify({ posts: this._posts })
+            body: JSON.stringify({ posts: this._postsUser })
         })
             .then(res => res.json())
             .then(res => {
