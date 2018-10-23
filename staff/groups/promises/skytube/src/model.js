@@ -94,6 +94,6 @@ class History extends Model {
     }
 }
 
-export { Favourites, WatchLater, Playlists, History }
+// export { Favourites, WatchLater, Playlists, History }
 
-// module.exports = { Favourites, WatchLater, Playlists, History }
+module.exports = { Favourites, WatchLater, Playlists, History }
