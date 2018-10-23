@@ -16,15 +16,15 @@ describe('logic', () => {
     describe('users', () => {
         describe('register', () => {
             it('should succeed on correct data', () =>
-                logic.registerUser('John', 'doe@gmail.com', `jd-${Math.random()}`, '123')
+                logic.registerUser('John', 'doe@gmail.com', `jd-${Math.random()}`, '123', '123')
                     .then(() => expect(true).to.be.true)
             )
 
             it('should fail on trying to register twice same user', () => {
                 const username = `jd-${Math.random()}`
 
-                return logic.registerUser('John', 'doe@gmail.com', username, '123')
-                    .then(() => logic.registerUser('John', 'doe@gmail.com', username, '123'))
+                return logic.registerUser('John', 'doe@gmail.com', username, '123', '123')
+                    .then(() => logic.registerUser('John', 'doe@gmail.com', username, '123', '123'))
                     .catch(err => {
                         expect(err).not.to.be.undefined
                         expect(err.message).to.equal(`user with username "${username}" already exists`)
@@ -35,6 +35,12 @@ describe('logic', () => {
                 expect(() =>
                     logic.registerUser(undefined, 'doe@gmail.com', 'jd', '123')
                 ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on different passwords', () => {
+                expect(() =>
+                    logic.registerUser('John', 'doe@gmail.com, jd', '123', '456')
+                ).to.throw(TypeError, `Passwords do not match`)
             })
 
             // TODO other cases

@@ -14,12 +14,18 @@ class Home extends Component {
             eventInfoArray: [], 
             flag: false,
             pageNumber:1,
+            favouriteEvents: []
          }
     
     componentDidMount() {
         logic.showEvents()
-        .then(events =>  this.setState({ carousel: events }) )         
-        .catch(err => this.setState({ error: err})) 
+            .then(events =>  this.setState({ carousel: events }) )         
+            .catch(err => this.setState({ error: err}))
+        logic.retrieveFavouriteEvents()
+            .then(events => {
+                this.setState({ favouriteEvents: events })
+            })         
+            .catch(err => console.log(err))
     }
 
     handleSubmit = query => {
@@ -56,7 +62,7 @@ class Home extends Component {
     }
 
     handleAddToFavourites = (id) => {
-        logic.storeIdFavourites(id)
+        logic.storeEventFavourites(id)
     }
 
     render() {
@@ -81,7 +87,7 @@ class Home extends Component {
             </section>}
 
             {this.state.flag && <section>
-                <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name}  eventGetTickets={eventInfoArray.url} eventMinPrice={ !!eventInfoArray.priceRanges ? eventInfoArray.priceRanges[0].min : false } />
+                <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name} eventGetTickets={eventInfoArray.url} eventMinPrice={ !!eventInfoArray.priceRanges ? eventInfoArray.priceRanges[0].min : false } latitude = {eventInfoArray._embedded.venues[0].location.latitude} longitude ={eventInfoArray._embedded.venues[0].location.longitude} />
             </section>
             }
         </div>

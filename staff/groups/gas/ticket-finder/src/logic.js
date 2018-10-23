@@ -7,28 +7,31 @@ const logic = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
     _events: [],
-    _favouritesIdArray: [],
+    _favouritesEventsArray: [],
 
-    registerUser(name, email, username, password) {
+    registerUser(name, email, username, password, passwordRepeat) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
         if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
         if (email.match(/^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)===null) throw Error(`${email} is an invalid email`)
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
         if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
+        if (typeof passwordRepeat !== 'string') throw TypeError(`${passwordRepeat} is not a string`)
+        if (password !== passwordRepeat) throw TypeError (`passwords do not match`)
 
         if (!name.trim()) throw Error('name is empty or blank')
         if (!email.trim()) throw Error('email is empty or blank')
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
+        if (!passwordRepeat.trim()) throw Error('password is empty or blank')
 
-        const favouritesIdArray = this._favouritesIdArray
+        const favouritesEventsArray = []
 
         return fetch('https://skylabcoders.herokuapp.com/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
-            body: JSON.stringify({ name, email, username, password, favouritesIdArray })
+            body: JSON.stringify({ name, email, username, password, favouritesEventsArray })
         })
             .then(res => res.json())
             .then(res => {
@@ -67,8 +70,6 @@ const logic = {
     get loggedIn() {
         return !!this._userId
     },
-
-    
 
     logout() {
         this._events = []
@@ -122,23 +123,42 @@ const logic = {
             })
     },
 
-    storeIdFavourites(favouriteId) {
+    storeEventFavourites(favouriteId) { 
         if (typeof favouriteId !== 'string') throw TypeError(`${favouriteId} not a string`)
         if (!favouriteId.trim()) throw Error(`favouriteId is empty or blank`)
-
-        this._favouritesIdArray.push(favouriteId)
-
+        
+        const self=this
+        this.searchEventInfo(favouriteId)
+            .then(res =>  self._favouritesEventsArray.push(res) )
+            .catch (err => console.log(err))
+        // this._favouritesEventsArray.push(this.searchEventInfo(favouriteId))
+        console.log(this._favouritesEventsArray)
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': `Bearer ${this._token}`
             },
-            body: JSON.stringify({ favouritesIdArray: this._favouritesIdArray })
+            body: JSON.stringify({ favouritesEventsArray: this._favouritesEventsArray })
         })
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
+            })
+    },
+
+    retrieveFavouriteEvents() {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${this._token}`
+                }
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+            return this._favouritesEventsArray = res.data.favouritesEventsArray || []
             })
     }
 
