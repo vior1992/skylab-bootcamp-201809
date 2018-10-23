@@ -160,9 +160,8 @@ const logic = {
         })
     },
   
-    updateUserSeen(movie) {
-      this._userSeen.push(movie)
-  
+    addUserSeen(movie) {
+      this._user.seen.push(movie)
       const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
       const params = {
         method: 'PUT',
@@ -170,7 +169,7 @@ const logic = {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${this._user.token}`
         },
-        body: JSON.stringify({ movies_seen: this._userSeen})
+        body: JSON.stringify({ movies_seen: this._user.seen})
       }
   
       return fetch(endpoint, params)
@@ -179,9 +178,46 @@ const logic = {
           if (response.error) throw Error(response.error)
         })
     },
+
+    updateUserSeen(movies) {
+      const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
+      const params = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this._user.token}`
+        },
+        body: JSON.stringify({ movies_seen: movies})
+      }
   
-    updateUserPending(movie) {
-      this._userPending.push(movie)
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+        })
+    },
+
+    deleteUserSeen(id) {
+      const seen = this._user.seen.filter(movie => movie.id !== id)
+      this._user.seen = seen
+      const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
+      const params = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this._user.token}`
+        },
+        body: JSON.stringify({ movies_seen: seen})
+      }
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+        })
+    },
+  
+    addUserPending(movie) {
+      this._user.pending.push(movie)
   
       const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
       const params = {
@@ -190,7 +226,46 @@ const logic = {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${this._user.token}`
         },
-        body: JSON.stringify({ movies_pending: this._userPending})
+        body: JSON.stringify({ movies_pending: this._user.pending})
+      }
+  
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+        })
+    },
+
+    updateUserPending(movies) {
+  
+      const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
+      const params = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this._user.token}`
+        },
+        body: JSON.stringify({ movies_pending: movies})
+      }
+  
+      return fetch(endpoint, params)
+        .then(response => response.json())
+        .then(response => {
+          if (response.error) throw Error(response.error)
+        })
+    },
+
+    deleteUserPending(id) {
+      const pending = this._user.pending.filter(movie => movie.id !== id)
+      this._user.pending = pending
+      const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
+      const params = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this._user.token}`
+        },
+        body: JSON.stringify({ movies_pending: pending})
       }
   
       return fetch(endpoint, params)

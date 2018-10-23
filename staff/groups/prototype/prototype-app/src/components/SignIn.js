@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import logic from '../logic'
 
 class SigIn extends Component {
   state = {
@@ -55,12 +56,13 @@ class SigIn extends Component {
     event.preventDefault()
 
     try {
-    this.props.onSubmit(
+    logic.signIn(
       this.state.username,
       this.state.email, this.state.name,
       this.state.surname,
       this.state.password
-    ).catch(error => this.setState({ status: error.message }))
+    ).then(() => {this.props.history.push('/login')})
+      .catch(error => this.setState({ status: error.message }))
     } catch(error) {
       this.setState({ status: error.message })
     }
@@ -83,4 +85,4 @@ class SigIn extends Component {
   }
 }
 
-export default SigIn
+export default withRouter(SigIn)
