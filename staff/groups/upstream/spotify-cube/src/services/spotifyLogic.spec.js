@@ -70,4 +70,18 @@ describe('spotifyLogic', () => {
                 })
         })
     })
+
+    describe('addTrackToPlaylist', () => {
+        let trackId = '5CQ30WqJwcep0pYcV4AMNc'
+        let playlistId = '0AUisiV8Q5KcZ41nPOhrIr'
+
+        it('should add the track and return a snapshot ID', () => {
+            logic.addTrackToPlaylist(playlistId, trackId)
+                .then((res) => {
+                    expect(res).not.to.be.undefined
+                    return res
+                })
+                .then(res => console.log(res))
+        })
+    })
 })
