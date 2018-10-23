@@ -1,4 +1,3 @@
-// import CONFIG from './config'
 const CONFIG = require('./config')
 
 class YouTube {
@@ -41,6 +40,6 @@ class YouTube {
     }
 }
 
-// export default YouTube
+export default YouTube
 
-module.exports = YouTube
+// module.exports = YouTube
