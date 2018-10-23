@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import ButtonBar from './ButtonBar'
-import MiniCard from './miniCard'
+import MiniCard from './MiniCard'
 
 
 class TopRatedSlide extends Component {
