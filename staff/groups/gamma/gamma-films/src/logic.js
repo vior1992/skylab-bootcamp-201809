@@ -101,8 +101,9 @@ const logic = {
     },
 
     searchMovie(id) {
+        
 
-        return fetch('https://api.themoviedb.org/3/movie/'+ id +'?api_key=e187746b7167e4886a5d0a2f1ead5a18&language=en-US', {
+        return fetch('https://api.themoviedb.org/3/movie/'+ id +'?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -110,11 +111,10 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
+                
                 if (res === 'undefined') throw Error(res.error)
 
-                const result = res.result
-
-                return result;
+                return res;
             })
     },
 

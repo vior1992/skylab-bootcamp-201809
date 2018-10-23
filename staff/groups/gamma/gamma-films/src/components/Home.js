@@ -5,7 +5,6 @@ import Sidebar from './Sidebar';
 import { Route, withRouter } from 'react-router-dom'
 import Movie from './Movie'
 import SearchResults from './SearchResults'
-import TopRatedSlide from './TopRatedSlide'
 
 class Home extends Component {
 
@@ -49,10 +48,6 @@ class Home extends Component {
                 <input className="input_search" type='text' placeholder='write a title' onChange={this.handleQueryChange}></input>
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
-
-            <TopRatedSlide/>
-            <TopRatedSlide/>
-            <TopRatedSlide/>
 
             <Route path="/search/:query" render={props =>{
                 return <div>
