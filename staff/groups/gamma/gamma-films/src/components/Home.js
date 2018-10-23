@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import Card from './Card'
-import { Route, withRouter, Redirect } from 'react-router-dom'
 import Sidebar from './Sidebar';
 
 class Home extends Component {
@@ -51,12 +50,11 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
-            <Sidebar/>
+            {/* <Sidebar/> */}
 
             <section>
                 {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} />)}
             </section>
-            <button type="button" onClick={this.verResultados}>Ver</button> 
 
         </div>
     }

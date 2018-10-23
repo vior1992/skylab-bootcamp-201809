@@ -58,8 +58,7 @@ const logic = {
 
     searchMovies(query) {
 
-        console.log('query'+query)
-        return fetch('https://api.themoviedb.org/3/search/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&query='+query, {
+        return fetch('https://api.themoviedb.org/3/search/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&query=' + query, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -72,9 +71,44 @@ const logic = {
                 const results = res.results
 
                 return results;
-             
+
             })
+    },
+
+    searchMoviesByCategories(genres) {
+        return fetch('https://api.themoviedb.org/3/discover/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&with_genres='+genres, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+        .then(res=> res.json())
+        .then(res => {
+            if(res=== 'undefined') throw Error (res.error)
+
+            const results=res.results
+
+            return results
+        })
+    },
+
+    searchPopularMovies(date) {
+        return fetch('https://api.themoviedb.org/3/trending/movie/'+date+'?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+        .then(res=> res.json())
+        .then(res => {
+            if(res=== 'undefined') throw Error (res.error)
+
+            const results=res.results
+
+            return results
+        })
     }
+
 }
 
 export default logic

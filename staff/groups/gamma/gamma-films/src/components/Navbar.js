@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import logic from '../logic'
-import { Route, withRouter, Redirect } from 'react-router-dom'
 
 class Navbar extends Component {
 
@@ -8,15 +6,15 @@ class Navbar extends Component {
     render() {
         return <nav className="navbar">
 
-            <image className="header_background">
+            <div className="header_background">
                 <div className="navbar_buttons">
-                    <button onClick={this.props.onLoginClick}>Login</button>
-                    <button onClick={this.props.onRegisterClick}>Register</button>
+                    <div className="button -regular center" onClick={this.props.onLoginClick}>Login</div>
+                    <div className="button -regular center" onClick={this.props.onRegisterClick}>Register</div>
                 </div>
                 <div className="header">
-                <image className="logo"></image>
+                    <img className="logo" />
                 </div>
-            </image>
+            </div>
 
         </nav>
     }
