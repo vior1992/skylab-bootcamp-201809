@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto')
 
 $color_lightblue: #f0f9fb 
+$color_darkblue: #01b3e3
 $color_card: white
 $color_greyblue: #7d97ad
     
@@ -48,18 +49,34 @@ nav
 
 /// MAIN /////////////////////////////
 main
-    width: calc(100% - 80px)
-    padding: 40px
+    width: calc(100% - 300px)
+    padding: 50px 150px
+    display: flex
+
+    .list-container
+        width: 30%
+        display: flex
+        padding-top: 25px
+        flex-direction: column
+        span 
+            color: #666d6f
+            font-size: 1.3em
+            padding: 20px 10px
+            cursor: pointer
+            transition: 0.2s
+            &:hover 
+                color: $color_darkblue
+                box-shadow: -6px 0px 0px 0px rgba(1,179,227,1)
 
     .cards-container
         display: flex
         flex-wrap: wrap
         justify-content: space-around
-        width: 100%
+        width: 70%
         .card
             position: relative
             background: $color_card
-            width: calc(45% - 50px)
+            width: calc(100% - 50px)
             height: 200px
             max-height: 200px
             min-height: 200px
