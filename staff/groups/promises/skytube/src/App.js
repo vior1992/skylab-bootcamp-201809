@@ -6,17 +6,18 @@ import Masthead from './components/Masthead';
 import Sidenav from './components/Sidenav';
 import logic from './logic'
 import HomeList from './components/HomeList'
-import SongPlayer from './components/SongPlayer'
+import Player from './components/Player'
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
             error: null,
-            user_info: logic.user_info
+            user_info: logic.user_info,
+            video_list: [],
+            video: ''
         }
     }
-    state = { error: null, videoList: [] , video: ''}
 
     handleRegister = (name, surname, username, email, password) => {
 		try {
@@ -52,21 +53,17 @@ class App extends Component {
 		this.setState({error: null})
 	}
 
-	handleSearch = searchQuery => {
-		logic.search(searchQuery)
-			.then(res => this.setState({videoList: res}))
-			
+	handleSearch = query => {
+		logic.search(query)
+			.then(res => this.setState({video_list: res}, () => this.props.history.push('/home/search')))
+            .catch(error => console.error(error))
 	}
 
-	handleVideoClick = videoId =>{
-		logic.retrieveSong(videoId)
-			.then(res => {
-				console.log(res)
-				this.setState({video: res}, () => this.props.history.push('/songPlayer'))
-			})
-
+	handleVideoClick = video_id =>{
+		logic.retrieveSong(video_id)
+			.then(res => this.setState({video: res}, () => this.props.history.push('/home/player')))
+            .catch(error => console.error(error))
 	}
-
 
     renderLanding() {
         return <div>
@@ -82,22 +79,13 @@ class App extends Component {
     }
 
     renderHome() {
-        return <div><Masthead onSearch={this.handleSearch} onLogOut={this.handleOnLogOut} />
-			<HomeList onVideoClick={this.handleVideoClick} videoList={this.state.videoList}/>
-			</div>
-
-	}
-	
-	renderSongPlayer() {
-        return <div><Masthead onSearch={this.handleSearch} onLogOut={this.handleOnLogOut} />
-			 <SongPlayer video={this.state.video}/>
-			</div>
-
         return <div>
-            <Masthead onLogOut={this.handleLogOut} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
+            <Masthead onSearch={this.handleSearch} onLogOut={this.handleLogOut} user={{username:this.state.user_info.username, name:this.state.user_info.name+' '+this.state.user_info.surname, email:this.state.user_info.email}} />
             <Sidenav onClickFavourites={undefined} onClickWatchLater={undefined} playlists={this.state.user_info.playlists} />
-        </div>
-    }
+            <Route path='/home/search' render={() => <HomeList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
+            <Route path='/home/player' render={() => <Player video={this.state.video} />} />
+		</div>
+	}
 
     render() {
         return <div className="App">

@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 
-class SongPlayer extends Component {
+class Player extends Component {
     iframe() {
-        return {__html: this.props.video.items[0].player.embedHtml}  
+        return {__html: this.props.video.items[0].player.embedHtml}
     }
-    
+
     render() {
         return <div id='player' dangerouslySetInnerHTML={this.iframe()}></div>
     }
 }
-export default SongPlayer
+export default Player

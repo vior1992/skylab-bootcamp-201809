@@ -15,7 +15,7 @@ class Masthead extends Component {
                     <input type="search" value={this.state.search} placeholder="Search" onChange={this.handleOnChange}></input>
                     <button onClick={() => this.props.onSearch(this.state.search)}><span>ICON</span></button>
                 </div>
-                <Profile onLogOut={this.props.onLogOut}/>
+                <Profile onLogOut={this.props.onLogOut} user={this.props.user}/>
         </header>
     }
 }

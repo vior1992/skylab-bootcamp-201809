@@ -1,7 +1,9 @@
 import Skylab from './skylab'
+import YouTube from './youtube'
 
 const logic = {
     skylab: new Skylab(),
+    youtube: new YouTube(),
     auth: JSON.parse(sessionStorage.getItem('auth')) || {},
     user_info: JSON.parse(sessionStorage.getItem('user_info')) || {},
     root_url:"https://www.googleapis.com/youtube/v3/",
@@ -66,25 +68,14 @@ const logic = {
         return this.auth && Object.keys(this.auth).length > 0
     },
 
-    loggedIn() {
-        return !!this._userId
-    },
-    
     search(query) {
-        return fetch(this.root_url + 'search?part=snippet&key='+this.api_key+'&q='+query+'&videoCategoryId=10&type=video', {
-            method: 'GET'
-        })
-        .then(res => res.json())
-        .then (res => res.items)
-       
+        return this.youtube.search(query)
     },
 
-    retrieveSong(video_id) {
-        return fetch(this.root_url + 'videos?part=player&key='+this.api_key+'&id='+video_id, {
-            method: 'GET'
-        })
-        .then(res => res.json())
-        .then(res => res)
+    retrieveSong(id) {
+        return this.youtube.getVideo(id)
+    },
+
     addPlaylist(playlist) {
         return this.skylab.update(playlist, this.auth.id, this.auth.token)
     }
@@ -92,5 +83,4 @@ const logic = {
 
 export default logic
 
-export default logic
-//module.exports = logic
+// module.exports = logic
