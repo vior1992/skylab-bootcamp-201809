@@ -20,6 +20,3 @@ const logicUdacity = {
 module.exports = logicUdacity
 
 ///////////////////////////////////
-
-
-
