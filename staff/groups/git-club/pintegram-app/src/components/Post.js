@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logic from '../logic'
 
 class Post extends Component {
-    state = { postId:this.props.id, url:this.props.url, text: this.props.text, liked: null, likes: undefined, user: null}
+    state = { postId:this.props.id, url:this.props.url, text: this.props.text, liked: null, likes: undefined, user: null, comment: false}
 
     componentDidMount() {
         logic.retriveUser(this.props.user)
@@ -22,6 +22,16 @@ class Post extends Component {
            .then(logic.likedPost(this.state.postId).then(liked => { this.setState({ liked })}))
     }
 
+    handleAddComment = () => {
+        logic.addComment(this.state.postId, )
+           .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
+           
+    }
+
+    handleComment = () => {
+        
+    }
+
     render() {
         return <article className="post">
             <div className="post__justify">
@@ -30,9 +40,11 @@ class Post extends Component {
             <img className="post__img" src={this.state.url}></img>
             <div className="post__icon">
             {!this.state.liked ? <i onClick={this.handleLikePost} className="far fa-heart icon"></i> : <i className="fas fa-heart icon"></i>}{this.state.likes}
-            <i className="fas fa-comment icon"></i>
+            <i onClick={this.handleComment} className="fas fa-comment icon"></i>
             </div>
-            <p className="post__text post__text-margin">{this.state.text}</p>      
+            <p className="post__text post__text-margin">{this.state.text}</p> 
+            {/* <p className="comments"></p> */}
+            {!this.state.comment && <AddComment />}
             </div> 
             </div>    
         </article>

@@ -166,7 +166,7 @@ const logic = {
     },
 
     retriveUser (userId) {
-        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -200,7 +200,7 @@ const logic = {
     },
 
     listAllPosts() {
-        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -208,12 +208,9 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                
-                if (res.error) throw Error(res.error)
-                let users = res.data.filter(user => user.app)
-                let appUsers = users.filter(user => user.app === 'pintegram')
                 let postsUsers = []
-                appUsers.forEach(user => {
+                if (res.error) throw Error(res.error)
+                res.data.forEach(user => {
                     if(user.posts){
                         for (let i = 0; i < user.posts.length ; i++){
                             if(user.posts[i].publicPost) postsUsers.push(user.posts[i])
@@ -227,7 +224,7 @@ const logic = {
             })
     },
     retrievePosts(postsId) {
-        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -237,10 +234,8 @@ const logic = {
             .then(res => {
                 
                 if (res.error) throw Error(res.error)
-                let users = res.data.filter(user => user.app)
-                let appUsers = users.filter(user => user.app === 'pintegram')
                 let postsUsers = []
-                appUsers.forEach(user => {
+                res.data.forEach(user => {
                     if(user.posts){
                         for (let i = 0; i < user.posts.length ; i++){
                             for (let e = 0; e < postsId.length ; e++){
@@ -270,7 +265,7 @@ const logic = {
 
     likesPost(postId) {
 
-        return fetch(`https://skylabcoders.herokuapp.com/api/users`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -280,10 +275,9 @@ const logic = {
             .then(res => {
                 
                 if (res.error) throw Error(res.error)
-                let users = res.data.filter(user => user.app)
-                let appUsers = users.filter(user => user.app === 'pintegram')
+                
                 let countLikes = 0
-                appUsers.forEach(user => {
+                res.data.forEach(user => {
                     
                     if(user.likes){
                         for (let i = 0; i < user.likes.length ; i++){

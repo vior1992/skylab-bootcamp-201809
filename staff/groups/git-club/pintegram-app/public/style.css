@@ -373,3 +373,10 @@ body{
 .menu__button:hover{
     color: #55D6BE;
 }
+
+
+/*ADD COMMENT*/
+
+.comment{
+    display:none;
+}
