@@ -48,7 +48,7 @@ class Skylab {
         })
     }
 
-    update(query, token) {
+    update(query, id, token) {
         return fetch(this.root_id + 'auth', {
             method: 'PUT',
             headers: {

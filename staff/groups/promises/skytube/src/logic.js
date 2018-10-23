@@ -6,7 +6,6 @@ const logic = {
     youtube: new YouTube(),
     auth: JSON.parse(sessionStorage.getItem('auth')) || {},
     user_info: JSON.parse(sessionStorage.getItem('user_info')) || {},
-    root_url:"https://www.googleapis.com/youtube/v3/",
 
     registerUser(name, surname, username, email, password) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
@@ -77,7 +76,8 @@ const logic = {
     },
 
     addPlaylist(playlist) {
-        return this.skylab.update(playlist, this.auth.id, this.auth.token)
+        this.skylab.update(this.info, this.auth.id, this.auth.token)
+            .then(() => sessionStorage.setItem('user_info', JSON.stringify(this.info)))
     }
 }
 
