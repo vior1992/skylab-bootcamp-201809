@@ -31,9 +31,19 @@ $moveRight : $tileWidth * ($growFactor - 1)
             background: url('header-nav.png')
             height: 100%
             width: 100%
-            background-position: center
+            max-height: 350px
+            background-position: bottom
             background-repeat: no-repeat
             background-size: cover
+
+        @media screen and (min-width: 600px) 
+            .header_background
+                background: url('header2.png')
+                height: 100%
+                width: 100%
+                background-position: bottom
+                background-repeat: no-repeat
+                background-size: cover
 
         .navbar_buttons
             display: flex
@@ -302,4 +312,6 @@ $moveRight : $tileWidth * ($growFactor - 1)
 // so its flush against the hovered tile
 .tile:hover ~ .tile
   transform: translate3d($moveRight, 0, 0)
+
+
 

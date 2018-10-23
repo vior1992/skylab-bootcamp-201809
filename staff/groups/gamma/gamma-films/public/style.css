@@ -21,9 +21,20 @@
   background: url("header-nav.png");
   height: 100%;
   width: 100%;
-  background-position: center;
+  max-height: 350px;
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
+}
+@media screen and (min-width: 600px) {
+  .body .navbar .header_background {
+    background: url("header2.png");
+    height: 100%;
+    width: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 .body .navbar .navbar_buttons {
   display: flex;
