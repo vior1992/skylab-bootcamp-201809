@@ -14,7 +14,7 @@ const {expect} = require('chai')
 
 
 describe ('logic', () => {
-    !false && describe('register', () => {
+    false && describe('register', () => {
         it('should suceed on correct data', () => {
             return logic.registerUser('ana','san', `as-${Math.random()}`,'a@a','123') 
                 .then(() => expect(true).to.be.true)
@@ -298,7 +298,7 @@ describe ('logic', () => {
         })
     })
 
-    !false && describe('login', () => {
+    false && describe('login', () => {
         describe('test on autenticating existent user', () => {
             let username, password
 
@@ -465,7 +465,7 @@ describe ('logic', () => {
         })
     })
 
-    describe(' UserLogOut ', () => {
+    false && describe(' UserLogOut ', () => {
         beforeEach(() => {
             const name = 'dani', surname = 'ville', email = 'da@da'
 
@@ -484,6 +484,21 @@ describe ('logic', () => {
             const userId2 = sessionStorage.getItem('userId')
             
             expect(userId2).to.equal(null)
+            
+        })
+    })
+
+    describe ('search by query', () => {
+        it('should succed on searching videos by query', () => {
+            const query = 'Madonna'
+            return logic.search(query)
+                .then(res => 
+                    expect(res).not.to.be.undefined()
+                )
+        })
+
+        it('shoul fail on undefined query', () => {
+            const query = undefined
             
         })
     })
