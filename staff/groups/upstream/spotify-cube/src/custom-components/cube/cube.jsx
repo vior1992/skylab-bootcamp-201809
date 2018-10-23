@@ -140,7 +140,9 @@ export default class Cube extends Component{
         })         
       }
 
-      handlerTracksFound = (data) => {        
+      handlerTracksFound = (data) => {    
+          
+
     
         this.setState({tracks:data}, () => {
   
@@ -169,9 +171,7 @@ export default class Cube extends Component{
       handleLogout = () =>{
 
         this.setState({isLogged:false}, () => {
-            
-           
-            
+
             
         })
         
@@ -206,7 +206,7 @@ export default class Cube extends Component{
         return <section className="container">
             <section className={`cube ${this.state.rotationClass}`}>
                 <FrontSide onArtistFound = {this.handlerArtistFound}></FrontSide>
-                <BackSide albumlist = {this.state.albums}></BackSide>
+                <BackSide onTracks={this.handlerTracksFound} albumlist = {this.state.albums}></BackSide>
                 <LeftSide tracks = {this.state.tracks}></LeftSide>
                 <RightSide onAlbums = {this.handleAlbums} artists = {this.state.artists}></RightSide>
                 <TopSide onLogout={this.handleLogout} onLogin={this.handleLogin} onClickRegister = {this.handleRegister}></TopSide>
