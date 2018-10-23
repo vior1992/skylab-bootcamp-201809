@@ -1,8 +1,11 @@
 
 const spotifyLogic = {
-    token: 'BQCYw93iFR12L0c8X2A7PnWscsTUEFc4bTfIwV5br-Lio02NQnl1O2nPVzDjrd-gT_6Lh7ef8i2igeZe_9jbwH6b48W7_ul6O3lchLXAYfQJIv5R-QXovPHMGNXKp4XqQpy627FLwfz6RmffYW8c-XAq2qRnHzQetXLD775KFZr-pwl0BH_TOrJDCFKOSH4jTM4iUfAt18bGP3RwN45JKc93OnMQJ02HLd4N0S8jLOSNoXZd4UEgI_E8HAxculW3MjCFwtUTeQE',
+    token: 'BQACm7ir4NZLzqhKWhayNKF5WXpggso9_jsZOwY2D-8yz1DRGc73bl7Qv7tQaPy7iqMxTU51Lakn2_7rCjdzfFSdf-lidibBnzENR8Ce8k6RNrD00_4XrL6hVcfbimzLit3v2BIVVv5dEWD1tcnKCFqYr28eEeFUiawiNWWNgqrrUbIOC0BBa4R1JGaIvn1bSJLgg4UJ3TBOCWvi',
 
     getArtistById(id) {
+
+        if(!(typeof id === 'string')) throw Error ('id is not a a string')
+        if(!(id.length)) throw Error ('id is empty or blank')
         return fetch(`https://api.spotify.com/v1/artists/${id}`, {
             method: 'GET',
             headers: {
@@ -16,9 +19,11 @@ const spotifyLogic = {
             .catch(res => res)
     },
 
-    getArtists(search) {
+    getArtists(query) {
+
+          if(!(query.trim().length)) throw Error ('Query cannot be empty')
         
-        return fetch(`https://api.spotify.com/v1/search?q=${search}&type=artist`, {
+        return fetch(`https://api.spotify.com/v1/search?q=${query}&type=artist`, {
             method: 'GET',
             headers: {
                
@@ -28,7 +33,6 @@ const spotifyLogic = {
         })
             .then(res => res.json())
             .then(res => res)
-            .catch(err => {throw Error(err.message)})
     },
 
     getPlaylistsTracks(playlistId) {
@@ -83,6 +87,6 @@ const spotifyLogic = {
     }
 }
 
-// export default spotifyLogic
+export default spotifyLogic
 
-module.exports = spotifyLogic
+// module.exports = spotifyLogic
