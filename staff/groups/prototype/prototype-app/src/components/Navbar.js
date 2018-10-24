@@ -7,6 +7,10 @@ const closeMenu = () => {
   $('.menu-btn').prop('checked', false)
 }
 
+const handleClick = (event) => {
+  event.preventDefault()
+}
+
 const Navbar = (props) => {
   return (
     <header>
@@ -26,11 +30,19 @@ const Navbar = (props) => {
             <span>Db</span>
           </div>
           <div className="options">
-            { !Object.keys(JSON.stringify(logic._user)).lenght && <div>
+            { !logic.loggedIn && <div>
               <Link to="/signin">Sign In</Link> or <Link to="/login">Log In</Link>
             </div> }
-            { Object.keys(JSON.stringify(logic._user)).lenght && <div class="profile">
-              <img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" />
+            { logic.loggedIn && <div className="profile">
+              <div className="dropdown">
+              <a onClick={handleClick} href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" /></a>
+              <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <Link className="dropdown-item" to="/user">Profile</Link>
+                <a className="dropdown-item" href="#">Movies</a>
+                <div className="dropdown-divider"></div>
+                <a className="dropdown-item" href="#">Log Out</a>
+              </div>
+              </div>
             </div> }
           </div>
         </div>
