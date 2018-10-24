@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import SearchBar from './SearchBar'
 
 class Movie extends Component {
     state = {
@@ -57,9 +58,6 @@ class Movie extends Component {
 
                         this.setState({ showFavButton })
                         this.setState({ flagController: false })
-                        console.log(showFavButton)
-                        console.log('cambiamos estado')
-
                     })
                     .catch(err => this.setState({ error: err.message }))
 
@@ -70,7 +68,11 @@ class Movie extends Component {
     }
 
     render() {
-        return <div className='card'>
+        
+        return <div className="home">
+        <SearchBar />
+        <div className='card'>
+
             <div className='card_left'>
                 <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
             </div>
@@ -103,6 +105,7 @@ class Movie extends Component {
                 </div>
             </div>
         </div>
+    </div>
 
     }
 }

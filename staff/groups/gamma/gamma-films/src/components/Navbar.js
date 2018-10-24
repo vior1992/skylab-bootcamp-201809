@@ -23,7 +23,7 @@ class Navbar extends Component {
 
             <div className="header_background">
                 {this.props.name && <p>{this.props.name}</p>}
-                {this.props.isLoggedIn && <button onClick={this.props.onLogoutClick}>Logout</button>}
+                {this.props.isLoggedIn && <button className="btn btn-outline-secondary" onClick={this.props.onLogoutClick}>Logout</button>}
                 {!this.props.isLoggedIn && <div className="navbar_buttons">
                     <button type="button" className="btn btn-outline-secondary" onClick={this.props.onLoginClick}>Login</button>
                     <button type="button" className="btn btn-outline-secondary" onClick={this.props.onRegisterClick}>Register</button>

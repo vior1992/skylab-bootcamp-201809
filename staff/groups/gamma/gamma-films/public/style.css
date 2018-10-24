@@ -234,7 +234,7 @@
 }
 .card_left {
   width: 40%;
-  height: 400px;
+  height: 100%;
   float: left;
   overflow: hidden;
   background: transparent;
@@ -265,7 +265,7 @@
   color: white;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  text-align: left;
+  text-align: center;
   font-size: 40px;
   margin: 30px 0 0 0;
   padding: 0 0 0 40px;
@@ -273,6 +273,7 @@
 }
 .card_right__details ul {
   list-style-type: none;
+  text-align: center;
   padding: 0 0 0 40px;
   margin: 10px 0 0 0;
 }
@@ -344,8 +345,8 @@
   }
 
   .card {
-    width: 90%;
     height: 100%;
+    max-height: 1200px;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -398,11 +399,11 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     text-align: left;
-    font-size: 40px;
+    font-size: 6vw;
     margin: 30px 0 0 0;
     padding: 0 0 0 40px;
     letter-spacing: 1px;
-    text-align: justify;
+    text-align: center;
   }
   .card__details ul {
     list-style-type: none;
