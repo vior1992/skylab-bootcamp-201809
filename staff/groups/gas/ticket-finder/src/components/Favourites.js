@@ -15,7 +15,6 @@ class Favourites extends Component {
     componentDidMount() {
         // this.setState({favouritesList: this.props.favouritesList })
 
-        debugger
         this.retrieveFavourites()
         
     }
@@ -38,7 +37,7 @@ class Favourites extends Component {
         try {
            
         logic.retrieveFavouriteEvents()
-        .then(res => this.setState({ favouriteEvents: res }))
+        .then(res => {debugger; this.setState({ favouritesList: res })})
         .catch(err => this.setState({ error: err }))
         }
         catch(err) {alert('error')}
