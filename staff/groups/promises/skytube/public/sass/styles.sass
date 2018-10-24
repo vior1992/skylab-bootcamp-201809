@@ -37,12 +37,18 @@ body
             background-color: darken($color-background, 10%)
 
             &-head
+                display: flex
+                flex-wrap: wrap
+                align-items: center
+                justify-content: center
                 height: $header-height
                 background-color: $color-background
 
-                &__title
-                    margin: 0
-
+                &__logo
+                    max-width: 50px
+                    max-height: 50px
+                    margin-right: 5px  
+         
             &__lists
                 height: calc(100vh - #{$header-height})
                 display: flex
@@ -75,7 +81,31 @@ body
             grid-row: 1
             grid-column: 2
             background-color: $color-background
+            display: flex
+            align-items: center
+            justify-content: center
+            &__input
+                width: 80%
+                height: 30px
+                border: 1px solid #999999
+                border-radius: 10px
+                margin: 15px 20px
+                padding: 10px   
+                background-color: darken($color-background, 15%)
+                font-family: Roboto, Arial, sans-serif
+                font-size: 18px
+                color: $color-text
+                outline: 0
 
+            &__button
+                width: 60px
+                height: 30px
+                margin-left: -60px
+                border: 1px solid #999999
+                border-radius: 10px
+                background-color: #999999
+                outline: 0
+            
         .profile
             grid-row: 1
             grid-column: 3
@@ -106,12 +136,10 @@ body
 
             &__image
                 height: inherit
-                border-radius: 50px
 
                 img
                     height: inherit
-
-
+                
             &__text
                 display: flex
                 flex-direction: column
@@ -142,20 +170,16 @@ body
             grid-row: 2
             overflow-y: scroll
 
-.row
-    display: grid
-    margin-right: 0%
-    margin-left: 0%
-    grid-template-columns: 100%
-    background-color: blue
-
+    .signup
+        &__formulary
+        &__input
+        &__button
 
 .video-list
     display: flex
     margin: 1%
     width: 90%
     flex-wrap: wrap
-
 
 .video-item
     width: 350px
