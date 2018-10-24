@@ -1,5 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import $ from 'jquery'
+
+const closeMenu = () => {
+  $('.menu-btn').prop('checked', false)
+}
 
 const Navbar = () => {
   return (
@@ -10,9 +15,9 @@ const Navbar = () => {
             <input className="menu-btn" type="checkbox" id="menu-btn" />
             <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
             <ul className="menu">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/movies/now_playing">Now playing</Link></li>
-              <li><Link to="/movies/popular">Popular</Link></li>
+              <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+              <li><Link to="/movies/now_playing" onClick={closeMenu}>Now playing</Link></li>
+              <li><Link to="/movies/popular" onClick={closeMenu}>Popular</Link></li>
             </ul>
           </div>
           <div className="logo">
