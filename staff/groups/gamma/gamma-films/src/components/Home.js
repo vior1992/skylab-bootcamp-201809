@@ -13,15 +13,8 @@ class Home extends Component {
     state = {
         query: '',
         error: '',
-        movies: [],
-        favs: []
+        movies: []
     }
-
-    // componentDidMount() {
-        
-    //     const favourites = logic.listFavourites()
-    //     this.setState({favs:favourites})
-    // }
 
     handleQueryChange = event => {
 
@@ -36,7 +29,7 @@ class Home extends Component {
 
         const query = this.state.query
 
-        this.props.history.push(`/search/${query}`)
+        this.props.history.push(`home/search/${query}`)
     }
 
     verResultados = event => {
@@ -45,13 +38,7 @@ class Home extends Component {
     }
 
     handleCardClick = id => {
-        this.props.history.push(`/movie/${id}`)
-    }
-
-    handleFavClick = id =>{
-        let favourites = this.state.favs
-        favourites.push(id)
-        this.setState({favs:favourites})
+        this.props.history.push(`home/movie/${id}`)
     }
 
     render() {
@@ -61,20 +48,16 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
-            <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
-
             {/* <TopRatedSlide/> */}
 
             {/* <Sidebar/> */}
-            <div>
-                <Route exact path="/" render={props => <TopRatedSlide />} />
-                <Route exact path="/" render={props => <TopRatedSlide />} />
-                <Route exact path="/" render={props => <TopRatedSlide />} />
-            </div>
+            <Route exact path="/home" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/home" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/home" render={props =><TopRatedSlide/>}/>
 
-            <div class="cards">
-                <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} handleFavClick={this.handleFavClick} isLoggedIn={this.props.isLoggedIn} />} />
-            </div>
+            <Route path="home/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
+
+            <Route path="home/movie/:id" render={props => <Movie id={props.match.params.id} />} />
 
         </div>
     }
