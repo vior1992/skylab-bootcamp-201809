@@ -15,6 +15,7 @@ export default class TopSide extends Component{
                    
                    sessionStorage.setItem("user",JSON.stringify(data))
                    this.setState({isLogged:true}, () => {
+                       
                        this.props.onLogin(true)
                    })
 

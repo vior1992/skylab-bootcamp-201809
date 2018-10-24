@@ -68,11 +68,7 @@ export default class List extends Component{
         }
     }
 
-    getPreviewUrlAttribute = (preview_url) => {
-
-        return '"data-attr":"someString"'
-    }
-   
+    
     render(){
        
 

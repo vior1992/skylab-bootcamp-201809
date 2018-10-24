@@ -1,8 +1,10 @@
 //comentar para testear:
- import User from '../datalayer/user'
-
-
+import data from '../datalayer/user'
+import spotifyLogic from '../services/spotifylogic'
 require('isomorphic-fetch')
+const {User, Track, Playlist} = data
+
+
 
 
 const userService = {
@@ -39,6 +41,53 @@ const userService = {
     //     postit.text = _text
     // },
 
+     createPlayList (value) {
+
+          return spotifyLogic.createPlaylist(value).then(res => {
+            
+            let playlist = new Playlist()
+            playlist.Id = res.id
+            playlist.Name = value
+            playlist.Image = "playlist.png" 
+            return playlist
+          })
+          .then(playlist => {
+
+            const session = JSON.parse(sessionStorage.getItem("user"))   
+            const res = {
+
+                    id:session.id,
+                    token:session.token,
+                    playlist:playlist
+
+                }
+                return res
+               
+          })
+          .then((obj) => {
+
+                return this.getUserInfo(obj.id, obj.token).then(res => {
+                    obj.userInf = res
+                    return obj
+                })
+          })
+          .then(res => {
+
+            let user = new User()               
+            user.playLists = res.userInf.playLists            
+            user.createPlayList(res.playlist)
+            res.userInf = user
+            return res
+
+          })
+        .then(data => {
+
+           return  this.updateUser(data.id,data.token,data.userInf).then(res => data.userInf.playLists)
+
+        })
+
+    },
+
     registerUser(name, surname, email, username, password) {
        
         let user = new User()
@@ -66,37 +115,25 @@ const userService = {
             })
     },
 
-    // updateUser(id, token, {name, surname, username, postits}){
+    updateUser(id, token, user){
         
-    //     if (typeof id !== "string") throw TypeError (`id is not a string`)
-    //     if (typeof token !== "string") throw TypeError (`token is not a string`)
-    //     if (typeof name !== "string") throw TypeError (`name is not a string`)
-    //     if (typeof surname !== "string") throw TypeError (`surname is not a string`)
-    //     if (typeof username !== "string") throw TypeError (`username is not a string`)
-    //     if (!name.trim()) throw TypeError (`name is empty`)
-    //     if (!surname.trim()) throw TypeError (`surname is empty`)
-    //     if (!username.trim()) throw TypeError (`username is empty`)
-    //     if (!id.trim()) throw TypeError (`id is empty`)
-    //     if (!token.trim()) throw TypeError (`token is empty`)
-         
-       
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             "Content-Type": "application/json; charset=utf-8",
-    //             "Authorization": `Bearer ${token}`
-    //         },
-    //        body: JSON.stringify({name, surname, username,  postits})
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${id}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "Authorization": `Bearer ${token}`
+            },
+           body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(res => {
                              
-    //             if (res.status === "OK") 
-    //                 return true
-    //             else
-    //                 throw Error(res.error)
-    //         })
-    // },
+                if (res.status === "OK") 
+                    return true
+                else
+                    throw Error(res.error)
+            })
+    },
 
 
     authenticateUser(username, password){
@@ -124,37 +161,51 @@ const userService = {
             })
     },
 
-    // getUserInfo(id, token){
+    getUserInfo(id, token){
         
        
-    //     if (typeof id !== "string") throw TypeError (`id is not a string`)
-    //     if (typeof token !== "string") throw TypeError (`token is not a string`)
-    //     if (!id.trim()) throw TypeError (`id is empty`)
-    //     if (!token.trim()) throw TypeError (`token is empty`)
+        if (typeof id !== "string") throw TypeError (`id is not a string`)
+        if (typeof token !== "string") throw TypeError (`token is not a string`)
+        if (!id.trim()) throw TypeError (`id is empty`)
+        if (!token.trim()) throw TypeError (`token is empty`)
        
 
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${id}`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${id}`, {
 
-    //         mehtod: "GET",
-    //         headers:{
-    //             "Authorization": `Bearer ${token}`
-    //         },
+            mehtod: "GET",
+            headers:{
+                "Authorization": `Bearer ${token}`
+            },
            
-    //     })
-    //     .then( res => res.json())
-    //     .then(res => {
+        })
+        .then( res => res.json())
+        .then(res => {
 
-    //         if (res.status === "OK") {
+            if (res.status === "OK") {
                
-    //             return res.data}
-    //         else
+                return res.data}
+            else
                 
-    //             throw Error(res.error)
+                throw Error(res.error)
             
                
 
-    //     })
-    // },
+        })
+    },
+
+    getUserPlayLists(){
+
+        const session = JSON.parse(sessionStorage.getItem("user"))
+        if(!session) throw Error("The session of the user has fisnihed")
+
+        return this.getUserInfo(session.id, session.token).then(res => {
+
+            return res.playLists
+
+
+        })
+
+    }
 
     // deleteUser(id, token,username, password){
 

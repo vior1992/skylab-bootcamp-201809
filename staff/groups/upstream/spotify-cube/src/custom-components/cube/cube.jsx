@@ -5,6 +5,7 @@ import BottomSide from './bottomside/bottomside'
 import TopSide from './topside/topside'
 import RightSide from './rightside/rightside'
 import LeftSide from './leftside/leftside'
+import userService from '../../services/userlogic'
 
 
 export default class Cube extends Component{
@@ -38,7 +39,6 @@ export default class Cube extends Component{
                             this.face = "top"
                         break;
                         case "bottom":
-                            debugger
                             this.addRotation("rotateX-0")
                             this.face = "front"
                         break;
@@ -153,19 +153,29 @@ export default class Cube extends Component{
 
       handleLogin = (isLogged) =>{
 
-        let data
         if (isLogged){
-            data = [{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""}];
+          
+            userService.getUserPlayLists().then(res => {
+
+                if (res.length)
+                    res.map(el => {
+
+                        el.image = require("../../assets/img/playlist.png")
+                    })
+
+                this.setState({playlists:res, isLogged:isLogged}, () =>{
+
+                    this.addRotation("rotateX-0")
+                    this.face = "front"
+                  
+                   
+                })
+
+            })
               
         }
        
-        this.setState({playlists:data, isLogged:isLogged}, () =>{
-
-                this.addRotation("rotateX-0")
-                this.face = "front"
-              
-               
-            })
+        
       }
 
       handleLogout = () =>{
@@ -204,13 +214,14 @@ export default class Cube extends Component{
     render(){
 
         return <section className="container">
+       
             <section className={`cube ${this.state.rotationClass}`}>
                 <FrontSide onArtistFound = {this.handlerArtistFound}></FrontSide>
                 <BackSide onTracks={this.handlerTracksFound} albumlist = {this.state.albums}></BackSide>
                 <LeftSide tracks = {this.state.tracks}></LeftSide>
                 <RightSide onAlbums = {this.handleAlbums} artists = {this.state.artists}></RightSide>
                 <TopSide onLogout={this.handleLogout} onLogin={this.handleLogin} onClickRegister = {this.handleRegister}></TopSide>
-                <BottomSide playlists = {this.state.playlists} onClickLogin = {this.handleClickRegisterLogin} isLogged = {this.state.isLogged}></BottomSide>    
+                <BottomSide onRotation = {this.addRotation} playlists = {this.state.playlists} onClickLogin = {this.handleClickRegisterLogin} isLogged = {this.state.isLogged}></BottomSide>    
 
             </section>
         </section>

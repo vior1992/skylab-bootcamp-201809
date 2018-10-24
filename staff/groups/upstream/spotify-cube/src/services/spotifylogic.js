@@ -1,7 +1,7 @@
 
 const spotifyLogic = {
 
-    token: 'BQDXIQ31x9Z-B9lBldvxrgnXpea-vhcanJmcVonoR9019mJBzhN9R3vnxv4NLPpP7zEytSWrqKgiRgdO_7guZOmCQKIART5kee2n3RT-6HyOC3LsS_nm1CpvLdZItGf80d-JWH0sQlTbTXauTT3hrh9JCKf4Kj2iIDkWKIKipYb9TSUdgzolOeau3Fs9H0CH9JW5StT_3Zd9GI6z',
+    token: 'BQCNb5afPx0maW4h24sJbaD9_9rmu-PzvChuet2zfElaI-dWMIwZfX_6uKwM1viHiLTXAOrWx86P-FgL-pLHWnrKN9DuZgkckhidHl05zo30b7sDbLuRvOutC1DCZG_ei7yRHBc37vALrYJ8mTSZtbUd3U9q-imcsrMjy-CIKSFLdaYLEWzI-OnLhLpe1Gb26rmpbh-5Cb0Bi-cK',
 
     getArtistById(id) {
 
@@ -75,14 +75,14 @@ const spotifyLogic = {
             .then(res => res)
     },
 
-    createPlaylist(name, description) {
+    createPlaylist(name) {
         return fetch(`https://api.spotify.com/v1/me/playlists`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + this.token
             },
-            body: JSON.stringify({name: name, description: description})
+            body: JSON.stringify({name: name})
         })
             .then((res) => res.json())
             .then(res => res)
