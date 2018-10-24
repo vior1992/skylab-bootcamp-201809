@@ -1,10 +1,7 @@
-// const data = require('./data')
-
 
 const logic = {
   _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
   _user: JSON.parse(sessionStorage.getItem('user')) || {},
-  // _user: {},
   _trendingMovies: [],
   _inTheatreMovies: [],
   _popularMovies: [],
@@ -72,7 +69,16 @@ const logic = {
     if (JSON.stringify(logic._user) !== '{}') return true
     else return false
   },
-  
+
+  logout(){
+    this._user = {}
+    this._trendingMovies = []
+    this._inTheatreMovies = []
+    this._popularMovies = []
+
+    sessionStorage.removeItem('user')
+  },
+
   retrieveTrending(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/trending/movie/week'
     return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {

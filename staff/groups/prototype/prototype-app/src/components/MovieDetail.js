@@ -18,10 +18,10 @@ class MovieDetail extends Component {
           let indexSeen = logic.checkInList(this.props.id, 'seen')
 
           let indexPending = logic.checkInList(this.props.id, 'pending')
-          
+
           if (indexSeen !== -1) this.setState({ seen: true })
 
-          else if (indexPending !== -1) this.setState({ pending: true })     
+          else if (indexPending !== -1) this.setState({ pending: true })
         }
       })
   }
@@ -55,7 +55,7 @@ class MovieDetail extends Component {
         break
       default:
         this.setState({ warning: check })
-        //the state changes, but it doesn't call teh render yet
+      //the state changes, but it doesn't call teh render yet
     }
   }
 

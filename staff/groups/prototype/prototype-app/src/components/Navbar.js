@@ -21,17 +21,21 @@ const Navbar = (props) => {
               <li><Link to="/movies/popular" onClick={closeMenu}>Popular</Link></li>
             </ul>
           </div>
-          <div className="logo">
+          <Link to="/" className="logo-div"><div className="logo">
             <span>SM</span>
             <span>Db</span>
-          </div>
+          </div></Link>
           <div className="options">
-            { !Object.keys(JSON.stringify(logic._user)).lenght && <div>
+            {!logic.loggedIn && <div>
               <Link to="/signin">Sign In</Link> or <Link to="/login">Log In</Link>
-            </div> }
-            { Object.keys(JSON.stringify(logic._user)).lenght && <div class="profile">
-              <img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" />
-            </div> }
+            </div>}
+            {logic.loggedIn && <div class="profile dropleft">
+              <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" /></a>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <Link to="/user" className="dropdown-item">My movies</Link>
+                <Link to="/" onClick={logic.logout} className="dropdown-item">Log Out</Link>
+              </div>
+            </div>}
           </div>
         </div>
       </section>
