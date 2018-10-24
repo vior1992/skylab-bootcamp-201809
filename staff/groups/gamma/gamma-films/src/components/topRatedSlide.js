@@ -28,13 +28,13 @@ class TopRatedSlide extends Component {
 
 
     render() {
-        return <div class="contain">
+        return <div className="contain">
             {this.state.flag && this.handleSearch("week")}
-            <div class="row">
+            <div className="row">
                 <h4>Popular movies</h4>
-                <div class="row__inner">
+                <div className="row__inner">
                     {this.state.movies.map((film, index) => {
-                        return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} />
+                        return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} key={film.id}/>
                     })}
                 </div>
             </div>

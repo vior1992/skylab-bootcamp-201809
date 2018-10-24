@@ -50,20 +50,6 @@ class Home extends Component {
 
             {/* <TopRatedSlide/> */}
 
-<<<<<<< HEAD
-
-            {/* <Sidebar/> */}
-            <div>
-                <Route exact path="/" render={props => <TopRatedSlide />} />
-                <Route exact path="/" render={props => <TopRatedSlide />} />
-                <Route exact path="/" render={props => <TopRatedSlide />} />
-            </div>
-
-
-            <div className="cards">
-                <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} handleFavClick={this.handleFavClick} isLoggedIn={this.props.isLoggedIn} />} />
-            </div>
-=======
             {/* <Sidebar/> */}
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
@@ -71,8 +57,7 @@ class Home extends Component {
 
             <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
 
-            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
->>>>>>> develop
+            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} isLoggedIn={this.props.isLoggedIn} handleFavourites={this.props.handleFavourites} />} />
 
 
         </div>

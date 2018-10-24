@@ -12,6 +12,7 @@ class User {
 class MovieInfo {
     constructor(id){
         this.id = id
+        this.key = Date.now()
     } 
 }
 
