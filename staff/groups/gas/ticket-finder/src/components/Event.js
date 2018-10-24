@@ -40,7 +40,7 @@ class Event extends Component {
 
                     <p className="card-link"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
 
-                   <a href="#" className="favourites-btn" onClick={this.storeFavourites}><i class="fas fa-star">  Add to favourites</i></a>
+                   <a href="#" className="favourites-btn" onClick={this.storeFavourites}><i className="fas fa-star">  Add to favourites</i></a>
                     </div>
                 </div>
                 </div> 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Input } from "mdbreact"
 
-class InputForm extends Component {
+class SearchForm extends Component {
    state = { query: '' }
 
    handleInput = event => {
@@ -28,4 +28,4 @@ class InputForm extends Component {
    }
 }
 
-export default InputForm
+export default SearchForm
