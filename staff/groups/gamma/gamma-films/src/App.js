@@ -40,9 +40,12 @@ class App extends Component {
     handleLogoutClick = () => {
         this.setState({ loggedIn: false })
         this.setState({ user: '' })
+        logic.logout()
+        this.props.history.push('/')
     }
 
     handleLogoClick = () => this.props.history.push('/')
+
     handleFavourites(id) {
         console.log('llama correctamente ' + id)
         let FavList = logic.listFavourites()
