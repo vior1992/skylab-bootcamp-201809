@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logic from './logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 import MovieDetail from './components/MovieDetail'
 import ListedMovies from './components/ListedMovies'
@@ -10,7 +9,6 @@ import Navbar from './components/Navbar'
 import SignIn from './components/SignIn'
 import LogIn from './components/LogIn'
 import Home from './components/Home'
-// import Search from './components/Search'
 
 class App extends Component {
 
@@ -28,7 +26,7 @@ class App extends Component {
       <Route path='/movies/:kind' render={(props) => <ListedMovies kind={props.match.params.kind}/> } />
       <Route path='/search/:kind' render={(props) => <ListedMovies kind={props.match.params.kind}/> } />
       {/* <Route path="/" render={() => <Footer/>} /> */}
-      {/* <Route path='/movies/:trending' render={() => <h1>hola</h1> } /> */}
+      {/* <NotFound /> */}
     </div>
   }
 }
