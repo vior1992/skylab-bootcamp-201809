@@ -34,6 +34,15 @@ class Profile extends Component {
         this.setState({ grid: false, liked: true })
     }
 
+    handleDeletePost = (idPost) => {
+        logic.deletePost(idPost)
+        .then(Promise.all([logic.listPosts(), logic.retrieveProfile(), logic.listLikes().then(postsLiked => logic.retrievePosts(postsLiked))])
+            .then(([posts, user, postsLiked]) => {
+                this.setState({ posts, user, postsLiked })
+            })
+        )
+    }
+
     render() {
         return <div>
             <nav className="nav"><h1 onClick={this.props.onGoBack}>Pintegram App</h1>

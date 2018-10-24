@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 
-class PostUser extends Component {
+class PostOtherUser extends Component {
     state = { postId:this.props.id, url:this.props.url, text: this.props.text, likes: null}
 
     componentDidMount() {
@@ -26,10 +26,10 @@ class PostUser extends Component {
     render() {
         return <section className="gallery__user">
             <div><img className="user__img" src={this.state.url}></img>
-            <div className="user__likes"><i className="fas fa-heart icon"></i>{this.state.likes} <i onClick={this.handleDelete} className="fas fa-trash icon"></i></div>
+            <div className="user__likes"><i className="fas fa-heart icon"></i>{this.state.likes}</div>
             </div>
         </section>
     }
 }
 
-export default PostUser
+export default PostOtherUser

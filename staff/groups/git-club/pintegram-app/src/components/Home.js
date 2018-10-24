@@ -15,6 +15,11 @@ class Home extends Component {
         logic.listComments()
      
     }
+
+    handleUserSearch = name =>{
+        
+        this.props.onUserSearch(name)
+    }
     
 
     render() {
@@ -27,7 +32,7 @@ class Home extends Component {
             </div>
             </nav>
             <section className="home__post">
-                {this.state.posts.map(post => <Post key={post.id} id={post.id} url={post.url} text={post.description} user={post.userId} />)}
+                {this.state.posts.map(post => <Post key={post.id} id={post.id} url={post.url} text={post.description} onUserSearch={this.handleUserSearch} user={post.userId} />)}
             </section>
         </div>
     }

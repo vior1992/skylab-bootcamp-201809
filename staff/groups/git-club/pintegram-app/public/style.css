@@ -297,22 +297,26 @@ body{
     height: 250px;
     max-width: 100%; 
     max-height: 250px;
-}
-
-.user__img:hover{
     opacity:0.5;
 }
 
+/* .user__img:hover{
+    opacity:0.5;
+} */
+
 .user__likes{
-    display: none;
+    /* display: none; */
+    display: block;
     position: absolute;
     top:40%;
     left:40%;
 }
 
-.user__img:hover + .user__likes {
+/* .user__img:hover + .user__likes {
     display: block;  
-}
+} */
+
+
 
 
 /* ERROR */
@@ -348,7 +352,6 @@ body{
     max-height: 250px;
 }
 
-
 /* MENU */
 .nav {
     display: flex;
@@ -383,4 +386,8 @@ body{
 }
 .comment{
     width: 395px;
+}
+.comment__post-bold{
+    font-weight: bold;
+    color: #0075a2
 }

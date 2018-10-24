@@ -1,4 +1,4 @@
-// module.exports = { Postit }
+//Data
 
 class Post {
     constructor(userId, url, description) {
@@ -18,11 +18,6 @@ class Comment {
     }
 }
 
-class Like {
-    constructor(userId) {
-        this.id = Date.now()
-        this.userId =userId
-    }
-}
-
-export default { Post, Comment, Like }
+// module.exports = { Post, Comment }
+ 
+export default { Post, Comment}

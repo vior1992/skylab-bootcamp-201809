@@ -6,6 +6,8 @@ global.sessionStorage = require('sessionstorage')
 
 const logic = require('./logic')
 
+logic._app = 'test-pintegram'
+
 const { expect } = require('chai')
 
 // running test from CLI
@@ -14,7 +16,7 @@ const { expect } = require('chai')
 
 describe('logic', () => {
     describe('users', () => {
-        false && describe('register', () => {
+        describe('register', () => {
             it('should succeed on correct data', () =>
                 logic.registerUser('John', 'Doe', `jd-${Math.random()}`, '123')
                     .then(() => expect(true).to.be.true)
@@ -37,10 +39,12 @@ describe('logic', () => {
                 ).to.throw(TypeError, 'undefined is not a string')
             })
 
+            afterEach(() => logic.logout())
+
             // TODO other cases
         })
 
-        false && describe('login', () => {
+        describe('login', () => {
             describe('with existing user', () => {
                 let username, password
 
@@ -77,6 +81,8 @@ describe('logic', () => {
                             expect(err.message).to.equal('username and/or password wrong')
                         })
                 })
+
+                afterEach(() => logic.logout())
             })
 
             it('should fail on undefined username', () => {
@@ -107,8 +113,8 @@ describe('logic', () => {
         })
     })
 
-    describe('postits', () => {
-        false && describe('create', () => {
+    describe('posts', () => {
+        describe('create', () => {
             describe('with existing user', () => {
                 let username, password, text
 
@@ -117,7 +123,6 @@ describe('logic', () => {
 
                     username = `jd-${Math.random()}`
                     password = `123-${Math.random()}`
-
                     text = `hello ${Math.random()}`
 
                     return logic.registerUser(name, surname, username, password)
@@ -125,14 +130,16 @@ describe('logic', () => {
                 })
 
                 it('should succeed on correct data', () =>
-                    logic.createPostit(text)
+                    logic.createPost("https://res.cloudinary.com/skylabcoders/image/upload/v1540308747/skylabcoders/a3kz5hstqqqgkiaisi1t.jpg", text)
                         .then(() => expect(true).to.be.true)
                 )
+
+                afterEach(() => logic.logout())
             })
         })
 
         describe('list', () => {
-            false && describe('with existing user', () => {
+            describe('with existing user', () => {
                 let username, password, text
 
                 beforeEach(() => {
@@ -147,31 +154,33 @@ describe('logic', () => {
                         .then(() => logic.login(username, password))
                 })
 
-                describe('with existing postit', () => {
-                    beforeEach(() => logic.createPostit(text))
+                describe('with existing post', () => {
+                    beforeEach(() => logic.createPost("https://res.cloudinary.com/skylabcoders/image/upload/v1540308747/skylabcoders/a3kz5hstqqqgkiaisi1t.jpg", text))
 
-                    it('should return postits', () =>
-                        logic.listPostits()
-                            .then(postits => {
-                                expect(postits).not.to.be.undefined
-                                expect(postits.length).to.equal(1)
+                    it('should return posts', () =>
+                        logic.listPosts()
+                            .then(posts => {
+                                expect(posts).not.to.be.undefined
+                                expect(posts.length).to.equal(1)
                             })
                     )
                 })
 
-                it('should return no postits', () =>
-                    logic.listPostits()
-                        .then(postits => {
-                            expect(postits).not.to.be.undefined
-                            expect(postits.length).to.equal(0)
+                it('should return no posts', () =>
+                    logic.listPosts()
+                        .then(posts => {
+                            expect(posts).not.to.be.undefined
+                            expect(posts.length).to.equal(0)
                         })
                 )
+
+                afterEach(() => logic.logout())
             })
         })
 
-        false && describe('delete', () => {
+        describe('delete', () => {
             describe('with existing user', () => {
-                let username, password, text, postitId
+                let username, password, text, postId
 
                 beforeEach(() => {
                     const name = 'John', surname = 'Doe'
@@ -185,67 +194,71 @@ describe('logic', () => {
                         .then(() => logic.login(username, password))
                 })
 
-                describe('with existing postit', () => {
+                describe('with existing post', () => {
                     beforeEach(() => 
-                        logic.createPostit(text)
-                            .then(() => logic.listPostits())
-                            .then(postits => postitId = postits[0].id)
+                        logic.createPost("https://res.cloudinary.com/skylabcoders/image/upload/v1540308747/skylabcoders/a3kz5hstqqqgkiaisi1t.jpg", text)
+                            .then(() => logic.listPosts())
+                            .then(posts => postId = posts[0].id)
                     )
 
                     it('should succeed', () =>
-                        logic.deletePostit(postitId)
-                            .then(() => expect(true).to.be.true)
+                        logic.deletePost(postId)
+                            .then(() => logic.listPosts())
+                            .then(posts => expect(posts.length).to.equal(0))
                     )
                 })
+
+                afterEach(() => logic.logout())
             })
         })
 
-        describe('update', () => {
-            describe('with existing user', () => {
-                let username, password, text, postitId
+        // describe('update', () => {
+        //     describe('with existing user', () => {
+        //         let username, password, text, postId
 
-                beforeEach(() => {
-                    const name = 'John', surname = 'Doe'
+        //         beforeEach(() => {
+        //             const name = 'John', surname = 'Doe'
 
-                    username = `jd-${Math.random()}`
-                    password = `123-${Math.random()}`
+        //             username = `jd-${Math.random()}`
+        //             password = `123-${Math.random()}`
 
-                    text = `hello ${Math.random()}`
+        //             text = `hello ${Math.random()}`
 
-                    return logic.registerUser(name, surname, username, password)
-                        .then(() => logic.login(username, password))
-                })
+        //             return logic.registerUser(name, surname, username, password)
+        //                 .then(() => logic.login(username, password))
+        //         })
 
-                describe('with existing postit', () => {
-                    let newText
+        //         describe('with existing post', () => {
+        //             let newText
 
-                    beforeEach(() => {
-                        newText = `hello ${Math.random()}`
+        //             beforeEach(() => {
+        //                 newText = `hello ${Math.random()}`
 
-                        return logic.createPostit(text)
-                            .then(() => logic.listPostits())
-                            .then(([postit]) => postitId = postit.id)
-                    })
+        //                 return logic.createpost(text)
+        //                     .then(() => logic.listposts())
+        //                     .then(([post]) => postId = post.id)
+        //             })
 
-                    it('should succeed', () =>
-                        logic.updatePostit(postitId, newText)
-                            .then(() => {
-                                expect(true).to.be.true
+        //             it('should succeed', () =>
+        //                 logic.updatepost(postId, newText)
+        //                     .then(() => {
+        //                         expect(true).to.be.true
 
-                                return logic.listPostits()
-                            })
-                            .then(postits => {
-                                expect(postits).not.to.be.undefined
-                                expect(postits.length).to.equal(1)
+        //                         return logic.listposts()
+        //                     })
+        //                     .then(posts => {
+        //                         expect(posts).not.to.be.undefined
+        //                         expect(posts.length).to.equal(1)
 
-                                const [postit] = postits
+        //                         const [post] = posts
 
-                                expect(postit.id).to.equal(postitId)
-                                expect(postit.text).to.equal(newText)
-                            })
-                    )
-                })
-            })
-        })
+        //                         expect(post.id).to.equal(postId)
+        //                         expect(post.text).to.equal(newText)
+        //                     })
+        //             )
+        //         })
+        // afterEach(() => logic.logout())
+        //     })
+        // })
     })
 })
