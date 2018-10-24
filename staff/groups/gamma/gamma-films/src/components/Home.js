@@ -7,7 +7,9 @@ import Movie from './Movie'
 import SearchResults from './SearchResults'
 import TopRatedSlide from './TopRatedSlide'
 import CategoryAction from './CategoryAction'
+import CategoryFamily from './CategoryFamily'
 import SearchBar from './SearchBar';
+
 
 class Home extends Component {
 
@@ -28,8 +30,8 @@ class Home extends Component {
             <Route exact path="/" render={props =><SearchBar />}/>
             {/* <Sidebar/> */}
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
-            <Route exact path="/" render={props =><TopRatedSlide/>}/>
-            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/" render={props =><CategoryAction/>}/>
+            <Route exact path="/" render={props =><CategoryFamily/>}/>
 
             <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
 

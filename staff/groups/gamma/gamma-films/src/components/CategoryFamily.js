@@ -3,7 +3,7 @@ import logic from '../logic'
 import MiniCard from './MiniCard'
 
 
-class CategoryAction extends Component {
+class CategoryFamily extends Component {
     state = {
         error: '',
         movies: [],
@@ -29,9 +29,9 @@ class CategoryAction extends Component {
 
     render() {
         return <div className="contain">
-            {this.state.flag && this.handleSearch("28")}
+            {this.state.flag && this.handleSearch("10751")}
             <div className="row">
-                <h4>Action movies</h4>
+                <h4>Family movies</h4>
                 <div className="row__inner">
                     {this.state.movies.map((film) => {
                         return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} />
@@ -43,4 +43,4 @@ class CategoryAction extends Component {
     }
 }
 
-export default CategoryAction
+export default CategoryFamily
