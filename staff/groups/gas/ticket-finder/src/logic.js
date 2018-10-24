@@ -1,7 +1,7 @@
 import data from './data'
 // const data = require('./data')
 
-// const { Event } = data
+const { Event } = data
 
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
@@ -96,7 +96,7 @@ const logic = {
     randomEvents() {
         let randomArray = Array.from(this._events)
         randomArray.sort(() => .5 - Math.random())
-        let randomArrayCarousel = randomArray.slice(0,5)
+        let randomArrayCarousel = randomArray.slice(0,3)
         return randomArrayCarousel
     },
 

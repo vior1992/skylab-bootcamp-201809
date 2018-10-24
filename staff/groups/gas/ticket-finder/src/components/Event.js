@@ -9,8 +9,8 @@ class Event extends Component {
 
     }
 
-    storeFavourites = () => {
-
+    storeFavourites = (e) => {
+        e.preventDefault()
         this.props.favourites(this.props.eventId)
     }
 
@@ -25,7 +25,7 @@ class Event extends Component {
     }
     render(){    
     
-    return <li>
+    return <div className="col-lg-4">
         <div className="card">
             
             <a onClick={this.handleSearchEvent} href="#"><img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /></a>
@@ -38,16 +38,16 @@ class Event extends Component {
 
                     <p> { this.props.eventCity } </p>
 
-                    <p className="card-text"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
+                    <p className="card-link"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
 
-                    <p>{this.props.eventMinPrice ? <span>From {this.props.eventMinPrice} EUR</span> : <span>Price to be announced</span>}</p>
-
-                    <button onClick = {this.storeFavourites}>Add to favourites</button>
-                    
+                   <a href="#" className="favourites-btn" onClick={this.storeFavourites}><i class="fas fa-star">  Add to favourites</i></a>
+                    </div>
                 </div>
-        </div>       
-    </li>
+                </div> 
+
     }
 }     
         
 export default Event
+
+

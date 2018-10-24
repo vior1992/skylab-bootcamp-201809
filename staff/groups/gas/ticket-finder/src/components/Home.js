@@ -6,6 +6,8 @@ import Error from './Error'
 import Header from './Header'
 import EventInfo from './EventInfo'
 import { Route, withRouter } from 'react-router-dom'
+import video from './video.mp4'
+import { Button } from "mdbreact"
 
 class Home extends Component {
      state = { events: [], 
@@ -15,7 +17,9 @@ class Home extends Component {
             eventInfoArray: [], 
             flag: false,
             pageNumber:1,
-            favouriteEvents: []
+            favouriteEvents: [],
+            videoFlag:false,
+            searchFlag: false
          }
     
     componentDidMount() {
@@ -30,7 +34,7 @@ class Home extends Component {
     }
 
     handleSubmit = query => {
-        this.setState({ events: [], error: null })
+        this.setState({ events: [], error: null, videoFlag: true, searchFlag: true})
         try{
             logic.searchEvents(query)
             .then(events => {
@@ -70,25 +74,38 @@ class Home extends Component {
             <InputForm onSubmit={this.handleSubmit} />
             {error && <Error message={error} />}
 
-            {!this.state.flag && <section>
+            {!this.state.videoFlag && <section>
+                <div className="video-container">
+                <video width="1920px" autoPlay muted loop src={video}></video>
+                </div>
+                </section>}
+
+
+                {<section>
+                <div className="index-content">
+                <div className="container-carousel">
                 {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate} eventSearch={this.addToEventInfoArray} favourites = {this.props.favourites} />)}
+                </div>
+                </div>
+                </section>}
 
+
+                {this.state.searchFlag && <section>
+                <div className="index-content">
+                <div className="container-carousel">
                 {this.state.reducedEvents.map(event => <Event favourites = {this.props.favourites}  key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} eventSearch={this.addToEventInfoArray} />)}
-                
-                {!this.state.flag && <button onClick={this.goToPreviousPage}>Previous page</button>}
-                
-            {!this.state.flag && <button onClick={this.goToNextPage}>Next page</button>}
-            
-                
-            </section>}
+                </div>
+                </div>
+                <div className="page-btns">
+                {<Button color="unique" onClick={this.goToPreviousPage}>Previous page</Button>}                
+                {<Button color="unique" onClick={this.goToNextPage}>Next page</Button>}
+                </div>
+                </section>}
 
-            {this.state.flag && <section>
 
+                {this.state.flag && <section>
                 <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name} eventGetTickets={eventInfoArray.url} eventMinPrice={ !!eventInfoArray.priceRanges ? eventInfoArray.priceRanges[0].min : false } latitude = {eventInfoArray._embedded.venues[0].location.latitude} longitude ={eventInfoArray._embedded.venues[0].location.longitude} />
-
-            </section>
-
-            }
+                </section>}
             
         </div>
     }

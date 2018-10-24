@@ -17,9 +17,9 @@ class Favourites extends Component {
     
 
     render() {
-        return <div>
+        return <div className="favouriteList-container">
             <ul>
-            {this.state.favouritesList.map(item => <FavouriteEvents id={item.id} img={item.images[9].url} name={item.name} city={item._embedded.venues[0].city.name} date={item.dates.start.localDate} deleteFavourite={this.props.deleteFavourite}/>)}
+            {this.state.favouritesList.map(item => <FavouriteEvents id={item.id} img={item.images[9].url} name={item.name} city={item._embedded.venues[0].city.name} date={item.dates.start.localDate} deleteFavourite={this.props.deleteFavourite} eventUrl={item.url}/>)}
 
             </ul>
         </div>
