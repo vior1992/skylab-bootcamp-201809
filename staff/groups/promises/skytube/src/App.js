@@ -128,7 +128,7 @@ class App extends Component {
     renderLanding() {
         return <div className="landing">
             <nav>
-                <ul>
+                <ul className="landing__links">
                     <li><Link to='/#register'>Sign Up</Link></li>
                     <li><Link to='/login'>Log In</Link></li>
                 </ul>

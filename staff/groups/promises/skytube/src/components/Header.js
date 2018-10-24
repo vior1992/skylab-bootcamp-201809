@@ -4,7 +4,8 @@ import SignUp from './SignUp'
 function Header(props) {
     return <header className="app-header">
         <div className="container">
-            <h1>Hola SoundSky</h1>
+            <img className="header__logo" src="/img/skytube.logo.png" alt="logo"></img>
+            <h1 className="header__title">Skytube</h1>
         </div>
         <SignUp onSubmit={props.onSubmitSignUp}/>
     </header>
