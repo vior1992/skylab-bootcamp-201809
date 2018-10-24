@@ -10,13 +10,13 @@ class Login extends Component {
 
 
     componentWillMount() {
-        if (sessionStorage.getItem('userId') || sessionStorage.getItem('token') ) this.props.history.push('/')
+        if (sessionStorage.getItem('userId') || sessionStorage.getItem('token')) this.props.history.push('/')
     }
 
     handleLogin = (username, password) => {
         try {
             logicAuth.login(username, password)
-                .then(() => this.props.history.push('/'))
+                .then(() => logicAuth.getUser().then(() => this.props.history.push('/')))
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })

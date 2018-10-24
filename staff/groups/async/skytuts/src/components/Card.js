@@ -33,12 +33,12 @@ class Card extends Component {
 
                 <div className="card-middle">
                     <Link to={`/course/${course.slug}`}><span>+  Course Details</span></Link>
-                    <span>{difficulty.beginner && 
-                    <img className="difficulty" src={require('../images/bitmap1.png')} alt="ayaya" />}
-                    {difficulty.intermediate && 
-                    <img className="difficulty" src={require('../images/bitmap2.png')} alt="ayaya" />}
-                    {difficulty.advanced && 
-                    <img className="difficulty" src={require('../images/bitmap3.png')} alt="ayaya" />} {course.level}</span>
+                    <span>{difficulty.beginner &&
+                        <img className="difficulty" src={require('../images/bitmap1.png')} alt="ayaya" />}
+                        {difficulty.intermediate &&
+                            <img className="difficulty" src={require('../images/bitmap2.png')} alt="ayaya" />}
+                        {difficulty.advanced &&
+                            <img className="difficulty" src={require('../images/bitmap3.png')} alt="ayaya" />} {course.level}</span>
                 </div>
             </div>
 
