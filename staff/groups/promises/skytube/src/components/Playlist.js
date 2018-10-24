@@ -3,11 +3,11 @@ import Video from './Video'
 
 function Playlist(props) {
     return <section className="playlist">
-        <section className="playlist__header">
-            <h1>{props.playlist.title}</h1>
-            <p>{props.playlist.videos && props.playlist.videos.length > 0 ? props.playlist.videos.length + ' videos' : 'Empty playlist'}</p>
+        <section className="playlist-header">
+            <h1 className="playlist-header__title">{props.playlist.title}</h1>
+            <p className="playlist-header__text">{props.playlist.videos && props.playlist.videos.length > 0 ? props.playlist.videos.length + ' videos' : 'Empty playlist'}</p>
         </section>
-        <section className="playlist__main">
+        <section className="playlist-main">
             {props.playlist.videos && props.playlist.videos.length > 0 && (
                 props.playlist.videos.map(video => {
                     return <Video key={video.id} video={video} onClick={props.onVideoClick} />

@@ -1,6 +1,6 @@
 $color-danger: #c3352e
 $color-primary: #2ebcc3
-$color-background: #363636
+$color-background: #121212
 $color-text: #ffffff
 $header-height: 60px
 
@@ -31,18 +31,18 @@ body
         display: grid
         grid-template-columns: 240px calc(100vw - 560px) 320px
         grid-template-rows: $header-height calc(100vh - #{$header-height})
-        background-color: darken($color-background, 15%)
+        background-color: $color-background
         overflow: hidden
 
         .sidenav
             grid-row: 1/3
             grid-column: 1
-            background-color: darken($color-background, 10%)
+            background-color: lighten($color-background, 4%)
             overflow: hidden
 
             &-head
                 height: $header-height
-                background-color: $color-background
+                background-color: lighten($color-background, 7%)
 
                 &__title
                     margin: 0
@@ -71,20 +71,20 @@ body
                 line-height: 24px
 
                 &:hover
-                    background-color: lighten($color-background, 10%)
+                    background-color: lighten($color-background, 21%)
                     cursor: pointer
 
         .search
             grid-row: 1
             grid-column: 2
-            background-color: $color-background
+            background-color: lighten($color-background, 7%)
 
         .profile
             grid-row: 1
             grid-column: 3
             display: flex
             justify-content: flex-end
-            background-color: $color-background
+            background-color: lighten($color-background, 7%)
 
             &__button
                 @extend %button
@@ -94,7 +94,7 @@ body
                 @extend %dropdown
                 top: calc(#{$header-height} - 1rem)
                 right: 1rem
-                background-color: lighten($color-background, 15%)
+                background-color: lighten($color-background, 22%)
                 &--open
                     display: block
 
@@ -131,7 +131,7 @@ body
             &-footer
                 display: flex
                 justify-content: flex-end
-                background-color: $color-background
+                background-color: lighten($color-background, 7%)
                 padding: .5rem
 
                 &__button
@@ -171,7 +171,7 @@ body
                         &__content
                             @extend %dropdown
                             width: 240px
-                            background-color: $color-background
+                            background-color: lighten($color-background, 7%)
                             font-size: 14px
                             overflow: hidden
                             &--open
@@ -224,7 +224,7 @@ body
                         &__input
                             width: 100%
                             padding: .75rem 1.5rem
-                            background-color: $color-background
+                            background-color: lighten($color-background, 7%)
                             border: none
                             border-top: 1px solid #666
                             font-size: 14px
@@ -235,6 +235,30 @@ body
                                 outline: 0
                                 &::placeholder
                                     opacity: 0
+
+            .playlist
+                &-header
+                    background-color: lighten($color-background, 3%)
+                    padding: 1.5rem 3rem
+                    &__title
+                        margin: 0
+                        margin-bottom: .5rem
+                        font-size: 30px
+                    &__text
+                        margin: 0
+                        font-size: 14px
+
+            .video
+                display: flex
+                padding: 1rem
+
+                &__image
+                    height: 120px
+                    margin-right: 1rem
+
+                &__title
+                    margin: 0
+                    font-size: 20px
 
 .video-list
     display: flex
