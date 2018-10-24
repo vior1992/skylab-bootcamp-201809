@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import SearchBar from './SearchBar'
 
 class Movie extends Component {
     state = {
@@ -21,7 +22,7 @@ class Movie extends Component {
         try {
             logic.searchMovie(id)
                 .then(movie => {
-
+                    this.favButtonController()
                     this.setState({ theMovie: movie.original_title, theOverview: movie.overview, thePoster: movie.poster_path, theDate: movie.release_date })
                 })
                 .catch(err => this.setState({ error: err.message }))
@@ -46,10 +47,14 @@ class Movie extends Component {
 
     handleFav = () => {
 
-        this.setState({flagController:true})
-        this.props.handleFavourites(this.props.id)
-        this.favButtonController()
-        this.render()
+        this.setState({ flagController: true })
+        logic.listFavourites(this.props.id)
+            .then(res => {
+                console.log(res)
+                logic.updateFavourites(res, this.props.id)
+                    .then(res => res)
+                    .then(()=>this.favButtonController())
+            })
     }
 
     favButtonController() {
@@ -66,8 +71,7 @@ class Movie extends Component {
                         const showFavButton = listFav.find(_id => _id === id)
 
                         this.setState({ showFavButton })
-                        this.setState({flagController:false})
-                        
+                        this.setState({ flagController: false })
                     })
                     .catch(err => this.setState({ error: err.message }))
 
@@ -78,7 +82,11 @@ class Movie extends Component {
     }
 
     render() {
-        return <div className='card'>
+        
+        return <div className="home">
+        <SearchBar />
+        <div className='card'>
+
             <div className='card_left'>
                 <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
             </div>
@@ -111,6 +119,7 @@ class Movie extends Component {
                 </div>
             </div>
         </div>
+    </div>
 
     }
 }
