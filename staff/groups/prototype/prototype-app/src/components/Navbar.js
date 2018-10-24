@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logic from '../logic'
 import $ from 'jquery'
 
 const closeMenu = () => {
   $('.menu-btn').prop('checked', false)
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <header>
       <section className="navbar bg-gray">
@@ -24,8 +25,13 @@ const Navbar = () => {
             <span>SM</span>
             <span>Db</span>
           </div>
-          <div className="sign">
-          <Link to="/signin">Sign In</Link> or <Link to="/login">Log In</Link>
+          <div className="options">
+            { !Object.keys(JSON.stringify(logic._user)).lenght && <div>
+              <Link to="/signin">Sign In</Link> or <Link to="/login">Log In</Link>
+            </div> }
+            { Object.keys(JSON.stringify(logic._user)).lenght && <div class="profile">
+              <img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" />
+            </div> }
           </div>
         </div>
       </section>

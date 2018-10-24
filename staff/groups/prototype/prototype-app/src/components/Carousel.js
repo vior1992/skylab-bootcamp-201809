@@ -14,19 +14,19 @@ class Carousel extends Component {
       case 'now_playing':
         slick = logic.retrieveInTheatre()
           .then(movies => {
-            this.setState({ movies })
+            this.setState({ movies: logic._inTheatreMovies })
           })
       break
       case 'popular':
       slick = logic.retrievePopular()
           .then(movies => {
-            this.setState({ movies })
+            this.setState({ movies: logic._popularMovies })
           })
       break
       case 'trending':
       slick = logic.retrieveTrending()
           .then(movies => {
-            this.setState({ movies })
+            this.setState({ movies: logic._trendingMovies })
           })
       break
     }
@@ -41,9 +41,21 @@ class Carousel extends Component {
         slidesToShow: 4,
         responsive: [
         {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3,
+          }
+        },
+        {
           breakpoint: 990,
           settings: {
             slidesToShow: 2,
+          }
+        },
+        {
+          breakpoint: 760,
+          settings: {
+            slidesToShow: 1,
           }
         }]
       })
@@ -66,7 +78,8 @@ class Carousel extends Component {
               return (
                 <div className="carousel-img" key={movie.id}>
                   <Link to={`/movie/${movie.id}`}>
-                    <img className="img-fluid" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} />
+                    { movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} /></Link> }
+                    { !movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src="https://dummyimage.com/240x360/707070&text=+" /></Link> }
                   </Link>
                 </div>
               )
