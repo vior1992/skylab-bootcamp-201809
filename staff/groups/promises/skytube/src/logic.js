@@ -116,6 +116,7 @@ const logic = {
         return this.youtube.getVideo(video_id)
             .then(result => {
                 sessionStorage.setItem('current_video', JSON.stringify(result[0]))
+                this.addHistory(video_id)
                 return result[0]
             })
     },
@@ -145,12 +146,35 @@ const logic = {
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
     },
 
+    addHistory(video_id) {
+        const finded = this.history.find({
+            video_id: video_id
+        })
+
+        if (finded.length > 0) this.history.get(finded[0].id).delete()
+
+        this.history.newEntity({
+            video_id: video_id
+        }).save()
+       
+        const history = this.history.all()
+        if (history.length > 20) {
+            this.history.get(history[0].id).delete()
+        }
+        
+        this.skylab.update({history: history}, this.auth.id, this.auth.token)
+    },
+
     getFavourites() {
         return this.favourites.all()
     },
 
     getWatchLater() {
         return this.watch_later.all()
+    },
+
+    getHistory() {
+        return this.history.all()
     },
 
     authInfo() {
