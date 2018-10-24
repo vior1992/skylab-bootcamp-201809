@@ -2,7 +2,7 @@ import React from 'react'
 import SignUp from './SignUp'
 
 function Header(props) {
-    return <header className="App-header">
+    return <header className="app-header">
         <div className="container">
             <h1>Hola SoundSky</h1>
         </div>
