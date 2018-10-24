@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import SearchBar from './SearchBar'
 
 class Movie extends Component {
     state = {
@@ -10,7 +11,7 @@ class Movie extends Component {
         theDate: null,
         err: '',
         showFavButton: false,
-        flagController:true
+        flagController: true
     }
 
     componentDidMount() {
@@ -32,7 +33,7 @@ class Movie extends Component {
 
     handleFav = () => {
 
-        this.setState({flagController:true})
+        this.setState({ flagController: true })
         this.props.handleFavourites(this.props.id)
         this.favButtonController()
         this.render()
@@ -52,8 +53,8 @@ class Movie extends Component {
                         const showFavButton = listFav.find(_id => _id === id)
 
                         this.setState({ showFavButton })
-                        this.setState({flagController:false})
-                        
+                        this.setState({ flagController: false })
+
                     })
                     .catch(err => this.setState({ error: err.message }))
 
@@ -64,7 +65,11 @@ class Movie extends Component {
     }
 
     render() {
-        return <div className='card'>
+        
+        return <div className="home">
+        <SearchBar />
+        <div className='card'>
+
             <div className='card_left'>
                 <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
             </div>
@@ -97,6 +102,7 @@ class Movie extends Component {
                 </div>
             </div>
         </div>
+    </div>
 
     }
 }
