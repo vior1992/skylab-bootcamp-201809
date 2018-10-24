@@ -19,18 +19,24 @@ class Player extends Component {
         this.setState({open: !this.state.open})
     }
 
-    handlePlaylistCheck = (video_id, playlist_id, event) => {
+    handlePlaylistCheck = (playlist_id, event) => {
         if (event.target.checked) {
-            this.props.onAddToPlaylist(video_id, playlist_id)
+            const video = {
+                id: this.props.video.id,
+                title: this.props.video.snippet.title,
+                thumbnail: this.props.video.snippet.thumbnails.medium.url
+            }
+
+            this.props.onAddToPlaylist(video, playlist_id)
         } else {
-            this.props.onRemoveFromPlaylist(video_id, playlist_id)
+            this.props.onRemoveFromPlaylist(this.props.video.id, playlist_id)
         }
     }
 
     checkPlaylist = videos => {
         if (videos) {
             for (var i = 0; i < videos.length; i++) {
-                if (videos[i] === this.props.video.id) {
+                if (videos[i].id === this.props.video.id) {
                     return true
                 }
             }
@@ -53,7 +59,7 @@ class Player extends Component {
                                 {this.props.playlists && this.props.playlists.length > 0 && (
                                     this.props.playlists.map(playlist => {
                                         return <label key={playlist.id} className="playlists__item">{playlist.title}
-                                            <input type="checkbox" onChange={event => this.handlePlaylistCheck(this.props.video.id, playlist.id, event)} checked={this.checkPlaylist(playlist.videos)}/>
+                                            <input type="checkbox" onChange={event => this.handlePlaylistCheck(playlist.id, event)} checked={this.checkPlaylist(playlist.videos)}/>
                                             <span className="checkmark"></span>
                                         </label>
                                     })

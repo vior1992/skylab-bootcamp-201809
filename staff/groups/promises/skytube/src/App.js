@@ -7,6 +7,7 @@ import Search from './components/Search'
 import Profile from './components/Profile'
 import VideoList from './components/VideoList'
 import Player from './components/Player'
+import Playlist from './components/Playlist'
 import logic from './logic'
 
 class App extends Component {
@@ -84,6 +85,16 @@ class App extends Component {
         this.setState({auth_info: logic.authInfo()})
     }
 
+    handleAddToPlaylist = (video, playlist_id) => {
+        logic.addVideoToPlaylist(video, playlist_id)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleRemoveFromPlaylist = (video_id, playlist_id) => {
+        logic.removeVideoFromPlaylist(video_id, playlist_id)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
     handleClickFavourites = () => {
         const favourites = logic.getFavourites()
         console.log(favourites);
@@ -94,19 +105,8 @@ class App extends Component {
         console.log(watch_later);
     }
 
-    handleClickWatchLater = () => {
-        const watch_later = logic.getWatchLater()
-        console.log(watch_later);
-    }
-
-    handleAddToPlaylist = (video_id, playlist_id) => {
-        logic.addVideoToPlaylist(video_id, playlist_id)
-        this.setState({auth_info: logic.authInfo()})
-    }
-
-    handleRemoveFromPlaylist = (video_id, playlist_id) => {
-        logic.removeVideoFromPlaylist(video_id, playlist_id)
-        this.setState({auth_info: logic.authInfo()})
+    handleClickPlaylist = playlist_id => {
+        this.props.history.push('/home/playlist/' + playlist_id)
     }
 
     renderLanding() {
@@ -124,13 +124,14 @@ class App extends Component {
 
     renderHome() {
         return <div className="home">
-            <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} playlists={this.state.auth_info.playlists} />
+            <Sidenav onClickFavourites={this.handleClickFavourites} onClickWatchLater={this.handleClickWatchLater} onClickPlaylist={this.handleClickPlaylist} playlists={this.state.auth_info.playlists} />
             <Search onSearch={this.handleSearch}/>
             <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
             <main className = 'main'>
                 <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
                 <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
                 <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
+                <Route path='/home/playlist/:id' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.playlists.get(props.match.params.id)} />} />
             </main>
         </div>
 	}

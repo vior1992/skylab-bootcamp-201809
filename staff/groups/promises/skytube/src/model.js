@@ -34,7 +34,7 @@ class Model {
     }
 
     get(id) {
-        return this.first(this.find({id:id}))
+        return this.first(this.find({id: parseInt(id)}))
     }
 }
 
