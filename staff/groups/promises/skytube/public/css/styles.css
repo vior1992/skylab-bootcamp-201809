@@ -167,6 +167,7 @@ body .home .profile-footer {
 body .home .main {
   grid-column: 2/4;
   grid-row: 2;
+  overflow-y: scroll;
 }
 body .home .main .videolist {
   margin: 0 3rem;

@@ -15,7 +15,7 @@ const logic = {
     history: new History(),
     auth: JSON.parse(sessionStorage.getItem('auth')) || {},
     video_search: JSON.parse(sessionStorage.getItem('video_search')) || [],
-    current_video: JSON.parse(sessionStorage.getItem('current_video')) || [],
+    current_video: JSON.parse(sessionStorage.getItem('current_video')) || {},
 
     registerUser(name, surname, username, email, password) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
@@ -86,10 +86,12 @@ const logic = {
     logoutUser() {
         sessionStorage.removeItem('auth')
         sessionStorage.removeItem('auth_info')
+        sessionStorage.removeItem('video_search')
+        sessionStorage.removeItem('current_video')
         sessionStorage.removeItem('favourites')
+        sessionStorage.removeItem('history')
         sessionStorage.removeItem('watch_later')
         sessionStorage.removeItem('playlists')
-        sessionStorage.removeItem('history')
         this.auth = {}
     },
 
@@ -111,6 +113,7 @@ const logic = {
                         thumbnail: item.snippet.thumbnails.medium.url,
                     })
                 })
+
                 sessionStorage.setItem('video_search', JSON.stringify(list))
                 return list
             })
@@ -121,30 +124,14 @@ const logic = {
 
         return this.youtube.getVideoPlayer(video.id)
             .then(result => {
+                this.addHistory(video)
                 video.iframe = result[0].player.embedHtml
                 sessionStorage.setItem('current_video', JSON.stringify(video))
-                this.addHistory(video)
                 return video
             })
     },
 
-    getMostPopular(){
-        return this.youtube.mostPopular()
-            .then(result => {
-                let list = []
-                result.forEach(item => {
-                    list.push({
-                        id: item.id.videoId,
-                        title: item.snippet.title,
-                        thumbnail: item.snippet.thumbnails.medium.url,
-                    })
-                })
-                return list
-            })
-    },
-
     addFavourite(video) {
-        console.log(video);
         this.favourites.newEntity({
             id: video.id,
             title: video.title,
@@ -202,11 +189,20 @@ const logic = {
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
     },
 
-    getFavourites() {
-        return {
-            title: 'Favourites',
-            videos: this.favourites.all()
-        }
+    getMostPopular() {
+        return this.youtube.mostPopular()
+            .then(result => {
+                let popular = []
+                result.forEach(item => {
+                    popular.push({
+                        id: item.id.videoId,
+                        title: item.snippet.title,
+                        thumbnail: item.snippet.thumbnails.medium.url,
+                    })
+                })
+
+                return popular
+            })
     },
 
     getHistory() {
@@ -221,6 +217,13 @@ const logic = {
         }
     },
 
+    getFavourites() {
+        return {
+            title: 'Favourites',
+            videos: this.favourites.all()
+        }
+    },
+
     getWatchLater() {
         return {
             title: 'Watch Later',
@@ -231,7 +234,7 @@ const logic = {
     getPlaylist(id) {
         return this.playlists.get(id)
     },
-  
+
     authInfo() {
         let info = JSON.parse(sessionStorage.getItem('auth_info')) || {}
         if (info && Object.keys(info).length > 0) {

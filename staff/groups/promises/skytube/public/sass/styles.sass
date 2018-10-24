@@ -29,7 +29,7 @@ body
     .logIn
         background-color: $color-background
         color: $color-text
-        
+
 
     .home
         position: relative
@@ -56,8 +56,8 @@ body
                 &__logo
                     max-width: 50px
                     max-height: 50px
-                    margin-right: 5px  
-         
+                    margin-right: 5px
+
             &__lists
                 height: calc(100vh - #{$header-height})
                 display: flex
@@ -98,7 +98,7 @@ body
                 border: 1px solid #999999
                 border-radius: 10px
                 margin: 15px 20px
-                padding: 10px   
+                padding: 10px
                 background-color: darken($color-background, 15%)
                 font-family: Roboto, Arial, sans-serif
                 font-size: 18px
@@ -113,7 +113,7 @@ body
                 border-radius: 10px
                 background-color: #999999
                 outline: 0
-            
+
         .profile
             grid-row: 1
             grid-column: 3
@@ -144,7 +144,7 @@ body
 
                 img
                     height: inherit
-                
+
             &__text
                 display: flex
                 flex-direction: column
@@ -173,6 +173,7 @@ body
         .main
             grid-column: 2/4
             grid-row: 2
+            overflow-y: scroll
 
             .videolist
                 margin: 0 3rem
@@ -180,7 +181,7 @@ body
                     display: flex
                     flex-wrap: wrap
                     justify-content: flex-start
-                    
+
                 .video
                     display: block
                     width: 213px
