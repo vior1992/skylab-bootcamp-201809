@@ -39,6 +39,7 @@ class Movie extends Component {
         return <div class='card'>
                 <div class='card_left'>
                     <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
+                    
                 </div>
 
                 <div class='card_right'>
@@ -49,9 +50,6 @@ class Movie extends Component {
                             <li>{this.state.theDate}</li>
                             <li>Action</li>
                         </ul>
-                        <div class='card_right__rating'>
-                            <button type="button" onClick={this.handleFav} >FAV</button>
-                        </div>
                         <div class='card_right__review'>
                             <p>{this.state.theOverview}</p>
                         </div>
