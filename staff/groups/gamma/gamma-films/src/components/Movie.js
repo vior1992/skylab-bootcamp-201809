@@ -20,7 +20,7 @@ class Movie extends Component {
                 .then(movie => {
 
                     this.setState({ theMovie: movie.original_title, theOverview: movie.overview, thePoster: movie.poster_path, theDate: movie.release_date })
-
+                    console.log(isLoggedIn)
 
                 })
                 .catch(err => this.setState({ error: err.message }))
@@ -28,6 +28,10 @@ class Movie extends Component {
         catch (err) {
             this.setState({ error: err.message })
         }
+
+    }
+
+    handleFav= () => {
 
     }
 
@@ -41,12 +45,12 @@ class Movie extends Component {
                     <h1>{this.state.theMovie}</h1>
                     <div class='card_right__details'>
                         <ul>
-                            <li>{this.state.theMovie}</li>
+                            <li>ID: {this.props.id}</li>
                             <li>{this.state.theDate}</li>
                             <li>Action</li>
                         </ul>
                         <div class='card_right__rating'>
-                            FAV
+                            {this.props.isLoggedIn && <button type="button" onClick={this.props.handleFavClick(this.props.id)} >FAV</button>}
                         </div>
                         <div class='card_right__review'>
                             <p>{this.state.theOverview}</p>
@@ -57,17 +61,6 @@ class Movie extends Component {
                     </div>
                 </div>
             </div>
-         
-
-
-            {/* <div>
-            <div>
-            <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}  />
-            </div>
-            <p>{this.state.theMovie}</p>
-            <p>{this.state.theDate}</p>
-            <p>{this.state.theOverview}</p>
-        </div> */}
 
             }
         }
