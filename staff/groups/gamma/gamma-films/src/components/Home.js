@@ -7,6 +7,7 @@ import Movie from './Movie'
 import SearchResults from './SearchResults'
 import TopRatedSlide from './TopRatedSlide'
 import CategoryAction from './CategoryAction'
+import SearchBar from './SearchBar';
 
 class Home extends Component {
 
@@ -15,27 +16,7 @@ class Home extends Component {
         error: '',
         movies: []
     }
-
-    handleQueryChange = event => {
-
-        const query = event.target.value
-
-        this.setState({ query })
-    }
-
-    handleSubmit = event => {
-
-        event.preventDefault()
-
-        const query = this.state.query
-
-        this.props.history.push(`/search/${query}`)
-    }
-
-    verResultados = event => {
-        event.preventDefault()
-        console.log(this.state.movies)
-    }
+    
 
     handleCardClick = id => {
         this.props.history.push(`/movie/${id}`)
@@ -43,13 +24,8 @@ class Home extends Component {
 
     render() {
         return <div className="home">
-            <form className="form_search" onSubmit={this.handleSubmit}>
-                <input className="search-bar" type='text' placeholder='Write a title...' onChange={this.handleQueryChange}></input>
-                <button className="button_search" type='submit'></button>
-            </form>
 
-            {/* <TopRatedSlide/> */}
-
+            <Route exact path="/" render={props =><SearchBar />}/>
             {/* <Sidebar/> */}
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
