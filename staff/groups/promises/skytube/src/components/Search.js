@@ -10,7 +10,9 @@ class Search extends Component {
     render() {
         return <div className="search">
             <input className="search__input" type="search" value={this.state.search} placeholder="Search" onChange={this.handleOnChange}></input>
-            <button className="search__button" onClick={() => this.props.onSearch(this.state.search)}><span>ICON</span></button>
+            <button className="search__button" onClick={() => this.props.onSearch(this.state.search)}>
+                <span className="fas fa-search"></span>
+            </button>
         </div>
     }
 }

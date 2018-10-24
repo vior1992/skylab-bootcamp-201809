@@ -3,6 +3,7 @@ import React from 'react'
 function Sidenav(props) {
     return <aside className="sidenav">
         <div className="sidenav-head">
+            <img className="sidenav-head__logo" src="/img/skytube.logo.png" alt="logo"></img>
             <h1 className="sidenav-head__title">SkyTube</h1>
         </div>
 
