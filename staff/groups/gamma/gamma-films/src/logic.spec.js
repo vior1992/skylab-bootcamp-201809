@@ -6,7 +6,7 @@ const logic = require('./logic')
 
 const { expect } = require('chai')
 
-const flag = false
+const flag = true
 
 
 describe('logic', () => {
@@ -230,29 +230,6 @@ describe('logic', () => {
 
         })
 
-        // !flag && describe('logout', () => {
-        //     describe('with user logged', () => {
-        //         let username, password
-
-        //         beforeEach(() => {
-        //             const name = 'John', surname = 'Doe'
-
-        //             username = `jd-${Math.random()}`
-        //             password = `123-${Math.random()}`
-
-        //             return logic.registUser(name, surname, username, password)
-        //                 .then(() => logic.loginUser(username, password))
-        //         })
-
-        //         it('should logout when logged', () =>
-        //             logic.logout()
-        //                 expect(logic._user).not.to.be.undefined
-        //                 expect(logic._user).to.equal('')
-
-        //         )
-        //     })
-        // })
-
         flag && describe('searchMovies', () => {
 
             it('should succes on correct query', () => {
@@ -291,7 +268,7 @@ describe('logic', () => {
 
         })
 
-        !flag && describe('searchMovies', () => {
+        flag && describe('searchMovies', () => {
 
             it('should succes on correct query', () => {
                 const search = 'Batman'
@@ -299,11 +276,14 @@ describe('logic', () => {
                     .then(() => expect(true).to.be.true)
             })
 
-            it('should return an object', () => {
+            it('should return an Array length 20', () => {
                 const search = 'Batman'
                 return logic.searchMovies(search)
                     .then((results) => {
                         expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                        expect(results).to.have.lengthOf(20)
+                        
                     })
             })
 
@@ -333,6 +313,153 @@ describe('logic', () => {
                 expect(() =>
                     logic.searchMovies(search)
                 ).to.throw(Error, 'query is empty or blank')
+            })
+
+        })
+
+        flag && describe('searchMovie', () => {
+
+            it('should succes on correct id', () => {
+                const id = '268' //id of Batman
+                return logic.searchMovie(id)
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an object', () => {
+                const id = '268'
+                return logic.searchMovie(id)
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('object')
+                        expect(results.original_title).to.equal('Batman')
+                        
+                    })
+            })
+
+            it('should fail on undefined id', () => {
+                const id = undefined
+                expect(() =>
+                    logic.searchMovie(id)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null id', () => {
+                const id = null
+                expect(() =>
+                    logic.searchMovie(id)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object id', () => {
+                const id = {}
+                expect(() =>
+                    logic.searchMovie(id)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty id', () => {
+                const id = '    \t'
+                expect(() =>
+                    logic.searchMovie(id)
+                ).to.throw(Error, 'id is empty or blank')
+            })
+
+        })
+
+        flag && describe('searchMoviesByCategories', () => {
+
+            it('should succes on correct genres', () => {
+                const genres = '14' //s of Fantasy
+                return logic.searchMoviesByCategories(genres)
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an object', () => {
+                const genres = '14'
+                return logic.searchMoviesByCategories(genres)
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                        expect(results).to.have.lengthOf(20)
+                        
+                    })
+            })
+
+            it('should fail on undefined s', () => {
+                const genres = undefined
+                expect(() =>
+                    logic.searchMoviesByCategories(genres)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null s', () => {
+                const genres = null
+                expect(() =>
+                    logic.searchMoviesByCategories(genres)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object s', () => {
+                const genres = {}
+                expect(() =>
+                    logic.searchMoviesByCategories(genres)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty s', () => {
+                const genres = '    \t'
+                expect(() =>
+                    logic.searchMoviesByCategories(genres)
+                ).to.throw(Error, 's is empty or blank')
+            })
+
+        })
+
+        flag && describe('searchPopularMovies', () => {
+
+            it('should succes on correct date', () => {
+                const date = 'week' 
+                return logic.searchPopularMovies(date)
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an object', () => {
+                const date = 'week'
+                return logic.searchPopularMovies(date)
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                        expect(results).to.have.lengthOf(20)
+                        
+                    })
+            })
+
+            it('should fail on undefined date', () => {
+                const date = undefined
+                expect(() =>
+                    logic.searchPopularMovies(date)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null date', () => {
+                const date = null
+                expect(() =>
+                    logic.searchPopularMovies(date)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object date', () => {
+                const date = {}
+                expect(() =>
+                    logic.searchPopularMovies(date)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty date', () => {
+                const date = '    \t'
+                expect(() =>
+                    logic.searchPopularMovies(date)
+                ).to.throw(Error, 'date is empty or blank')
             })
 
         })

@@ -30,7 +30,7 @@ class Navbar extends Component {
                 </div>}
 
                 <div className="header">
-                    <img className="logo" />
+                    <img onClick={this.props.onLogoClick} className="logo" />
                 </div>
             </div>
 

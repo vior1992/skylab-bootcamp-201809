@@ -124,6 +124,10 @@ const logic = {
     },
 
     searchMovie(id) {
+
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+
+        if (!id.trim()) throw Error('id is empty or blank')
         
 
         return fetch('https://api.themoviedb.org/3/movie/'+ id +'?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
@@ -142,6 +146,11 @@ const logic = {
     },
 
     searchMoviesByCategories(genres) {
+
+        if (typeof genres !== 'string') throw TypeError(`${genres} is not a string`)
+
+        if (!genres.trim()) throw Error('genres is empty or blank')
+
         return fetch('https://api.themoviedb.org/3/discover/movie?api_key=e187746b7167e4886a5d0a2f1ead5a18&with_genres=' + genres, {
             method: 'GET',
             headers: {
@@ -159,6 +168,11 @@ const logic = {
     },
 
     searchPopularMovies(date) {
+
+        if (typeof date !== 'string') throw TypeError(`${date} is not a string`)
+
+        if (!date.trim()) throw Error('date is empty or blank')
+
         return fetch('https://api.themoviedb.org/3/trending/movie/' + date + '?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
             method: 'GET',
             headers: {
