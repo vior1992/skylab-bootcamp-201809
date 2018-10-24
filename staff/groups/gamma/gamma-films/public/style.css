@@ -212,8 +212,6 @@
   opacity: 1;
 }
 
-<<<<<<< HEAD
-=======
 .card {
   width: 800px;
   height: 400px;
@@ -466,7 +464,6 @@
     transition-duration: 0.5s;
   }
 }
->>>>>>> develop
 .contain {
   width: 100%;
 }
@@ -478,10 +475,7 @@
   margin: 43.75px 0;
   padding-bottom: 10px;
   overflow: scroll;
-<<<<<<< HEAD
-=======
   overflow-y: hidden;
->>>>>>> develop
   width: 100%;
 }
 
