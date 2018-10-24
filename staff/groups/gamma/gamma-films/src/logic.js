@@ -139,7 +139,7 @@ const logic = {
         return fetch('https://api.themoviedb.org/3/trending/movie/' + date + '?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
             method: 'GET',
             headers: {
-                
+                'Content-Type': 'application/json; charset=utf-8'
             }
         })
             .then(res => res.json())
@@ -150,41 +150,7 @@ const logic = {
 
                 return results
             })
-    },
-
-    // listFavourites(){
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Authorization': `Bearer ${this._token}`
-    //         }
-            
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             if (res.error) throw Error(res.error)
-
-    //             return this._favs = res.data.favs || []
-    //         })
-
-    // },
-
-    // FavouriteMovies(FavId) {
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json; charset=utf-8',
-    //             'Authorization': `Bearer ${this._token}`
-    //         }
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             if (res.error) throw Error(res.error)
-
-    //             console.log('respuesta retrieve: ' + res)
-    //             return this._user = res.data || []
-    //         })
-    // }
+    }
 
 }
 
