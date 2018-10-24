@@ -1,12 +1,14 @@
 import React from 'react'
 import Search from './Search'
-import CarrouselList from './CarrouselList';
+import Carousel from './Carousel';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div>
       <Search />
-      {/* <CarrouselList /> */}
+      <Carousel title={"Now playing"} listType="now_playing" />
+      <Carousel title={"Trending"} listType="trending" />
+      <Carousel title={"Popular"} listType="popular" />
     </div>
   )
 }
