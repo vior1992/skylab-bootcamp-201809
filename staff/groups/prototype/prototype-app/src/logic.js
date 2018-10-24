@@ -3,8 +3,8 @@
 
 const logic = {
   _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
-  _user: {},
-  // _user: JSON.parse(sessionStorage.getItem('user')) || {},
+  _user: JSON.parse(sessionStorage.getItem('user')) || {},
+  // _user: {},
   _trendingMovies: [],
   _inTheatreMovies: [],
   _popularMovies: [],
@@ -64,8 +64,14 @@ const logic = {
         this._user.id = id
         this._user.token = token
 
-        // sessionStorage.setItem('user', JSON.stringify(this._user))
+        sessionStorage.setItem('user', JSON.stringify(this._user))
       })
+  },
+
+  get loggedIn() {
+
+    if (JSON.stringify(logic._user) !== '{}') return true
+    else return false
   },
 
   retrieveTrending() {
@@ -157,6 +163,7 @@ const logic = {
         this._user.seen = response.data.movies_seen || []
         this._user.pending = response.data.movies_pending || []
         // this._userFavourites = response.data.movies_favourites || []
+        sessionStorage.setItem('user', JSON.stringify(this._user))
       })
   },
 
@@ -198,7 +205,7 @@ const logic = {
   },
 
   deleteUserSeen(id) {
-    const seen = this._user.seen.filter(movie => movie.id !== id)
+    const seen = this._user.seen.filter(movie => movie.id != id)
     this._user.seen = seen
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
@@ -256,7 +263,7 @@ const logic = {
   },
 
   deleteUserPending(id) {
-    const pending = this._user.pending.filter(movie => movie.id !== id)
+    const pending = this._user.pending.filter(movie => movie.id != id)
     this._user.pending = pending
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
@@ -298,9 +305,9 @@ const logic = {
   checkMovieStatus(id) {
     let status = undefined
 
-    if (this._user.seen.find(movie => movie.id === id)) {
+    if (this._user.seen.find(movie => movie.id == id)) {
       status = 'seen'
-    } else if (this._user.pending.find(movie => movie.id === id)) {
+    } else if (this._user.pending.find(movie => movie.id == id)) {
       status = 'pending'
     }
 
@@ -323,6 +330,188 @@ const logic = {
       .then(response => {
         if (response.error) throw Error(response.error)
       })
+  },
+
+  checkInList(id, list) {
+
+    let index = -1
+
+    switch (list) {
+      case 'seen':
+        index = this._user.seen.findIndex(movie => movie.id == id)
+        break
+      case 'pending':
+        index = this._user.pending.findIndex(movie => movie.id == id)
+        break
+    }
+    return index
+  },
+
+  seenClick(id, movie) {
+
+    let ret = undefined
+
+    if (JSON.stringify(this._user) !== '{}') {
+
+      let indexSeen = this.checkInList(id, 'seen')
+      let indexPending = this.checkInList(id, 'pending')
+
+      if (indexSeen !== -1) {
+
+        logic.deleteUserSeen(id)
+
+        ret = '00'
+
+      } else {
+
+        logic.addUserSeen({ id: movie.id, name: movie.title, poster_path: movie.poster_path, like: false, unlike: false, favourite: false })
+
+        ret = '10'
+
+        if (indexPending !== -1) {
+          logic.deleteUserPending(id)
+        }
+      }
+    } else {
+      ret = 'You should log in before to use that feature'
+    }
+    return ret
+  },
+
+  pendingClick(id, movie) {
+    let ret = undefined
+
+    if (JSON.stringify(logic._user) !== '{}') {
+
+      let indexSeen = this.checkInList(id, 'seen')
+      let indexPending = this.checkInList(id, 'pending')
+
+      if (indexPending !== -1) {
+
+        logic.deleteUserPending(movie.id)
+        ret = '00'
+
+      } else {
+
+        logic.addUserPending({ id: movie.id, name: movie.title, poster_path: movie.poster_path, like: undefined, favourite: false })
+        ret = '01'
+
+        if (indexSeen !== -1) {
+
+          logic.deleteUserSeen(movie.id)
+
+        }
+
+      }
+    } else ret = 'You should log in before to use that feature'
+    return ret
+  },
+
+  favouriteClick(id) {
+    let ret = undefined
+
+    if (JSON.stringify(logic._user) !== '{}') {
+
+      let indexSeen = this.checkInList(id, 'seen')
+
+      if (indexSeen !== -1) {
+
+        let check = this._user.seen[indexSeen].favourite
+
+        if (check) {
+
+          this._user.seen[indexSeen].favourite = false
+
+          logic.updateUserSeen(this._user.seen)
+
+          ret = '0'
+
+        } else {
+          this._user.seen[indexSeen].favourite = true
+
+          logic.updateUserSeen(this._user.seen)
+
+          ret = '1'
+        }
+      } else {
+        ret = 'You should have seen the movie first'
+      }
+
+    } else ret = 'You should log in before to use that feature'
+
+    return ret
+  },
+
+  likeClick(id) {
+    let ret = undefined
+
+    if (JSON.stringify(logic._user) !== '{}') {
+      let indexSeen = this.checkInList(id, 'seen')
+
+      if (indexSeen !== -1) {
+
+        let checkLike = this._user.seen[indexSeen].like
+
+        if (checkLike) {
+
+          this._user.seen[indexSeen].like = false
+
+          logic.updateUserSeen(logic._user.seen)
+
+          ret = '00'
+
+        } else {
+
+          this._user.seen[indexSeen].like = true
+
+          this._user.seen[indexSeen].unlike = false
+
+          logic.updateUserSeen(logic._user.seen)
+
+          ret = '10'
+
+        }
+      } else ret = 'You should have seen the movie first'
+
+    } else ret = 'You should log in before to use that feature'
+
+    return ret
+  },
+
+  unlikeClick(id) {
+    let ret = undefined
+
+    if (JSON.stringify(logic._user) !== '{}') {
+      let indexSeen = this.checkInList(id, 'seen')
+
+      if (indexSeen !== -1) {
+
+        let checkUnlike = this._user.seen[indexSeen].unlike
+
+        if (checkUnlike) {
+
+          this._user.seen[indexSeen].unlike = false
+
+          logic.updateUserSeen(logic._user.seen)
+
+          ret = '00'
+
+        } else {
+
+          this._user.seen[indexSeen].unlike = true
+
+          this._user.seen[indexSeen].like = false
+
+          logic.updateUserSeen(logic._user.seen)
+
+          ret = '01'
+
+        }
+      } else ret = 'You should have seen the movie first'
+
+    } else ret = 'You should log in before to use that feature'
+
+    return ret
   },
 
   beautifyQuery(string) {
