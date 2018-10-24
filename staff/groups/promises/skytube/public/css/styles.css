@@ -56,8 +56,9 @@ body .logIn__input {
   margin: 10px 0 20px 0;
   border-radius: 5px;
   height: 30px;
-  width: 95%;
+  width: 92.5%;
   border: none;
+  padding-left: 5px;
 }
 body .logIn__title {
   display: flex;
