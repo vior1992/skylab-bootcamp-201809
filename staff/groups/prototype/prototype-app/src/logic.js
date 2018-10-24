@@ -70,7 +70,7 @@ const logic = {
     else return false
   },
 
-  logout(){
+  logout() {
     this._user = {}
     this._trendingMovies = []
     this._inTheatreMovies = []
@@ -119,9 +119,9 @@ const logic = {
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
 
-          this._popularMovies = response.results || []
+        this._popularMovies = response.results || []
 
-          return response
+        return response
       })
   },
 
@@ -136,9 +136,9 @@ const logic = {
       .then(response => response.json())
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
-        
+
         debugger
-        
+
         return response || {}
       })
   },
@@ -360,6 +360,24 @@ const logic = {
         break
     }
     return index
+  },
+
+  checkState(id, state) {
+    let check = false
+    let indexSeen = this.checkInList(id, 'seen')
+
+    switch (state) {
+      case 'favourite':
+      check = this._user.seen[indexSeen].favourite
+      break
+      case 'like':
+        check = this._user.seen[indexSeen].like
+        break
+      case 'unlike':
+        check = this._user.seen[indexSeen].unlike
+        break
+    }
+    return check
   },
 
   seenClick(id, movie) {
