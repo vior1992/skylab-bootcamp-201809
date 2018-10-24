@@ -48,16 +48,20 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
+            <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
+
             {/* <TopRatedSlide/> */}
 
             {/* <Sidebar/> */}
-            <Route exact path="/" render={props =><TopRatedSlide/>}/>
-            <Route exact path="/" render={props =><TopRatedSlide/>}/>
-            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <div>
+                <Route exact path="/" render={props => <TopRatedSlide />} />
+                <Route exact path="/" render={props => <TopRatedSlide />} />
+                <Route exact path="/" render={props => <TopRatedSlide />} />
+            </div>
 
-            <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
-
-            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
+            <div class="cards">
+                <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
+            </div>
 
         </div>
     }
