@@ -23,6 +23,7 @@ const logic = {
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
         if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
 
+
         if (!name.trim()) throw Error('name is empty or blank')
         if (!surname.trim()) throw Error('surname is empty or blank')
         if (!username.trim()) throw Error('username is empty or blank')
@@ -83,6 +84,8 @@ const logic = {
         this._userId = null
         this._token = null
         this._postLiked = []
+        this._comments= []
+        this._postsOtherUser=[]
 
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
@@ -169,7 +172,7 @@ const logic = {
     },
 
     retriveUser(userId) {
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -213,7 +216,7 @@ const logic = {
     },
 
     listAllPosts() {
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -237,7 +240,7 @@ const logic = {
             })
     },
     retrievePosts(postsId) {
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -277,7 +280,7 @@ const logic = {
     },
 
     searchUserByName(username) {
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -294,7 +297,7 @@ const logic = {
 
     likesPost(postId) {
 
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -356,7 +359,7 @@ const logic = {
     },
     commentsPost(postId) {
 
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -384,7 +387,7 @@ const logic = {
 
         if (typeof postId !== 'number') throw TypeError(`${postId} is not a string`)
 
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
@@ -412,7 +415,7 @@ const logic = {
 
         if (typeof commentId !== 'number') throw TypeError(`${commentId} is not a string`)
 
-        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=pintegram`, {
+        return fetch(`https://skylabcoders.herokuapp.com/api/users?app=${this._app}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
