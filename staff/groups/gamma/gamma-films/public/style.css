@@ -102,6 +102,12 @@
   color: #ffffff;
   outline-color: #01010100;
 }
+.body .video-frame {
+  width: 90%;
+  height: 100%;
+  max-width: 800px;
+  min-height: 400px;
+}
 .body .login_component {
   background: #000000;
   background-position: center;
@@ -303,10 +309,6 @@
   color: #ffda00;
   margin: 0;
 }
-.card__button {
-  padding: 0 0 0 40px;
-  margin: 30px 0 0 0;
-}
 .card__button a {
   color: #ffda00;
   text-decoration: none;
@@ -336,6 +338,30 @@
   transition-property: all;
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
+  padding: 0 0 0 40px;
+  margin: 30px 0 0 0;
+}
+.card .unlike_btn {
+  width: 20px;
+  height: 20px;
+  background: url("unlike.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0px;
+  color: #ffffff;
+  outline-color: #01010100;
+}
+.card .like_btn {
+  width: 20px;
+  height: 20px;
+  background: url("like.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0px;
+  color: #ffffff;
+  outline-color: #01010100;
 }
 
 @media screen and (max-width: 800px) {

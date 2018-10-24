@@ -111,7 +111,11 @@ $moveRight : $tileWidth * ($growFactor - 1)
                 color: #ffffff
                 outline-color: #01010100
 
-
+    .video-frame
+        width: 90%
+        height: 100%
+        max-width: 800px
+        min-height: 400px
 
     .login_component
         background: #000000
@@ -352,8 +356,30 @@ $moveRight : $tileWidth * ($growFactor - 1)
           -webkit-transition-duration: 0.5s
           transition-duration: 0.5s
         
-        padding: 0 0 0 40px
-        margin: 30px 0 0 0
+          padding: 0 0 0 40px
+          margin: 30px 0 0 0
+
+    .unlike_btn
+        width: 20px
+        height: 20px
+        background: url('unlike.png')
+        background-position: center
+        background-repeat: no-repeat
+        background-size: contain
+        border: 0px
+        color: #ffffff
+        outline-color: #01010100
+    .like_btn
+        width: 20px
+        height: 20px
+        background: url('like.png')
+        background-position: center
+        background-repeat: no-repeat
+        background-size: contain
+        border: 0px
+        color: #ffffff
+        outline-color: #01010100
+
 
 @media screen and (max-width: 800px) 
     .cards
