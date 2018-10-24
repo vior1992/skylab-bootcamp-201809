@@ -102,7 +102,7 @@ const logic = {
 
     searchEvents(query) {
         if (query===undefined) throw Error(`${query} is not a valid query`)
-        return fetch(`https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events.json?size=30&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
+        return fetch(`https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events.json?size=30&countryCode=ES&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
             method: 'GET',
         })
             .then(res => res.json())

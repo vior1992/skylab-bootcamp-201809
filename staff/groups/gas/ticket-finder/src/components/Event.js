@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
+import logic from '../logic'
 
 class Event extends Component {
     
@@ -11,8 +13,17 @@ class Event extends Component {
 
     storeFavourites = (e) => {
         e.preventDefault()
-        this.props.favourites(this.props.eventId)
+        logic.storeFavourites(this.props.eventId)
     }
+
+    componentWillReceiveProps(props) {
+        props.onHideCarousel()
+    }
+
+    onHideCarousel = () => {
+        this.props.hideCarousel()
+    }
+
 
     changeDate = () => {
         const monthNames = ['', "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -28,7 +39,7 @@ class Event extends Component {
     return <div className="col-lg-4">
         <div className="card">
             
-            <a onClick={this.handleSearchEvent} href="#"><img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /></a>
+            <Link to= {`/home/events/${this.props.eventId}`}>  <img onClick={this.onHideCarousel} className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /> </Link>
 
                 <div className="card-body">
 
