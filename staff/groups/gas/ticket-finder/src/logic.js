@@ -1,7 +1,7 @@
 import data from './data'
 // const data = require('./data')
 
-// const { Event } = data
+const { Event } = data
 
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
@@ -81,7 +81,7 @@ const logic = {
     },
 
     showEvents() {
-        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=ES&apikey=ELXA0H0YPzUTFYrjeH4AG5g6y4eWTVSO&size=200`, {
+        return fetch('https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events.json?countryCode=ES&apikey=ELXA0H0YPzUTFYrjeH4AG5g6y4eWTVSO&size=200', {
             method: 'GET',
         })
             .then(res => res.json())
@@ -96,13 +96,13 @@ const logic = {
     randomEvents() {
         let randomArray = Array.from(this._events)
         randomArray.sort(() => .5 - Math.random())
-        let randomArrayCarousel = randomArray.slice(0,5)
+        let randomArrayCarousel = randomArray.slice(0,3)
         return randomArrayCarousel
     },
 
     searchEvents(query) {
         if (query===undefined) throw Error(`${query} is not a valid query`)
-        return fetch(`https://app.ticketmaster.com/discovery/v2/events.json?size=30&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
+        return fetch(`https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events.json?size=30&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
             method: 'GET',
         })
             .then(res => res.json())
@@ -114,7 +114,7 @@ const logic = {
     },
 
     searchEventInfo(id) {
-        return fetch(`https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp`, {
+        return fetch(`https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp`, {
             method: 'GET',
         })
             .then(res => res.json())

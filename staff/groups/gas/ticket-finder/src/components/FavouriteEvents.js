@@ -8,16 +8,14 @@ class FavouriteEvents extends Component {
 
     render() {
         
-    return <li>
-    <div className="card">
+    return <li class="favourites-list">
     <img src={this.props.img}></img>
         <p>{this.props.name}</p>
         <p>{this.props.date}</p>
         <p>{this.props.city}</p>
-        <button>GET TICKETS</button>
-        <button onClick={this.onClickDelete}>X</button>
-
-    </div>       
+        <p ><a className="card-link" target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
+        <button className="delete-button" href="#" onClick={this.onClickDelete}>X</button>
+ 
 </li>
     }
 }
