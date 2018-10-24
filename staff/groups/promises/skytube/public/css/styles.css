@@ -23,6 +23,10 @@ body {
   font-family: Roboto, Arial, sans-serif;
   color: #ffffff;
 }
+body .logIn {
+  background-color: #121212;
+  color: #ffffff;
+}
 body .home {
   position: relative;
   display: grid;
@@ -38,11 +42,17 @@ body .home .sidenav {
   overflow: hidden;
 }
 body .home .sidenav-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   height: 60px;
   background-color: #242424;
 }
-body .home .sidenav-head__title {
-  margin: 0;
+body .home .sidenav-head__logo {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 5px;
 }
 body .home .sidenav__lists {
   height: calc(100vh - 60px);
@@ -74,7 +84,32 @@ body .home .sidenav__item:hover {
 body .home .search {
   grid-row: 1;
   grid-column: 2;
-  background-color: #242424;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+}
+body .home .search__input {
+  width: 80%;
+  height: 30px;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  margin: 15px 20px;
+  padding: 10px;
+  background-color: black;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+  outline: 0;
+}
+body .home .search__button {
+  width: 60px;
+  height: 30px;
+  margin-left: -60px;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  background-color: #999999;
+  outline: 0;
 }
 body .home .profile {
   grid-row: 1;
@@ -102,7 +137,6 @@ body .home .profile__info {
 }
 body .home .profile__image {
   height: inherit;
-  border-radius: 50px;
 }
 body .home .profile__image img {
   height: inherit;
@@ -133,7 +167,28 @@ body .home .profile-footer {
 body .home .main {
   grid-column: 2/4;
   grid-row: 2;
-  overflow-y: scroll;
+}
+body .home .main .videolist {
+  margin: 0 3rem;
+}
+body .home .main .videolist .videolist__videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+body .home .main .videolist .video {
+  display: block;
+  width: 213px;
+  padding: 2px;
+  margin-bottom: 18px;
+}
+body .home .main .videolist .video__image {
+  height: 120px;
+  margin-right: 0;
+}
+body .home .main .videolist .video__title {
+  margin: 0;
+  font-size: 14px;
 }
 body .home .main .player {
   width: 576px;

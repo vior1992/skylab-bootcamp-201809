@@ -21,12 +21,15 @@ class LogIn extends Component {
     }
 
     render () {
-        return <form onSubmit={this.handleSubmit}>
-            <input placeholder='username' onChange={this.handleUsernameChange}/>
-            <input type='password' placeholder='password' onChange={this.handlePasswordChange}/>
-            <button type='submit'>Log In</button>
-            <Link to='/'>Return</Link>
-        </form>
+        return <div>
+            <h1>Skytube</h1>
+            <form className = "logIn" onSubmit={this.handleSubmit}>
+                <input placeholder='username' onChange={this.handleUsernameChange}/>
+                <input type='password' placeholder='password' onChange={this.handlePasswordChange}/>
+                <button classname = "logIn__button" type='submit'>Log In</button>
+                <Link to='/'>Return</Link>
+            </form>
+    </div>
     }
 }
 

@@ -1,13 +1,16 @@
 import React from 'react'
-import VideoListItem from './VideoListItem'
+import Video from './Video'
 
 function VideoList(props) {
     return <section className="videolist">
+            <h3>{props.title}</h3>
+            <div className="videolist__videos">
         {props.videoList && props.videoList.length > 0 && (
             props.videoList.map(video => {
-                return <VideoListItem key={video.id.videoId} id={video.id.videoId} title={video.snippet.title} img={video.snippet.thumbnails.medium.url} onClick={props.onVideoClick} />
+                return <Video key={video.id} video={video} onClick={props.onVideoClick}/>
             })
         )}
+        </div>
     </section>
 }
 
