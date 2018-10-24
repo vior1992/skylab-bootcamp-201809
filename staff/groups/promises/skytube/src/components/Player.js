@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+
 class Player extends Component {
     state = {open: false}
 
@@ -18,6 +19,25 @@ class Player extends Component {
         this.setState({open: !this.state.open})
     }
 
+    handlePlaylistCheck = (video_id, playlist_id, event) => {
+        if (event.target.checked) {
+            this.props.onAddToPlaylist(video_id, playlist_id)
+        } else {
+            this.props.onRemoveFromPlaylist(video_id, playlist_id)
+        }
+    }
+
+    checkPlaylist = videos => {
+        if (videos) {
+            for (var i = 0; i < videos.length; i++) {
+                if (videos[i] === this.props.video.id) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
     render() {
         return <section className="player">
             <div className="player__video" dangerouslySetInnerHTML={this.iframe()}></div>
@@ -32,9 +52,9 @@ class Player extends Component {
                             <ul className="playlists__menu">
                                 {this.props.playlists && this.props.playlists.length > 0 && (
                                     this.props.playlists.map(playlist => {
-                                        return <label key={playlist.id} class="playlists__item">{playlist.title}
-                                            <input type="checkbox" />
-                                            <span class="checkmark"></span>
+                                        return <label key={playlist.id} className="playlists__item">{playlist.title}
+                                            <input type="checkbox" onChange={event => this.handlePlaylistCheck(this.props.video.id, playlist.id, event)} checked={this.checkPlaylist(playlist.videos)}/>
+                                            <span className="checkmark"></span>
                                         </label>
                                     })
                                 )}
