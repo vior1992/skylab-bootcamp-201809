@@ -16,5 +16,5 @@ class MovieInfo {
     } 
 }
 
-export default {User, MovieInfo}
-// module.exports = {User}
+// export default {User, MovieInfo}
+module.exports = {User}
