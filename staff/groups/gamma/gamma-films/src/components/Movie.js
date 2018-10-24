@@ -20,7 +20,11 @@ class Movie extends Component {
                 .then(movie => {
 
                     this.setState({ theMovie: movie.original_title, theOverview: movie.overview, thePoster: movie.poster_path, theDate: movie.release_date })
+<<<<<<< HEAD
                     // console.log(this.props.isLoggedIn)
+=======
+
+>>>>>>> develop
 
                 })
                 .catch(err => this.setState({ error: err.message }))
@@ -49,8 +53,13 @@ class Movie extends Component {
                             <li>{this.state.theDate}</li>
                             <li>Action</li>
                         </ul>
+<<<<<<< HEAD
                         <div className='card_right__rating'>
                             { <button type="button" onClick={this.props.handleFavClick(this.props.id)} >FAV</button>}
+=======
+                        <div class='card_right__rating'>
+                            <button type="button" onClick={this.handleFav} >FAV</button>
+>>>>>>> develop
                         </div>
                         <div className='card_right__review'>
                             <p>{this.state.theOverview}</p>

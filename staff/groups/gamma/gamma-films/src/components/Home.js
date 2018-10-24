@@ -13,15 +13,8 @@ class Home extends Component {
     state = {
         query: '',
         error: '',
-        movies: [],
-        favs: []
+        movies: []
     }
-
-    // componentDidMount() {
-        
-    //     const favourites = logic.listFavourites()
-    //     this.setState({favs:favourites})
-    // }
 
     handleQueryChange = event => {
 
@@ -48,12 +41,6 @@ class Home extends Component {
         this.props.history.push(`/movie/${id}`)
     }
 
-    handleFavClick = id =>{
-        let favourites = this.state.favs
-        favourites.push(id)
-        this.setState({favs:favourites})
-    }
-
     render() {
         return <div className="home">
             <form className="form_search" onSubmit={this.handleSubmit}>
@@ -61,10 +48,9 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
-            <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
-
             {/* <TopRatedSlide/> */}
 
+<<<<<<< HEAD
 
             {/* <Sidebar/> */}
             <div>
@@ -77,6 +63,16 @@ class Home extends Component {
             <div className="cards">
                 <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} handleFavClick={this.handleFavClick} isLoggedIn={this.props.isLoggedIn} />} />
             </div>
+=======
+            {/* <Sidebar/> */}
+            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/" render={props =><TopRatedSlide/>}/>
+
+            <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
+
+            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
+>>>>>>> develop
 
 
         </div>

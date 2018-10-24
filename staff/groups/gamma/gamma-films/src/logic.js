@@ -139,7 +139,7 @@ const logic = {
         return fetch('https://api.themoviedb.org/3/trending/movie/' + date + '?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
             method: 'GET',
             headers: {
-                
+                'Content-Type': 'application/json; charset=utf-8'
             }
         })
             .then(res => res.json())
@@ -151,6 +151,7 @@ const logic = {
                 return results
             })
     }
+<<<<<<< HEAD
 
     // listFavourites(){
     //     return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -185,6 +186,8 @@ const logic = {
     //             return this._user = res.data || []
     //         })
     // }
+=======
+>>>>>>> develop
 
 }
 
