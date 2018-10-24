@@ -13,8 +13,15 @@ class Home extends Component {
     state = {
         query: '',
         error: '',
-        movies: []
+        movies: [],
+        favs: []
     }
+
+    // componentDidMount() {
+        
+    //     const favourites = logic.listFavourites()
+    //     this.setState({favs:favourites})
+    // }
 
     handleQueryChange = event => {
 
@@ -41,6 +48,12 @@ class Home extends Component {
         this.props.history.push(`/movie/${id}`)
     }
 
+    handleFavClick = id =>{
+        let favourites = this.state.favs
+        favourites.push(id)
+        this.setState({favs:favourites})
+    }
+
     render() {
         return <div className="home">
             <form className="form_search" onSubmit={this.handleSubmit}>
@@ -60,7 +73,7 @@ class Home extends Component {
             </div>
 
             <div class="cards">
-                <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
+                <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} handleFavClick={this.handleFavClick} isLoggedIn={this.props.isLoggedIn} />} />
             </div>
 
         </div>
