@@ -9,6 +9,7 @@ class Favourites extends Component {
     }
 
     componentDidMount() {
+        debugger
         this.retrieveFavourites()        
     }
 
@@ -25,15 +26,24 @@ class Favourites extends Component {
         .then(res => {this.setState({ favouritesList: res })})
         .catch(err => this.setState({ error: err }))
         }
-        catch(err) {alert('error')}
-    
+        catch(err) {alert('error')}    
     }   
+
+    findBestImage = (arr) => {
+        let placeHolder = []
+
+        arr.images.forEach(el=> placeHolder.push(el.width))
+
+        return placeHolder.indexOf(Math.max(...placeHolder));
+    }
 
     render() {
         console.log(this.state.favouritesList)
         return <div className="favouriteList-container">
+
             <ul>
-            { this.state.favouritesList.map(item => <FavouriteEvents key={item.id} id={item.id} img={item.images[9].url} name={item.name} city={item._embedded.venues[0].city.name} date={item.dates.start.localDate} deleteFavourite={this.handleDeleteFavourites} eventUrl={item.url}/>)}
+                
+            { this.state.favouritesList.map(item => <FavouriteEvents key={item.id} id={item.id} img={item.images[this.findBestImage(item)].url} name={item.name} city={item._embedded.venues[0].city.name} date={item.dates.start.localDate} deleteFavourite={this.handleDeleteFavourites} eventUrl={item.url}/>)}
 
             </ul>
         </div>

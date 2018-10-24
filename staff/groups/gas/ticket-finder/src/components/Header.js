@@ -17,7 +17,9 @@ class Header extends Component {
     render() {
     return <div>
         <button onClick = { this.goToProfile }>Profile</button>
+
         <button onClick = { this.goToFavourites }>Favourites</button>
+        
         <button onClick = { this.props.logout }>Logout</button>
 
 
