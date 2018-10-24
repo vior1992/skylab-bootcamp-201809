@@ -6,6 +6,7 @@ import { Button } from "mdbreact"
 class SearchResults extends Component {
     state = {
         events: [],
+        pageNumber: 1,
         reducedEvents: []
     }
 

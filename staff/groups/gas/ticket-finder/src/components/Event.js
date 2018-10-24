@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 class Event extends Component {
     
@@ -28,7 +29,7 @@ class Event extends Component {
     return <div className="col-lg-4">
         <div className="card">
             
-            <a onClick={this.handleSearchEvent} href="#"><img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /></a>
+            <Link to= {`/home/events/${this.props.eventId}`}>  <img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /> </Link>
 
                 <div className="card-body">
 
