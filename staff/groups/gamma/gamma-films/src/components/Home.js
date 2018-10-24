@@ -27,7 +27,7 @@ class Home extends Component {
     render() {
         return <div className="home">
 
-            <Route exact path="/" render={props =><SearchBar />}/>
+            <Route path="/" render={props =><SearchBar />}/>
             {/* <Sidebar/> */}
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
             <Route exact path="/" render={props =><CategoryAction/>}/>
