@@ -18,7 +18,7 @@ class YouTube {
     }
 
     getVideo(id) {
-        return fetch(this.root_url + 'videos?part=player&key='+this.api_key+'&id='+id, {
+        return fetch(this.root_url + 'videos?part=snippet,player&key='+this.api_key+'&id='+id, {
             method: 'GET'
         }).then(result => {
             return result.json()
