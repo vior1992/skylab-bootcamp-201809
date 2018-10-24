@@ -1,31 +1,57 @@
 import React, {Component} from 'react'
 import logic from '../logic'
 import { Link } from 'react-router-dom'
+import $ from 'jquery'
+import 'slick-carousel'
 
 class Carousel extends Component {
   state = {}
 
   componentDidMount = () => {
+    let slick
+
     switch(this.props.listType) {
       case 'now_playing':
-        logic.retrieveInTheatre()
+        slick = logic.retrieveInTheatre()
           .then(movies => {
             this.setState({ movies })
           })
       break
       case 'popular':
-        logic.retrievePopular()
+      slick = logic.retrievePopular()
           .then(movies => {
             this.setState({ movies })
           })
       break
       case 'trending':
-        logic.retrieveTrending()
+      slick = logic.retrieveTrending()
           .then(movies => {
             this.setState({ movies })
           })
       break
     }
+
+    slick.then(() => {
+      this.$el = $(this.el);
+      this.$el.slick({
+        infinite: true,
+        arrows: false,
+        dots: false,
+        centerMode: true,
+        slidesToShow: 4,
+        responsive: [
+        {
+          breakpoint: 990,
+          settings: {
+            slidesToShow: 2,
+          }
+        }]
+      })
+    })
+  }
+
+  componentWillUnmount() {
+    this.$el.slick('destroy');
   }
 
   render() {
@@ -35,7 +61,7 @@ class Carousel extends Component {
           <div className="row">
             <h5 className="font-weight-bold my-4">{this.props.title}</h5>
           </div>
-          <div className="row carousel">
+          <div className="row carousel" ref={el => this.el = el}>
             { this.state.movies && this.state.movies.map(movie => {
               return (
                 <div className="carousel-img" key={movie.id}>
