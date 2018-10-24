@@ -4,9 +4,11 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import TopRatedSlide from './components/topRatedSlide'
+import TopRatedSlide from './components/TopRatedSlide'
 import Profile from './components/Profile'
 import logic from './logic'
+import Movie from './components/Movie'
+import SearchResults from './components/SearchResults'
 
 class App extends Component {
 
@@ -39,23 +41,19 @@ class App extends Component {
         this.setState({user:''})
     }
 
-
     render() {
 
         return <div className="body">
-            <Route exact path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
+            <Route path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
 
             <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
 
             <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/" name={this.state.user.name} />} />
 
-            {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
-
             <Home />
-            <TopRatedSlide/>
-            <TopRatedSlide/>
-            <TopRatedSlide/>
 
+            {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
+            
         </div>
     }
 }
