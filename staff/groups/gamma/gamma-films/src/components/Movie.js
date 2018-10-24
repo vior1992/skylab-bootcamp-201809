@@ -21,7 +21,7 @@ class Movie extends Component {
         try {
             logic.searchMovie(id)
                 .then(movie => {
-
+                    this.favButtonController()
                     this.setState({ theMovie: movie.original_title, theOverview: movie.overview, thePoster: movie.poster_path, theDate: movie.release_date })
                 })
                 .catch(err => this.setState({ error: err.message }))
@@ -34,9 +34,13 @@ class Movie extends Component {
     handleFav = () => {
 
         this.setState({ flagController: true })
-        this.props.handleFavourites(this.props.id)
-        this.favButtonController()
-        this.render()
+        logic.listFavourites(this.props.id)
+            .then(res => {
+                console.log(res)
+                logic.updateFavourites(res, this.props.id)
+                    .then(res => res)
+                    .then(()=>this.favButtonController())
+            })
     }
 
     favButtonController() {
@@ -54,7 +58,6 @@ class Movie extends Component {
 
                         this.setState({ showFavButton })
                         this.setState({ flagController: false })
-
                     })
                     .catch(err => this.setState({ error: err.message }))
 

@@ -6,8 +6,8 @@ const { User } = data
 const logic = {
 
     _user: "",
-    _userId: "",
-    _token: "",
+    _userId: sessionStorage.getItem('userId') || null,
+    _token: sessionStorage.getItem('token') || null,
     results: "",
     _fav: [],
 
@@ -66,7 +66,8 @@ const logic = {
 
                 this._userId = id
                 this._token = token
-                console.log(this._token)
+                sessionStorage.setItem('userId', id)
+                sessionStorage.setItem('token', token)
             })
     },
 
@@ -75,6 +76,9 @@ const logic = {
         this._userId = ''
         this._token = ''
         this.results = []
+        
+        sessionStorage.removeItem('userId')
+        sessionStorage.removeItem('token')
     },
 
     retrieveUser() {
