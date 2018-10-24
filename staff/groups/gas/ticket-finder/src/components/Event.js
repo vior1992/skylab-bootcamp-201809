@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import logic from '../logic'
 
 class Event extends Component {
     
@@ -12,7 +13,7 @@ class Event extends Component {
 
     storeFavourites = (e) => {
         e.preventDefault()
-        this.props.favourites(this.props.eventId)
+        logic.storeFavourites(this.props.eventId)
     }
 
     changeDate = () => {

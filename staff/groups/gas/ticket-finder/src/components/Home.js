@@ -25,10 +25,7 @@ class Home extends Component {
             .then(events => this.setState({ carousel: events }))
             .catch(err => this.setState({ error: err }))
 
-        logic.retrieveFavouriteEvents()
-            .then(res => this.setState({ favouriteEvents: res }))
-            .then(() => this.props.favouriteState(this.state.favouriteEvents))
-            .catch(err => this.setState({ error: err }))
+            
     }
 
     handleSubmit = query => {

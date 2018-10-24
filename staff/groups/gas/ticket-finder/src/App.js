@@ -51,11 +51,11 @@ handleLogoutClick = () => {
     this.props.history.push('/')
 }
 
-handleFavourites = (id) => {
-    logic.storeFavourites(id)
-        .then(res => this.setState({favouritesArray:res}))
-        .catch(err => this.setState({error: err}))
-}
+// handleFavourites = (id) => {
+//     logic.storeFavourites(id)
+//         .then(res => this.setState({favouritesArray:res}))
+//         .catch(err => this.setState({error: err}))
+// }
 
 handleFavouriteState = (newArr) => {
     this.setState({favouritesArray : newArr})
@@ -80,7 +80,7 @@ handleDeleteFavourite = (id) => {
     <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     {error && <Error message={error} />}
-    <Route path="/home" render={() => logic.loggedIn ? <Home favouriteState={this.handleFavouriteState} favourites={this.handleFavourites}  onLogout={this.handleLogoutClick}  /> : <Redirect to="/" />} />
+    <Route path="/home" render={() => logic.loggedIn ? <Home favouriteState={this.handleFavouriteState} onLogout={this.handleLogoutClick}  /> : <Redirect to="/" />} />
     <Route path="/favourites" render={() => logic.loggedIn ? <Favourites deleteFavourite={this.handleDeleteFavourite} favouritesList={this.state.favouritesArray} /> : <Redirect to="/" />} />
 
     {/* <Route path="/profile" render={() => logic.loggedIn ? <Profile/> : <Redirect to="/" />} /> */}
