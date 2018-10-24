@@ -32,7 +32,7 @@ class SearchResults extends Component {
         <div class="row">
         <h4>Your search:</h4>
             <div class="row__inner">
-                {this.state.movies.map((film) => { return <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} />
+                {this.state.movies.map((film) => { return <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} key={film.id} onCardClick={this.handleCardClick} />
                     
                 })}
             </div>

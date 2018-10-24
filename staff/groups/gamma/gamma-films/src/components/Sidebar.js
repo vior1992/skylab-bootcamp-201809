@@ -44,6 +44,22 @@ class Sidebar extends Component {
         console.log(this.state.movies)
     }
 
+    getNowPlaying = this.getNowPlaying.bind(this)
+
+    getNowPlaying() {
+        let temporal = [];
+
+        try {
+            logic.searcNowPlaying()
+                .then(res => temporal = res)
+                .then(() => this.setState({ movies: temporal }))
+                .catch(err => this.setState({ error: err.message }))
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
+
+        console.log(this.state.movies)
+    }
 
     render() {
         return <nav>
@@ -62,10 +78,7 @@ class Sidebar extends Component {
             <h4>Now playing</h4>
             <ul>
                 <li>
-                    <ButtonBar onClick={this.getPopularMovies} category={'week'} name={'Popular this week'} />
-                </li>
-                <li>
-                    <ButtonBar onClick={this.getPopularMovies} category={'day'} name={'Popular today'} />
+                    <ButtonBar onClick={this.getNowPlaying} category={'week'} name={'Now playing'} />
                 </li>
             </ul>
 

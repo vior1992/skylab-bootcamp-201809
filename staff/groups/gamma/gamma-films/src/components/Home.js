@@ -44,8 +44,8 @@ class Home extends Component {
     render() {
         return <div className="home">
             <form className="form_search" onSubmit={this.handleSubmit}>
-                <input className="input_search" type='text' placeholder='write a title' onChange={this.handleQueryChange}></input>
-                <button className="button_search" type='submit'>Search Title</button>
+                <input className="search-bar" type='text' placeholder='Write a title...' onChange={this.handleQueryChange}></input>
+                <button className="button_search" type='submit'></button>
             </form>
 
             {/* <TopRatedSlide/> */}
@@ -57,7 +57,8 @@ class Home extends Component {
 
             <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
 
-            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
+            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} isLoggedIn={this.props.isLoggedIn} handleFavourites={this.props.handleFavourites} />} />
+
 
         </div>
     }

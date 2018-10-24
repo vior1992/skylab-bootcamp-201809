@@ -4,9 +4,17 @@ class User {
         this.surname = surname
         this.username = username
         this.password = password
+        this.FavID = []
         this.id = Date.now()
     }
 }
 
-export default {User}
+class MovieInfo {
+    constructor(id){
+        this.id = id
+        this.key = Date.now()
+    } 
+}
+
+export default {User, MovieInfo}
 // module.exports = {User}

@@ -16,6 +16,7 @@ class App extends Component {
         loggedIn: false,
         user: ''
     }
+    componentDidMount = () => this.props.history.push('/')
 
     handleLoginClick = () => this.props.history.push('/login')
 
@@ -37,22 +38,30 @@ class App extends Component {
     }
 
     handleLogoutClick = () => {
-        this.setState({loggedIn: false})
-        this.setState({user:''})
+        this.setState({ loggedIn: false })
+        this.setState({ user: '' })
     }
 
     handleLogoClick = () => this.props.history.push('/')
+    handleFavourites(id) {
+        console.log('llama correctamente ' + id)
+        let FavList = logic.listFavourites()
+            .then(res=> logic.updateFavourites(res, id) )
+            .then(res=> console.log(res))
+    }
 
     render() {
 
         return <div className="body">
             <Route path="/" render={() => <Navbar onLogoClick={this.handleLogoClick} onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
 
-            <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
+            <Route exact path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/home" />} />
 
-            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/" name={this.state.user.name} />} />
+            <Route exact path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/home" name={this.state.user.name} />} />
 
-            <Home />
+            <Route path="/" render={() => <Home isLoggedIn={this.state.loggedIn} handleFavourites={this.handleFavourites} />} />
+
+            {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
 
             {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
             
