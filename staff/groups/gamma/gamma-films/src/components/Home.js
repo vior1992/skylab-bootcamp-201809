@@ -74,7 +74,7 @@ class Home extends Component {
             </div>
 
 
-            <div class="cards">
+            <div className="cards">
                 <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} handleFavClick={this.handleFavClick} isLoggedIn={this.props.isLoggedIn} />} />
             </div>
 
