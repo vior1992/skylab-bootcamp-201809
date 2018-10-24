@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-
 class Player extends Component {
+    state = {open: false}
+
     iframe() {
         return {__html: this.props.video.player.embedHtml}
     }
@@ -13,33 +14,36 @@ class Player extends Component {
         }
     }
 
+    handleClick = () => {
+        this.setState({open: !this.state.open})
+    }
+
     render() {
         return <section className="player">
-            <div id='player' dangerouslySetInnerHTML={this.iframe()}></div>
-            <div>
-                <button className="player__button" onClick={() => this.props.onNewFavourite(this.props.video.id)}><span>FAV</span></button>
-                <button className="player__button" onClick={() => this.props.onNewWatchLater(this.props.video.id)}><span>WL</span></button>
-                <div className="player-dropwdown">
-                    <button className="player__button"><span>LISTS</span></button>
-                    <div className="player-dropwdown__content">
+            <div className="player__video" dangerouslySetInnerHTML={this.iframe()}></div>
+            <footer className="player-footer">
+                <button className="player-footer__button" onClick={() => this.props.onNewFavourite(this.props.video.id)}><span>FAV</span></button>
+                <button className="player-footer__button" onClick={() => this.props.onNewWatchLater(this.props.video.id)}><span>WL</span></button>
+                <div className="playlists">
+                    <button onClick={this.handleClick} className="player-footer__button"><span>LISTS</span></button>
+                    <section className={this.state.open ? "playlists__content playlists__content--open" : "playlists__content"}>
                         <nav>
-                            <h2 className="player-dropwdown__title">Add to...</h2>
-                            <ul className="player-dropwdown__menu">
+                            <h2 className="playlists__title">Add to...</h2>
+                            <ul className="playlists__menu">
                                 {this.props.playlists && this.props.playlists.length > 0 && (
                                     this.props.playlists.map(playlist => {
-                                        return <li key={playlist.id} className="player-dropwdown__item">
-                                            <button>{playlist.title}</button>
-                                        </li>
+                                        return <label key={playlist.id} class="playlists__item">{playlist.title}
+                                            <input type="checkbox" />
+                                            <span class="checkmark"></span>
+                                        </label>
                                     })
                                 )}
-                                <li className="player-dropwdown__item">
-                                    <input onKeyPress={this.handleKeyPress} placeholder="New playlist..." />
-                                </li>
                             </ul>
+                            <input className="playlists__input" onKeyPress={this.handleKeyPress} placeholder="New playlist..." />
                         </nav>
-                    </div>
+                    </section>
                 </div>
-            </div>
+            </footer>
         </section>
     }
 }

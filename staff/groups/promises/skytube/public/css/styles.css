@@ -1,4 +1,4 @@
-body .home .profile-footer__button, body .home .profile__button {
+body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: none;
@@ -8,8 +8,14 @@ body .home .profile-footer__button, body .home .profile__button {
   text-transform: uppercase;
   cursor: pointer;
 }
-body .home .profile-footer__button:focus, body .home .profile__button:focus {
+body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus {
   outline: 0;
+}
+
+body .home .main .player-footer .playlists__content, body .home .profile__content {
+  position: absolute;
+  display: none;
+  z-index: 1000;
 }
 
 body {
@@ -29,6 +35,7 @@ body .home .sidenav {
   grid-row: 1/3;
   grid-column: 1;
   background-color: #1d1d1d;
+  overflow: hidden;
 }
 body .home .sidenav-head {
   height: 60px;
@@ -46,6 +53,7 @@ body .home .sidenav__lists {
 body .home .sidenav__menu {
   margin: 0;
   padding: 0;
+  list-style-type: none;
 }
 body .home .sidenav__title {
   margin: 1rem 0 0.5rem 1rem;
@@ -56,10 +64,9 @@ body .home .sidenav__title {
 }
 body .home .sidenav__item {
   height: 24px;
+  margin: 0 1rem;
+  padding: 0.5rem 0 0.5rem 2rem;
   line-height: 24px;
-  padding: 0.5rem 0 0.5rem 3rem;
-  list-style-type: none;
-  color: #ffffff;
 }
 body .home .sidenav__item:hover {
   background-color: #505050;
@@ -81,12 +88,9 @@ body .home .profile__button {
   margin: 0.5rem 1rem;
 }
 body .home .profile__content {
-  position: absolute;
   top: calc(60px - 1rem);
   right: 1rem;
-  display: none;
   background-color: #5c5c5c;
-  z-index: 1000;
 }
 body .home .profile__content--open {
   display: block;
@@ -132,13 +136,99 @@ body .home .main {
   grid-row: 2;
   overflow-y: scroll;
 }
-
-.row {
-  display: grid;
-  margin-right: 0%;
-  margin-left: 0%;
-  grid-template-columns: 100%;
-  background-color: blue;
+body .home .main .player {
+  width: 576px;
+  margin: 1rem auto 0;
+}
+body .home .main .player__video iframe {
+  width: 100%;
+  height: 324px;
+}
+body .home .main .player-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem;
+}
+body .home .main .player-footer .playlists {
+  position: relative;
+}
+body .home .main .player-footer .playlists__title {
+  margin: 0;
+  padding: 0.75rem 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #666;
+}
+body .home .main .player-footer .playlists__content {
+  width: 240px;
+  background-color: #363636;
+  font-size: 14px;
+  overflow: hidden;
+}
+body .home .main .player-footer .playlists__content--open {
+  display: block;
+}
+body .home .main .player-footer .playlists__menu {
+  position: relative;
+  max-height: 140px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  overflow-y: scroll;
+}
+body .home .main .player-footer .playlists__item {
+  position: relative;
+  display: block;
+  padding: 10px 0 10px 3rem;
+  cursor: pointer;
+}
+body .home .main .player-footer .playlists__item input {
+  display: none;
+}
+body .home .main .player-footer .playlists__item input:checked ~ .checkmark {
+  background-color: #2ebcc3;
+  border-color: #2ebcc3;
+}
+body .home .main .player-footer .playlists__item input:checked ~ .checkmark:after {
+  display: block;
+}
+body .home .main .player-footer .playlists__item .checkmark {
+  position: absolute;
+  top: 8px;
+  left: 0.75rem;
+  height: 18px;
+  width: 18px;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+}
+body .home .main .player-footer .playlists__item .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+body .home .main .player-footer .playlists__input {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: #363636;
+  border: none;
+  border-top: 1px solid #666;
+  font-size: 14px;
+  color: #ffffff;
+}
+body .home .main .player-footer .playlists__input::placeholder {
+  color: #ffffff;
+}
+body .home .main .player-footer .playlists__input:focus {
+  outline: 0;
 }
 
 .video-list {
