@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import logic from '../logic'
 import Card from './Card'
 import Sidebar from './Sidebar';
+import { Route, withRouter } from 'react-router-dom'
+import Movie from './Movie'
+import SearchResults from './SearchResults'
+import TopRatedSlide from './TopRatedSlide'
+import CategoryAction from './CategoryAction'
 
 class Home extends Component {
 
@@ -24,17 +29,7 @@ class Home extends Component {
 
         const query = this.state.query
 
-        let temporal=''
-
-        try {
-            logic.searchMovies(query)
-            .then(res=> temporal=res)
-            .then(()=>this.setState({movies:temporal}))
-            .catch(err => this.setState({ error: err.message }))
-        }
-        catch (err) {
-            this.setState({ error: err.message })
-        }
+        this.props.history.push(`/search/${query}`)
     }
 
     verResultados = event => {
@@ -42,6 +37,9 @@ class Home extends Component {
         console.log(this.state.movies)
     }
 
+    handleCardClick = id => {
+        this.props.history.push(`/movie/${id}`)
+    }
 
     render() {
         return <div className="home">
@@ -50,18 +48,29 @@ class Home extends Component {
                 <button className="button_search" type='submit'>Search Title</button>
             </form>
 
-            {/* <Sidebar/> */}
+            <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
 
+            {/* <TopRatedSlide/> */}
 
+<<<<<<< HEAD
             <section>
             {/* <Route path="/movie/:id" render={() => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} movieId={film.Id} />} /> */}
+=======
+            {/* <Sidebar/> */}
+            <div>
+                <Route exact path="/" render={props => <TopRatedSlide />} />
+                <Route exact path="/" render={props => <TopRatedSlide />} />
+                <Route exact path="/" render={props => <TopRatedSlide />} />
+            </div>
+>>>>>>> 93892d7f6a18155b702885bccc6e1df204ef4e02
 
-                {/* {this.state.movies.map(film => <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} />)} */}
-            </section>
+            <div class="cards">
+                <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
+            </div>
 
         </div>
     }
 
 }
 
-export default Home
+export default withRouter(Home)
