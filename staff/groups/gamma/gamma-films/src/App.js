@@ -16,7 +16,7 @@ class App extends Component {
         loggedIn: false,
         user: ''
     }
-    componentDidMount=() => this.props.history.push('/home')
+    componentDidMount=() => this.props.history.push('/')
 
     handleLoginClick = () => this.props.history.push('/login')
 
@@ -45,13 +45,13 @@ class App extends Component {
     render() {
 
         return <div className="body">
-            <Route path="/home" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
+            <Route path="/" render={() => <Navbar onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick}/>} />
 
-            <Route exact path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
+            <Route exact path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/home" />} />
 
-            <Route exact path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/" name={this.state.user.name} />} />
+            <Route exact path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/home" name={this.state.user.name} />} />
 
-            <Route path="/home" render={() => <Home isLoggedIn={this.state.isLoggedIn}/>}/>
+            <Route path="/" render={() => <Home isLoggedIn={this.state.isLoggedIn}/>}/>
 
             {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
             

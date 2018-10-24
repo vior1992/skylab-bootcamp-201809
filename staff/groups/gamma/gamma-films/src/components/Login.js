@@ -33,7 +33,7 @@ class Login extends Component {
         try {
             logic.loginUser(username, password)
                 .then(() => this.setState({ error: "" }))
-                .then(() => this.props.history.push('/'))
+                .then(() => this.props.history.push('/home'))
                 .then(() => this.props.isLoggedIn())
                 .catch(err => this.setState({ error: err.message }))
 
