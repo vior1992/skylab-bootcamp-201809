@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 class MovieDetail extends Component {
 
-  state = { index: undefined, pending: false, seen: false, favourite: false, like: false, unlike: false }
+  state = { pending: false, seen: false, favourite: false, like: false, unlike: false }
 
   componentDidMount = () => {
     logic.retrieveMovie(this.props.id)
@@ -15,43 +15,23 @@ class MovieDetail extends Component {
 
           //Check another way to know if logic._user is an empty object or not
 
-          let indexSeen = logic._user.seen.findIndex(movie => movie.id === this.state.movie.id)
+          let indexSeen = logic.checkInList(this.props.id, 'seen')
 
-          if (indexSeen !== -1) {
+          let indexPending = logic.checkInList(this.props.id, 'pending')
+          
+          if (indexSeen !== -1) this.setState({ seen: true })
 
-            this.setState({ seen: true, index: indexSeen })
-
-            let movieFavourite = logic._user.seen[indexSeen].favourite
-
-            if (movieFavourite) this.setState({ favourite: true })
-
-            let movieLike = logic._user.seen[indexSeen].like
-
-            if (movieLike) this.setState({ like: true })
-
-            let movieUnLike = logic._user.seen[indexSeen].Unlike
-
-            if (movieUnLike) this.setState({ unlike: true })
-
-          } else {
-
-            let indexPending = logic._user.pending.findIndex(movie => movie.id === this.state.movie.id)
-
-            if (indexPending !== -1) this.setState({ pending: true })
-          }
-        } 
+          else if (indexPending !== -1) this.setState({ pending: true })     
+        }
       })
-
   }
 
   componentWillUnmount = (prevProps, prevState) => {
     // if(prevState.seen !== this.state.seen || prevState.pending !== this.state.pending || prevState.favourite !== this.state.favourite || prevState.like !== this.state.like || prevState.unlike !== this.state.unlike) {
     // if (prevState.seen !== this.state.seen) {
 
-      //Where to put that to guarantee that the warning message disappears? 
-      this.setState({ warning: null })
-    
-
+    //Where to put that to guarantee that the warning message disappears? 
+    this.setState({ warning: null })
   }
 
   handleBackClick = event => {
@@ -63,115 +43,94 @@ class MovieDetail extends Component {
   handleSeenClick = event => {
     event.preventDefault()
 
-    if (JSON.stringify(logic._user) !== '{}') {
+    const check = logic.seenClick(this.props.id, this.state.movie)
 
-      if (this.state.seen) {
+    switch (check) {
 
-        logic.deleteUserSeen(this.state.movie.id)
-        this.setState({ seen: false })
-
-      } else {
-
-        logic.addUserSeen({ id: this.state.movie.id, name: this.state.movie.name, poster: this.state.movie.poster_path, like: false, unlike: false, favourite: false })
-        this.setState({ seen: true })
-        if (this.state.pending) {
-          logic.deleteUserPending(this.state.movie.id)
-          this.setState({ pending: false })
-        }
-      }
-    } else this.setState({ warning: 'You should log in before to use that feature' })
+      case '00':
+        this.setState({ seen: false, warning: null })
+        break
+      case '10':
+        this.setState({ seen: true, pending: false })
+        break
+      default:
+        this.setState({ warning: check })
+        //the state changes, but it doesn't call teh render yet
+    }
   }
 
   handlePendingClick = event => {
     event.preventDefault()
 
-    if (JSON.stringify(logic._user) !== '{}') {
+    const check = logic.pendingClick(this.props.id, this.state.movie)
 
-      if (this.state.pending) {
-        logic.deleteUserPending(this.state.movie.id)
+    switch (check) {
+
+      case '00':
         this.setState({ pending: false })
-
-      } else {
-
-        logic.addUserPending({ id: this.state.movie.id, name: this.state.movie.name, poster: this.state.movie.poster_path, like: undefined, favourite: false })
-        this.setState({ pending: true })
-        if (this.state.seen) {
-
-          logic.deleteUserSeen(this.state.movie.id)
-          this.setState({ seen: false })
-        }
-
-      }
-    } else this.setState({ warning: 'You should log in before to use that feature' })
+        break
+      case '01':
+        this.setState({ seen: false, pending: true })
+        break
+      default:
+        this.setState({ warning: check })
+    }
 
   }
 
   handleFavouriteClick = event => {
     event.preventDefault()
 
-    if (JSON.stringify(logic._user) !== '{}') {
+    const check = logic.favouriteClick(this.props.id)
 
-      if (this.state.seen) {
-        if (this.state.favourite) {
+    switch (check) {
 
-          logic._user.seen[this.state.index].favourite = false
-          logic.updateUserSeen(logic._user.seen)
-          this.setState({ favourite: false })
-        } else {
-          debugger
-          logic._user.seen[this.state.index].favourite = true
-          logic.updateUserSeen(logic._user.seen)
-          this.setState({ favourite: true })
-        }
-      } else {
-        this.setState({ warning: 'You should have seen the movie first' })
-      }
-    } else this.setState({ warning: 'You should log in before to use that feature' })
+      case '0':
+        this.setState({ favourite: false })
+        break
+      case '1':
+        this.setState({ favourite: true })
+        break
+      default:
+        this.setState({ warning: check })
+    }
+
   }
 
   handleLikeClick = event => {
     event.preventDefault()
 
-    if (JSON.stringify(logic._user) !== '{}') {
+    const check = logic.likeClick(this.props.id)
 
-      if (this.state.seen) {
-        if (this.state.like) {
-          logic._user.seen[this.state.index].like = false
-          logic.updateUserSeen(logic._user.seen)
-          this.setState({ like: false })
-        } else {
-          logic._user.seen[this.state.index].like = true
-          logic.updateUserSeen(logic._user.seen)
-          this.setState({ like: true })
-        }
-      } else {
-        this.setState({ warning: 'You should have seen the movie first' })
-      }
-    } else this.setState({ warning: 'You should log in before to use that feature' })
+    switch (check) {
+
+      case '00':
+        this.setState({ like: false })
+        break
+      case '10':
+        this.setState({ like: true, Unlike: false })
+        break
+      default:
+        this.setState({ warning: check })
+    }
   }
 
   handleUnlikeClick = event => {
     event.preventDefault()
 
-    if (JSON.stringify(logic._user) !== '{}') {
+    const check = logic.unlikeClick(this.props.id)
 
-      if (this.state.seen) {
-        if (this.state.unlike) {
-          logic._user.seen[this.state.index].unlike = false
+    switch (check) {
 
-          this.setState({ unlike: false })
-        } else {
-          logic._user.seen[this.state.index].unlike = true
-
-          this.setState({ unlike: true })
-        }
-
-        logic.updateUserSeen(logic._user.seen)
-
-      } else {
-        this.setState({ warning: 'You should have seen the movie first' })
-      }
-    } else this.setState({ warning: 'You should log in before to use that feature' })
+      case '00':
+        this.setState({ unlike: false })
+        break
+      case '01':
+        this.setState({ like: false, Unlike: true })
+        break
+      default:
+        this.setState({ warning: check })
+    }
   }
 
   componentDidCatch(errorString, errorInfo) {
@@ -230,11 +189,7 @@ class MovieDetail extends Component {
             <div className='col'>
               <div className='container'>
                 <div className='row-4' />
-                <div className='row'>
-                  <div>
-                    <a>2nd row, 1º col</a>
-                  </div>
-                </div>
+                <div className='row' />
               </div>
             </div>
             <div className='sinopsis col d-flex flex-row justify-content-start mt-3 ml-5'>
