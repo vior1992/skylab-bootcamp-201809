@@ -4,8 +4,6 @@ class EventInfo extends Component {
 
     state = {eventInfoArray: []}
 
-
-
     componentDidMount() {
         debugger
         this.addToEventInfoArray(this.props.id)
@@ -13,7 +11,6 @@ class EventInfo extends Component {
     }
 
     addToEventInfoArray = id => {
-
             try {
                 logic.searchEventInfo(id)
                 .then(eventInfo => this.setState({ eventInfoArray: eventInfo }))
@@ -24,7 +21,7 @@ class EventInfo extends Component {
     }
 
     render() {
-        debugger
+
         const { eventInfoArray } = this.state
 
     return <div className="card">
@@ -45,4 +42,3 @@ class EventInfo extends Component {
 
 export default EventInfo
 
-// <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name} eventGetTickets={eventInfoArray.url} eventMinPrice={!!eventInfoArray.priceRanges ? eventInfoArray.priceRanges[0].min : false} latitude={eventInfoArray._embedded.venues[0].location.latitude} longitude={eventInfoArray._embedded.venues[0].location.longitude} /> 

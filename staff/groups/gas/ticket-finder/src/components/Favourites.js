@@ -8,49 +8,32 @@ class Favourites extends Component {
         favouritesList: []
     }
 
-    onClickDelete = (id) => {
-        this.props.deleteFavourite(id)
-    }
-
     componentDidMount() {
-        // this.setState({favouritesList: this.props.favouritesList })
-
-        this.retrieveFavourites()
-        
+        this.retrieveFavourites()        
     }
 
-    // componentWillUnmount() {
-    //     this._isMount = false;
-    // }
-    
-    // componentDidMount() {
-    //     this._isMount = true;
-    // }
-    
-    // setState(params) {
-    //     if (this._isMount) {
-    //         super.setState(params);
-    //     }
-    // }
+    handleDeleteFavourites = (id) => {
+        logic.deleteFavourite(id)
+        .then(res => this.setState({favouritesList: res}))
+        .catch(err => this.setState({error: err}))    
+    }
 
     retrieveFavourites() {
         try {
            
         logic.retrieveFavouriteEvents()
-        .then(res => {debugger; this.setState({ favouritesList: res })})
+        .then(res => {this.setState({ favouritesList: res })})
         .catch(err => this.setState({ error: err }))
         }
         catch(err) {alert('error')}
     
-    }
-
-    
+    }   
 
     render() {
         console.log(this.state.favouritesList)
         return <div className="favouriteList-container">
             <ul>
-            { this.state.favouritesList.map(item => <FavouriteEvents id={item.id} img={item.images[9].url} name={item.name} city={item._embedded.venues[0].city.name} date={item.dates.start.localDate} deleteFavourite={this.props.deleteFavourite} eventUrl={item.url}/>)}
+            { this.state.favouritesList.map(item => <FavouriteEvents key={item.id} id={item.id} img={item.images[9].url} name={item.name} city={item._embedded.venues[0].city.name} date={item.dates.start.localDate} deleteFavourite={this.handleDeleteFavourites} eventUrl={item.url}/>)}
 
             </ul>
         </div>

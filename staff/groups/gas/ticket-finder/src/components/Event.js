@@ -16,6 +16,15 @@ class Event extends Component {
         logic.storeFavourites(this.props.eventId)
     }
 
+    componentWillReceiveProps(props) {
+        props.onHideCarousel()
+    }
+
+    onHideCarousel = () => {
+        this.props.hideCarousel()
+    }
+
+
     changeDate = () => {
         const monthNames = ['', "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -30,7 +39,7 @@ class Event extends Component {
     return <div className="col-lg-4">
         <div className="card">
             
-            <Link to= {`/home/events/${this.props.eventId}`}>  <img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /> </Link>
+            <Link to= {`/home/events/${this.props.eventId}`}>  <img onClick={this.onHideCarousel} className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /> </Link>
 
                 <div className="card-body">
 

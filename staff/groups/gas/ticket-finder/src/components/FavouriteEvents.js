@@ -8,7 +8,7 @@ class FavouriteEvents extends Component {
 
     render() {
         
-    return <li class="favourites-list">
+    return <li className="favourites-list">
     <img src={this.props.img}></img>
         <p>{this.props.name}</p>
         <p>{this.props.date}</p>

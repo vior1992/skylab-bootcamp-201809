@@ -51,23 +51,10 @@ handleLogoutClick = () => {
     this.props.history.push('/')
 }
 
-// handleFavourites = (id) => {
-//     logic.storeFavourites(id)
-//         .then(res => this.setState({favouritesArray:res}))
-//         .catch(err => this.setState({error: err}))
-// }
-
-handleFavouriteState = (newArr) => {
-    this.setState({favouritesArray : newArr})
-}
 
 handleGoBack = () => this.props.history.push('/')
 
-handleDeleteFavourite = (id) => {
-    logic.deleteFavourite(id)
-        .then(res => this.setState({favouritesArray: res}))
-        .catch(err => this.setState({error: err}))    
-}
+
 
 
   render() {
@@ -75,7 +62,7 @@ handleDeleteFavourite = (id) => {
     const { error } = this.state
 
     return <div>
-        {logic.loggedIn && <NavbarComponent onLogout={this.handleLogoutClick}></NavbarComponent>}
+    {logic.loggedIn && <NavbarComponent onLogout={this.handleLogoutClick}></NavbarComponent>}
     <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/home" />} />
     <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
