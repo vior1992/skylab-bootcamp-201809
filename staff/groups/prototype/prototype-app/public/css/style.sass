@@ -162,25 +162,45 @@ body
 
 .movie-profile
     background-color: #F3F3F3
+    // position: static 
     border: 0
-    &__card
+
+.movie-profile__card
     display: flex
     flex-direction: row
+    // position: static 
+
 .card__poster
     max-width: 342px
-    margin-left: 12%
-    margin-top: 24%
+    // margin-left: 12%
+    // margin-top: 24%
     border-radius: 10px !important
+    position: absolute 
+    top: 50%
+    left: 10%
+  
 .card__info
-    margin-top: 24%
+    // margin-top: 24%
+    position: absolute 
+    top: 43%
+    left: 45%
+.div-backdrop
+  display: flex
+  justify-content: center
 .backdrop
     max-width: 780px
     border-radius: 25px !important
+    position: relative 
 .sinopsis-title, .sinopsis-text, .cast-title, .cast-text
     color: #686868 !important
-.cardtitle, .cardtext
-    color: white !important
-
+.card-title, .card-text
+    color: white
+.card-title
+    font-weight: bold
+.row-move
+    position: absolute 
+    top: 38%
+    left: 16%
 .movies-carousel
   margin: 50px 0
 
