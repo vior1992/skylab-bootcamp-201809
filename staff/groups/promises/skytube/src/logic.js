@@ -103,12 +103,21 @@ const logic = {
 
         return this.youtube.search(query)
             .then(result => {
-                sessionStorage.setItem('video_search', JSON.stringify(result))
-                return result
+                let list = []
+                result.forEach((item) => {
+                    list.push({
+                        videoId: item.id.videoId,
+                        title: item.snippet.title,
+                        img: item.snippet.thumbnails.medium.url,
+                    })
+
+                })
+                sessionStorage.setItem('video_search', JSON.stringify(list))
+                return list
             })
     },
 
-    retrieveSong(video_id) {
+    retrieveSong(video_id,title,img) {
         if (typeof video_id !== 'string') throw TypeError(`${video_id} is not a string`)
         if (!video_id.trim()) throw Error ('video_id is blank or empty')
         if (!video_id.length === 11) throw Error ('video_id length is not valid')
@@ -116,6 +125,7 @@ const logic = {
         return this.youtube.getVideo(video_id)
             .then(result => {
                 sessionStorage.setItem('current_video', JSON.stringify(result[0]))
+                this.addHistory(video_id,title,img)
                 return result[0]
             })
     },
@@ -129,6 +139,19 @@ const logic = {
 
     getMostPopular(){
        return this.youtube.mostPopular()
+        .then(result => {
+            let list = []
+            result.forEach((item) => {
+                list.push({
+                    videoId: item.id.videoId,
+                    title: item.snippet.title,
+                    img: item.snippet.thumbnails.medium.url,
+                })
+
+            })
+            return list
+        })
+
     },
 
     addWatchLater(video_id) {
@@ -145,6 +168,28 @@ const logic = {
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
     },
 
+
+    addHistory(video_id,title,img) {
+        const finded = this.history.find({
+            video_id: video_id
+        })
+
+        if (finded.length > 0) this.history.get(finded[0].id).delete()
+
+        this.history.newEntity({
+            id: video_id,
+            video_id: video_id,
+            title: title,
+            img: img
+        }).save()
+        const history = this.history.all()
+        if (history.length > 20) {
+            this.history.get(history[0].id).delete()
+        }
+        
+        this.skylab.update({history: history}, this.auth.id, this.auth.token)
+    },
+  
     addVideoToPlaylist(video_id, playlist_id) {
         let playlist = this.playlists.get(playlist_id)
         playlist.videos ? playlist.videos.push(video_id) : playlist.videos = [video_id]
@@ -157,6 +202,7 @@ const logic = {
         playlist.videos.splice(playlist.videos.indexOf(video_id), 1)
         playlist.save()
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+
     },
 
     getFavourites() {
@@ -165,6 +211,10 @@ const logic = {
 
     getWatchLater() {
         return this.watch_later.all()
+    },
+
+    getHistory() {
+        return this.history.all()
     },
 
     authInfo() {
