@@ -67,8 +67,8 @@ class App extends Component {
             .catch(error => console.error(error))
 	}
 
-	handleVideoClick = video_id => {
-		logic.retrieveSong(video_id)
+	handleVideoClick = (video_id,title,img) => {
+		logic.retrieveSong(video_id,title,img)
 			.then(result => this.setState({video: result}, () => this.props.history.push('/home/player')))
             .catch(error => console.error(error))
     }
@@ -123,7 +123,7 @@ class App extends Component {
             <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
             <main className = 'main'>
                 <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
-                <Route path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.historial} />} />
+                <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.history} />} />
                 <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
                 <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
             </main>
