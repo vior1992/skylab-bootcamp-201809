@@ -156,40 +156,48 @@ describe('logic', () => {
 
         })
 
-        false && describe('delete favourites from user array', () => {
+        describe('delete favourites from user array', () => {
             describe('with existing user', () => {
-                let username, password, text, postitId
+                let username, password, itemId
 
                 beforeEach(() => {
                     const name = 'John', email = 'doe@gmail.com'
 
                     username = `jd-${Math.random()}`
                     password = `123-${Math.random()}`
+                    repeatPassword = password
+                    
 
-                    text = `hello ${Math.random()}`
 
-                    return logic.registerUser(name, email, username, password)
+                    return logic.registerUser(name, email, username, password,repeatPassword)
                         .then(() => logic.login(username, password))
+                        .then(() => logic.storeFavourites('KovZpZAEdJaA'))
+
                 })
 
-                false && describe('with existing postit', () => {
-                    beforeEach(() => 
-                        logic.createPostit(text)
-                            .then(() => logic.listPostits())
-                            .then(postits => postitId = postits[0].id)
-                    )
+                describe('with existing postit', () => {
 
-                    false && it('should succeed', () =>
-                        logic.deletePostit(postitId)
-                            .then(() => expect(true).to.be.true)
-                    )
+                    it('should succeed on deleting existing item', () =>
+                    logic.deleteFavourite('KovZpZAEdJaA')
+                        .then(() => expect(true).to.be.true)
+                        .then(() => expect(logic._favouritesEventsArray).to.be.empty)
+                )
+            //     it('should fail on ', () =>
+            //     logic.deleteFavourite('KovZpZAEdJaA')
+            //         .then(() => expect(true).to.be.true)
+            //         .then(() => expect(logic._favouritesEventsArray).to.be.empty)
+            // )
                 })
+
+                
+
+ 
             })
         })
 
          describe('Store events in favourites', () => {
             describe('with existing user', () => {
-                let username, password, userId, token
+                let username, password, item
 
                 beforeEach(() => {
                     const name = 'John', email = 'doe@gmail.com'
@@ -202,46 +210,15 @@ describe('logic', () => {
 
                     return logic.registerUser(name, email, username, password,repeatPassword)
                         .then(() => logic.login(username, password)
-                        // .then(res => userId = res.data.id)
-                        // .then(res => token = res.data.token)
                         )
                 })
                 it('should succeed on adding event to favourites', () =>
-                        logic.storeFavourites('vvG1fZ411N-A7B', userId, token)
-                            .then(() => {
-                                expect(true).to.be.true                                
-                            })
-                )
-
-                false && describe('with existing postit', () => {
-                    let newText
-
-                    beforeEach(() => {
-                        newText = `hello ${Math.random()}`
-
-                        return logic.createPostit(text)
-                            .then(() => logic.listPostits())
-                            .then(([postit]) => postitId = postit.id)
-                    })
-
-                    false && it('should succeed', () =>
-                        logic.updatePostit(postitId, newText)
+                        logic.storeFavourites('vvG1fZ411N-A7B')
                             .then(() => {
                                 expect(true).to.be.true
+                                expect(logic._favouritesEventsArray).to.not.be.empty                            })
+                )
 
-                                return logic.listPostits()
-                            })
-                            .then(postits => {
-                                expect(postits).not.to.be.undefined
-                                expect(postits.length).to.equal(1)
-
-                                const [postit] = postits
-
-                                expect(postit.id).to.equal(postitId)
-                                expect(postit.text).to.equal(newText)
-                            })
-                    )
-                })
             })
         })
     })
