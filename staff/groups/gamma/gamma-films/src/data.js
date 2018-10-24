@@ -4,7 +4,10 @@ class User {
         this.surname = surname
         this.username = username
         this.password = password
-        this.FavID = []
+        this.Fav = [
+            {id:undefined,
+            urlImage:undefined}
+        ]
         this.id = Date.now()
     }
 }

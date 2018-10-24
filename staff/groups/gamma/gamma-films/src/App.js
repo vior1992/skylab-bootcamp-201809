@@ -35,7 +35,6 @@ class App extends Component {
         try {
             logic.retrieveUser()
                 .then(user => { this.setState({ user }) })
-                .then(() => console.log(this.state.user))
         } catch (err) {
             if (err.message) throw Error(err.message)
         }
@@ -50,26 +49,24 @@ class App extends Component {
 
     handleLogoClick = () => this.props.history.push('/')
 
-    handleFavourites(id) {
-        console.log('llama correctamente ' + id)
-        let FavList = ''
-        logic.listFavourites()
-            .then(res => {
-                console.log(res)
-                FavList = res
-                logic.updateFavourites(res, id)
-                    .then(res => res)
-            })
-    }
+    // handleFavourites(id) {
+    //     let FavList = ''
+    //     logic.listFavourites()
+    //         .then(res => {
+    //             FavList = res
+    //             logic.updateFavourites(res, id)
+    //                 .then(res => res)
+    //         })
+    // }
 
     render() {
 
         return <div className="body">
             <Route path="/" render={() => <Navbar onLogoClick={this.handleLogoClick} onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick} />} />
 
-            <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/home" />} />
+            <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
 
-            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/home" name={this.state.user.name} />} />
+            <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/" name={this.state.user.name} />} />
 
 
             <Route path="/" render={() => <Home isLoggedIn={this.state.loggedIn} />} />

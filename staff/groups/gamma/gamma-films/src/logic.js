@@ -1,5 +1,5 @@
-// import data from "./data"
-const data = require('./data')
+import data from "./data"
+// const data = require('./data')
 
 const { User } = data
 
@@ -76,7 +76,7 @@ const logic = {
         this._userId = ''
         this._token = ''
         this.results = []
-        
+
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
     },
@@ -133,9 +133,9 @@ const logic = {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
         if (!id.trim()) throw Error('id is empty or blank')
-        
 
-        return fetch('https://api.themoviedb.org/3/movie/'+ id +'?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
+
+        return fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -143,7 +143,7 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                
+
                 if (res === 'undefined') throw Error(res.error)
 
                 return res;
@@ -209,16 +209,34 @@ const logic = {
             })
     },
 
-    updateFavourites(fav, id) {
+    updateFavourites(fav, id, image) {
+        debugger
+        let exist = ''
 
-        const exist = fav.find(_id => _id === id)
-        console.log('exist? ' + exist)
-        if (!exist) {
-            fav.push(id)
+        //fav is a unique object?
+        if (fav.id) {
+            //fav contains id? then remove it
+            if (fav.id === id) { 
+                fav.id='null'
+                fav.urlImage='null'}
+            //if fav does not contain id then push it
+            else{
+                debugger
+                let Fav = { id: null, urlImage: image }
+                fav.push(Fav)
+                exist =false
+            }
         } else {
-            fav = fav.filter(_id => _id !== id)
+            exist = fav.find(f => f._id === id)
         }
-        this._fav = fav
+        if (exist) {
+            let Fav = { id: null, urlImage: image }
+            fav = Fav
+        } else {
+            fav = fav.filter(f => f.id === id)
+            fav.id = id
+            fav.urlImage = image
+        }
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'PUT',
@@ -240,8 +258,8 @@ const logic = {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
         if (!id.trim()) throw Error('id is empty or blank')
-        
-        return fetch('https://api.themoviedb.org/3/movie/'+id+'/videos?api_key=e187746b7167e4886a5d0a2f1ead5a18&language=en-US', {
+
+        return fetch('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=e187746b7167e4886a5d0a2f1ead5a18&language=en-US', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -250,7 +268,7 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res === 'undefined') throw Error(res.error)
-                
+
                 const results = res.results
 
                 return results
@@ -260,5 +278,5 @@ const logic = {
 
 }
 
-// export default logic
-module.exports = logic
+export default logic
+// module.exports = logic

@@ -34,7 +34,7 @@ class CategoryFamily extends Component {
                 <h4>Family movies</h4>
                 <div className="row__inner">
                     {this.state.movies.map((film) => {
-                        return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} />
+                        return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} key={film.id}/>
                     })}
                 </div>
             </div>
