@@ -11,7 +11,7 @@ class FavouriteEvents extends Component {
     return <li>
     <div className="card">
     <img src={this.props.img}></img>
-        <title>{this.props.title}</title>
+        <p>{this.props.name}</p>
         <p>{this.props.date}</p>
         <p>{this.props.city}</p>
         <button>GET TICKETS</button>

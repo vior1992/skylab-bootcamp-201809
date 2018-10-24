@@ -5,6 +5,7 @@ import Event from './Event'
 import Error from './Error'
 import Header from './Header'
 import EventInfo from './EventInfo'
+import { Route, withRouter } from 'react-router-dom'
 
 class Home extends Component {
      state = { events: [], 
@@ -25,9 +26,7 @@ class Home extends Component {
         logic.retrieveFavouriteEvents()
             .then( res => this.setState({favouriteEvents: res }))
             .then (() =>  this.props.favouriteState(this.state.favouriteEvents))
-            .catch(err => this.setState({ error: err}))
-
-           
+            .catch(err => this.setState({ error: err}))           
     }
 
     handleSubmit = query => {
@@ -38,13 +37,14 @@ class Home extends Component {
             this.setState({carousel: [], events: events, reducedEvents: [ ...events.slice(0,6)]})
                 
         })      
-            .catch(err => this.setState({ error: `There are no events for this search :'(`}))}      
+            .catch(() => this.setState({ error: `There are no events for this search :'(`}))}      
         catch(err) { alert('Please write in English') }
     }
     
-    addToInfoArray = (id) => {
+    addToEventInfoArray = (id) => {
         logic.searchEventInfo(id)
-        .then(eventInfo =>  this.setState({ eventInfoArray: eventInfo, flag: true}) )
+        .then(eventInfo =>  this.setState({ eventInfoArray: eventInfo, flag: true}))
+        .catch(err => this.setState({error : err}))
     }
 
     goToNextPage = () => {
@@ -63,23 +63,17 @@ class Home extends Component {
         }
     }
 
-    // sendFavouriteStatetoApp = () => {
-        
-    // }
-
     render() {
-        console.log(this.state.eventInfoArray)
         const { error, eventInfoArray } = this.state
-
         return <div>
 
             <InputForm onSubmit={this.handleSubmit} />
             {error && <Error message={error} />}
 
             {!this.state.flag && <section>
-                {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
+                {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventId={event.id} eventDate= {event.dates.start.localDate} eventSearch={this.addToEventInfoArray} favourites = {this.props.favourites} />)}
 
-                {this.state.reducedEvents.map(event => <Event favourites = {this.props.favourites}  key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} test={this.addToInfoArray} />)}
+                {this.state.reducedEvents.map(event => <Event favourites = {this.props.favourites}  key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name}  eventUrl={event.url} eventMinPrice={ !!event.priceRanges ? event.priceRanges[0].min : false } eventId={event.id} eventDate= {event.dates.start.localDate} eventSearch={this.addToEventInfoArray} />)}
                 
                 {!this.state.flag && <button onClick={this.goToPreviousPage}>Previous page</button>}
                 
@@ -89,14 +83,18 @@ class Home extends Component {
             </section>}
 
             {this.state.flag && <section>
+
                 <EventInfo eventImage={eventInfoArray.images[9].url} eventName={eventInfoArray.name} eventDate={eventInfoArray.dates.start.localDate} eventTime={eventInfoArray.dates.start.localTime} eventCity={eventInfoArray._embedded.venues[0].city.name} eventGetTickets={eventInfoArray.url} eventMinPrice={ !!eventInfoArray.priceRanges ? eventInfoArray.priceRanges[0].min : false } latitude = {eventInfoArray._embedded.venues[0].location.latitude} longitude ={eventInfoArray._embedded.venues[0].location.longitude} />
+
             </section>
+
             }
+            
         </div>
     }
 }
 
-export default Home
+export default withRouter(Home)
 
 
 // eventSeatMap={eventInfoArray.seatmap.staticUrl
