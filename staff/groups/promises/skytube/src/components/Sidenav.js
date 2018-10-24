@@ -9,6 +9,7 @@ function Sidenav(props) {
         <div className="sidenav__lists">
             <nav>
                 <ul className="sidenav__menu">
+                    <li className="sidenav__item" onClick={props.onClickHome}>Home</li>
                     <li className="sidenav__item" onClick={props.onClickFavourites}>Favourites</li>
                     <li className="sidenav__item" onClick={props.onClickHistory}>History</li>
                 </ul>

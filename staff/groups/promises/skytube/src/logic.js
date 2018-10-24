@@ -160,11 +160,21 @@ const logic = {
     },
 
     getFavourites() {
-        return this.favourites.all()
+        return {
+            title: 'Favourites',
+            videos: this.favourites.all()
+        }
     },
 
     getWatchLater() {
-        return this.watch_later.all()
+        return {
+            title: 'Watch Later',
+            videos: this.watch_later.all()
+        }
+    },
+
+    getPlaylist(id) {
+        return this.playlists.get(id)
     },
 
     authInfo() {
