@@ -26,6 +26,11 @@ body
     font-family: Roboto, Arial, sans-serif
     color: $color-text
 
+    .logIn
+        background-color: $color-background
+        color: $color-text
+        
+
     .home
         position: relative
         display: grid
@@ -168,7 +173,28 @@ body
         .main
             grid-column: 2/4
             grid-row: 2
-            overflow-y: scroll
+
+            .videolist
+                margin: 0 3rem
+                .videolist__videos
+                    display: flex
+                    flex-wrap: wrap
+                    justify-content: flex-start
+                    
+                .video
+                    display: block
+                    width: 213px
+                    padding: 2px
+                    margin-bottom: 18px
+
+                    &__image
+                        height: 120px
+                        margin-right: 0
+
+                    &__title
+                        margin: 0
+                        font-size: 14px
+
 
             .player
                 width: 576px

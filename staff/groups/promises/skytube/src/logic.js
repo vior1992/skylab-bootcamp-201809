@@ -99,7 +99,7 @@ const logic = {
 
     search(query) {
         if(typeof query !== 'string') throw TypeError(`${query} is not a string`)
-        if(!query.trim()) throw Error ('query is black or empty')
+        if(!query.trim()) throw Error ('query is blank or empty')
 
         return this.youtube.search(query)
             .then(result => {
@@ -231,7 +231,7 @@ const logic = {
     getPlaylist(id) {
         return this.playlists.get(id)
     },
-
+  
     authInfo() {
         let info = JSON.parse(sessionStorage.getItem('auth_info')) || {}
         if (info && Object.keys(info).length > 0) {
