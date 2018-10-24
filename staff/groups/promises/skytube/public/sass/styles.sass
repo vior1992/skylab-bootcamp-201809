@@ -46,12 +46,18 @@ body
             overflow: hidden
 
             &-head
+                display: flex
+                flex-wrap: wrap
+                align-items: center
+                justify-content: center
                 height: $header-height
                 background-color: lighten($color-background, 7%)
 
-                &__title
-                    margin: 0
-
+                &__logo
+                    max-width: 50px
+                    max-height: 50px
+                    margin-right: 5px  
+         
             &__lists
                 height: calc(100vh - #{$header-height})
                 display: flex
@@ -82,8 +88,32 @@ body
         .search
             grid-row: 1
             grid-column: 2
-            background-color: lighten($color-background, 7%)
+            display: flex
+            align-items: center
+            justify-content: center
+            background-color: $color-background
+            &__input
+                width: 80%
+                height: 30px
+                border: 1px solid #999999
+                border-radius: 10px
+                margin: 15px 20px
+                padding: 10px   
+                background-color: darken($color-background, 15%)
+                font-family: Roboto, Arial, sans-serif
+                font-size: 18px
+                color: $color-text
+                outline: 0
 
+            &__button
+                width: 60px
+                height: 30px
+                margin-left: -60px
+                border: 1px solid #999999
+                border-radius: 10px
+                background-color: #999999
+                outline: 0
+            
         .profile
             grid-row: 1
             grid-column: 3
@@ -111,12 +141,10 @@ body
 
             &__image
                 height: inherit
-                border-radius: 50px
 
                 img
                     height: inherit
-
-
+                
             &__text
                 display: flex
                 flex-direction: column
@@ -291,7 +319,6 @@ body
     margin: 1%
     width: 90%
     flex-wrap: wrap
-
 
 .video-item
     width: 350px

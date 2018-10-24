@@ -1,5 +1,5 @@
 import React from 'react'
-import VideoListItem from './VideoListItem'
+import Video from './Video'
 
 function VideoList(props) {
     return <section className="videolist">
@@ -7,7 +7,7 @@ function VideoList(props) {
             <div className="videolist__videos">
         {props.videoList && props.videoList.length > 0 && (
             props.videoList.map(video => {
-                return <VideoListItem key={video.videoId} id={video.videoId} title={video.title} img={video.img}  onClick={()=>props.onVideoClick(video.videoId,video.title,video.img)}/>
+                return <Video key={video.id} video={video} onClick={props.onVideoClick}/>
             })
         )}
         </div>

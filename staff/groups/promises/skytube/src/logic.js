@@ -104,59 +104,60 @@ const logic = {
         return this.youtube.search(query)
             .then(result => {
                 let list = []
-                result.forEach((item) => {
+                result.forEach(item => {
                     list.push({
-                        videoId: item.id.videoId,
+                        id: item.id.videoId,
                         title: item.snippet.title,
-                        img: item.snippet.thumbnails.medium.url,
+                        thumbnail: item.snippet.thumbnails.medium.url,
                     })
-
                 })
                 sessionStorage.setItem('video_search', JSON.stringify(list))
                 return list
             })
     },
 
-    retrieveSong(video_id,title,img) {
-        if (typeof video_id !== 'string') throw TypeError(`${video_id} is not a string`)
-        if (!video_id.trim()) throw Error ('video_id is blank or empty')
-        if (!video_id.length === 11) throw Error ('video_id length is not valid')
+    getVideo(video) {
+        if (typeof video !== 'object') throw TypeError(`${video} is not an object`)
 
-        return this.youtube.getVideo(video_id)
+        return this.youtube.getVideoPlayer(video.id)
             .then(result => {
-                sessionStorage.setItem('current_video', JSON.stringify(result[0]))
-                this.addHistory(video_id,title,img)
-                return result[0]
+                video.iframe = result[0].player.embedHtml
+                sessionStorage.setItem('current_video', JSON.stringify(video))
+                this.addHistory(video)
+                return video
             })
     },
 
-    addFavourite(video_id) {
+    getMostPopular(){
+        return this.youtube.mostPopular()
+            .then(result => {
+                let list = []
+                result.forEach(item => {
+                    list.push({
+                        id: item.id.videoId,
+                        title: item.snippet.title,
+                        thumbnail: item.snippet.thumbnails.medium.url,
+                    })
+                })
+                return list
+            })
+    },
+
+    addFavourite(video) {
+        console.log(video);
         this.favourites.newEntity({
-            video_id: video_id
+            id: video.id,
+            title: video.title,
+            thumbnail: video.thumbnail
         }).save()
         this.skylab.update({favourites: this.favourites.all()}, this.auth.id, this.auth.token)
     },
 
-    getMostPopular(){
-       return this.youtube.mostPopular()
-        .then(result => {
-            let list = []
-            result.forEach((item) => {
-                list.push({
-                    videoId: item.id.videoId,
-                    title: item.snippet.title,
-                    img: item.snippet.thumbnails.medium.url,
-                })
-
-            })
-            return list
-        })
-
-    },
-
-    addWatchLater(video_id) {
+    addWatchLater(video) {
         this.watch_later.newEntity({
-            video_id: video_id
+            id: video.id,
+            title: video.title,
+            thumbnail: video.thumbnail
         }).save()
         this.skylab.update({watch_later: this.watch_later.all()}, this.auth.id, this.auth.token)
     },
@@ -168,20 +169,17 @@ const logic = {
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
     },
 
-
-    addHistory(video_id,title,img) {
-        const finded = this.history.find({
-            video_id: video_id
-        })
-
+    addHistory(video) {
+        const finded = this.history.get(video.id)
         if (finded.length > 0) this.history.get(finded[0].id).delete()
 
         this.history.newEntity({
-            id: video_id,
-            video_id: video_id,
-            title: title,
-            img: img
+            id: video.id,
+            title: video.title,
+            thumbnail: video.thumbnail,
+            viewed: Date.now()
         }).save()
+
         const history = this.history.all()
         if (history.length > 20) {
             this.history.get(history[0].id).delete()
@@ -202,13 +200,24 @@ const logic = {
         playlist.videos.splice(playlist.videos.indexOf(video_id), 1)
         playlist.save()
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
-
     },
 
     getFavourites() {
         return {
             title: 'Favourites',
             videos: this.favourites.all()
+        }
+    },
+
+    getHistory() {
+        let history = this.history.all()
+        history.sort((a, b) => {
+            return a.viewed < b.viewed;
+        })
+
+        return {
+            title: 'History',
+            videos: history
         }
     },
 
@@ -222,18 +231,14 @@ const logic = {
     getPlaylist(id) {
         return this.playlists.get(id)
     },
-
-    getHistory() {
-        return this.history.all()
-    },
-
+  
     authInfo() {
         let info = JSON.parse(sessionStorage.getItem('auth_info')) || {}
         if (info && Object.keys(info).length > 0) {
             info.favourites = JSON.parse(sessionStorage.getItem('favourites'))
+            info.history = JSON.parse(sessionStorage.getItem('history'))
             info.watch_later = JSON.parse(sessionStorage.getItem('watch_later'))
             info.playlists = JSON.parse(sessionStorage.getItem('playlists'))
-            info.history = JSON.parse(sessionStorage.getItem('history'))
         }
 
         return info

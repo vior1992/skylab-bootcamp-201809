@@ -68,19 +68,19 @@ class App extends Component {
             .catch(error => console.error(error))
 	}
 
-	handleVideoClick = (video_id,title,img) => {
-		logic.retrieveSong(video_id,title,img)
+	handleVideoClick = video => {
+		logic.getVideo(video)
 			.then(result => this.setState({video: result}, () => this.props.history.push('/home/player')))
             .catch(error => console.error(error))
     }
 
-    handleNewFavourite = video_id => {
-        logic.addFavourite(video_id)
+    handleNewFavourite = video => {
+        logic.addFavourite(video)
         this.setState({auth_info: logic.authInfo()})
     }
 
-    handleNewWatchLater = video_id => {
-        logic.addWatchLater(video_id)
+    handleNewWatchLater = video => {
+        logic.addWatchLater(video)
         this.setState({auth_info: logic.authInfo()})
     }
 

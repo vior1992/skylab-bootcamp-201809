@@ -4,7 +4,7 @@ class Player extends Component {
     state = {open: false}
 
     iframe() {
-        return {__html: this.props.video.player.embedHtml}
+        return {__html: this.props.video.iframe}
     }
 
     handleKeyPress = event => {
@@ -48,8 +48,8 @@ class Player extends Component {
         return <section className="player">
             <div className="player__video" dangerouslySetInnerHTML={this.iframe()}></div>
             <footer className="player-footer">
-                <button className="player-footer__button" onClick={() => this.props.onNewFavourite(this.props.video.id)}><span>FAV</span></button>
-                <button className="player-footer__button" onClick={() => this.props.onNewWatchLater(this.props.video.id)}><span>WL</span></button>
+                <button className="player-footer__button" onClick={() => this.props.onNewFavourite(this.props.video)}><span>FAV</span></button>
+                <button className="player-footer__button" onClick={() => this.props.onNewWatchLater(this.props.video)}><span>WL</span></button>
                 <div className="playlists">
                     <button onClick={this.handleClick} className="player-footer__button"><span>LISTS</span></button>
                     <section className={this.state.open ? "playlists__content playlists__content--open" : "playlists__content"}>
