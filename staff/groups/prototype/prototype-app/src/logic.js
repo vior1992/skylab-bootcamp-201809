@@ -82,7 +82,7 @@ const logic = {
   
     retrieveInTheatre() {
       const basePath = 'https://api.themoviedb.org/3/movie/now_playing'
-  
+      debugger
       return fetch(`${basePath}?api_key=${this._apiKey}`, {
         method: 'GET'
       })

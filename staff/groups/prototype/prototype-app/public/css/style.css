@@ -163,4 +163,16 @@ body {
   border-bottom-right-radius: 0.25rem;
 }
 
+.movies-carousel {
+  margin: 50px 0;
+}
+
+.carousel-img {
+  margin: 0 15px;
+  max-width: 240px;
+}
+.carousel-img img {
+  border-radius: 18px;
+}
+
 /*# sourceMappingURL=style.css.map */
