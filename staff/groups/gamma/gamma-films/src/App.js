@@ -50,7 +50,7 @@ class App extends Component {
 
             <Route path="/login" render={() => !logic.loggedIn ? <Login history={this.props.history} isLoggedIn={this.handleLoggedIn} /> : <Redirect to="/" name={this.state.user.name} />} />
 
-            <Home />
+            <Home isLoggedIn={this.state.isLoggedIn}/>
 
             {/* <Route path="/profile" render={() => !logic.loggedIn ? <Profile /> : <Redirect to="/profile" />} /> */}
             
