@@ -11,7 +11,7 @@ class Movie extends Component {
         err: '',
         showFavButton: false,
         flagController:true,
-        youtubeKey: ''
+        youtubeKey: null
     }
 
     componentDidMount() {
@@ -104,9 +104,9 @@ class Movie extends Component {
                         <p>{this.state.theOverview}</p>
                     </div>
 
-                    <div className='card_right__button'>
+                    {!!this.state.youtubeKey && <div className='card_right__button'>
                         <a href={'https://www.youtube.com/watch?v='+this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
-                    </div>
+                    </div>}
 
                 </div>
             </div>
