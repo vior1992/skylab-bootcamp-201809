@@ -1,4 +1,4 @@
-body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button {
+body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button, body .logIn__button {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: none;
@@ -8,7 +8,7 @@ body .home .main .player-footer__button, body .home .profile-footer__button, bod
   text-transform: uppercase;
   cursor: pointer;
 }
-body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus {
+body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus, body .logIn__button:focus {
   outline: 0;
 }
 
@@ -24,7 +24,56 @@ body {
   color: #ffffff;
 }
 body .logIn {
-  background-color: #121212;
+  background-color: #1c1c1c;
+  color: #ffffff;
+  padding: 40px;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  margin: 20px auto;
+}
+body .logIn h4 {
+  margin: 0;
+  font-size: 14px;
+}
+body .logIn__form {
+  display: block;
+  background-color: #454545;
+  width: 250px;
+  height: 220px;
+  margin: 20px auto;
+  padding: 40px 30px;
+  border-radius: 10px;
+  text-align: left;
+}
+body .logIn__button {
+  background-color: #23CCDD;
+  width: 95%;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+body .logIn__input {
+  margin: 10px 0 20px 0;
+  border-radius: 5px;
+  height: 30px;
+  width: 95%;
+  border: none;
+}
+body .logIn__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .logIn__logo {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 5px;
+}
+body .logIn__return {
+  margin-top: 20px;
+  margin-right: 10px;
+  float: right;
+  text-decoration: none;
   color: #ffffff;
 }
 body .home {
@@ -167,6 +216,7 @@ body .home .profile-footer {
 body .home .main {
   grid-column: 2/4;
   grid-row: 2;
+  overflow-y: scroll;
 }
 body .home .main .videolist {
   margin: 0 3rem;

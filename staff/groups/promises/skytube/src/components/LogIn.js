@@ -21,15 +21,20 @@ class LogIn extends Component {
     }
 
     render () {
-        return <div>
-            <h1>Skytube</h1>
-            <form className = "logIn" onSubmit={this.handleSubmit}>
-                <input placeholder='username' onChange={this.handleUsernameChange}/>
-                <input type='password' placeholder='password' onChange={this.handlePasswordChange}/>
-                <button classname = "logIn__button" type='submit'>Log In</button>
-                <Link to='/'>Return</Link>
+        return <div className="logIn">
+            <div className="logIn__title">
+                <img className="logIn__logo" src="/img/skytube.logo.png" alt="logo"></img>
+                <h1>Skytube</h1>
+            </div>
+            <form className = "logIn__form" onSubmit={this.handleSubmit}>
+                <h4 className = "logIn__form--text" >Username</h4>
+                <input className = "logIn__input" placeholder='Username' onChange={this.handleUsernameChange}/>
+                <h4 className = "logIn__form--text" >Password</h4>
+                <input className = "logIn__input" type='assword' placeholder='Password' onChange={this.handlePasswordChange}/>
+                <button className = "logIn__button" type='submit'>Log In</button>
+                <Link className = "logIn__return" to='/'>Return</Link>
             </form>
-    </div>
+        </div>
     }
 }
 
