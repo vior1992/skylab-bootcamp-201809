@@ -101,6 +101,12 @@ class App extends Component {
 
     handleClickHome = () => {
         this.props.history.push('/home')
+        logic.getMostPopular()
+            .then(res => this.setState({most_popular: res}))
+            .catch(error => console.error(error))
+            .then(()=> logic.getHistory())
+            .then(history=> this.setState({history}))
+            .catch(error => console.error(error))
     }
 
     handleClickFavourites = () => {
@@ -138,8 +144,8 @@ class App extends Component {
             <Search onSearch={this.handleSearch}/>
             <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
             <main className = 'main'>
-                <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
-                <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.history} />} />
+                <Route exact path='/home' render={() => <VideoList title ={'Most Popular'} onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
+                <Route exact path='/home' render={() => <VideoList title ={'History'} onVideoClick={this.handleVideoClick}  videoList={this.state.history} />} />
                 <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
                 <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
                 <Route path='/home/favourites' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getFavourites()} />} />

@@ -133,7 +133,28 @@ body .home .profile-footer {
 body .home .main {
   grid-column: 2/4;
   grid-row: 2;
-  overflow-y: scroll;
+}
+body .home .main .videolist {
+  margin: 0 3rem;
+}
+body .home .main .videolist .videolist__videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+body .home .main .videolist .video {
+  display: block;
+  width: 213px;
+  padding: 2px;
+  margin-bottom: 18px;
+}
+body .home .main .videolist .video__image {
+  height: 120px;
+  margin-right: 0;
+}
+body .home .main .videolist .video__title {
+  margin: 0;
+  font-size: 14px;
 }
 body .home .main .player {
   width: 576px;
