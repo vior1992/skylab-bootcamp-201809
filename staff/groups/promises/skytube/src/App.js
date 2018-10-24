@@ -97,10 +97,25 @@ class App extends Component {
         const watch_later = logic.getWatchLater()
         console.log(watch_later);
     }
-
+    
     handleClickHistory = () =>{
         const history = logic.getHistory()
         console.log(history)
+    }
+    
+    handleClickWatchLater = () => {
+        const watch_later = logic.getWatchLater()
+        console.log(watch_later);
+    }
+
+    handleAddToPlaylist = (video_id, playlist_id) => {
+        logic.addVideoToPlaylist(video_id, playlist_id)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleRemoveFromPlaylist = (video_id, playlist_id) => {
+        logic.removeVideoFromPlaylist(video_id, playlist_id)
+        this.setState({auth_info: logic.authInfo()})
     }
 
     renderLanding() {
@@ -125,7 +140,7 @@ class App extends Component {
                 <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
                 <Route exact path='/home' render={() => <VideoList onVideoClick={this.handleVideoClick}  videoList={this.state.history} />} />
                 <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
-                <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} />} />
+                <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
             </main>
         </div>
 	}

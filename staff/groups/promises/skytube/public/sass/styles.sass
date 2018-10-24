@@ -13,10 +13,13 @@ $header-height: 60px
     font-weight: 700
     text-transform: uppercase
     cursor: pointer
-
-
     &:focus
         outline: 0
+
+%dropdown
+    position: absolute
+    display: none
+    z-index: 1000
 
 body
     margin: 0
@@ -35,6 +38,7 @@ body
             grid-row: 1/3
             grid-column: 1
             background-color: darken($color-background, 10%)
+            overflow: hidden
 
             &-head
                 height: $header-height
@@ -52,6 +56,7 @@ body
             &__menu
                 margin: 0
                 padding: 0
+                list-style-type: none
 
             &__title
                 margin: 1rem 0 .5rem 1rem
@@ -62,10 +67,9 @@ body
 
             &__item
                 height: 24px
+                margin: 0 1rem
+                padding: .5rem 0 .5rem 2rem
                 line-height: 24px
-                padding: .5rem 0 .5rem 3rem
-                list-style-type: none
-                color: $color-text
 
                 &:hover
                     background-color: lighten($color-background, 10%)
@@ -88,13 +92,10 @@ body
                 margin: .5rem 1rem
 
             &__content
-                position: absolute
+                @extend %dropdown
                 top: calc(#{$header-height} - 1rem)
                 right: 1rem
-                display: none
                 background-color: lighten($color-background, 15%)
-                z-index: 1000
-
                 &--open
                     display: block
 
@@ -142,13 +143,99 @@ body
             grid-row: 2
             overflow-y: scroll
 
-.row
-    display: grid
-    margin-right: 0%
-    margin-left: 0%
-    grid-template-columns: 100%
-    background-color: blue
+            .player
+                width: 576px
+                margin: 1rem auto 0
 
+                &__video iframe
+                    width: 100%
+                    height: 324px
+
+                &-footer
+                    display: flex
+                    justify-content: flex-end
+                    padding: .5rem
+
+                    &__button
+                        @extend %button
+
+                    .playlists
+                        position: relative
+
+                        &__title
+                            margin: 0
+                            padding: .75rem 1.5rem
+                            font-size: 16px
+                            font-weight: 600
+                            border-bottom: 1px solid #666
+
+                        &__content
+                            @extend %dropdown
+                            width: 240px
+                            background-color: $color-background
+                            font-size: 14px
+                            overflow: hidden
+                            &--open
+                                display: block
+
+                        &__menu
+                            position: relative
+                            max-height: 126px
+                            margin: 0
+                            padding: 0
+                            list-style-type: none
+                            overflow-y: scroll
+
+                        &__item
+                            position: relative
+                            display: block
+                            padding: 10px 0 10px 3rem
+                            cursor: pointer
+
+                            input
+                                display: none
+                                &:checked ~ .checkmark
+                                    background-color: $color-primary
+                                    border-color: $color-primary
+                                    &:after
+                                        display: block
+
+                            .checkmark
+                                position: absolute
+                                top: 8px
+                                left: .75rem
+                                height: 18px
+                                width: 18px
+                                border-radius: 5px
+                                border: 2px solid $color-text
+                                &:after
+                                    content: ""
+                                    position: absolute
+                                    display: none
+                                    left: 6px
+                                    top: 2px
+                                    width: 5px
+                                    height: 10px
+                                    border: solid $color-text
+                                    border-width: 0 3px 3px 0
+                                    -webkit-transform: rotate(45deg)
+                                    -ms-transform: rotate(45deg)
+                                    transform: rotate(45deg)
+
+                        &__input
+                            width: 100%
+                            padding: .75rem 1.5rem
+                            background-color: $color-background
+                            border: none
+                            border-top: 1px solid #666
+                            font-size: 14px
+                            color: $color-text
+                            &::placeholder
+                                color: $color-text
+                            &:focus
+                                outline: 0
+                                &::placeholder
+                                    opacity: 0
 
 .video-list
     display: flex

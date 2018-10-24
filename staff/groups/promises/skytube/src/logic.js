@@ -168,6 +168,7 @@ const logic = {
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
     },
 
+
     addHistory(video_id,title,img) {
         const finded = this.history.find({
             video_id: video_id
@@ -187,6 +188,21 @@ const logic = {
         }
         
         this.skylab.update({history: history}, this.auth.id, this.auth.token)
+    },
+  
+    addVideoToPlaylist(video_id, playlist_id) {
+        let playlist = this.playlists.get(playlist_id)
+        playlist.videos ? playlist.videos.push(video_id) : playlist.videos = [video_id]
+        playlist.save()
+        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+    },
+
+    removeVideoFromPlaylist(video_id, playlist_id) {
+        let playlist = this.playlists.get(playlist_id)
+        playlist.videos.splice(playlist.videos.indexOf(video_id), 1)
+        playlist.save()
+        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+
     },
 
     getFavourites() {
