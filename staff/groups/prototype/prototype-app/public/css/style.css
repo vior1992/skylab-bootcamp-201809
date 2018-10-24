@@ -96,6 +96,12 @@ body {
 .navbar .logo > span {
   display: block;
 }
+.navbar .profile {
+  max-width: 40px;
+}
+.navbar .profile img {
+  border-radius: 25px;
+}
 
 .search {
   width: 100%;
@@ -202,7 +208,6 @@ body {
   color: #686868 !important;
 }
 
-
 .card-title, .card-text {
   color: white;
 }
@@ -225,8 +230,16 @@ body {
   margin: 0 15px;
   max-width: 240px;
 }
-.carousel-img img {
+
+.img-medium-rounded {
   border-radius: 18px;
+}
+
+.list-movies .movie {
+  margin: 20px;
+}
+.list-movies .movie img {
+  max-width: 240px;
 }
 
 /*# sourceMappingURL=style.css.map */

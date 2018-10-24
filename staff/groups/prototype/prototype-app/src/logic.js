@@ -68,47 +68,55 @@ const logic = {
       })
   },
 
-  retrieveTrending() {
+  retrieveTrending(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/trending/movie/week'
-    return fetch(`${basePath}?api_key=${this._apiKey}`, {
+    return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
       method: 'GET'
     })
       .then(response => response.json())
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
 
-        return this._trendingMovies = response.results || []
+        this._trendingMovies = response.results || []
+
+        return response
       })
   },
 
-  retrieveInTheatre() {
+  retrieveInTheatre(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/movie/now_playing'
-    return fetch(`${basePath}?api_key=${this._apiKey}`, {
+    return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
       method: 'GET'
     })
       .then(response => response.json())
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
 
-        return this._inTheatreMovies = response.results || []
+        this._inTheatreMovies = response.results || []
+
+        return response
       })
   },
 
-  retrievePopular() {
+  retrievePopular(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/movie/popular'
 
-    return fetch(`${basePath}?api_key=${this._apiKey}`, {
+    return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
       method: 'GET'
     })
       .then(response => response.json())
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
 
-        return this._popularMovies = response.results || []
+          this._popularMovies = response.results || []
+
+          return response
       })
   },
 
   retrieveMovies(query, page) {
+    debugger
+
     const basePath = 'https://api.themoviedb.org/3/search/movie'
 
     return fetch(`${basePath}?api_key=${this._apiKey}&query=${query}&page=${page}`, {
@@ -117,8 +125,10 @@ const logic = {
       .then(response => response.json())
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
-
-        return response.results || []
+        
+        debugger
+        
+        return response || {}
       })
   },
 
