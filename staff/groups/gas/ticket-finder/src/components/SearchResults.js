@@ -22,13 +22,20 @@ class SearchResults extends Component {
 
     searchEvents(query) {
         let filtered = [];
+
         try {
+            
             logic.searchEvents(query)
                 .then(events => {
-                    if (this.props.filter!=='all') filtered = events.filter( item => item.classifications[0].segment.name===this.props.filter)
-                })
-                .then(events => {
-                    this.setState({ events: filtered, reducedEvents: [...filtered.slice(0, 6)] })
+                    if (this.props.filter!=='all') {
+
+                        filtered = events.filter( item => item.classifications[0].segment.name===this.props.filter)
+
+                        this.setState({ events: filtered, reducedEvents: [...filtered.slice(0, 6)] })
+                    }
+                    else {
+                        this.setState({ events: events, reducedEvents: [...events.slice(0, 6)] })
+                    }
                 })
                 .catch(() => this.setState({ error: `There are no events for this search :'(` }))
         }
