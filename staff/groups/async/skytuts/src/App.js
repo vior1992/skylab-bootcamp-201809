@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import Info from './components/Info'
+/* import InstructorCard from './components/InstructorCard' */
 
 import './App.css'
 
@@ -15,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className="app">
           < Navbar />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
