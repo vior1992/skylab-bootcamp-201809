@@ -57,7 +57,8 @@ class Home extends Component {
 
             <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
 
-            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} />} />
+            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} isLoggedIn={this.props.isLoggedIn} handleFavourites={this.props.handleFavourites} />} />
+
 
         </div>
     }

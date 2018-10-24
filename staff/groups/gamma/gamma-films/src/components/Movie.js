@@ -8,7 +8,8 @@ class Movie extends Component {
         theOverview: null,
         thePoster: null,
         theDate: null,
-        err: ''
+        err: '',
+        showFavButton: false
     }
 
     componentDidMount() {
@@ -20,49 +21,95 @@ class Movie extends Component {
                 .then(movie => {
 
                     this.setState({ theMovie: movie.original_title, theOverview: movie.overview, thePoster: movie.poster_path, theDate: movie.release_date })
-
-
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
         catch (err) {
             this.setState({ error: err.message })
         }
-
     }
 
-    handleFav= () => {
+    handleFav = () => {
+        try {
+            this.props.handleFavourites(this.props.id)
+                // .then(() => this.favButtonController())
+                // .then(()=>this.render())
 
+        }catch(err){
+
+        }
+        this.props.handleFavourites(this.props.id)
+        this.favButtonController()
+        this.render()
+    }
+
+    favButtonController() {
+
+        const id = this.props.id
+
+        console.log("control de favoritos")
+
+        console.log(this.props.isLoggedIn)
+
+
+        if (!!this.props.isLoggedIn && !!this.state.showFavButton === false) {
+            let listFav = ''
+            try {
+                logic.listFavourites()
+                    .then(res => listFav = res)
+                    .then(res => console.log(res))
+                    .then(() => {
+                        const showFavButton = listFav.find(_id => _id === id)
+
+                        console.log('showfavbutton ' + showFavButton)
+
+                        this.setState({ showFavButton })
+                    })
+                    .catch(err => this.setState({ error: err.message }))
+
+            } catch (err) {
+                if (err.message) throw Error(err.message)
+            }
+        }
     }
 
     render() {
-        return <div class='card'>
-                <div class='card_left'>
-                    <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
-                </div>
-
-                <div class='card_right'>
-                    <h1>{this.state.theMovie}</h1>
-                    <div class='card_right__details'>
-                        <ul>
-                            <li>ID: {this.props.id}</li>
-                            <li>{this.state.theDate}</li>
-                            <li>Action</li>
-                        </ul>
-                        <div class='card_right__rating'>
-                            <button type="button" onClick={this.handleFav} >FAV</button>
-                        </div>
-                        <div class='card_right__review'>
-                            <p>{this.state.theOverview}</p>
-                        </div>
-                        <div class='card_right__button'>
-                            <a href='https://www.youtube.com/watch?v=ot6C1ZKyiME' target='_blank'>WATCH TRAILER</a>
-                        </div>
-                    </div>
-                </div>
+        return <div className='card'>
+            <div className='card_left'>
+                <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
             </div>
 
-            }
-        }
-        
+            <div className='card_right'>
+
+                <h1>{this.state.theMovie}</h1>
+
+                <div className='card_right__details'>
+
+                    <ul>
+                        <li>ID: {this.props.id}</li>
+                        <li>{this.state.theDate}</li>
+                        <li>Action</li>
+                    </ul>
+
+                    {this.favButtonController()}
+                    <div className='card_right__rating'>
+                        {console.log('en render ' + this.state.showFavButton)}
+                        {this.props.isLoggedIn && !this.state.showFavButton && <button type="button" onClick={this.handleFav} >FAV</button>}
+                    </div>
+
+                    <div className='card_right__review'>
+                        <p>{this.state.theOverview}</p>
+                    </div>
+
+                    <div className='card_right__button'>
+                        <a href='https://www.youtube.com/watch?v=ot6C1ZKyiME' target='_blank'>WATCH TRAILER</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
 export default Movie
