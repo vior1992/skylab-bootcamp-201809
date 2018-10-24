@@ -10,6 +10,7 @@ function Sidenav(props) {
         <div className="sidenav__lists">
             <nav>
                 <ul className="sidenav__menu">
+                    <li className="sidenav__item" onClick={props.onClickHome}>Home</li>
                     <li className="sidenav__item" onClick={props.onClickFavourites}>Favourites</li>
                     <li className="sidenav__item" onClick={props.onClickHistory}>History</li>
                 </ul>
@@ -19,7 +20,6 @@ function Sidenav(props) {
                 <h2 className="sidenav__title">Playlists</h2>
                 <ul className="sidenav__menu">
                     <li className="sidenav__item" onClick={props.onClickWatchLater}>Watch Later</li>
-
                     {props.playlists && props.playlists.length > 0 && (
                         props.playlists.map(playlist => {
                             return <li key={playlist.id} className="sidenav__item" onClick={() => props.onClickPlaylist(playlist.id)}>{playlist.title}</li>
