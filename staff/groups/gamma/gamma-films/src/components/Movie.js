@@ -10,7 +10,8 @@ class Movie extends Component {
         theDate: null,
         err: '',
         showFavButton: false,
-        flagController:true
+        flagController:true,
+        youtubeKey: ''
     }
 
     componentDidMount() {
@@ -22,6 +23,19 @@ class Movie extends Component {
                 .then(movie => {
 
                     this.setState({ theMovie: movie.original_title, theOverview: movie.overview, thePoster: movie.poster_path, theDate: movie.release_date })
+                })
+                .catch(err => this.setState({ error: err.message }))
+        }
+        catch (err) {
+            this.setState({ error: err.message })
+        }
+        
+        try {
+            
+            logic.searchTrailer(id)
+                .then(trailer => {
+
+                    this.setState({ youtubeKey: trailer[0].key})
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
@@ -91,7 +105,7 @@ class Movie extends Component {
                     </div>
 
                     <div className='card_right__button'>
-                        <a href='https://www.youtube.com/watch?v=ot6C1ZKyiME' target='_blank'>WATCH TRAILER</a>
+                        <a href={'https://www.youtube.com/watch?v='+this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
                     </div>
 
                 </div>
