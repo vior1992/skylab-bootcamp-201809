@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Card from './Card'
 import logic from '../logic'
+import SearchBar from './SearchBar'
 
 class SearchResults extends Component {
     state = {
@@ -29,6 +30,7 @@ class SearchResults extends Component {
 
     render() {
         return <div class="contain">
+         <SearchBar />
         <div class="row">
         <h4>Your search:</h4>
             <div class="row__inner">
