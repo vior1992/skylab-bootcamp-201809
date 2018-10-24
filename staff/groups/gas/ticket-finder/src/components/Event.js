@@ -16,14 +16,6 @@ class Event extends Component {
         logic.storeFavourites(this.props.eventId)
     }
 
-    componentWillReceiveProps(props) {
-        props.onHideCarousel()
-    }
-
-    onHideCarousel = () => {
-        this.props.hideCarousel()
-    }
-
 
     changeDate = () => {
         const monthNames = ['', "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

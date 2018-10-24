@@ -15,44 +15,35 @@ class Home extends Component {
         eventInfoArray: [],
         favouriteEvents: [],
         searchFlag: true,
-        videoFlag: true
     }
 
     componentDidMount() {
         logic.showEvents()
             .then(events => this.setState({ carousel: events }))
-            .catch(err => this.setState({ error: err }))
-
-            
+            .catch(err => this.setState({ error: err }))            
     }
 
     handleSubmit = query => {
-        this.setState({ error: null, searchFlag: true, videoFlag: false }, () => this.props.history.push(`/home/search/${query}`))
-    }
-
-
-    handleHideCarousel = () => {
-        this.setState({videoFlag:false, searchFlag: false})
+        this.setState({ error: null, searchFlag: false}, () => this.props.history.push(`/home/search/${query}`))
     }
 
 
     render() {
         const { error } = this.state
         return <div>
-
-            {this.state.searchFlag && <SearchForm onSubmit={this.handleSubmit}/>}
+            {<SearchForm onSubmit={this.handleSubmit}/>}
             {error && <Error message={error} />}
 
             <Route path="/home/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
             <Route path="/home/events/:id" render={props => <EventInfo id={props.match.params.id} />} />
-            {this.state.videoFlag && <section>
+            {this.state.searchFlag && <section>
                 <div className="video-container">
                     <video width="1920px" autoPlay muted loop src={video}></video>
                 </div>
             </section>}
 
 
-            {this.state.videoFlag && <section>
+            {this.state.searchFlag && <section>
                 <div className="index-content">
                     <div className="container-carousel">
                         {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventUrl={event.url} eventId={event.id} eventDate={event.dates.start.localDate} eventSearch={this.addToEventInfoArray} favourites={this.props.favourites} hideCarousel={this.handleHideCarousel} />)}

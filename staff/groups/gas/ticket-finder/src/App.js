@@ -67,8 +67,8 @@ handleGoBack = () => this.props.history.push('/')
     <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
     {error && <Error message={error} />}
-    <Route path="/home" render={() => logic.loggedIn ? <Home favouriteState={this.handleFavouriteState} onLogout={this.handleLogoutClick}  /> : <Redirect to="/" />} />
-    <Route path="/favourites" render={() => logic.loggedIn ? <Favourites deleteFavourite={this.handleDeleteFavourite} favouritesList={this.state.favouritesArray} /> : <Redirect to="/" />} />
+    <Route path="/home" render={() => logic.loggedIn ? <Home favouriteState={this.handleFavouriteState} onLogout={this.handleLogoutClick}  /> : <Redirect to="/home" />} />
+    <Route path="/favourites" render={() => logic.loggedIn ? <Favourites deleteFavourite={this.handleDeleteFavourite} favouritesList={this.state.favouritesArray} /> : <Redirect to="/home" />} />
 
     {/* <Route path="/profile" render={() => logic.loggedIn ? <Profile/> : <Redirect to="/" />} /> */}
     </div>

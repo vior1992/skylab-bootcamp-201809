@@ -14,9 +14,7 @@ class NavbarComponent extends Component {
    goToProfile = () => this.props.history.push('/profile')
 
 
-   goToFavourites = () =>  this.props.history.push('/favourites')
-
-   
+   goToFavourites = () =>  this.props.history.push('/favourites')   
 
 
    onClickNav = () => this.setState({ collapse: !this.state.collapse })

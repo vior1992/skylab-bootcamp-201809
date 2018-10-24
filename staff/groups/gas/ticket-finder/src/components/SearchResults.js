@@ -15,6 +15,7 @@ class SearchResults extends Component {
     }
 
     componentWillReceiveProps(props) {
+        debugger
         this.searchEvents(props.query)
     }
 
