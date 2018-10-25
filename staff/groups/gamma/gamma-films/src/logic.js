@@ -1,7 +1,7 @@
-// import data from "./data"
-const data = require('./data')
+import data from "./data"
+// const data = require('./data')
 
-const { User } = data
+const { User, MovieInfo } = data
 
 const logic = {
 
@@ -76,7 +76,7 @@ const logic = {
         this._userId = ''
         this._token = ''
         this.results = []
-        
+
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
     },
@@ -133,9 +133,9 @@ const logic = {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
         if (!id.trim()) throw Error('id is empty or blank')
-        
 
-        return fetch('https://api.themoviedb.org/3/movie/'+ id +'?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
+
+        return fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -143,7 +143,7 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                
+
                 if (res === 'undefined') throw Error(res.error)
 
                 return res;
@@ -209,16 +209,30 @@ const logic = {
             })
     },
 
-    updateFavourites(fav, id) {
+    updateFavourites(fav, id, image) {
 
-        const exist = fav.find(_id => _id === id)
-        console.log('exist? ' + exist)
-        if (!exist) {
-            fav.push(id)
-        } else {
-            fav = fav.filter(_id => _id !== id)
-        }
-        this._fav = fav
+        const _fav = new MovieInfo(id, image)
+        fav.push(_fav)
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${this._token}`
+            },
+            body: JSON.stringify({ Fav: fav })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return true
+            })
+    },
+
+    removeFavourites(fav, id, image) {
+
+        fav=fav.filter(favourite=> favourite.id!==id)
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'PUT',
@@ -240,8 +254,8 @@ const logic = {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
         if (!id.trim()) throw Error('id is empty or blank')
-        
-        return fetch('https://api.themoviedb.org/3/movie/'+id+'/videos?api_key=e187746b7167e4886a5d0a2f1ead5a18&language=en-US', {
+
+        return fetch('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=e187746b7167e4886a5d0a2f1ead5a18&language=en-US', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -250,7 +264,7 @@ const logic = {
             .then(res => res.json())
             .then(res => {
                 if (res === 'undefined') throw Error(res.error)
-                
+
                 const results = res.results
 
                 return results
@@ -260,5 +274,5 @@ const logic = {
 
 }
 
-// export default logic
-module.exports = logic
+export default logic
+// module.exports = logic

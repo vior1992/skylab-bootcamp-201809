@@ -45,14 +45,20 @@ class Movie extends Component {
         }
     }
 
-    handleFav = () => {
-
+    handleAddFav = () => {
         this.setState({ flagController: true })
         logic.listFavourites(this.props.id)
             .then(res => {
-                console.log(res)
-                logic.updateFavourites(res, this.props.id)
-                    .then(res => res)
+                logic.updateFavourites(res, this.props.id, this.state.thePoster )
+                    .then(()=>this.favButtonController())
+            })
+    }
+
+    handleRemoveFav = () => {
+        this.setState({ flagController: true })
+        logic.listFavourites(this.props.id)
+            .then(res => {
+                logic.removeFavourites(res, this.props.id, this.state.thePoster )
                     .then(()=>this.favButtonController())
             })
     }
@@ -66,10 +72,9 @@ class Movie extends Component {
             try {
                 logic.listFavourites()
                     .then(res => listFav = res)
-                    .then(res => console.log(res))
                     .then(() => {
-                        const showFavButton = listFav.find(_id => _id === id)
-
+                        const showFavButton = listFav.find(F =>F.id === id)
+                
                         this.setState({ showFavButton })
                         this.setState({ flagController: false })
                     })
@@ -103,9 +108,8 @@ class Movie extends Component {
                         <li>Action</li>
                     </ul>
                     <div className='card_right__rating'>
-                        {console.log('en render ' + this.state.showFavButton)}
-                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button type="button" onClick={this.handleFav} > Add to favorites </button>}
-                        {this.props.isLoggedIn && !!this.state.showFavButton && <button type="button" onClick={this.handleFav} > Remove from favorites </button>}
+                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button type="button" onClick={this.handleAddFav} > Add to favorites </button>}
+                        {this.props.isLoggedIn && !!this.state.showFavButton && <button type="button" onClick={this.handleRemoveFav} > Remove from favorites </button>}
                     </div>
 
                     <div className='card_right__review'>

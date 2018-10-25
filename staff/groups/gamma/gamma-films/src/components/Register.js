@@ -17,41 +17,34 @@ class Register extends Component {
     handleNameChange = event => {
         const name = event.target.value
         this.setState({ name })
-        console.log(name)
     }
 
 
     handleSurnameChange = event => {
         const surname = event.target.value
         this.setState({ surname })
-        console.log(this.state.surname)
     }
 
     handleUserNameChange = event => {
         const username = event.target.value
         this.setState({ username })
-        console.log(username)
     }
 
     handlePasswordChange = event => {
         const password = event.target.value
         this.setState({ password })
-        console.log(password)
     }
 
     handleRepeatPasswordChange = event => {
         const repeatPassword = event.target.value
         this.setState({ repeatPassword })
-        console.log(repeatPassword)
     }
 
     handleSubmit=this.handleSubmit.bind(this)
 
     handleSubmit (event){
         event.preventDefault()
-        console.log("hola  " + this.state.surname)
         const { name, surname, username, password } = this.state
-        console.log("hola2  " + this.state.name + this.state.surname + this.state.username + this.state.password)
         debugger
         try {
             logic.registUser(name, surname, username, password)
