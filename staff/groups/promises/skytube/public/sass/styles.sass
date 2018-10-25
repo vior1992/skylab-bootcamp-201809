@@ -32,43 +32,52 @@ body
         width: 100vw
         height: 100vh
         background-color: $color-background
-        &__links
-            margin: 0
+        overflow-y: scroll
+
+        &__items
+            display: flex
+            justify-content: space-between
+            padding-top: -10%
+            background-color: lighten($color-background, 7%)
+            height: 60px
+
+        &__left
             display: flex
             flex-direction: row
-            justify-content: space-around
-            font-size: 22px
+            align-items: center
+            margin-left: 50px
+
+        &__logo
+            max-width: 50px
+            max-height: 50px
+            margin-right: 5px 
+
+        &__right
+            display: flex
+            justify-content: space-between
+            flex-direction: row
+            align-items: center
             list-style-type: none
+            font-size: 20px
+            margin-right: 310px
+
+        &__button
+            @extend %button
             text-decoration: none
+            color: $color-text
+            &--separator
+                font-size: 16px
+                color: $color-cloud
+
     h4
         font-size: 14px
         margin: 0px    
 
-    .app-header
-        margin: 0
-        margin-right: 60px
-        display: flex
-        flex-direction: column
-        align-items: flex-end
-        flex-wrap: wrap      
-        justify-content: flex-end
-
     .container
         display: flex
-        margin-top: -20px
-        margin-right: 60px
+        justify-content: flex-start
         flex-direction: row
-        align-items: flex-end
-        flex-wrap: wrap      
-        justify-content: flex-end
-    
-    .header__logo
-        max-width: 50px
-        max-height: 50px
-        margin-right: 5px 
-
-    .header__title
-        
+        align-items: center
        
     .signup
         
@@ -77,10 +86,11 @@ body
             background-color: lighten($color-background, 20%)
             width: 250px
             height: 500px
-            margin: 5px auto
-            padding: 30px 30px
+            margin: 30px auto
+            padding: 20px 30px
             border-radius: 10px
             text-align: left
+            margin-right: 250px
             
         &__input
             width: 92.5%
