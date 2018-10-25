@@ -111,7 +111,6 @@ const spotifyLogic = {
         })
             .then((res) => res.json())
             .then((res) => {
-                debugger
                 const track = {}
                 track.id = res.id
                 track.name = res.name
