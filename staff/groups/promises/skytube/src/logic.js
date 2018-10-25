@@ -17,7 +17,7 @@ const logic = {
     video_search: JSON.parse(sessionStorage.getItem('video_search')) || [],
     current_video: JSON.parse(sessionStorage.getItem('current_video')) || [],
 
-    registerUser(name, surname, username, email, password) {
+    registerUser(name, surname, username, email, password, repPassword) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
         if (!name.trim()) throw Error ('name is blank or empty')
 
@@ -31,15 +31,24 @@ const logic = {
         if (!email.trim()) throw Error ('email is blank or empty')
 
         if(typeof password !=='string') throw TypeError (`${password} is not a string`)
-        if (!password.trim()) throw Error ('password is blank or empty')
+        if (!password.trim()) throw Error ('first password is blank or empty')
 
-        return this.skylab.register({
-            name: name,
-            surname: surname,
-            username: username,
-            email: email,
-            password: password
-        })
+        if(typeof repPassword !=='string') throw TypeError (`${repPassword} is not a string`)
+        if (!repPassword.trim()) throw Error ('second password is blank or empty')
+
+        if (password === repPassword) {
+           
+            return this.skylab.register({
+                name: name,
+                surname: surname,
+                username: username,
+                email: email,
+                password: password
+            })
+
+        } else { 
+            throw Error ('Passwords do not match')
+        }
     },
 
     loginUser(username, password) {

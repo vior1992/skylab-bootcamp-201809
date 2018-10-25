@@ -15,8 +15,6 @@ class App extends Component {
         super(props)
         this.state = {
             error: null,
-            registerError: null,
-            loginError: null,
             auth_info: logic.authInfo(),
             videoList: logic.video_search,
             video: logic.current_video,
@@ -25,16 +23,16 @@ class App extends Component {
         }
     }
 
-    handleRegister = (name, surname, username, email, password) => {
-		try {
-			logic.registerUser(name, surname, username, email, password)
+    handleRegister = (name, surname, username, email, password, repPassword) => {      
+        try {
+			logic.registerUser(name, surname, username, email, password, repPassword)
 				.then(() => {
-                    this.setState({registerError: null})
+                    this.setState({error: null})
                     this.props.history.push('/login')
                 })
-				.catch((err) => {this.setState({registerError: err.message})})
+				.catch((err) => {this.setState({error: err.message})})
 		} catch (err) {
-			this.setState({registerError: err.message})
+			this.setState({error: err.message})
 		}
 	}
 
@@ -43,11 +41,11 @@ class App extends Component {
 			logic.loginUser(username, password)
 				.then(info => {
                     this.setState({
-                        loginError: null,
+                        error: null,
                         auth_info: info
                     })
                 })
-                .catch(() => {this.setState({loginError: "Incorrect username or password"})})
+                .catch(err => {this.setState({error: "Incorrect username or password"})})
                 .then(()=> logic.getMostPopular())
                 .then(res => this.setState({mostPopular: res}))
                 .catch(error => console.error(error))
@@ -55,7 +53,7 @@ class App extends Component {
                 .then(history=> this.setState({history}))
                 .catch(error => console.error(error))
 		} catch (err) {
-            this.setState({loginError: err.message})
+            this.setState({error: err.message})
 		}
 	}
 
@@ -132,6 +130,9 @@ class App extends Component {
         this.props.history.push('/home/playlist/' + playlist_id)
     }
 
+    handleButtonClick = () => {
+        this.setState({error: null})
+    }
     renderLanding() {
         return <div className="landing">
             <nav className="landing__items">
@@ -140,12 +141,12 @@ class App extends Component {
                     <h1>Skytube</h1>
                 </div>
                 <ul className="landing__right">
-                    <li><Link className="landing__button" to='/#register'>Sign Up</Link></li>
+                    <li><Link onClick={this.handleButtonClick} className="landing__button" to='/#register'>Sign Up</Link></li>
                     <p className="landing__button--separator">or</p>
-                    <li><Link className="landing__button" to='/login'>Log In</Link></li>
+                    <li><Link onClick={this.handleButtonClick} className="landing__button" to='/login'>Log In</Link></li>
                 </ul>
             </nav>
-            <Header error={this.state.registerError} onSubmitSignUp={this.handleRegister} />
+            <Header error={this.state.error} onSubmitSignUp={this.handleRegister} />
         </div>
     }
 
@@ -171,7 +172,7 @@ class App extends Component {
         return <div>
             <Route exact path='/' render={() => !logic.isAuthenticated() ? this.renderLanding() : <Redirect to='/home'/>} />
             <Route path='/home' render={() => logic.isAuthenticated() ? this.renderHome() : <Redirect to='/login' />} />
-            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn error={this.state.loginError} onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
+            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn onClick={this.handleButtonClick} error={this.state.error} onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
         </div>
     }
 }

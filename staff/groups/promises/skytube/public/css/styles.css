@@ -18,7 +18,7 @@ body .home .main .player-footer .playlists__content, body .home .profile__conten
   z-index: 1000;
 }
 
-body .error, body .signup__error {
+body .error {
   color: red;
   background-color: #454545;
   width: 250px;
@@ -110,9 +110,6 @@ body .signup__button {
   width: 95%;
   border-radius: 5px;
   text-transform: capitalize;
-}
-body .signup__error {
-  margin-right: 250px;
 }
 body .logIn {
   background-color: #1c1c1c;
@@ -453,17 +450,6 @@ body .home .main .video__image {
 body .home .main .video__title {
   margin: 0;
   font-size: 20px;
-}
-body .error {
-  color: red;
-  display: block;
-  background-color: #454545;
-  width: 250px;
-  height: 10px;
-  margin: 10px auto;
-  padding: 10px 30px 20px 30px;
-  border-radius: 10px;
-  text-align: center;
 }
 body .error {
   margin: 10px auto;

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Error from './Error'
 
 class SignUp extends Component {
-    state = { name: '', surname: '', username: '', email:'', password: '', repPassword: '', wrongRepPas: false}
+    state = { name: '', surname: '', username: '', email:'', password: '', repPassword: ''}
 
     handleNameChange = event => {
         const name = event.target.value
@@ -44,20 +44,14 @@ class SignUp extends Component {
         event.preventDefault()
 
         const {name, surname, username, email, password, repPassword} = this.state
-
-        if (password === repPassword) {
-
-            this.props.onSubmit(name, surname, username, email, password)
-            this.setState({ wrongRepPas: false})
-
-        } else { 
-            this.setState({ wrongRepPas: true})
-        }
+        
+        this.props.onSubmit(name, surname, username, email, password,repPassword)
+        
     }
 
     render() {
         return <div className='signup'>
-            <Error className = "signup__error" error={this.props.error}/>
+            <Error error={this.props.error}/>
             <form className='signup__formulary' onSubmit={this.handleSubmit}>
                 <h4>Name</h4>
                 <input className='signup__input' placeholder='Introduce your name' onChange={this.handleNameChange}/>
@@ -71,7 +65,6 @@ class SignUp extends Component {
                 <input className='signup__input' type='password' placeholder='Create a secure password' onChange={this.handlePasswordChange}/>
                 <h4>Repeat Password</h4>
                 <input className='signup__input' type='password' placeholder='And repeat it' onChange={this.handleRepPasswordChange}/>
-                {this.state.wrongRepPas && <p>Passwords are not the same</p>}
                 <button className='signup__button'type='submit'>Sign Up</button>
             </form>
         </div>
