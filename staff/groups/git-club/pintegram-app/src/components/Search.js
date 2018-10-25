@@ -30,7 +30,7 @@ class Search extends Component {
 
     render() {
         return <div className="div-home">
-            <nav className="nav"><div className="logo"><img className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoBack} className="title">Pintegram</h1></div>
+            <nav className="nav"><div className="logo"><img onClick={this.props.onGoBack} className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoBack} className="title">Pintegram</h1></div>
             <div className="menu">
                 <i className="menu__button fas fa-search"></i>
                 <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
