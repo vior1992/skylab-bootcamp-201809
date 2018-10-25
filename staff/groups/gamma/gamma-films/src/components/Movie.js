@@ -66,7 +66,7 @@ class Movie extends Component {
         catch (err) {
             this.setState({ error: err.message })
         }
-debugger
+
         try {
             logic.getReviews(id)
                 .then(reviews => {
