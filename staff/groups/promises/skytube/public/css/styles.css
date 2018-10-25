@@ -40,7 +40,7 @@ body .logIn__form {
   display: block;
   background-color: #454545;
   width: 250px;
-  height: 220px;
+  height: 250px;
   margin: 20px auto;
   padding: 40px 30px;
   border-radius: 10px;
@@ -362,6 +362,17 @@ body .home .main .video__image {
 body .home .main .video__title {
   margin: 0;
   font-size: 20px;
+}
+body .error {
+  color: red;
+  display: block;
+  background-color: #454545;
+  width: 250px;
+  height: 10px;
+  margin: 10px auto;
+  padding: 10px 30px 20px 30px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .video-list {
