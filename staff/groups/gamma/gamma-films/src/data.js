@@ -20,4 +20,4 @@ class MovieInfo {
 }
 
 export default {User, MovieInfo}
-// module.exports = {User}
+// module.exports = {User, MovieInfo}
