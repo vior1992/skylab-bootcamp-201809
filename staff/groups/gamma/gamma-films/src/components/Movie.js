@@ -131,13 +131,13 @@ class Movie extends Component {
                         </ul>
                         <div className='card_right__rating'>
                             {this.props.isLoggedIn && !!!this.state.showFavButton && <div>
-                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} >  </button>
-                                <label>Add to favorites</label>
+                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} >
+                                    <label>Add to favorites</label></button>
                             </div>}
 
                             {this.props.isLoggedIn && !!this.state.showFavButton && <div>
-                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} > </button>
-                                <label>Remove from favorites </label>
+                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} >
+                                    <label>Remove from favorites </label></button>
 
                             </div>}
                         </div>
@@ -167,16 +167,16 @@ class Movie extends Component {
                     <div className="contain_actors">
                         <div><h3>Main Characters</h3></div>
                         <div className="contain_profile_actors">
-                            <div className="profile_actors"><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p>
-                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img></div>
-                            <div className="profile_actors"><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p>
-                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img></div>
-                            <div className="profile_actors"><p>{this.state.cast[2].name + ' as ' + this.state.cast[2].character}</p>
-                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img></div>
-                            <div className="profile_actors"><p>{this.state.cast[3].name + ' as ' + this.state.cast[3].character}</p>
-                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img></div>
-                            <div className="profile_actors"><p>{this.state.cast[4].name + ' as ' + this.state.cast[4].character}</p>
-                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img></div>
+
+                            {this.state.cast.map((cast, index) => {
+                                if(index<5){
+                                return <div className="profile_actors">
+                                    <p>{cast.name + ' as ' + cast.character}</p>
+                                    <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + cast.profile_path}></img>
+                                </div>
+                                }
+                            })}
+
                         </div>
                     </div>
                 </div>
