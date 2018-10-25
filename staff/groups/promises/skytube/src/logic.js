@@ -165,7 +165,7 @@ const logic = {
         }).save()
         this.skylab.update({watch_later: watchLaterTable.all()}, this.auth.id, this.auth.token)
     },
-
+    
     removeWatchLater(video_id) {
         const watchLaterTable = new WatchLater()
         let video = watchLaterTable.get(video_id)
@@ -277,12 +277,17 @@ const logic = {
         return favouritesTable.get(favourite_id)
     },
 
-    getWatchLater() {
+    getWatchLaters() {
         const watchLaterTable = new WatchLater()
         return {
             title: 'Watch Later',
             videos: watchLaterTable.all()
         }
+    },
+
+    getWatchLater(watchLaterId) {
+        const watchLaterTable = new WatchLater()
+        return watchLaterTable.get(watchLaterId)
     },
 
     getPlaylist(id) {
