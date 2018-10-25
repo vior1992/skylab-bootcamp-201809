@@ -52,7 +52,7 @@ class MovieDetail extends Component {
   handleSeenClick = event => {
     event.preventDefault()
 
-    const check = logic.seenClick(this.props.id, this.state.movie)
+    const check = logic.seenClick(this.state.movie)
 
     switch (check) {
 
@@ -71,7 +71,7 @@ class MovieDetail extends Component {
   handlePendingClick = event => {
     event.preventDefault()
 
-    const check = logic.pendingClick(this.props.id, this.state.movie)
+    const check = logic.pendingClick(this.state.movie)
 
     switch (check) {
 
