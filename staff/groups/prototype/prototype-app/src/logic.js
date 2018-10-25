@@ -183,6 +183,8 @@ const logic = {
   },
 
   addUserSeen(movie) {
+    console.log(this._user.seen)
+
     this._user.seen.push(movie)
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
@@ -197,7 +199,7 @@ const logic = {
     return fetch(endpoint, params)
       .then(response => response.json())
       .then(response => {
-        if (response.error) throw Error(response.error)
+        if (response.error) throw Error(response.error) 
       })
   },
 
@@ -297,38 +299,6 @@ const logic = {
       })
   },
 
-  // updateUserFavourites(movie) {
-  //   this._userFavourites.push(movie)
-
-  //   const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
-  //   const params = {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${this._user.token}`
-  //     },
-  //     body: JSON.stringify({ movies_favourites: this._userFavourites})
-  //   }
-
-  //   return fetch(endpoint, params)
-  //     .then(response => response.json())
-  //     .then(response => {
-  //       if (response.error) throw Error(response.error)
-  //     })
-  // },
-
-  checkMovieStatus(id) {
-    let status = undefined
-
-    if (this._user.seen.find(movie => movie.id == id)) {
-      status = 'seen'
-    } else if (this._user.pending.find(movie => movie.id == id)) {
-      status = 'pending'
-    }
-
-    return status
-  },
-
   updateUserData(data) {
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
@@ -345,6 +315,23 @@ const logic = {
       .then(response => {
         if (response.error) throw Error(response.error)
       })
+  },
+
+  checkMovieStatus(id) {
+    if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+    if (!id.trim()) throw Error('id is empty or blank')
+    
+    let status = undefined
+
+    if (JSON.stringify(this._user) !== '{}') {
+      if (this._user.seen.find(movie => movie.id == id)) {
+        status = 'seen'
+      } else if (this._user.pending.find(movie => movie.id == id)) {
+        status = 'pending'
+      }
+    }
+
+    return status
   },
 
   checkInList(id, list) {
@@ -368,8 +355,8 @@ const logic = {
 
     switch (state) {
       case 'favourite':
-      check = this._user.seen[indexSeen].favourite
-      break
+        check = this._user.seen[indexSeen].favourite
+        break
       case 'like':
         check = this._user.seen[indexSeen].like
         break
@@ -556,5 +543,5 @@ const logic = {
   }
 }
 
-export default logic
-// module.exports = logic
+// export default logic
+module.exports = logic

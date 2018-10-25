@@ -151,12 +151,13 @@ class MovieDetail extends Component {
       {this.state.movie && <div>
         <section className='top'>
           <div className='container'>
-            <div className='row justify-content-center'>
-              {this.state.movie.backdrop_path ? <img className='backdrop img-fluid' src={`https://image.tmdb.org/t/p/w780/${this.state.movie.backdrop_path}`} /> : <img src='https://dummyimage.com/780x439/cfcfcf/000.jpg' />}
+            <div className='row div-backdrop justify-content-center'>
+              {this.state.movie.backdrop_path ? <img className='backdrop img-fluid' src={`https://image.tmdb.org/t/p/w780/${this.state.movie.backdrop_path}`} /> : <img src='https://dummyimage.com/780x439/707070&text=+' />}
+              
               <div className='arrow'>
-                <a onClick={this.handleBackClick}><i className="fa fa-arrow-left"></i></a>
               </div>
               <div className='title-poster'>
+                <a onClick={this.handleBackClick}><i className="fa fa-arrow-left arrow"></i></a>
                 <h2>{this.state.movie.title}</h2>
               </div>
             </div>
@@ -165,10 +166,22 @@ class MovieDetail extends Component {
         <section className='body-top'>
           <div className='container'>
             <div className='row justify-content-center'>
-              <div className='col poster-col  justify-content-center'>
-                {this.state.movie.poster_path ? <img className='poster' src={`https://image.tmdb.org/t/p/w185/${this.state.movie.poster_path}`} /> : <img src='https://dummyimage.com/185x278/cfcfcf/000.jpg' />}
+              <div className='col-md-4 offset-md-2 col-sm-8 poster-col text-center'>
+                {this.state.movie.poster_path ? <img className='poster' src={`https://image.tmdb.org/t/p/w185/${this.state.movie.poster_path}`} /> : <img src='https://dummyimage.com/185x278/707070&text=+' />}
+                <div className='d-block icons-row1 mt-2'>
+                  {this.state.seen ? <a onClick={this.handleSeenClick}><i className="fa fa-eye clicked"></i></a> : <a onClick={this.handleSeenClick}><i className="fa fa-eye"></i></a>}
+                  {this.state.pending ? <a onClick={this.handlePendingClick}><i className="fa fa-clock-o clicked"></i></a> : <a onClick={this.handlePendingClick}><i className="fa fa-clock-o"></i></a>}
+                </div>
+                <div className='d-block icons-row2'>
+                  {this.state.favourite ? <a onClick={this.handleFavouriteClick}><i className="fa fa-star clicked"></i></a> : <a onClick={this.handleFavouriteClick}><i className="fa fa-star-o"></i></a>}
+                  {this.state.like ? <a onClick={this.handleLikeClick}><i className="fa fa-thumbs-up clicked"></i></a> : <a onClick={this.handleLikeClick}><i className="fa fa-thumbs-up"></i></a>}
+                  {this.state.unlike ? <a onClick={this.handleUnlikeClick}><i className="fa fa-thumbs-down clicked"></i></a> : <a onClick={this.handleUnlikeClick}><i className="fa fa-thumbs-down"></i></a>}
+                </div>
+                {this.state.warning && <p className='warning'>{this.state.warning}</p>}
+
               </div>
-              <div className='col info-col'>
+              <div className='col-md-5 col-sm-8 mt-2 info-col'>
+                <div>
                 <span>{this.state.movie.release_date.slice(0, 4)}</span>  <span> | </span>
                 <span>{`${this.state.movie.runtime}'`}</span>   <span> | </span>
                 <span>{`${this.state.movie.vote_average} / 10`}</span>
@@ -176,30 +189,11 @@ class MovieDetail extends Component {
                 {this.state.movie.production_countries.map(companies => <p>{companies.origin_country}</p>)}
                 {this.state.movie.budget !== 0 && <p>{`Budget $${this.state.movie.budget}`}</p>}
                 {this.state.movie.genres.map(genres => <div className='d-inline'><span>{genres.name}</span><span> | </span></div>)}
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className='body-bottom'>
-          <div className='container'>
-            <div className='row justify-content-center'>
-              <div className='col icons-col'>
-                <div className='row icons-row1'>
-                  {this.state.seen ? <a onClick={this.handleSeenClick}><i className="fa fa-eye clicked"></i></a> : <a onClick={this.handleSeenClick}><i className="fa fa-eye"></i></a>}
-                  {this.state.pending ? <a onClick={this.handlePendingClick}><i className="fa fa-clock-o clicked"></i></a> : <a onClick={this.handlePendingClick}><i className="fa fa-clock-o"></i></a>}
                 </div>
-                <div className='row icons-row2'>
-                  {this.state.favourite ? <a onClick={this.handleFavouriteClick}><i className="fa fa-star clicked"></i></a> : <a onClick={this.handleFavouriteClick}><i className="fa fa-star-o"></i></a>}
-                  {this.state.like ? <a onClick={this.handleLikeClick}><i className="fa fa-thumbs-up clicked"></i></a> : <a onClick={this.handleLikeClick}><i className="fa fa-thumbs-up"></i></a>}
-                  {this.state.unlike ? <a onClick={this.handleUnlikeClick}><i className="fa fa-thumbs-down clicked"></i></a> : <a onClick={this.handleUnlikeClick}><i className="fa fa-thumbs-down"></i></a>}
-                </div>
-                <div className='row warning-row'>
-                  {this.state.warning && <p>{this.state.warning}</p>}
-                </div>
-              </div>
-              <div className='col sinopsis-col'>
+                <div className='mt-5 mb-4'>
                 <h3 className='sinopsis-title '>Overview</h3>
                 <p className='sinopsis-text text-justify'>{this.state.movie.overview}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -210,7 +204,7 @@ class MovieDetail extends Component {
               <h3 className='cast-title mr-5'>Cast</h3>
             </div>
             <div className='row cast-row ml-4 justify-content-center'>
-              {this.state.movie.credits.cast.slice(0, 5).map(cast => <div className='d-inline'>{cast.profile_path ? <img src={`https://image.tmdb.org/t/p/w92/${cast.profile_path}`} /> : <img src='https://dummyimage.com/92x138/cfcfcf/000.jpg' />}<p>{cast.name}</p> </div>)}
+              {this.state.movie.credits.cast.slice(0, 5).map(cast => <div className='d-inline'>{cast.profile_path ? <img src={`https://image.tmdb.org/t/p/w92/${cast.profile_path}`} /> : <img src='https://dummyimage.com/92x138/707070&text=+' />}<p>{cast.name}</p> </div>)}
             </div>
           </div>
         </section>
