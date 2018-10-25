@@ -22,7 +22,6 @@ class Home extends Component {
         movies: [],
         queryName: ''
     }
-    
 
     handleCardClick = id => {
         this.props.history.push(`/movie/${id}`)
