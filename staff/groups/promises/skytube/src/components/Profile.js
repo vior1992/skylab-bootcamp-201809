@@ -20,7 +20,7 @@ class Profile extends Component {
                     <div className="profile__text">
                         <h1>{this.props.user.name}</h1>
                         <p>{this.props.user.email}</p>
-                        <Link to='/edit'>Edit profile</Link>
+                        {/* <Link to='/edit'>Edit profile</Link> */}
                     </div>
                 </section>
                 <footer className="profile-footer">

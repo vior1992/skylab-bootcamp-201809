@@ -99,6 +99,18 @@ body {
     body .header__text {
       margin: 0;
       font-size: 20px; }
+  body .footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 12px;
+    padding-top: 20px; }
   body .signup {
     grid-column: 2;
     display: -webkit-box;
