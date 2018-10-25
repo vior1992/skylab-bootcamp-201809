@@ -33,7 +33,7 @@ const logic = {
         if (!repPassword.trim()) throw Error ('second password is blank or empty')
 
         if (password === repPassword) {
-           
+
             return this.skylab.register({
                 name: name,
                 surname: surname,
@@ -42,7 +42,7 @@ const logic = {
                 password: password
             })
 
-        } else { 
+        } else {
             throw Error ('Passwords do not match')
         }
     },
