@@ -14,9 +14,6 @@ class Navbar extends Component {
         if (this.props.userID !== prevProps.userID) {
           this.fetchData(this.props.userID);
         }
-        if(this.props.name!==prevProps.name){
-            this.fetchData(this.props.name)
-        }
       }
 
 

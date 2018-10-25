@@ -30,7 +30,7 @@ verResultados = event => {
 }
 
 render() {
-    return <div class="dropdown">
+    return <div className="dropdown">
             <form className="form_search" onSubmit={this.handleSubmit}>
             <select className="select_cat" onChange={this.handleQueryChange}>
                 <option type='button' value="28" onClick={this.handleQueryChange}>Action</option>
