@@ -15,7 +15,7 @@ class App extends Component {
     state = {
         loggedIn: false,
         name: sessionStorage.getItem('user.name') || '',
-        user:''
+        user: ''
     }
     componentDidMount = () => {
         this.props.history.push('/')
@@ -35,8 +35,8 @@ class App extends Component {
     getUser() {
         try {
             logic.retrieveUser()
-                .then(user => { 
-                    this.setState({ user }) 
+                .then(user => {
+                    this.setState({ user })
                     return user
                 })
                 .then(user => sessionStorage.setItem('user.name', user.name))
@@ -48,6 +48,7 @@ class App extends Component {
     handleLogoutClick = () => {
         this.setState({ loggedIn: false })
         this.setState({ user: '' })
+        this.setState({ name: null })
         logic.logout()
         this.props.history.push('/')
     }
@@ -67,7 +68,7 @@ class App extends Component {
     render() {
 
         return <div className="body">
-            <Route path="/" render={() => <Navbar onLogoClick={this.handleLogoClick} onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick} name={this.state.name}/>} />
+            <Route path="/" render={() => <Navbar onLogoClick={this.handleLogoClick} onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick} name={this.state.name} />} />
 
             <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
 
