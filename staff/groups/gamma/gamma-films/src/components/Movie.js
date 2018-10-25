@@ -121,10 +121,6 @@ class Movie extends Component {
                         <li>{this.state.theDate}</li>
                         <li>Action</li>
                     </ul>
-                    <div className='card_right__rating'>
-                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button type="button" onClick={this.handleAddFav} > Add to favorites </button>}
-                        {this.props.isLoggedIn && !!this.state.showFavButton && <button type="button" onClick={this.handleRemoveFav} > Remove from favorites </button>}
-                    </div>
 
                     <div className='card_right__review'>
                         <p>{this.state.theOverview}</p>
@@ -133,10 +129,17 @@ class Movie extends Component {
                     {!!this.state.youtubeKey && <div className='card_right__button'>
                         <a href={'https://www.youtube.com/watch?v='+this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
                     </div>}
+                    <div className='card_right__rating'>
+                        {console.log('en render ' + this.state.showFavButton)}
+                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button className="unlike_btn" type="button" onClick={this.handleFav} >  </button>}
+                        {this.props.isLoggedIn && !!this.state.showFavButton && <button className="like_btn" type="button" onClick={this.handleFav} >   </button>}
+                    </div>
 
                 </div>
             </div>
         </div>
+        <iframe className="video-frame" src={"https://www.youtube.com/embed/"+this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+       
         {!!this.state.cast && <div>
                         <h3>Main Characters</h3>
                         <div><p>{this.state.cast[0].name+ ' as ' +this.state.cast[0].character}</p></div>
