@@ -16,9 +16,9 @@ describe('logic', () => {
 
     describe('users', () => {
 
-        describe('register', () => {
+        false && describe('register', () => {
 
-            false && it('should succeed on correct data', () =>
+            it('should succeed on correct data', () =>
 
                 logic.registerUser('John', 'doe@gmail.com', `jd-${Math.random()}`, '123', '123')
 
@@ -26,7 +26,7 @@ describe('logic', () => {
 
             )
 
-            false && it('should fail on trying to register twice same user', () => {
+            it('should fail on trying to register twice same user', () => {
 
                 const username = `jd-${Math.random()}`
 
@@ -42,7 +42,7 @@ describe('logic', () => {
                     })
             })
 
-            false && it('should fail on undefined name', () => {
+            it('should fail on undefined name', () => {
 
                 expect(() =>
 
@@ -51,10 +51,10 @@ describe('logic', () => {
                 ).to.throw(TypeError, 'undefined is not a string')
             })
 
-            false && it('should fail on different passwords', () => {
+            it('should fail on different passwords', () => {
 
                 return logic.registerUser('John', 'doe@gmail.com', `jd-${Math.random()}`, '123', '123')
-                
+
                     .catch(err => {
 
                         expect(err).not.to.be.undefined
@@ -63,10 +63,82 @@ describe('logic', () => {
                     })
             })
 
-            // TODO other cases
+            it('should fail on different passwords', () => {
+
+                return logic.registerUser('John', 'doe@gmail.com', `jd-${Math.random()}`, '123', '123')
+
+                    .catch(err => {
+
+                        expect(err).not.to.be.undefined
+
+                        expect(err.message).to.equal(`passwords do not match`)
+                    })
+            })
+
+            it('should fail on empty name', () => {
+                expect(() =>
+                    logic.registerUser(' ', 'doe@gmail.com', `jd-${Math.random()}`, '123', '123')
+                ).to.throw(Error, 'name is empty or blank')
+            })
+
+            it('should fail on empty email', () => {
+                expect(() =>
+                    logic.registerUser('John', '', `jd-${Math.random()}`, '123', '123')
+                ).to.throw(Error, ' is an invalid email')
+            })
+
+            it('should fail on no @ sign', () => {
+                expect(() =>
+                    logic.registerUser('John', 'seand', `jd-${Math.random()}`, '123', '123')
+                ).to.throw(Error, ' is an invalid email')
+            })
+
+            it('should fail on no .com', () => {
+                expect(() =>
+                    logic.registerUser('John', 'seand@', `jd-${Math.random()}`, '123', '123')
+                ).to.throw(Error, ' is an invalid email')
+            })
+
+
+            it('should fail on blank username', () => {
+                expect(() =>
+                    logic.registerUser('John', 'seand@asd.com', ``, '123', '123')
+                ).to.throw(Error, 'username is empty or blank')
+            })
+
+            it('should fail on blank password', () => {
+                expect(() =>
+                    logic.registerUser('John', 'seand@asdf.com', `jd-${Math.random()}`, '', '')
+                ).to.throw(Error, 'password is empty or blank')
+            })
+
+            it('should fail on undefined name', () => {
+                expect(() =>
+                    logic.registerUser(undefined, 'seand@asdf.com', `jd-${Math.random()}`, '', '')
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on undefined name', () => {
+                expect(() =>
+                    logic.registerUser('John', undefined, `jd-${Math.random()}`, '', '')
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on undefined name', () => {
+                expect(() =>
+                    logic.registerUser('John', 'seand@asdf.com', undefined, '', '')
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on undefined passwords', () => {
+                expect(() =>
+                    logic.registerUser('John', 'seand@asdf.com', `jd-${Math.random()}`, undefined, undefined)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
         })
 
-        describe('login', () => {
+        false && describe('login', () => {
 
             describe('with existing user', () => {
 
@@ -82,12 +154,12 @@ describe('logic', () => {
                     return logic.registerUser(name, email, username, password, password)
                 })
 
-                false && it('should succeed on correct data', () =>
+                it('should succeed on correct data', () =>
                     logic.login(username, password)
                         .then(() => expect(true).to.be.true)
                 )
 
-                false && it('should fail on wrong username', () => {
+                it('should fail on wrong username', () => {
                     username = `dummy-${Math.random()}`
 
                     return logic.login(username, password)
@@ -97,7 +169,7 @@ describe('logic', () => {
                         })
                 })
 
-                false && it('should fail on wrong password', () => {
+                it('should fail on wrong password', () => {
                     password = 'pepito'
 
                     return logic.login(username, password)
@@ -108,7 +180,7 @@ describe('logic', () => {
                 })
             })
 
-            false && it('should fail on undefined username', () => {
+            it('should fail on undefined username', () => {
                 const username = undefined
 
                 expect(() =>
@@ -116,7 +188,7 @@ describe('logic', () => {
                 ).to.throw(Error, `${username} is not a string`)
             })
 
-            false && it('should fail on boolean username', () => {
+            it('should fail on boolean username', () => {
                 const username = true
 
                 expect(() =>
@@ -124,12 +196,28 @@ describe('logic', () => {
                 ).to.throw(Error, `${username} is not a string`)
             })
 
-            false && it('should fail on numeric username', () => {
+            it('should fail on numeric username', () => {
                 const username = 123
 
                 expect(() =>
                     logic.login(username, '123')
                 ).to.throw(Error, `${username} is not a string`)
+            })
+
+            it('should fail on undefined password', () => {
+                const username = 'al'
+
+                expect(() =>
+                    logic.login(username, undefined)
+                ).to.throw(Error, `undefined is not a string`)
+            })
+
+            it('should fail on null password', () => {
+                const username = 'al'
+
+                expect(() =>
+                    logic.login(username, null)
+                ).to.throw(Error, `null is not a string`)
             })
 
             // TODO other cases
@@ -138,7 +226,7 @@ describe('logic', () => {
 
     describe('API requests', () => {
 
-        describe('show events for carousel', () => {
+        false && describe('search events for from keyword', () => {
             let query
 
             beforeEach(() => {
@@ -183,95 +271,79 @@ describe('logic', () => {
                 ).to.throw(Error, `input text is blank`)
             })
 
-
-
-            it('should fail with an incorrect url of objects with events', () => {
-
-                return logic.showEvents()
-                    .then(res => {
-                        expect(res).not.to.be.undefined
-                        expect(res.length).to.be.above(0)
-                    })
-            })
-        })
-
-        describe('search info by id', () => {
-            it('should succeed on correct id', () => {
-                const id = 'vvG1fZ411N-A7B'
-                return logic.searchEventInfo(id)
-                    .then(() => expect(true).to.be.true)
-            })
-
-            it('should fail on undefined id', () => {
-                const id = undefined
-                expect(() =>
-                    logic.searchEventInfo(id)
-                ).to.throw(Error, `${id} is not a valid id`)
-            })
-
-            it('should fail on empty or blank id', () => {
-                const id = '\n   \t'
-                expect(() => logic.searchEventInfo(id)
-                ).to.throw(Error, 'id is empty or blank')
-            })
-
-            it('should fail on incorrect id', () => {
-                const id = 'n9821dahkj182'
-                return logic.searchEventInfo(id)
-                    .catch(err => {
-                        expect(err).not.to.be.undefined
-                        expect(err.message).to.equal(`${id} is not a valid id`)
-                    })
-            })
-        })
-
-
-        describe('retrieve events', () => {
-            let query
-            beforeEach(() => {
-                query = 'Metallica'
-            })
-            false && it('should return an array of objects with events', () => {
-                logic.searchEvents(query)
-                    .then(res => {
-                        expect(res).not.to.be.undefined
-                        expect(res.length).to.be.above(0)
-                    })
-            })
-
-            false && it('should fail on undefined search', () => {
-                logic.searchEvents(query)
-                    .then(res => {
-                        expect(res).not.to.be.undefined
-                        expect(res.length).to.be.above(0)
-                    })
-            })
-
-            false && it('should fail on undefined query', () => {
-                query = undefined
+            it('should fail on a null query', () => {
+                query = null
                 expect(() =>
                     logic.searchEvents(query)
                 ).to.throw(Error, `${query} is not a valid query`)
             })
 
-            false && it('should fail on a blank query', () => {
-                query = ''
-                expect(() =>
-                    logic.searchEvents(query)
-                ).to.throw(Error, `${query} is empty`)
+
+            false &&  describe('search info by id', () => {
+                it('should succeed on correct id', () => {
+                    const id = 'vvG1fZ411N-A7B'
+                    return logic.searchEventInfo(id)
+                        .then(() => expect(true).to.be.true)
+                })
+
+                it('should fail on undefined id', () => {
+                    const id = undefined
+                    expect(() =>
+                        logic.searchEventInfo(id)
+                    ).to.throw(Error, `${id} is not a valid id`)
+                })
+
+
+                it('should fail on null id', () => {
+                    const id = null
+                    expect(() =>
+                        logic.searchEventInfo(id)
+                    ).to.throw(Error, `${id} is not a valid id`)
+                })
+
+                it('should fail on boolean id', () => {
+                    const id = true
+                    expect(() =>
+                        logic.searchEventInfo(id)
+                    ).to.throw(Error, `${id} is not a valid id`)
+                })
+
+                it('should fail on empty or blank id', () => {
+                    const id = '\n   \t'
+                    expect(() => logic.searchEventInfo(id)
+                    ).to.throw(Error, 'id is empty or blank')
+                })
+
+                it('should fail on incorrect id', () => {
+                    const id = 'n9821dahkj182'
+                    return logic.searchEventInfo(id)
+                        .catch(err => {
+                            expect(err).not.to.be.undefined
+                            expect(err.message).to.equal(`${id} is not a valid id`)
+                        })
+                })
             })
 
-            false && it('should fail on a blank query', () => {
-                query = '                  '
-                expect(() =>
-                    logic.searchEvents(query)
-                ).to.throw(Error, `${query} is blank`)
+
+            false &&  describe('retrieve events to show from generic query', () => {
+                it('Should succeed on making API request', () => {
+
+                    logic._carouselUrl = 'https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events.json?countryCode=ES&apikey=ELXA0H0YPzUTFYrjeH4AG5g6y4eWTVSO&size=200'
+
+                    return logic.showEvents()
+                        .then(res => {
+                            expect(res).not.to.be.undefined
+                            expect(res.length).to.be.above(0)
+                        })
+                })
+
             })
+
 
 
         })
 
-        describe('isFavourite function', () => {
+        false &&  describe('isFavourite function', () => {
             beforeEach(() => {
                 const name = 'John', email = 'doe@gmail.com'
 
@@ -300,42 +372,42 @@ describe('logic', () => {
 
             it('should fail on non string id(boolean)', () => {
                 let id = true
-                           
-                    expect(() => logic.isFavourite(id))
-                        .to.throw(Error, `${id} is not a string`)
+
+                expect(() => logic.isFavourite(id))
+                    .to.throw(Error, `${id} is not a string`)
             })
 
             it('should fail on non string id(number)', () => {
                 let id = 13
-                            
-                    expect(() => logic.isFavourite(id))
-                        .to.throw(Error, `${id} is not a string`)
+
+                expect(() => logic.isFavourite(id))
+                    .to.throw(Error, `${id} is not a string`)
             })
 
             it('should fail on non string id(array)', () => {
                 let id = []
-                            
-                    expect(() => logic.isFavourite(id))
-                        .to.throw(Error, ` is not a string`)
+
+                expect(() => logic.isFavourite(id))
+                    .to.throw(Error, ` is not a string`)
             })
 
             it('should fail on non string id(undefined)', () => {
                 let id = undefined
-                            
-                    expect(() => logic.isFavourite(id))
-                        .to.throw(Error, `${id} is not a string`)
+
+                expect(() => logic.isFavourite(id))
+                    .to.throw(Error, `${id} is not a string`)
             })
 
             it('should fail on non string id(object)', () => {
                 let id = {}
-                            
-                    expect(() => logic.isFavourite(id))
-                        .to.throw(Error, `[object Object] is not a string`)
+
+                expect(() => logic.isFavourite(id))
+                    .to.throw(Error, `[object Object] is not a string`)
             })
 
         })
 
-        describe('delete favourites from user array', () => {
+         describe('delete favourites from user array', () => {
             describe('with existing user', () => {
                 let username, password, itemId
 
@@ -354,23 +426,56 @@ describe('logic', () => {
 
                 })
 
-                describe('with existing postit', () => {
-
-                    false && it('should succeed on deleting existing item', () =>
+                    it('should succeed on deleting existing item', () =>
                         logic.deleteFavourite('KovZpZAEdJaA')
                             .then(() => expect(true).to.be.true)
                             .then(() => expect(logic._favouritesEventsArray).to.be.empty)
                     )
-                    //     it('should fail on ', () =>
-                    //     logic.deleteFavourite('KovZpZAEdJaA')
-                    //         .then(() => expect(true).to.be.true)
-                    //         .then(() => expect(logic._favouritesEventsArray).to.be.empty)
-                    // )
-                })
+
+                    it('should fail if a event is not in your favourite list', () =>
+                        logic.deleteFavourite('KovZpZAEdJaA')
+                            .then((res) => expect(res.length).to.equal(0))
+                    )
+
+                    it('should fail on non string id(boolean)', () => {
+                        let id = true
+
+                        expect(() => logic.deleteFavourite(id))
+                            .to.throw(Error, `${id} is not a string`)
+                    })
+
+                    it('should fail on non string id(number)', () => {
+                        let id = 13
+
+                        expect(() => logic.deleteFavourite(id))
+                            .to.throw(Error, `${id} is not a string`)
+                    })
+
+                    it('should fail on non string id(array)', () => {
+                        let id = []
+
+                        expect(() => logic.deleteFavourite(id))
+                            .to.throw(Error, ` is not a string`)
+                    })
+
+                    it('should fail on non string id(undefined)', () => {
+                        let id = undefined
+
+                        expect(() => logic.deleteFavourite(id))
+                            .to.throw(Error, `${id} is not a string`)
+                    })
+
+                    it('should fail on non string id(object)', () => {
+                        let id = {}
+
+                        expect(() => logic.deleteFavourite(id))
+                            .to.throw(Error, `[object Object] is not a string`)
+                    })
+               
             })
         })
 
-        describe('retrieve favourites from user', () => {
+        false && describe('retrieve favourites from user', () => {
             let username, password
 
             beforeEach(() => {
@@ -387,32 +492,34 @@ describe('logic', () => {
                     )
             })
 
-             false && it('should succeed on retrieving favourites', () => {
+            it('should succeed on retrieving favourites', () => {
                 return logic.retrieveFavouriteEvents()
                     .then(() => expect(true).to.be.true)
             })
 
-             it('should return correct amount of events', () => {
-                 
+            it('should return correct amount of events', () => {
+
                 return logic.retrieveFavouriteEvents()
-                    .then(res =>{ 
-                       
-                        expect(res.length).to.equal(1)}) 
+                    .then(res => {
+
+                        expect(res.length).to.equal(1)
+                    })
             })
 
             it('should return no favourites when empty', () => {
-                 
+
                 return logic.deleteFavourite('vvG1fZ411N-A7B')
                     .then(logic.retrieveFavouriteEvents()
                         .then(expect(true).to.be.true)
-                    .then(res => {
-                        expect(res.length).to.equal(0)})) //REVIEW
+                        .then(res => {
+                            expect(res.length).to.equal(0)
+                        })) //REVIEW
             })
 
         })
 
 
-        describe('Store events in favourites', () => {
+        false && describe('Store events in favourites', () => {
             describe('with existing user', () => {
                 let username, password, item
                 beforeEach(() => {
@@ -427,7 +534,7 @@ describe('logic', () => {
                         .then(() => logic.login(username, password)
                         )
                 })
-                 false && it('should succeed on adding event to favourites', () =>
+                it('should succeed on adding event to favourites', () =>
                     logic.storeFavourites('vvG1fZ411N-A7B')
                         .then(() => {
                             expect(true).to.be.true
@@ -435,26 +542,26 @@ describe('logic', () => {
                         })
                 )
 
-                false && it('should fail on adding non-existant event to favourites', () =>
+                it('should fail on adding non-existant event to favourites', () =>
                     logic.storeFavourites('asdiufhaisudf')
                         .then(() => expect(true).to.be.true)
                 )
 
-                false && it('should fail on undefined id', () => {
+                it('should fail on undefined id', () => {
                     id = undefined
                     expect(() =>
                         logic.storeFavourites(id)
                     ).to.throw(Error, `${id} is undefined`)
                 })
 
-                false && it('should fail on empty id', () => {
+                it('should fail on empty id', () => {
                     id = ''
                     expect(() =>
                         logic.storeFavourites(id)
                     ).to.throw(Error, `${id} is empty`)
                 })
 
-                false && it('should fail on blank id', () => {
+                it('should fail on blank id', () => {
                     id = '         '
                     expect(() =>
                         logic.storeFavourites(id)
@@ -464,7 +571,7 @@ describe('logic', () => {
             })
         })
 
-        describe('random events function', () => {
+       false && describe('random events function', () => {
 
             beforeEach(() => {
                 const name = 'John', email = 'doe@gmail.com'
@@ -480,11 +587,11 @@ describe('logic', () => {
                     )
             })
 
-            it('should give back 3 elements', () => {   
+            it('should give back 3 elements', () => {
 
-                let array = logic.randomEvents() 
-                expect(array.length).to.equal(3)   
-    
+                let array = logic.randomEvents()
+                expect(array.length).to.equal(3)
+
             })
 
         })

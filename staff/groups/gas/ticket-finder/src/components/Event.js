@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import logic from '../logic'
-import { Route, withRouter } from 'react-router-dom'
-import EventInfo from './EventInfo'
+import { withRouter } from 'react-router-dom'
 
 class Event extends Component {
     state ={
@@ -11,7 +10,6 @@ class Event extends Component {
     }
 
     componentDidMount() {
-        // debugger
 
          logic.isFavourite(this.props.eventId)        
         .then(res => this.setState ({ favouriteSelected:res }))

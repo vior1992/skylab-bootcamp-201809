@@ -44,13 +44,21 @@ class Register extends Component {
 
     render() {
         return <div className="register-container">
+
         <form onSubmit={this.handleSubmit}>
+
             <Input type="text" label="Name" onChange={this.handleNameChange} />
+
             <Input type="text" label="Email" onChange={this.handleEmailChange} />
+
             <Input type="text" label="Username" onChange={this.handleUsernameChange} />
+
             <Input type="password" label="Password" onChange={this.handlePasswordChange} />
+
             <Input type="password" label="Repeat Password" onChange={this.handleRepeatPasswordChange} />
+
             <div className="button-container">
+            
             <Button color="unique" type="submit">Register</Button> <a id="back-btn" href="#" onClick={this.props.onGoBack}>Back</a>
             </div>
             {/* <a href="#" onClick={this.props.onGoBack}>back</a> */}

@@ -1,8 +1,3 @@
-// import data from './data'
-const data = require('./data')
-
-const { Event } = data
-
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
@@ -10,7 +5,7 @@ const logic = {
     _favouritesEventsArray: [],
 
 
-    registerUser(name, email, username, password, passwordRepeat) {
+    registerUser(name, email, username, password, passwordRepeat) {        
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
         if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
         if (email.match(/^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) === null) throw Error(`${email} is an invalid email`)
@@ -180,7 +175,7 @@ const logic = {
     isFavourite(id) {
         if(typeof id !== 'string') throw Error(`${id} is not a string`)
         if(typeof id === 'number') throw Error(`${id} is not a string`)
-        if(typeof id === 'array') throw Error(` is not a string`)
+        if(id instanceof Array) throw Error(` is not a string`)
         if(typeof id === 'boolean') throw Error(`${id} is not a string`)
         if(typeof id === 'object') throw Error(`[object Object] is not a string`)
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -207,6 +202,11 @@ const logic = {
     },
 
     deleteFavourite(id) {
+        if(typeof id !== 'string') throw Error(`${id} is not a string`)
+        if(typeof id === 'number') throw Error(`${id} is not a string`)
+        if(id instanceof Array) throw Error(` is not a string`)
+        if(typeof id === 'boolean') throw Error(`${id} is not a string`)
+        if(typeof id === 'object') throw Error(`[object Object] is not a string`)
         var index = this._favouritesEventsArray.findIndex(item => item.id === id)
         this._favouritesEventsArray.splice(index, 1)
         const self = this
@@ -224,11 +224,10 @@ const logic = {
                 return self._favouritesEventsArray
             })
 
-            .catch(err => console.log(err))
     }
 }
 
-// export default logic
-module.exports = logic
+export default logic
+// module.exports = logic
 
 

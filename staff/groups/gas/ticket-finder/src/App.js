@@ -21,6 +21,7 @@ class App extends Component {
 
 
   handleRegister = (name, email, username, password, passwordRepeat) => {
+
     try {
         logic.registerUser(name, email, username, password, passwordRepeat)
             .then(() => {
@@ -74,6 +75,7 @@ handleGoBack = () => this.props.history.push('/')
      />
      
     <Route path="/eventinformation/:id" render={(props) => logic.loggedIn ? <EventInfo id={props.match.params.id}/> : <Redirect to="/home" />} />
+    
     </div>
   }
 }

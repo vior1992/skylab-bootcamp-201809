@@ -18,9 +18,6 @@ class SearchResults extends Component {
     }
 
     componentWillReceiveProps(props) {
-
-        this.setState({error: false})
-        
         this.searchEvents(props.query)
             
     }
@@ -50,7 +47,9 @@ class SearchResults extends Component {
 
     goToNextPage = () => {
 
-        if (this.state.pageNumber < 5) {
+        const maxPages = Math.ceil(this.state.events.length / 6)
+
+        if (this.state.pageNumber < maxPages) {
 
             const nextPage = this.state.pageNumber + 1
 
@@ -84,7 +83,9 @@ class SearchResults extends Component {
     render() {
         const { error } = this.state
         return <section>
-             {error && <Error message={error} />}
+
+             {this.props.error && <Error message={this.props.error} />}
+
             <div className="index-content">
 
                 <div className="container-carousel">
@@ -98,7 +99,10 @@ class SearchResults extends Component {
             <div className="page-btns">
             
                 {<Button color="unique" onClick={this.goToPreviousPage}>Previous page</Button>}
+
                 {<Button color="unique" onClick={this.goToNextPage}>Next page</Button>}
+
+                <p>Page {this.state.error ? '0' : this.state.pageNumber} out of {Math.ceil(this.state.events.length / 6)}</p>
 
             </div>
 
