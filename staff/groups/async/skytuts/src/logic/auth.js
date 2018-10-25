@@ -1,6 +1,7 @@
 const logicAuth = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
+    _faves: sessionStorage.getItem('faves') || JSON.stringify([]),
 
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
@@ -44,15 +45,34 @@ const logicAuth = {
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-                const { id, token, faves } = res.data
+                const { id, token } = res.data
 
                 this._userId = id
                 this._token = token
-                
 
-                sessionStorage.setItem('userId', id)
-                sessionStorage.setItem('token', token)
-                sessionStorage.setItem('faves', faves || JSON.stringify([]))
+                sessionStorage.setItem('userId', this._userId)
+                sessionStorage.setItem('token', this._token)
+
+
+            })
+    },
+
+    getUser() {
+
+        if (typeof this._userId !== 'string') throw new TypeError(`${this._userId} is not a string`)
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                this._faves = res.faves
+                sessionStorage.setItem('faves', JSON.stringify(this._faves))
+                sessionStorage.setItem('user', JSON.stringify(res))
             })
     },
 

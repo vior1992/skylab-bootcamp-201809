@@ -19,15 +19,15 @@ class Main extends Component {
 
 
     filterCoursesByTrack = (track) => {
-        this.setState({ courses:  filterCourses().byTrack(track), track})
+        this.setState({ courses: filterCourses().byTrack(track), track })
     }
 
     filterCoursesByLevel = (level) => {
-        this.setState({ courses:  filterCourses().byLevel(level, this.state.track)})
+        this.setState({ courses: filterCourses().byLevel(level, this.state.track) })
     }
 
     filterPersonalized = (event) => {
-        this.setState({ courses: filterCourses().personalized(event.target.value)})
+        this.setState({ courses: filterCourses().personalized(event.target.value) })
     }
 
     listCourses = () => {
@@ -35,7 +35,7 @@ class Main extends Component {
             logicUdacity.getCourses()
                 .then(() => {
                     const data = JSON.parse(sessionStorage.getItem('courses'))
-                    this.setState({ 
+                    this.setState({
                         courses: data.courses || [],
                         tracks: data.tracks || [],
                     })
@@ -56,7 +56,7 @@ class Main extends Component {
         } else {
             this.listCourses().slice(0, 6);
         }
-        
+
     }
 
     render() {
@@ -73,13 +73,13 @@ class Main extends Component {
                 <div className="main">
                     <section className="list-container">
 
-                    {(this.state.tracks || []).map((track, index) => <span onClick={() => this.filterCoursesByTrack(track)} key={index}>{track.name}</span>)}
-                        <span onClick={() => this.filterCoursesByLevel('beginner')}>beginner</span>
-                        <span onClick={() => this.filterCoursesByLevel('intermediate')}>intermediate</span>
-                        <span onClick={() => this.filterCoursesByLevel('advanced')}>advanced</span>
-                    {this.state.error &&
-                        <p>{this.state.error}</p>
-                    }
+                        {(this.state.tracks || []).map((track, index) => <span onClick={() => this.filterCoursesByTrack(track)} key={index}>{track.name}</span>)}
+                        <span onClick={() => this.filterCoursesByLevel('beginner')}>Beginner</span>
+                        <span onClick={() => this.filterCoursesByLevel('intermediate')}>Intermediate</span>
+                        <span onClick={() => this.filterCoursesByLevel('advanced')}>Advanced</span>
+                        {this.state.error &&
+                            <p>{this.state.error}</p>
+                        }
 
                     </section>
 
