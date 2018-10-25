@@ -6,6 +6,7 @@ function Header(props) {
         <div>
             <SignUp onSubmit={props.onSubmitSignUp}/>
         </div>
+        <SignUp error={props.error} onSubmit={props.onSubmitSignUp}/>
     </header>
 }
 

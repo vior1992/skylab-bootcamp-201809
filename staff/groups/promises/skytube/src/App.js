@@ -15,10 +15,12 @@ class App extends Component {
         super(props)
         this.state = {
             error: null,
+            registerError: null,
+            loginError: null,
             auth_info: logic.authInfo(),
-            video_list: logic.video_search,
+            videoList: logic.video_search,
             video: logic.current_video,
-            most_popular: [],
+            mostPopular: [],
             history: logic.getHistory
         }
     }
@@ -27,12 +29,12 @@ class App extends Component {
 		try {
 			logic.registerUser(name, surname, username, email, password)
 				.then(() => {
-                    this.setState({error: null})
+                    this.setState({registerError: null})
                     this.props.history.push('/login')
                 })
-				.catch(error => console.error(error))
+				.catch((err) => {this.setState({registerError: err.message})})
 		} catch (err) {
-			this.setState({error: err.message})
+			this.setState({registerError: err.message})
 		}
 	}
 
@@ -41,18 +43,20 @@ class App extends Component {
 			logic.loginUser(username, password)
 				.then(info => {
                     this.setState({
-                        error: null,
+                        loginError: null,
                         auth_info: info
                     })
                 })
+                .catch(() => {this.setState({loginError: "Incorrect username or password"})})
                 .then(()=> logic.getMostPopular())
-                .then(res => this.setState({most_popular: res}))
+                .then(res => this.setState({mostPopular: res}))
                 .catch(error => console.error(error))
                 .then(()=> logic.getHistory())
                 .then(history=> this.setState({history}))
                 .catch(error => console.error(error))
 		} catch (err) {
-			this.setState({error: err.message})
+            this.setState({loginError: err.message})
+            console.error(this.state.loginError)
 		}
 	}
 
@@ -63,9 +67,13 @@ class App extends Component {
     }
 
 	handleSearch = query => {
-		logic.search(query)
-			.then(result => this.setState({video_list: result}, () => this.props.history.push('/home/search')))
-            .catch(error => console.error(error))
+		try {logic.search(query)
+			    .then(result => this.setState({videoList: result}, () => this.props.history.push('/home/search')))
+                .catch(error => console.error(error))
+        } catch(err) {
+            this.setState({error: err.message})
+            console.error(this.state.error)
+        }
 	}
 
 	handleVideoClick = video => {
@@ -102,7 +110,7 @@ class App extends Component {
     handleClickHome = () => {
         this.props.history.push('/home')
         logic.getMostPopular()
-            .then(res => this.setState({most_popular: res}))
+            .then(res => this.setState({mostPopular: res}))
             .catch(error => console.error(error))
             .then(()=> logic.getHistory())
             .then(history=> this.setState({history}))
@@ -138,7 +146,7 @@ class App extends Component {
                     <li><Link className="landing__button" to='/login'>Log In</Link></li>
                 </ul>
             </nav>
-            <Header onSubmitSignUp={this.handleRegister} />
+            <Header error={this.state.registerError} onSubmitSignUp={this.handleRegister} />
         </div>
     }
 
@@ -148,9 +156,9 @@ class App extends Component {
             <Search onSearch={this.handleSearch}/>
             <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
             <main className = 'main'>
-                <Route exact path='/home' render={() => <VideoList title ={'Most Popular'} onVideoClick={this.handleVideoClick}  videoList={this.state.most_popular} />} />
+                <Route exact path='/home' render={() => <VideoList title ={'Most Popular'} onVideoClick={this.handleVideoClick}  videoList={this.state.mostPopular} />} />
                 <Route exact path='/home' render={() => <VideoList title ={'History'} onVideoClick={this.handleVideoClick}  videoList={this.state.history} />} />
-                <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.video_list} />} />
+                <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.videoList} />} />
                 <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
                 <Route path='/home/favourites' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getFavourites()} />} />
                 <Route path='/home/history' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getHistory()} />} />
@@ -164,8 +172,7 @@ class App extends Component {
         return <div>
             <Route exact path='/' render={() => !logic.isAuthenticated() ? this.renderLanding() : <Redirect to='/home'/>} />
             <Route path='/home' render={() => logic.isAuthenticated() ? this.renderHome() : <Redirect to='/login' />} />
-            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
-            {this.state.error && <p>{this.state.error}</p>}
+            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn error={this.state.loginError} onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
         </div>
     }
 }

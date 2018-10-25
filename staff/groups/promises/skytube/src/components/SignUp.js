@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import Error from './Error'
 
 class SignUp extends Component {
     state = { name: '', surname: '', username: '', email:'', password: '', repPassword: '', wrongRepPas: false}
@@ -57,6 +57,7 @@ class SignUp extends Component {
 
     render() {
         return <div className='signup'>
+            <Error error={this.props.error}/>
             <form className='signup__formulary' onSubmit={this.handleSubmit}>
                 <h4>Name</h4>
                 <input className='signup__input' placeholder='Introduce your name' onChange={this.handleNameChange}/>
