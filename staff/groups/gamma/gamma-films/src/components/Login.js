@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import Error from './Error'
 
 class Login extends Component {
     state = { username: '', password: '', error: '' }
@@ -58,6 +59,7 @@ class Login extends Component {
                             <button class="btn btn-outline-secondary" type="submit">Login</button>
                             <a className="btn btn-link" href="#" onClick={this.props.onGoBack}>back</a>
                         </form>
+                        {this.state.error && <Error message={this.state.error} />}
                     </div>
                     }
                 }
