@@ -43,6 +43,7 @@ class Favorite extends Component {
         })
             .then(res => res.json())
             .then(res => {
+                // debugger
                 if (res.error) throw Error(res.error)
                 sessionStorage.setItem('faves', JSON.stringify(favesLocal))
                 this.checkStatus()
