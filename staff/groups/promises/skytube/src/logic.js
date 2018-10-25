@@ -180,14 +180,17 @@ const logic = {
     addHistory(video) {
         const historyTable = new History()
         const finded = historyTable.get(video.id)
-        if (finded.length > 0) historyTable.get(finded[0].id).delete()
-
-        historyTable.newEntity({
-            id: video.id,
-            title: video.title,
-            thumbnail: video.thumbnail,
-            viewed: Date.now()
-        }).save()
+        if (finded && Object.keys(finded).length > 0) {
+            finded.viewed = Date.now()
+            finded.save()
+        } else {
+            historyTable.newEntity({
+                id: video.id,
+                title: video.title,
+                thumbnail: video.thumbnail,
+                viewed: Date.now()
+            }).save()
+        }
 
         const history = historyTable.all()
         if (history.length > 20) {
