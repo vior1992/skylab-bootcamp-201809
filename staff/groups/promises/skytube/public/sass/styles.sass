@@ -74,6 +74,7 @@ body
             text-decoration: none
             color: $color-text
 
+
     .home
         position: relative
         display: grid
@@ -99,8 +100,8 @@ body
                 &__logo
                     max-width: 50px
                     max-height: 50px
-                    margin-right: 5px  
-         
+                    margin-right: 5px
+
             &__lists
                 height: calc(100vh - #{$header-height})
                 display: flex
@@ -141,7 +142,7 @@ body
                 border: 1px solid #999999
                 border-radius: 10px
                 margin: 15px 20px
-                padding: 10px   
+                padding: 10px
                 background-color: darken($color-background, 15%)
                 font-family: Roboto, Arial, sans-serif
                 font-size: 18px
@@ -156,7 +157,7 @@ body
                 border-radius: 10px
                 background-color: #999999
                 outline: 0
-            
+
         .profile
             grid-row: 1
             grid-column: 3
@@ -187,7 +188,7 @@ body
 
                 img
                     height: inherit
-                
+
             &__text
                 display: flex
                 flex-direction: column
@@ -224,7 +225,7 @@ body
                     display: flex
                     flex-wrap: wrap
                     justify-content: flex-start
-                    
+
                 .video
                     display: block
                     width: 213px
@@ -336,15 +337,41 @@ body
 
             .playlist
                 &-header
+                    position: relative
+                    display: flex
+                    justify-content: space-between
                     background-color: lighten($color-background, 3%)
                     padding: 1.5rem 3rem
+
                     &__title
                         margin: 0
                         margin-bottom: .5rem
                         font-size: 30px
+
                     &__text
                         margin: 0
                         font-size: 14px
+
+                    &__button
+                        @extend %button
+                        height: 58px
+                        font-size: 24px
+                        color: lighten($color-background, 23%)
+                        transition: color .1s linear
+                        &:hover
+                            color: $color-text
+
+                    &__input
+                        width: 60%
+                        padding: .75rem 1.5rem
+                        border: none
+                        border-radius: 10px
+                        background-color: lighten($color-background, 23%)
+                        color: $color-text
+                        font-size: 30px
+                        font-weight: 700
+                        &:focus
+                            outline: 0
 
             .video
                 display: flex
