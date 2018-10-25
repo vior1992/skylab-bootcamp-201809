@@ -22,6 +22,7 @@ const Navbar = (props) => {
             <ul className="menu">
               <li><Link to="/" onClick={closeMenu}>Search</Link></li>
               <li><Link to="/movies/now_playing" onClick={closeMenu}>Now playing</Link></li>
+              <li><Link to="/movies/trending" onClick={closeMenu}>Trending</Link></li>
               <li><Link to="/movies/popular" onClick={closeMenu}>Popular</Link></li>
             </ul>
           </div>
