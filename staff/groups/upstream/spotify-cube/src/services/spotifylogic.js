@@ -1,7 +1,7 @@
 
 const spotifyLogic = {
 
-    token: 'BQBKlWe4bTb3VLHtWwKkxL53ZXBn8flpUqgo1rfZ5UjmuxUHv1KZ3gkskBTZz8oN9aA1po7RG7w87aJWUmdvsjyqeSE6x4YxerHqVxJ46e62rSTaT0zaNRk1nY0Fjark2AtxBJlCOiTgmXzjcR8Fh0FqBKjc7jKGgM__mDEIyL7EyYvbO53IsYQA5kaBlDOWIngQ1pys3i7JCU54',
+    token: 'BQA2YTpgUthiUt_rRXZ-OydcAI4XpbMuMEhXr2qBtbd65-kAVI7eMs1bbZwHALcgClyo6KPpZmCKuXg2zYGS8ygIl8g3x7HzlmQmgtSAJNM3GcMdhWTF0iwML7X2mZpuEMOIFlN-EotirtcFRFr5KYbYg64LdWXV3WsGBSoDoG969Lvy3gvkovhCOVmNMhrtbbCX-MNoeZwwYNYsLIqnwx6mJxcEVxjuWwUfUBe6ZOtQ0Wra740hj6sGzQduRScAbj1G10GxzUw',
 
     getArtistById(id) {
 
@@ -34,6 +34,13 @@ const spotifyLogic = {
            
         })
             .then(res => res.json())
+            .then(res => {
+
+                if (res.status === 401) 
+                    throw Error("The Spotify token has expired")
+                else    
+                    return res
+            })
             .catch(err => {throw Error(err.message)})
     },
 

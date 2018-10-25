@@ -162,7 +162,7 @@ export default class Cube extends Component {
             <section style={{ transform: "rotateY(" + this.state.xdeg + "deg) rotateX(" + this.state.ydeg + "deg)" }} className="cube">
                 <FrontSide onClearSearch={this.handleClearSearch} onArtistFound={this.handlerArtistFound}></FrontSide>
                 <BackSide onTracks={this.handlerTracksFound} albumlist={this.state.albums}></BackSide>
-                <LeftSide tracks={this.state.tracks}></LeftSide>
+                <LeftSide isLogged = {this.state.isLogged} tracks={this.state.tracks}></LeftSide>
                 <RightSide onAlbums={this.handleAlbums} artists={this.state.artists}></RightSide>
                 <TopSide onLogout={this.handleLogout} onLogin={this.handleLogin} onClickRegister={this.handleRegister}></TopSide>
                 <BottomSide onRotation={this.addRotation} playlists={this.state.playlists} onClickLogin={this.handleClickRegisterLogin} isLogged={this.state.isLogged}></BottomSide>

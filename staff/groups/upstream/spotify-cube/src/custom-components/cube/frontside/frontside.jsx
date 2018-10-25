@@ -5,13 +5,15 @@ import spotifyLogic from '../../../services/spotifylogic'
 
 export default class FrontSide extends Component{
 
-    state = {}
+    state = {message:""}
 
     constructor(props){
         super(props)
     }
 
     handleSearch = (value) =>{
+
+        this.setState({message:""})
         
         let artits = []
         spotifyLogic.getArtists(value).then(res => { 
@@ -28,8 +30,18 @@ export default class FrontSide extends Component{
                 
             this.props.onArtistFound(data)
 
-        }).catch(err => {}) ///mostrat pop pup bootstrap
+        }).catch(err => {
+
+            this.setState({message:err.message})
+        }) 
         
+    }
+
+    handleClearSearch = () =>{
+
+        this.setState({message:""})
+        this.props.onClearSearch();
+
     }
    
     render(){
@@ -38,7 +50,8 @@ export default class FrontSide extends Component{
 
             <section className="front">
                 <Header ></Header>
-                <Search onClearSearch = {this.props.onClearSearch} onSearch = {this.handleSearch}></Search>
+                <Search  onClearSearch = {this.handleClearSearch} onSearch = {this.handleSearch}></Search>
+                <h3>{this.state.message}</h3>
             </section>
         );
     }

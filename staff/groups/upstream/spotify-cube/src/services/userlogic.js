@@ -9,39 +9,7 @@ const {User, Track, Playlist} = data
 
 const userService = {
 
-    // addPostIt(message, {postits}){
-       
-    //     if (typeof message !== 'string') throw TypeError(`message is not a string`)
-    //     if (!message.trim()) throw Error('message is empty or blank')
-    //     if (!(postits instanceof Array)) throw Error("The param postits is not correct...")
-
-    //     postits.push(new Postit(message));
-        
-    // },
-
-    // deletePostIt(id, {postits}){
-
-    //     if (typeof id !== 'number') throw TypeError(`id is not a number`)
-       
-    //     if (!(postits instanceof Array) || postits.length === 0) throw Error("The param postits is not correct...")
-
-    //     const indexof = postits.indexOf(el => el.id === id)
-    //     postits.splice(indexof,1)
-        
-    // },
-
-    // editPostIt(id, {postits}, _text){
-
-    //     if (typeof _text !== 'string') throw TypeError(`_text is not a string`)
-    //     if (!_text.trim()) throw Error('_text is empty or blank')
-    //     if (!(postits instanceof Array) || postits.length === 0) throw Error("The param postits is not correct...")
-    //     if (typeof id !== 'number') throw TypeError(`id is not a number`)
-
-    //     let postit = postits.find(el => el.id === id)
-    //     postit.text = _text
-    // },
-
-     createPlayList (value) {
+    createPlayList (value) {
 
           return spotifyLogic.createPlaylist(value).then(res => {
             
@@ -90,7 +58,11 @@ const userService = {
 
     getSessionFromStorage(){
 
-        return JSON.parse(sessionStorage.getItem("user"))
+        const user =  JSON.parse(sessionStorage.getItem("user"))
+        if (user === undefined)
+            throw Error("The user has not session");
+        else
+            return user
     },
 
     addTrackToPlayList(trackId, playlistId, user){
@@ -193,7 +165,7 @@ const userService = {
                 if (res.error) throw Error(res.error)
 
                 return {id: res.data.id, token: res.data.token}
-                //return true;
+              
             })
     },
 
@@ -264,37 +236,6 @@ const userService = {
        })
 
     }
-
-    // deleteUser(id, token,username, password){
-
-       
-    //     if (typeof id !== "string") throw TypeError (`id is not a string`)
-    //     if (typeof token !== "string") throw TypeError (`token is not a string`)
-    //     if (typeof username !== "string") throw TypeError (`username is not a string`)
-    //     if (typeof password !== "string") throw TypeError (`password is not a string`)
-    //     if (!username.trim()) throw TypeError (`username is empty`)
-    //     if (!password.trim()) throw TypeError (`pasword is empty`)
-    //     if (!id.trim()) throw TypeError (`id is empty`)
-    //     if (!token.trim()) throw TypeError (`token is empty`)
-     
-
-    //     return fetch(`https://skylabcoders.herokuapp.com/api/user${id}`, {
-
-    //         mehtod: "DELETE",
-    //         headers:{
-    //             "Authorization": `Bearer ${token}`,
-    //             "Content-Type": "application/json; charset=utf-8"
-    //         }           
-           
-    //     }).then( res => res.json()).then(res => {
-
-    //         if (res.status === "OK") 
-    //             return true
-    //         else
-    //             throw Error(res.error)
-
-    //     })
-    // }
 
 }
 

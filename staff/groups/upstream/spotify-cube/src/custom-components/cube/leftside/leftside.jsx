@@ -1,41 +1,120 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Header from '../../header/header'
 import SideTitle from '../../sidetitle/sidetitle'
 import List from '../../list/list';
+import userService from '../../../services/userlogic'
+import $ from 'jquery'
 
-export default class LeftSide extends Component{
+export default class LeftSide extends Component {
 
 
-  state = {logo:"" ,tracks:this.props.tracks, track:''}
+  state = { isLogged: false, logo: "", tracks: this.props.tracks, track: '' }
 
-  componentWillReceiveProps(props){
+  componentWillReceiveProps(props) {
     let back = !this.state.tracks.length ? "" : this.state.tracks[0].albumImage
-    this.setState({logo:back,tracks:props.tracks})
+    this.setState({ isLogged: props.isLogged, logo: back, tracks: props.tracks })
 
   }
 
-  handlePlayTrack = (previewUrl) =>{
-    this.setState({track:previewUrl})
+  handlePlayTrack = (previewUrl) => {
+    this.setState({ track: previewUrl })
 
   }
 
-  
+  getUserInfo = () => {
 
-    render() {
-        
+    const session = userService.getSessionFromStorage()
+    return userService.getUserInfo(session.id, session.token).then(data => {
 
-       
+        return data
 
-        return (
-    
-          <section className="left">
-            <div className="rotateY--180" >
-              <Header track = {this.state.track}  showPlayer = {true}></Header>
-                <SideTitle logo = {this.state.logo} image="metallica.png" title="Track List"></SideTitle>
-                <List onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list = {this.state.tracks}></List>
-            </div>
-            
-          </section>
-        );
-      }
+    }).catch(err => { throw Error(err.message) })
+
+  }
+
+  handlePlaylistClick = (trackId, playListId) => {
+
+    let promise = this.getUserInfo()
+      .then((data) => {
+
+        if (userService.existsTrackInPlayList(data, trackId)) {
+          this.setState({ trackFoundInPlayListMessage: "This track is already in the playList" }, () => {
+
+            setTimeout(() => {
+
+              this.setState({ trackFoundInPlayListMessage: "" })
+
+            }, 2000)
+          })
+
+        }
+        else
+          return data
+      })
+      .then(data => {
+
+        if (data) {
+
+          let user = userService.getUserFromData(data)
+          return userService.addTrackToPlayList(trackId, playListId, user)
+        } else return data
+
+      })
+      .then(res => {
+        if (res)
+          this.setState({ trackFoundInPlayListMessage: "This track has been added to the playList" }, () => {
+
+
+            setTimeout(() => {
+
+              this.setState({ trackFoundInPlayListMessage: "" })
+
+            }, 2000)
+
+          })
+      })
+      .catch(err => alert(err.message))
+
+  }
+
+  handleAddTrackToListClickButton = (trackId) => {
+
+    const text = $("#button-" + trackId).text()
+
+    if (text === "Close") {
+        $(`#${trackId}`).addClass("display-none")
+        $("#button-" + trackId).text("Add To PlayList")
+    } else {
+
+        this.getUserInfo().then((data) => {
+
+            if (data.playLists.length)
+                this.setState({ playLists: data.playLists }, () => {
+
+                    $(`#${trackId}`).removeClass("display-none")
+                    $("#button-" + trackId).text("Close")
+                })
+
+        }).catch(err => alert(err.message))
+    }
+
+}
+
+
+
+  render() {
+
+
+    return (
+
+      <section className="left">
+        <div className="rotateY--180" >
+          <Header track={this.state.track} showPlayer={true}></Header>
+          <SideTitle logo={this.state.logo} image="metallica.png" title="Track List"></SideTitle>
+          <List onClickAddTrackToList={this.handleAddTrackToListClickButton} onPlayListClick = {this.handlePlaylistClick} isLogged={this.state.isLogged} onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list={this.state.tracks}></List>
+        </div>
+
+      </section>
+    );
+  }
 }
