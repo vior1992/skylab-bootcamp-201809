@@ -133,7 +133,7 @@ class Movie extends Component {
                     {!!this.state.youtubeKey && <div className='card_right__button'>
                         <a href={'https://www.youtube.com/watch?v='+this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
                     </div>}
-
+                    
                 </div>
             </div>
         </div>
