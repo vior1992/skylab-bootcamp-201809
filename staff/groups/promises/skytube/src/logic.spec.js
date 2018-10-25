@@ -16,13 +16,13 @@ const {expect} = require('chai')
 describe ('logic', () => {
     false && describe('register', () => {
         it('should suceed on correct data', () => {
-            return logic.registerUser('ana','san', `as-${Math.random()}`,'a@a','123')
+            return logic.registerUser('ana','san', `as-${Math.random()}`,'a@a','123', '123')
                 .then(() => expect(true).to.be.true)
 
         })
 
         it('should save userId on sessionStorage', () =>
-            logic.registerUser('ana','san', `as-${Math.random()}`,'a@a','123')
+            logic.registerUser('ana','san', `as-${Math.random()}`,'a@a','123', '123')
                 .then(() => expect(true).to.be.true)
                 .then(() => {
                     const userId = sessionStorage.getItem('userId')
@@ -32,9 +32,9 @@ describe ('logic', () => {
 
         it('should fail on trying to register with existing username', () => {
             let username = `as-${Math.random()}`
-            return logic.registerUser('ana','san', username,'a@a','123')
+            return logic.registerUser('ana','san', username,'a@a','123', '123')
                 .then(() => expect(true).to.be.true)
-                .then(() => logic.registerUser('ana','san', username,'a@a','123'))
+                .then(() => logic.registerUser('ana','san', username,'a@a','123', '123'))
                 .catch( err => {
                     expect(err).not.to.be.undefined
                     expect(err.message).to.equal(`user with username "${username}" already exists`)
@@ -308,7 +308,7 @@ describe ('logic', () => {
                 username = `dv-${Math.random()}`
                 password = `123-${Math.random()}`
 
-                return logic.registerUser(name, surname, username, email, password)
+                return logic.registerUser(name, surname, username, email, password, password)
 
             })
 
@@ -484,31 +484,25 @@ describe ('logic', () => {
         })
     })
 
-    false && describe(' retrieveSong ', () => {
+    false && describe('retrieve a video', () => {
         it('should succed on correct data', () => {
-            const video_id = 'BaP1wDvkA6E'
+            const video = {id: 'BaP1wDvkA6E'}
 
-            logic.retrieveSong(video_id)
-        
-            expect(video_id).to.equal('BaP1wDvkA6E')
-            expect(video_id).to.be(true)
-            expect(video_id.length).to.be(11)
+            logic.getVideo(video)
+                .then( res =>
+                    expect(res).not.to.be.undefined
+                )
+                .catch(res =>
+                    expect(res).to.be.undefined
+                )
         })
 
-        it('should fail on incorrect length (11)', () => {
-            const video_id = '123456789'
+        it('should fail on undefined video', () => {
+            const video = undefined
 
             expect(() => 
-                login.retrieveSong(video_id)
-            ).to.throw(Error, 'video_id length is not valid')
-        })
-
-        it('should fail on undefined video_id', () => {
-            const video_id = undefined
-
-            expect(() => 
-                logic.retrieveSong(video_id)
-            ).to.throw(TypeError, 'undefined is not a string')
+                logic.getVideo(video)
+            ).to.throw(TypeError, `${video} is not an object`)
         })
     })
   
@@ -563,4 +557,12 @@ describe ('logic', () => {
             ).to.throw(Error, 'query is blank or empty')  
         })
     })
+
+    !false && describe('history', () => {
+        it('should succed on saving songs to '
+
+
+    }
+
+
 })
