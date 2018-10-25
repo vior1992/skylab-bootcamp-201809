@@ -75,8 +75,8 @@ export default class Register extends Component{
                         <input type="password" className="form-control"  placeholder="Password" onChange={this.handlePasswordChange}  />
                     </div>
                
-                    <button type="submit" className="btn btn-warning">Register</button>
-                    <button onClick={this.props.onClickLogin} type="button" className="btn btn-warning">Login</button>
+                    <button type="submit" className="btn btn-primary">Register</button>
+                    <button onClick={this.props.onClickLogin} type="button" className="btn btn-primary">Login</button>
                     <h3>{this.state.registerMessage}</h3>
                 </form>
 

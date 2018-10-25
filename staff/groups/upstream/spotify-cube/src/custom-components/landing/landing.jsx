@@ -13,7 +13,8 @@ export default class Landing extends Component {
             <section className="landing--bg-img">
             </section>
             <section className="landing--content">
-                <h1 className="title--landing"><i class="fab fa-spotify"></i> Music <span className="span"> is life</span></h1>
+                <h1 className="title--landing"><img className='img-logo' src={require("../../assets/img/musiclogo.png")} alt=""/> MusicLab </h1>
+                <p className="landing--underlogo"> The Music Laboratory</p>
                 <div className="landing--cube"><Cubito/></div>
                 <button className="btn btn-warning" onClick={this.props.onClickEnter}>Enter</button>
             </section>

@@ -38,8 +38,8 @@
         & .list__container__item{
             position: relative;
             & .list__container__item__group{
-
                 display: flex;
+                
                 & .list__container__item__group__img{
                     width: 50px;
                     height: 50px;
@@ -50,6 +50,8 @@
                     margin-left: 1em;
                     &:hover{
                         cursor: pointer;
+                        color: rgb(255, 193, 7);
+                        font-weight: 600;
                     }
                 }
                 & .list__container__item__group__button-delete{
@@ -69,8 +71,8 @@
                 border: 1px solid white;
                 width: 80%;
                 margin: 0 auto;
-                border-radius: 9px;
-                padding: 1em 0;
+                border-radius: 5px;
+                padding: 5px 0;
                 & .list__container__item__playlists-list{
                     padding-left: 0.3em;
                     & li{
@@ -81,7 +83,7 @@
                         padding: 0.3em;
                         transition: background-color 0.2s linear;
                         &:hover{
-                            background-color: #1ed760;
+                            background-color: rgb(255, 193, 7);
                             cursor: pointer;
                             color:black;
                                                       
@@ -91,8 +93,8 @@
                 }
                 & .list__container__item__playlists-message{
                     text-align: center;
-                    padding-top: 1em;
-                    color: green;
+                    color: #ffd558;
+                    font-weight: 500;
                 }
             }
            

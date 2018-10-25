@@ -30,7 +30,7 @@ export default class Search extends Component{
                 <form className="custom-form" onSubmit = {this.handleSearch}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Search Artits</label>
-                        <input onChange={ this.handleChange} value={this.state.search} type="text" className="form-control" aria-describedby="emailHelp" placeholder="Search Artits..." />
+                        <input onChange={ this.handleChange} value={this.state.search} type="text" className="form-control" aria-describedby="emailHelp" placeholder="Search Artits..." autofocus/>
                     </div>
                     <button type="submit" className="btn btn-primary">Search Artits</button>
                     <button onClick={this.handleClearSearch} type="button" className="btn btn-primary">Clear search</button>

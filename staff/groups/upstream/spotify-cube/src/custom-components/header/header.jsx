@@ -16,7 +16,7 @@ export default class Header extends Component{
             
             <header className="header">
                 <div className="header__logo">
-                <i class="fab fa-spotify"></i> <p className='logo'>MusicLab</p>
+                <img className='img-logo' src={require("../../assets/img/musiclogo.png")} alt=""/> <p className='logo'> MusicLab</p>
                 </div>
                 {this.state.showPlayer && <audio src={this.state.track} className="header__audio" controls autoPlay ></audio>}
             </header>
