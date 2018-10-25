@@ -21,8 +21,21 @@ li {
     list-style: none;
 }
 
+.searchForm-container{
+    background-image: url('./images/all.jpg');
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 100px;
+    margin-top: 50px;
+}
+
+
 .container-search {
     margin: 0 auto;
+    /* line-height: 500px; */
     width: 80%;
     text-align: center;
 }

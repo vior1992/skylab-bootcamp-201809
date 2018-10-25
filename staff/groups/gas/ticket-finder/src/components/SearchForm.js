@@ -24,22 +24,30 @@ class SearchForm extends Component {
    }
 
    render() {
-       return <form onSubmit={this.handleSubmit}>
+       return <div className="searchForm-container">
+       <form onSubmit={this.handleSubmit}>
 
        <div className='container-search'>
 
        <Input label="Search events" value={this.state.query} onChange={this.handleInput}/>
 
        <Button type="submit" color="unique">Search</Button>
+
        <select onChange={this.dropDownHandle}>
+
        <option  value="All">All</option>
+
         <option  value="Sports">Sports</option>
+
         <option value="Music">Music</option>
+        
         </select>
 
        </div>
 
      </form>
+
+     </div>
    }
 }
 

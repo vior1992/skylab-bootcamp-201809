@@ -4,7 +4,6 @@ import SearchForm from './SearchForm'
 import Event from './Event'
 import Error from './Error'
 import { Redirect, Route, withRouter } from 'react-router-dom'
-import video from './video.mp4'
 import SearchResults from './SearchResults'
 
 class Home extends Component {
@@ -56,13 +55,13 @@ class Home extends Component {
             
             
 
-            {this.state.searchFlag && <section>
+            {/* {this.state.searchFlag && <section>
 
                 <div className="video-container">
                     <video width="1920px" autoPlay muted loop src={video}></video>
                 </div>
 
-            </section>}
+            </section>} */}
 
 
             {this.state.searchFlag && <section>
