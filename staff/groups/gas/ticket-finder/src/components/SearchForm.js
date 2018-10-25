@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Input } from "mdbreact"
+import All from '../images/all.jpg'
+
+
 
 class SearchForm extends Component {
    state = { query: '', dropwdown: 'all' }
@@ -20,26 +23,37 @@ class SearchForm extends Component {
 
    dropDownHandle = (e) => {
     this.setState({dropwdown : e.target.value}, () => this.props.onDropDownChange(this.state.dropwdown))
-    
+
+
    }
 
    render() {
-       return <form onSubmit={this.handleSubmit}>
+
+    let backgroundClass  
+       return <div className='searchForm-container-music'>
+       <form onSubmit={this.handleSubmit}>
 
        <div className='container-search'>
 
        <Input label="Search events" value={this.state.query} onChange={this.handleInput}/>
 
        <Button type="submit" color="unique">Search</Button>
-       <select onChange={this.dropDownHandle}>
+
+       <select className="dropdown" onChange={this.dropDownHandle}>
+
        <option  value="All">All</option>
+
         <option  value="Sports">Sports</option>
+
         <option value="Music">Music</option>
+        
         </select>
 
        </div>
 
      </form>
+
+     </div>
    }
 }
 

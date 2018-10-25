@@ -3,11 +3,11 @@ import logic from '../logic'
 
 class EventInfo extends Component {
 
-    state = {eventInfoArray: []}
+    state = {eventInfoArray: [],
+    err: null}
 
     componentDidMount() {
-
-        this.addToEventInfoArray(this.props.test)     
+        this.addToEventInfoArray(this.props.id)     
 
     }
 
@@ -19,31 +19,40 @@ class EventInfo extends Component {
                 .catch(err => this.setState({ error: err }))
                    
             }
-            catch (err) { alert('Please write in English') }
+            catch (err) { this.setState({err}) }
+    }
+
+    findBestImage = (arr) => {
+        let placeHolder = []
+
+        arr.images.forEach(el=> placeHolder.push(el.width))
+
+        return placeHolder.indexOf(Math.max(...placeHolder));
     }
 
     render() {
 
         const { eventInfoArray } = this.state
 
-    return <div className="card">
+    return <div class="eventInfo-container">
+            <h1 class="eventInfo-title">{eventInfoArray.name}</h1>
 
-            <img className="card-img-top" src={this.props.images && this.props.images[9].url} alt="Card cap" />
+            <img className="eventInfo-image" src={eventInfoArray.images && eventInfoArray.images[this.findBestImage(eventInfoArray)].url} alt="Card cap" />
 
-                <div className="card-body">
-
-                    <h5 className="card-title"> {eventInfoArray.name }</h5>
+                <div className="eventInfo-body">
+                    <div className="eventInfo-body__eventInfo">
+                    <h4 className="eventInfo-title"> {eventInfoArray.name }</h4>
 
                     <p> {eventInfoArray.dates && (eventInfoArray.dates.start.localTime ? eventInfoArray.dates.start.localTime : 'Event time to be announced') } </p>
                     
                     <p> {eventInfoArray._embedded && eventInfoArray._embedded.venues[0].city.name} </p>
 
-                    {/* <p>{this.props.eventMinPrice ? <span>From {this.props.eventMinPrice} EUR</span> : <span>Price to be announced</span>}</p> */}
-                    <p>PRICE</p>
+                    <p>{eventInfoArray.priceRanges ? <span>From {eventInfoArray.priceRanges[0].min} EUR</span> : <span>Price to be announced</span>}</p>
 
                     <p className="card-text"><a target="blank" href= {eventInfoArray.url}>Get tickets</a></p>
+                    </div>
 
-                    {<iframe width="100%" height="450" frameBorder="0"  src={"https://www.google.com/maps/embed/v1/view?key=AIzaSyCk3qtl1MWipyqiAvMNKewzEjZbD-zrw7A&center=" + (eventInfoArray._embedded && eventInfoArray._embedded.venues[0].location.latitude) + "," + (eventInfoArray._embedded && eventInfoArray._embedded.venues[0].location.longitude) + "&zoom=16&maptype=roadmap"} />}
+                    {<iframe className="card-body__googleMaps" width="100%" height="450" frameBorder="0"  src={"https://www.google.com/maps/embed/v1/view?key=AIzaSyCk3qtl1MWipyqiAvMNKewzEjZbD-zrw7A&center=" + (eventInfoArray._embedded && eventInfoArray._embedded.venues[0].location.latitude) + "," + (eventInfoArray._embedded && eventInfoArray._embedded.venues[0].location.longitude) + "&zoom=16&maptype=roadmap"} />}
 
                 </div>
         </div>

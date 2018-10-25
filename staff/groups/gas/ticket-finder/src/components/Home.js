@@ -4,7 +4,6 @@ import SearchForm from './SearchForm'
 import Event from './Event'
 import Error from './Error'
 import { Redirect, Route, withRouter } from 'react-router-dom'
-import video from './video.mp4'
 import SearchResults from './SearchResults'
 
 class Home extends Component {
@@ -19,11 +18,14 @@ class Home extends Component {
 
     componentDidMount() {
 
+
         logic.showEvents()
 
             .then(events => this.setState({ carousel: events }))
 
-            .catch(err => this.setState({ error: err }))            
+            .catch(err => this.setState({ error: err }))   
+            
+
     }
 
     handleSubmit = query => {
@@ -41,6 +43,8 @@ class Home extends Component {
 
     handleDropDown = value => {
         this.setState({dropwdown : value})
+
+       
     }
 
     render() {
@@ -52,15 +56,6 @@ class Home extends Component {
             {error && <Error message={error} />}
 
             <Route path="/home/search/:query" render={props => <SearchResults filter={this.state.dropwdown} query={props.match.params.query} />} /> 
-
-
-            {this.state.searchFlag && <section>
-
-                <div className="video-container">
-                    <video width="1920px" autoPlay muted loop src={video}></video>
-                </div>
-
-            </section>}
 
 
             {this.state.searchFlag && <section>

@@ -11,7 +11,6 @@ class NavbarComponent extends Component {
            isWideEnough: false,
        }
 
-   goToProfile = () => this.props.history.push('/profile')
 
 
    goToFavourites = () =>  this.props.history.push('/favourites')   
@@ -32,9 +31,6 @@ class NavbarComponent extends Component {
                    <NavbarNav right>
                        <NavItem >
                            <a className="nav-link waves-effect waves-light" onClick = { this.goToFavourites } ><i className="fa fa-star"></i> Favourites</a>
-                       </NavItem>
-                       <NavItem>
-                           <a className="nav-link waves-effect waves-light" onClick = { this.goToProfile } ><i className="fa fa-user"></i> Profile </a>
                        </NavItem>
                        <NavItem>
                            <a className="nav-link waves-effect waves-light" onClick = { this.props.onLogout }><i className="fa fa-sign-out"></i> Logout</a>

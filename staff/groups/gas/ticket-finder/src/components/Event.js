@@ -8,8 +8,13 @@ class Event extends Component {
     state ={
         favouriteSelected: false,
         error: null,
-        // classEmpty: 'far fa-star',
-        // classFull: 'fas fa-star'
+    }
+
+    componentDidMount() {
+        // debugger
+
+         logic.isFavourite(this.props.eventId)        
+        .then(res => this.setState ({ favouriteSelected:res }))
     }
     
     handleSearchEvent = e => {
@@ -57,11 +62,11 @@ class Event extends Component {
     render(){    
     
     return <div className="col-lg-4">
-        <Route path="/eventinformation/:id" render={props => <EventInfo id={props.match.params.id} />} />
+       
         <div className="card">
             
-        <a onClick={this.goToEvents}><img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /></a>            
-
+        <Link to={`/eventinformation/${this.props.eventId}`}><img className="card-img-top" src={this.props.eventImgUrl } alt="Card cap" /></Link>
+        
                 <div className="card-body">
 
                     <h5 className="card-title"> {this.props.eventName }</h5>
@@ -76,6 +81,7 @@ class Event extends Component {
 
                     </div>
                 </div>
+
                 </div> 
 
     }

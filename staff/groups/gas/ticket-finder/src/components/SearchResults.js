@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import logic from '../logic'
 import Event from './Event'
 import { Button } from "mdbreact"
+import Error from './Error'
 
 class SearchResults extends Component {
     state = {
         events: [],
         pageNumber: 1,
-        reducedEvents: []
+        reducedEvents: [],
+        error: false
     }
 
     componentDidMount() {
@@ -17,9 +19,12 @@ class SearchResults extends Component {
 
     componentWillReceiveProps(props) {
 
+        this.setState({error: false})
+        
         this.searchEvents(props.query)
+            
     }
-
+    
     searchEvents(query) {
         let filtered = [];
 
@@ -39,7 +44,7 @@ class SearchResults extends Component {
                 })
                 .catch(() => this.setState({ error: `There are no events for this search :'(` }))
         }
-        catch (err) { alert('Please write in English') }
+        catch (err) { alert('Only searches in English are accepted') }
     }
 
     goToNextPage = () => {
@@ -76,8 +81,9 @@ class SearchResults extends Component {
     }
 
     render() {
+        const { error } = this.state
         return <section>
-
+             {error && <Error message={error} />}
             <div className="index-content">
 
                 <div className="container-carousel">
