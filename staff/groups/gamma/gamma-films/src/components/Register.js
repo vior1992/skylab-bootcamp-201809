@@ -79,11 +79,12 @@ class Register extends Component {
                 <label className="login_back">Repeat password</label>
                 <input className="form-control" type='password' placeholder="Repeat password" onChange={this.handleRepeatPasswordChange}></input>
 
+                {this.state.error && <Error message={this.state.error} />}
+                
                 <button className="btn btn-outline-secondary" type='submit'>Register</button>
                 <a className="btn btn-link" href="#" onClick={this.props.onGoBack}>back</a>
 
             </form>
-                {this.state.error && <Error message={this.state.error} />}
         </div>
 
     }
