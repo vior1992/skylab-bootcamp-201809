@@ -102,6 +102,27 @@
   color: #ffffff;
   outline-color: #01010100;
 }
+.body .home .form_search .button_search2 {
+  width: 50px;
+  height: 50px;
+  background: url("clipboards.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0px;
+  margin-left: 5px;
+  font-size: 12px;
+  color: #ffffff;
+  outline-color: #01010100;
+}
+.body .home .form_search .select_cat {
+  background: #ffffff1a;
+  color: white;
+  font-size: 20px;
+  border: 0;
+  height: 50px;
+  width: 300px;
+}
 .body .video-frame {
   width: 90%;
   height: 100%;
@@ -503,7 +524,7 @@
   transition: 450ms transform;
   font-size: 0;
   white-space: nowrap;
-  margin: 43.75px 0;
+  margin: 40.8333333333px 0;
   padding-bottom: 10px;
   overflow: scroll;
   overflow-y: hidden;
@@ -514,7 +535,7 @@
   position: relative;
   display: inline-block;
   width: 175px;
-  height: 262.5px;
+  height: 245px;
   margin-right: 10px;
   font-size: 20px;
   cursor: pointer;
@@ -524,7 +545,7 @@
 
 .tile__img {
   width: 175px;
-  height: 262.5px;
+  height: 245px;
   object-fit: cover;
 }
 
@@ -576,19 +597,19 @@
   padding: 10px;
 }
 .row__inner:hover {
-  transform: translate3d(-43.75px, 0, 0);
+  transform: translate3d(-35px, 0, 0);
 }
 
 .row__inner:hover .tile {
   opacity: 0.3;
 }
 .row__inner:hover .tile:hover {
-  transform: scale(1.5);
+  transform: scale(1.4);
   opacity: 1;
 }
 
 .tile:hover ~ .tile {
-  transform: translate3d(87.5px, 0, 0);
+  transform: translate3d(70px, 0, 0);
 }
 
 /*# sourceMappingURL=style.css.map */
