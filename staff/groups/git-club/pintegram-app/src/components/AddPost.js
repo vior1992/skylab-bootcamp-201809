@@ -15,16 +15,13 @@ class AddPost extends Component {
     }
 
     uploadWidget =() => {
-
-        let _this= this
-
         let widget = window.cloudinary.openUploadWidget({ cloud_name: 'skylabcoders', upload_preset: 'wqmshx2h', tags:['pintegram']},
-            function(error, result) {
+            (error, result) => {
                
                 if (result.event === "success") {
                     const img = result.info.secure_url
 
-                    _this.setState({ img })
+                    this.setState({ img })
                     
                     widget.close()
                 }

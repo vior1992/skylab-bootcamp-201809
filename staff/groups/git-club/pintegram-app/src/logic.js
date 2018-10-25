@@ -15,7 +15,29 @@ const logic = {
     _followers: [],
     _postLiked: [],
     _comments: [],
-    _postsOtherUser:[],
+    _postsOtherUser: [],
+
+    _callApi(path, method, token, data) {
+        const init = {
+            method,
+            headers: {}
+        }
+
+        if (method !== 'GET') {
+            init.headers['Content-Type'] = 'application/json; charset=utf-8'
+        }
+
+        if (token) {
+            init.headers.Authorization = `Bearer ${token}`
+        }
+
+        if (data) {
+            init.body = JSON.stringify(data)
+        }
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/${path}`, init)
+            .then(res => res.json())
+    },
 
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
@@ -29,14 +51,7 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        return fetch('https://skylabcoders.herokuapp.com/api/user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({ app: this._app, name, surname, username, password, profilePublic: true })
-        })
-            .then(res => res.json())
+        return this._callApi('user', 'POST', undefined, { app: this._app, name, surname, username, password, profilePublic: true })
             .then(res => {
                 if (res.error) throw Error(res.error)
             })
@@ -49,14 +64,7 @@ const logic = {
         if (!username.trim()) throw Error('username is empty or blank')
         if (!password.trim()) throw Error('password is empty or blank')
 
-        return fetch('https://skylabcoders.herokuapp.com/api/auth', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({ username, password })
-        })
-            .then(res => res.json())
+        return this._callApi('auth', 'POST', undefined, { username, password })
             .then(res => {
                 if (res.error) throw Error(res.error)
 
@@ -84,8 +92,8 @@ const logic = {
         this._userId = null
         this._token = null
         this._postLiked = []
-        this._comments= []
-        this._postsOtherUser=[]
+        this._comments = []
+        this._postsOtherUser = []
 
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
@@ -205,10 +213,10 @@ const logic = {
             })
     },
 
-    listOtherPosts(user){
-        if(!user) throw Error('Other user is empty')
+    listOtherPosts(user) {
+        if (!user) throw Error('Other user is empty')
         let sortedUsers = []
-        if (user.posts) sortedUsers=user.posts.sort(function(a,b){
+        if (user.posts) sortedUsers = user.posts.sort(function (a, b) {
             return b.id - a.id
         })
         return this._postsOtherUser = sortedUsers || []
@@ -291,7 +299,7 @@ const logic = {
                 if (res.error) throw Error(res.error)
                 let userName = res.data.filter(user => user.name === username)
                 let name = userName[0]
-                return  name || null
+                return name || null
             })
     },
 
@@ -441,7 +449,7 @@ const logic = {
 
     deletePost(id) {
         if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
-        
+
         this._postsUser = this._postsUser.filter(post => post.id !== id)
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
