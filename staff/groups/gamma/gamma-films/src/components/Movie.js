@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import SearchBar from './SearchBar'
+import GenresTags from './GenresTags';
 
 class Movie extends Component {
     state = {
@@ -11,9 +12,10 @@ class Movie extends Component {
         theDate: null,
         err: '',
         showFavButton: false,
-        flagController:true,
+        flagController: true,
         youtubeKey: null,
-        cast: null
+        cast: null,
+        genres: null
     }
 
     componentDidMount() {
@@ -24,20 +26,26 @@ class Movie extends Component {
             logic.searchMovie(id)
                 .then(movie => {
                     this.favButtonController()
-                    this.setState({ theMovie: movie.original_title, theOverview: movie.overview, thePoster: movie.poster_path, theDate: movie.release_date })
+                    this.setState({
+                        theMovie: movie.original_title,
+                        theOverview: movie.overview,
+                        thePoster: movie.poster_path,
+                        theDate: movie.release_date,
+                        genres: movie.genres
+                    })
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
         catch (err) {
             this.setState({ error: err.message })
         }
-        
+
         try {
-            
+
             logic.searchTrailer(id)
                 .then(trailer => {
 
-                    this.setState({ youtubeKey: trailer[0].key})
+                    this.setState({ youtubeKey: trailer[0].key })
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
@@ -46,11 +54,11 @@ class Movie extends Component {
         }
 
         try {
-            
+
             logic.searchCharacters(id)
                 .then(results => {
 
-                    this.setState({ cast : results})
+                    this.setState({ cast: results })
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
@@ -63,8 +71,8 @@ class Movie extends Component {
         this.setState({ flagController: true })
         logic.listFavourites(this.props.id)
             .then(res => {
-                logic.updateFavourites(res, this.props.id, this.state.thePoster )
-                    .then(()=>this.favButtonController())
+                logic.updateFavourites(res, this.props.id, this.state.thePoster)
+                    .then(() => this.favButtonController())
             })
     }
 
@@ -72,8 +80,8 @@ class Movie extends Component {
         this.setState({ flagController: true })
         logic.listFavourites(this.props.id)
             .then(res => {
-                logic.removeFavourites(res, this.props.id, this.state.thePoster )
-                    .then(()=>this.favButtonController())
+                logic.removeFavourites(res, this.props.id, this.state.thePoster)
+                    .then(() => this.favButtonController())
             })
     }
 
@@ -87,8 +95,8 @@ class Movie extends Component {
                 logic.listFavourites()
                     .then(res => listFav = res)
                     .then(() => {
-                        const showFavButton = listFav.find(F =>F.id === id)
-                
+                        const showFavButton = listFav.find(F => F.id === id)
+
                         this.setState({ showFavButton })
                         this.setState({ flagController: false })
                     })
@@ -101,56 +109,81 @@ class Movie extends Component {
     }
 
     render() {
-        
+
         return <div className="home">
-        <SearchBar />
-        <div className='card'>
+            <SearchBar />
+            <div className='card'>
 
-            <div className='card_left'>
-                <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
-            </div>
+                <div className='card_left'>
+                    <img src={'https://image.tmdb.org/t/p/w500/' + this.state.thePoster}></img>
+                </div>
 
-            <div className='card_right'>
+                <div className='card_right'>
 
-                <h1>{this.state.theMovie}</h1>
+                    <h1>{this.state.theMovie}</h1>
 
-                <div className='card_right__details'>
+                    <div className='card_right__details'>
 
-                    <ul>
-                        <li>ID: {this.props.id}</li>
-                        <li>{this.state.theDate}</li>
-                        <li>Action</li>
-                    </ul>
-                    <div className='card_right__rating'>
-                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button type="button" onClick={this.handleAddFav} > Add to favorites </button>}
-                        {this.props.isLoggedIn && !!this.state.showFavButton && <button type="button" onClick={this.handleRemoveFav} > Remove from favorites </button>}
-                    </div>
+                        <ul>
+                            <li>ID: {this.props.id}</li>
+                            <li>{this.state.theDate}</li>
+                            <li>Action</li>
+                        </ul>
+                        <div className='card_right__rating'>
+                            {this.props.isLoggedIn && !!!this.state.showFavButton && <div>
+                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} >  </button>
+                                <label>Add to favorites</label>
+                            </div>}
 
-                    <div className='card_right__review'>
-                        <p>{this.state.theOverview}</p>
-                    </div>
+                            {this.props.isLoggedIn && !!this.state.showFavButton && <div>
+                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} > </button>
+                                <label>Remove from favorites </label>
 
+                            </div>}
+                        </div>
+
+                        <div className='card_right__review'>
+                            <p>{this.state.theOverview}</p>
+                        </div>
+
+<<<<<<< HEAD
                     {!!this.state.youtubeKey && <div className='card_right__button'>
                         <a href={'https://www.youtube.com/watch?v='+this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
                     </div>}
                     
+=======
+                        {!!this.state.genres && this.state.genres.map((genres) => {
+                            return <div>
+                                <GenresTags id={genres.id} name={genres.name} />
+                            </div>
+                        })}
+
+                        {!!this.state.youtubeKey && <div className='card_right__button'>
+                            <a href={'https://www.youtube.com/watch?v=' + this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
+                        </div>}
+
+                    </div>
+>>>>>>> develop
                 </div>
             </div>
+
+            <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+            {!!this.state.cast && <div>
+                <h3>Main Characters</h3>
+                <div><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p></div>
+                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img>
+                <div><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p></div>
+                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img>
+                <div><p>{this.state.cast[2].name + ' as ' + this.state.cast[2].character}</p></div>
+                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img>
+                <div><p>{this.state.cast[3].name + ' as ' + this.state.cast[3].character}</p></div>
+                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img>
+                <div><p>{this.state.cast[4].name + ' as ' + this.state.cast[4].character}</p></div>
+                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img>
+            </div>}
         </div>
-        {!!this.state.cast && <div>
-                        <h3>Main Characters</h3>
-                        <div><p>{this.state.cast[0].name+ ' as ' +this.state.cast[0].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img>
-                        <div><p>{this.state.cast[1].name+ ' as ' +this.state.cast[1].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img>
-                        <div><p>{this.state.cast[2].name+ ' as ' +this.state.cast[2].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img>
-                        <div><p>{this.state.cast[3].name+ ' as ' +this.state.cast[3].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img>
-                        <div><p>{this.state.cast[4].name+ ' as ' +this.state.cast[4].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img>
-                    </div>}
-    </div>
+
 
     }
 }
