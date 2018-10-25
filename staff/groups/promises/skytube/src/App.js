@@ -42,7 +42,7 @@ class App extends Component {
 				.catch((err) => {
                     if (err.message === `user with username "${username}" already exists`) {
                         this.setState({error: 'username already exists'})
-                    } else { 
+                    } else {
                         this.setState({error: err.message})
                     }
                 })
@@ -113,8 +113,9 @@ class App extends Component {
     }
 
     handleNewPlaylist = title => {
-        logic.addPlaylist(title)
+        const playlist_id = logic.addPlaylist(title)
         this.setState({auth_info: logic.authInfo()})
+        return playlist_id
     }
 
     handleRemovePlaylist = playlist_id => {
