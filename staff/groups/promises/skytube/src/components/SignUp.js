@@ -44,28 +44,28 @@ class SignUp extends Component {
         event.preventDefault()
 
         const {name, surname, username, email, password, repPassword} = this.state
-        
+
         this.props.onSubmit(name, surname, username, email, password,repPassword)
-        
+
     }
 
     render() {
         return <div className='signup'>
             <Error error={this.props.error} />
-            <form className='signup__formulary' onSubmit={this.handleSubmit}>
-                <h4>Name</h4>
-                <input className='signup__input' placeholder='Introduce your name' onChange={this.handleNameChange}/>
-                <h4>Surname</h4>
-                <input className='signup__input' placeholder='And your surname' onChange={this.handleSurnameChange}/>
-                <h4>Username</h4>
-                <input className='signup__input' placeholder='Pick a cool username' onChange={this.handleUsernameChange}/>
-                <h4>Email</h4>
-                <input className='signup__input' type='email' placeholder='notfalse@xmple.com' onChange={this.handleEmailChange}/>
-                <h4>Password</h4>
-                <input className='signup__input' type='password' placeholder='Create a secure password' onChange={this.handlePasswordChange}/>
-                <h4>Repeat Password</h4>
-                <input className='signup__input' type='password' placeholder='And repeat it' onChange={this.handleRepPasswordChange}/>
-                <button className='signup__button'type='submit'>Sign Up</button>
+            <form className='form' onSubmit={this.handleSubmit}>
+                <h4 className='form__label'>Name</h4>
+                <input className='form__input' placeholder='Introduce your name' onChange={this.handleNameChange}/>
+                <h4 className='form__label'>Surname</h4>
+                <input className='form__input' placeholder='And your surname' onChange={this.handleSurnameChange}/>
+                <h4 className='form__label'>Username</h4>
+                <input className='form__input' placeholder='Pick a cool username' onChange={this.handleUsernameChange}/>
+                <h4 className='form__label'>Email</h4>
+                <input className='form__input' type='email' placeholder='notfalse@xmple.com' onChange={this.handleEmailChange}/>
+                <h4 className='form__label'>Password</h4>
+                <input className='form__input' type='password' placeholder='Create a secure password' onChange={this.handlePasswordChange}/>
+                <h4 className='form__label'>Repeat Password</h4>
+                <input className='form__input' type='password' placeholder='And repeat it' onChange={this.handleRepPasswordChange}/>
+                <button className='form__button'type='submit'>Sign Up</button>
             </form>
         </div>
     }

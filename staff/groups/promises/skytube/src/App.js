@@ -29,7 +29,7 @@ class App extends Component {
         }
     }
 
-    handleRegister = (name, surname, username, email, password, repPassword) => {      
+    handleRegister = (name, surname, username, email, password, repPassword) => {
         try {
 			logic.registerUser(name, surname, username, email, password, repPassword)
 				.then(() => {
@@ -51,15 +51,6 @@ class App extends Component {
                         auth_info: info
                     })
                 })
-<<<<<<< HEAD
-                .catch(err => {this.setState({error: "Incorrect username or password"})})
-                .then(()=> logic.getMostPopular())
-                .then(res => this.setState({mostPopular: res}))
-                .catch(error => console.error(error))
-                .then(()=> logic.getHistory())
-                .then(history=> this.setState({history}))
-=======
->>>>>>> develop
                 .catch(error => console.error(error))
 		} catch (err) {
             this.setState({error: err.message})
@@ -155,15 +146,15 @@ class App extends Component {
     }
     renderLanding() {
         return <div className="landing">
-            <nav className="landing__items">
-                <div className="landing__left">
-                    <img className="landing__logo" src="/img/skytube.logo.png" alt="logo"></img>
+            <nav className="navbar">
+                <div className="navbar__title">
+                    <img className="navbar__logo" src="/img/skytube.logo.png" alt="logo"></img>
                     <h1>Skytube</h1>
                 </div>
-                <ul className="landing__right">
-                    <li><Link onClick={this.handleButtonClick} className="landing__button" to='/#register'>Sign Up</Link></li>
-                    <p className="landing__button--separator">or</p>
-                    <li><Link onClick={this.handleButtonClick} className="landing__button" to='/login'>Log In</Link></li>
+                <ul className="navbar__menu">
+                    <li><Link onClick={this.handleButtonClick} className="navbar__button" to='/#register'>Sign Up</Link></li>
+                    <p className="navbar__separator">or</p>
+                    <li><Link onClick={this.handleButtonClick} className="navbar__button" to='/login'>Log In</Link></li>
                 </ul>
             </nav>
             <Header error={this.state.error} onSubmitSignUp={this.handleRegister} />
