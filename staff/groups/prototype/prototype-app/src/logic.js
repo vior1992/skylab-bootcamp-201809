@@ -329,7 +329,7 @@ const logic = {
     if (typeof id !== 'string' && typeof id !== 'number') throw TypeError(`${id} is not a string or a number`)
     if (typeof list !== 'string') throw TypeError(`${list} is not a string`)
 
-    if (!id.trim()) throw Error('id is empty or blank')
+    if (typeof id === 'string' && !id.trim()) throw Error('id is empty or blank')
     if (!list.trim()) throw Error('list is empty or blank')
 
     let index = -1
@@ -566,5 +566,5 @@ const logic = {
   }
 }
 
-// export default logic
-module.exports = logic
+export default logic
+// module.exports = logic
