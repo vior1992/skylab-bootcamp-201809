@@ -19,15 +19,19 @@ class Home extends Component {
     state = {
         query: '',
         error: '',
-        movies: []
+        movies: [],
+        queryName: ''
     }
-    
 
     handleCardClick = id => {
         this.props.history.push(`/movie/${id}`)
     }
 
-    
+    handleMovieCardQuery= (query, name) =>{
+        this.setState({query})
+        this.setState({queryName:name})
+        this.props.history.push(`/categories/${query}`)
+    }
 
     render() {
         return <div className="home">
@@ -42,7 +46,7 @@ class Home extends Component {
 
             <Route path="/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
             <Route path="/categories/:query" render={props => <SearchCategories query={props.match.params.query} />} />
-            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} isLoggedIn={this.props.isLoggedIn} handleFavourites={this.props.handleFavourites} />} />
+            <Route path="/movie/:id" render={props => <Movie id={props.match.params.id} isLoggedIn={this.props.isLoggedIn} handleFavourites={this.props.handleFavourites} handleMovieCardQuery={this.handleMovieCardQuery}  />} />
 
 
         </div>
