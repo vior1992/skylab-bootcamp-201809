@@ -363,37 +363,31 @@ describe('logic', () => {
                         movieId = undefined
                         expect(() =>
                             logic.checkInList(movieId, list)
-                        ).to.throw(Error, `${movieId} is not a string`)
+                        ).to.throw(Error, `${movieId} is not a string or a number`)
                     })
                     it('should fail with null movie id', () => {
                         movieId = null
                         expect(() =>
                             logic.checkInList(movieId, list)
-                        ).to.throw(Error, `${movieId} is not a string`)
-                    })
-                    it('should fail with not a string movie id (number)', () => {
-                        movieId = 1234
-                        expect(() =>
-                            logic.checkInList(movieId, list)
-                        ).to.throw(Error, `${movieId} is not a string`)
+                        ).to.throw(Error, `${movieId} is not a string or a number`)
                     })
                     it('should fail with not a string movie id (boolean)', () => {
                         movieId = true
                         expect(() =>
                             logic.checkInList(movieId, list)
-                        ).to.throw(Error, `${movieId} is not a string`)
+                        ).to.throw(Error, `${movieId} is not a string or a number`)
                     })
                     it('should fail with not a string movie id (object)', () => {
                         movieId = {}
                         expect(() =>
                             logic.checkInList(movieId, list)
-                        ).to.throw(Error, `${movieId} is not a string`)
+                        ).to.throw(Error, `${movieId} is not a string or a number`)
                     })
                     it('should fail with not a string movie id (array)', () => {
                         movieId = []
                         expect(() =>
                             logic.checkInList(movieId, list)
-                        ).to.throw(Error, `${movieId} is not a string`)
+                        ).to.throw(Error, `${movieId} is not a string or a number`)
                     })
                 })
             })
