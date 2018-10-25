@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import Error from './Error'
 
 class Login extends Component {
     state = { username: '', password: '', error: '' }
@@ -50,16 +51,17 @@ class Login extends Component {
 
     render() {
         return <div className="login_component">
-                        <form className="login_form" onSubmit={this.handleSubmit}>
-                            <input type="text" class="form-control" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-                            <br></br>
-                            <input type="password" class="form-control" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-                            <br></br>
-                            <button class="btn btn-outline-secondary" type="submit">Login</button>
-                            <a className="btn btn-link" href="#" onClick={this.props.onGoBack}>back</a>
-                        </form>
-                    </div>
-                    }
-                }
-                
+            <form className="login_form" onSubmit={this.handleSubmit}>
+                <input type="text" class="form-control" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+                <br></br>
+                <input type="password" class="form-control" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
+                <br></br>
+                {this.state.error && <Error message={this.state.error} />}
+                <button class="btn btn-outline-secondary" type="submit">Login</button>
+                <a className="btn btn-link" href="#" onClick={this.props.onGoBack}>back</a>
+            </form>
+        </div>
+    }
+}
+
 export default Login

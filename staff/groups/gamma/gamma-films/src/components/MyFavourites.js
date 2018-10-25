@@ -3,20 +3,20 @@ import logic from '../logic'
 import MiniCard from './MiniCard'
 
 
-class CategoryFamily extends Component {
+class MyFavourites extends Component {
     state = {
         error: '',
-        movies: [],
+        Fav: [],
         flag: true
 
     }
 
     handleSearch = this.handleSearch.bind(this)
-    
-    handleSearch(date) {
+
+    handleSearch() {
         try {
-            logic.searchMoviesByCategories(date)
-                .then(movies => this.setState({ movies }))
+            logic.listFavourites()
+                .then(Fav => this.setState({ Fav }))
                 .catch(err => this.setState({ error: err.message }))
         }
         catch (err) {
@@ -29,12 +29,12 @@ class CategoryFamily extends Component {
 
     render() {
         return <div className="contain">
-            {this.state.flag && this.handleSearch("10751")}
+            {this.state.flag && this.handleSearch()}
             <div className="row">
-                <h4>Family movies</h4>
+                <h4>My favourite list</h4>
                 <div className="row__inner">
-                    {this.state.movies.map((film) => {
-                        return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} key={film.id}/>
+                    {this.state.Fav.map((film) => {
+                        return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.urlImage} id={film.id} onCardClick={this.handleCardClick} key={film.id}/>
                     })}
                 </div>
             </div>
@@ -43,4 +43,4 @@ class CategoryFamily extends Component {
     }
 }
 
-export default CategoryFamily
+export default MyFavourites

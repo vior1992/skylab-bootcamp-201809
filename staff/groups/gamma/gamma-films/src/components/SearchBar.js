@@ -26,8 +26,7 @@ class SearchBar extends Component {
 
     verResultados = event => {
         event.preventDefault()
-        console.log(this.state.movies)
-    }
+        }
 
     render() {
         return <form className="form_search" onSubmit={this.handleSubmit}>

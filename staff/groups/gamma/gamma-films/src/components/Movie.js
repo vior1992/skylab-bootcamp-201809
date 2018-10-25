@@ -12,7 +12,8 @@ class Movie extends Component {
         err: '',
         showFavButton: false,
         flagController:true,
-        youtubeKey: null
+        youtubeKey: null,
+        cast: null
     }
 
     componentDidMount() {
@@ -43,16 +44,35 @@ class Movie extends Component {
         catch (err) {
             this.setState({ error: err.message })
         }
+
+        try {
+            
+            logic.searchCharacters(id)
+                .then(results => {
+
+                    this.setState({ cast : results})
+                })
+                .catch(err => this.setState({ error: err.message }))
+        }
+        catch (err) {
+            this.setState({ error: err.message })
+        }
     }
 
-    handleFav = () => {
-
+    handleAddFav = () => {
         this.setState({ flagController: true })
         logic.listFavourites(this.props.id)
             .then(res => {
-                console.log(res)
-                logic.updateFavourites(res, this.props.id)
-                    .then(res => res)
+                logic.updateFavourites(res, this.props.id, this.state.thePoster )
+                    .then(()=>this.favButtonController())
+            })
+    }
+
+    handleRemoveFav = () => {
+        this.setState({ flagController: true })
+        logic.listFavourites(this.props.id)
+            .then(res => {
+                logic.removeFavourites(res, this.props.id, this.state.thePoster )
                     .then(()=>this.favButtonController())
             })
     }
@@ -66,10 +86,9 @@ class Movie extends Component {
             try {
                 logic.listFavourites()
                     .then(res => listFav = res)
-                    .then(res => console.log(res))
                     .then(() => {
-                        const showFavButton = listFav.find(_id => _id === id)
-
+                        const showFavButton = listFav.find(F =>F.id === id)
+                
                         this.setState({ showFavButton })
                         this.setState({ flagController: false })
                     })
@@ -120,6 +139,20 @@ class Movie extends Component {
             </div>
         </div>
         <iframe className="video-frame" src={"https://www.youtube.com/embed/"+this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+       
+        {!!this.state.cast && <div>
+                        <h3>Main Characters</h3>
+                        <div><p>{this.state.cast[0].name+ ' as ' +this.state.cast[0].character}</p></div>
+                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img>
+                        <div><p>{this.state.cast[1].name+ ' as ' +this.state.cast[1].character}</p></div>
+                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img>
+                        <div><p>{this.state.cast[2].name+ ' as ' +this.state.cast[2].character}</p></div>
+                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img>
+                        <div><p>{this.state.cast[3].name+ ' as ' +this.state.cast[3].character}</p></div>
+                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img>
+                        <div><p>{this.state.cast[4].name+ ' as ' +this.state.cast[4].character}</p></div>
+                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img>
+                    </div>}
     </div>
 
     }

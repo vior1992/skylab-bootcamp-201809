@@ -10,6 +10,9 @@ import CategoryAction from './CategoryAction'
 import CategoryFamily from './CategoryFamily'
 import SearchBar from './SearchBar'
 import ButtonBar from './ButtonBar'
+import MyFavourites from './MyFavourites'
+import SearchBar from './SearchBar';
+import NowPlaying from './NowPlaying'
 
 
 class Home extends Component {
@@ -31,6 +34,7 @@ class Home extends Component {
             <Route exact path="/" render={props =><SearchBar />}/>
             <Route exact path="/" render={props =><ButtonBar/>}/>
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/" render={props =><NowPlaying/>}/>
             <Route exact path="/" render={props =><CategoryAction/>}/>
             <Route exact path="/" render={props =><CategoryFamily/>}/>
 

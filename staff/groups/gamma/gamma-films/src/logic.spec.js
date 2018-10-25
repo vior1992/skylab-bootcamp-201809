@@ -2,6 +2,12 @@
 
 require('isomorphic-fetch')
 
+global.sessionStorage = require('sessionstorage')
+
+// running test from CLI
+// normal -> $ mocha src/logic.spec.js --timeout 10000
+// debug -> $ mocha debug src/logic.spec.js --timeout 10000
+
 const logic = require('./logic')
 
 const { expect } = require('chai')
@@ -283,7 +289,7 @@ describe('logic', () => {
                         expect(results).not.to.be.undefined
                         expect(results).to.be.a('array')
                         expect(results).to.have.lengthOf(20)
-                        
+
                     })
             })
 
@@ -332,7 +338,7 @@ describe('logic', () => {
                         expect(results).not.to.be.undefined
                         expect(results).to.be.a('object')
                         expect(results.original_title).to.equal('Batman')
-                        
+
                     })
             })
 
@@ -381,7 +387,7 @@ describe('logic', () => {
                         expect(results).not.to.be.undefined
                         expect(results).to.be.a('array')
                         expect(results).to.have.lengthOf(20)
-                        
+
                     })
             })
 
@@ -418,7 +424,7 @@ describe('logic', () => {
         flag && describe('searchPopularMovies', () => {
 
             it('should succes on correct date', () => {
-                const date = 'week' 
+                const date = 'week'
                 return logic.searchPopularMovies(date)
                     .then(() => expect(true).to.be.true)
             })
@@ -430,7 +436,7 @@ describe('logic', () => {
                         expect(results).not.to.be.undefined
                         expect(results).to.be.a('array')
                         expect(results).to.have.lengthOf(20)
-                        
+
                     })
             })
 
@@ -460,6 +466,81 @@ describe('logic', () => {
                 expect(() =>
                     logic.searchPopularMovies(date)
                 ).to.throw(Error, 'date is empty or blank')
+            })
+
+        })
+
+        flag && describe('listFavourites', () => {
+            
+            beforeEach(() => {
+
+                const username = 'gamma', password = 'gamma'
+
+                return logic.loginUser(username, password)
+            })
+
+            it('should succes on correct user Id', () => {
+                return logic.listFavourites()
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an array', () => {
+                
+                return logic.listFavourites()
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                    })
+            })
+
+        })
+
+        flag && describe('searchTrailer', () => {
+
+            it('should succes on correct id', () => {
+                const id = '268' //id of Batman
+                return logic.searchTrailer(id)
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an array', () => {
+                const id = '268'
+                return logic.searchTrailer(id)
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                        expect(results[0]).to.be.a('object')
+                        expect(results[0].key).to.be.a('string')
+
+                    })
+            })
+
+            it('should fail on undefined id', () => {
+                const id = undefined
+                expect(() =>
+                    logic.searchTrailer(id)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null id', () => {
+                const id = null
+                expect(() =>
+                    logic.searchTrailer(id)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object id', () => {
+                const id = {}
+                expect(() =>
+                    logic.searchTrailer(id)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty id', () => {
+                const id = '    \t'
+                expect(() =>
+                    logic.searchTrailer(id)
+                ).to.throw(Error, 'id is empty or blank')
             })
 
         })

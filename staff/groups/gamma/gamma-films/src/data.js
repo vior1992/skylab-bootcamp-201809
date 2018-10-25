@@ -4,15 +4,18 @@ class User {
         this.surname = surname
         this.username = username
         this.password = password
-        this.FavID = []
+        this.Fav = [
+            {id:undefined,
+            urlImage:undefined}
+        ]
         this.id = Date.now()
     }
 }
 
 class MovieInfo {
-    constructor(id){
+    constructor(id, image){
         this.id = id
-        this.key = Date.now()
+        this.urlImage = image
     } 
 }
 

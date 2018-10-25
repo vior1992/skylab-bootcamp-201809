@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import logic from '../logic'
 import MiniCard from './MiniCard'
 
-
-class CategoryFamily extends Component {
+class NowPlaying extends Component {
     state = {
         error: '',
         movies: [],
@@ -11,11 +10,12 @@ class CategoryFamily extends Component {
 
     }
 
-    handleSearch = this.handleSearch.bind(this)
-    
-    handleSearch(date) {
+    getNowPlaying = this.getNowPlaying.bind(this)
+
+    getNowPlaying() {
+        debugger
         try {
-            logic.searchMoviesByCategories(date)
+            logic.searcNowPlaying()
                 .then(movies => this.setState({ movies }))
                 .catch(err => this.setState({ error: err.message }))
         }
@@ -24,16 +24,15 @@ class CategoryFamily extends Component {
         }
         this.setState({ flag: false })
     }
-        
 
 
     render() {
         return <div className="contain">
-            {this.state.flag && this.handleSearch("10751")}
+            {this.state.flag && this.getNowPlaying()}
             <div className="row">
-                <h4>Family movies</h4>
+                <h4>Now Playing</h4>
                 <div className="row__inner">
-                    {this.state.movies.map((film) => {
+                    {this.state.movies.map((film, index) => {
                         return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} onCardClick={this.handleCardClick} key={film.id}/>
                     })}
                 </div>
@@ -43,4 +42,4 @@ class CategoryFamily extends Component {
     }
 }
 
-export default CategoryFamily
+export default NowPlaying
