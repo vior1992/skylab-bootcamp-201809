@@ -36,11 +36,7 @@ body
     margin: 0
     font-family: Roboto, Arial, sans-serif
     color: $color-text
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> develop
+  
     .landing
         margin: 0
         width: 100vw
@@ -84,16 +80,15 @@ body
                 color: $color-cloud
         h4
             font-size: 14px
-            margin: 0px    
+            margin: 0px
 
         .container
             display: flex
             justify-content: flex-start
             flex-direction: row
             align-items: center
-        
-    .signup
 
+    .signup
         &__formulary
             display: block
             background-color: lighten($color-background, 20%)
@@ -120,6 +115,10 @@ body
             width: 95%
             border-radius: 5px
             text-transform: capitalize
+          
+        &__error
+            @extend %error
+            margin-right: 250px
 
     .login
         display: flex
@@ -362,11 +361,24 @@ body
 
                 &-footer
                     display: flex
-                    justify-content: flex-end
-                    padding: .5rem
+                    flex-direction: column
+
+                    &__title
+                        font-size: 20px
+                        margin: .5rem 1rem 0
+
+                    &__buttons
+                        display: flex
+                        justify-content: flex-end
+                        align-items: center
 
                     &__button
                         @extend %button
+                        font-size: 24px
+                        &--text
+                            font-size: 16px
+                        &--active
+                            color: $color-primary
 
                     .playlists
                         position: relative
@@ -495,11 +507,7 @@ body
                 &__title
                     margin: 0
                     font-size: 20px
-<<<<<<< HEAD
-=======
 
-       
->>>>>>> develop
     .error
         @extend %error
         margin: 10px auto
