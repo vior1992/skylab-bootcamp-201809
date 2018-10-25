@@ -164,6 +164,7 @@ class Movie extends Component {
 
             {!!this.state.cast && <div>
                 <h3>Main Characters</h3>
+                
                 <div><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p></div>
                 <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img>
                 <div><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p></div>

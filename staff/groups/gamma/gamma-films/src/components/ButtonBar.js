@@ -21,7 +21,7 @@ handleSubmit = event => {
     
     console.log(query)
 
-    this.props.history.push(`/categories/${query}`)
+    if (query!='') this.props.history.push(`/categories/${query}`)
 }
 
 verResultados = event => {
