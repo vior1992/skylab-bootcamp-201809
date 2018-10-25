@@ -231,10 +231,11 @@ body {
 
 .poster {
   border-radius: 16px;
+  margin-left: 25%;
 }
 
 .info-col {
-  margin-left: -30%;
+  margin-left: -25%;
 }
 .info-col span, .info-col p {
   margin: 16px 0;
@@ -242,7 +243,7 @@ body {
 
 .icons-col {
   font-size: 1.5em;
-  margin-left: 10%;
+  margin-left: 18%;
 }
 
 .icons-row1 {
@@ -262,11 +263,12 @@ body {
 }
 
 .sinopsis-col {
-  margin-left: -35%;
+  margin-left: -28%;
+  margin-right: 17%;
+  max-width: 580px;
 }
 
 .cast-title-row {
-  margin-left: 22em;
   margin-top: 2em;
 }
 

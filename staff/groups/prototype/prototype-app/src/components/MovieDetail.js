@@ -57,10 +57,10 @@ class MovieDetail extends Component {
     switch (check) {
 
       case '00':
-        this.setState({ seen: false, warning: null })
+        this.setState({ seen: false})
         break
       case '10':
-        this.setState({ seen: true, pending: false })
+        this.setState({ seen: true, pending: false, warning: null  })
         break
       default:
         this.setState({ warning: check })
@@ -142,9 +142,8 @@ class MovieDetail extends Component {
     }
   }
 
-  componentDidCatch(errorString, errorInfo) {
+  componentDidCatch(errorString) {
     this.setState({ error: errorString })
-    //What is error info???! 
   }
 
   render() {
@@ -152,12 +151,12 @@ class MovieDetail extends Component {
       {this.state.movie && <div>
         <section className='top'>
           <div className='container'>
-            <div className='row'>
+            <div className='row justify-content-center'>
               {this.state.movie.backdrop_path ? <img className='backdrop img-fluid' src={`https://image.tmdb.org/t/p/w780/${this.state.movie.backdrop_path}`} /> : <img src='https://dummyimage.com/780x439/cfcfcf/000.jpg' />}
               <div className='arrow'>
                 <a onClick={this.handleBackClick}><i className="fa fa-arrow-left"></i></a>
               </div>
-              <div className='title-poster ml-5'>
+              <div className='title-poster'>
                 <h2>{this.state.movie.title}</h2>
               </div>
             </div>
@@ -165,9 +164,9 @@ class MovieDetail extends Component {
         </section>
         <section className='body-top'>
           <div className='container'>
-            <div className='row'>
-              <div className='col poster-col ml-5'>
-                {this.state.movie.poster_path ? <img className='mr-5 poster' src={`https://image.tmdb.org/t/p/w185/${this.state.movie.poster_path}`} /> : <img src='https://dummyimage.com/185x278/cfcfcf/000.jpg' />}
+            <div className='row justify-content-center'>
+              <div className='col poster-col  justify-content-center'>
+                {this.state.movie.poster_path ? <img className='poster' src={`https://image.tmdb.org/t/p/w185/${this.state.movie.poster_path}`} /> : <img src='https://dummyimage.com/185x278/cfcfcf/000.jpg' />}
               </div>
               <div className='col info-col'>
                 <span>{this.state.movie.release_date.slice(0, 4)}</span>  <span> | </span>
@@ -183,7 +182,7 @@ class MovieDetail extends Component {
         </section>
         <section className='body-bottom'>
           <div className='container'>
-            <div className='row'>
+            <div className='row justify-content-center'>
               <div className='col icons-col'>
                 <div className='row icons-row1'>
                   {this.state.seen ? <a onClick={this.handleSeenClick}><i className="fa fa-eye clicked"></i></a> : <a onClick={this.handleSeenClick}><i className="fa fa-eye"></i></a>}
@@ -207,10 +206,10 @@ class MovieDetail extends Component {
         </section>
         <section className='bottom'>
           <div className='container'>
-            <div className='row cast-title-row'>
+            <div className='row cast-title-row justify-content-center'>
               <h3 className='cast-title mr-5'>Cast</h3>
             </div>
-            <div className='row cast-row ml-4'>
+            <div className='row cast-row ml-4 justify-content-center'>
               {this.state.movie.credits.cast.slice(0, 5).map(cast => <div className='d-inline'>{cast.profile_path ? <img src={`https://image.tmdb.org/t/p/w92/${cast.profile_path}`} /> : <img src='https://dummyimage.com/92x138/cfcfcf/000.jpg' />}<p>{cast.name}</p> </div>)}
             </div>
           </div>
