@@ -29,18 +29,18 @@ class Player extends Component {
     handlePlaylistCheck = (playlist_id, event) => {
         if (event.target.checked) {
             this.props.onAddToPlaylist(this.props.video, playlist_id)
-            this.setState({favourite: true})
         } else {
             this.props.onRemoveFromPlaylist(this.props.video.id, playlist_id)
-            this.setState({favourite: false})
         }
     }
 
     handleClickFavourite = () => {
         if (!this.state.favourite) {
             this.props.onNewFavourite(this.props.video)
+            this.setState({favourite: true})
         } else {
             this.props.onRemoveFavourite(this.props.video.id)
+            this.setState({favourite: false})
         }
     }
 
