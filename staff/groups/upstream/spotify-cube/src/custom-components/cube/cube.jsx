@@ -6,8 +6,6 @@ import TopSide from './topside/topside'
 import RightSide from './rightside/rightside'
 import LeftSide from './leftside/leftside'
 import userService from '../../services/userlogic'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
 
 export default class Cube extends Component {
 
@@ -160,7 +158,7 @@ export default class Cube extends Component {
     render() {
 
         return <section className="container">
-            <Modal toggle={true} ></Modal>
+           
             <section style={{ transform: "rotateY(" + this.state.xdeg + "deg) rotateX(" + this.state.ydeg + "deg)" }} className="cube">
                 <FrontSide onClearSearch={this.handleClearSearch} onArtistFound={this.handlerArtistFound}></FrontSide>
                 <BackSide onTracks={this.handlerTracksFound} albumlist={this.state.albums}></BackSide>
