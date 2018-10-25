@@ -15,7 +15,7 @@ class OtherProfile extends Component {
 
     render() {
         return <div className="div-home">
-            <nav className="nav"> <div className="logo"><img className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoHome} className="title">Pintegram</h1></div>
+            <nav className="nav"> <div className="logo"><img onClick={this.props.onGoHome} className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoHome} className="title">Pintegram</h1></div>
                 <div className="menu">
                     <i onClick={this.props.onSearch} className="menu__button fas fa-search"></i>
                     <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
