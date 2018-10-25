@@ -70,7 +70,7 @@ class Movie extends Component {
         try {
             logic.getReviews(id)
                 .then(reviews => {
-                    this.setState({ reviews:reviews.results })
+                    this.setState({ reviews: reviews.results })
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
@@ -160,19 +160,24 @@ class Movie extends Component {
                         </div>
                         <p>Related categories:</p>
                         <div className="_tags">
-                       
-                        {!!this.state.genres && this.state.genres.map((genres) => {
-                            return <div>
+
+                            {!!this.state.genres && this.state.genres.map((genres) => {
+                                return <div>
                                     <GenresTags id={genres.id} name={genres.name} handleMovieCardQuery={this.props.handleMovieCardQuery} />
-                              
-                            </div>
-                        })}
+
+                                </div>
+                            })}
                         </div>
 
                     </div>
                 </div>
             </div>
-            {!!lengthCast && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>}
+            <div>
+                {!!lengthCast && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">More Info</button>}
+
+                {!!lengthReviews && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">Reviews</button>}
+                
+            </div>
 
             {!!lengthCast && <div class="collapse" id="collapseExample">
                 <div class="card card-body">
@@ -196,14 +201,7 @@ class Movie extends Component {
                 <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
             </div>}
-
-
-
-
-
-
-            {!!lengthReviews && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">Reviews</button>}
-
+           
             {!!lengthReviews && <div class="collapse" id="collapseReviews">
                 <div class="card card-body">
 
