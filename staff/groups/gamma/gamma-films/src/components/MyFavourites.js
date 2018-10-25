@@ -30,14 +30,14 @@ class MyFavourites extends Component {
     render() {
         return <div className="contain">
             {this.state.flag && this.handleSearch()}
-            <div className="row">
+            {this.state.Fav[0] && <div className="row">
                 <h4>My favourite list</h4>
                 <div className="row__inner">
                     {this.state.Fav.map((film) => {
                         return <MiniCard title={film.title} description={film.overview} release={film.release_date} imgRoute={film.urlImage} id={film.id} onCardClick={this.handleCardClick} key={film.id}/>
                     })}
                 </div>
-            </div>
+            </div>}
         </div>
 
     }
