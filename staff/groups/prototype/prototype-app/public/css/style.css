@@ -169,53 +169,6 @@ body {
   border-bottom-right-radius: 0.25rem;
 }
 
-.movie-profile {
-  background-color: #F3F3F3;
-  border: 0;
-}
-
-.movie-profile__card {
-  display: flex;
-  flex-direction: row;
-}
-
-.card__poster {
-  max-width: 342px;
-  border-radius: 10px !important;
-  position: absolute;
-  top: 50%;
-  left: 10%;
-}
-
-.card__info {
-  position: absolute;
-  top: 43%;
-  left: 45%;
-}
-
-.div-backdrop {
-  display: flex;
-  justify-content: center;
-}
-
-.backdrop {
-  max-width: 780px;
-  border-radius: 25px !important;
-  position: relative;
-}
-
-.sinopsis-title, .sinopsis-text, .cast-title, .cast-text {
-  color: #686868 !important;
-}
-
-.card-title, .card-text {
-  color: white;
-}
-
-.card-title {
-  font-weight: bold;
-}
-
 .row-move {
   position: absolute;
   top: 38%;
@@ -240,6 +193,105 @@ body {
 }
 .list-movies .movie img {
   max-width: 240px;
+}
+
+.logout, .logout:hover, .logo-div, .logo-div:hover {
+  color: #707070;
+  text-decoration: none;
+}
+
+.backdrop {
+  border-radius: 25px;
+}
+
+.title-poster {
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  max-width: 550px;
+  padding: 20px 30px;
+  border-radius: 16px;
+  background-color: #F3F3F6;
+}
+.title-poster h2 {
+  margin: 10px 0 40px;
+  font-weight: bold;
+  color: #707070;
+}
+
+.arrow {
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: 1000;
+}
+
+.poster-col {
+  margin-top: -50px;
+}
+
+.poster {
+  border-radius: 16px;
+  margin-left: 25%;
+}
+
+.info-col {
+  margin-left: -25%;
+}
+.info-col span, .info-col p {
+  margin: 16px 0;
+}
+
+.icons-col {
+  font-size: 1.5em;
+  margin-left: 18%;
+}
+
+.icons-row1 {
+  text-align: center;
+  padding-left: 2em;
+}
+
+.icons-row2 {
+  padding-left: 1.6em;
+}
+
+.warning-row {
+  width: 14em;
+  font-size: small;
+  text-align: center;
+  color: red;
+}
+
+.sinopsis-col {
+  margin-left: -28%;
+  margin-right: 17%;
+  max-width: 580px;
+}
+
+.cast-title-row {
+  margin-top: 2em;
+}
+
+.cast-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.cast-row div {
+  margin: 0 1em;
+}
+.cast-row div img, .cast-row div p {
+  margin: 0.5em 0;
+}
+.cast-row div p {
+  width: 5em;
+}
+.cast-row div img {
+  border-radius: 50px;
+}
+
+.clicked {
+  color: green;
 }
 
 .footer {

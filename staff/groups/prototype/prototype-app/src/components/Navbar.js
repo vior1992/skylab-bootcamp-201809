@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import logic from '../logic'
 import $ from 'jquery'
@@ -26,10 +26,12 @@ const Navbar = (props) => {
               <li><Link to="/movies/popular" onClick={closeMenu}>Popular</Link></li>
             </ul>
           </div>
-          <div className="logo">
-            <span>SM</span>
-            <span>Db</span>
-          </div>
+          <Link to="/" className="logo-div">
+            <div className="logo">
+              <span>SM</span>
+              <span>Db</span>
+            </div>
+          </Link>
           <div className="options">
             { !logic.loggedIn && <div>
               <Link to="/signin">Sign In</Link> or <Link to="/login">Log In</Link>
@@ -41,15 +43,15 @@ const Navbar = (props) => {
                 <Link className="dropdown-item" to="/user">Profile</Link>
                 <a className="dropdown-item" href="#">Movies</a>
                 <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">Log Out</a>
+                <Link to="/" onClick={() => logic.logout()} className="dropdown-item">Log Out</Link>
               </div>
               </div>
             </div> }
           </div>
-        </div>
-      </section>
-    </header>
-  )
+        </section>
+      </header>
+    )
+  }
 }
 
 export default Navbar
