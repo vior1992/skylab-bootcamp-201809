@@ -130,8 +130,16 @@ class Movie extends Component {
                             <li>Action</li>
                         </ul>
                         <div className='card_right__rating'>
-                            {this.props.isLoggedIn && !!!this.state.showFavButton && <button type="button" onClick={this.handleAddFav} > Add to favorites </button>}
-                            {this.props.isLoggedIn && !!this.state.showFavButton && <button type="button" onClick={this.handleRemoveFav} > Remove from favorites </button>}
+                            {this.props.isLoggedIn && !!!this.state.showFavButton && <div>
+                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} >  </button>
+                                <label>Add to favorites</label>
+                            </div>}
+
+                            {this.props.isLoggedIn && !!this.state.showFavButton && <div>
+                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} > </button>
+                                <label>Remove from favorites </label>
+
+                            </div>}
                         </div>
 
                         <div className='card_right__review'>
@@ -144,18 +152,16 @@ class Movie extends Component {
                             </div>
                         })}
 
-                    {!!this.state.youtubeKey && <div className='card_right__button'>
-                        <a href={'https://www.youtube.com/watch?v='+this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
-                    </div>}
-                    <div className='card_right__rating'>
-                        {console.log('en render ' + this.state.showFavButton)}
-                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button className="unlike_btn" type="button" onClick={this.handleFav} >  </button>}
-                        {this.props.isLoggedIn && !!this.state.showFavButton && <button className="like_btn" type="button" onClick={this.handleFav} >   </button>}
-                    </div>
+                        {!!this.state.youtubeKey && <div className='card_right__button'>
+                            <a href={'https://www.youtube.com/watch?v=' + this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
+                        </div>}
 
                     </div>
                 </div>
             </div>
+
+            <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
             {!!this.state.cast && <div>
                 <h3>Main Characters</h3>
                 <div><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p></div>
@@ -171,22 +177,6 @@ class Movie extends Component {
             </div>}
         </div>
 
-        <iframe className="video-frame" src={"https://www.youtube.com/embed/"+this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-       
-        {!!this.state.cast && <div>
-                        <h3>Main Characters</h3>
-                        <div><p>{this.state.cast[0].name+ ' as ' +this.state.cast[0].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img>
-                        <div><p>{this.state.cast[1].name+ ' as ' +this.state.cast[1].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img>
-                        <div><p>{this.state.cast[2].name+ ' as ' +this.state.cast[2].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img>
-                        <div><p>{this.state.cast[3].name+ ' as ' +this.state.cast[3].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img>
-                        <div><p>{this.state.cast[4].name+ ' as ' +this.state.cast[4].character}</p></div>
-                        <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img>
-                    </div>}
-    </div>
 
     }
 }
