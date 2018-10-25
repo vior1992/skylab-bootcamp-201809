@@ -1,6 +1,6 @@
 
 const logicUdacity = {
-    _courses: sessionStorage.getItem('courses'),
+    _courses: JSON.parse(sessionStorage.getItem('courses')) || null,
 
     getCourses(url = 'https://www.udacity.com/public-api/v0/courses') {
         return fetch(url).then(response => {

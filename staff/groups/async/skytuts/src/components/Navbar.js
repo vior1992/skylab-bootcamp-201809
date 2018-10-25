@@ -1,27 +1,24 @@
-import React from 'react'
+import {Component} from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
+import template from './templates/Navbar.pug'; 
 
-    const authenticated = (sessionStorage.getItem('userId') || sessionStorage.getItem('token'))
-    const user = JSON.parse(sessionStorage.getItem('user') || null)
+class Navbar extends Component  {
 
-    return (
-        <nav>
-            <ul>
-                <li><NavLink to="/">Home</NavLink></li>
-                {!authenticated &&
-                    <li><NavLink to="/login">Login</NavLink></li>
-                }
-                {!authenticated &&
-                    <li><NavLink to="/register">Register</NavLink></li>
-                }
-                {authenticated &&
-                    <li><NavLink to="/profile">{user.data.username}</NavLink></li>
-                }
-            </ul>
-        </nav>
-    )
+    authenticated = (sessionStorage.getItem('userId') || sessionStorage.getItem('token'))
+    user = JSON.parse(sessionStorage.getItem('user') || null)
+
+
+    render() {
+
+    return template.call(this, {        
+        authenticated: this.authenticated,
+        user: this.user,
+        NavLink
+      });
+
+    }
+
 }
 
 export default Navbar

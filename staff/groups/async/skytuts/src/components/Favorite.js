@@ -1,30 +1,38 @@
 import React, { Component } from 'react'
 
-
+import logicAuth from '../logic/auth'
 
 
 class Favorite extends Component {
     state = {
         faves: {},
-        token: sessionStorage.getItem('token'),
-        userId: sessionStorage.getItem('userId'),
-        status: ''
+        token: logicAuth._token,
+        userId: logicAuth._userId,
+        status: '',
+        error: null
     }
 
     checkStatus() {
-        let favesLocal = JSON.parse(sessionStorage.getItem('faves'))
-        let found = favesLocal.find(element => element.course === this.props.params)
-        const status = (found) ? 'Unfavorite' : 'Mark As Favorite'
-        this.setState({ status })
+        if (logicAuth._user) {
+            let favesLocal = logicAuth._user.data.faves
+            let found = favesLocal.find(element => element.course === this.props.params)
+            const status = (found) ? 'Unfavorite' : 'Mark As Favorite'
+            this.setState({ status })
+        }
     }
 
+
     componentWillMount() {
+        return
+    }
+
+    componentDidMount() {
         this.checkStatus()
     }
 
     markAsFavorite() {
 
-        let favesLocal = JSON.parse(sessionStorage.getItem('faves'))
+        let favesLocal = logicAuth._user.data.faves
         let found = favesLocal.find(element => element.course === this.props.params)
         if (found) {
             favesLocal = favesLocal.filter(element => element.course !== this.props.params)
@@ -32,21 +40,14 @@ class Favorite extends Component {
             favesLocal.push({ course: this.props.params })
         }
 
+        try {
+            logicAuth.updateUser(favesLocal)
+                .then(() => this.checkStatus())
+                .catch(err => this.setState({ error: err.message }))
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
 
-        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this.state.userId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${this.state.token}`
-            },
-            body: JSON.stringify({ faves: favesLocal })
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-                sessionStorage.setItem('faves', JSON.stringify(favesLocal))
-                this.checkStatus()
-            })
     }
 
 
