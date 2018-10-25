@@ -261,13 +261,15 @@ $moveRight : $tileWidth * ($growFactor - 1)
                 background-color: #d5d6d6
                 opacity: 1
 .card 
-    width: 80%
+    width: 100%
     max-width: 800px
     height: 100%
     max-height: 600px
     background: transparent
     display: flex
     flex-direction: row
+    justify-content: center
+    align-items: center
     left: 0
     right: 0
     margin-top: 30px
@@ -535,7 +537,39 @@ $moveRight : $tileWidth * ($growFactor - 1)
             padding: 0 0 0 40px
             margin: 30px 0 0 0
 
-              
+.contain_actors
+    width: 80%
+    max-width: 800px
+    display: flex
+    flex-direction: column
+    justify-content: center    
+    max-height: 250px     
+    margin-bottom: 50px
+    h3
+        text-align: center
+
+    .contain_profile_actors
+        display: flex
+        flex-direction: row
+        justify-content: center   
+
+        .profile_actors
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            text-align: center
+            margin-left: 5px
+
+            p
+                height: 50px
+                font-size: 1.3vw
+
+            .img-actors  
+                max-height: 130px
+                max-width: 80px
+                border-radius: 50px
+
 .contain
   width: 100%
 

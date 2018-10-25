@@ -159,23 +159,32 @@ class Movie extends Component {
                     </div>
                 </div>
             </div>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
 
-            <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            {!!this.state.cast && <div class="collapse" id="collapseExample">
+                <div class="card card-body">
 
-            {!!this.state.cast && <div>
-                <h3>Main Characters</h3>
-                
-                <div><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img>
-                <div><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img>
-                <div><p>{this.state.cast[2].name + ' as ' + this.state.cast[2].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img>
-                <div><p>{this.state.cast[3].name + ' as ' + this.state.cast[3].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img>
-                <div><p>{this.state.cast[4].name + ' as ' + this.state.cast[4].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img>
-            </div>}
+                <div className="contain_actors">
+                    <div><h3>Main Characters</h3></div>
+                    <div className="contain_profile_actors">
+                        <div className="profile_actors"><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p>
+                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img></div>
+                        <div className="profile_actors"><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p>
+                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img></div>
+                        <div className="profile_actors"><p>{this.state.cast[2].name + ' as ' + this.state.cast[2].character}</p>
+                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img></div>
+                        <div className="profile_actors"><p>{this.state.cast[3].name + ' as ' + this.state.cast[3].character}</p>
+                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img></div>
+                        <div className="profile_actors"><p>{this.state.cast[4].name + ' as ' + this.state.cast[4].character}</p>
+                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img></div>
+                    </div>
+                </div>
+                </div>
+                <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+            </div>
+            }
+
         </div>
 
 
