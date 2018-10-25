@@ -59,13 +59,19 @@ class SignUp extends Component {
         return <div className='signup'>
             <Error error={this.props.error}/>
             <form className='signup__formulary' onSubmit={this.handleSubmit}>
-                <input className='signup__input' placeholder='name' onChange={this.handleNameChange}/>
-                <input className='signup__input' placeholder='surname' onChange={this.handleSurnameChange}/>
-                <input className='signup__input' placeholder='username' onChange={this.handleUsernameChange}/>
-                <input className='signup__input' type='email' placeholder='email' onChange={this.handleEmailChange}/>
-                <input className='signup__input' type='password' placeholder='password' onChange={this.handlePasswordChange}/>
-                <input className='signup__input' type='password' placeholder='repeat password' onChange={this.handleRepPasswordChange}/>
-                
+                <h4>Name</h4>
+                <input className='signup__input' placeholder='Introduce your name' onChange={this.handleNameChange}/>
+                <h4>Surname</h4>
+                <input className='signup__input' placeholder='And your surname' onChange={this.handleSurnameChange}/>
+                <h4>Username</h4>
+                <input className='signup__input' placeholder='Pick a cool username' onChange={this.handleUsernameChange}/>
+                <h4>Email</h4>
+                <input className='signup__input' type='email' placeholder='notfalse@xmple.com' onChange={this.handleEmailChange}/>
+                <h4>Password</h4>
+                <input className='signup__input' type='password' placeholder='Create a secure password' onChange={this.handlePasswordChange}/>
+                <h4>Repeat Password</h4>
+                <input className='signup__input' type='password' placeholder='And repeat it' onChange={this.handleRepPasswordChange}/>
+                {this.state.wrongRepPas && <p>Passwords are not the same</p>}
                 <button className='signup__button'type='submit'>Sign Up</button>
             </form>
         </div>
