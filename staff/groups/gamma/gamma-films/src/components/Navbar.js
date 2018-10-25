@@ -14,6 +14,9 @@ class Navbar extends Component {
         if (this.props.userID !== prevProps.userID) {
           this.fetchData(this.props.userID);
         }
+        if(this.props.name!==prevProps.name){
+            this.setState({name:this.props.name})
+        }
       }
 
 
@@ -22,7 +25,7 @@ class Navbar extends Component {
 
 
             <div className="header_background">
-                {!!this.props.name && <p>{'Welcome '+this.props.name}</p>}
+                {!!this.state.name && <p>{'Welcome '+this.state.name}</p>}
                 {this.props.isLoggedIn && <button className="btn btn-outline-secondary" onClick={this.props.onLogoutClick}>Logout</button>}
                 {!this.props.isLoggedIn && <div className="navbar_buttons">
                     <button type="button" className="btn btn-outline-secondary" onClick={this.props.onLoginClick}>Login</button>

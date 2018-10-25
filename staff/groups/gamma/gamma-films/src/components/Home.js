@@ -8,9 +8,9 @@ import SearchCategories from './SearchCategories'
 import TopRatedSlide from './TopRatedSlide'
 import CategoryAction from './CategoryAction'
 import CategoryFamily from './CategoryFamily'
+import SearchBar from './SearchBar'
 import ButtonBar from './ButtonBar'
 import MyFavourites from './MyFavourites'
-import SearchBar from './SearchBar';
 import NowPlaying from './NowPlaying'
 
 

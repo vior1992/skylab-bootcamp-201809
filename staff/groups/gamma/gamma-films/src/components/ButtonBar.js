@@ -33,6 +33,7 @@ render() {
     return <div className="dropdown">
             <form className="form_search" onSubmit={this.handleSubmit}>
             <select className="select_cat" onChange={this.handleQueryChange}>
+                <option type='text' >Select...</option>
                 <option type='button' value="28" onClick={this.handleQueryChange}>Action</option>
                 <option type='button' value="12" onClick={this.handleQueryChange}>Adventure</option>
                 <option type='button' value="16" onClick={this.handleQueryChange}>Animation</option>
