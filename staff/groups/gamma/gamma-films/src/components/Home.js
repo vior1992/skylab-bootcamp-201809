@@ -32,6 +32,7 @@ class Home extends Component {
 
             <Route exact path="/" render={props =><SearchBar />}/>
             <Route exact path="/" render={props =><ButtonBar/>}/>
+            <Route exact path="/" render={props =><MyFavourites/>}/>
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
             <Route exact path="/" render={props =><NowPlaying/>}/>
             <Route exact path="/" render={props =><CategoryAction/>}/>
