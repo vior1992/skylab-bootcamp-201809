@@ -32,7 +32,7 @@ function Footer() {
     </section> */}
     
     return (
-      <footer class="footer">
+      <footer class="footer my-4">
         <div className="container">
           <p class="footer__rights">Developed by Prototype group</p>
         </div>

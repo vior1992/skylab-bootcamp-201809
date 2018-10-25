@@ -195,6 +195,11 @@ body {
   max-width: 240px;
 }
 
+.footer {
+  line-height: 60px;
+  text-align: center;
+}
+
 .logout, .logout:hover, .logo-div, .logo-div:hover {
   color: #707070;
   text-decoration: none;
@@ -294,9 +299,8 @@ body {
   color: green;
 }
 
-.footer {
-  line-height: 60px;
-  text-align: center;
+.data-profile {
+  max-width: 500px;
 }
 
 /*# sourceMappingURL=style.css.map */

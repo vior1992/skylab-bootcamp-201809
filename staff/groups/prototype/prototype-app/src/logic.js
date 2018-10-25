@@ -126,8 +126,6 @@ const logic = {
   },
 
   retrieveMovies(query, page) {
-    debugger
-
     const basePath = 'https://api.themoviedb.org/3/search/movie'
 
     return fetch(`${basePath}?api_key=${this._apiKey}&query=${query}&page=${page}`, {
@@ -136,8 +134,6 @@ const logic = {
       .then(response => response.json())
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
-
-        debugger
 
         return response || {}
       })
