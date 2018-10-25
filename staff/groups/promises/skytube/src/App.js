@@ -56,7 +56,6 @@ class App extends Component {
                 .catch(error => console.error(error))
 		} catch (err) {
             this.setState({loginError: err.message})
-            console.error(this.state.loginError)
 		}
 	}
 
