@@ -155,7 +155,12 @@ body{
   
   .login__back {
     text-decoration: none;
+    color: #0075a2;
     cursor: pointer;
+  }
+
+  .login__back:hover {
+    color: #7cEA9C;
   }
 
   .login__header{
@@ -425,20 +430,35 @@ body{
 .div__error{
     z-index: 2;
     position: absolute;
-    top:40%;
+    top:45%;
     right: 40%;
-    background-color :#FAFAFA;
+    background-color :white;
     padding: 2px;
     border-radius: 5px;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 120px;
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 .error {
     color: red;
     
+}
+.div__x{
+    width: 140px;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.div__error-center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 140px;
 }
 
 
@@ -529,12 +549,15 @@ body{
 .logo__img{
     width: 30px;
     height: 100%;
+    cursor:pointer;
+    
 }
 
 .title{
     color:#0075a2;
     font-family: monospace;
     margin-left: 10px;
+    cursor:pointer;
 }
 
 .menu__button{

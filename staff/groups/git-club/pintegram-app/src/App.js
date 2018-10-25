@@ -88,6 +88,10 @@ class App extends Component {
             } )
     }
 
+    handleErrorClose = () => {
+        this.setState({error:null})
+    }
+
     render() {
         const { error, post, profile, otherUser, search } = this.state
 
@@ -95,7 +99,7 @@ class App extends Component {
             {/* <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/home" />} /> */}
             <Route exact path="/" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleLoginClick} /> : <Redirect to="/home" />} />
             <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
-            {error && <Error message={error} />}
+            {error && <Error onErrorClose={this.handleErrorClose} message={error} />}
             <Route path="/home" render={() => logic.loggedIn && !post && !profile ? <Home onLogout={this.handleLogoutClick} onPost={this.handlePost} onSearch={this.handleSearch} onProfile={this.handleProfile} onUserSearch={this.handleUserSearch}/> : <Redirect to="/" />} />
             <Route path="/addpost" render={() => logic.loggedIn && post && !profile ? <AddPost onLogout={this.handleLogoutClick} onProfile={this.handleProfile} onPost={this.handleAddPost} onGoBack={this.handleGoBack2} onSearch={this.handleSearch}/> : <Redirect to="/home" />} />
             <Route path="/profile" render={() =>logic.loggedIn && profile && !post ? <Profile onLogout={this.handleLogoutClick} onPost={this.handlePost} onGoBack={this.handleGoBack2} onSearch={this.handleSearch}/> : <Redirect to="/home" />} />

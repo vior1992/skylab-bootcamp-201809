@@ -184,6 +184,9 @@ const logic = {
     },
 
     listOtherPosts(user){
+
+        if(!(user instanceof Object)) throw Error(`${user} is not an object`)
+        if(user.length !== undefined) throw Error (`${user} is not an object`)
         if(!user) throw Error('Other user is empty')
 
         let sortedUsers = []

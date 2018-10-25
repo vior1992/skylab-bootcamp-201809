@@ -40,7 +40,7 @@ class AddPost extends Component {
 
     render() {
         return <div className="div-home">
-            <nav className="nav"><div className="logo"><img onClick={this.props.onGoBack} className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoBack} className="title">Pintegram</h1></div>
+            <nav className="nav"><div onClick={this.props.onGoBack} className="logo"><img onClick={this.props.onGoBack} className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoBack} className="title">Pintegram</h1></div>
             <div className="menu">
                 <i onClick={this.props.onSearch} className="menu__button fas fa-search"></i>
                 <i className="menu__button fas fa-upload"></i>
