@@ -15,7 +15,29 @@ const logic = {
     _followers: [],
     _postLiked: [],
     _comments: [],
-    _postsOtherUser:[],
+    _postsOtherUser: [],
+
+    _callApi(path, method, token, data) {
+        const init = {
+            method,
+            headers: {}
+        }
+
+        if (method !== 'GET') {
+            init.headers['Content-Type'] = 'application/json; charset=utf-8'
+        }
+
+        if (token) {
+            init.headers.Authorization = `Bearer ${token}`
+        }
+
+        if (data) {
+            init.body = JSON.stringify(data)
+        }
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/${path}`, init)
+            .then(res => res.json())
+    },
 
     _callApi(path, method, token, data) {
         const init = {
@@ -92,8 +114,8 @@ const logic = {
         this._userId = null
         this._token = null
         this._postLiked = []
-        this._comments= []
-        this._postsOtherUser=[]
+        this._comments = []
+        this._postsOtherUser = []
 
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
@@ -213,7 +235,7 @@ const logic = {
         if(!user) throw Error('Other user is empty')
 
         let sortedUsers = []
-        if (user.posts) sortedUsers=user.posts.sort(function(a,b){
+        if (user.posts) sortedUsers = user.posts.sort(function (a, b) {
             return b.id - a.id
         })
         return this._postsOtherUser = sortedUsers || []
@@ -318,7 +340,7 @@ const logic = {
                 if (res.error) throw Error(res.error)
                 let userName = res.data.filter(user => user.username === username)
                 let name = userName[0]
-                return  name || null
+                return name || null
             })
     },
 

@@ -22,9 +22,7 @@ class App extends Component {
     handleRegister = (name, surname, username, password) => {
         try {
             logic.registerUser(name, surname, username, password)
-                .then(() => {
-                    this.setState({ error: null }, () => this.props.history.push('/login'))
-                })
+                .then(() => this.setState({ error: null }, () => this.props.history.push('/login')))
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
@@ -34,9 +32,7 @@ class App extends Component {
     handleLogin = (username, password) => {
         try {
             logic.login(username, password)
-                .then(() =>  {
-                    this.setState({error : null}, () => this.props.history.push('/home'))
-                } )
+                .then(() =>this.setState({error : null}, () => this.props.history.push('/home')))
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
