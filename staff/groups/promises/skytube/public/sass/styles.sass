@@ -227,25 +227,35 @@ body
 
             &__input
                 width: 80%
-                height: 30px
-                border: 1px solid #999999
-                border-radius: 10px
-                margin: 15px 20px
-                padding: 10px
-                background-color: darken($color-background, 15%)
-                font-family: Roboto, Arial, sans-serif
-                font-size: 18px
+                border: none
+                border-top-left-radius: 10px
+                border-bottom-left-radius: 10px
+                padding: .5rem 1.5rem
+                background-color: lighten($color-background, 23%)
                 color: $color-text
-                outline: 0
+                font-size: 18px
+                &::placeholder
+                    color: $color-text
+                &:focus
+                    outline: 0
+                    &::placeholder
+                        opacity: 0
 
             &__button
-                width: 60px
-                height: 30px
-                margin-left: -60px
-                border: 1px solid #999999
-                border-radius: 10px
-                background-color: #999999
-                outline: 0
+                margin-left: -40px
+                padding: .5rem 1.5rem
+                border: none
+                border-top-right-radius: 10px
+                border-bottom-right-radius: 10px
+                background-color: $color-primary
+                color: $color-text
+                font-size: 18px
+                transition: all .1s linear
+                &:hover
+                    background-color: darken($color-primary, 15%)
+                    cursor: pointer
+                &:focus
+                    outline: 0
 
         .profile
             grid-row: 1
