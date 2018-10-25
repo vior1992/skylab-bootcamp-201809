@@ -10,6 +10,7 @@ import CategoryAction from './CategoryAction'
 import CategoryFamily from './CategoryFamily'
 import MyFavourites from './MyFavourites'
 import SearchBar from './SearchBar';
+import NowPlaying from './NowPlaying'
 
 
 class Home extends Component {
@@ -32,6 +33,7 @@ class Home extends Component {
             {/* <Sidebar/> */}
             <Route exact path="/" render={props =>this.props.isLoggedIn && <MyFavourites/>}/>
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
+            <Route exact path="/" render={props =><NowPlaying/>}/>
             <Route exact path="/" render={props =><CategoryAction/>}/>
             <Route exact path="/" render={props =><CategoryFamily/>}/>
 
