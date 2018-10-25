@@ -21,13 +21,7 @@ class Player extends Component {
 
     handlePlaylistCheck = (playlist_id, event) => {
         if (event.target.checked) {
-            const video = {
-                id: this.props.video.id,
-                title: this.props.video.snippet.title,
-                thumbnail: this.props.video.snippet.thumbnails.medium.url
-            }
-
-            this.props.onAddToPlaylist(video, playlist_id)
+            this.props.onAddToPlaylist(this.props.video, playlist_id)
         } else {
             this.props.onRemoveFromPlaylist(this.props.video.id, playlist_id)
         }
@@ -48,6 +42,7 @@ class Player extends Component {
         return <section className="player">
             <div className="player__video" dangerouslySetInnerHTML={this.iframe()}></div>
             <footer className="player-footer">
+                <h1>{this.props.video.title}</h1>
                 <button className="player-footer__button" onClick={() => this.props.onNewFavourite(this.props.video)}><span>FAV</span></button>
                 <button className="player-footer__button" onClick={() => this.props.onNewWatchLater(this.props.video)}><span>WL</span></button>
                 <div className="playlists">
