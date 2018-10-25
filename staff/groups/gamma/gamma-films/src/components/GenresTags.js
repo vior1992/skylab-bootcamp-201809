@@ -2,10 +2,17 @@ import React, { Component } from 'react'
 import logic from '../logic'
 import SearchBar from './SearchBar'
 
-function GenresTags(props) {
 
-    return <button>{props.name} </button>
+class GenresTags extends Component {
 
+
+    searchQueryOnHome=()=>{
+        this.props.handleMovieCardQuery(this.props.id)
+    }
+
+    render() {
+        return <button className="tags" onClick={this.searchQueryOnHome}>{this.props.name} </button>
+
+    }
 }
-
-export default GenresTags
+    export default GenresTags

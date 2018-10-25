@@ -14,8 +14,9 @@ class Movie extends Component {
         showFavButton: false,
         flagController: true,
         youtubeKey: null,
-        cast: null,
-        genres: null
+        cast: '',
+        genres: null,
+        reviews: ''
     }
 
     componentDidMount() {
@@ -59,6 +60,17 @@ class Movie extends Component {
                 .then(results => {
 
                     this.setState({ cast: results })
+                })
+                .catch(err => this.setState({ error: err.message }))
+        }
+        catch (err) {
+            this.setState({ error: err.message })
+        }
+
+        try {
+            logic.getReviews(id)
+                .then(reviews => {
+                    this.setState({ reviews:reviews.results })
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
@@ -110,6 +122,9 @@ class Movie extends Component {
 
     render() {
 
+        const lengthCast = this.state.cast[0]
+        const lengthReviews = this.state.reviews[0]
+
         return <div className="home">
             <SearchBar />
             <div className='card'>
@@ -131,13 +146,11 @@ class Movie extends Component {
                         </ul>
                         <div className='card_right__rating'>
                             {this.props.isLoggedIn && !!!this.state.showFavButton && <div>
-                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} >  </button>
-                                <label>Add to favorites</label>
+                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} ></button>
                             </div>}
 
                             {this.props.isLoggedIn && !!this.state.showFavButton && <div>
-                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} > </button>
-                                <label>Remove from favorites </label>
+                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} ></button>
 
                             </div>}
                         </div>
@@ -145,37 +158,73 @@ class Movie extends Component {
                         <div className='card_right__review'>
                             <p>{this.state.theOverview}</p>
                         </div>
-
+                        <p>Related categories:</p>
+                        <div className="_tags">
+                       
                         {!!this.state.genres && this.state.genres.map((genres) => {
                             return <div>
-                                <GenresTags id={genres.id} name={genres.name} />
+                                    <GenresTags id={genres.id} name={genres.name} handleMovieCardQuery={this.props.handleMovieCardQuery} />
+                              
                             </div>
                         })}
-
-                        {!!this.state.youtubeKey && <div className='card_right__button'>
-                            <a href={'https://www.youtube.com/watch?v=' + this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
-                        </div>}
+                        </div>
 
                     </div>
                 </div>
             </div>
+            {!!lengthCast && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>}
 
-            <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            {!!lengthCast && <div class="collapse" id="collapseExample">
+                <div class="card card-body">
 
-            {!!this.state.cast && <div>
-                <h3>Main Characters</h3>
-                
-                <div><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img>
-                <div><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img>
-                <div><p>{this.state.cast[2].name + ' as ' + this.state.cast[2].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img>
-                <div><p>{this.state.cast[3].name + ' as ' + this.state.cast[3].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img>
-                <div><p>{this.state.cast[4].name + ' as ' + this.state.cast[4].character}</p></div>
-                <img src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img>
+                    <div className="contain_actors">
+                        <div><h3>Main Characters</h3></div>
+                        <div className="contain_profile_actors">
+
+                            {this.state.cast.map((cast, index) => {
+                                if (index < 5) {
+                                    return <div className="profile_actors">
+                                        <p>{cast.name + ' as ' + cast.character}</p>
+                                        <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + cast.profile_path}></img>
+                                    </div>
+                                }
+                            })}
+
+                        </div>
+                    </div>
+                </div>
+                <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
             </div>}
+
+
+
+
+
+
+            {!!lengthReviews && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">Reviews</button>}
+
+            {!!lengthReviews && <div class="collapse" id="collapseReviews">
+                <div class="card card-body">
+
+                    <div className="contain_actors">
+                        <div><h3>Reviews</h3></div>
+                        <div className="contain_profile_actors">
+
+                            {this.state.reviews.map((review, index) => {
+                                if (index < 5) {
+                                    return <div className="profile_actors">
+                                        <h5>{review.author}</h5>
+                                        <p>{review.content}</p>
+                                    </div>
+                                }
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+            </div>}
+
         </div>
 
 
