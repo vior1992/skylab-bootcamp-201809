@@ -9,6 +9,6 @@ class Event {
     }
 }
 
-export default { Event }
+// export default { Event }
 
-// module.exports = { Event }
+module.exports = { Event }

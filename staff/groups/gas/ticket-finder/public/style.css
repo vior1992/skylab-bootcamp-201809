@@ -373,3 +373,12 @@ ul {
 .eventInfo-title {
     font-weight: bold;
 }
+
+.favourite-title {
+    margin: 20px auto 0 auto;
+    text-align: center;    
+}
+.favourite-title h1 {
+    color:#880e4f;
+    font-weight: bold;
+}

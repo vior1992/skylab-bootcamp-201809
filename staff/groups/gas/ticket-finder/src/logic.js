@@ -1,5 +1,5 @@
-import data from './data'
-// const data = require('./data')
+// import data from './data'
+const data = require('./data')
 
 const { Event } = data
 
@@ -9,14 +9,15 @@ const logic = {
     _events: [],
     _favouritesEventsArray: [],
 
-        registerUser(name, email, username, password, passwordRepeat) {
+
+    registerUser(name, email, username, password, passwordRepeat) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
         if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
-        if (email.match(/^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)===null) throw Error(`${email} is an invalid email`)
+        if (email.match(/^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) === null) throw Error(`${email} is an invalid email`)
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
         if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
         if (typeof passwordRepeat !== 'string') throw TypeError(`${passwordRepeat} is not a string`)
-        if (password !== passwordRepeat) throw TypeError (`passwords do not match`)
+        if (password !== passwordRepeat) throw TypeError(`passwords do not match`)
 
         if (!name.trim()) throw Error('name is empty or blank')
         if (!email.trim()) throw Error('email is empty or blank')
@@ -96,12 +97,17 @@ const logic = {
     randomEvents() {
         let randomArray = Array.from(this._events)
         randomArray.sort(() => .5 - Math.random())
-        let randomArrayCarousel = randomArray.slice(0,3)
+        let randomArrayCarousel = randomArray.slice(0, 3)
         return randomArrayCarousel
     },
 
     searchEvents(query) {
-        if (query===undefined) throw Error(`${query} is not a valid query`)
+        if (query === undefined) throw Error(`${query} is not a valid query`)
+
+        if (typeof query !== 'string') throw TypeError(`${query} is not a valid query`)
+
+        if(!query.trim()) throw Error(`input text is blank`)
+
         return fetch(`https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events.json?size=200&countryCode=ES&apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp&keyword=${query}`, {
             method: 'GET',
         })
@@ -114,6 +120,8 @@ const logic = {
     },
 
     searchEventInfo(id) {
+        if(typeof id !=='string') throw Error(`${id} is not a valid id`)
+       if(!id.trim()) throw Error ('id is empty or blank')
         return fetch(`https://skylabcoders.herokuapp.com/proxy?url=https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=r0q6sz0wtLwGERyuLMtBsrS1lrlfAJGp`, {
             method: 'GET',
         })
@@ -125,9 +133,9 @@ const logic = {
     },
 
     storeFavourites(favouriteId) {
-        // this._favouritesEventsArray.forEach(item => {
-        //     if (item.id ===favouriteId) throw TypeError('this event is already in favourites')
-        // })
+        if (favouriteId === undefined) throw Error(`${favouriteId} is undefined`)
+        if (favouriteId === '' ) throw Error(`${favouriteId} is empty`)
+        if (!favouriteId.trim()) throw Error(`${favouriteId} is blank`)
         const self = this
         return this.searchEventInfo(favouriteId)
             .then(res => {
@@ -155,67 +163,72 @@ const logic = {
 
     retrieveFavouriteEvents() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${this._token}`
-                }
-            })
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+        })
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-            return this._favouritesEventsArray = res.data.favouritesEventsArray || []
+                return this._favouritesEventsArray = res.data.favouritesEventsArray || []
             })
     },
 
 
     isFavourite(id) {
+        if(typeof id !== 'string') throw Error(`${id} is not a string`)
+        if(typeof id === 'number') throw Error(`${id} is not a string`)
+        if(typeof id === 'array') throw Error(` is not a string`)
+        if(typeof id === 'boolean') throw Error(`${id} is not a string`)
+        if(typeof id === 'object') throw Error(`[object Object] is not a string`)
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}`
             }
-            })
-        .then(res => res.json())
-        .then(res => {
-            if (res.error) throw Error(res.error)
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
 
-            this._favouritesEventsArray = res.data.favouritesEventsArray 
-            let result = false
-            this._favouritesEventsArray.forEach(item => {
+                this._favouritesEventsArray = res.data.favouritesEventsArray
+                let result = false
+                this._favouritesEventsArray.forEach(item => {
 
-                if (item.id === id) result = true
+                    if (item.id === id) result = true
 
-                
-            })
-            return result
-        })       
-        
-    },
-    
-    deleteFavourite(id) {
-        var index = this._favouritesEventsArray.findIndex(item => item.id===id)
-        this._favouritesEventsArray.splice(index,1)
-        const self = this
-            return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                    'Authorization': `Bearer ${self._token}`
-                },
-                body: JSON.stringify({ favouritesEventsArray: self._favouritesEventsArray})
-            })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.error) throw Error(res.error)
-                    return self._favouritesEventsArray
+
                 })
-      
-        .catch(err => console.log(err)) 
-        }
+                return result
+            })
+
+    },
+
+    deleteFavourite(id) {
+        var index = this._favouritesEventsArray.findIndex(item => item.id === id)
+        this._favouritesEventsArray.splice(index, 1)
+        const self = this
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${self._userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${self._token}`
+            },
+            body: JSON.stringify({ favouritesEventsArray: self._favouritesEventsArray })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                return self._favouritesEventsArray
+            })
+
+            .catch(err => console.log(err))
+    }
 }
 
-export default logic
-// module.exports = logic
+// export default logic
+module.exports = logic
 
 
