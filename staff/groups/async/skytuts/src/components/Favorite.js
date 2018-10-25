@@ -18,15 +18,11 @@ class Favorite extends Component {
         if (logicAuth._user) {
             let favesLocal = logicAuth._user.data.faves
             let found = favesLocal.find(element => element.course === this.props.params)
-            const status = (found) ? 'Unfavorite' : 'Mark As Favorite'
+            const status = (found) ? '../images/star-active.svg' : '../images/star.png'
             this.setState({ status })
         }
     }
 
-
-    componentWillMount() {
-        return
-    }
 
     componentDidMount() {
         this.checkStatus()
@@ -54,7 +50,7 @@ class Favorite extends Component {
 
 
     render() {
-        return <button onClick={() => this.markAsFavorite()}>{this.state.status}</button>
+        return <img alt='favorites' className='star' src={this.state.status} onClick={() => this.markAsFavorite()}></img>
     }
 }
 

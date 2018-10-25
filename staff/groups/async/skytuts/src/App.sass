@@ -147,10 +147,13 @@ nav
                 .card-info
                     padding-left: 20px
                     .title
-                        cursor: pointer
                         margin: 0
+                        font-size: 1.5em
+                        text-decoration: none
+                        cursor: pointer
+                        color: $color_greyblue
                         &:hover
-                            color: #7d97ad
+                            color: $color_darkblue
                     .subtitle
                         margin: 0
                         margin-top: 10px
@@ -195,6 +198,13 @@ nav
         margin-top: 50px
         box-shadow: 0 0 4px 1px rgba(0,0,0, .2)
         border-radius: 5px
+        .star 
+            position: absolute
+            top: 20px
+            right: 180px
+            cursor: pointer
+            width: 60px
+            height: 60px
         .course-img
             width: 100%
             height: 450px
@@ -252,14 +262,16 @@ nav
 .login-container
     display: flex
     flex-direction: column
+    margin-top: 10%
+    align-items: center
     .login-error-container
-        margin: 10px 0
+        margin: 30px 0
         padding: 10px
         border-radius: 3px
-        background-color: #FFBABA
+        background-color: whiteSmoke
         .login-error-message
             color: red
-            padding-left: 40px
+            padding: 0 40px
     .login-title
         padding-left: 40px
         padding-top: 20px
@@ -272,6 +284,7 @@ nav
         a
             text-decoration: none
             color: $color_darkblue
+
     .login-form
         
         .login-input
@@ -302,14 +315,17 @@ nav
     display: flex
     flex-direction: column
     flex-wrap: wrap
+    justify-items: center
+    align-items: center
+    margin-top: 10%
     .register-error-container
-        margin: 10px 0
+        margin: 30px 0
         padding: 10px
         border-radius: 3px
-        background-color: #FFBABA
+        background-color: whiteSmoke
         .register-error-message
             color: red
-            padding-left: 40px
+            padding: 0 40px
     .register-title
         padding-left: 40px
         padding-top: 20px
@@ -324,7 +340,7 @@ nav
             color: $color_darkblue
     .register-form
         .register-input
-            width: 430px
+            width: 40%
             background: #fff
             color: #a3a3a3
             font: inherit

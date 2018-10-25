@@ -1,19 +1,22 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import { NavLink } from 'react-router-dom'
 
 import template from './templates/Navbar.pug'; 
 
+import logicAuth from '../logic/auth'
+
+
 class Navbar extends Component  {
 
-    authenticated = (sessionStorage.getItem('userId') || sessionStorage.getItem('token'))
-    user = JSON.parse(sessionStorage.getItem('user') || null)
-
-
+    
     render() {
 
+    let logout = (<a href='./' onClick={() => logicAuth.logout()}>Logout</a>)
+
     return template.call(this, {        
-        authenticated: this.authenticated,
-        user: this.user,
+        authenticated: logicAuth.isAuthenticated(),
+        user: logicAuth._user,
+        logout,
         NavLink
       });
 

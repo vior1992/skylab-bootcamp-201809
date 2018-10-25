@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown/with-html'
+import Navbar from './Navbar'
 import Favorite from './Favorite'
 import InstructorCard from './InstructorCard'
 import logicUdacity from '../logic/udacity'
@@ -37,6 +38,7 @@ class Info extends Component {
             markdown,
             slug: this.props.match.params.slug,
             Favorite,
+            Navbar
         });
 
     }

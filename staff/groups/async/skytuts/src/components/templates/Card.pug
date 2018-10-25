@@ -1,8 +1,10 @@
 div(className='card')
+  span(@if='showPopup') {popup}
   div(className='card-top')
     img(src='{course.image || defaultData().image}' alt='course-img')
     div(className='card-info')
-        h3(className='title') {course.title || defaultData().title}
+        a(@if='auth' href='{course.homepage}' target='_blank' className='title') {course.title || defaultData().title}
+        Link(@if='!auth' className='title' to='/') {course.title || defaultData().title}
         h5(className='subtitle') {course.subtitle || defaultData().subtitle}
         p(className='short-summary') {course.short_summary.length ? course.short_summary : defaultData().short_summary}
   div(className='card-middle')
@@ -10,6 +12,6 @@ div(className='card')
         span + Course Details
     span
       img(@if='defaultData(course).beginner' className='difficulty', src='../images/bitmap1.png', alt='ayaya')
-      img(@if='defaultData(course).intermediante' className='difficulty', src='../images/bitmap2.png', alt='ayaya')
+      img(@if='defaultData(course).intermediate' className='difficulty', src='../images/bitmap2.png', alt='ayaya')
       img(@if='defaultData(course).advanced' className='difficulty', src='../images/bitmap3.png', alt='ayaya')
-      | {course.level}
+      | {course.level || 'intermediate'}

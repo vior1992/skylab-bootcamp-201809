@@ -6,7 +6,7 @@ const defaultData = (course = []) => {
         short_summary: 'No Summary Available',
         summary: 'No Description Available',
         beginner: course.level === 'beginner',
-        intermediate: course.level === 'intermediate',
+        intermediate: course.level === 'intermediate' || course.level === '',
         advanced: course.level === 'advanced'
     }
 }

@@ -9,7 +9,8 @@ import template from './templates/Main.pug'
 
 
 import logicUdacity from '../logic/udacity'
-import filterCourses from '../logic/filter'
+import logicAuth from '../logic/auth'
+import logicFilter from '../logic/filter'
 
 class Main extends Component {
 
@@ -24,20 +25,16 @@ class Main extends Component {
 
     total = 0
 
-      togglePopup = () => {
-        this.setState({showPopup: !this.state.showPopup})
-      } 
-
     filterCoursesByTrack = (track) => {
-        this.setState({ coursesToShow: filterCourses().byTrack(track), track })
+        this.setState({ coursesToShow: logicFilter.filterCourses().byTrack(track), track })
     }
 
     filterCoursesByLevel = (level) => {
-        this.setState({ coursesToShow: filterCourses().byLevel(level, this.state.track) })
+        this.setState({ coursesToShow: logicFilter.filterCourses().byLevel(level, this.state.track) })
     }
 
     filterPersonalized = (event) => {
-        this.setState({ coursesToShow: filterCourses().personalized(event.target.value) })
+        this.setState({ coursesToShow: logicFilter.filterCourses().personalized(event.target.value) })
     }
 
     listCourses = () => {
@@ -88,17 +85,18 @@ class Main extends Component {
 
     render() {
 
-        let card = (this.state.coursesToShow || []).map((course, index) => <Card course={course} key={index} />)
+        let card = (this.state.coursesToShow || []).map((course, index) => (<Card course={course} key={index} />))
         
-        let links = (['beginner', 'intermediate', 'advanced']).map((type, index) => <span key={index} onClick={() => this.filterCoursesByLevel(type)}>{type}r</span>)
+        let links = (['beginner', 'intermediate', 'advanced']).map((type, index) => <span key={index} onClick={() => this.filterCoursesByLevel(type)}>{type}</span>)
 
         let track = (this.state.tracks || []).map((track, index) => <span onClick={() => this.filterCoursesByTrack(track)} key={index}>{track.name}</span>)
        
         let popup = (<Popup text='You need to be logged in to view courses!' closePopup={this.togglePopup}/>)
 
-         const {showPopup, error} = this.state
+        const {showPopup, error} = this.state
                      
-        return template.call(this, {   
+        return template.call(this, {  
+            auth: logicAuth.isAuthenticated(), 
             error,     
             card,
             links,

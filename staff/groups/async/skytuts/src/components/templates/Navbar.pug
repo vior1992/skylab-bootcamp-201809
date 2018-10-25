@@ -7,4 +7,5 @@ nav
     li(@if='!authenticated')
       NavLink(to='/register') Register
     li(@if='authenticated')
-      NavLink(to='/profile') {user.data.username}
+      NavLink(to='/profile') Favorites
+    li(@if='authenticated') {logout}
