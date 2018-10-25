@@ -23,7 +23,7 @@ class Model {
 
     find(query) {
         let elements = this.all()
-        const filter = elements => elements.filter(element => element[key] === query[key])
+        const filter = elements => elements.filter(element => element[key] == query[key])
         for (var key in query) elements = filter(elements)
         return elements
     }
