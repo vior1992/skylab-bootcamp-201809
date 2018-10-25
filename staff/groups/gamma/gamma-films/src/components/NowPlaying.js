@@ -13,7 +13,6 @@ class NowPlaying extends Component {
     getNowPlaying = this.getNowPlaying.bind(this)
 
     getNowPlaying() {
-        debugger
         try {
             logic.searcNowPlaying()
                 .then(movies => this.setState({ movies }))
