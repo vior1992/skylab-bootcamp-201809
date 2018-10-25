@@ -17,6 +17,13 @@
   margin-bottom: 20px;
   padding: 0px;
 }
+.body .navbar .header_loggedin {
+  font-size: 20px;
+  font-weight: 600;
+  color: #6c757d;
+  display: flex;
+  justify-content: space-between;
+}
 .body .navbar .header_background {
   background: url("header-nav.png");
   height: 100%;
@@ -63,6 +70,7 @@
   background-size: contain;
   width: 200px;
   height: 150px;
+  cursor: pointer;
 }
 .body .home {
   display: flex;
@@ -101,8 +109,10 @@
   font-size: 12px;
   color: #ffffff;
   outline-color: #01010100;
+  cursor: pointer;
 }
 .body .home .form_search .button_search2 {
+  cursor: pointer;
   width: 50px;
   height: 50px;
   background: url("clipboards.png");
@@ -124,7 +134,7 @@
   width: 300px;
 }
 .body .video-frame {
-  width: 90%;
+  width: 100%;
   height: 100%;
   max-width: 800px;
   min-height: 400px;
@@ -320,11 +330,17 @@
   font-size: 14px;
   padding: 0 40px 0 0;
 }
+.card__rating {
+  padding: 5px;
+  padding-top: 10px;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
 .card__review p {
   color: white;
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
-  padding: 0 40px 0 40px;
+  padding: 10px 40px 10px 40px;
   letter-spacing: 1px;
   margin: 10px 0 10px 0;
   line-height: 20px;
@@ -390,6 +406,7 @@
   border: 0px;
   color: #ffffff;
   outline-color: #01010100;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
@@ -401,6 +418,7 @@
 
   .card {
     height: 100%;
+    max-width: 90%;
     max-height: 1200px;
     background: transparent;
     display: flex;
@@ -523,6 +541,13 @@
     transition-duration: 0.5s;
   }
 }
+.collapse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .contain_actors {
   width: 80%;
   max-width: 800px;
@@ -539,6 +564,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 }
 .contain_actors .contain_profile_actors .profile_actors {
   display: flex;
@@ -547,10 +573,11 @@
   align-items: center;
   text-align: center;
   margin-left: 5px;
+  width: 20%;
 }
 .contain_actors .contain_profile_actors .profile_actors p {
   height: 50px;
-  font-size: 1.3vw;
+  font-size: 14px;
 }
 .contain_actors .contain_profile_actors .profile_actors .img-actors {
   max-height: 130px;
@@ -638,6 +665,26 @@
   bottom: 0;
   padding: 10px;
 }
+._tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tags {
+  background: #000000;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+.card_right__rating {
+  padding: 5px;
+  padding-top: 10px;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
+
 .row__inner:hover {
   transform: translate3d(-35px, 0, 0);
 }
