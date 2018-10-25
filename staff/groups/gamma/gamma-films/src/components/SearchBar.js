@@ -21,7 +21,7 @@ class SearchBar extends Component {
 
         const query = this.state.query
 
-        this.props.history.push(`/search/${query}`)
+        if(query != '') this.props.history.push(`/search/${query}`)
     }
 
     verResultados = event => {

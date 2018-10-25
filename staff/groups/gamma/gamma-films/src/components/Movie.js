@@ -146,12 +146,6 @@ class Movie extends Component {
                             <p>{this.state.theOverview}</p>
                         </div>
 
-<<<<<<< HEAD
-                    {!!this.state.youtubeKey && <div className='card_right__button'>
-                        <a href={'https://www.youtube.com/watch?v='+this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
-                    </div>}
-                    
-=======
                         {!!this.state.genres && this.state.genres.map((genres) => {
                             return <div>
                                 <GenresTags id={genres.id} name={genres.name} />
@@ -163,7 +157,6 @@ class Movie extends Component {
                         </div>}
 
                     </div>
->>>>>>> develop
                 </div>
             </div>
 
