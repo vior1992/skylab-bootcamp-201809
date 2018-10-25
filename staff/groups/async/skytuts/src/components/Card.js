@@ -32,7 +32,7 @@ class Card extends Component {
                 </div>
 
                 <div className="card-middle">
-                    <Link to={`/course/${course.slug}`}><span>+  Course Details</span></Link>
+                    <Link to={`/course/${course.slug}`}><span className="more-info">+  Course Details</span></Link>
                     <span>{difficulty.beginner &&
                         <img className="difficulty" src={require('../images/bitmap1.png')} alt="ayaya" />}
                         {difficulty.intermediate &&

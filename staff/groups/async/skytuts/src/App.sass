@@ -59,8 +59,13 @@ nav
         width: 100%
         object-fit: fill
     input 
-        height: 40px
-        width: 380px
+        height: 45px
+        width: 450px
+        background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png")
+        background-position: 98% 9px
+        background-size: 28px 28px
+        background-repeat: no-repeat
+
         padding-left: 20px
         border-radius: 10px
         border: 0
@@ -165,6 +170,9 @@ nav
                     width: 20px
                     margin-right: 5px
                     margin-bottom: -3px
+                a
+                    text-decoration: none
+                    color: #34ADFF
 
 .info
     margin-top: 0
@@ -240,3 +248,85 @@ nav
                 width: calc(100% - 200px)
                 p
                     text-align: justify
+.login-container
+    display: flex
+    flex-direction: column
+    .login-title
+        padding-left: 40px
+        padding-top: 20px
+    .login-inputs
+        padding-left: 20px
+        padding-top: 20px
+    .goto-register
+        padding-left: 20px
+        padding-top: 20px
+        a
+            text-decoration: none
+            color: $color_darkblue
+    .login-form
+        
+        .login-input
+            width: 360px
+            background: #fff
+            color: #a3a3a3
+            font: inherit
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1)
+            border: 0
+            outline: 0
+            padding: 22px 18px
+        .login-btn
+            display: inline-block
+            background: transparent
+            color: inherit
+            font: inherit
+            border: 0
+            outline: 0
+            padding: 0
+            cursor: pointer
+            background: #7f8ff4
+            color: #fff
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1)
+            border-radius: 2px
+            padding: 12px 36px
+            margin-left: -96px
+.register-container
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    .register-title
+        padding-left: 40px
+        padding-top: 20px
+    .register-inputs
+        padding-left: 20px
+        padding-top: 20px
+    .goto-login
+        padding-left: 20px
+        padding-top: 20px
+        a
+            text-decoration: none
+            color: $color_darkblue
+    .register-form
+        .register-input
+            width: 430px
+            background: #fff
+            color: #a3a3a3
+            font: inherit
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1)
+            border: 0
+            outline: 0
+            padding: 22px 18px
+        .register-btn
+            position: absolute
+            display: inline-block
+            background: transparent
+            font: inherit
+            border: 0
+            outline: 0
+            cursor: pointer
+            background: #7f8ff4
+            color: #fff
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1)
+            border-radius: 2px
+            padding: 12px 36px
+            margin-top: -22px
+            margin-left: -96px
