@@ -10,19 +10,22 @@ function Sidenav(props) {
         <div className="sidenav__lists">
             <nav>
                 <ul className="sidenav__menu">
-                    <li className="sidenav__item" onClick={props.onClickHome}>Home</li>
-                    <li className="sidenav__item" onClick={props.onClickFavourites}>Favourites</li>
-                    <li className="sidenav__item" onClick={props.onClickHistory}>History</li>
+                    <li className="sidenav__item" onClick={props.onClickHome}><span className="sidenav__icon fas fa-home"></span>Home</li>
+                    <li className="sidenav__item" onClick={props.onClickFavourites}><span className="sidenav__icon fas fa-star"></span>Favourites</li>
+                    <li className="sidenav__item" onClick={props.onClickHistory}><span className="sidenav__icon fas fa-history"></span>History</li>
                 </ul>
             </nav>
 
             <nav>
                 <h2 className="sidenav__title">Playlists</h2>
                 <ul className="sidenav__menu">
-                    <li className="sidenav__item" onClick={props.onClickWatchLater}>Watch Later</li>
+                    <li className="sidenav__item" onClick={props.onClickWatchLater}><span className="sidenav__icon fas fa-clock"></span>Watch Later</li>
                     {props.playlists && props.playlists.length > 0 && (
                         props.playlists.map(playlist => {
-                            return <li key={playlist.id} className="sidenav__item" onClick={() => props.onClickPlaylist(playlist.id)}>{playlist.title}</li>
+                            return <li key={playlist.id} className="sidenav__item" onClick={() => props.onClickPlaylist(playlist.id)}>
+                                <span className="sidenav__icon fas fa-list"></span>
+                                {playlist.title}
+                            </li>
                         })
                     )}
                 </ul>
