@@ -15,13 +15,14 @@ export default class TopSide extends Component{
                    
                    sessionStorage.setItem("user",JSON.stringify(data))
                    this.setState({isLogged:true}, () => {
+                       
                        this.props.onLogin(true)
                    })
 
                 })
                 .catch(err => alert(err.message))
         } catch (err) {
-            alert("se fue aqui")
+           
         }
     }
 
