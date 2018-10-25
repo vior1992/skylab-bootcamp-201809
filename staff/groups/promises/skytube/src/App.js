@@ -93,6 +93,11 @@ class App extends Component {
         this.setState({auth_info: logic.authInfo()})
     }
 
+    handleRemoveFavourite = video_id => {
+        logic.removeFavourite(video_id)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
     handleNewWatchLater = video => {
         logic.addWatchLater(video)
         this.setState({auth_info: logic.authInfo()})
@@ -172,7 +177,7 @@ class App extends Component {
                 <Route exact path='/home' render={() => <VideoList title="Most Populars" onVideoClick={this.handleVideoClick} videos={this.state.populars} />} />
                 <Route exact path='/home' render={() => <VideoList title="Watch Again" onVideoClick={this.handleVideoClick} videos={logic.getHistory().videos} />} />
                 <Route path='/home/search' render={() => <VideoList title={this.state.search_query} onVideoClick={this.handleVideoClick} videos={this.state.video_search} />} />
-                <Route path='/home/player' render={() => <Player video={this.state.current_video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
+                <Route path='/home/player' render={() => <Player video={this.state.current_video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onRemoveFavourite={this.handleRemoveFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
                 <Route path='/home/favourites' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getFavourites()} />} />
                 <Route path='/home/history' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getHistory()} />} />
                 <Route path='/home/watch_later' render={props => <Playlist onVideoClick={this.handlePlayWatchLater} playlist={logic.getWatchLater()} />} />
