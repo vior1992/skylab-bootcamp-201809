@@ -360,6 +360,7 @@ body .home .main .player-footer {
   flex-direction: column;
 }
 body .home .main .player-footer__title {
+  font-size: 20px;
   margin: 0.5rem 1rem 0;
 }
 body .home .main .player-footer__buttons {

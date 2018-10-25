@@ -137,6 +137,13 @@ const logic = {
         this.skylab.update({favourites: favouritesTable.all()}, this.auth.id, this.auth.token)
     },
 
+    removeFavourite(video_id) {
+        const favouritesTable = new Favourites()
+        let video = favouritesTable.get(video_id)
+        video.delete()
+        this.skylab.update({favourites: favouritesTable.all()}, this.auth.id, this.auth.token)
+    },
+
     addWatchLater(video) {
         const watchLaterTable = new WatchLater()
         watchLaterTable.newEntity({

@@ -29,8 +29,18 @@ class Player extends Component {
     handlePlaylistCheck = (playlist_id, event) => {
         if (event.target.checked) {
             this.props.onAddToPlaylist(this.props.video, playlist_id)
+            this.setState({favourite: true})
         } else {
             this.props.onRemoveFromPlaylist(this.props.video.id, playlist_id)
+            this.setState({favourite: false})
+        }
+    }
+
+    handleClickFavourite = () => {
+        if (!this.state.favourite) {
+            this.props.onNewFavourite(this.props.video)
+        } else {
+            this.props.onRemoveFavourite(this.props.video.id)
         }
     }
 
@@ -56,7 +66,7 @@ class Player extends Component {
             <footer className="player-footer">
                 <h1 className="player-footer__title">{this.props.video.title}</h1>
                 <div className="player-footer__buttons">
-                    <button className={this.state.favourite ? "player-footer__button player-footer__button--active" : "player-footer__button"} onClick={() => this.props.onNewFavourite(this.props.video)}><span className="fas fa-star"></span></button>
+                    <button className={this.state.favourite ? "player-footer__button player-footer__button--active" : "player-footer__button"} onClick={this.handleClickFavourite}><span className="fas fa-star"></span></button>
                     <button className="player-footer__button" onClick={() => this.props.onNewWatchLater(this.props.video)}><span className="fas fa-clock"></span></button>
                     <div className="playlists">
                         <button onClick={this.handleClick} className="player-footer__button player-footer__button--text">playlists</button>
