@@ -15,6 +15,8 @@ class App extends Component {
         super(props)
         this.state = {
             error: null,
+            registerError: null,
+            loginError: null,
             auth_info: logic.authInfo(),
             video_search: logic.video_search,
             current_video: logic.current_video,
@@ -33,12 +35,12 @@ class App extends Component {
 		try {
 			logic.registerUser(name, surname, username, email, password)
 				.then(() => {
-                    this.setState({error: null})
+                    this.setState({registerError: null})
                     this.props.history.push('/login')
                 })
-				.catch(error => console.error(error))
+				.catch((err) => {this.setState({registerError: err.message})})
 		} catch (err) {
-			this.setState({error: err.message})
+			this.setState({registerError: err.message})
 		}
 	}
 
@@ -47,13 +49,14 @@ class App extends Component {
 			logic.loginUser(username, password)
 				.then(info => {
                     this.setState({
-                        error: null,
+                        loginError: null,
                         auth_info: info
                     })
                 })
                 .catch(error => console.error(error))
 		} catch (err) {
-			this.setState({error: err.message})
+            this.setState({loginError: err.message})
+            console.error(this.state.loginError)
 		}
 	}
 
@@ -138,14 +141,18 @@ class App extends Component {
 
     renderLanding() {
         return <div className="landing">
-            <nav>
-                <ul>
-                    <li><Link to='/#register'>Sign Up</Link></li>
-                    <li><Link to='/login'>Log In</Link></li>
+            <nav className="landing__items">
+                <div className="landing__left">
+                    <img className="landing__logo" src="/img/skytube.logo.png" alt="logo"></img>
+                    <h1>Skytube</h1>
+                </div>
+                <ul className="landing__right">
+                    <li><Link className="landing__button" to='/#register'>Sign Up</Link></li>
+                    <p className="landing__button--separator">or</p>
+                    <li><Link className="landing__button" to='/login'>Log In</Link></li>
                 </ul>
             </nav>
-
-            <Header onSubmitSignUp={this.handleRegister} />
+            <Header error={this.state.registerError} onSubmitSignUp={this.handleRegister} />
         </div>
     }
 
@@ -171,8 +178,7 @@ class App extends Component {
         return <div>
             <Route exact path='/' render={() => !logic.isAuthenticated() ? this.renderLanding() : <Redirect to='/home'/>} />
             <Route path='/home' render={() => logic.isAuthenticated() ? this.renderHome() : <Redirect to='/login' />} />
-            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
-            {this.state.error && <p>{this.state.error}</p>}
+            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn error={this.state.loginError} onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
         </div>
     }
 }

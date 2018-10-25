@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Error from './Error'
 import { Link } from 'react-router-dom'
 
 class LogIn extends Component {
@@ -26,6 +27,7 @@ class LogIn extends Component {
                 <img className="login__logo" src="/img/skytube.logo.png" alt="logo"></img>
                 <h1>Skytube</h1>
             </div>
+            <Error error={this.props.error}/>
             <form className = "login__form" onSubmit={this.handleSubmit}>
                 <h4 className = "login__label" >Username</h4>
                 <input className = "login__input" placeholder='Username' onChange={this.handleUsernameChange}/>

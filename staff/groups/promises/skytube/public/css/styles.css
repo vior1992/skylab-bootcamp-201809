@@ -1,4 +1,4 @@
-body .home .main .playlist-header__button, body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button, body .login__button {
+body .home .main .playlist-header__button, body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button, body .login__button, body .signup__button, body .landing__button {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: none;
@@ -8,7 +8,7 @@ body .home .main .playlist-header__button, body .home .main .player-footer__butt
   text-transform: uppercase;
   cursor: pointer;
 }
-body .home .main .playlist-header__button:focus, body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus, body .login__button:focus {
+body .home .main .playlist-header__button:focus, body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus, body .login__button:focus, body .signup__button:focus, body .landing__button:focus {
   outline: 0;
 }
 
@@ -22,6 +22,84 @@ body {
   margin: 0;
   font-family: Roboto, Arial, sans-serif;
   color: #ffffff;
+}
+body .landing {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #121212;
+  overflow-y: scroll;
+}
+body .landing__items {
+  display: flex;
+  justify-content: space-between;
+  padding-top: -10%;
+  background-color: #242424;
+  height: 60px;
+}
+body .landing__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 50px;
+}
+body .landing__logo {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 5px;
+}
+body .landing__right {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+  font-size: 20px;
+  margin-right: 310px;
+}
+body .landing__button {
+  text-decoration: none;
+  color: #ffffff;
+}
+body .landing__button--separator {
+  font-size: 16px;
+  color: #23CCDD;
+}
+body h4 {
+  font-size: 14px;
+  margin: 0px;
+}
+body .container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+body .signup__formulary {
+  display: block;
+  background-color: #454545;
+  width: 250px;
+  height: 500px;
+  margin: 30px auto;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: left;
+  margin-right: 250px;
+}
+body .signup__input {
+  width: 92.5%;
+  height: 30px;
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding-left: 5px;
+  margin: 10px 0 20px 0;
+  border: none;
+}
+body .signup__button {
+  background-color: #23CCDD;
+  width: 95%;
+  border-radius: 5px;
+  text-transform: capitalize;
 }
 body .login {
   display: flex;
@@ -42,9 +120,9 @@ body .login__form {
   display: block;
   background-color: #454545;
   width: 250px;
-  height: 220px;
-  margin: 20px auto;
-  padding: 40px 30px;
+  height: 250px;
+  margin: 0 auto;
+  padding: 40px 30px 10px;
   border-radius: 10px;
   text-align: left;
 }
@@ -56,7 +134,7 @@ body .login__input {
   margin: 10px 0 20px 0;
   border-radius: 5px;
   height: 30px;
-  width: 95%;
+  width: 92.5%;
   border: none;
 }
 body .login__title {
@@ -137,7 +215,7 @@ body .home .search {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #121212;
+  background-color: #242424;
 }
 body .home .search__input {
   width: 80%;
@@ -387,6 +465,17 @@ body .home .main .video__image {
 body .home .main .video__title {
   margin: 0;
   font-size: 20px;
+}
+body .error {
+  color: red;
+  display: block;
+  background-color: #454545;
+  width: 250px;
+  height: 10px;
+  margin: 0 auto 1rem;
+  padding: 10px 30px 20px 30px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .video-list {

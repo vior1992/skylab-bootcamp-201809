@@ -2,11 +2,11 @@ import React from 'react'
 import SignUp from './SignUp'
 
 function Header(props) {
-    return <header className="App-header">
-        <div className="container">
-            <h1>Hola SoundSky</h1>
+    return <header>
+        <div>
+            <SignUp onSubmit={props.onSubmitSignUp}/>
         </div>
-        <SignUp onSubmit={props.onSubmitSignUp}/>
+        <SignUp error={props.error} onSubmit={props.onSubmitSignUp}/>
     </header>
 }
 
