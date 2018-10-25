@@ -27,6 +27,8 @@ class Home extends Component {
         this.props.history.push(`/movie/${id}`)
     }
 
+    
+
     render() {
         return <div className="home">
 
