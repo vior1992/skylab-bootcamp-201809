@@ -18,7 +18,9 @@
             background-color: green;
             color:white;
         }
-            
-        }
+        &:last-of-type{
+            margin-left: 1em;
+        }        
+    }
     
 }

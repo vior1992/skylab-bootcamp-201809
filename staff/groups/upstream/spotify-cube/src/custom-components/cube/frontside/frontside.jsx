@@ -11,7 +11,7 @@ export default class FrontSide extends Component{
         super(props)
     }
 
-    onSearch = (value) =>{
+    handleSearch = (value) =>{
         
         let artits = []
         spotifyLogic.getArtists(value).then(res => { 
@@ -30,8 +30,6 @@ export default class FrontSide extends Component{
 
         }).catch(err => {}) ///mostrat pop pup bootstrap
         
-       //let data = [{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""},{id:Math.random().toString(), name:"U2", image:""}];
-      // this.props.onArtistFound(data)
     }
    
     render(){
@@ -40,7 +38,7 @@ export default class FrontSide extends Component{
 
             <section className="front">
                 <Header ></Header>
-                <Search onSearch = {this.onSearch}></Search>
+                <Search onClearSearch = {this.props.onClearSearch} onSearch = {this.handleSearch}></Search>
             </section>
         );
     }

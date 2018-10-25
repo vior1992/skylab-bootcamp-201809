@@ -8,7 +8,7 @@ import List from '../../list/list';
 
 export default class BottomSide extends Component{
 
-    state = {messageButton:"",registerMessage:"", registerPlaylistMessage:"", showFormAddPlayList:false, playlists:this.props.playlists, isLogged:false, playListName:""}
+    state = {messageButton:"Add PlayList",registerMessage:"", registerPlaylistMessage:"", showFormAddPlayList:false, playlists:this.props.playlists, isLogged:false, playListName:""}
 
     componentWillReceiveProps(props){
         
@@ -71,8 +71,31 @@ export default class BottomSide extends Component{
 
     handleAddPlaylistClick = () => {
 
+        if (this.state.messageButton === "Add PlayList"){
+            this.setState({messageButton:"Close form"})
+        }else{
+            this.setState({messageButton:"Add PlayList"})
+        }
         this.state.showFormAddPlayList = !this.state.showFormAddPlayList
         this.setState({registerPlaylistMessage:"", showFormAddPlayList:this.state.showFormAddPlayList})
+    }
+
+    handleDeleteClick = (id) => {
+        
+        userService.deletePlayList(id).then(res => {
+
+            res.playLists.map(el => {
+                el.image = require('../../../assets/img/playlist.png')
+            })
+
+            this.setState({playlists:res.playLists})
+
+        }).catch(err => {
+
+
+
+        })
+
     }
 
     render(){
@@ -82,8 +105,8 @@ export default class BottomSide extends Component{
                 <div className="rotateX-180">
                 
                     <Header></Header>
-                    {this.state.isLogged && <SideTitle _messageButton = {this.state.messageButton} onClickAddPlayList = {this.handleAddPlaylistClick} showAddPlayListButton = {true} title="Play Lists" image="metallica.png"></SideTitle> }
-                    {this.state.isLogged && !this.state.showFormAddPlayList  && <List type="playlist" list = {this.state.playlists}></List>}
+                    {this.state.isLogged && <SideTitle  messageButton = {this.state.messageButton} onClickAddPlayList = {this.handleAddPlaylistClick} showAddPlayListButton = {true} title="Play Lists"></SideTitle> }
+                    {this.state.isLogged && !this.state.showFormAddPlayList  && <List onDeleteClick = {this.handleDeleteClick} type="playlist" list = {this.state.playlists}></List>}
                     {!this.state.isLogged && <Register registerMessage = {this.state.registerMessage} onClickLogin={this.props.onClickLogin} handleRegister={this.onRegister}></Register>}
                     {this.state.showFormAddPlayList && <form className="custom-form" onSubmit = {(ev) => {this.handleCreatePlayList(ev)}}>
                         <div className="form-group">

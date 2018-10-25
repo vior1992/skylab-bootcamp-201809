@@ -22,7 +22,7 @@ export default class TopSide extends Component{
                 })
                 .catch(err => alert(err.message))
         } catch (err) {
-            alert("se fue aqui")
+           
         }
     }
 

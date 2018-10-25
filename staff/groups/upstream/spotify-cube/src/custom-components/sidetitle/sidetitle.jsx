@@ -3,22 +3,17 @@ import React, {Component} from 'react'
 
 export default class SideTitle extends Component{
 
-    state = {messageButton:"Add PlayList"}
+    state = {messageButton:""}
 
      componentWillReceiveProps(props){
        
-        if (props._messageButton)
-            this.setState({messageButton:props._messageButton})
+       
+            this.setState({messageButton:props.messageButton})
  
     }
 
     handleClickButton = () =>{
-       
-        if (this.state.messageButton === "Add PlayList"){
-            this.setState({messageButton:"Close form"})
-        }else{
-            this.setState({messageButton:"Add PlayList"})
-        }
+     
         this.props.onClickAddPlayList();
     }
 

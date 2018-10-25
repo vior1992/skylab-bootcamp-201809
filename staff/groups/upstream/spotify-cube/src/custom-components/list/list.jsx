@@ -15,7 +15,7 @@ export default class List extends Component{
     
     handleClick = (id) =>{
 
-        switch(this.props.type)
+        switch(this.state.type)
         {
             case "playlist":
                 alert(id);
@@ -24,7 +24,7 @@ export default class List extends Component{
             alert(id);
             break;
             case "tracks":
-            //    alert("track")
+         
                 spotifyLogic.getSongsbyAlbumId(id)
                     .then((res)=>{
 
@@ -75,9 +75,20 @@ export default class List extends Component{
         return (
 
             <section className="list">
-            <ul>
+            <ul className="list__container">
               {
-                  this.state.list.map((item) => <li onClick={() => this.handleClick(item.id)}><div><div><img src={item.image}></img></div><div>{item.name}</div></div></li>)}
+              this.state.list.map((item) => 
+              
+              <li className="list__container__item">
+                
+                    <div className="list__container__item__group"> 
+                        <div className="list__container__item__group__img">
+                            <img src={!item.image ? require("../../assets/img/playlist.png") : item.image}></img>
+                        </div>
+                        <div onClick={() => this.handleClick(item.id)} className="list__container__item__group__name">{item.name}</div>
+                        {this.state.type === "playlist" && <div><button onClick={() => this.props.onDeleteClick(item.id)} className="list__container__item__group__button-delete btn btn-sm btn-dark">Eliminar</button></div>}
+                    </div>
+                </li>)}
               
             </ul>
           </section>

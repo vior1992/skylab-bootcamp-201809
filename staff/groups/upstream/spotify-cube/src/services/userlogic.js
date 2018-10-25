@@ -205,6 +205,28 @@ const userService = {
 
         })
 
+    },
+
+    deletePlayList(playlistId){
+
+       const {id, token} = JSON.parse(sessionStorage.getItem("user"))   
+       return this.getUserInfo(id, token).then(res => {
+
+          res.playLists = res.playLists.filter(el => el.id !== playlistId)
+          return res
+
+       }).then(user => {
+
+            
+            return this.updateUser(id, token, user).then(res => {
+                 
+                return user
+            
+            })
+            
+
+       })
+
     }
 
     // deleteUser(id, token,username, password){
