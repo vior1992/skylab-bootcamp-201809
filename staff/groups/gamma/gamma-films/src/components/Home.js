@@ -8,6 +8,7 @@ import SearchResults from './SearchResults'
 import TopRatedSlide from './TopRatedSlide'
 import CategoryAction from './CategoryAction'
 import CategoryFamily from './CategoryFamily'
+import MyFavourites from './MyFavourites'
 import SearchBar from './SearchBar';
 
 
@@ -29,6 +30,7 @@ class Home extends Component {
 
             <Route exact path="/" render={props =><SearchBar />}/>
             {/* <Sidebar/> */}
+            <Route exact path="/" render={props =><MyFavourites/>}/>
             <Route exact path="/" render={props =><TopRatedSlide/>}/>
             <Route exact path="/" render={props =><CategoryAction/>}/>
             <Route exact path="/" render={props =><CategoryFamily/>}/>
