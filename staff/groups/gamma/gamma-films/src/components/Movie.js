@@ -145,16 +145,16 @@ class Movie extends Component {
                         <div className='card_right__review'>
                             <p>{this.state.theOverview}</p>
                         </div>
-
+                        <p>Related categories:</p>
+                        <div className="_tags">
+                       
                         {!!this.state.genres && this.state.genres.map((genres) => {
                             return <div>
-                                <GenresTags id={genres.id} name={genres.name} handleMovieCardQuery={this.props.handleMovieCardQuery} />
+                                    <GenresTags id={genres.id} name={genres.name} handleMovieCardQuery={this.props.handleMovieCardQuery} />
+                              
                             </div>
                         })}
-
-                        {!!this.state.youtubeKey && <div className='card_right__button'>
-                            <a href={'https://www.youtube.com/watch?v=' + this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
-                        </div>}
+                        </div>
 
                     </div>
                 </div>
@@ -176,6 +176,7 @@ class Movie extends Component {
                                 </div>
                                 }
                             })}
+
                         </div>
                     </div>
                 </div>

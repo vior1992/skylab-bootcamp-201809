@@ -11,7 +11,7 @@ class GenresTags extends Component {
     }
 
     render() {
-        return <button onClick={this.searchQueryOnHome}>{this.props.name} </button>
+        return <button className="tags" onClick={this.searchQueryOnHome}>{this.props.name} </button>
 
     }
 }
