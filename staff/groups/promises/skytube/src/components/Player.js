@@ -6,7 +6,8 @@ class Player extends Component {
         super(props)
         this.state = {
             open: false,
-            favourite: this.checkFavourite()
+            favourite: this.checkFavourite(),
+            watchLater: this.checkWatchLater()
         }
     }
 
@@ -44,6 +45,16 @@ class Player extends Component {
         }
     }
 
+    handleClickWatchLater = () => {
+        if (!this.state.watchLater) {
+            this.props.onNewWatchLater(this.props.video)
+            this.setState({watchLater: true})
+        } else {
+            this.props.onRemoveWatchLater(this.props.video.id)
+            this.setState({watchLater: false})
+        }
+    }
+
     checkPlaylist = videos => {
         if (videos) {
             for (var i = 0; i < videos.length; i++) {
@@ -60,6 +71,12 @@ class Player extends Component {
         return fav && Object.keys(fav).length > 0
     }
 
+    checkWatchLater = () => {
+        const watchLater = logic.getWatchLater(this.props.video.id)
+        return watchLater && Object.keys(watchLater).length > 0
+        
+    }
+
     render() {
         return <section className="player">
             <div className="player__video" dangerouslySetInnerHTML={this.iframe()}></div>
@@ -67,7 +84,7 @@ class Player extends Component {
                 <h1 className="player-footer__title">{this.props.video.title}</h1>
                 <div className="player-footer__buttons">
                     <button className={this.state.favourite ? "player-footer__button player-footer__button--active" : "player-footer__button"} onClick={this.handleClickFavourite}><span className="fas fa-star"></span></button>
-                    <button className="player-footer__button" onClick={() => this.props.onNewWatchLater(this.props.video)}><span className="fas fa-clock"></span></button>
+                    <button className={this.state.watchLater ? "player-footer__button player-footer__button--active" : "player-footer__button"} onClick={this.handleClickWatchLater}><span className="fas fa-clock"></span></button>
                     <div className="playlists">
                         <button onClick={this.handleClick} className="player-footer__button player-footer__button--text">playlists</button>
                         <section className={this.state.open ? "playlists__content playlists__content--open" : "playlists__content"}>
