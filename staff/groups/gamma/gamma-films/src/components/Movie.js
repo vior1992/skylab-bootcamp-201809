@@ -145,16 +145,16 @@ class Movie extends Component {
                         <div className='card_right__review'>
                             <p>{this.state.theOverview}</p>
                         </div>
-
+                        <p>Related categories:</p>
+                        <div className="_tags">
+                       
                         {!!this.state.genres && this.state.genres.map((genres) => {
                             return <div>
-                                <GenresTags id={genres.id} name={genres.name} handleMovieCardQuery={this.props.handleMovieCardQuery} />
+                                    <GenresTags id={genres.id} name={genres.name} handleMovieCardQuery={this.props.handleMovieCardQuery} />
+                              
                             </div>
                         })}
-
-                        {!!this.state.youtubeKey && <div className='card_right__button'>
-                            <a href={'https://www.youtube.com/watch?v=' + this.state.youtubeKey} target='_blank'>WATCH TRAILER</a>
-                        </div>}
+                        </div>
 
                     </div>
                 </div>
@@ -164,21 +164,21 @@ class Movie extends Component {
             {!!this.state.cast && <div class="collapse" id="collapseExample">
                 <div class="card card-body">
 
-                <div className="contain_actors">
-                    <div><h3>Main Characters</h3></div>
-                    <div className="contain_profile_actors">
-                        <div className="profile_actors"><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p>
-                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img></div>
-                        <div className="profile_actors"><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p>
-                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img></div>
-                        <div className="profile_actors"><p>{this.state.cast[2].name + ' as ' + this.state.cast[2].character}</p>
-                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img></div>
-                        <div className="profile_actors"><p>{this.state.cast[3].name + ' as ' + this.state.cast[3].character}</p>
-                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img></div>
-                        <div className="profile_actors"><p>{this.state.cast[4].name + ' as ' + this.state.cast[4].character}</p>
-                            <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img></div>
+                    <div className="contain_actors">
+                        <div><h3>Main Characters</h3></div>
+                        <div className="contain_profile_actors">
+                            <div className="profile_actors"><p>{this.state.cast[0].name + ' as ' + this.state.cast[0].character}</p>
+                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[0].profile_path}></img></div>
+                            <div className="profile_actors"><p>{this.state.cast[1].name + ' as ' + this.state.cast[1].character}</p>
+                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[1].profile_path}></img></div>
+                            <div className="profile_actors"><p>{this.state.cast[2].name + ' as ' + this.state.cast[2].character}</p>
+                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[2].profile_path}></img></div>
+                            <div className="profile_actors"><p>{this.state.cast[3].name + ' as ' + this.state.cast[3].character}</p>
+                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[3].profile_path}></img></div>
+                            <div className="profile_actors"><p>{this.state.cast[4].name + ' as ' + this.state.cast[4].character}</p>
+                                <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + this.state.cast[4].profile_path}></img></div>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
