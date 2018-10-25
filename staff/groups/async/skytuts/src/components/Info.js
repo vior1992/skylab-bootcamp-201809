@@ -2,66 +2,43 @@ import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown/with-html'
 import Favorite from './Favorite'
 import InstructorCard from './InstructorCard'
-import Navbar from './Navbar'
-
+import logicUdacity from '../logic/udacity'
+import logicAuth from '../logic/auth'
+import defaultData from './default'
+import template from './templates/Info.pug'
 
 class Info extends Component {
 
-    state = { courses: JSON.parse(sessionStorage.getItem('courses')) || [], course: [] }
+    state = {
+        courses: logicUdacity._courses,
+        course: []
+    }
 
     componentWillMount() {
-
-        if (!sessionStorage.getItem('userId') || !sessionStorage.getItem('token')) this.props.history.push('/')
-        //todo slug validation
-        let course = this.state.courses.courses.filter(course => course.slug === this.props.match.params.slug)
-
-        this.setState({ course: course[0] })
+      
+       if (!logicAuth.isAuthenticated()) this.props.history.push('/')
+       let course = this.state.courses.courses.filter(course => course.slug === this.props.match.params.slug )
+       this.setState({course: course[0]})
 
     }
 
     render() {
+        
+        const { course } = this.state;
 
+        const instructor =  course.instructors.map((instructor, index)=> <InstructorCard instructor={instructor} key={index}/>) 
+        
+        const markdown = <ReactMarkdown className="knowledge" source={course.required_knowledge} escapeHtml={false} />
 
-        const _default = {
-            image: require(`../images/defaultImage${Math.floor((Math.random() * 5) + 1)}.png`),
-            title: 'No Title Available',
-            short_summary: 'No Summary Available',
-            summary: 'No Description Available'
-        }
+       return template.call(this, {        
+            defaultData, 
+            instructor,
+            course,
+            markdown,
+            slug: this.props.match.params.slug,
+            Favorite,
+        });
 
-        const instructor = this.state.course.instructors.map((instructor, index) => <InstructorCard instructor={instructor} key={index} />)
-
-
-        return (
-            <div>
-            <Navbar />
-            <div className="info">
-                <div className="division"></div>
-                <header className="header-info">
-                    <img className="course-img" src={this.state.course.image || _default.image} alt="course-img"></img>
-                    <div className="text">
-                        <h1 className="title">{this.state.course.title || _default.title}</h1>
-                        <h5 className="duration">Expected duration: {this.state.course.expected_duration} {this.state.course.expected_duration_unit}</h5>
-                    </div>
-
-
-                    <div className="bottom-info">
-                        <div className="knowledge-container">
-                            <h3>Required knowledge</h3>
-                            <ReactMarkdown className="knowledge" source={this.state.course.required_knowledge} escapeHtml={false} />
-                            {this.state.course.teaser_video.youtube_url &&
-                                <iframe height="315" src={`https://www.youtube.com/embed/${this.state.course.teaser_video.youtube_url.split('=')[1]}`} title='teaser' frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>}
-                        </div>
-                        <h1 className="instructor-title">Instructors</h1>
-                        {instructor}
-                    </div>
-                </header>
-
-
-                <Favorite params={this.props.match.params.slug} />
-            </div>
-            </div>
-        )
     }
 }
 
