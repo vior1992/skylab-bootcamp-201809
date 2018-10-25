@@ -8,7 +8,7 @@ class Card extends Component {
 
         const { course } = this.props
         const _default = {
-            image: 'https://via.placeholder.com/170x100',
+            image: require(`../images/defaultImage${Math.floor((Math.random() * 5) + 1)}.png`),
             title: 'No Title Available',
             subtitle: 'No Subtitle Available',
             short_summary: 'No Summary Available',
