@@ -134,6 +134,9 @@ const logic = {
                 sessionStorage.setItem('current_video', JSON.stringify(video))
                 return video
             })
+            .catch(error => {
+                throw Error(error)
+            })
     },
 
     addFavourite(video) {
