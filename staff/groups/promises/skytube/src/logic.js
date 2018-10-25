@@ -162,6 +162,19 @@ const logic = {
         this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
     },
 
+    removePlaylist(playlist_id) {
+        let playlist = this.playlists.get(playlist_id)
+        playlist.delete()
+        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+    },
+
+    updatePlaylist(playlist_id, title) {
+        let playlist = this.playlists.get(playlist_id)
+        playlist.title = title
+        playlist.save()
+        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+    },
+
     addHistory(video) {
         const finded = this.history.get(video.id)
         if (finded.length > 0) this.history.get(finded[0].id).delete()

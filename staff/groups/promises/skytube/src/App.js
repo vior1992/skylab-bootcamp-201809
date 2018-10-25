@@ -78,6 +78,7 @@ class App extends Component {
     handlePlayWatchLater = video => {
         this.handleVideoClick(video)
         logic.removeWatchLater(video.id)
+        this.setState({auth_info: logic.authInfo()})
     }
 
     handleNewFavourite = video => {
@@ -92,6 +93,16 @@ class App extends Component {
 
     handleNewPlaylist = title => {
         logic.addPlaylist(title)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleRemovePlaylist = playlist_id => {
+        logic.removePlaylist(playlist_id)
+        this.setState({auth_info: logic.authInfo()}, () => this.props.history.push('/home'))
+    }
+
+    handleUpdatePlaylist = (playlist_id, title) => {
+        logic.updatePlaylist(playlist_id, title)
         this.setState({auth_info: logic.authInfo()})
     }
 
@@ -151,7 +162,7 @@ class App extends Component {
                 <Route path='/home/favourites' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getFavourites()} />} />
                 <Route path='/home/history' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getHistory()} />} />
                 <Route path='/home/watch_later' render={props => <Playlist onVideoClick={this.handlePlayWatchLater} playlist={logic.getWatchLater()} />} />
-                <Route path='/home/playlist/:id' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getPlaylist(props.match.params.id)} />} />
+                <Route path='/home/playlist/:id' render={props => <Playlist onVideoClick={this.handleVideoClick} onRemove={this.handleRemovePlaylist} onUpdate={this.handleUpdatePlaylist} playlist={logic.getPlaylist(props.match.params.id)} />} />
             </main>
         </div>
 	}
