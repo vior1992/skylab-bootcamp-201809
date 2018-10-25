@@ -51,7 +51,7 @@ class SignUp extends Component {
 
     render() {
         return <div className='signup'>
-            <Error error={this.props.error}/>
+            <Error error={this.props.error} />
             <form className='signup__formulary' onSubmit={this.handleSubmit}>
                 <h4>Name</h4>
                 <input className='signup__input' placeholder='Introduce your name' onChange={this.handleNameChange}/>
