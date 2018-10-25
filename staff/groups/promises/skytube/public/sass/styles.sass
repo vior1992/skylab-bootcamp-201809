@@ -1,7 +1,8 @@
-$color-danger: #c3352e
 $color-primary: #2ebcc3
+$color-danger: #c3352e
+$color-secondary: #888
 $color-background: #121212
-$color-text: #ffffff
+$color-text: #fff
 $header-height: 60px
 
 %button
@@ -170,16 +171,35 @@ body
                 font-size: 16px
                 font-weight: 700
                 text-transform: uppercase
-                color: #ccc
+                color: $color-secondary
 
             &__item
+                position: relative
                 height: 24px
                 padding: .5rem 0 .5rem 3rem
                 line-height: 24px
 
+                &--active
+                    background-color: lighten($color-background, 14%)
+
+                    .sidenav__icon
+                        color: $color-primary
+
                 &:hover
                     background-color: lighten($color-background, 21%)
                     cursor: pointer
+
+            &__icon
+                position: absolute
+                top: 10px
+                left: .75rem
+                font-size: 20px
+                color: $color-secondary
+                &--small
+                    top: 12px
+                    left: 1rem
+                    font-size: 16px
+
 
         .search
             grid-row: 1
@@ -431,7 +451,7 @@ body
                         @extend %button
                         height: 58px
                         font-size: 24px
-                        color: lighten($color-background, 23%)
+                        color: $color-secondary
                         transition: color .1s linear
                         &:hover
                             color: $color-text

@@ -16,9 +16,16 @@ class Playlist extends Component {
         this.setState({title: event.target.value})
     }
 
-    handleBlur = () => {
+    handleBlur = event => {
         this.setState({titleEdit: false})
-        this.props.onUpdate(this.props.playlist.id, this.state.title)
+        this.props.onUpdate(this.props.playlist.id, event.target.value)
+    }
+
+    handleKeyPress = event => {
+        if (event.key === 'Enter' && event.target.value) {
+            this.setState({titleEdit: false})
+            this.props.onUpdate(this.props.playlist.id, event.target.value)
+        }
     }
 
     render() {
@@ -26,11 +33,11 @@ class Playlist extends Component {
             <section className="playlist-header">
                 {!this.state.titleEdit ? (
                     <div>
-                        <h1 className="playlist-header__title">{this.state.title}</h1>
+                        <h1 className="playlist-header__title">{this.props.playlist.title}</h1>
                         <p className="playlist-header__text">{this.props.playlist.videos && this.props.playlist.videos.length > 0 ? this.props.playlist.videos.length + ' videos' : 'Empty playlist'}</p>
                     </div>
                 ) : (
-                    <input className="playlist-header__input" value={this.state.title} onChange={this.handleChange} onBlur={this.handleBlur} />
+                    <input className="playlist-header__input" defaultValue={this.props.playlist.title} onChange={this.handleChange} onBlur={this.handleBlur} onKeyPress={this.handleKeyPress} />
                 )}
                 <Route path='/home/playlist' render={() => <div>
                     <button className="playlist-header__button" onClick={this.handleEdit}><span className="fas fa-pen"></span></button>
