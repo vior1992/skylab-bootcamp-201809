@@ -127,13 +127,17 @@ class App extends Component {
 
     renderLanding() {
         return <div className="landing">
-            <nav>
-                <ul>
-                    <li><Link to='/#register'>Sign Up</Link></li>
-                    <li><Link to='/login'>Log In</Link></li>
+            <nav className="landing__items">
+                <div className="landing__left">
+                    <img className="landing__logo" src="/img/skytube.logo.png" alt="logo"></img>
+                    <h1>Skytube</h1>
+                </div>
+                <ul className="landing__right">
+                    <li><Link className="landing__button" to='/#register'>Sign Up</Link></li>
+                    <p className="landing__button--separator">or</p>
+                    <li><Link className="landing__button" to='/login'>Log In</Link></li>
                 </ul>
             </nav>
-
             <Header onSubmitSignUp={this.handleRegister} />
         </div>
     }
