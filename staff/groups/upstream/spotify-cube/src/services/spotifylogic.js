@@ -5,8 +5,8 @@ const spotifyLogic = {
 
     getArtistById(id) {
 
-        if(!(typeof id === 'string')) throw Error ('id is not a a string')
-        if(!(id.length)) throw Error ('id is empty or blank')
+        if(!(typeof id === 'string')) throw TypeError (`${id} is not a a string`)
+        if(!(id.length)) throw Error (`${id} is empty or blank`)
 
         return fetch(`https://api.spotify.com/v1/artists/${id}`, {
             method: 'GET',
@@ -17,13 +17,17 @@ const spotifyLogic = {
             // body: JSON.stringify({ name, surname, username, password })
         })
             .then(res => res.json())
-            .then(res => res)
-            .catch(res => res)
+            .then((res) => {
+                if(res.error) throw Error (res.error)
+                return res
+            })
+            
     },
 
     getArtists(query) {
 
-          if(!(query.trim().length)) throw Error ('Query cannot be empty')
+        if(!(typeof query === 'string')) throw TypeError (`${query} is not a a string`)
+        if(!(query.trim().length)) throw Error ('query cannot be empty')
         
         return fetch(`https://api.spotify.com/v1/search?q=${query}&type=artist`, {
             method: 'GET',
@@ -57,6 +61,10 @@ const spotifyLogic = {
     },
 
     getPlaylistsTracks(playlistId) {
+
+        if(!(typeof playlistId === 'string')) throw TypeError (`${playlistId} is not a a string`)
+        if(!(playlistId.trim().length)) throw Error ('query cannot be empty')
+        
         return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             method: 'GET',
             headers: {
@@ -66,7 +74,6 @@ const spotifyLogic = {
             // body: JSON.stringify({ name, surname, username, password })
         })
             .then(res => res.json())
-            .then(res => res)
     },
 
     getAlbumsByArtistId(artistId) {
@@ -105,9 +112,30 @@ const spotifyLogic = {
         })
             .then((res) => res.json())
             .then(res => res)
+    },
+
+    //id, name, preview_url, picture
+
+    getTrack(id) {
+        return fetch(`https://api.spotify.com/v1/tracks/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + this.token
+            }
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                const track = {}
+                track.id = res.id
+                track.name = res.name
+                track.preview_url = res.preview_url
+                track.image = res.album.images ? res.album.images[0].url : 'https://i.scdn.co/image/557a6058e3de72bf37ffcd2c12dd5932276df344'
+                return track
+            })
     }
 }
 
-export default spotifyLogic
+// export default spotifyLogic
 
-// module.exports = spotifyLogic
+module.exports = spotifyLogic
