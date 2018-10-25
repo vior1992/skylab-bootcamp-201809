@@ -1,5 +1,5 @@
-import data from "./data"
-// const data = require('./data')
+// import data from "./data"
+const data = require('./data')
 
 const { User, MovieInfo } = data
 
@@ -229,6 +229,14 @@ const logic = {
 
     updateFavourites(fav, id, image) {
 
+        if(!(fav instanceof Array)) throw TypeError(`${fav} is not a array`)
+
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if (typeof image !== 'string') throw TypeError(`${image} is not a string`)
+
+        if (!id.trim()) throw Error('id is empty or blank')
+        if (!image.trim()) throw Error('image is empty or blank')
+
         const _fav = new MovieInfo(id, image)
         fav.push(_fav)
 
@@ -249,6 +257,13 @@ const logic = {
     },
 
     removeFavourites(fav, id, image) {
+
+        if(!(fav instanceof Array)) throw TypeError(`${fav} is not a array`)
+
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        
+        if (!id.trim()) throw Error('id is empty or blank')
+        
 
         fav=fav.filter(favourite=> favourite.id!==id)
 
@@ -315,5 +330,5 @@ const logic = {
 
 }
 
-export default logic
-// module.exports = logic
+// export default logic
+module.exports = logic

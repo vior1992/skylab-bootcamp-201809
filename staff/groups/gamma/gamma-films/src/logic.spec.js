@@ -10,6 +10,8 @@ global.sessionStorage = require('sessionstorage')
 
 const logic = require('./logic')
 
+const data = require('./data')
+
 const { expect } = require('chai')
 
 const flag = true
@@ -495,6 +497,249 @@ describe('logic', () => {
 
         })
 
+        flag && describe('updateFavourites', () => {
+            
+            beforeEach(() => {
+
+                const username = 'gamma', password = 'gamma'
+
+                return logic.loginUser(username, password)
+
+                
+                
+            })
+
+            it('should succes on correct inputs', () => {
+
+                let fav = []
+                
+                let id = "454992"
+
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+               
+                return logic.updateFavourites(fav, id, image)
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an true', () => {
+
+                let fav = []
+                let id = "454992"
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                
+                return logic.updateFavourites(fav, id, image)
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('boolean')
+                    })
+            })
+
+            it('should fail on undefined fav', () => {
+                let fav = undefined
+                let id = "454992"
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, 'undefined is not a array')
+            })
+
+            it('should fail on null fav', () => {
+                let fav = null
+                let id = "454992"
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, 'null is not a array')
+            })
+
+            it('should fail on object fav', () => {
+                let fav = {}
+                let id = "454992"
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, '[object Object] is not a array')
+            })
+
+            it('should fail on empty fav', () => {
+                let fav = '    '
+                let id = "454992"
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(Error, '     is not a array')
+            })
+
+            it('should fail on undefined id', () => {
+                let fav = []
+                let id = undefined
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null id', () => {
+                let fav = []
+                let id = null
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object id', () => {
+                let fav = []
+                let id = {}
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty id', () => {
+                let fav = []
+                let id = "   "
+                let image = "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(Error, 'id is empty or blank')
+            })
+
+            it('should fail on undefined image', () => {
+                let fav = []
+                let id = '454992'
+                let image = undefined
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null image', () => {
+                let fav = []
+                let id = '454992'
+                let image = null
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object image', () => {
+                let fav = []
+                let id = '454992'
+                let image = {}
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty image', () => {
+                let fav = []
+                let id = '454992'
+                let image = "\t\t\t"
+                expect(() =>
+                    logic.updateFavourites(fav, id, image)
+                ).to.throw(Error, 'image is empty or blank')
+            })
+
+
+        })
+
+        flag && describe('removeFavourites', () => {
+            describe('with existing user', () => {
+                let username, password, fav, id, image
+
+                beforeEach(() => {
+                    const name = 'John', surname = 'Doe'
+
+                    username = `jd-${Math.random()}`
+                    password = `123-${Math.random()}`
+                    id = "374720"
+                    image = "/ebSnODDg9lbsMIaWg2uAbjn7TO5.jpg"
+                    fav =[{id: "454992", urlImage: "/2lIr27lBdxCpzYDl6WUHzzD6l6H.jpg"}]
+
+                    // text = `hello ${Math.random()}`
+
+                    return logic.registUser(name, surname, username, password)
+                        .then(() => logic.loginUser(username, password))
+                        .then(() => logic.updateFavourites(fav, id, image))
+                })
+
+                describe('with existing fav', () => {
+                    
+                    it('should succeed', () =>
+                        logic.removeFavourites(fav, id)
+                            .then(() => expect(true).to.be.true)
+                    )
+                })
+
+                it('should fail on undefined fav', () => {
+                    let fav = undefined
+                    let id = "454992"
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(TypeError, 'undefined is not a array')
+                })
+    
+                it('should fail on null fav', () => {
+                    let fav = null
+                    let id = "454992"
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(TypeError, 'null is not a array')
+                })
+    
+                it('should fail on object fav', () => {
+                    let fav = {}
+                    let id = "454992"
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(TypeError, '[object Object] is not a array')
+                })
+    
+                it('should fail on empty fav', () => {
+                    let fav = '    '
+                    let id = "454992"
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(Error, '     is not a array')
+                })
+    
+                it('should fail on undefined id', () => {
+                    let fav = []
+                    let id = undefined
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(TypeError, 'undefined is not a string')
+                })
+    
+                it('should fail on null id', () => {
+                    let fav = []
+                    let id = null
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(TypeError, 'null is not a string')
+                })
+    
+                it('should fail on object id', () => {
+                    let fav = []
+                    let id = {}
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(TypeError, '[object Object] is not a string')
+                })
+    
+                it('should fail on empty id', () => {
+                    let fav = []
+                    let id = "   "
+                    expect(() =>
+                        logic.removeFavourites(fav, id)
+                    ).to.throw(Error, 'id is empty or blank')
+                })
+            })
+        })
+        
+
         flag && describe('searchTrailer', () => {
 
             it('should succes on correct id', () => {
@@ -540,6 +785,72 @@ describe('logic', () => {
                 const id = '    \t'
                 expect(() =>
                     logic.searchTrailer(id)
+                ).to.throw(Error, 'id is empty or blank')
+            })
+
+
+        })
+
+        flag && describe('searcNowPlaying', () => {
+            
+            it('should succes on search', () => {
+                return logic.searcNowPlaying()
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an array', () => {
+                
+                return logic.searcNowPlaying()
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                    })
+            })
+
+        })
+
+        flag && describe('searchCharacters', () => {
+
+            it('should succes on correct date', () => {
+                const id = '268'
+                return logic.searchCharacters(id)
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an array', () => {
+                const id = '268'
+                return logic.searchCharacters(id)
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                    })
+            })
+
+            it('should fail on undefined id', () => {
+                const id = undefined
+                expect(() =>
+                    logic.searchCharacters(id)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null id', () => {
+                const id = null
+                expect(() =>
+                    logic.searchCharacters(id)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object id', () => {
+                const id = {}
+                expect(() =>
+                    logic.searchCharacters(id)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty id', () => {
+                const id = '    \t'
+                expect(() =>
+                    logic.searchCharacters(id)
                 ).to.throw(Error, 'id is empty or blank')
             })
 
