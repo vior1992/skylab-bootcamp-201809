@@ -14,7 +14,7 @@ class Movie extends Component {
         showFavButton: false,
         flagController: true,
         youtubeKey: null,
-        cast: null,
+        cast: '',
         genres: null
     }
 
@@ -110,6 +110,8 @@ class Movie extends Component {
 
     render() {
 
+        const lengthCast= this.state.cast[0]
+
         return <div className="home">
             <SearchBar />
             <div className='card'>
@@ -159,9 +161,9 @@ class Movie extends Component {
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
+            {!!lengthCast && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>}
 
-            {!!this.state.cast && <div class="collapse" id="collapseExample">
+            {!!lengthCast && <div class="collapse" id="collapseExample">
                 <div class="card card-body">
 
                     <div className="contain_actors">
@@ -181,8 +183,7 @@ class Movie extends Component {
                 </div>
                 <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-            </div>
-            }
+            </div>}
 
         </div>
 
