@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
+import Error from './Error'
 
 
 class Register extends Component {
@@ -89,6 +90,7 @@ class Register extends Component {
                 <a className="btn btn-link" href="#" onClick={this.props.onGoBack}>back</a>
 
             </form>
+                {this.state.error && <Error message={this.state.error} />}
         </div>
 
     }
