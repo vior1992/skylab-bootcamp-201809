@@ -23,7 +23,7 @@ class App extends Component {
       <Route path="/login" render={() => <LogIn />} />
       <Route path='/movie/:id' render={(props) => <MovieDetail id={props.match.params.id}/> } />
       {/* <Route exact path="/user" render={() => logic.loggedIn ?<UserData/> : <Redirect to="/home" />} /> */}
-      <Route exact path="/user/movies" render={() => logic.loggedIn ?<UserMovies/> : <Redirect to="/" />} />
+      <Route exact path="/user" render={() => logic.loggedIn ?<UserMovies/> : <Redirect to="/" />} />
       <Route path='/movies/:kind' render={(props) => <ListedMovies kind={props.match.params.kind}/> } />
       <Route path='/search/:kind' render={(props) => <ListedMovies kind={props.match.params.kind}/> } />
       <Route path="/" render={() => <Footer/>} />

@@ -1,10 +1,7 @@
-// const data = require('./data')
-
 
 const logic = {
   _apiKey: 'c2964a44ac33875ef00f6c6981a0c3e4',
   _user: JSON.parse(sessionStorage.getItem('user')) || {},
-  // _user: {},
   _trendingMovies: [],
   _inTheatreMovies: [],
   _popularMovies: [],
@@ -72,7 +69,16 @@ const logic = {
     if (JSON.stringify(logic._user) !== '{}') return true
     else return false
   },
-  
+
+  logout() {
+    this._user = {}
+    this._trendingMovies = []
+    this._inTheatreMovies = []
+    this._popularMovies = []
+
+    sessionStorage.removeItem('user')
+  },
+
   retrieveTrending(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/trending/movie/week'
     return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
@@ -113,9 +119,9 @@ const logic = {
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
 
-          this._popularMovies = response.results || []
+        this._popularMovies = response.results || []
 
-          return response
+        return response
       })
   },
 
@@ -130,9 +136,9 @@ const logic = {
       .then(response => response.json())
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
-        
+
         debugger
-        
+
         return response || {}
       })
   },
@@ -354,6 +360,24 @@ const logic = {
         break
     }
     return index
+  },
+
+  checkState(id, state) {
+    let check = false
+    let indexSeen = this.checkInList(id, 'seen')
+
+    switch (state) {
+      case 'favourite':
+      check = this._user.seen[indexSeen].favourite
+      break
+      case 'like':
+        check = this._user.seen[indexSeen].like
+        break
+      case 'unlike':
+        check = this._user.seen[indexSeen].unlike
+        break
+    }
+    return check
   },
 
   seenClick(id, movie) {

@@ -23,8 +23,8 @@ class ListedMovies extends Component {
             default:
                 logic.retrieveMovies(this.props.kind, this.state.page)
                     .then(movies => {
-                        this.setState({ movies, title: this.props.kind }) 
-                    })
+                        let query = logic.beautifyQuery(this.props.kind)
+                        this.setState({ movies, title: query }) })               
                 
                 this.setState({ search: true })
         }
