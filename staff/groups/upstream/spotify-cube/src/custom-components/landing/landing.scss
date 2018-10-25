@@ -51,18 +51,19 @@
     text-shadow: 6px 4px 11px black;
 }
 
-.span {
-    color: hsl(0, 2%, 27%);
-    font-weight: 200;
+.landing--underlogo {
+    color: rgb(46, 43, 43);
+    font-weight: 600;
     font-size: 100px;
     font-family: Verdana;
-    text-shadow: 5px 2px 10px black;
+    text-shadow: 5px 5px 10px rgb(70, 68, 68);
 }
 
 
 
 
-i {
-    color: hsl(0, 2%, 27%);
-    font-size: 180px;
+.img-logo {
+    height: 180px;
+    width: 200px;
+
 }

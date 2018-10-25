@@ -25,7 +25,7 @@ export default class SideTitle extends Component{
                 <section className="panel-inf__main-section">
                     <section className="panel-inf__main-section__img-section">
                         {!this.props.showAddPlayListButton && <img src={this.props.logo} />}
-                        {this.props.showAddPlayListButton && <button onClick={this.handleClickButton} className="btn btn-primary btn-lg btn-dark">{this.state.messageButton}</button>}
+                        {this.props.showAddPlayListButton && <button onClick={this.handleClickButton} className="btn btn-sm btn-warning">{this.state.messageButton}</button>}
                     </section>
                     <section className="panel-inf__main-section__name-section">
                         <h1>
