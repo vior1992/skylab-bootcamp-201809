@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown/with-html'
 import Favorite from './Favorite'
 import InstructorCard from './InstructorCard'
+import Navbar from './Navbar'
 
 
 class Info extends Component {
@@ -32,6 +33,8 @@ class Info extends Component {
 
 
         return (
+            <div>
+            <Navbar />
             <div className="info">
                 <div className="division"></div>
                 <header className="header-info">
@@ -56,6 +59,7 @@ class Info extends Component {
 
 
                 <Favorite params={this.props.match.params.slug} />
+            </div>
             </div>
         )
     }

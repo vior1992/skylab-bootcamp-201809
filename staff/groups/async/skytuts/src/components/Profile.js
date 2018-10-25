@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Card from './Card'
-
+import Navbar from './Navbar'
 
 class Profile extends Component {
     state = {
@@ -21,10 +21,13 @@ class Profile extends Component {
     render() {
 
         return (
+            <div>
+            <Navbar />
             <div className="main list-container">
                 <div className="cards-container" >
                     {(this.getFavorites() || []).map((course, index) => <Card course={course} key={index} />)}
                 </div>
+            </div>
             </div>
 
 
