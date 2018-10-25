@@ -79,6 +79,7 @@ const logic = {
 
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
+        sessionStorage.removeItem('user.name')
     },
 
     retrieveUser() {
