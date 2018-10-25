@@ -13,14 +13,14 @@ const { expect } = require('chai')
 // debug -> $ mocha debug src/logic.spec.js --timeout 10000
 
 describe('logic', () => {
-    false && describe('users', () => {
+    describe('users', () => {
         describe('register', () => {
             it('should succeed on correct data', () =>
                 logic.signIn(`jd-${Math.random()}`, 'john@john.com', 'John', 'Doe', '123')
                     .then(() => expect(true).to.be.true)
             )
 
-            it('should fail on trying to register twice same user', () => {
+            it('should fail on register same user twice', () => {
                 const username = `jd-${Math.random()}`
 
                 return logic.signIn(username, 'john@john.com', 'John', 'Doe', '123')
@@ -37,7 +37,35 @@ describe('logic', () => {
                 ).to.throw(TypeError, 'undefined is not a string')
             })
 
-            // TODO other cases
+            it('should fail on no username', () => {
+                expect(() =>
+                    logic.signIn('', 'john@john.com', 'John', 'Doe', '123')
+                ).to.throw(Error, 'username is empty or blank')
+            })
+
+            it('should fail on no email', () => {
+                expect(() =>
+                    logic.signIn(`jd-${Math.random()}`, '', 'John', 'Doe', '123')
+                ).to.throw(Error, 'email is empty or blank')
+            })
+
+            it('should fail on no name', () => {
+                expect(() =>
+                    logic.signIn(`jd-${Math.random()}`, 'john@john.com', '', 'Doe', '123')
+                ).to.throw(Error, 'name is empty or blank')
+            })
+
+            it('should fail on no surname', () => {
+                expect(() =>
+                    logic.signIn(`jd-${Math.random()}`, 'john@john.com', 'John', '', '123')
+                ).to.throw(Error, 'surname is empty or blank')
+            })
+
+            it('should fail on no password', () => {
+                expect(() =>
+                    logic.signIn(`jd-${Math.random()}`, 'john@john.com', 'John', 'Doe', '')
+                ).to.throw(Error, 'password is empty or blank')
+            })
         })
 
         describe('log in', () => {
@@ -77,6 +105,18 @@ describe('logic', () => {
                             expect(err.message).to.equal('username and/or password wrong')
                         })
                 })
+
+                it('should fail on no username', () => {
+                    expect(() =>
+                        logic.logIn('', '123')
+                    ).to.throw(Error, 'username is empty or blank')
+                })
+
+                it('should fail on no password', () => {
+                    expect(() =>
+                        logic.logIn('john', '')
+                    ).to.throw(Error, 'password is empty or blank')
+                })
             })
 
             it('should fail on undefined username', () => {
@@ -106,138 +146,176 @@ describe('logic', () => {
             // TODO other cases
         })
         describe('user movies', () => {
+            beforeEach(() => {
+                return logic.logIn('test2', '1234')
+                    .then(() => logic.retrieveUserData())
+            })
+
+            after(() => {
+                logic.updateUserSeen([])
+                logic.updateUserPending([])
+            })
 
             describe('update user seen movies list', () => {
                 it('should update the list of user seen movies', () => {
-                    const movie = { id: '123', name: 'the great film' }
+                    const movie = [{id: '001', name: 'the great movie'}]
+                    
                     logic.updateUserSeen(movie)
                         .then(() => {
                             expect(true).to.be.true
-                            expect(this._userSeen.length).to.equal(1)
+                            debugger
+                            expect(logic._user.seen.length).to.be.equal(1)
                         })
+                })
+
+                it('should fail if no array is passed', () => {
+                    const movie = {id: '001', name: 'the great movie'}
+
+                    expect(() =>
+                        logic.updateUserSeen(movie)
+                    ).to.throw(Error, `${movie} is not an array`)
                 })
             })
 
             describe('update user pending movies list', () => {
                 it('should update the list of user seen movies', () => {
-                    const movie = { id: '123', name: 'the great film' }
+                    const movie = [{id: '100', name: 'awesome movie'}]
+
                     logic.updateUserPending(movie)
                         .then(() => {
                             expect(true).to.be.true
-                            expect(this._userPending.length).to.equal(1)
+                            expect(logic._user.pending.length).to.equal(1)
                         })
                 })
-            })
 
-          
+                it('should fail if no array is passed', () => {
+                    const movie = {id: '100', name: 'awesome movie'}
+
+                    expect(() =>
+                        logic.updateUserPending(movie)
+                    ).to.throw(Error, `${movie} is not an array`)
+                })
+            })
 
             describe('retrieve user seen list movies', () => {
-                beforeEach(() => {
-                    const movie = { id: '123', name: 'the great film' }
-                    logic.updateUserSeen(movie)
-                    logic.updateUserPending(movie)
-                    logic.updateUserFavourites(movie)
-                })
-                it('should return the list of user seen movies', () => {
-                    logic.retrieveUserMovies()
+                it('should return the list of user movies', () => {
+                    logic.retrieveUserData()
                         .then(() => {
                             expect(true).to.be.true
-                            expect(this._userSeen.length).to.equal(1)
-                            expect(this._userPending.length).to.equal(1)
-                            expect(this._userFavourites.length).to.equal(1)
-
+                            expect(logic._user.seen.length).to.equal(1)
+                            expect(logic._user.pending.length).to.equal(1)
                         })
                 })
             })
 
+            describe('delete user seen movies', () => {
+                it('should delete the list of user seen movies', () => {
+                    logic.deleteUserSeen('001')
+                        .then(() => {
+                            expect(true).to.be.true
+                            expect(logic._user.seen.length).to.equal(0)
+                        })
+                })
+            })
+
+            describe('delete user pending movies', () => {
+                it('should delete the list of user pending movies', () => {
+                    logic.deleteUserPending('100')
+                        .then(() => {
+                            expect(true).to.be.true
+                            expect(logic._user.pending.length).to.equal(0)
+                        })
+                })
+            })
         })
     })
 
     describe('movies', () => {
-        //Put max pagination to 5(100 movies)
-        false && describe('retrieve without user intervention', () => {
-            describe('trending-slider', () => {
+        describe('not user intervention', () => {
+            describe('movies areas', () => {
                 it('should return trending movies', () => {
                     logic.retrieveTrending()
                         .then(movies => {
                             expect(movies).not.to.be.undefined
-                            expect(movies.length).to.be.above(0)
+                            expect(movies.results.length).to.be.above(0)
                         })
                 })
             })
+
             describe('in theatre', () => {
                 it('should return in theatre movies', () => {
                     logic.retrieveInTheatre()
                         .then(movies => {
                             expect(movies).not.to.be.undefined
-                            expect(movies.length).to.be.above(0)
+                            expect(movies.results.length).to.be.above(0)
                         })
                 })
             })
+
             describe('populars', () => {
                 it('should return popular movies', () => {
                     logic.retrievePopular()
                         .then(movies => {
                             expect(movies).not.to.be.undefined
-                            expect(movies.length).to.be.above(0)
+                            expect(movies.results.length).to.be.above(0)
                         })
                 })
             })
-
         })
-        false && describe('retrieve with user intervention', () => {
+
+        describe('user intervention', () => {
             describe('search movies', () => {
-                let query, page
-                beforeEach(() => {
-                    query = 'harry+potter'
-                    page = 1
-                })
-                it('should return movies with required query and page', () => {
+                let query = 'harry+potter'
+                let page = 3
+
+                it('should return movies with required page', () => {
                     logic.retrieveMovies(query, page)
                         .then(movies => {
-                            expect(movies).not.to.be.undefined
-                            expect(movies.length).to.be.above(0)
+                            expect(movies.page).to.equal(3)
                         })
                 })
+
+                it('should get page 1 if no page passed', () => {
+                    page = undefined
+
+                    logic.retrieveMovies(query, page).then(movies => {
+                        expect(movies.page).to.equal(1)
+                    })
+                })
+
                 it('should fail on undefined query', () => {
                     query = undefined
                     expect(() =>
                         logic.retrieveMovies(query)
                     ).to.throw(Error, `${query} is not a valid query`)
-
                 })
-                //TODO other cases 
-                it('should fail on undefined page', () => {
-                    page = undefined
-                    expect(() =>
-                        logic.retrieveMovies(page)
-                    ).to.throw(Error, `${page} is not a valid page`)
-
-                })
-                //TODO other cases  
             })
+
             describe('retrieve movie', () => {
-                let movieId
-                beforeEach(() => {
-                    movieId = '293660'
-                })
                 it('should return the movie extended information', () => {
+                    let movieId = '293660'
+
                     logic.retrieveMovie(movieId)
                         .then(movies => {
                             expect(movies).not.to.be.undefined
-                            expect(movies.length).to.be.above(0)
                         })
                 })
-                it('should fail on undefined movieId', () => {
+
+                it('should fail on undefined movie id', () => {
                     movieId = undefined
                     expect(() =>
                         logic.retrieveMovie(movieId)
-                    ).to.throw(Error, `${movieId} is not a valid movieId`)
+                    ).to.throw(Error, `${movieId} is not a valid movie id`)
                 })
-                //TODO other cases  
-            })
 
+                it('should fail on blank movie id', () => {
+                    expect(() =>
+                        logic.retrieveMovie('')
+                    ).to.throw(TypeError, ` is blank id`)
+                })
+            })
         })
+
         describe('movies state', () => {
             describe('check movie in lists', () => {
 

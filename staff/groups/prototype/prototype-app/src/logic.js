@@ -125,8 +125,8 @@ const logic = {
       })
   },
 
-  retrieveMovies(query, page) {
-    debugger
+  retrieveMovies(query, page = 1) {
+    if(typeof query !== 'string') throw Error(`${query} is not a valid query`)
 
     const basePath = 'https://api.themoviedb.org/3/search/movie'
 
@@ -137,13 +137,14 @@ const logic = {
       .then(response => {
         if (response.status_message) throw Error(response.status_message)
 
-        debugger
-
         return response || {}
       })
   },
 
   retrieveMovie(id) {
+    if(typeof id !== 'string') throw Error(`${id} is not a valid movie id`)
+    if(id.trim().length === 0) throw TypeError(`${id} is blank id`)
+
     const basePath = 'https://api.themoviedb.org/3/movie/'
 
     return fetch(`${basePath}${id}?api_key=${this._apiKey}&append_to_response=credits`, {
@@ -184,6 +185,7 @@ const logic = {
 
   addUserSeen(movie) {
     this._user.seen.push(movie)
+
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -202,6 +204,10 @@ const logic = {
   },
 
   updateUserSeen(movies) {
+    if(!(movies instanceof Array)) throw Error(`${movies} is not an array`)
+
+    this._user.seen = movies
+
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -222,6 +228,7 @@ const logic = {
   deleteUserSeen(id) {
     const seen = this._user.seen.filter(movie => movie.id != id)
     this._user.seen = seen
+
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -259,6 +266,10 @@ const logic = {
   },
 
   updateUserPending(movies) {
+    if(!(movies instanceof Array)) throw Error(`${movies} is not an array`)
+
+    this._user.pending = movies
+
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -296,7 +307,8 @@ const logic = {
       })
   },
 
-  updateUserData(data) {
+  
+  Data(data) {
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',

@@ -4,7 +4,7 @@ import MovieDetail from './components/MovieDetail'
 import ListedMovies from './components/ListedMovies'
 import logic from './logic'
 import UserMovies from './components/UserMovies'
-// import UserData from './components/UserData'
+import UserProfile from './components/UserProfile'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import SignIn from './components/SignIn'
@@ -23,7 +23,8 @@ class App extends Component {
       <Route path="/login" render={() => <LogIn />} />
       <Route path='/movie/:id' render={(props) => <MovieDetail id={props.match.params.id} /> } />
       {/* <Route exact path="/user" render={() => logic.loggedIn ?<UserData/> : <Redirect to="/home" />} /> */}
-      <Route exact path="/user" render={() => logic.loggedIn ?<UserMovies/> : <Redirect to="/" />} />
+      <Route exact path="/user" render={() => logic.loggedIn ?<UserProfile/> : <Redirect to="/" />} />
+      <Route path="/user/movies" render={() => logic.loggedIn ?<UserMovies/> : <Redirect to="/" />} />
       <Route path='/movies/:kind' render={(props) => <ListedMovies kind={props.match.params.kind}/> } />
       <Route path='/search/:kind' render={(props) => <ListedMovies kind={props.match.params.kind}/> } />
       <Route path="/" render={() => <Footer/>} />

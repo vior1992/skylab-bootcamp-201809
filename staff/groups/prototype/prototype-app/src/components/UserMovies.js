@@ -3,7 +3,6 @@ import logic from '../logic'
 import MoviesList from './MoviesList'
 
 class UserMovies extends Component {
-
     render() {
       return <section className="list-movies">
         { logic._user.pending.length !== 0 ? <div className="container">
@@ -23,7 +22,7 @@ class UserMovies extends Component {
           </div>
         </div> : <div className="container"><div className="row"><h4 className="font-weight-bold my-4">You don't have any movies in the list of movies seen</h4></div></div> }
         </section>
-        }
+    }
 }
 
 export default UserMovies
