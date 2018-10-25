@@ -30,7 +30,6 @@ nav ul li a {
   text-decoration: none;
   font-weight: bold;
   color: black;
-  color: #fff;
   padding: 20px 10px;
   cursor: pointer;
   transition: 0.2s;
@@ -283,6 +282,16 @@ nav ul li a:hover {
   display: flex;
   flex-direction: column;
 }
+.login-container .login-error-container {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #FFBABA;
+}
+.login-container .login-error-container .login-error-message {
+  color: red;
+  padding-left: 40px;
+}
 .login-container .login-title {
   padding-left: 40px;
   padding-top: 20px;
@@ -331,6 +340,16 @@ nav ul li a:hover {
   flex-direction: column;
   flex-wrap: wrap;
 }
+.register-container .register-error-container {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #FFBABA;
+}
+.register-container .register-error-container .register-error-message {
+  color: red;
+  padding-left: 40px;
+}
 .register-container .register-title {
   padding-left: 40px;
   padding-top: 20px;
@@ -372,6 +391,63 @@ nav ul li a:hover {
   padding: 12px 36px;
   margin-top: -22px;
   margin-left: -96px;
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+.popup .popup_inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  background: white;
+  border-radius: 20px;
+}
+.popup .popup_inner h1 {
+  padding-top: 40px;
+  text-align: center;
+}
+.popup .popup_inner .close-btn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  left: 94%;
+  top: 4%;
+}
+.popup .popup_inner .popuplogin {
+  display: flex;
+  justify-content: space-around;
+}
+.popup .popup_inner .popuplogin .popup-btn {
+  background: transparent;
+  font: inherit;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background: #7f8ff4;
+  color: #fff;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin-top: 40px;
+  max-width: 170px;
+  min-width: 170px;
+  max-height: 90px;
+  min-height: 90px;
+  font-size: 1.5em;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=App.css.map */

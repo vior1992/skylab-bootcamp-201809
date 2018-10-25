@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import Navbar from './Navbar'
 
 import logicAuth from '../logic/auth'
 
@@ -45,6 +46,8 @@ class Login extends Component {
 
     render() {
         return (
+        <div>
+            <Navbar />
             <div className="login-container">
 
                 <div className="login-title">
@@ -63,9 +66,10 @@ class Login extends Component {
                     </div>
                     </form>
                     {this.state.error &&
-                        <p color="red">{this.state.error}</p>
+                         <div className="login-error-container"><p className="login-error-message">{this.state.error}</p></div>
                     }
             </div>  
+        </div>
         )
     }
 }

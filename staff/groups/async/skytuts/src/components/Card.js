@@ -2,8 +2,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-class Card extends Component {
+import Popup from './Popup'
 
+class Card extends Component {
+    state = {showPopup: false}
+    
+    
+    togglePopup = () => {
+        this.setState({showPopup: !this.state.showPopup})
+      } 
     render() {
 
         const { course } = this.props
@@ -33,6 +40,10 @@ class Card extends Component {
 
                 <div className="card-middle">
                     <Link to={`/course/${course.slug}`}><span className="more-info">+  Course Details</span></Link>
+                    <button onClick={this.togglePopup}>show popup</button>
+                    {this.state.showPopup && 
+                        <Popup text='You need to be logged in to view the courses!' closePopup={this.togglePopup}/> 
+                    }
                     <span>{difficulty.beginner &&
                         <img className="difficulty" src={require('../images/bitmap1.png')} alt="ayaya" />}
                         {difficulty.intermediate &&

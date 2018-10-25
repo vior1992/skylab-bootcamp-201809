@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import Card from './Card'
 import Navbar from './Navbar'
+import Popup from './Popup'
 
 
 import logicUdacity from '../logic/udacity'
@@ -14,9 +15,13 @@ class Main extends Component {
         courses: [],
         tracks: [],
         track: null,
-        error: null
+        error: null,
+        showPopup: false
     }
 
+    togglePopup = () => {
+        this.setState({showPopup: !this.state.showPopup})
+      } 
 
     filterCoursesByTrack = (track) => {
         this.setState({ courses: logicFilter.filterCourses().byTrack(track), track })
@@ -62,7 +67,9 @@ class Main extends Component {
     render() {
         return (
             <main>
-
+                {this.state.showPopup && 
+                    <Popup text='You need to be logged in to view courses!' closePopup={this.togglePopup}/> 
+                }
                 <div id="search">
                     < Navbar />
                     <input onChange={this.filterPersonalized} type="text" placeholder="Search course..." />
