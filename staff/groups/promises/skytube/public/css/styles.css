@@ -361,6 +361,7 @@ body .home .main .player-footer .playlists__title {
   border-bottom: 1px solid #666;
 }
 body .home .main .player-footer .playlists__content {
+  bottom: 100%;
   width: 240px;
   background-color: #242424;
   font-size: 14px;
