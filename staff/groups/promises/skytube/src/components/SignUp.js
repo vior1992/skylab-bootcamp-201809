@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Error from './Error'
+import Footer from './Footer';
 
 class SignUp extends Component {
     state = { name: '', surname: '', username: '', email:'', password: '', repPassword: ''}

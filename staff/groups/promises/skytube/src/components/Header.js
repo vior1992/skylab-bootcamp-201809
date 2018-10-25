@@ -6,9 +6,9 @@ function Header(props) {
         <section className="header__hero">
             <h1 className="header__title">Enjoyable.</h1>
             <p className="header__text">
-                Skytube makes easy to enjoy your favourite music videos.
+                Skytube makes easy to enjoy your favourite music videos.<br/>
                 With one click, you can save videos to watch later or add them to your favourites.
-                Also, create your own playlists and have them always available to listen your favourite songs.
+                Also, create your own playlists and have them always available.<br/>
                 Enjoy the music and dance like no one is watching!
             </p>
         </section>
