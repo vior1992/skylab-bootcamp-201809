@@ -8,7 +8,13 @@ class Search extends Component {
     }
 
     handleOnkeyPress = event => {
-        if (event.key === 'Enter' && event.target.value) {
+        if (event.key === 'Enter') {
+            this.handleSearch()
+        }
+    }
+
+    handleSearch = () => {
+        if (this.state.search.trim()) {
             this.props.onSearch(this.state.search)
         }
     }
@@ -16,7 +22,7 @@ class Search extends Component {
     render() {
         return <div className="search">
             <input className="search__input" type="search" value={this.state.search} placeholder="Search" onChange={this.handleOnChange} onKeyPress={this.handleOnkeyPress} />
-            <button className="search__button" onClick={() => this.props.onSearch(this.state.search)}>
+            <button className="search__button" onClick={this.handleSearch}>
                 <span className="fas fa-search"></span>
             </button>
         </div>

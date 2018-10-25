@@ -110,17 +110,17 @@ const logic = {
 
         return this.youtube.search(query)
             .then(result => {
-                let list = []
+                let videos = []
                 result.forEach(item => {
-                    list.push({
+                    videos.push({
                         id: item.id.videoId,
                         title: item.snippet.title,
                         thumbnail: item.snippet.thumbnails.medium.url,
                     })
                 })
 
-                sessionStorage.setItem('video_search', JSON.stringify(list))
-                return list
+                sessionStorage.setItem('video_search', JSON.stringify(videos))
+                return videos
             })
     },
 
