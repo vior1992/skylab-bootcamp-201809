@@ -131,13 +131,13 @@ class Movie extends Component {
                         </ul>
                         <div className='card_right__rating'>
                             {this.props.isLoggedIn && !!!this.state.showFavButton && <div>
-                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} >  </button>
-                                <label>Add to favorites</label>
+                                <button className="unlike_btn" type="button" onClick={this.handleAddFav} >  
+                                <label>Add to favorites</label></button>
                             </div>}
 
                             {this.props.isLoggedIn && !!this.state.showFavButton && <div>
-                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} > </button>
-                                <label>Remove from favorites </label>
+                                <button className="like_btn" type="button" onClick={this.handleRemoveFav} > 
+                                <label>Remove from favorites </label></button>
 
                             </div>}
                         </div>
