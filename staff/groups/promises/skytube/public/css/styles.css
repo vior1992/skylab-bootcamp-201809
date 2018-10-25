@@ -1,4 +1,4 @@
-body .form__button, body .home .main .playlist-header__button, body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button, body .landing .navbar__button {
+body .form__button, body .home .main .playlist-header__button, body .home .main .searchlist-header__button, body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button, body .landing .navbar__button {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: none;
@@ -8,7 +8,7 @@ body .form__button, body .home .main .playlist-header__button, body .home .main 
   text-transform: uppercase;
   cursor: pointer;
 }
-body .form__button:focus, body .home .main .playlist-header__button:focus, body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus, body .landing .navbar__button:focus {
+body .form__button:focus, body .home .main .playlist-header__button:focus, body .home .main .searchlist-header__button:focus, body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus, body .landing .navbar__button:focus {
   outline: 0;
 }
 
@@ -434,32 +434,32 @@ body .home .main .player-footer .playlists__input:focus {
 body .home .main .player-footer .playlists__input:focus::placeholder {
   opacity: 0;
 }
-body .home .main .playlist-header {
+body .home .main .playlist-header, body .home .main .searchlist-header {
   position: relative;
   display: flex;
   justify-content: space-between;
   background-color: #1a1a1a;
   padding: 1.5rem 3rem;
 }
-body .home .main .playlist-header__title {
+body .home .main .playlist-header__title, body .home .main .searchlist-header__title {
   margin: 0;
   margin-bottom: 0.5rem;
   font-size: 30px;
 }
-body .home .main .playlist-header__text {
+body .home .main .playlist-header__text, body .home .main .searchlist-header__text {
   margin: 0;
   font-size: 14px;
 }
-body .home .main .playlist-header__button {
+body .home .main .playlist-header__button, body .home .main .searchlist-header__button {
   height: 58px;
   font-size: 24px;
   color: #888;
   transition: color 0.1s linear;
 }
-body .home .main .playlist-header__button:hover {
+body .home .main .playlist-header__button:hover, body .home .main .searchlist-header__button:hover {
   color: #fff;
 }
-body .home .main .playlist-header__input {
+body .home .main .playlist-header__input, body .home .main .searchlist-header__input {
   width: 60%;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -469,18 +469,18 @@ body .home .main .playlist-header__input {
   font-size: 30px;
   font-weight: 700;
 }
-body .home .main .playlist-header__input:focus {
+body .home .main .playlist-header__input:focus, body .home .main .searchlist-header__input:focus {
   outline: 0;
 }
-body .home .main .playlist .video {
+body .home .main .playlist .video, body .home .main .searchlist .video {
   display: flex;
   padding: 1rem;
 }
-body .home .main .playlist .video__image {
+body .home .main .playlist .video__image, body .home .main .searchlist .video__image {
   height: 120px;
   margin-right: 1rem;
 }
-body .home .main .playlist .video__title {
+body .home .main .playlist .video__title, body .home .main .searchlist .video__title {
   margin: 0;
   padding: 0.5rem 2rem 0 0;
   font-size: 20px;
