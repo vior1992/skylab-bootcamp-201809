@@ -288,6 +288,29 @@ const logic = {
                 return results
             })
 
+    },
+
+    searchCharacters(id) {
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+
+        if (!id.trim()) throw Error('id is empty or blank')
+
+        return fetch('https://api.themoviedb.org/3/movie/'+id+'/credits?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res === 'undefined') throw Error(res.error)
+
+                const results = res.cast
+
+                return results
+                
+            })
+            
     }
 
 }
