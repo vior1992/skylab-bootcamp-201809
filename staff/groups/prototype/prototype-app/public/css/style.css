@@ -72,7 +72,7 @@ body {
   display: none;
 }
 .navbar .menu-btn:checked ~ .menu {
-  max-height: 240px;
+  max-height: 300px;
 }
 .navbar .menu-btn:checked ~ .menu-icon .navicon {
   background: transparent;
@@ -292,6 +292,11 @@ body {
 
 .clicked {
   color: green;
+}
+
+.footer {
+  line-height: 60px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import Search from './Search';
+import MoviesList from './MoviesList';
 import { Link } from 'react-router-dom'
 
 class ListedMovies extends Component {
@@ -31,7 +32,6 @@ class ListedMovies extends Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
-        // debugger
         if (this.props !== nextProps) {
             switch (nextProps.kind) {
                 case 'trending':
@@ -55,6 +55,8 @@ class ListedMovies extends Component {
                             this.setState({ search: true })
             }
         }
+ 
+        this.setState({ page: '1' })
     }
 
     pagination = () => {
@@ -107,16 +109,7 @@ class ListedMovies extends Component {
                         <div className="row">
                             <h3 className="font-weight-bold mt-5 mb-4">{this.state.title}</h3>
                         </div>
-                        <div className="row">
-                            { this.state.movies.results.map(movie => {
-                                return (
-                                    <div className="movie">
-                                        { movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} /></Link> }
-                                        { !movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src="https://dummyimage.com/240x360/707070&text=+" /></Link> }
-                                    </div>
-                                )
-                            }) }
-                        </div>
+                        <MoviesList movies={this.state.movies.results} pages={this.state.movies.total_pages} currentPage={this.state.page} />
                         <div className="row justify-content-center">
                             <nav className="my-3">
                                 <ul className="pagination">
