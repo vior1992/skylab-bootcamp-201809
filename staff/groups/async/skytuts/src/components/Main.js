@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import Card from './Card'
 import Navbar from './Navbar'
+import Popup from './Popup'
 
 import template from './templates/Main.pug'
 
@@ -17,11 +18,15 @@ class Main extends Component {
         tracks: [],
         coursesToShow: [],
         track: null,
-        error: null
+        error: null,
+        showPopup: false
     }
 
     total = 0
 
+      togglePopup = () => {
+        this.setState({showPopup: !this.state.showPopup})
+      } 
 
     filterCoursesByTrack = (track) => {
         this.setState({ coursesToShow: filterCourses().byTrack(track), track })
@@ -89,11 +94,17 @@ class Main extends Component {
 
         let track = (this.state.tracks || []).map((track, index) => <span onClick={() => this.filterCoursesByTrack(track)} key={index}>{track.name}</span>)
        
+        let popup = (<Popup text='You need to be logged in to view courses!' closePopup={this.togglePopup}/>)
+
+         const {showPopup, error} = this.state
+                     
         return template.call(this, {   
-            error: this.state.error,     
+            error,     
             card,
             links,
             track,
+            popup,
+            showPopup,
             Navbar
         });
 

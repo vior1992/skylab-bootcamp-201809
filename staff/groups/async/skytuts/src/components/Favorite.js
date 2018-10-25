@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import logicAuth from '../logic/auth'
 
 
+
+
 class Favorite extends Component {
     state = {
         faves: {},
