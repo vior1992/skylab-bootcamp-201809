@@ -165,7 +165,7 @@ const logic = {
         }).save()
         this.skylab.update({watch_later: watchLaterTable.all()}, this.auth.id, this.auth.token)
     },
-    
+
     removeWatchLater(video_id) {
         const watchLaterTable = new WatchLater()
         let video = watchLaterTable.get(video_id)
@@ -175,10 +175,11 @@ const logic = {
 
     addPlaylist(title) {
         const playlistsTable = new Playlists()
-        playlistsTable.newEntity({
+        const playlist = playlistsTable.newEntity({
             title: title
         }).save()
         this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
+        return playlist.id
     },
 
     removePlaylist(playlist_id) {

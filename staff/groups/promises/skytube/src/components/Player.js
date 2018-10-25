@@ -18,7 +18,7 @@ class Player extends Component {
     handleKeyPress = event => {
         const input = event.target
         if (event.key === 'Enter' && input.value) {
-            this.props.onNewPlaylist(input.value)
+            this.props.onAddToPlaylist(this.props.video, this.props.onNewPlaylist(input.value))
             input.value = ''
         }
     }
@@ -74,7 +74,7 @@ class Player extends Component {
     checkWatchLater = () => {
         const watchLater = logic.getWatchLater(this.props.video.id)
         return watchLater && Object.keys(watchLater).length > 0
-        
+
     }
 
     render() {
