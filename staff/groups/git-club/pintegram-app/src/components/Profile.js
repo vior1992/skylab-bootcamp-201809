@@ -5,7 +5,7 @@ import PostUserLiked from './PostUserLiked'
 import logo from '../icon1.png'
 
 class Profile extends Component {
-    state = { posts: [], user: [], postsLiked: [], grid: true, liked: false, img:null }
+    state = { posts: [], user: [], postsLiked: [], grid: true, liked: false }
 
     componentDidMount() {
         // progressive loading
@@ -17,7 +17,7 @@ class Profile extends Component {
             .then(user => { this.setState({ user }) })
 
         logic.listLikes()
-        .then(postsLiked => logic.retrievePosts(postsLiked) .then(postsLiked => { this.setState({ postsLiked }) }))
+            .then(postsLiked => logic.retrievePosts(postsLiked).then(postsLiked => { this.setState({ postsLiked }) }))
 
         // one-shot loading
 
@@ -27,31 +27,24 @@ class Profile extends Component {
         //     })
     }
 
-    uploadWidget =() => {
-
-
-        let widget = window.cloudinary.openUploadWidget({ cloud_name: 'skylabcoders', upload_preset: 'wqmshx2h', tags:['pintegram']},
+    uploadWidget = () => {
+        let widget = window.cloudinary.openUploadWidget({ cloud_name: 'skylabcoders', upload_preset: 'wqmshx2h', tags: ['pintegram'] },
             (error, result) => {
-               
+
                 if (result.event === "success") {
                     debugger
-                    
+
                     const img = result.info.secure_url
 
-                    this.setState({ img }, () => {
-                        widget.close()
+                    widget.close()
 
-                        this.handleImgProfile()
-                    })
+                    logic.addImageProfile(img)
+                        .then(() => logic.retrieveProfile())
+                        .then(user => this.setState({ user }))
                 }
             })
-            console.log()
+        console.log()
     }
-
-    handleImgProfile = () => {
-        logic.addImageProfile(this.state.img)
-    }
-
 
     handleGallery = () => {
         this.setState({ grid: true, liked: false })
@@ -63,24 +56,24 @@ class Profile extends Component {
 
     handleDeletePost = (idPost) => {
         logic.deletePost(idPost)
-        .then(Promise.all([logic.listPosts(), logic.retrieveProfile(), logic.listLikes().then(postsLiked => logic.retrievePosts(postsLiked))])
-            .then(([posts, user, postsLiked]) => {
-                this.setState({ posts, user, postsLiked })
-            })
-        )
+            .then(Promise.all([logic.listPosts(), logic.retrieveProfile(), logic.listLikes().then(postsLiked => logic.retrievePosts(postsLiked))])
+                .then(([posts, user, postsLiked]) => {
+                    this.setState({ posts, user, postsLiked })
+                })
+            )
     }
     handleDeleteLike = (idPost) => {
         logic.onDeleteLike(idPost)
-        .then(Promise.all([logic.listPosts(), logic.retrieveProfile(), logic.listLikes().then(postsLiked => logic.retrievePosts(postsLiked))])
-            .then(([posts, user, postsLiked]) => {
-                this.setState({ posts, user, postsLiked, liked:true })
-            })
-        )
+            .then(Promise.all([logic.listPosts(), logic.retrieveProfile(), logic.listLikes().then(postsLiked => logic.retrievePosts(postsLiked))])
+                .then(([posts, user, postsLiked]) => {
+                    this.setState({ posts, user, postsLiked, liked: true })
+                })
+            )
     }
 
     render() {
         return <div className="div-home">
-            <nav className="nav"> <div className="logo"><img className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoBack} className="title">Pintegram</h1></div>
+            <nav className="nav"> <div className="logo"><img className="logo__img" src={logo}></img><h1 onClick={this.props.onGoBack} className="title">Pintegram</h1></div>
                 <div className="menu">
                     <i onClick={this.props.onSearch} className="menu__button fas fa-search"></i>
                     <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
