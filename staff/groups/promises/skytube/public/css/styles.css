@@ -1,4 +1,4 @@
-body .home .main .playlist-header__button, body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button {
+body .form__button, body .home .main .playlist-header__button, body .home .main .player-footer__button, body .home .profile-footer__button, body .home .profile__button, body .landing .navbar__button {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: none;
@@ -8,7 +8,7 @@ body .home .main .playlist-header__button, body .home .main .player-footer__butt
   text-transform: uppercase;
   cursor: pointer;
 }
-body .home .main .playlist-header__button:focus, body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus {
+body .form__button:focus, body .home .main .playlist-header__button:focus, body .home .main .player-footer__button:focus, body .home .profile-footer__button:focus, body .home .profile__button:focus, body .landing .navbar__button:focus {
   outline: 0;
 }
 
@@ -23,9 +23,97 @@ body {
   font-family: Roboto, Arial, sans-serif;
   color: #ffffff;
 }
-body .logIn {
+body .landing {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: #121212;
+  overflow-y: scroll;
+}
+body .landing .navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  background-color: #242424;
+}
+body .landing .navbar__title {
+  display: flex;
+  align-items: center;
+}
+body .landing .navbar__title h1 {
+  margin: 0;
+}
+body .landing .navbar__logo {
+  height: 40px;
+  margin-right: 5px;
+}
+body .landing .navbar__menu {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+body .landing .navbar__button {
+  text-decoration: none;
   color: #ffffff;
+}
+body .landing .navbar__button--separator {
+  font-size: 16px;
+  color: #2ebcc3;
+}
+body .landing .container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+body .header {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  margin: 2rem 0;
+}
+body .header__hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem;
+}
+body .header__title {
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: 64px;
+  font-weight: 500;
+}
+body .header__text {
+  margin: 0;
+  font-size: 20px;
+}
+body .signup {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  background-color: #1c1c1c;
+  color: #ffffff;
+  padding-bottom: 100px;
+}
+body .login__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .login__logo {
+  height: 50px;
+  margin-right: 5px;
 }
 body .home {
   position: relative;
@@ -87,28 +175,43 @@ body .home .search {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #121212;
+  background-color: #242424;
 }
 body .home .search__input {
   width: 80%;
-  height: 30px;
-  border: 1px solid #999999;
-  border-radius: 10px;
-  margin: 15px 20px;
-  padding: 10px;
-  background-color: black;
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 18px;
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 0.5rem 1.5rem;
+  background-color: #4d4d4d;
   color: #ffffff;
+  font-size: 18px;
+}
+body .home .search__input::placeholder {
+  color: #ffffff;
+}
+body .home .search__input:focus {
   outline: 0;
 }
+body .home .search__input:focus::placeholder {
+  opacity: 0;
+}
 body .home .search__button {
-  width: 60px;
-  height: 30px;
-  margin-left: -60px;
-  border: 1px solid #999999;
-  border-radius: 10px;
-  background-color: #999999;
+  margin-left: -40px;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #2ebcc3;
+  color: #ffffff;
+  font-size: 18px;
+  transition: all 0.1s linear;
+}
+body .home .search__button:hover {
+  background-color: #1f8085;
+  cursor: pointer;
+}
+body .home .search__button:focus {
   outline: 0;
 }
 body .home .profile {
@@ -201,8 +304,25 @@ body .home .main .player__video iframe {
 }
 body .home .main .player-footer {
   display: flex;
+  flex-direction: column;
+}
+body .home .main .player-footer__title {
+  font-size: 20px;
+  margin: 0.5rem 1rem 0;
+}
+body .home .main .player-footer__buttons {
+  display: flex;
   justify-content: flex-end;
-  padding: 0.5rem;
+  align-items: center;
+}
+body .home .main .player-footer__button {
+  font-size: 24px;
+}
+body .home .main .player-footer__button--text {
+  font-size: 16px;
+}
+body .home .main .player-footer__button--active {
+  color: #2ebcc3;
 }
 body .home .main .player-footer .playlists {
   position: relative;
@@ -326,29 +446,74 @@ body .home .main .playlist-header__input {
 body .home .main .playlist-header__input:focus {
   outline: 0;
 }
-body .home .main .video {
+body .home .main .playlist .video {
   display: flex;
   padding: 1rem;
 }
-body .home .main .video__image {
+body .home .main .playlist .video__image {
   height: 120px;
   margin-right: 1rem;
 }
-body .home .main .video__title {
+body .home .main .playlist .video__title {
   margin: 0;
+  padding: 0.5rem 2rem 0 0;
   font-size: 20px;
 }
-
-.video-list {
+body .form {
   display: flex;
-  margin: 1%;
-  width: 90%;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 250px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: left;
+  background-color: #454545;
 }
-
-.video-item {
-  width: 350px;
-  margin: 3%;
+body .form__label {
+  margin: 0;
+  font-size: 14px;
+}
+body .form__input {
+  margin: 0.25rem 0 1rem;
+  padding: 0 1rem;
+  border-radius: 5px;
+  height: 30px;
+  border: none;
+}
+body .form__input:focus {
+  outline: 0;
+}
+body .form__button {
+  background-color: #2ebcc3;
+  border-radius: 5px;
+  text-transform: capitalize;
+  transition: all 0.1s linear;
+}
+body .form__button:hover {
+  background-color: #1f8085;
+}
+body .form__return {
+  align-self: flex-end;
+  margin: 0.75rem 1.5rem 0;
+  text-decoration: none;
+  color: #ffffff;
+}
+body .form__return:hover {
+  text-decoration: underline;
+}
+body .error {
+  width: 250px;
+  height: 30px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 30px;
+  border-radius: 10px;
+  background-color: #454545;
+  color: red;
+  text-align: center;
+}
+body .error__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 30px;
 }
 
 /*# sourceMappingURL=styles.css.map */

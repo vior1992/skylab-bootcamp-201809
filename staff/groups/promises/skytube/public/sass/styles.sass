@@ -21,15 +21,104 @@ $header-height: 60px
     display: none
     z-index: 1000
 
+%error
+
+
 body
     margin: 0
     font-family: Roboto, Arial, sans-serif
     color: $color-text
 
-    .logIn
+    .landing
+        margin: 0
+        width: 100vw
+        height: 100vh
         background-color: $color-background
-        color: $color-text
+        overflow-y: scroll
 
+        .navbar
+            display: flex
+            justify-content: space-between
+            padding: 0 2rem
+            height: $header-height
+            background-color: lighten($color-background, 7%)
+
+            &__title
+                display: flex
+                align-items: center
+                h1
+                    margin: 0
+
+            &__logo
+                height: 40px
+                margin-right: 5px
+
+            &__menu
+                display: flex
+                align-items: center
+                list-style-type: none
+
+            &__button
+                @extend %button
+                text-decoration: none
+                color: $color-text
+                &--separator
+                    font-size: 16px
+                    color: $color-primary
+
+        .container
+            display: flex
+            justify-content: flex-start
+            flex-direction: row
+            align-items: center
+
+    .header
+        display: grid
+        grid-template-columns: 60% 40%
+        margin: 2rem 0
+
+        &__hero
+            display: flex
+            flex-direction: column
+            justify-content: center
+            padding: 5rem
+
+        &__title
+            margin: 0
+            margin-bottom: 1rem
+            font-size: 64px
+            font-weight: 500
+
+        &__text
+            margin: 0
+            font-size: 20px
+
+    .signup
+        grid-column: 2
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+    .login
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 100vw
+        height: calc(100vh - 100px)
+        background-color: lighten($color-background, 4%)
+        color: $color-text
+        padding-bottom: 100px
+
+        &__title
+            display: flex
+            justify-content: center
+            align-items: center
+
+        &__logo
+            height: 50px
+            margin-right: 5px
 
     .home
         position: relative
@@ -91,28 +180,39 @@ body
             display: flex
             align-items: center
             justify-content: center
-            background-color: $color-background
+            background-color: lighten($color-background, 7%)
+
             &__input
                 width: 80%
-                height: 30px
-                border: 1px solid #999999
-                border-radius: 10px
-                margin: 15px 20px
-                padding: 10px
-                background-color: darken($color-background, 15%)
-                font-family: Roboto, Arial, sans-serif
-                font-size: 18px
+                border: none
+                border-top-left-radius: 10px
+                border-bottom-left-radius: 10px
+                padding: .5rem 1.5rem
+                background-color: lighten($color-background, 23%)
                 color: $color-text
-                outline: 0
+                font-size: 18px
+                &::placeholder
+                    color: $color-text
+                &:focus
+                    outline: 0
+                    &::placeholder
+                        opacity: 0
 
             &__button
-                width: 60px
-                height: 30px
-                margin-left: -60px
-                border: 1px solid #999999
-                border-radius: 10px
-                background-color: #999999
-                outline: 0
+                margin-left: -40px
+                padding: .5rem 1.5rem
+                border: none
+                border-top-right-radius: 10px
+                border-bottom-right-radius: 10px
+                background-color: $color-primary
+                color: $color-text
+                font-size: 18px
+                transition: all .1s linear
+                &:hover
+                    background-color: darken($color-primary, 15%)
+                    cursor: pointer
+                &:focus
+                    outline: 0
 
         .profile
             grid-row: 1
@@ -196,7 +296,6 @@ body
                         margin: 0
                         font-size: 14px
 
-
             .player
                 width: 576px
                 margin: 1rem auto 0
@@ -207,11 +306,24 @@ body
 
                 &-footer
                     display: flex
-                    justify-content: flex-end
-                    padding: .5rem
+                    flex-direction: column
+
+                    &__title
+                        font-size: 20px
+                        margin: .5rem 1rem 0
+
+                    &__buttons
+                        display: flex
+                        justify-content: flex-end
+                        align-items: center
 
                     &__button
                         @extend %button
+                        font-size: 24px
+                        &--text
+                            font-size: 16px
+                        &--active
+                            color: $color-primary
 
                     .playlists
                         position: relative
@@ -329,24 +441,69 @@ body
                         &:focus
                             outline: 0
 
-            .video
-                display: flex
-                padding: 1rem
+                .video
+                    display: flex
+                    padding: 1rem
 
-                &__image
-                    height: 120px
-                    margin-right: 1rem
+                    &__image
+                        height: 120px
+                        margin-right: 1rem
 
-                &__title
-                    margin: 0
-                    font-size: 20px
+                    &__title
+                        margin: 0
+                        padding: .5rem 2rem 0 0
+                        font-size: 20px
 
-.video-list
-    display: flex
-    margin: 1%
-    width: 90%
-    flex-wrap: wrap
+    .form
+        display: flex
+        flex-direction: column
+        width: 250px
+        padding: 1.5rem
+        border-radius: 10px
+        text-align: left
+        background-color: lighten($color-background, 20%)
 
-.video-item
-    width: 350px
-    margin: 3%
+        &__label
+            margin: 0
+            font-size: 14px
+
+        &__input
+            margin: .25rem 0 1rem
+            padding: 0 1rem
+            border-radius: 5px
+            height: 30px
+            border: none
+            &:focus
+                outline: 0
+
+        &__button
+            @extend %button
+            background-color: $color-primary
+            border-radius: 5px
+            text-transform: capitalize
+            transition: all .1s linear
+            &:hover
+                background-color: darken($color-primary, 15%)
+
+        &__return
+            align-self: flex-end
+            margin: .75rem 1.5rem 0
+            text-decoration: none
+            color: $color-text
+            &:hover
+                text-decoration: underline
+
+    .error
+        width: 250px
+        height: 30px
+        margin-bottom: .5rem
+        padding: .5rem 30px
+        border-radius: 10px
+        background-color: lighten($color-background, 20%)
+        color: red
+        text-align: center
+
+        &__text
+            margin: 0
+            font-size: 16px
+            line-height: 30px

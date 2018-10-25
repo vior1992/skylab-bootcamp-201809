@@ -9,15 +9,11 @@ import YouTube from './youtube'
 const logic = {
     skylab: new Skylab(),
     youtube: new YouTube(),
-    favourites: new Favourites(),
-    watch_later: new WatchLater(),
-    playlists: new Playlists(),
-    history: new History(),
     auth: JSON.parse(sessionStorage.getItem('auth')) || {},
     video_search: JSON.parse(sessionStorage.getItem('video_search')) || [],
     current_video: JSON.parse(sessionStorage.getItem('current_video')) || {},
 
-    registerUser(name, surname, username, email, password) {
+    registerUser(name, surname, username, email, password, repPassword) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
         if (!name.trim()) throw Error ('name is blank or empty')
 
@@ -31,15 +27,24 @@ const logic = {
         if (!email.trim()) throw Error ('email is blank or empty')
 
         if(typeof password !=='string') throw TypeError (`${password} is not a string`)
-        if (!password.trim()) throw Error ('password is blank or empty')
+        if (!password.trim()) throw Error ('first password is blank or empty')
 
-        return this.skylab.register({
-            name: name,
-            surname: surname,
-            username: username,
-            email: email,
-            password: password
-        })
+        if(typeof repPassword !=='string') throw TypeError (`${repPassword} is not a string`)
+        if (!repPassword.trim()) throw Error ('second password is blank or empty')
+
+        if (password === repPassword) {
+           
+            return this.skylab.register({
+                name: name,
+                surname: surname,
+                username: username,
+                email: email,
+                password: password
+            })
+
+        } else { 
+            throw Error ('Passwords do not match')
+        }
     },
 
     loginUser(username, password) {
@@ -132,80 +137,99 @@ const logic = {
     },
 
     addFavourite(video) {
-        this.favourites.newEntity({
+        const favouritesTable = new Favourites()
+        favouritesTable.newEntity({
             id: video.id,
             title: video.title,
             thumbnail: video.thumbnail
         }).save()
-        this.skylab.update({favourites: this.favourites.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({favourites: favouritesTable.all()}, this.auth.id, this.auth.token)
+    },
+
+    removeFavourite(video_id) {
+        const favouritesTable = new Favourites()
+        let video = favouritesTable.get(video_id)
+        video.delete()
+        this.skylab.update({favourites: favouritesTable.all()}, this.auth.id, this.auth.token)
     },
 
     addWatchLater(video) {
-        this.watch_later.newEntity({
+        const watchLaterTable = new WatchLater()
+        watchLaterTable.newEntity({
             id: video.id,
             title: video.title,
             thumbnail: video.thumbnail
         }).save()
-        this.skylab.update({watch_later: this.watch_later.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({watch_later: watchLaterTable.all()}, this.auth.id, this.auth.token)
     },
 
     removeWatchLater(video_id) {
-        let video = this.watch_later.get(video_id)
+        const watchLaterTable = new WatchLater()
+        let video = watchLaterTable.get(video_id)
         video.delete()
-        this.skylab.update({watch_later: this.watch_later.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({watch_later: watchLaterTable.all()}, this.auth.id, this.auth.token)
     },
 
     addPlaylist(title) {
-        this.playlists.newEntity({
+        const playlistsTable = new Playlists()
+        playlistsTable.newEntity({
             title: title
         }).save()
-        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
     },
 
     removePlaylist(playlist_id) {
-        let playlist = this.playlists.get(playlist_id)
+        const playlistsTable = new Playlists()
+        let playlist = playlistsTable.get(playlist_id)
         playlist.delete()
-        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
     },
 
     updatePlaylist(playlist_id, title) {
-        let playlist = this.playlists.get(playlist_id)
+        const playlistsTable = new Playlists()
+        let playlist = playlistsTable.get(playlist_id)
         playlist.title = title
         playlist.save()
-        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
     },
 
     addHistory(video) {
-        const finded = this.history.get(video.id)
-        if (finded.length > 0) this.history.get(finded[0].id).delete()
+        const historyTable = new History()
+        const finded = historyTable.get(video.id)
+        if (finded && Object.keys(finded).length > 0) {
+            finded.viewed = Date.now()
+            finded.save()
+        } else {
+            historyTable.newEntity({
+                id: video.id,
+                title: video.title,
+                thumbnail: video.thumbnail,
+                viewed: Date.now()
+            }).save()
+        }
 
-        this.history.newEntity({
-            id: video.id,
-            title: video.title,
-            thumbnail: video.thumbnail,
-            viewed: Date.now()
-        }).save()
-
-        const history = this.history.all()
+        const history = historyTable.all()
         if (history.length > 20) {
-            this.history.get(history[0].id).delete()
+            historyTable.get(history[0].id).delete()
         }
 
         this.skylab.update({history: history}, this.auth.id, this.auth.token)
     },
 
     addVideoToPlaylist(video, playlist_id) {
-        let playlist = this.playlists.get(playlist_id)
+        const playlistsTable = new Playlists()
+        let playlist = playlistsTable.get(playlist_id)
         playlist.videos ? playlist.videos.push(video) : playlist.videos = [video]
         playlist.save()
-        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
     },
 
     removeVideoFromPlaylist(video_id, playlist_id) {
-        let playlist = this.playlists.get(playlist_id)
+        const playlistsTable = new Playlists()
+        let playlist = playlistsTable.get(playlist_id)
         playlist.videos.splice(playlist.videos.indexOf(video_id), 1)
         playlist.save()
-        this.skylab.update({playlists: this.playlists.all()}, this.auth.id, this.auth.token)
+        this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
     },
 
     getMostPopular() {
@@ -225,7 +249,8 @@ const logic = {
     },
 
     getHistory() {
-        let history = this.history.all()
+        const historyTable = new History()
+        let history = historyTable.all()
         history.sort((a, b) => {
             return a.viewed < b.viewed;
         })
@@ -237,21 +262,29 @@ const logic = {
     },
 
     getFavourites() {
+        const favouritesTable = new Favourites()
         return {
             title: 'Favourites',
-            videos: this.favourites.all()
+            videos: favouritesTable.all()
         }
     },
 
+    getFavourite(favourite_id) {
+        const favouritesTable = new Favourites()
+        return favouritesTable.get(favourite_id)
+    },
+
     getWatchLater() {
+        const watchLaterTable = new WatchLater()
         return {
             title: 'Watch Later',
-            videos: this.watch_later.all()
+            videos: watchLaterTable.all()
         }
     },
 
     getPlaylist(id) {
-        return this.playlists.get(id)
+        const playlistsTable = new Playlists()
+        return playlistsTable.get(id)
     },
 
     authInfo() {

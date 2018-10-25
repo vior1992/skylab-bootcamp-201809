@@ -29,14 +29,14 @@ class App extends Component {
         }
     }
 
-    handleRegister = (name, surname, username, email, password) => {
-		try {
-			logic.registerUser(name, surname, username, email, password)
+    handleRegister = (name, surname, username, email, password, repPassword) => {
+        try {
+			logic.registerUser(name, surname, username, email, password, repPassword)
 				.then(() => {
                     this.setState({error: null})
                     this.props.history.push('/login')
                 })
-				.catch(error => console.error(error))
+				.catch((err) => {this.setState({error: err.message})})
 		} catch (err) {
 			this.setState({error: err.message})
 		}
@@ -53,7 +53,7 @@ class App extends Component {
                 })
                 .catch(error => console.error(error))
 		} catch (err) {
-			this.setState({error: err.message})
+            this.setState({error: err.message})
 		}
 	}
 
@@ -83,6 +83,11 @@ class App extends Component {
 
     handleNewFavourite = video => {
         logic.addFavourite(video)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
+    handleRemoveFavourite = video_id => {
+        logic.removeFavourite(video_id)
         this.setState({auth_info: logic.authInfo()})
     }
 
@@ -136,16 +141,23 @@ class App extends Component {
         this.props.history.push('/home/playlist/' + playlist_id)
     }
 
+    handleButtonClick = () => {
+        this.setState({error: null})
+    }
     renderLanding() {
         return <div className="landing">
-            <nav>
-                <ul>
-                    <li><Link to='/#register'>Sign Up</Link></li>
-                    <li><Link to='/login'>Log In</Link></li>
+            <nav className="navbar">
+                <div className="navbar__title">
+                    <img className="navbar__logo" src="/img/skytube.logo.png" alt="logo"></img>
+                    <h1>Skytube</h1>
+                </div>
+                <ul className="navbar__menu">
+                    <li><Link onClick={this.handleButtonClick} className="navbar__button" to='/#register'>Sign Up</Link></li>
+                    <p className="navbar__separator">or</p>
+                    <li><Link onClick={this.handleButtonClick} className="navbar__button" to='/login'>Log In</Link></li>
                 </ul>
             </nav>
-
-            <Header onSubmitSignUp={this.handleRegister} />
+            <Header error={this.state.error} onSubmitSignUp={this.handleRegister} />
         </div>
     }
 
@@ -158,7 +170,7 @@ class App extends Component {
                 <Route exact path='/home' render={() => <VideoList title="Most Populars" onVideoClick={this.handleVideoClick} videos={this.state.populars} />} />
                 <Route exact path='/home' render={() => <VideoList title="Watch Again" onVideoClick={this.handleVideoClick} videos={logic.getHistory().videos} />} />
                 <Route path='/home/search' render={() => <VideoList title={this.state.search_query} onVideoClick={this.handleVideoClick} videos={this.state.video_search} />} />
-                <Route path='/home/player' render={() => <Player video={this.state.current_video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
+                <Route path='/home/player' render={() => <Player video={this.state.current_video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onRemoveFavourite={this.handleRemoveFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
                 <Route path='/home/favourites' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getFavourites()} />} />
                 <Route path='/home/history' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getHistory()} />} />
                 <Route path='/home/watch_later' render={props => <Playlist onVideoClick={this.handlePlayWatchLater} playlist={logic.getWatchLater()} />} />
@@ -171,8 +183,7 @@ class App extends Component {
         return <div>
             <Route exact path='/' render={() => !logic.isAuthenticated() ? this.renderLanding() : <Redirect to='/home'/>} />
             <Route path='/home' render={() => logic.isAuthenticated() ? this.renderHome() : <Redirect to='/login' />} />
-            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
-            {this.state.error && <p>{this.state.error}</p>}
+            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn onClick={this.handleButtonClick} error={this.state.error} onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
         </div>
     }
 }
