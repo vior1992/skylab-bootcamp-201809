@@ -14,8 +14,9 @@ class Movie extends Component {
         showFavButton: false,
         flagController: true,
         youtubeKey: null,
-        cast: null,
-        genres: null
+        cast: '',
+        genres: null,
+        reviews: ''
     }
 
     componentDidMount() {
@@ -59,6 +60,17 @@ class Movie extends Component {
                 .then(results => {
 
                     this.setState({ cast: results })
+                })
+                .catch(err => this.setState({ error: err.message }))
+        }
+        catch (err) {
+            this.setState({ error: err.message })
+        }
+
+        try {
+            logic.getReviews(id)
+                .then(reviews => {
+                    this.setState({ reviews:reviews.results })
                 })
                 .catch(err => this.setState({ error: err.message }))
         }
@@ -110,6 +122,9 @@ class Movie extends Component {
 
     render() {
 
+        const lengthCast = this.state.cast[0]
+        const lengthReviews = this.state.reviews[0]
+
         return <div className="home">
             <SearchBar />
             <div className='card'>
@@ -159,9 +174,9 @@ class Movie extends Component {
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
+            {!!lengthCast && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>}
 
-            {!!this.state.cast && <div class="collapse" id="collapseExample">
+            {!!lengthCast && <div class="collapse" id="collapseExample">
                 <div class="card card-body">
 
                     <div className="contain_actors">
@@ -169,11 +184,11 @@ class Movie extends Component {
                         <div className="contain_profile_actors">
 
                             {this.state.cast.map((cast, index) => {
-                                if(index<5){
-                                return <div className="profile_actors">
-                                    <p>{cast.name + ' as ' + cast.character}</p>
-                                    <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + cast.profile_path}></img>
-                                </div>
+                                if (index < 5) {
+                                    return <div className="profile_actors">
+                                        <p>{cast.name + ' as ' + cast.character}</p>
+                                        <img className="img-actors" src={'https://image.tmdb.org/t/p/w300/' + cast.profile_path}></img>
+                                    </div>
                                 }
                             })}
 
@@ -182,8 +197,35 @@ class Movie extends Component {
                 </div>
                 <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-            </div>
-            }
+            </div>}
+
+
+
+
+
+
+            {!!lengthReviews && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">Reviews</button>}
+
+            {!!lengthReviews && <div class="collapse" id="collapseReviews">
+                <div class="card card-body">
+
+                    <div className="contain_actors">
+                        <div><h3>Reviews</h3></div>
+                        <div className="contain_profile_actors">
+
+                            {this.state.reviews.map((review, index) => {
+                                if (index < 5) {
+                                    return <div className="profile_actors">
+                                        <h5>{review.author}</h5>
+                                        <p>{review.content}</p>
+                                    </div>
+                                }
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+            </div>}
 
         </div>
 
