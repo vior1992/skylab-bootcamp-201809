@@ -1,7 +1,7 @@
 
 const spotifyLogic = {
 
-    token: 'BQANaQ5yOK9ukOFzg02D7kesE4if0QN6XER-MueUV9jhZtIKomaOon9fTQWA0TmkAYk5yPZXtsRO4qdJ8dfe4fSItYmmNWTorHh13kQmptOxwg_BPinpfYjMrkW6oHjs7rxIRWNOv7LNwMDd9mDHKc5n6Yt9G8bO5HugPp5y1IqJPGyCwqmAw7wR8NBqohlJhOX0fzWtbFAsz5mZ',
+    token: 'BQBKlWe4bTb3VLHtWwKkxL53ZXBn8flpUqgo1rfZ5UjmuxUHv1KZ3gkskBTZz8oN9aA1po7RG7w87aJWUmdvsjyqeSE6x4YxerHqVxJ46e62rSTaT0zaNRk1nY0Fjark2AtxBJlCOiTgmXzjcR8Fh0FqBKjc7jKGgM__mDEIyL7EyYvbO53IsYQA5kaBlDOWIngQ1pys3i7JCU54',
 
     getArtistById(id) {
 
@@ -35,6 +35,25 @@ const spotifyLogic = {
         })
             .then(res => res.json())
             .catch(err => {throw Error(err.message)})
+    },
+
+    getTrack(id) {
+        return fetch(`https://api.spotify.com/v1/tracks/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + this.token
+            }
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                const track = {}
+                track.id = res.id
+                track.name = res.name
+                track.preview_url = res.preview_url ? res.preview_url : require("../assets/audio/default.mp3")
+                track.image = res.album.images ? res.album.images[0].url : 'https://i.scdn.co/image/557a6058e3de72bf37ffcd2c12dd5932276df344'
+                return track
+            })
     },
 
     getPlaylistsTracks(playlistId) {

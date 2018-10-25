@@ -1,14 +1,6 @@
 class Track {
 
-    constructor(_id, _name, _imageUrl, _preview) {
-
-        this.id = _id
-        this.name = _name
-        this.imageurl = _imageUrl
-        this.preview = _preview
-    }
-
-
+    
     get Id() {
         return this.id;
     }
@@ -31,26 +23,36 @@ class Track {
         this.name = value;
     }
 
-    get Imageurl() {
-        return this.imageurl;
+    get Image() {
+        return this.image;
     }
 
-    set Imageurl(value) {
-        if ( typeof value !== "string") throw TypeError(`imageurl track is not a string`)
-        if (!value.trim().length) throw Error(`imageurl track is empty or blank`)
+    set Image(value) {
+        if ( typeof value !== "string") throw TypeError(`image track is not a string`)
+        if (!value.trim().length) throw Error(`image track is empty or blank`)
 
-        this.imageurl = value;
+        this.image = value;
     }
 
-    get Preview() {
-        return this.preview;
+    get Preview_url() {
+        return this.preview_url;
     }
 
-    set Preview(value) {
-        if ( typeof value !== "string") throw TypeError(`preview track is not a string`)
-        if (!value.trim().length) throw Error(`preview track is empty or blank`)
+    set Preview_url(value) {
+        if ( typeof value !== "string") throw TypeError(`preview_url track is not a string`)
+        if (!value.trim().length) throw Error(`preview_url track is empty or blank`)
 
-        this.preview = value;
+        this.preview_url = value;
+    }
+
+    static createTrackFromData(data){
+
+        let track = new Track()
+        for(let p in data){
+
+            track[p] = data[p]
+        } 
+        return track
     }
 }
 
@@ -219,7 +221,16 @@ class User {
         this.playLists = value;
     }
 
+    static createUserFromData(data){
 
+        let user = new User()
+        for(let p in data){
+
+            user[p] = data[p]
+        } 
+        return user
+    }
+     
     createPlayList (playList) {
 
         if (this.playLists.length === 0)
@@ -259,23 +270,64 @@ class User {
 
             this.playLists.forEach(playlist => {
                 
-                playlist.forEach(track => {
+                playlist.tracks.forEach(track => {
 
-                    if (track.Id === trackId)
+                    if (track.id === trackId)
                     {
                         found = true
-                        return
+                       
                     }
 
                 })
-                if (found)
-                    return
+               
 
             });
             return found
         }
         else
-            throw Error("The user has not playlists")
+            throw Error("The user has no playlists")
+    }
+
+
+    searchTrackInPlayLists = (trackId) => {
+
+        if ( typeof trackId !== 'string') throw TypeError(`trackId is not a string`)
+        if (!trackId.trim().length) throw Error(`trackId is empty or blank`)
+        let playListId = undefined;
+        if (this.playLists.length){
+
+            this.playLists.forEach(playlist => {
+                
+                playlist.tracks.forEach(track => {
+
+                    if (track.id === trackId)
+                    {
+                        playListId = playlist.id
+                       
+                    }
+
+                })
+               
+
+            });
+            return playListId
+        }
+        else
+            throw Error("The user has no playlists")
+    }
+
+    deleteTrackFromPlayList (trackId){
+
+        const playListId = this.searchTrackInPlayLists(trackId)
+
+        if (playListId){
+
+            let playList = this.playLists.find(playlist => playlist.id === playListId)
+            const filtered = playList.tracks.filter(track => track.id !== trackId)
+            playList.tracks = filtered
+        }
+        else
+            throw Error("The track does not belong to any playList")
     }
 }
 

@@ -88,6 +88,28 @@ const userService = {
 
     },
 
+    getSessionFromStorage(){
+
+        return JSON.parse(sessionStorage.getItem("user"))
+    },
+
+    addTrackToPlayList(trackId, playlistId, user){
+        
+        return spotifyLogic.getTrack(trackId).then(data =>{
+
+            let track = Track.createTrackFromData(data)
+            return track
+        })
+        .then(track => {
+            
+            let playList = user.playLists.find(playList => playList.id === playlistId)
+            playList.tracks.push(track)
+            const session = this.getSessionFromStorage()
+            return this.updateUser(session.id, session.token, user).then(res => res)
+        })
+
+    },
+
     registerUser(name, surname, email, username, password) {
        
         let user = new User()
@@ -115,6 +137,11 @@ const userService = {
             })
     },
 
+    getUserFromData(data){
+
+        return User.createUserFromData(data)
+    },
+
     updateUser(id, token, user){
         
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${id}`, {
@@ -135,6 +162,15 @@ const userService = {
             })
     },
 
+    existsTrackInPlayList(data, trackId){
+
+        let user = new User();
+        for(let p in data){
+
+            user[p] = data[p]
+        } 
+        return user.existsTrackInPlayList(trackId)
+    },
 
     authenticateUser(username, password){
 
