@@ -148,7 +148,7 @@ class Movie extends Component {
 
                         {!!this.state.genres && this.state.genres.map((genres) => {
                             return <div>
-                                <GenresTags id={genres.id} name={genres.name} />
+                                <GenresTags id={genres.id} name={genres.name} handleMovieCardQuery={this.props.handleMovieCardQuery} />
                             </div>
                         })}
 

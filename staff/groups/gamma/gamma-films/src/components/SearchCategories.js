@@ -33,9 +33,11 @@ class SearchCategories extends Component {
         return <div className="contain">
          <SearchBar />
          <ButtonBar/>
+
         <div className="row">
         <h4>Category selected:</h4>
             <div className="row__inner">
+
                 {this.state.movies.map((film) => { return <Card title={film.title} description={film.overview} release={film.release_date} imgRoute={film.poster_path} id={film.id} key={film.id} onCardClick={this.handleCardClick} />
                     
                 })}
