@@ -167,6 +167,31 @@ const logic = {
             return this._favouritesEventsArray = res.data.favouritesEventsArray || []
             })
     },
+
+
+    isFavourite(id) {
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`
+            }
+            })
+        .then(res => res.json())
+        .then(res => {
+            if (res.error) throw Error(res.error)
+
+            this._favouritesEventsArray = res.data.favouritesEventsArray 
+            let result = false
+            this._favouritesEventsArray.forEach(item => {
+
+                if (item.id === id) result = true
+
+                
+            })
+            return result
+        })       
+        
+    },
     
     deleteFavourite(id) {
         var index = this._favouritesEventsArray.findIndex(item => item.id===id)

@@ -4,7 +4,7 @@ a:link {
 
 a:visited {
     text-decoration: none;
-    color: white;
+    color: #880e4f;
 }
 
 .aLink{
@@ -21,8 +21,17 @@ li {
     list-style: none;
 }
 
-.searchForm-container{
-    background-image: url('./images/all.jpg');
+Input {
+    /* color: white !important; */
+    background-color: white !important;
+    opacity: 0.7;
+}
+
+Input  > label {
+    color: white;
+}
+ .searchForm-container-all{
+    background-image: url('./images/all.jpg'); 
     opacity: 0.8;
     background-repeat: no-repeat;
     height: 500px;
@@ -30,7 +39,29 @@ li {
     margin: 0 auto;
     padding-top: 100px;
     margin-top: 50px;
-}
+} 
+
+.searchForm-container-music{
+    background-image: url('./images/music.jpg'); 
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 100px;
+    margin-top: 50px;
+} 
+
+.searchForm-container-sport{
+    background-image: url('./images/sport.jpg'); 
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 100px;
+    margin-top: 50px;
+} 
 
 
 .container-search {
@@ -45,13 +76,16 @@ li {
 }
 
 .container-landing-left {
-    
-    background-image: url("./images/landing-image.png");
-    width: 50%;
-    height: 580px;
-    background-color: #880e4f;
-    text-align: center;
-}
+        background-image: url("./images/landing-image.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        width: 50%;
+        height: 100vh;
+        background-color: #880e4f;
+        text-align: center;
+     }
+
 
 .container-landing-left-claim {
     margin-top: 40%;
@@ -116,6 +150,15 @@ ul {
     .landing-title {
         font-size: 3em;
     }
+
+    .eventInfo-body {
+        flex-direction: column;
+        /* align-content: center; */
+        align-items: center;
+    }
+
+
+
     
 }
 
@@ -279,6 +322,54 @@ ul {
 
 }
 
-.fas .fa-star  {
-    color: yellow;
+#back-btn {
+    color: black;
+    margin-left: 10px;
+    border: 1px solid black;
+    padding: 10px;
+
+}
+.eventInfo-container {
+    margin: 0;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+}
+
+.eventInfo-image {
+    
+    width: 100%;
+    margin-bottom: 30px;
+  
+
+}
+
+.eventInfo-title {
+    margin: 30px 0px;
+    color:  #880e4f;
+}
+
+.eventInfo-body {
+    display: flex;
+    padding-bottom: 80px;
+}
+
+ .eventInfo-body__eventInfo {
+    padding-top: 30px;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+} 
+
+.card-body__googleMaps {
+    width: 80%;
+}
+
+.dropdown {
+    color: #880e4f;
+}
+
+.eventInfo-title {
+    font-weight: bold;
 }

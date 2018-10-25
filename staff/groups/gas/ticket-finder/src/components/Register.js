@@ -51,7 +51,7 @@ class Register extends Component {
             <Input type="password" label="Password" onChange={this.handlePasswordChange} />
             <Input type="password" label="Repeat Password" onChange={this.handleRepeatPasswordChange} />
             <div className="button-container">
-            <Button color="unique" type="submit">Register</Button> 
+            <Button color="unique" type="submit">Register</Button> <a id="back-btn" href="#" onClick={this.props.onGoBack}>Back</a>
             </div>
             {/* <a href="#" onClick={this.props.onGoBack}>back</a> */}
         </form>

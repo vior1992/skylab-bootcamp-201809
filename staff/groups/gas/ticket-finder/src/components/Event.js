@@ -9,6 +9,13 @@ class Event extends Component {
         favouriteSelected: false,
         error: null,
     }
+
+    componentDidMount() {
+        // debugger
+
+         logic.isFavourite(this.props.eventId)        
+        .then(res => this.setState ({ favouriteSelected:res }))
+    }
     
     handleSearchEvent = e => {
         e.preventDefault()

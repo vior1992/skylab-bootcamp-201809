@@ -31,7 +31,7 @@ class Login extends Component {
             <Input label="Password" type="password" onChange={this.handlePasswordChange} />
             {/* <button type="submit">Login</button> <a href="/#/">back</a> */}
             <div className="button-container">
-            <Button color="unique" type="submit">Login</Button> <a href="#" onClick={this.props.onGoBack}>back</a>
+            <Button color="unique" type="submit">Login</Button> <a id="back-btn" href="#" onClick={this.props.onGoBack}>Back</a>
             </div>
         </form>
         </div>
