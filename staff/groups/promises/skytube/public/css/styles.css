@@ -72,7 +72,23 @@ body .header {
   grid-template-columns: 60% 40%;
   margin: 2rem 0;
 }
-body .header .signup {
+body .header__hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem;
+}
+body .header__title {
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: 64px;
+  font-weight: 500;
+}
+body .header__text {
+  margin: 0;
+  font-size: 20px;
+}
+body .signup {
   grid-column: 2;
   display: flex;
   flex-direction: column;
@@ -470,6 +486,10 @@ body .form__button {
   background-color: #2ebcc3;
   border-radius: 5px;
   text-transform: capitalize;
+  transition: all 0.1s linear;
+}
+body .form__button:hover {
+  background-color: #1f8085;
 }
 body .form__return {
   align-self: flex-end;
