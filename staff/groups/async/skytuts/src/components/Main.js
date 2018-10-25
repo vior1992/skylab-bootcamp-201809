@@ -50,11 +50,11 @@ class Main extends Component {
         const data = JSON.parse(sessionStorage.getItem('courses'))
         if (data) {
             this.setState({ 
-                courses: data.courses || [],
+                courses: data.courses.slice(0, 6) || [],
                 tracks: data.tracks || [],
             })
         } else {
-            this.listCourses();
+            this.listCourses().slice(0, 6);
         }
         
     }
