@@ -166,6 +166,12 @@ body .home .sidenav__item {
   padding: 0.5rem 0 0.5rem 3rem;
   line-height: 24px;
 }
+body .home .sidenav__item--active {
+  background-color: #363636;
+}
+body .home .sidenav__item--active .sidenav__icon {
+  color: #2ebcc3;
+}
 body .home .sidenav__item:hover {
   background-color: #484848;
   cursor: pointer;
