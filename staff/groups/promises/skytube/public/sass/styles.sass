@@ -82,11 +82,11 @@ body
             font-size: 14px
             margin: 0px    
 
-        .container
-            display: flex
-            justify-content: flex-start
-            flex-direction: row
-            align-items: center
+        // .container
+        //     display: flex
+        //     justify-content: flex-start
+        //     flex-direction: row
+        //     align-items: center
         
     .signup
 
@@ -115,11 +115,7 @@ body
             background-color: $color-cloud
             width: 95%
             border-radius: 5px
-            text-transform: capitalize
-        &__error
-            @extend %error
-            margin-right: 250px
-            
+            text-transform: capitalize 
 
     .login
         display: flex
@@ -496,12 +492,16 @@ body
                     margin: 0
                     font-size: 20px
 
-       
     .error
         @extend %error
         margin: 10px auto
         display: block
-
+        &__passwords
+            margin-right: 10px
+        &__signup
+            margin-right: -540px
+        
+            
 .video-list
     display: flex
     margin: 1%

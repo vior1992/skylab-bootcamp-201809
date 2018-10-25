@@ -32,7 +32,7 @@ class LogIn extends Component {
                 <h4 className = "login__label" >Username</h4>
                 <input className = "login__input" placeholder='Username' onChange={this.handleUsernameChange}/>
                 <h4 className = "login__label" >Password</h4>
-                <input className = "login__input" type='assword' placeholder='Password' onChange={this.handlePasswordChange}/>
+                <input className = "login__input" type='password' placeholder='Password' onChange={this.handlePasswordChange}/>
                 <button className = "login__button" type='submit'>Log In</button>
                 <Link className = "login__return" to='/'>Return</Link>
             </form>

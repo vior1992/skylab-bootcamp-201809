@@ -15,7 +15,7 @@ body .home .profile__content, body .home .main .player-footer .playlists__conten
   display: none;
   z-index: 1000; }
 
-body .signup__error, body .error {
+body .error {
   color: red;
   background-color: #454545;
   width: 250px;
@@ -86,20 +86,6 @@ body {
     body .landing h4 {
       font-size: 14px;
       margin: 0px; }
-    body .landing .container {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: start;
-          -ms-flex-pack: start;
-              justify-content: flex-start;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: row;
-              flex-direction: row;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center; }
   body .signup__formulary {
     display: block;
     background-color: #454545;
@@ -123,8 +109,6 @@ body {
     width: 95%;
     border-radius: 5px;
     text-transform: capitalize; }
-  body .signup__error {
-    margin-right: 250px; }
   body .login {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -523,6 +507,10 @@ body {
   body .error {
     margin: 10px auto;
     display: block; }
+    body .error__passwords {
+      margin-right: 10px; }
+    body .error__signup {
+      margin-right: -540px; }
 
 .video-list {
   display: -webkit-box;
