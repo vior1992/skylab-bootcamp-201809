@@ -26,7 +26,7 @@ class App extends Component {
         if (this.props.location.pathname === '/home' || this.props.location.pathname === '/login') {
             logic.getMostPopular()
                 .then(populars => this.setState({populars}))
-                .catch(error => console.error(error))
+                .catch(err => console.log(err.message))
         }
     }
 
@@ -52,7 +52,7 @@ class App extends Component {
                         auth_info: info
                     })
                 })
-                .catch(err => {this.setState({error: "Incorrect username or password"})})
+                .catch(res => {this.setState({error: "Incorrect username or password"})})
 		} catch (err) {
             this.setState({error: err.message})
 		}
