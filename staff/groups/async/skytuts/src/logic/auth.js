@@ -70,7 +70,8 @@ const logicAuth = {
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
-                this._faves = res.faves
+                this._faves = res.data.faves
+                if (!this._faves) this._faves = []
                 sessionStorage.setItem('faves', JSON.stringify(this._faves))
                 sessionStorage.setItem('user', JSON.stringify(res))
             })

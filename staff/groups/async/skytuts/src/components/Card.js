@@ -21,7 +21,9 @@ class Card extends Component {
             short_summary: 'No Summary Available',
             summary: 'No Description Available',
         }
+
         const difficulty = {
+
             beginner: course.level === 'beginner',
             intermediate: course.level === 'intermediate',
             advanced: course.level === 'advanced'
