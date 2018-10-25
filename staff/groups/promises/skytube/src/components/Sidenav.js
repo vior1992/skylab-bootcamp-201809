@@ -27,13 +27,13 @@ class Sidenav extends Component {
                         <li {...this.checkActive('/home', this.props.onClickHome)}><span className="sidenav__icon fas fa-home"></span>Home</li>
                         <li {...this.checkActive('/home/favourites', this.props.onClickFavourites)}><span className="sidenav__icon fas fa-star"></span>Favourites</li>
                         <li {...this.checkActive('/home/history', this.props.onClickHistory)}><span className="sidenav__icon fas fa-history"></span>History</li>
+                        <li {...this.checkActive('/home/watch_later', this.props.onClickWatchLater)}><span className="sidenav__icon fas fa-clock"></span>Watch Later</li>                    
                     </ul>
                 </nav>
 
                 <nav>
                     <h2 className="sidenav__title">Playlists</h2>
                     <ul className="sidenav__menu">
-                        <li {...this.checkActive('watch_later', this.props.onClickWatchLater)}><span className="sidenav__icon fas fa-clock"></span>Watch Later</li>
                         {this.props.playlists && this.props.playlists.length > 0 && (
                             this.props.playlists.map(playlist => {
                                 return <li key={playlist.id}  {...this.checkActive('/home/playlist/'+playlist.id, () => this.props.onClickPlaylist(playlist.id))}>

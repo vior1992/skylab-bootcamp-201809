@@ -321,12 +321,12 @@ body .home .main .videolist .video__title {
   font-size: 14px;
 }
 body .home .main .player {
-  width: 576px;
-  margin: 1rem auto 0;
+  width: 720px;
+  margin: 10vh auto 0;
 }
 body .home .main .player__video iframe {
   width: 100%;
-  height: 324px;
+  height: 405px;
 }
 body .home .main .player-footer {
   display: flex;
@@ -361,6 +361,7 @@ body .home .main .player-footer .playlists__title {
   border-bottom: 1px solid #666;
 }
 body .home .main .player-footer .playlists__content {
+  bottom: 100%;
   width: 240px;
   background-color: #242424;
   font-size: 14px;
