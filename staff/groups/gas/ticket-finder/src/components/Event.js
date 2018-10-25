@@ -7,7 +7,9 @@ import EventInfo from './EventInfo'
 class Event extends Component {
     state ={
         favouriteSelected: false,
-        error: null
+        error: null,
+        // classEmpty: 'far fa-star',
+        // classFull: 'fas fa-star'
     }
     
     handleSearchEvent = e => {
@@ -23,6 +25,8 @@ class Event extends Component {
         logic.storeFavourites(this.props.eventId)
 
         this.setState({favouriteSelected: !this.state.favouriteSelected})
+
+
     }
 
     handleDeleteFavourites = (e) => {
@@ -68,8 +72,8 @@ class Event extends Component {
 
                     <p className="card-link"><a target="blank" href= {this.props.eventUrl }>Get tickets</a></p>
 
-                   <a href="#" className="favourites-btn" onClick={this.state.favouriteSelected ? this.handleDeleteFavourites : this.storeFavourites}><i className="fas fa-star">  {this.state.favouriteSelected ? <span>Added to favourites</span>: <span>Add to favourites</span>}</i></a>
-                   
+                   <a href="#" className="favourites-btn" onClick={this.state.favouriteSelected ? this.handleDeleteFavourites : this.storeFavourites}><i className={this.state.favouriteSelected ? 'fas fa-star' : 'far fa-star' }>  {this.state.favouriteSelected ? <span>Added to favourites</span>: <span>Add to favourites</span>}</i></a>
+
                     </div>
                 </div>
                 </div> 

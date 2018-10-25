@@ -28,7 +28,7 @@ class EventInfo extends Component {
 
     return <div className="card">
 
-            <img className="card-img-top" src={eventInfoArray.images && eventInfoArray.images[9].url} alt="Card cap" />
+            <img className="card-img-top" src={this.props.images && this.props.images[9].url} alt="Card cap" />
 
                 <div className="card-body">
 
@@ -44,7 +44,7 @@ class EventInfo extends Component {
                     <p className="card-text"><a target="blank" href= {eventInfoArray.url}>Get tickets</a></p>
 
                     {<iframe width="100%" height="450" frameBorder="0"  src={"https://www.google.com/maps/embed/v1/view?key=AIzaSyCk3qtl1MWipyqiAvMNKewzEjZbD-zrw7A&center=" + (eventInfoArray._embedded && eventInfoArray._embedded.venues[0].location.latitude) + "," + (eventInfoArray._embedded && eventInfoArray._embedded.venues[0].location.longitude) + "&zoom=16&maptype=roadmap"} />}
-                    
+
                 </div>
         </div>
     }
