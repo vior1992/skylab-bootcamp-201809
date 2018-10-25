@@ -11,7 +11,6 @@ import CategoryFamily from './CategoryFamily'
 import SearchBar from './SearchBar'
 import ButtonBar from './ButtonBar'
 import MyFavourites from './MyFavourites'
-import SearchBar from './SearchBar';
 import NowPlaying from './NowPlaying'
 
 
