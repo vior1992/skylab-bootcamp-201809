@@ -50,14 +50,14 @@ class SignUp extends Component {
             this.props.onSubmit(name, surname, username, email, password)
             this.setState({ wrongRepPas: false})
 
-        } else {  //TODO shall we put this in the logic??
+        } else { 
             this.setState({ wrongRepPas: true})
         }
     }
 
     render() {
         return <div className='signup'>
-            <Error error={this.props.error}/>
+            <Error className = "signup__error" error={this.props.error}/>
             <form className='signup__formulary' onSubmit={this.handleSubmit}>
                 <h4>Name</h4>
                 <input className='signup__input' placeholder='Introduce your name' onChange={this.handleNameChange}/>

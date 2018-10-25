@@ -18,6 +18,16 @@ body .home .main .player-footer .playlists__content, body .home .profile__conten
   z-index: 1000;
 }
 
+body .error, body .signup__error {
+  color: red;
+  background-color: #454545;
+  width: 250px;
+  height: 10px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 30px 20px 30px;
+}
+
 body {
   margin: 0;
   font-family: Roboto, Arial, sans-serif;
@@ -65,11 +75,11 @@ body .landing__button--separator {
   font-size: 16px;
   color: #23CCDD;
 }
-body h4 {
+body .landing h4 {
   font-size: 14px;
   margin: 0px;
 }
-body .container {
+body .landing .container {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
@@ -100,6 +110,9 @@ body .signup__button {
   width: 95%;
   border-radius: 5px;
   text-transform: capitalize;
+}
+body .signup__error {
+  margin-right: 250px;
 }
 body .login {
   display: flex;
@@ -498,15 +511,8 @@ body .home .main .video__title {
   font-size: 20px;
 }
 body .error {
-  color: red;
+  margin: 10px auto;
   display: block;
-  background-color: #454545;
-  width: 250px;
-  height: 10px;
-  margin: 0 auto 1rem;
-  padding: 10px 30px 20px 30px;
-  border-radius: 10px;
-  text-align: center;
 }
 
 .video-list {
