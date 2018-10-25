@@ -5,11 +5,14 @@ import User from '../../datalayer/user'
 
 export default class Register extends Component{
 
+    state = {registerMessage:""}
 
-    constructor(props){
-        super(props)
+    componentWillReceiveProps(props){
+
+        this.setState({registerMessage:props.registerMessage})
+ 
     }
-
+    
     state = { name: '', surname: '', email: '', username: '', password: '' }
 
     handleNameChange = event => {
@@ -73,6 +76,7 @@ export default class Register extends Component{
                     </div>
                     <button type="submit" className="btn btn-primary">Register</button>
                     <button onClick={this.props.onClickLogin} type="button" className="btn btn-primary">Login</button>
+                    <h3>{this.state.registerMessage}</h3>
                 </form>
 
            
