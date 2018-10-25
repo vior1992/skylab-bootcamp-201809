@@ -23,8 +23,6 @@ class Sidebar extends Component {
         } catch (err) {
             this.setState({ error: err.message })
         }
-
-        console.log(this.state.movies)
     }
 
     getPopularMovies = this.getPopularMovies.bind(this)
@@ -40,8 +38,6 @@ class Sidebar extends Component {
         } catch (err) {
             this.setState({ error: err.message })
         }
-
-        console.log(this.state.movies)
     }
 
     getNowPlaying = this.getNowPlaying.bind(this)
@@ -57,8 +53,6 @@ class Sidebar extends Component {
         } catch (err) {
             this.setState({ error: err.message })
         }
-
-        console.log(this.state.movies)
     }
 
     render() {
