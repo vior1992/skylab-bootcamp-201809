@@ -151,6 +151,23 @@ const logic = {
             })
     },
 
+    searcNowPlaying() {
+
+        return fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+
+                if (res === 'undefined') throw Error(res.error)
+
+                return res.results;
+            })
+    },
+
     searchMoviesByCategories(genres) {
 
         if (typeof genres !== 'string') throw TypeError(`${genres} is not a string`)
