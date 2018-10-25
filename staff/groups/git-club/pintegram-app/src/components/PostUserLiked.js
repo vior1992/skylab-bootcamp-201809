@@ -17,10 +17,15 @@ class PostUserLiked extends Component {
         this.setState({ like: true })
     }
 
+    handleDelete = event => {
+        event.preventDefault()
+        this.props.onDeleteLike(this.state.postId)
+    }
+
     render() {
         return <section className="gallery__user">
             <img className="user__img" src={this.state.url}></img>
-            <div className="user__likes"><i className="fas fa-heart icon"></i>{this.state.likes}</div>
+            <div className="user__likes-user"><i className="fas fa-heart icon"></i>{this.state.likes} <i onClick={this.handleDelete} className="fas fa-trash icon__trash"></i></div>
 
         </section>
     }

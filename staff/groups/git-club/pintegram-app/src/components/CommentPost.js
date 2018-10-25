@@ -12,7 +12,7 @@ class commentPost extends Component {
 
     render() {
         return <div className="comment__post">
-                <p><span className='comment__post-bold'>{this.state.username}</span> {this.props.content}</p>   
+                <p className="comment__post-left" ><span className='comment__post-bold'>{this.state.username}</span> {this.props.content}</p>   
             </div>
     }
 }

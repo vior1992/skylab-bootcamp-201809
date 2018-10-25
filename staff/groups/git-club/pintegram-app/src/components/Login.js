@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import logo from '../icon1.png'
 
 class Login extends Component {
     state = { username: '', password: '' }
@@ -28,7 +29,7 @@ class Login extends Component {
         <div className="landing__page">
         <div className="group__login">
         <div className="login__center">
-        <h1 className="login__header">Login</h1> 
+        <div className="logo-l"><img className="logo__img-l" src={logo}></img> </div> 
         <form className = "login__form" onSubmit={this.handleSubmit}>
             <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
             <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logic from '../logic'
+import logo from '../icon1.png'
 
 class AddPost extends Component {
     state = { img: null, text: null}
@@ -15,16 +15,13 @@ class AddPost extends Component {
     }
 
     uploadWidget =() => {
-
-        let _this= this
-
         let widget = window.cloudinary.openUploadWidget({ cloud_name: 'skylabcoders', upload_preset: 'wqmshx2h', tags:['pintegram']},
-            function(error, result) {
+            (error, result) => {
                
                 if (result.event === "success") {
                     const img = result.info.secure_url
 
-                    _this.setState({ img })
+                    this.setState({ img })
                     
                     widget.close()
                 }
@@ -43,8 +40,9 @@ class AddPost extends Component {
 
     render() {
         return <div className="div-home">
-            <nav className="nav"><h1 onClick={this.props.onGoBack}>Pintegram App</h1>
+            <nav className="nav"><div className="logo"><img className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoBack} className="title">Pintegram</h1></div>
             <div className="menu">
+                <i onClick={this.props.onSearch} className="menu__button fas fa-search"></i>
                 <i className="menu__button fas fa-upload"></i>
                 <i onClick={this.props.onProfile} className="menu__button fas fa-user"></i>
                 <i onClick={this.props.onLogout} className="menu__button fas fa-sign-out-alt"></i>
@@ -53,8 +51,9 @@ class AddPost extends Component {
             <div className="upload"> 
                 <div className="upload__center">
                     <div className="group__upload">
+                        <p className="upload__text" >Add image first. Then add text if you want.</p>
                         <img className="post__img" src={this.state.img} ></img>
-                        <textarea defaultValue={this.state.text} onChange={this.handleContentChange}/>
+                        <textarea className = "textarea__post" defaultValue={this.state.text} onChange={this.handleContentChange} placeholder="Text here..."/>
                         <button onClick={this.uploadWidget} className="upload-button">Add Image</button>
                         {this.state.img !== null && <button onClick={this.handlePost} className="upload-button">Post</button>}
                     </div>

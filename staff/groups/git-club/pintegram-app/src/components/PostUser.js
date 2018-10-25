@@ -19,14 +19,13 @@ class PostUser extends Component {
 
     handleDelete = event => {
         event.preventDefault()
-        debugger
         this.props.onDeletePost(this.state.postId)
     }
 
     render() {
         return <section className="gallery__user">
             <div><img className="user__img" src={this.state.url}></img>
-            <div className="user__likes"><i className="fas fa-heart icon"></i>{this.state.likes} <i onClick={this.handleDelete} className="fas fa-trash icon"></i></div>
+            <div className="user__likes-user"><i className="fas fa-heart icon"></i>{this.state.likes} <i onClick={this.handleDelete} className="fas fa-trash icon__trash"></i></div>
             </div>
         </section>
     }

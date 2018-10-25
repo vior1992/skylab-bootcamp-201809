@@ -16,7 +16,7 @@ class AddComment extends Component {
 
     render() {
         return <div className="div__comments">
-            <textarea onChange = {this.handleContentChange} className="comment"/>
+            <textarea onChange = {this.handleContentChange} className="comment"  defaultValue={this.state.content} />
             <button  onClick = {this.handleAdd}>Add Comment</button>
         </div>
     }

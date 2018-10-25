@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PostOtherUser from './PostOtherUser'
+import logo from '../icon1.png'
 
 class OtherProfile extends Component {
     state = { posts: this.props.onInitialize.posts , user: this.props.onInitialize, postsLiked: [], grid: [], liked: false }
@@ -13,9 +14,10 @@ class OtherProfile extends Component {
     }
 
     render() {
-        return <div>
-            <nav className="nav"><h1 onClick={this.props.onGoBack}>Pintegram App</h1>
+        return <div className="div-home">
+            <nav className="nav"> <div className="logo"><img className ="logo__img" src={logo}></img><h1 onClick={this.props.onGoHome} className="title">Pintegram</h1></div>
                 <div className="menu">
+                    <i onClick={this.props.onSearch} className="menu__button fas fa-search"></i>
                     <i onClick={this.props.onPost} className="menu__button fas fa-upload"></i>
                     <i className="menu__button fas fa-user" onClick={this.props.onGoBack}></i>
                     <i onClick={this.props.onLogout} className="menu__button fas fa-sign-out-alt"></i>
@@ -37,10 +39,10 @@ class OtherProfile extends Component {
                 </div>
             </section>
             <div className="gallery">
-                <i onClick={this.handleGallery} className="fas fa-th icon"></i> 
+                <i onClick={this.handleGallery} className="fas fa-th icon icon__profile"></i> 
             </div>
              <section className="gallery">
-                {this.state.posts.map(post => <PostOtherUser key={post.id} id={post.id} url={post.url} text={post.description} onDeletePost={this.handleDeletePost} onUpdatePost={this.handleUpdatePost} />)}
+                {this.state.posts && this.state.posts.map(post => <PostOtherUser key={post.id} id={post.id} url={post.url} text={post.description} />)}
             </section>
         </div>
     }
