@@ -11,6 +11,7 @@ class AddComment extends Component {
 
     handleAdd = event => {
         event.preventDefault()
+        debugger
         this.props.onAddComment(this.state.content)
     }
 

@@ -33,7 +33,7 @@ class Post extends Component {
 
     handleLikePost = () => {
         logic.addLike(this.state.postId)
-        .then(() => this.handleAddLikes)
+        .then(() => this.handleAddLikes())
 
         // logic.addLike(this.state.postId)
         //    .then(logic.likesPost(this.state.postId).then(likes => { this.setState({ likes })}))
@@ -47,7 +47,7 @@ class Post extends Component {
 
     handleAddComment = (content) => {
         logic.addComment(this.state.postId, content)
-        .then(() => this.handleOffComment)
+        .then(() => this.handleOffComment())
     }
 
     handleComment = () => {
