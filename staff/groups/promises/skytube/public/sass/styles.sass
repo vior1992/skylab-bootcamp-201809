@@ -349,11 +349,23 @@ body
 
                 &-footer
                     display: flex
-                    justify-content: flex-end
-                    padding: .5rem
+                    flex-direction: column
+
+                    &__title
+                        margin: .5rem 1rem 0
+
+                    &__buttons
+                        display: flex
+                        justify-content: flex-end
+                        align-items: center
 
                     &__button
                         @extend %button
+                        font-size: 24px
+                        &--text
+                            font-size: 16px
+                        &--active
+                            color: $color-primary
 
                     .playlists
                         position: relative

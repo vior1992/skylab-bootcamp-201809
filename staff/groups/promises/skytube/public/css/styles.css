@@ -344,8 +344,24 @@ body .home .main .player__video iframe {
 }
 body .home .main .player-footer {
   display: flex;
+  flex-direction: column;
+}
+body .home .main .player-footer__title {
+  margin: 0.5rem 1rem 0;
+}
+body .home .main .player-footer__buttons {
+  display: flex;
   justify-content: flex-end;
-  padding: 0.5rem;
+  align-items: center;
+}
+body .home .main .player-footer__button {
+  font-size: 24px;
+}
+body .home .main .player-footer__button--text {
+  font-size: 16px;
+}
+body .home .main .player-footer__button--active {
+  color: #2ebcc3;
 }
 body .home .main .player-footer .playlists {
   position: relative;
