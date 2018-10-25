@@ -45,13 +45,20 @@ class Movie extends Component {
         }
     }
 
-    handleFav = () => {
-
+    handleAddFav = () => {
         this.setState({ flagController: true })
         logic.listFavourites(this.props.id)
             .then(res => {
                 logic.updateFavourites(res, this.props.id, this.state.thePoster )
-                    .then(res => res)
+                    .then(()=>this.favButtonController())
+            })
+    }
+
+    handleRemoveFav = () => {
+        this.setState({ flagController: true })
+        logic.listFavourites(this.props.id)
+            .then(res => {
+                logic.removeFavourites(res, this.props.id, this.state.thePoster )
                     .then(()=>this.favButtonController())
             })
     }
@@ -67,7 +74,7 @@ class Movie extends Component {
                     .then(res => listFav = res)
                     .then(() => {
                         const showFavButton = listFav.find(F =>F.id === id)
-                        debugger
+                
                         this.setState({ showFavButton })
                         this.setState({ flagController: false })
                     })
@@ -101,8 +108,8 @@ class Movie extends Component {
                         <li>Action</li>
                     </ul>
                     <div className='card_right__rating'>
-                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button type="button" onClick={this.handleFav} > Add to favorites </button>}
-                        {this.props.isLoggedIn && !!this.state.showFavButton && <button type="button" onClick={this.handleFav} > Remove from favorites </button>}
+                        {this.props.isLoggedIn && !!!this.state.showFavButton && <button type="button" onClick={this.handleAddFav} > Add to favorites </button>}
+                        {this.props.isLoggedIn && !!this.state.showFavButton && <button type="button" onClick={this.handleRemoveFav} > Remove from favorites </button>}
                     </div>
 
                     <div className='card_right__review'>

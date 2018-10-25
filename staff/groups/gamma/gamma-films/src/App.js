@@ -14,7 +14,8 @@ class App extends Component {
 
     state = {
         loggedIn: false,
-        user: ''
+        name: sessionStorage.getItem('user.name') || '',
+        user:''
     }
     componentDidMount = () => {
         this.props.history.push('/')
@@ -34,7 +35,11 @@ class App extends Component {
     getUser() {
         try {
             logic.retrieveUser()
-                .then(user => { this.setState({ user }) })
+                .then(user => { 
+                    this.setState({ user }) 
+                    return user
+                })
+                .then(user => sessionStorage.setItem('user.name', user.name))
         } catch (err) {
             if (err.message) throw Error(err.message)
         }
@@ -62,7 +67,7 @@ class App extends Component {
     render() {
 
         return <div className="body">
-            <Route path="/" render={() => <Navbar onLogoClick={this.handleLogoClick} onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick} />} />
+            <Route path="/" render={() => <Navbar onLogoClick={this.handleLogoClick} onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} isLoggedIn={this.state.loggedIn} onLogoutClick={this.handleLogoutClick} name={this.state.name}/>} />
 
             <Route path="/register" render={() => !logic.loggedIn ? <Register history={this.props.history} /> : <Redirect to="/" />} />
 

@@ -1,7 +1,7 @@
 import data from "./data"
 // const data = require('./data')
 
-const { User } = data
+const { User, MovieInfo } = data
 
 const logic = {
 
@@ -210,33 +210,29 @@ const logic = {
     },
 
     updateFavourites(fav, id, image) {
-        debugger
-        let exist = ''
 
-        //fav is a unique object?
-        if (fav.id) {
-            //fav contains id? then remove it
-            if (fav.id === id) { 
-                fav.id='null'
-                fav.urlImage='null'}
-            //if fav does not contain id then push it
-            else{
-                debugger
-                let Fav = { id: null, urlImage: image }
-                fav.push(Fav)
-                exist =false
-            }
-        } else {
-            exist = fav.find(f => f._id === id)
-        }
-        if (exist) {
-            let Fav = { id: null, urlImage: image }
-            fav = Fav
-        } else {
-            fav = fav.filter(f => f.id === id)
-            fav.id = id
-            fav.urlImage = image
-        }
+        const _fav = new MovieInfo(id, image)
+        fav.push(_fav)
+
+        return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${this._token}`
+            },
+            body: JSON.stringify({ Fav: fav })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return true
+            })
+    },
+
+    removeFavourites(fav, id, image) {
+
+        fav=fav.filter(favourite=> favourite.id!==id)
 
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'PUT',

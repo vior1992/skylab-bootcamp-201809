@@ -13,9 +13,9 @@ class User {
 }
 
 class MovieInfo {
-    constructor(id){
+    constructor(id, image){
         this.id = id
-        this.key = Date.now()
+        this.urlImage = image
     } 
 }
 
