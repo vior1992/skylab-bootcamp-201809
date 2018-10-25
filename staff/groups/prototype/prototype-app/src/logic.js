@@ -306,9 +306,8 @@ const logic = {
         if (response.error) throw Error(response.error)
       })
   },
-
   
-  Data(data) {
+  updateUserData(data) {
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -327,7 +326,7 @@ const logic = {
   },
 
   checkInList(id, list) {
-    if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+    if (typeof id !== 'string' && typeof id !== 'number') throw TypeError(`${id} is not a string or a number`)
     if (typeof list !== 'string') throw TypeError(`${list} is not a string`)
 
     if (!id.trim()) throw Error('id is empty or blank')
