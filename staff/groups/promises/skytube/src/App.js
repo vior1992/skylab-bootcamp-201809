@@ -75,6 +75,11 @@ class App extends Component {
             .catch(error => console.error(error))
     }
 
+    handlePlayWatchLater = video => {
+        this.handleVideoClick(video)
+        logic.removeWatchLater(video.id)
+    }
+
     handleNewFavourite = video => {
         logic.addFavourite(video)
         this.setState({auth_info: logic.authInfo()})
@@ -145,7 +150,7 @@ class App extends Component {
                 <Route path='/home/player' render={() => <Player video={this.state.current_video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
                 <Route path='/home/favourites' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getFavourites()} />} />
                 <Route path='/home/history' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getHistory()} />} />
-                <Route path='/home/watch_later' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getWatchLater()} />} />
+                <Route path='/home/watch_later' render={props => <Playlist onVideoClick={this.handlePlayWatchLater} playlist={logic.getWatchLater()} />} />
                 <Route path='/home/playlist/:id' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getPlaylist(props.match.params.id)} />} />
             </main>
         </div>

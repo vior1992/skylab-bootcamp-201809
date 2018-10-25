@@ -149,6 +149,12 @@ const logic = {
         this.skylab.update({watch_later: this.watch_later.all()}, this.auth.id, this.auth.token)
     },
 
+    removeWatchLater(video_id) {
+        let video = this.watch_later.get(video_id)
+        video.delete()
+        this.skylab.update({watch_later: this.watch_later.all()}, this.auth.id, this.auth.token)
+    },
+
     addPlaylist(title) {
         this.playlists.newEntity({
             title: title
