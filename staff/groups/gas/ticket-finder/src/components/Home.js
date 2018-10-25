@@ -3,8 +3,7 @@ import logic from '../logic'
 import SearchForm from './SearchForm'
 import Event from './Event'
 import Error from './Error'
-import EventInfo from './EventInfo'
-import { Route, withRouter } from 'react-router-dom'
+import { Redirect, Route, withRouter } from 'react-router-dom'
 import video from './video.mp4'
 import SearchResults from './SearchResults'
 
@@ -15,50 +14,69 @@ class Home extends Component {
         eventInfoArray: [],
         favouriteEvents: [],
         searchFlag: true,
-        videoFlag: true
+        dropwdown: 'all'
     }
 
     componentDidMount() {
-        logic.showEvents()
-            .then(events => this.setState({ carousel: events }))
-            .catch(err => this.setState({ error: err }))
 
-            
+        logic.showEvents()
+
+            .then(events => this.setState({ carousel: events }))
+
+            .catch(err => this.setState({ error: err }))            
     }
 
     handleSubmit = query => {
-        this.setState({ error: null, searchFlag: true, videoFlag: false }, () => this.props.history.push(`/home/search/${query}`))
+
+        this.setState({ error: null, searchFlag: false}, () => this.props.history.push(`/home/search/${query}`))
     }
 
+    findBestImage = (arr) => {
+        let placeHolder = []
 
-    handleHideCarousel = () => {
-        this.setState({videoFlag:false, searchFlag: false})
+        arr.images.forEach(el=> placeHolder.push(el.width))
+
+        return placeHolder.indexOf(Math.max(...placeHolder));
     }
 
+    handleDropDown = value => {
+        this.setState({dropwdown : value})
+    }
 
     render() {
         const { error } = this.state
         return <div>
 
-            {this.state.searchFlag && <SearchForm onSubmit={this.handleSubmit}/>}
+            {<SearchForm onSubmit={this.handleSubmit} onDropDownChange={this.handleDropDown} />}
+
             {error && <Error message={error} />}
 
-            <Route path="/home/search/:query" render={props => <SearchResults query={props.match.params.query} />} />
-            <Route path="/home/events/:id" render={props => <EventInfo id={props.match.params.id} />} />
-            {this.state.videoFlag && <section>
+            <Route path="/home/search/:query" render={props => <SearchResults filter={this.state.dropwdown} query={props.match.params.query} />} /> 
+
+
+            {this.state.searchFlag && <section>
+
                 <div className="video-container">
                     <video width="1920px" autoPlay muted loop src={video}></video>
                 </div>
+
             </section>}
 
 
-            {this.state.videoFlag && <section>
+            {this.state.searchFlag && <section>
+
                 <div className="index-content">
+
                     <div className="container-carousel">
-                        {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[9].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventUrl={event.url} eventId={event.id} eventDate={event.dates.start.localDate} eventSearch={this.addToEventInfoArray} favourites={this.props.favourites} hideCarousel={this.handleHideCarousel} />)}
+
+                        {this.state.carousel.map(event => <Event key={event.id} eventImgUrl={event.images[this.findBestImage(event)].url} eventName={event.name} eventCity={event._embedded.venues[0].city.name} eventUrl={event.url} eventId={event.id} eventDate={event.dates.start.localDate} eventSearch={this.addToEventInfoArray} favourites={this.props.favourites} />)}
+
                     </div>
+
                 </div>
+
             </section>}
+
         </div>
     }
 }

@@ -5,10 +5,10 @@ import Error from './components/Error'
 import Landing from './components/Landing'
 import Home from './components/Home'
 import logic from './logic'
-import Profile from './components/Profile'
 import Favourites from './components/Favourites'
 import NavbarComponent from './components/NavbarComponent'
 import { Route, withRouter, Redirect } from 'react-router-dom'
+import EventInfo from './components/EventInfo'
 
 class App extends Component {
 
@@ -51,11 +51,7 @@ handleLogoutClick = () => {
     this.props.history.push('/')
 }
 
-
 handleGoBack = () => this.props.history.push('/')
-
-
-
 
   render() {
     
@@ -63,16 +59,25 @@ handleGoBack = () => this.props.history.push('/')
 
     return <div>
     {logic.loggedIn && <NavbarComponent onLogout={this.handleLogoutClick}></NavbarComponent>}
-    <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/home" />} />
-    <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
-    <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
-    {error && <Error message={error} />}
-    <Route path="/home" render={() => logic.loggedIn ? <Home favouriteState={this.handleFavouriteState} onLogout={this.handleLogoutClick}  /> : <Redirect to="/" />} />
-    <Route path="/favourites" render={() => logic.loggedIn ? <Favourites deleteFavourite={this.handleDeleteFavourite} favouritesList={this.state.favouritesArray} /> : <Redirect to="/" />} />
 
-    {/* <Route path="/profile" render={() => logic.loggedIn ? <Profile/> : <Redirect to="/" />} /> */}
+    <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/home" />} />
+
+    <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
+
+    <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/home" />} />
+
+    {error && <Error message={error} />}
+
+    <Route path="/home" render={() => logic.loggedIn ? <Home favouriteState={this.handleFavouriteState} onLogout={this.handleLogoutClick}  /> : <Redirect to="/home" />} />
+
+    <Route path="/favourites" render={() => logic.loggedIn ? <Favourites deleteFavourite={this.handleDeleteFavourite} favouritesList={this.state.favouritesArray} /> : <Redirect to="/home" />}
+     />
+    <Route path="/eventinformation" render={() => logic.loggedIn ? <EventInfo/> : <Redirect to="/home" />} />
+
     </div>
   }
 }
 
 export default withRouter(App);
+
+
