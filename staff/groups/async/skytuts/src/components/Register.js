@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { NavLink } from 'react-router-dom'
+import Navbar from './Navbar'
 
 import logicAuth from '../logic/auth'
 
@@ -59,6 +60,8 @@ class Register extends Component {
 
     render() {
         return (
+            <div>
+            <Navbar />
             <div className="register-container">
 
                 <div className="register-title">
@@ -78,11 +81,14 @@ class Register extends Component {
                     <NavLink to="/login">Already have an account? Login here!</NavLink>
                 </div>
                     </form>
+                    
                     {this.state.error &&
-                        <p color="red">{this.state.error}</p>
+                        <div className="register-error-container"><p className="register-error-message">{this.state.error}</p></div>
                     }
+                    
                 
             </div>
+        </div>
         )
     }
 }
