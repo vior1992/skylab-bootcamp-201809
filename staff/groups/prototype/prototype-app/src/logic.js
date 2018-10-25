@@ -125,7 +125,9 @@ const logic = {
       })
   },
 
-  retrieveMovies(query, page) {
+  retrieveMovies(query, page = 1) {
+    if(typeof query !== 'string') throw Error(`${query} is not a valid query`)
+
     const basePath = 'https://api.themoviedb.org/3/search/movie'
 
     return fetch(`${basePath}?api_key=${this._apiKey}&query=${query}&page=${page}`, {
@@ -140,6 +142,9 @@ const logic = {
   },
 
   retrieveMovie(id) {
+    if(typeof id !== 'string') throw Error(`${id} is not a valid movie id`)
+    if(id.trim().length === 0) throw TypeError(`${id} is blank id`)
+
     const basePath = 'https://api.themoviedb.org/3/movie/'
 
     return fetch(`${basePath}${id}?api_key=${this._apiKey}&append_to_response=credits`, {
@@ -180,6 +185,7 @@ const logic = {
 
   addUserSeen(movie) {
     this._user.seen.push(movie)
+
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -198,6 +204,10 @@ const logic = {
   },
 
   updateUserSeen(movies) {
+    if(!(movies instanceof Array)) throw Error(`${movies} is not an array`)
+
+    this._user.seen = movies
+
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -218,6 +228,7 @@ const logic = {
   deleteUserSeen(id) {
     const seen = this._user.seen.filter(movie => movie.id != id)
     this._user.seen = seen
+
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -255,6 +266,9 @@ const logic = {
   },
 
   updateUserPending(movies) {
+    if(!(movies instanceof Array)) throw Error(`${movies} is not an array`)
+
+    this._user.pending = movies
 
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
@@ -292,26 +306,6 @@ const logic = {
         if (response.error) throw Error(response.error)
       })
   },
-
-  // updateUserFavourites(movie) {
-  //   this._userFavourites.push(movie)
-
-  //   const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
-  //   const params = {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${this._user.token}`
-  //     },
-  //     body: JSON.stringify({ movies_favourites: this._userFavourites})
-  //   }
-
-  //   return fetch(endpoint, params)
-  //     .then(response => response.json())
-  //     .then(response => {
-  //       if (response.error) throw Error(response.error)
-  //     })
-  // },
 
   checkMovieStatus(id) {
     let status = undefined
@@ -552,5 +546,5 @@ const logic = {
   }
 }
 
-export default logic
-// module.exports = logic
+// export default logic
+module.exports = logic
