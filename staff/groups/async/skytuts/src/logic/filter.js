@@ -8,8 +8,7 @@ function filterCourses(data = JSON.parse(sessionStorage.getItem('courses'))) {
             return this.byTrack(track).filter(course => course.level === level)
         },
         personalized(query) {
-          
-            const q = query.replace(/[-\/\\^$*+?.()|[\]{}]/ig, '\\$&');
+            const q = query.replace(/[-\\^$*+?.()|[\]{}]/ig, '\\$&');
             return data.courses.filter(course => course.level.match(new RegExp(q, 'i')) || course.title.match(new RegExp(q, 'i'))) 
         },
         all() {
