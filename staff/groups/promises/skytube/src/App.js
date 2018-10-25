@@ -51,15 +51,13 @@ class App extends Component {
                         auth_info: info
                     })
                 })
-<<<<<<< HEAD
                 .catch(err => {this.setState({error: "Incorrect username or password"})})
                 .then(()=> logic.getMostPopular())
                 .then(res => this.setState({mostPopular: res}))
                 .catch(error => console.error(error))
                 .then(()=> logic.getHistory())
                 .then(history=> this.setState({history}))
-=======
->>>>>>> develop
+
                 .catch(error => console.error(error))
 		} catch (err) {
             this.setState({error: err.message})
