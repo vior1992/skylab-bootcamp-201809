@@ -37,6 +37,7 @@ class App extends Component {
             logic.retrieveUser()
                 .then(user => {
                     this.setState({ user })
+                    this.setState({name:user.name})
                     return user
                 })
                 .then(user => sessionStorage.setItem('user.name', user.name))
