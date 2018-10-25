@@ -16,10 +16,16 @@ class App extends Component {
         this.state = {
             error: null,
             auth_info: logic.authInfo(),
-            videoList: logic.video_search,
-            video: logic.current_video,
-            mostPopular: [],
-            history: logic.getHistory
+            video_search: logic.video_search,
+            current_video: logic.current_video,
+            populars: []
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.location.pathname === '/home') {
+            logic.getMostPopular()
+                .then(populars => this.setState({populars}))
         }
     }
 
@@ -45,12 +51,15 @@ class App extends Component {
                         auth_info: info
                     })
                 })
+<<<<<<< HEAD
                 .catch(err => {this.setState({error: "Incorrect username or password"})})
                 .then(()=> logic.getMostPopular())
                 .then(res => this.setState({mostPopular: res}))
                 .catch(error => console.error(error))
                 .then(()=> logic.getHistory())
                 .then(history=> this.setState({history}))
+=======
+>>>>>>> develop
                 .catch(error => console.error(error))
 		} catch (err) {
             this.setState({error: err.message})
@@ -64,19 +73,21 @@ class App extends Component {
     }
 
 	handleSearch = query => {
-		try {logic.search(query)
-			    .then(result => this.setState({videoList: result}, () => this.props.history.push('/home/search')))
-                .catch(error => console.error(error))
-        } catch(err) {
-            this.setState({error: err.message})
-            console.error(this.state.error)
-        }
+		logic.search(query)
+			.then(result => this.setState({video_search: result}, () => this.props.history.push('/home/search')))
+            .catch(error => console.error(error))
 	}
 
 	handleVideoClick = video => {
 		logic.getVideo(video)
-			.then(result => this.setState({video: result}, () => this.props.history.push('/home/player')))
+			.then(result => this.setState({current_video: result}, () => this.props.history.push('/home/player')))
             .catch(error => console.error(error))
+    }
+
+    handlePlayWatchLater = video => {
+        this.handleVideoClick(video)
+        logic.removeWatchLater(video.id)
+        this.setState({auth_info: logic.authInfo()})
     }
 
     handleNewFavourite = video => {
@@ -94,6 +105,16 @@ class App extends Component {
         this.setState({auth_info: logic.authInfo()})
     }
 
+    handleRemovePlaylist = playlist_id => {
+        logic.removePlaylist(playlist_id)
+        this.setState({auth_info: logic.authInfo()}, () => this.props.history.push('/home'))
+    }
+
+    handleUpdatePlaylist = (playlist_id, title) => {
+        logic.updatePlaylist(playlist_id, title)
+        this.setState({auth_info: logic.authInfo()})
+    }
+
     handleAddToPlaylist = (video, playlist_id) => {
         logic.addVideoToPlaylist(video, playlist_id)
         this.setState({auth_info: logic.authInfo()})
@@ -106,12 +127,6 @@ class App extends Component {
 
     handleClickHome = () => {
         this.props.history.push('/home')
-        logic.getMostPopular()
-            .then(res => this.setState({mostPopular: res}))
-            .catch(error => console.error(error))
-            .then(()=> logic.getHistory())
-            .then(history=> this.setState({history}))
-            .catch(error => console.error(error))
     }
 
     handleClickFavourites = () => {
@@ -156,14 +171,14 @@ class App extends Component {
             <Search onSearch={this.handleSearch}/>
             <Profile onLogOut={this.handleLogOut} user={{username:this.state.auth_info.username, name:this.state.auth_info.name+' '+this.state.auth_info.surname, email:this.state.auth_info.email}}/>
             <main className = 'main'>
-                <Route exact path='/home' render={() => <VideoList title ={'Most Popular'} onVideoClick={this.handleVideoClick}  videoList={this.state.mostPopular} />} />
-                <Route exact path='/home' render={() => <VideoList title ={'History'} onVideoClick={this.handleVideoClick}  videoList={this.state.history} />} />
-                <Route path='/home/search' render={() => <VideoList onVideoClick={this.handleVideoClick} videoList={this.state.videoList} />} />
-                <Route path='/home/player' render={() => <Player video={this.state.video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
+                <Route exact path='/home' render={() => <VideoList title="Most Populars" onVideoClick={this.handleVideoClick} videos={this.state.populars} />} />
+                <Route exact path='/home' render={() => <VideoList title="Watch Again" onVideoClick={this.handleVideoClick} videos={logic.getHistory().videos} />} />
+                <Route path='/home/search' render={() => <VideoList title={this.state.search_query} onVideoClick={this.handleVideoClick} videos={this.state.video_search} />} />
+                <Route path='/home/player' render={() => <Player video={this.state.current_video} playlists={this.state.auth_info.playlists} onNewFavourite={this.handleNewFavourite} onNewWatchLater={this.handleNewWatchLater} onNewPlaylist={this.handleNewPlaylist} onAddToPlaylist={this.handleAddToPlaylist} onRemoveFromPlaylist={this.handleRemoveFromPlaylist} />} />
                 <Route path='/home/favourites' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getFavourites()} />} />
                 <Route path='/home/history' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getHistory()} />} />
-                <Route path='/home/watch_later' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getWatchLater()} />} />
-                <Route path='/home/playlist/:id' render={props => <Playlist onVideoClick={this.handleVideoClick} playlist={logic.getPlaylist(props.match.params.id)} />} />
+                <Route path='/home/watch_later' render={props => <Playlist onVideoClick={this.handlePlayWatchLater} playlist={logic.getWatchLater()} />} />
+                <Route path='/home/playlist/:id' render={props => <Playlist onVideoClick={this.handleVideoClick} onRemove={this.handleRemovePlaylist} onUpdate={this.handleUpdatePlaylist} playlist={logic.getPlaylist(props.match.params.id)} />} />
             </main>
         </div>
 	}
