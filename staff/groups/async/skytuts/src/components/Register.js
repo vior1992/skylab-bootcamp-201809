@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { NavLink } from 'react-router-dom'
+import Navbar from './Navbar'
 
 import logicAuth from '../logic/auth'
 
@@ -59,21 +60,35 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="Home" >
-                <h1>Register</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Name" onChange={this.handleNameChange} />
-                    <input type="text" placeholder="Surname" onChange={this.handleSurnameChange} />
-                    <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-                    <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-                    <button type="submit">Register</button>
+            <div>
+            <Navbar />
+            <div className="register-container">
 
+                <div className="register-title">
+                    <h1><b>Register</b></h1>
+                </div>
+
+                
+                    <form className="register-form" onSubmit={this.handleSubmit}>
+                <div className="register-inputs">
+                    <input type="text" placeholder="Name" className="register-input" onChange={this.handleNameChange} />
+                    <input type="text" placeholder="Surname" className="register-input" onChange={this.handleSurnameChange} />
+                    <input type="text" placeholder="Username" className="register-input" onChange={this.handleUsernameChange} />
+                    <input type="password" placeholder="Password" className="register-input" onChange={this.handlePasswordChange} />
+                    <button type="submit" className="register-btn">Register</button>
+                </div>
+                <div className="goto-login">
                     <NavLink to="/login">Already have an account? Login here!</NavLink>
-                </form>
-                {this.state.error &&
-                    <p color="red">{this.state.error}</p>
-                }
+                </div>
+                    </form>
+                    
+                    {this.state.error &&
+                        <div className="register-error-container"><p className="register-error-message">{this.state.error}</p></div>
+                    }
+                    
+                
             </div>
+        </div>
         )
     }
 }

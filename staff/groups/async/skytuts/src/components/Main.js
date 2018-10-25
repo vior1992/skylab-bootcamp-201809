@@ -3,10 +3,11 @@ import React, { Component } from 'react'
 
 import Card from './Card'
 import Navbar from './Navbar'
+import Popup from './Popup'
 
 
 import logicUdacity from '../logic/udacity'
-import filterCourses from '../logic/filter'
+import logicFilter from '../logic/filter'
 
 class Main extends Component {
 
@@ -14,20 +15,24 @@ class Main extends Component {
         courses: [],
         tracks: [],
         track: null,
-        error: null
+        error: null,
+        showPopup: false
     }
 
+    togglePopup = () => {
+        this.setState({showPopup: !this.state.showPopup})
+      } 
 
     filterCoursesByTrack = (track) => {
-        this.setState({ courses: filterCourses().byTrack(track), track })
+        this.setState({ courses: logicFilter.filterCourses().byTrack(track), track })
     }
 
     filterCoursesByLevel = (level) => {
-        this.setState({ courses: filterCourses().byLevel(level, this.state.track) })
+        this.setState({ courses: logicFilter.filterCourses().byLevel(level, this.state.track) })
     }
 
     filterPersonalized = (event) => {
-        this.setState({ courses: filterCourses().personalized(event.target.value) })
+        this.setState({ courses: logicFilter.filterCourses().personalized(event.target.value) })
     }
 
     listCourses = () => {
@@ -51,10 +56,10 @@ class Main extends Component {
         if (data) {
             this.setState({ 
                 courses: data.courses.slice(0, 6) || [],
-                tracks: data.tracks || [],
+                tracks: data.tracks || []
             })
         } else {
-            this.listCourses().slice(0, 6);
+            this.listCourses() /* || this.listCourses().slice(0, 6); */
         }
 
     }
@@ -62,7 +67,9 @@ class Main extends Component {
     render() {
         return (
             <main>
-
+                {this.state.showPopup && 
+                    <Popup text='You need to be logged in to view courses!' closePopup={this.togglePopup}/> 
+                }
                 <div id="search">
                     < Navbar />
                     <input onChange={this.filterPersonalized} type="text" placeholder="Search course..." />

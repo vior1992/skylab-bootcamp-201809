@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import Navbar from './Navbar'
 
 import logicAuth from '../logic/auth'
 
@@ -45,20 +46,30 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="Home">
+        <div>
+            <Navbar />
+            <div className="login-container">
 
-                <h1>Login</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-                    <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-                    <button type="submit">Login</button>
+                <div className="login-title">
+                    <h1>Login</h1>
+                </div>
 
-                    <NavLink to="/register">Don't have an account? Sign up here</NavLink>
-                </form>
-                {this.state.error &&
-                    <p color="red">{this.state.error}</p>
-                }
-            </div>
+                
+                    <form className="login-form" onSubmit={this.handleSubmit}>
+                    <div className="login-inputs">
+                        <input type="text" placeholder="Username" className="login-input" onChange={this.handleUsernameChange} />
+                        <input type="password" placeholder="Password" className="login-input" onChange={this.handlePasswordChange} />
+                        <button type="submit" className="login-btn">Login</button>
+                    </div>
+                    <div className="goto-register">
+                        <NavLink to="/register">Don't have an account? Sign up here</NavLink>
+                    </div>
+                    </form>
+                    {this.state.error &&
+                         <div className="login-error-container"><p className="login-error-message">{this.state.error}</p></div>
+                    }
+            </div>  
+        </div>
         )
     }
 }
