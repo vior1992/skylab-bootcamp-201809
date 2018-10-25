@@ -3,8 +3,8 @@ import Register from '../../register/register'
 import Header from '../../header/header'
 import userService from '../../../services/userlogic'
 import SideTitle from '../../sidetitle/sidetitle'
-import List from '../../list/list';
-import user from '../../../datalayer/user';
+import List from '../../list/list'
+import TopSide from '../topside/topside'
 
 
 export default class BottomSide extends Component {

@@ -1,12 +1,21 @@
 .header{
-    padding: 1em;
+   
+
+    padding: 10px 15px;
     border: 1px solid white;
     border-radius: 5px;
     position: relative;
+    font-size: 35px;
     & .header__logo{
-        & img{
-            width: 30%;
-        }
+        .logo {
+            display: inline-block;
+            color: rgb(255, 193, 7);
+            font-weight: 700;
+       }
+       i {
+        font-size: 50px;
+        color: rgb(255, 193, 7);
+       }
         
     }
     & .header__audio{

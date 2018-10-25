@@ -16,8 +16,7 @@ class App extends Component{
     render(){
     return <div>
             <Route exact path="/" render={() => <Landing onClickEnter = {this.handleClickEnter}></Landing>} />
-            <Route path="/cube" render={() => <Cube></Cube>} />
-            </div>
+            <Route path="/cube" render={() =><div className='bg-app'><div className='bg-albumCover'><Cube></Cube></div></div> } /></div>
     }
 }
 
