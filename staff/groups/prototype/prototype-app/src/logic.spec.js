@@ -109,7 +109,7 @@ describe('logic', () => {
 
             describe('update user seen movies list', () => {
                 it('should update the list of user seen movies', () => {
-                    const movie = {id: '123', name: 'the great film'}
+                    const movie = { id: '123', name: 'the great film' }
                     logic.updateUserSeen(movie)
                         .then(() => {
                             expect(true).to.be.true
@@ -120,7 +120,7 @@ describe('logic', () => {
 
             describe('update user pending movies list', () => {
                 it('should update the list of user seen movies', () => {
-                    const movie = {id: '123', name: 'the great film'}
+                    const movie = { id: '123', name: 'the great film' }
                     logic.updateUserPending(movie)
                         .then(() => {
                             expect(true).to.be.true
@@ -129,42 +129,33 @@ describe('logic', () => {
                 })
             })
 
-            describe('update user favourites movies list', () => {
-                it('should update the list of user seen movies', () => {
-                    const movie = {id: '123', name: 'the great film'}
-                    logic.updateUserFavourites(movie)
-                        .then(() => {
-                            expect(true).to.be.true
-                            expect(this._userFavourites.length).to.equal(1)
-                        })
-                })
-            })
+          
 
             describe('retrieve user seen list movies', () => {
                 beforeEach(() => {
-                    const movie = {id: '123', name: 'the great film'}
+                    const movie = { id: '123', name: 'the great film' }
                     logic.updateUserSeen(movie)
                     logic.updateUserPending(movie)
                     logic.updateUserFavourites(movie)
                 })
                 it('should return the list of user seen movies', () => {
                     logic.retrieveUserMovies()
-                    .then(() => {
-                        expect(true).to.be.true
-                        expect(this._userSeen.length).to.equal(1)
-                        expect(this._userPending.length).to.equal(1)
-                        expect(this._userFavourites.length).to.equal(1)
+                        .then(() => {
+                            expect(true).to.be.true
+                            expect(this._userSeen.length).to.equal(1)
+                            expect(this._userPending.length).to.equal(1)
+                            expect(this._userFavourites.length).to.equal(1)
 
-                    })
+                        })
                 })
             })
-            
+
         })
     })
 
     describe('movies', () => {
         //Put max pagination to 5(100 movies)
-        describe('not user intervention', () => {
+        false && describe('retrieve without user intervention', () => {
             describe('trending-slider', () => {
                 it('should return trending movies', () => {
                     logic.retrieveTrending()
@@ -194,14 +185,14 @@ describe('logic', () => {
             })
 
         })
-        describe('user intervention', () => {
+        false && describe('retrieve with user intervention', () => {
             describe('search movies', () => {
                 let query, page
                 beforeEach(() => {
                     query = 'harry+potter'
                     page = 1
                 })
-                it('should return movies with required and page', () => {
+                it('should return movies with required query and page', () => {
                     logic.retrieveMovies(query, page)
                         .then(movies => {
                             expect(movies).not.to.be.undefined
@@ -247,9 +238,818 @@ describe('logic', () => {
             })
 
         })
-    })
-    describe('movies', () => {
+        describe('movies state', () => {
+            describe('check movie in lists', () => {
+
+                let movieId = '293660'
+                let list = 'seen'
+
+                describe('with user logged in', () => {
+                    let movie, username, password
+                    beforeEach(() => {
+                        const name = 'John', surname = 'Doe', email = 'john@john'
+                        username = `jd-${Math.random()}`, password = '123'
+                        movie = { id: '293660', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+
+                        return logic.signIn(username, email, name, surname, password)
+                            .then(() => {
+                                return logic.logIn(username, password)
+                                    .then(() => logic.retrieveUserData())
+                            })
+                    })
+                    it('should succeed on returning if the movie is inside seen list', () => {
+
+                        return logic.addUserSeen(movie)
+                            .then(() => {
+                                let index = logic.checkInList(movieId, list)
+                                expect(index).to.be.a('number')
+
+                                expect(index).to.equal(0)
+                            })
+                    })
+                    it('should succeed on returning -1 if the movie is not inside the list', () => {
+                        let index = logic.checkInList(movieId, list)
+
+                        expect(index).to.equal(-1)
+                    })
+
+
+                })
+                describe('without user logged in', () => {
+
+                    it('should succeed on returning -1 if the user is not loged in ', () => {
+                        let index = logic.checkInList(movieId, list)
+                        expect(index).to.equal(-1)
+                    })
+                    it('should fail with undefined movie id', () => {
+                        movieId = undefined
+                        expect(() =>
+                            logic.checkInList(movieId, list)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with null movie id', () => {
+                        movieId = null
+                        expect(() =>
+                            logic.checkInList(movieId, list)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (number)', () => {
+                        movieId = 1234
+                        expect(() =>
+                            logic.checkInList(movieId, list)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (boolean)', () => {
+                        movieId = true
+                        expect(() =>
+                            logic.checkInList(movieId, list)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (object)', () => {
+                        movieId = {}
+                        expect(() =>
+                            logic.checkInList(movieId, list)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (array)', () => {
+                        movieId = []
+                        expect(() =>
+                            logic.checkInList(movieId, list)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                })
+            })
+            describe('check movie state(favourite, like, unlike)', () => {
+                let movieId, state
+                beforeEach(() => {
+                    movieId = '293660'
+                    state = 'favourite'
+                })
+                describe('with user logged in', () => {
+                    let movie, username, password
+                    beforeEach(() => {
+                        const name = 'John', surname = 'Doe', email = 'john@john'
+                        username = `jd-${Math.random()}`, password = '123'
+                        movie = { id: '293660', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+
+                        return logic.signIn(username, email, name, surname, password)
+                            .then(() => {
+                                movie.favourite = true
+                                return logic.logIn(username, password)
+                                    .then(() => logic.retrieveUserData()
+                                        .then(() => logic.addUserSeen(movie))
+                                    )
+                            })
+                    })
+                    it('should succeed on returning if the movie is checked as favourite', () => {
+                        state = 'favourite'
+
+                        let check = logic.checkState(movieId, state)
+                        expect(check).to.be.a('boolean')
+
+                        expect(check).to.be.true
+                    })
+                    it('should succeed on returning false if the movie is not checked as like', () => {
+                        state = 'like'
+                        let check = logic.checkState(movieId, state)
+
+                        expect(check).to.be.false
+                    })
+                    afterEach(() => {
+                        logic.logout()
+                    })
+
+
+                })
+                describe('without user logged in', () => {
+                    it('should succeed on returning false if the user is not loged in ', () => {
+                        let check = logic.checkState(movieId, state)
+                        expect(check).to.be.false
+                    })
+                    it('should fail with undefined movie id', () => {
+                        movieId = undefined
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with null movie id', () => {
+                        movieId = null
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (number)', () => {
+                        movieId = 1234
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (boolean)', () => {
+                        movieId = true
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (object)', () => {
+                        movieId = {}
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with not a string movie id (array)', () => {
+                        movieId = []
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${movieId} is not a string`)
+                    })
+                    it('should fail with undefined movie state', () => {
+                        state = undefined
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${state} is not a string`)
+                    })
+                    it('should fail with null movie state', () => {
+                        state = null
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${state} is not a string`)
+                    })
+                    it('should fail with not a string movie state (number)', () => {
+                        state = 1234
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${state} is not a string`)
+                    })
+                    it('should fail with not a string movie state (boolean)', () => {
+                        state = true
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${state} is not a string`)
+                    })
+                    it('should fail with not a string movie state (object)', () => {
+                        state = {}
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${state} is not a string`)
+                    })
+                    it('should fail with not a string movie state (array)', () => {
+                        state = []
+                        expect(() =>
+                            logic.checkState(movieId, state)
+                        ).to.throw(Error, `${state} is not a string`)
+                    })
+                })
+            })
+
+            describe('check seen click', () => {
+                let movie = { id: '123', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+
+                describe('with user logged in', () => {
+                    let movie1, username, password
+                    beforeEach(() => {
+                        const name = 'John', surname = 'Doe', email = 'john@john'
+                        username = `jd-${Math.random()}`, password = '123'
+                        movie1 = { id: '293660', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+
+                        return logic.signIn(username, email, name, surname, password)
+                            .then(() => {
+                                return logic.logIn(username, password)
+                                    .then(() => logic.retrieveUserData()
+                                        .then(() => logic.addUserSeen(movie1))
+                                    )
+                            })
+                    })
+                    it('should succeed on adding the movie in seen list if it was not', () => {
+                        let check = logic.seenClick(movie)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('10')
+
+                        expect(logic._user.seen.length).to.equal(2)
+
+                    })
+                    it('should succeed on deleting the movie from seen list if it was', () => {
+
+                        let check = logic.seenClick(movie1)
+
+                        expect(check).to.equal('00')
+
+                        expect(logic._user.seen.length).to.equal(0)
+
+                    })
+                    it('should succeed on adding the movie in seen list if it was not and deleting it from pending if it was', () => {
+
+                        return logic.addUserPending(movie)
+                            .then(() => {
+
+                                let check = logic.seenClick(movie)
+
+                                expect(check).to.equal('10')
+
+                                expect(logic._user.seen.length).to.equal(2)
+                                expect(logic._user.pending.length).to.equal(0)
+
+                            })
+
+                    })
+
+                    afterEach(() => {
+                        logic.logout()
+                    })
+
+
+                })
+                describe('without user logged in', () => {
+                    it('should succeed on returning an error if the user is not loged in ', () => {
+                        let check = logic.seenClick(movie)
+                        expect(check).to.equal('You should log in before to use that feature')
+                    })
+                    it('should fail with undefined movie', () => {
+                        movie = undefined
+                        expect(() =>
+                            logic.seenClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with null movie', () => {
+                        movie = null
+                        expect(() =>
+                            logic.seenClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not an object movie (number)', () => {
+                        movie = 1234
+                        expect(() =>
+                            logic.seenClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not a object movie (boolean)', () => {
+                        movie = true
+                        expect(() =>
+                            logic.seenClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not a object movie (string)', () => {
+                        movie = ''
+                        expect(() =>
+                            logic.seenClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not a object movie (array)', () => {
+                        movie = []
+                        expect(() =>
+                            logic.seenClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                })
+            })
+
+            describe('check pending click', () => {
+                let movie = { id: '123', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+
+                describe('with user logged in', () => {
+                    let movie1, username, password
+                    beforeEach(() => {
+                        const name = 'John', surname = 'Doe', email = 'john@john'
+                        username = `jd-${Math.random()}`, password = '123'
+                        movie1 = { id: '293660', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+
+                        return logic.signIn(username, email, name, surname, password)
+                            .then(() => {
+                                return logic.logIn(username, password)
+                                    .then(() => logic.retrieveUserData()
+                                        .then(() => logic.addUserPending(movie1))
+                                    )
+                            })
+                    })
+                    it('should succeed on adding the movie in pending list if it was not', () => {
+                        let check = logic.pendingClick(movie)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('01')
+
+                        expect(logic._user.pending.length).to.equal(2)
+
+                    })
+                    it('should succeed on deleting the movie from seen list if it was', () => {
+
+                        let check = logic.pendingClick(movie1)
+
+                        expect(check).to.equal('00')
+
+                        expect(logic._user.pending.length).to.equal(0)
+
+                    })
+                    it('should succeed on adding the movie in seen list if it was not and deleting it from pending if it was', () => {
+
+                        return logic.addUserSeen(movie)
+                            .then(() => {
+
+                                let check = logic.pendingClick(movie)
+
+                                expect(check).to.equal('01')
+
+                                expect(logic._user.pending.length).to.equal(2)
+                                expect(logic._user.seen.length).to.equal(0)
+
+                            })
+
+                    })
+
+                    afterEach(() => {
+                        logic.logout()
+                    })
+
+
+                })
+                describe('without user logged in', () => {
+                    it('should succeed on returning an error if the user is not loged in ', () => {
+                        let check = logic.pendingClick(movie)
+                        expect(check).to.equal('You should log in before to use that feature')
+                    })
+                    it('should fail with undefined movie', () => {
+                        movie = undefined
+                        expect(() =>
+                            logic.pendingClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with null movie', () => {
+                        movie = null
+                        expect(() =>
+                            logic.pendingClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not an object movie (number)', () => {
+                        movie = 1234
+                        expect(() =>
+                            logic.pendingClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not a object movie (boolean)', () => {
+                        movie = true
+                        expect(() =>
+                            logic.pendingClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not a object movie (string)', () => {
+                        movie = ''
+                        expect(() =>
+                            logic.pendingClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                    it('should fail with not a object movie (array)', () => {
+                        movie = []
+                        expect(() =>
+                            logic.pendingClick(movie)
+                        ).to.throw(Error, `${movie} is not an object`)
+                    })
+                })
+            })
+
+            describe('check favourite click', () => {
+                let id = '123'
+                let id1 = '293660'
+                describe('with user logged in', () => {
+                    let username, password
+                    let movie = { id: '123', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+                    let movie1 = { id: '293660', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: true }
+                    beforeEach(() => {
+                        const name = 'John', surname = 'Doe', email = 'john@john'
+                        username = `jd-${Math.random()}`, password = '123'
+
+                        return logic.signIn(username, email, name, surname, password)
+                            .then(() => {
+                                return logic.logIn(username, password)
+                                    .then(() => logic.retrieveUserData()
+                                        .then(() => logic.addUserSeen(movie)
+                                            .then(() => logic.addUserSeen(movie1))
+                                        )
+                                    )
+                            })
+                    })
+                    it('should succeed on adding the state favourite to the movie, if it was in seen list', () => {
+                        let check = logic.favouriteClick(id)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('1')
+
+                        expect(logic._user.seen[0].favourite).to.be.true
+
+                    })
+                    it('should succeed on deleting the state favourite to the movie, if it was in seen list and already had favourite state', () => {
+
+                        let check = logic.favouriteClick(id1)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('0')
+
+                        expect(logic._user.seen[1].favourite).to.be.false
+
+                    })
+                    it('should succeed on sending a warning if the movie was not in seen list', () => {
+
+                        let check = logic.favouriteClick('111')
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('You should have seen the movie first')
+
+                    })
+
+
+
+                    afterEach(() => {
+                        logic.logout()
+                    })
+
+
+                })
+                describe('without user logged in', () => {
+                    it('should succeed on returning an error if the user is not loged in ', () => {
+                        let check = logic.favouriteClick(id)
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('You should log in before to use that feature')
+                    })
+                    it('should fail with undefined id', () => {
+                        id = undefined
+                        expect(() =>
+                            logic.favouriteClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with null id', () => {
+                        id = null
+                        expect(() =>
+                            logic.favouriteClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a string id (number)', () => {
+                        id = 1234
+                        expect(() =>
+                            logic.favouriteClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (boolean)', () => {
+                        id = true
+                        expect(() =>
+                            logic.favouriteClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (object)', () => {
+                        id = {}
+                        expect(() =>
+                            logic.favouriteClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (array)', () => {
+                        id = []
+                        expect(() =>
+                            logic.favouriteClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                })
+            })
+
+            describe('check like click', () => {
+                let id = '123'
+                let id1 = '293660'
+                let id3 = '333'
+                describe('with user logged in', () => {
+                    let username, password
+                    let movie = { id: '123', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+                    let movie1 = { id: '293660', name: 'the great film', poster_path: 'http://...', like: true, unlike: false, favourite: false }
+                    let movie3 = { id: '333', name: 'the great film', poster_path: 'http://...', like: false, unlike: true, favourite: false }
+
+                    beforeEach(() => {
+                        const name = 'John', surname = 'Doe', email = 'john@john'
+                        username = `jd-${Math.random()}`, password = '123'
+
+                        return logic.signIn(username, email, name, surname, password)
+                            .then(() => {
+                                return logic.logIn(username, password)
+                                    .then(() => logic.retrieveUserData()
+                                        .then(() => logic.addUserSeen(movie)
+                                            .then(() => logic.addUserSeen(movie1)
+                                                .then(() => logic.addUserSeen(movie3))
+                                            )
+                                        )
+                                    )
+                            })
+                    })
+                    it('should succeed on adding the state like to the movie, if it was in seen list', () => {
+                        let check = logic.likeClick(id)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('10')
+
+                        expect(logic._user.seen[0].like).to.be.true
+
+                    })
+                    it('should succeed on adding the state like to the movie, if it was in seen list, and deletting the state unlike if it was', () => {
+                        let check = logic.likeClick(id3)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('10')
+
+                        expect(logic._user.seen[2].like).to.be.true
+                        expect(logic._user.seen[2].unlike).to.be.false
+
+
+                    })
+                    it('should succeed on deleting the state like to the movie, if it was in seen list and already had like state', () => {
+
+                        let check = logic.likeClick(id1)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('00')
+
+                        expect(logic._user.seen[1].like).to.be.false
+
+                    })
+                    it('should succeed on sending a warning if the movie was not in seen list', () => {
+
+                        let check = logic.likeClick('111')
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('You should have seen the movie first')
+
+                    })
+
+
+
+                    afterEach(() => {
+                        logic.logout()
+                    })
+
+
+                })
+                describe('without user logged in', () => {
+                    it('should succeed on returning an error if the user is not loged in ', () => {
+                        let check = logic.likeClick(id)
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('You should log in before to use that feature')
+                    })
+                    it('should fail with undefined id', () => {
+                        id = undefined
+                        expect(() =>
+                            logic.likeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with null id', () => {
+                        id = null
+                        expect(() =>
+                            logic.likeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a string id (number)', () => {
+                        id = 1234
+                        expect(() =>
+                            logic.likeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (boolean)', () => {
+                        id = true
+                        expect(() =>
+                            logic.likeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (object)', () => {
+                        id = {}
+                        expect(() =>
+                            logic.likeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (array)', () => {
+                        id = []
+                        expect(() =>
+                            logic.likeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                })
+            })
+
+            describe('check unlike click', () => {
+                let id = '123'
+                let id1 = '293660'
+                let id3 = '333'
+                describe('with user logged in', () => {
+                    let username, password
+                    let movie = { id: '123', name: 'the great film', poster_path: 'http://...', like: false, unlike: false, favourite: false }
+                    let movie1 = { id: '293660', name: 'the great film', poster_path: 'http://...', like: false, unlike: true, favourite: false }
+                    let movie3 = { id: '333', name: 'the great film', poster_path: 'http://...', like: true, unlike: false, favourite: false }
+
+                    beforeEach(() => {
+                        const name = 'John', surname = 'Doe', email = 'john@john'
+                        username = `jd-${Math.random()}`, password = '123'
+
+                        return logic.signIn(username, email, name, surname, password)
+                            .then(() => {
+                                return logic.logIn(username, password)
+                                    .then(() => logic.retrieveUserData()
+                                        .then(() => logic.addUserSeen(movie)
+                                            .then(() => logic.addUserSeen(movie1)
+                                                .then(() => logic.addUserSeen(movie3))
+                                            )
+                                        )
+                                    )
+                            })
+                    })
+                    it('should succeed on adding the state unlike to the movie, if it was in seen list', () => {
+                        let check = logic.unlikeClick(id)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('01')
+
+                        expect(logic._user.seen[0].unlike).to.be.true
+
+                    })
+                    it('should succeed on adding the state unlike to the movie, if it was in seen list, and deletting the state like if it was', () => {
+                        let check = logic.unlikeClick(id3)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('01')
+
+                        expect(logic._user.seen[2].unlike).to.be.true
+                        expect(logic._user.seen[2].like).to.be.false
+
+
+                    })
+                    it('should succeed on deleting the state unlike to the movie, if it was in seen list and already had unlike state', () => {
+
+                        let check = logic.unlikeClick(id1)
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('00')
+
+                        expect(logic._user.seen[1].unlike).to.be.false
+
+                    })
+                    it('should succeed on sending a warning if the movie was not in seen list', () => {
+
+                        let check = logic.unlikeClick('111')
+
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('You should have seen the movie first')
+
+                    })
+
+
+
+                    afterEach(() => {
+                        logic.logout()
+                    })
+
+
+                })
+                describe('without user logged in', () => {
+                    it('should succeed on returning an error if the user is not loged in ', () => {
+                        let check = logic.unlikeClick(id)
+                        expect(check).to.be.a('string')
+
+                        expect(check).to.equal('You should log in before to use that feature')
+                    })
+                    it('should fail with undefined id', () => {
+                        id = undefined
+                        expect(() =>
+                            logic.unlikeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with null id', () => {
+                        id = null
+                        expect(() =>
+                            logic.unlikeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a string id (number)', () => {
+                        id = 1234
+                        expect(() =>
+                            logic.unlikeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (boolean)', () => {
+                        id = true
+                        expect(() =>
+                            logic.unlikeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (object)', () => {
+                        id = {}
+                        expect(() =>
+                            logic.unlikeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                    it('should fail with not a object id (array)', () => {
+                        id = []
+                        expect(() =>
+                            logic.unlikeClick(id)
+                        ).to.throw(Error, `${id} is not a string`)
+                    })
+                })
+            })
+
+            describe('check beautify query', () => {
+
+                it('should succeed on deleting + and adding space instead, and capitalizing first letter', () => {
+                    let string = 'harry+potter'
+                    let query = logic.beautifyQuery(string)
+
+                    expect(query).to.be.a('string')
+
+                    expect(query).to.equal('Harry potter')
+
+                })
+                
+                it('should fail with undefined string', () => {
+                    string = undefined
+                    expect(() =>
+                        logic.unlikeClick(string)
+                    ).to.throw(Error, `${string} is not a string`)
+                })
+                it('should fail with null string', () => {
+                    string = null
+                    expect(() =>
+                        logic.unlikeClick(string)
+                    ).to.throw(Error, `${string} is not a string`)
+                })
+                it('should fail with not a string string (number)', () => {
+                    string = 1234
+                    expect(() =>
+                        logic.unlikeClick(string)
+                    ).to.throw(Error, `${string} is not a string`)
+                })
+                it('should fail with not a object string (boolean)', () => {
+                    string = true
+                    expect(() =>
+                        logic.unlikeClick(string)
+                    ).to.throw(Error, `${string} is not a string`)
+                })
+                it('should fail with not a object string (object)', () => {
+                    string = {}
+                    expect(() =>
+                        logic.unlikeClick(string)
+                    ).to.throw(Error, `${string} is not a string`)
+                })
+                it('should fail with not a object string (array)', () => {
+                    string = []
+                    expect(() =>
+                        logic.unlikeClick(string)
+                    ).to.throw(Error, `${string} is not a string`)
+                })
+            
+        })
 
     })
-
+})
 })

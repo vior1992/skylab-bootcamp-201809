@@ -33,25 +33,25 @@ const Navbar = (props) => {
             </div>
           </Link>
           <div className="options">
-            { !logic.loggedIn && <div>
+            {!logic.loggedIn && <div>
               <Link to="/signin">Sign In</Link> or <Link to="/login">Log In</Link>
-            </div> }
-            { logic.loggedIn && <div className="profile">
+            </div>}
+            {logic.loggedIn && <div className="profile">
               <div className="dropdown">
-              <a onClick={handleClick} href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" /></a>
-              <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                <Link className="dropdown-item" to="/user">Profile</Link>
-                <a className="dropdown-item" href="#">Movies</a>
-                <div className="dropdown-divider"></div>
-                <Link to="/" onClick={() => logic.logout()} className="dropdown-item">Log Out</Link>
+                <a onClick={handleClick} href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" /></a>
+                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                  <Link className="dropdown-item" to="/user">Profile</Link>
+                  <a className="dropdown-item" href="#">Movies</a>
+                  <div className="dropdown-divider"></div>
+                  <Link to="/" onClick={() => logic.logout()} className="dropdown-item">Log Out</Link>
+                </div>
               </div>
-              </div>
-            </div> }
+            </div>}
           </div>
-        </section>
-      </header>
-    )
-  }
+        </div>
+      </section>
+    </header>
+  )
 }
 
 export default Navbar
