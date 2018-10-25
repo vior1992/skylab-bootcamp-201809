@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, withRouter, Redirect, Link } from 'react-router-dom'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import LogIn from './components/LogIn'
 import Sidenav from './components/Sidenav'
 import Search from './components/Search'
@@ -23,7 +24,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        if (this.props.location.pathname === '/home') {
+        if (this.props.location.pathname === '/home' || this.props.location.pathname === '/login' ) {
             logic.getMostPopular()
                 .then(populars => this.setState({populars}))
         }
@@ -158,6 +159,7 @@ class App extends Component {
                 </ul>
             </nav>
             <Header error={this.state.error} onSubmitSignUp={this.handleRegister} />
+            <Footer footer/>
         </div>
     }
 
