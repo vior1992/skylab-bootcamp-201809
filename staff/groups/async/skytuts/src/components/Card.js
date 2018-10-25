@@ -47,5 +47,3 @@ class Card extends Component {
 }
 
 export default Card
-
-// <img className="difficulty" src={require('../images/bitmap1.png')} alt="ayaya" />

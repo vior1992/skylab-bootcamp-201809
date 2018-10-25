@@ -54,7 +54,7 @@ class Main extends Component {
                 tracks: data.tracks || [],
             })
         } else {
-            this.listCourses().slice(0, 6);
+            this.listCourses() || this.listCourses().slice(0, 6);
         }
 
     }
