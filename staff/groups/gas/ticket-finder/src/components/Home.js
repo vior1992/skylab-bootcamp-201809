@@ -53,6 +53,8 @@ class Home extends Component {
 
             <Route path="/home/search/:query" render={props => <SearchResults filter={this.state.dropwdown} query={props.match.params.query} />} /> 
 
+            
+            
 
             {this.state.searchFlag && <section>
 

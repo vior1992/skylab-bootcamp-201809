@@ -72,8 +72,8 @@ handleGoBack = () => this.props.history.push('/')
 
     <Route path="/favourites" render={() => logic.loggedIn ? <Favourites deleteFavourite={this.handleDeleteFavourite} favouritesList={this.state.favouritesArray} /> : <Redirect to="/home" />}
      />
-    <Route path="/eventinformation" render={() => logic.loggedIn ? <EventInfo/> : <Redirect to="/home" />} />
-
+     
+    <Route path="/eventinformation/:id" render={(props) => logic.loggedIn ? <EventInfo id={props.match.params.id}/> : <Redirect to="/home" />} />
     </div>
   }
 }

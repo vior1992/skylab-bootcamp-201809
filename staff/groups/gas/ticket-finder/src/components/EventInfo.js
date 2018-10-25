@@ -3,11 +3,11 @@ import logic from '../logic'
 
 class EventInfo extends Component {
 
-    state = {eventInfoArray: []}
+    state = {eventInfoArray: [],
+    err: null}
 
     componentDidMount() {
-
-        this.addToEventInfoArray(this.props.test)     
+        this.addToEventInfoArray(this.props.id)     
 
     }
 
@@ -19,7 +19,15 @@ class EventInfo extends Component {
                 .catch(err => this.setState({ error: err }))
                    
             }
-            catch (err) { alert('Please write in English') }
+            catch (err) { this.setState({err}) }
+    }
+
+    findBestImage = (arr) => {
+        let placeHolder = []
+
+        arr.images.forEach(el=> placeHolder.push(el.width))
+
+        return placeHolder.indexOf(Math.max(...placeHolder));
     }
 
     render() {
@@ -28,7 +36,7 @@ class EventInfo extends Component {
 
     return <div className="card">
 
-            <img className="card-img-top" src={this.props.images && this.props.images[9].url} alt="Card cap" />
+            <img className="card-img-top" src={eventInfoArray.images && eventInfoArray.images[this.findBestImage(eventInfoArray)].url} alt="Card cap" />
 
                 <div className="card-body">
 
@@ -38,8 +46,7 @@ class EventInfo extends Component {
                     
                     <p> {eventInfoArray._embedded && eventInfoArray._embedded.venues[0].city.name} </p>
 
-                    {/* <p>{this.props.eventMinPrice ? <span>From {this.props.eventMinPrice} EUR</span> : <span>Price to be announced</span>}</p> */}
-                    <p>PRICE</p>
+                    <p>{eventInfoArray.priceRanges ? <span>From {eventInfoArray.priceRanges[0].min} EUR</span> : <span>Price to be announced</span>}</p>
 
                     <p className="card-text"><a target="blank" href= {eventInfoArray.url}>Get tickets</a></p>
 
