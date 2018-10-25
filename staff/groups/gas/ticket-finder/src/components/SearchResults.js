@@ -26,6 +26,7 @@ class SearchResults extends Component {
     }
     
     searchEvents(query) {
+      
         let filtered = [];
 
         try {
@@ -95,7 +96,7 @@ class SearchResults extends Component {
             </div>
 
             <div className="page-btns">
-
+            
                 {<Button color="unique" onClick={this.goToPreviousPage}>Previous page</Button>}
                 {<Button color="unique" onClick={this.goToNextPage}>Next page</Button>}
 

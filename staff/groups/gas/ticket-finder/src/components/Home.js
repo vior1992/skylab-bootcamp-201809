@@ -29,8 +29,8 @@ class Home extends Component {
     }
 
     handleSubmit = query => {
-
-        this.setState({ error: null, searchFlag: false}, () => this.props.history.push(`/home/search/${query}`))
+        debugger
+        this.setState({ error: false, searchFlag: false}, () => this.props.history.push(`/home/search/${query}`))
     }
 
     findBestImage = (arr) => {

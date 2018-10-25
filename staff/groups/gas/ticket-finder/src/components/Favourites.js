@@ -37,8 +37,9 @@ class Favourites extends Component {
     }
 
     render() {
-        console.log(this.state.favouritesList)
-        return <div className="favouriteList-container">
+        return <section>
+        <div className="favourite-title"><h1>Favourites</h1></div>
+        <div className="favouriteList-container">
 
             <ul>
 
@@ -46,6 +47,7 @@ class Favourites extends Component {
 
             </ul>
         </div>
+        </section>
 
     }
 }
