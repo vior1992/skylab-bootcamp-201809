@@ -558,11 +558,4 @@ describe ('logic', () => {
         })
     })
 
-    !false && describe('history', () => {
-        it('should succed on saving songs to '
-
-
-    }
-
-
 })
