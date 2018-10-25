@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const MoviesList = props => {
-  console.log(props)
   return (
     <div className="row">
       {props.movies.map(movie => {
