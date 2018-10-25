@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Header from '../../header/header'
-import Search from '../../search/search';
+import Search from '../../search/search'
 import spotifyLogic from '../../../services/spotifylogic'
 
 export default class FrontSide extends Component{

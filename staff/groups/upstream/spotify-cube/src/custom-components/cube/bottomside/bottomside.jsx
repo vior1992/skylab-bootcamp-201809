@@ -3,13 +3,13 @@ import Register from '../../register/register'
 import Header from '../../header/header'
 import userService from '../../../services/userlogic'
 import SideTitle from '../../sidetitle/sidetitle'
-import List from '../../list/list';
-import user from '../../../datalayer/user';
+import List from '../../list/list'
+import TopSide from '../topside/topside'
 
 
 export default class BottomSide extends Component {
 
-    state = { preview:"", tracks: [], messageButton: "Add PlayList", registerMessage: "", registerPlaylistMessage: "", showFormAddPlayList: false, playlists: this.props.playlists, isLogged: false, playListName: "" }
+    state = { preview: "", tracks: [], messageButton: "Add PlayList", registerMessage: "", registerPlaylistMessage: "", showFormAddPlayList: false, playlists: this.props.playlists, isLogged: false, playListName: "" }
 
     componentWillReceiveProps(props) {
 
@@ -114,12 +114,12 @@ export default class BottomSide extends Component {
 
     }
 
-    handleBackToPlayList = () =>{
+    handleBackToPlayList = () => {
 
-        this.setState({tracks:[]})
+        this.setState({ tracks: [] })
     }
 
-    handleDeleteTrack = (trackId)=>{
+    handleDeleteTrack = (trackId) => {
 
         const session = userService.getSessionFromStorage()
         userService.getUserInfo(session.id, session.token).then(data => {
@@ -127,21 +127,21 @@ export default class BottomSide extends Component {
             let user = userService.getUserFromData(data)
             user.deleteTrackFromPlayList(trackId)
             userService.updateUser(session.id, session.token, user)
-            .then(res => {
+                .then(res => {
 
-                this.setState({tracks:this.state.tracks.filter(track => track.id !== trackId)})
+                    this.setState({ tracks: this.state.tracks.filter(track => track.id !== trackId) })
 
-            })
-            .catch(err => alert(err.message))
-            
+                })
+                .catch(err => alert(err.message))
+
 
         })
 
     }
 
-    play = (preview) =>{
+    play = (preview) => {
 
-        this.setState({preview})
+        this.setState({ preview })
     }
 
     render() {
@@ -151,7 +151,7 @@ export default class BottomSide extends Component {
                 <div className="rotateX-180">
 
                     <Header showPlayer={true} track={this.state.preview}></Header>
-                    {this.state.isLogged && <SideTitle messageButton={this.state.messageButton} onClickAddPlayList={this.handleAddPlaylistClick} showAddPlayListButton={true} title="Play Lists"></SideTitle>}
+                    {this.state.isLogged && <SideTitle messageButton={this.state.messageButton} onClickAddPlayList={this.handleAddPlaylistClick} showAddPlayListButton={true} title="Playlists"></SideTitle>}
                     {this.state.isLogged && !this.state.showFormAddPlayList && !this.state.tracks.length && <List onPlayListClick={this.handlePlayListClick} onDeleteClick={this.handleDeleteClick} type="playlist" list={this.state.playlists}></List>}
                     {!this.state.isLogged && <Register registerMessage={this.state.registerMessage} onClickLogin={this.props.onClickLogin} handleRegister={this.onRegister}></Register>}
                     {this.state.showFormAddPlayList && <form className="custom-form" onSubmit={(ev) => { this.handleCreatePlayList(ev) }}>
@@ -163,18 +163,20 @@ export default class BottomSide extends Component {
                         <h3>{this.state.registerPlaylistMessage}</h3>
                     </form>}
                     {this.state.tracks.length > 0 && <div className="">
-                        <ul className="">
+
+                        <ul className="list playlist-trackList">
+                            <button className="back-btn btn btn-md btn-dark" onClick={this.handleBackToPlayList}>Back to PlayList</button>
                             {
-                                this.state.tracks.map(track => <li>
-                                <div onClick={() => this.play(track.preview_url)}>{track.name}</div>
-                                <div><button className="btn btn-sm btn-dark" onClick={() => this.handleDeleteTrack(track.id)}>Delete</button></div>
+                                this.state.tracks.map(track => <li className='bottom--list--item'>
+                                    <div onClick={() => this.play(track.preview_url)}>{track.name}</div>
+                                    <div><button className="btn btn-sm btn-dark" onClick={() => this.handleDeleteTrack(track.id)}>Delete</button></div>
                                 </li>
-                                
+
                                 )
 
                             }
                         </ul>
-                        <button onClick={this.handleBackToPlayList}>Back to PlayList</button>
+
                         <div className=""></div>
                     </div>}
                 </div>
