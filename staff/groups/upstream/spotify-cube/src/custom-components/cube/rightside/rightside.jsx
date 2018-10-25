@@ -11,7 +11,7 @@ export default class RightSide extends Component{
     
     componentWillReceiveProps(props){
 
-       this.setState({artists:props.artists})
+        this.setState({artists:props.artists})
 
      }
 
