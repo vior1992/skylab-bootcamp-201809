@@ -307,19 +307,8 @@ const logic = {
       })
   },
 
-  checkMovieStatus(id) {
-    let status = undefined
-
-    if (this._user.seen.find(movie => movie.id == id)) {
-      status = 'seen'
-    } else if (this._user.pending.find(movie => movie.id == id)) {
-      status = 'pending'
-    }
-
-    return status
-  },
-
-  updateUserData(data) {
+  
+  Data(data) {
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
       method: 'PUT',
@@ -338,50 +327,67 @@ const logic = {
   },
 
   checkInList(id, list) {
+    if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+    if (typeof list !== 'string') throw TypeError(`${list} is not a string`)
+
+    if (!id.trim()) throw Error('id is empty or blank')
+    if (!list.trim()) throw Error('list is empty or blank')
 
     let index = -1
-
-    switch (list) {
-      case 'seen':
-        index = this._user.seen.findIndex(movie => movie.id == id)
-        break
-      case 'pending':
-        index = this._user.pending.findIndex(movie => movie.id == id)
-        break
+    if (JSON.stringify(this._user) !== '{}') {
+      switch (list) {
+        case 'seen':
+          index = this._user.seen.findIndex(movie => movie.id == id)
+          break
+        case 'pending':
+          index = this._user.pending.findIndex(movie => movie.id == id)
+          break
+      }
     }
     return index
   },
 
   checkState(id, state) {
-    let check = false
-    let indexSeen = this.checkInList(id, 'seen')
+    if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+    if (typeof state !== 'string') throw TypeError(`${state} is not a string`)
 
-    switch (state) {
-      case 'favourite':
-      check = this._user.seen[indexSeen].favourite
-      break
-      case 'like':
-        check = this._user.seen[indexSeen].like
-        break
-      case 'unlike':
-        check = this._user.seen[indexSeen].unlike
-        break
+    if (!id.trim()) throw Error('id is empty or blank')
+    if (!state.trim()) throw Error('state is empty or blank')
+
+    let check = false
+    
+    if (JSON.stringify(this._user) !== '{}') {
+      let indexSeen = this.checkInList(id, 'seen')
+      
+      switch (state) {
+        case 'favourite':
+          check = this._user.seen[indexSeen].favourite
+          break
+        case 'like':
+          check = this._user.seen[indexSeen].like
+          break
+        case 'unlike':
+          check = this._user.seen[indexSeen].unlike
+          break
+      }
     }
     return check
   },
 
-  seenClick(id, movie) {
+  seenClick(movie) {
+    if (!(movie instanceof Object)) throw TypeError(`${movie} is not an object`)
+    if (movie instanceof Array) throw TypeError(`${movie} is not an object`)
 
     let ret = undefined
 
     if (JSON.stringify(this._user) !== '{}') {
 
-      let indexSeen = this.checkInList(id, 'seen')
-      let indexPending = this.checkInList(id, 'pending')
+      let indexSeen = this.checkInList(movie.id, 'seen')
+      let indexPending = this.checkInList(movie.id, 'pending')
 
       if (indexSeen !== -1) {
 
-        logic.deleteUserSeen(id)
+        logic.deleteUserSeen(movie.id)
 
         ret = '00'
 
@@ -392,7 +398,7 @@ const logic = {
         ret = '10'
 
         if (indexPending !== -1) {
-          logic.deleteUserPending(id)
+          logic.deleteUserPending(movie.id)
         }
       }
     } else {
@@ -401,13 +407,16 @@ const logic = {
     return ret
   },
 
-  pendingClick(id, movie) {
+  pendingClick(movie) {
+    if (!(movie instanceof Object)) throw TypeError(`${movie} is not an object`)
+    if (movie instanceof Array) throw TypeError(`${movie} is not an object`)
+
     let ret = undefined
 
     if (JSON.stringify(logic._user) !== '{}') {
 
-      let indexSeen = this.checkInList(id, 'seen')
-      let indexPending = this.checkInList(id, 'pending')
+      let indexSeen = this.checkInList(movie.id, 'seen')
+      let indexPending = this.checkInList(movie.id, 'pending')
 
       if (indexPending !== -1) {
 
@@ -431,6 +440,9 @@ const logic = {
   },
 
   favouriteClick(id) {
+    if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+    if (!id.trim()) throw Error('id is empty or blank')
+
     let ret = undefined
 
     if (JSON.stringify(logic._user) !== '{}') {
@@ -466,6 +478,9 @@ const logic = {
   },
 
   likeClick(id) {
+    if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+    if (!id.trim()) throw Error('id is empty or blank')
+
     let ret = undefined
 
     if (JSON.stringify(logic._user) !== '{}') {
@@ -502,6 +517,9 @@ const logic = {
   },
 
   unlikeClick(id) {
+    if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+    if (!id.trim()) throw Error('id is empty or blank')
+
     let ret = undefined
 
     if (JSON.stringify(logic._user) !== '{}') {
@@ -538,6 +556,9 @@ const logic = {
   },
 
   beautifyQuery(string) {
+    if (typeof string !== 'string') throw TypeError(`${string} is not a string`)
+    if (!string.trim()) throw Error('string is empty or blank')
+
 
     let repl = string.replace('+', ' ')
     let q1 = string[0].toUpperCase()

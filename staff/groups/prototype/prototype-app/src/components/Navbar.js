@@ -33,10 +33,10 @@ const Navbar = (props) => {
             </div>
           </Link>
           <div className="options">
-            { !logic.loggedIn && <div>
+            {!logic.loggedIn && <div>
               <Link to="/signin">Sign In</Link> or <Link to="/login">Log In</Link>
-            </div> }
-            { logic.loggedIn && <div className="profile">
+            </div>}
+            {logic.loggedIn && <div className="profile">
               <div className="dropdown">
               <a onClick={handleClick} href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img className="img-fluid" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1809/s300/skylab-coders-academy-logo.jpg" alt="profile" /></a>
               <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
@@ -53,5 +53,5 @@ const Navbar = (props) => {
       </header>
     )
   }
-
+  
 export default Navbar
