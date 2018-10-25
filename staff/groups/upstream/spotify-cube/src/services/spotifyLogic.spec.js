@@ -93,6 +93,19 @@ describe('spotifyLogic', () => {
 
     })
 
+    describe('getTrack', () => {
+        it('should retrieve the correct track', () => {
+
+            let id='5CQ30WqJwcep0pYcV4AMNc'
+            return logic.getTrack(id)
+                .then((track) => {
+                    expect(track).not.to.be.undefined
+                    expect(track.name).to.equal('Stairway To Heaven')
+                    expect(track.id).to.equal('5CQ30WqJwcep0pYcV4AMNc')
+                })
+        })
+    })
+
     describe('getArtists', () => {
         it('should succesfully search', () => {
 

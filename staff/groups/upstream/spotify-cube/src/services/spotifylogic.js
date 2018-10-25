@@ -1,7 +1,11 @@
 
 const spotifyLogic = {
 
-    token: 'BQCNb5afPx0maW4h24sJbaD9_9rmu-PzvChuet2zfElaI-dWMIwZfX_6uKwM1viHiLTXAOrWx86P-FgL-pLHWnrKN9DuZgkckhidHl05zo30b7sDbLuRvOutC1DCZG_ei7yRHBc37vALrYJ8mTSZtbUd3U9q-imcsrMjy-CIKSFLdaYLEWzI-OnLhLpe1Gb26rmpbh-5Cb0Bi-cK',
+    token: 'BQCnRpwpChDQgIs1bF_NlY039FehLJ6Hv-yydegljToyd-KINlQjj_AKKsygCi677ib5lKc7yFUFBGU8v-ENYCjFcRjcDxkBZASjXAkc1ZI5-NMvBDolvGVEkzbUXzYspkLPxbAyuSlZXOcnMr16s6QZI7N3KMOTr46R3N3WeMZqFkd-uCoclcGea62jQ65GN5UGdWCiTQMNmwmo',
+
+    getNewToken(){
+        alert('getNewTOken')
+    },
 
     getArtistById(id) {
 
@@ -93,6 +97,28 @@ const spotifyLogic = {
         })
             .then((res) => res.json())
             .then(res => res)
+    },
+
+    //id, name, preview_url, picture
+
+    getTrack(id) {
+        return fetch(`https://api.spotify.com/v1/tracks/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + this.token
+            }
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                debugger
+                const track = {}
+                track.id = res.id
+                track.name = res.name
+                track.preview_url = res.preview_url
+                track.image = res.album.images ? res.album.images[0].url : 'https://i.scdn.co/image/557a6058e3de72bf37ffcd2c12dd5932276df344'
+                return track
+            })
     }
 }
 
