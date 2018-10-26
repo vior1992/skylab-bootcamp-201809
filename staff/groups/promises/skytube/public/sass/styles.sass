@@ -348,6 +348,7 @@ body
 
                 .video
                     margin-bottom: 18px
+                    cursor: pointer
 
                     &__image
                         height: 120px
@@ -465,7 +466,7 @@ body
                                 &::placeholder
                                     opacity: 0
 
-            .playlist, .searchlist
+            .playlist
                 &-header
                     position: relative
                     display: flex
@@ -503,13 +504,21 @@ body
                         &:focus
                             outline: 0
 
+                &-main
+                    margin: 1rem 0
+
+            .searchlist
+                margin: 1rem 0
+
+            .playlist, .searchlist
                 .video
                     display: flex
-                    padding: 1rem
+                    padding: .5rem 1.5rem
 
                     &__image
                         height: 120px
                         margin-right: 1rem
+                        cursor: pointer
 
                     &__title
                         margin: 0
