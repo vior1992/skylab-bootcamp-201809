@@ -1,7 +1,7 @@
 
 const spotifyLogic = {
 
-    token: 'BQB4001l2qzCqWa7iBdXUsNlOODxHUmp7DgLJTAVso2e95kB1hjnuNCiitpLdsXZ9n3U4r6DBWC2ZzCzASw7qSm1Pte5TV9C6-zPhzGoJv5cSi_5TvagE6-dcnCl74GSi27VFw64HA2CnEnmL6Vowf0JsAsbeFgDzCS-feWKwmEm7prgGvbxlg9xMIfYtu7B6d6Uyq7pvHAl2Vr3',
+    token: 'BQCU3mgMhuoSupedJPH6YJWLjBeQyExWM4HNTfLzC98Zyn9gCRjXUvAgv5MyQM_ViFgF6cY_qlfPUqavMK7gy4ci19-U9B6HqI0QqM76smym5FKOK7S4kb_82bGOBAHv_glgu80T1cSWWHdS-oiviM1G5uPvJHmZWGlm1IQc-eKYEBmD_CII9RrBZQrfyZDKAsNsxyT-3AKDuvGdG5r5Og',
 
     getArtistById(id) {
 
@@ -160,6 +160,6 @@ const spotifyLogic = {
     }
 }
 
- export default spotifyLogic
+//  export default spotifyLogic
 
-//module.exports = spotifyLogic
+module.exports = spotifyLogic

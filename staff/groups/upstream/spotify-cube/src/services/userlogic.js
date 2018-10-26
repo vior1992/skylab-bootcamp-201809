@@ -15,6 +15,7 @@ const userService = {
 
     createPlayList(value) {
 
+        debugger
         if (typeof value !== "string") throw TypeError(`search criteria is not a string`)
         if (typeof value !== "string") throw TypeError(`search criteria is empty`)
 
@@ -28,6 +29,7 @@ const userService = {
         })
             .then(playlist => {
 
+                debugger
                 const session = JSON.parse(sessionStorage.getItem("user"))
                 if (!session) throw Error("The session of the user has fisnihed")
                 const res = {
@@ -41,14 +43,14 @@ const userService = {
 
             })
             .then((obj) => {
-
+                debugger
                 return this.getUserInfo(obj.id, obj.token).then(res => {
                     obj.userInf = res
                     return obj
                 })
             })
             .then(res => {
-
+                debugger
                 let user = new User()
                 user.playLists = res.userInf.playLists
                 user.createPlayList(res.playlist)
@@ -57,11 +59,12 @@ const userService = {
 
             })
             .then(data => {
-
+                debugger
                 return this.updateUser(data.id, data.token, data.userInf).then(res => data.userInf.playLists)
 
         })
         .catch((err) => {
+            debugger
             throw Error (err.message)
         })
 
