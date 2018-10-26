@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Route, withRouter, Redirect, Link } from 'react-router-dom'
+import { Route, withRouter, Redirect } from 'react-router-dom'
+import Navbar from './components/Navbar'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import LogIn from './components/LogIn'
@@ -158,25 +159,55 @@ class App extends Component {
         this.props.history.push('/home/playlist/' + playlist_id)
     }
 
-    handleButtonClick = () => {
-        this.setState({error: null})
-    }
-
     renderLanding() {
         return <div className="landing">
-            <nav className="navbar">
-                <div className="navbar__title">
-                    <img className="navbar__logo" src="/img/skytube.logo.png" alt="logo"></img>
-                    <h1>Skytube</h1>
-                </div>
-                <ul className="navbar__menu">
-                    <li><Link onClick={this.handleButtonClick} className="navbar__button" to='/#register'>Sign Up</Link></li>
-                    <p className="navbar__separator">or</p>
-                    <li><Link onClick={this.handleButtonClick} className="navbar__button" to='/login'>Log In</Link></li>
-                </ul>
-            </nav>
+            <Navbar/>
             <Header error={this.state.error} onSubmitSignUp={this.handleRegister} />
-            <Footer footer/>
+            <main>
+                <section className="showcase">
+                    <div className="showcase__show">
+                        <img className="showcase__image" src="./img/shot-home.png" alt="shot" />
+                    </div>
+                    <div className="showcase__case">
+                        <h1 className="showcase__title">Home.</h1>
+                        <p className="showcase__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.</p>
+                    </div>
+                </section>
+                <section className="showcase showcase--odd">
+                    <div className="showcase__case">
+                        <h1 className="showcase__title">Playlist.</h1>
+                        <p className="showcase__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div className="showcase__show">
+                        <img className="showcase__image" src="./img/shot-list.png" alt="shot" />
+                    </div>
+                </section>
+                <section className="showcase">
+                    <div className="showcase__show">
+                        <img className="showcase__image" src="./img/shot-player.png" alt="shot" />
+                    </div>
+                    <div className="showcase__case">
+                        <h1 className="showcase__title">Player.</h1>
+                        <p className="showcase__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.</p>
+                    </div>
+                </section>
+            </main>
+            <Footer/>
         </div>
     }
 
@@ -202,7 +233,7 @@ class App extends Component {
         return <div>
             <Route exact path='/' render={() => !logic.isAuthenticated() ? this.renderLanding() : <Redirect to='/home'/>} />
             <Route path='/home' render={() => logic.isAuthenticated() ? this.renderHome() : <Redirect to='/login' />} />
-            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn onClick={this.handleButtonClick} error={this.state.error} onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
+            <Route path='/login' render={() => !logic.isAuthenticated() ? <LogIn error={this.state.error} onLogInSubmit={this.handleLogIn}/> : <Redirect to='/home' />} />
         </div>
     }
 }
