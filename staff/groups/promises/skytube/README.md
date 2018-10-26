@@ -7,3 +7,4 @@
 
 *and then the app will be open in your default browser.*
 
+*or click [here](http://skytube.surge.sh/)*
