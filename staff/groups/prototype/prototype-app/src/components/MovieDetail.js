@@ -142,7 +142,7 @@ class MovieDetail extends Component {
     }
   }
 
-  componentDidCatch(errorString) {
+  componentDidCatch(errorString, errorInfo) {
     this.setState({ error: errorString })
   }
 
