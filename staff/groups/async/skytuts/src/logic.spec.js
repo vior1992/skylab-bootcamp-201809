@@ -9,6 +9,8 @@ const logicAuth = require('./logic/auth')
 
 const logicUdacity = require('./logic/udacity')
 
+const logicFilter = require('./logic/filter')
+
 const { expect } = require('chai')
 
 // running test from CLI
@@ -17,7 +19,7 @@ const { expect } = require('chai')
 
 describe('logicAuth', () => {
     describe('users', () => {
-        !true && describe('register', () => {
+        describe('register', () => {
             it('should succeed on correct data', () =>
                 logicAuth.registerUser('John', 'Doe', `jd-${Math.random()}`, '123')
                     .then(() => expect(true).to.be.true)
@@ -40,10 +42,10 @@ describe('logicAuth', () => {
                 ).to.throw(TypeError, 'undefined is not a string')
             })
 
-            // TODO other cases
         })
 
-        !true && describe('login', () => {
+
+        describe('login', () => {
             describe('with existing user', () => {
                 let username, password
 
@@ -106,17 +108,55 @@ describe('logicAuth', () => {
                 ).to.throw(Error, `${username} is not a string`)
             })
 
-            // TODO other cases
         })
     })
+})
+
+
+describe('get user', () => {
+    let username, password
+
+    it('return correct user information', () => {
+        const name = 'John', surname = 'Doe'
+
+        username = `jd-${Math.random()}`
+        password = `123-${Math.random()}`
+
+        return logicAuth.registerUser(name, surname, username, password)
+            .then(() => {
+                logicAuth.login(username, password).then(() => {
+                    logicAuth.getUser().then(res => expect(username).to.equal(res.data.username))
+                })
+            })
+    })
+
+})
+
+
+describe('logout', () => {
+    let username, password
+
+    it('should logout user', () => {
+        const name = 'John', surname = 'Doe'
+
+        username = `jd-${Math.random()}`
+        password = `123-${Math.random()}`
+
+        return logicAuth.registerUser(name, surname, username, password)
+            .then(() => {
+                logicAuth.login(username, password)
+                    .then(() => expect(logicAuth.logout()).to.equal('session cleared'))
+            })
+    })
+
 })
 
 describe('logicUdacity', () => {
     describe('connect to the API', () => {
         it('should fetch courses', () => {
             return logicUdacity.getCourses()
-                .then((res) => {
-                    expect(res).to.be.true
+                .then(res => {
+                    expect(res).to.be.an('object')
                 })
         })
 
@@ -133,4 +173,97 @@ describe('logicUdacity', () => {
 
 })
 
+describe('filter', () => {
 
+    let courses
+
+    beforeEach(() => {
+
+        return logicUdacity.getCourses().then(res => courses = res)
+
+    })
+
+
+    describe('by level', () => {
+        it('should filter course by level (advanced)', () => {
+
+            let result = logicFilter.filterCourses(courses).byLevel('advanced');
+            expect(result.length).to.equal(41)
+   
+       })
+   
+       it('should filter course by level (intermediate)', () => {
+   
+           let result = logicFilter.filterCourses(courses).byLevel('intermediate');
+           expect(result.length).to.equal(102)
+   
+       })
+   
+      it('should filter course by level (beginner)', () => {
+   
+           let result = logicFilter.filterCourses(courses).byLevel('beginner');
+           expect(result.length).to.equal(52)
+   
+       })
+    })
+    
+
+    describe('by query', () => {
+        it('should filter by personalized query (ios)', () => {
+
+            let result = logicFilter.filterCourses(courses).personalized('ios');
+            expect(result.length).to.equal(10)
+            expect(result[0].title).to.equal('Firebase Analytics: iOS')
+    
+        })
+    
+        it('should filter by personalized query (react)', () => {
+    
+            let titles = ['React Native', 'React & Redux', 'React Fundamentals']
+    
+            let result = logicFilter.filterCourses(courses).personalized('react');
+            expect(result.length).to.equal(3)
+            titles.forEach((title, i) =>  expect(result[i].title).to.equal(title))
+    
+        })
+    
+        it('should filter by personalized query with special characters (c++)', () => {
+    
+            let result = logicFilter.filterCourses(courses).personalized('c++');
+            expect(result.length).to.equal(1)
+            expect(result[0].title).to.equal('C++ For Programmers')
+        })
+    
+        it('should not return unavailable courses on unmatched query', () => {
+            let query = `data-${Math.random()}`
+            let result = logicFilter.filterCourses(courses).personalized(query);
+            expect(result.length).to.equal(0)
+        })
+    
+        it('should return all new released coureses', () => {
+            let result = logicFilter.filterCourses(courses).personalized('new');
+            expect(result.length).to.equal(38)
+        })
+    })
+
+    describe('by track', () => {
+        it('should filter courses by track', () => {
+
+            let androidTrack = courses.tracks[3]
+    
+            let result = logicFilter.filterCourses(courses).byTrack(androidTrack);
+            expect(result.length).to.equal(26)
+            expect(result[0].title).to.equal('Firebase Analytics: Android')
+        })
+    
+        it('should filter courses by track', () => {
+    
+            let dataScience = courses.tracks[0]
+    
+            let result = logicFilter.filterCourses(courses).byTrack(dataScience);
+            expect(result.length).to.equal(17)
+            expect(result[0].title).to.equal('Intro to Computer Science')
+        })
+    })
+
+})
