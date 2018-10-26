@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logic from '../logic'
 import Search from './Search';
 import MoviesList from './MoviesList';
-import { Link } from 'react-router-dom'
+import $ from 'jquery'
 
 class ListedMovies extends Component {
     state = { title: '', page: '1', search: false }
@@ -98,6 +98,8 @@ class ListedMovies extends Component {
                 logic.retrieveMovies(this.props.kind, page)
                 .then(movies => this.setState({ page, movies }))
         }
+
+        $("html, body").animate({ scrollTop: 0 }, "slow");
     }
 
     render() {
