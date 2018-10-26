@@ -1,5 +1,5 @@
-// import data from "./data"
-const data = require('./data')
+import data from "./data"
+// const data = require('./data')
 
 const { User, MovieInfo } = data
 
