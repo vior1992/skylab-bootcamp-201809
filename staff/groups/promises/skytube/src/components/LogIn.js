@@ -21,11 +21,11 @@ class LogIn extends Component {
         this.props.onLogInSubmit( username, password)
     }
 
-    render () {
+    render() {
         return <div className="login">
             <div className="login__title">
                 <img className="login__logo" src="/img/skytube.logo.png" alt="logo"></img>
-                <h1>Skytube</h1>
+                <h1>SkyTube</h1>
             </div>
             <Error error={this.props.error} />
             <form className = "form" onSubmit={this.handleSubmit}>
