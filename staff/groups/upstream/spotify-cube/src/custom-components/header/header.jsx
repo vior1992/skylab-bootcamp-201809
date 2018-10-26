@@ -3,11 +3,11 @@ import React, {Component} from 'react'
 
 export default class Header extends Component{
 
-    state = {track:"",showPlayer:this.props.showPlayer}
+    state = {track:"", showPlayer:this.props.showPlayer}
 
     componentWillReceiveProps(props){
 
-        this.setState({track:props.track})
+        this.setState({track:props.track, showPlayer:props.showPlayer})
     
       }
 

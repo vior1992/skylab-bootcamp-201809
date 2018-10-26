@@ -1,44 +1,62 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Header from '../../header/header'
 import Search from '../../search/search'
 import spotifyLogic from '../../../services/spotifylogic'
 
-export default class FrontSide extends Component{
+export default class FrontSide extends Component {
 
-    state = {}
+    state = { message: "" }
 
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
-    handleSearch = (value) =>{
-        
-        let artits = []
-        spotifyLogic.getArtists(value).then(res => { 
-         
-            res.artists.items.map(item => {
+    handleSearch = (value) => {
 
-                artits.push({id:item.id,name:item.name,image: !!item.images.length ? item.images[0].url : ""})
+        this.setState({ message: "" })
+
+        let artits = []
+        try {
+            spotifyLogic.getArtists(value).then(res => {
+
+                res.artists.items.map(item => {
+
+                    artits.push({ id: item.id, name: item.name, image: !!item.images.length ? item.images[0].url : "" })
+
+                })
+                return artits
 
             })
-            return artits
-        
-        })
-        .then(data => {
-                
-            this.props.onArtistFound(data)
+                .then(data => {
 
-        }).catch(err => {}) ///mostrat pop pup bootstrap
-        
+                    this.props.onArtistFound(data)
+
+                }).catch(err => {
+
+                    this.setState({ message: err.message })
+                })
+        } catch (err) {
+            this.setState({ message: err.message })
+        }
+
+
     }
-   
-    render(){
-       
+
+    handleClearSearch = () => {
+
+        this.setState({ message: "" })
+        this.props.onClearSearch();
+
+    }
+
+    render() {
+
         return (
 
             <section className="front">
                 <Header ></Header>
-                <Search onClearSearch = {this.props.onClearSearch} onSearch = {this.handleSearch}></Search>
+                <Search message = {this.state.message} onClearSearch={this.handleClearSearch} onSearch={this.handleSearch}></Search>
+                
             </section>
         );
     }

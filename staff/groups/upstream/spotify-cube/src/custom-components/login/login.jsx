@@ -4,7 +4,18 @@ import React, {Component} from 'react'
 export default class Login extends Component{
     
    
-    state = { username: '', password: '' }
+    state = { message:"", username: '', password: '' }
+
+    componentWillReceiveProps(props){
+
+        this.setState({message:props.message}, () => {
+
+            setTimeout(() => {
+                this.setState({message:""})                
+            }, 3000)
+
+        });
+    }
     
     handleUsername = event => {
         const username = event.target.value
@@ -24,6 +35,11 @@ export default class Login extends Component{
         this.props.onLogin(this.state)
     }
     
+    handleClickRegister = () =>{
+
+        this.setState({username:"", password:""})
+        this.props.onClickRegister()
+    }
 
     render(){
         return (
@@ -31,14 +47,15 @@ export default class Login extends Component{
                 <form className="custom-form" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Username</label>
-                    <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Username" onChange= {this.handleUsername} />
+                    <input value={this.state.username} type="text" className="form-control" aria-describedby="emailHelp" placeholder="Username" onChange= {this.handleUsername} />
                     </div>
                     <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Password</label>
-                    <input type="password" className="form-control" aria-describedby="emailHelp" placeholder="Password" onChange={this.handlePassword} />
+                    <input value={this.state.password} type="password" className="form-control" aria-describedby="emailHelp" placeholder="Password" onChange={this.handlePassword} />
                     </div>
                     <button type="submit" className="btn btn-primary">Login</button>
-                    <button onClick={this.props.onClickRegister} type="button" className="btn btn-primary">Register</button>
+                    <button onClick={this.handleClickRegister} type="button" className="btn btn-primary">Register</button>
+                    <h2>{this.state.message}</h2>
                 </form>
            
         );
