@@ -114,9 +114,9 @@ class App extends Component {
     }
 
     handleNewPlaylist = title => {
-        const playlist_id = logic.addPlaylist(title)
+        const playlist = logic.addPlaylist(title)
         this.setState({auth_info: logic.authInfo()})
-        return playlist_id
+        return playlist.id
     }
 
     handleRemovePlaylist = playlist_id => {

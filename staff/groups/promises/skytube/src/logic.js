@@ -14,18 +14,18 @@ const logic = {
     current_video: JSON.parse(sessionStorage.getItem('current_video')) || {},
 
     /**
-     * 
-     * @param {string} name user name 
+     *
+     * @param {string} name user name
      * @param {string} surname user surname
      * @param {string} username user username
      * @param {string} email user email
      * @param {string} password user password
      * @param {string} repPassword repeated password to confirm first password
-     * 
+     *
      * @throws {Error in case of non-string, empty or blank parameters}
      * @throws {Error in case confirmation password does not match password}
-     * @throws {Error in case API detects repeated username} 
-     * 
+     * @throws {Error in case API detects repeated username}
+     *
      * @returns {Promise}
     */
     registerUser(name, surname, username, email, password, repPassword) {
@@ -63,13 +63,13 @@ const logic = {
     },
 
     /**
-     * 
+     *
      * @param {string} username user username
      * @param {string} password user password
-     * 
+     *
      * @throws {Error in case of non-string, blank or empty parameters}
      * @throws {Error in case of incorrect credentials}
-     * 
+     *
      * @return {Promise}
      */
     loginUser(username, password) {
@@ -114,6 +114,7 @@ const logic = {
     },
 
     /**
+     *
      * Log out the user by deleting the user information from session Storage
      */
     logoutUser() {
@@ -129,6 +130,7 @@ const logic = {
     },
 
     /**
+     *
      * @returns {boolean}
      */
     isAuthenticated() {
@@ -136,13 +138,13 @@ const logic = {
     },
 
     /**
-     * 
-     * @param {string} query 
-     * 
+     *
+     * @param {string} query
+     *
      * @throws {Error on non-string, empty or blank parameters}
      * @throws {Error on non-string, empty or blank parameters}
-     * 
-     * @returns {Promise} 
+     *
+     * @returns {Promise}
      */
     search(query) {
         if(typeof query !== 'string') throw TypeError(`${query} is not a string`)
@@ -165,12 +167,12 @@ const logic = {
     },
 
     /**
-     * 
-     * @param {object} video 
-     * 
+     *
+     * @param {object} video
+     *
      * @throws {Error on non-object parameter}
      * @throws {Error if error occurs when retrieving music video from the youtube api}
-     * 
+     *
      * @returns {Promise}
      */
     getVideo(video) {
@@ -187,17 +189,29 @@ const logic = {
                 throw Error(error)
             })
     },
-    
+
+
+    /**
+     *
+     * @param {object} video
+     *
+     * @returns {Favourites}
+     */
     addFavourite(video) {
         const favouritesTable = new Favourites()
-        favouritesTable.newEntity({
+        const favourite = favouritesTable.newEntity({
             id: video.id,
             title: video.title,
             thumbnail: video.thumbnail
         }).save()
         this.skylab.update({favourites: favouritesTable.all()}, this.auth.id, this.auth.token)
+        return favourite
     },
-   
+
+    /**
+     *
+     * @param {string} video_id
+     */
     removeFavourite(video_id) {
         const favouritesTable = new Favourites()
         let video = favouritesTable.get(video_id)
@@ -205,16 +219,27 @@ const logic = {
         this.skylab.update({favourites: favouritesTable.all()}, this.auth.id, this.auth.token)
     },
 
+    /**
+     *
+     * @param {object} video
+     *
+     * @returns {WatchLater}
+     */
     addWatchLater(video) {
         const watchLaterTable = new WatchLater()
-        watchLaterTable.newEntity({
+        const watch_later = watchLaterTable.newEntity({
             id: video.id,
             title: video.title,
             thumbnail: video.thumbnail
         }).save()
         this.skylab.update({watch_later: watchLaterTable.all()}, this.auth.id, this.auth.token)
+        return watch_later
     },
 
+    /**
+     *
+     * @param {string} video_id
+     */
     removeWatchLater(video_id) {
         const watchLaterTable = new WatchLater()
         let video = watchLaterTable.get(video_id)
@@ -222,15 +247,25 @@ const logic = {
         this.skylab.update({watch_later: watchLaterTable.all()}, this.auth.id, this.auth.token)
     },
 
+    /**
+     *
+     * @param {string} title
+     *
+     * @returns {Playlists}
+     */
     addPlaylist(title) {
         const playlistsTable = new Playlists()
         const playlist = playlistsTable.newEntity({
             title: title
         }).save()
         this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
-        return playlist.id
+        return playlist
     },
 
+    /**
+     *
+     * @param {string} video_id
+     */
     removePlaylist(playlist_id) {
         const playlistsTable = new Playlists()
         let playlist = playlistsTable.get(playlist_id)
@@ -238,22 +273,36 @@ const logic = {
         this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
     },
 
+    /**
+     *
+     * @param {number} playlist_id
+     * @param {string} title
+     *
+     * @returns {Playlists}
+     */
     updatePlaylist(playlist_id, title) {
         const playlistsTable = new Playlists()
         let playlist = playlistsTable.get(playlist_id)
         playlist.title = title
         playlist.save()
         this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
+        return playlist
     },
 
+    /**
+     *
+     * @param {object} video
+     *
+     * @returns {History}
+     */
     addHistory(video) {
         const historyTable = new History()
-        const finded = historyTable.get(video.id)
-        if (finded && Object.keys(finded).length > 0) {
-            finded.viewed = Date.now()
-            finded.save()
+        let history = historyTable.get(video.id)
+        if (history && Object.keys(history).length > 0) {
+            history.viewed = Date.now()
+            history.save()
         } else {
-            historyTable.newEntity({
+            history = historyTable.newEntity({
                 id: video.id,
                 title: video.title,
                 thumbnail: video.thumbnail,
@@ -261,30 +310,51 @@ const logic = {
             }).save()
         }
 
-        const history = historyTable.all()
-        if (history.length > 20) {
-            historyTable.get(history[0].id).delete()
+        const allHistory = historyTable.all()
+        if (allHistory.length > 20) {
+            historyTable.get(allHistory[0].id).delete()
         }
 
-        this.skylab.update({history: history}, this.auth.id, this.auth.token)
+        this.skylab.update({history: allHistory}, this.auth.id, this.auth.token)
+        return history
     },
 
+    /**
+     *
+     * @param {object} video
+     * @param {number} playlist_id
+     *
+     * @returns {Playlists}
+     */
     addVideoToPlaylist(video, playlist_id) {
         const playlistsTable = new Playlists()
         let playlist = playlistsTable.get(playlist_id)
         playlist.videos ? playlist.videos.push(video) : playlist.videos = [video]
         playlist.save()
         this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
+        return playlist
     },
 
+    /**
+     *
+     * @param {string} video_id
+     * @param {number} playlist_id
+     *
+     * @returns {Playlists}
+     */
     removeVideoFromPlaylist(video_id, playlist_id) {
         const playlistsTable = new Playlists()
         let playlist = playlistsTable.get(playlist_id)
         playlist.videos.splice(playlist.videos.indexOf(video_id), 1)
         playlist.save()
         this.skylab.update({playlists: playlistsTable.all()}, this.auth.id, this.auth.token)
+        return playlist
     },
 
+    /**
+     *
+     * @returns {Promise}
+     */
     getMostPopular() {
         return this.youtube.mostPopular()
             .then(result => {
@@ -301,6 +371,10 @@ const logic = {
             })
     },
 
+    /**
+     *
+     * @returns {object}
+     */
     getHistory() {
         const historyTable = new History()
         let history = historyTable.all()
@@ -314,6 +388,10 @@ const logic = {
         }
     },
 
+    /**
+     *
+     * @returns {object}
+     */
     getFavourites() {
         const favouritesTable = new Favourites()
         return {
@@ -322,11 +400,19 @@ const logic = {
         }
     },
 
+    /**
+     *
+     * @returns {Favourites}
+     */
     getFavourite(favourite_id) {
         const favouritesTable = new Favourites()
         return favouritesTable.get(favourite_id)
     },
 
+    /**
+     *
+     * @returns {object}
+     */
     getWatchLaters() {
         const watchLaterTable = new WatchLater()
         return {
@@ -335,16 +421,31 @@ const logic = {
         }
     },
 
+    /**
+     *
+     * @returns {WatchLater}
+     */
     getWatchLater(watchLaterId) {
         const watchLaterTable = new WatchLater()
         return watchLaterTable.get(watchLaterId)
     },
 
+
+    /**
+     *
+     * @param {number} id
+     *
+     * @returns {Playlists}
+     */
     getPlaylist(id) {
         const playlistsTable = new Playlists()
         return playlistsTable.get(id)
     },
 
+    /**
+     *
+     * @returns {object}
+     */
     authInfo() {
         let info = JSON.parse(sessionStorage.getItem('auth_info')) || {}
         if (info && Object.keys(info).length > 0) {
