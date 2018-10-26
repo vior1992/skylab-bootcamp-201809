@@ -41,6 +41,36 @@ This app layout is shaped in a rotation cube and it includes the next functional
 * [Nodejs](https://nodejs.org/api/modules.html) - Dependency Management
 
 
+## Running the application  
+
+To run this application download the app folder and run
+
+> npm start  
+
+## Building the distribution package  
+
+> npm run build  
+
+## Deploying the package in surge  
+
+1. run surge  
+
+> surge  
+
+2.  enter credentials (if they are asked)  
+
+3.  enter the folder from which to deploy (build)  
+
+
+## Documentation  
+
+README.md  
+
+
+# Public URL
+
+* [MusicLab](http://spotifycube.surge.sh)
+
 ## Documentation 
 
 * [README.md](./spotify-cube/README.md)  
@@ -48,6 +78,6 @@ This app layout is shaped in a rotation cube and it includes the next functional
 
 ## Authors  
 
-- Pep (admin) [pepdbm7](https://github.com/pepdbm7)
+- Pep [pepdbm7](https://github.com/pepdbm7)
 - Fede [fedeCucchiararo](https://github.com/fedeCucchiararo)
 - Jose Luís [scrafy](https://github.com/scrafy)  
