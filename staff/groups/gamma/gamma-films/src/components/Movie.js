@@ -70,7 +70,7 @@ class Movie extends Component {
         try {
             logic.getReviews(id)
                 .then(reviews => {
-                    this.setState({ reviews: reviews.results })
+                    this.setState({ reviews: reviews })
                 })
                 .catch(err => this.setState({ error: err.message }))
         }

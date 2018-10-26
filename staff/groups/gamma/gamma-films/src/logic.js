@@ -25,10 +25,8 @@ const logic = {
         if (!password.trim()) throw Error('password is empty or blank')
 
         const user = new User(name, surname, username, password)
-        console.log(name, surname, username, password)
 
         this._user = user
-        console.log(this._user)
 
         return fetch('https://skylabcoders.herokuapp.com/api/user', {
             method: 'POST',
@@ -93,7 +91,6 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-                console.log('respuesta retrieve: ' + res)
                 return this._user = res.data || []
             })
     },
@@ -329,6 +326,7 @@ const logic = {
     },
 
     getReviews(id) {
+        
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
         
         if (!id.trim()) throw Error('id is empty or blank')
@@ -345,8 +343,9 @@ const logic = {
             
             
                 if (res === 'undefined') throw Error(res.error)
+                const results = res.results
 
-                return res;
+                return results
             })
     }
 
