@@ -172,11 +172,11 @@ class Movie extends Component {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="card_btns">
                 {!!lengthCast && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">More Info</button>}
 
                 {!!lengthReviews && <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">Reviews</button>}
-                
+
             </div>
 
             {!!lengthCast && <div class="collapse" id="collapseExample">
@@ -201,22 +201,23 @@ class Movie extends Component {
                 <iframe className="video-frame" src={"https://www.youtube.com/embed/" + this.state.youtubeKey} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
             </div>}
-           
+
             {!!lengthReviews && <div class="collapse" id="collapseReviews">
                 <div class="card card-body">
+                    <div className="reviews">
+                        <div className="contain_actors">
+                            <div><h3>Reviews</h3></div>
+                            <div className="contain_reviews">
 
-                    <div className="contain_actors">
-                        <div><h3>Reviews</h3></div>
-                        <div className="contain_profile_actors">
-
-                            {this.state.reviews.map((review, index) => {
-                                if (index < 5) {
-                                    return <div className="profile_actors">
-                                        <h5>{review.author}</h5>
-                                        <p>{review.content}</p>
-                                    </div>
-                                }
-                            })}
+                                {this.state.reviews.map((review, index) => {
+                                    if (index < 5) {
+                                        return <div className="reviews_text">
+                                            <h5>{review.author+":"}</h5>
+                                            <p>{review.content}</p>
+                                        </div>
+                                    }
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>
