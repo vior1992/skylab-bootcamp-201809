@@ -2,7 +2,7 @@
 
 
 
-## [Documentation](gamma-films/docs/README.md)
+## [Documentation](gamma-films/docs/Readme.md)
 
 ## Group components
 
