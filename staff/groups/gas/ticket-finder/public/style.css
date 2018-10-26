@@ -157,6 +157,11 @@ ul {
         align-items: center;
     }
 
+    .fav-container {
+        display: flex;
+        flex-direction: column;
+    }
+
 
 
     
@@ -381,4 +386,8 @@ ul {
 .favourite-title h1 {
     color:#880e4f;
     font-weight: bold;
+}
+
+.fav-container {
+    display: flex;
 }
