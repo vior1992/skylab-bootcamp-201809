@@ -15,6 +15,13 @@ const logic = {
      * @returns {Promise}
      */
     registerUser(name, email, username, password, passwordRepeat) {
+
+        if (!name.trim()) throw Error('name is empty or blank')
+        if (!email.trim()) throw Error('email is empty or blank')
+        if (!username.trim()) throw Error('username is empty or blank')
+        if (!password.trim()) throw Error('password is empty or blank')
+        if (!passwordRepeat.trim()) throw Error('password is empty or blank')
+        
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
         if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
         if (email.match(/^(([^<>()\[\]\\.,;:\s@“]+(\.[^<>()\[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) === null) throw Error(`${email} is an invalid email`)
@@ -23,11 +30,7 @@ const logic = {
         if (typeof passwordRepeat !== 'string') throw TypeError(`${passwordRepeat} is not a string`)
         if (password !== passwordRepeat) throw TypeError(`passwords do not match`)
 
-        if (!name.trim()) throw Error('name is empty or blank')
-        if (!email.trim()) throw Error('email is empty or blank')
-        if (!username.trim()) throw Error('username is empty or blank')
-        if (!password.trim()) throw Error('password is empty or blank')
-        if (!passwordRepeat.trim()) throw Error('password is empty or blank')
+
 
         const favouritesEventsArray = []
 

@@ -61,7 +61,6 @@ class Register extends Component {
             
             <Button color="unique" type="submit">Register</Button> <a id="back-btn" href="#" onClick={this.props.onGoBack}>Back</a>
             </div>
-            {/* <a href="#" onClick={this.props.onGoBack}>back</a> */}
         </form>
         </div>
     }

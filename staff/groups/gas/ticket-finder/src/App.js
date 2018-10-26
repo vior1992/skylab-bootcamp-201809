@@ -52,7 +52,10 @@ handleLogoutClick = () => {
     this.props.history.push('/')
 }
 
-handleGoBack = () => this.props.history.push('/')
+handleGoBack = () =>  {
+    this.setState({error: null})
+    this.props.history.push('/')
+}
 
   render() {
     
