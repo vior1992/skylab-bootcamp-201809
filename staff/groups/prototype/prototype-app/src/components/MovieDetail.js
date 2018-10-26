@@ -7,32 +7,39 @@ class MovieDetail extends Component {
   state = { pending: false, seen: false, favourite: false, like: false, unlike: false }
 
   componentDidMount = () => {
-    logic.retrieveMovie(this.props.id)
-      .then(movie => { this.setState({ movie }) })
-      .then(() => {
+    try {
+      logic.retrieveMovie(this.props.id)
+        .then(movie => { this.setState({ movie }) })
+        .then(() => {
 
-        if (JSON.stringify(logic._user) !== '{}') {
+          if (JSON.stringify(logic._user) !== '{}') {
 
-          //Check another way to know if logic._user is an empty object or not
+            //Check another way to know if logic._user is an empty object or not
 
-          let indexSeen = logic.checkInList(this.props.id, 'seen')
+            let indexSeen = logic.checkInList(this.props.id, 'seen')
 
-          let indexPending = logic.checkInList(this.props.id, 'pending')
+            let indexPending = logic.checkInList(this.props.id, 'pending')
 
-          if (indexSeen !== -1) {
+            if (indexSeen !== -1) {
 
-            let favourite = logic.checkState(this.props.id, 'favourite')
-            let like = logic.checkState(this.props.id, 'like')
-            let unlike = logic.checkState(this.props.id, 'unlike')
+              let favourite = logic.checkState(this.props.id, 'favourite')
+              let like = logic.checkState(this.props.id, 'like')
+              let unlike = logic.checkState(this.props.id, 'unlike')
 
-            this.setState({ seen: true, favourite, like, unlike })
+              this.setState({ seen: true, favourite, like, unlike })
 
-            //Why is not working????
+              //Why is not working????
+            }
+
+            else if (indexPending !== -1) this.setState({ pending: true })
           }
+        })
+        .catch(error => this.setState({ error: error.message }))
 
-          else if (indexPending !== -1) this.setState({ pending: true })
-        }
-      })
+    } catch (error) {
+      this.setState({ error: 'something went wrong, try again please' })
+    }
+
   }
 
   componentWillUnmount = (prevProps, prevState) => {
@@ -51,82 +58,94 @@ class MovieDetail extends Component {
 
   handleSeenClick = event => {
     event.preventDefault()
+    try {
+      const check = logic.seenClick(this.state.movie)
 
-    const check = logic.seenClick(this.state.movie)
+      switch (check) {
 
-    switch (check) {
-
-      case '00':
-        this.setState({ seen: false})
-        break
-      case '10':
-        this.setState({ seen: true, pending: false, warning: null  })
-        break
-      default:
-        this.setState({ warning: check })
-      //the state changes, but it doesn't call teh render yet
+        case '00':
+          this.setState({ seen: false })
+          break
+        case '10':
+          this.setState({ seen: true, pending: false, warning: null })
+          break
+        default:
+          this.setState({ warning: check })
+        //the state changes, but it doesn't call teh render yet
+      }
+    } catch (error) {
+      this.setState({ error: 'something went wrong, try again please' })
     }
   }
 
   handlePendingClick = event => {
     event.preventDefault()
+    try {
+      const check = logic.pendingClick(this.state.movie)
 
-    const check = logic.pendingClick(this.state.movie)
+      switch (check) {
 
-    switch (check) {
-
-      case '00':
-        this.setState({ pending: false })
-        break
-      case '01':
-        this.setState({ seen: false, pending: true, favourite: false, like: false, unlike: false })
-        break
-      default:
-        this.setState({ warning: check })
+        case '00':
+          this.setState({ pending: false })
+          break
+        case '01':
+          this.setState({ seen: false, pending: true, favourite: false, like: false, unlike: false })
+          break
+        default:
+          this.setState({ warning: check })
+      }
+    } catch (error) {
+      this.setState({ error: 'something went wrong, try again please' })
     }
 
   }
 
   handleFavouriteClick = event => {
     event.preventDefault()
+    try {
+      const check = logic.favouriteClick(this.props.id)
 
-    const check = logic.favouriteClick(this.props.id)
+      switch (check) {
 
-    switch (check) {
-
-      case '0':
-        this.setState({ favourite: false })
-        break
-      case '1':
-        this.setState({ favourite: true })
-        break
-      default:
-        this.setState({ warning: check })
+        case '0':
+          this.setState({ favourite: false })
+          break
+        case '1':
+          this.setState({ favourite: true })
+          break
+        default:
+          this.setState({ warning: check })
+      }
+    } catch (error) {
+      this.setState({ error: 'something went wrong, try again please' })
     }
 
   }
 
   handleLikeClick = event => {
     event.preventDefault()
+    try {
+      const check = logic.likeClick(this.props.id)
 
-    const check = logic.likeClick(this.props.id)
+      switch (check) {
 
-    switch (check) {
-
-      case '00':
-        this.setState({ like: false })
-        break
-      case '10':
-        this.setState({ like: true, unlike: false })
-        break
-      default:
-        this.setState({ warning: check })
+        case '00':
+          this.setState({ like: false })
+          break
+        case '10':
+          this.setState({ like: true, unlike: false })
+          break
+        default:
+          this.setState({ warning: check })
+      }
+    } catch (error) {
+      this.setState({ error: 'something went wrong, try again please' })
     }
   }
 
   handleUnlikeClick = event => {
     event.preventDefault()
-
+    try{
     const check = logic.unlikeClick(this.props.id)
 
     switch (check) {
@@ -140,11 +159,14 @@ class MovieDetail extends Component {
       default:
         this.setState({ warning: check })
     }
+  } catch(error) {
+    this.setState({ error: 'something went wrong, try again please' })
+    }
   }
 
-  componentDidCatch(errorString, errorInfo) {
-    this.setState({ error: errorString })
-  }
+  // componentDidCatch(errorString, errorInfo) {
+  //   this.setState({ error: errorString })
+  // }
 
   render() {
     return <div>
@@ -153,7 +175,7 @@ class MovieDetail extends Component {
           <div className='container'>
             <div className='row div-backdrop justify-content-center'>
               {this.state.movie.backdrop_path ? <img className='backdrop img-fluid' src={`https://image.tmdb.org/t/p/w780/${this.state.movie.backdrop_path}`} /> : <img src='https://dummyimage.com/780x439/707070&text=+' />}
-              
+
               <div className='arrow'>
               </div>
               <div className='title-poster'>
@@ -182,19 +204,19 @@ class MovieDetail extends Component {
               </div>
               <div className='col-md-5 col-sm-8 mt-2 info-col'>
                 <div>
-                <div className='d-block mb-2'>
-                <span>{this.state.movie.release_date.slice(0, 4)}</span>  <span> | </span>
-                <span>{`${this.state.movie.runtime}'`}</span>   <span> | </span>
-                <span>{`${this.state.movie.vote_average} / 10`}</span>
-                </div>
-                {this.state.movie.spoken_languages.map(languages => <div className='d-inline mt-5'><span>{languages.name}</span><span> | </span></div>)}
-                {this.state.movie.production_countries.map(companies => <p>{companies.origin_country}</p>)}
-                {this.state.movie.budget !== 0 && <p>{`Budget $${this.state.movie.budget}`}</p>}
-                {this.state.movie.genres.map(genres => <div className='d-inline'><span>{genres.name}</span><span> | </span></div>)}
+                  <div className='d-block mb-2'>
+                    <span>{this.state.movie.release_date.slice(0, 4)}</span>  <span> | </span>
+                    <span>{`${this.state.movie.runtime}'`}</span>   <span> | </span>
+                    <span>{`${this.state.movie.vote_average} / 10`}</span>
+                  </div>
+                  {this.state.movie.spoken_languages.map(languages => <div className='d-inline mt-5'><span>{languages.name}</span><span> | </span></div>)}
+                  {this.state.movie.production_countries.map(companies => <p>{companies.origin_country}</p>)}
+                  {this.state.movie.budget !== 0 && <p>{`Budget $${this.state.movie.budget}`}</p>}
+                  {this.state.movie.genres.map(genres => <div className='d-inline'><span>{genres.name}</span><span> | </span></div>)}
                 </div>
                 <div className='mt-5 mb-4'>
-                <h3 className='sinopsis-title '>Overview</h3>
-                <p className='sinopsis-text text-justify'>{this.state.movie.overview}</p>
+                  <h3 className='sinopsis-title '>Overview</h3>
+                  <p className='sinopsis-text text-justify'>{this.state.movie.overview}</p>
                 </div>
               </div>
             </div>
@@ -210,7 +232,7 @@ class MovieDetail extends Component {
             </div>
           </div>
         </section>
-        {this.state.error && <h3>{this.state.error}</h3>}
+        {this.state.error && <h3 className='text-center h5 mt-5 alert-danger'>{this.state.error}</h3>}
       </div>}
     </div>
 
