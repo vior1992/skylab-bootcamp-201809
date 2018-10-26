@@ -331,15 +331,15 @@ class User {
     }
 }
 
-// export default {
-//     User,
-//     Track,
-//     Playlist
-// }
-
-//Para teatear:
-module.exports = {
+export default {
     User,
     Track,
     Playlist
 }
+
+//Para teatear:
+// module.exports = {
+//     User,
+//     Track,
+//     Playlist
+// }
