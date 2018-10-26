@@ -1,20 +1,10 @@
-
 require('isomorphic-fetch')
-
 global.sessionStorage = require('sessionstorage')
-
 const logic = require('./logic')
-
 const {expect} = require('chai')
 
-// running test from CLI
-// normal -> $ mocha src/logic.spec.js --timeout 10000
-// debug -> $ mocha debug src/logic.spec.js --timeout 10000
-
-
-
 describe ('logic', () => {
-    false && describe('register', () => {
+    describe('register', () => {
         it('should suceed on correct data', () => {
             return logic.registerUser('ana','san', `as-${Math.random()}`,'a@a','123', '123')
                 .then(() => expect(true).to.be.true)
@@ -298,7 +288,7 @@ describe ('logic', () => {
         })
     })
 
-    false && describe('login', () => {
+    describe('login', () => {
         describe('test on autenticating existent user', () => {
             let username, password
 
@@ -464,8 +454,8 @@ describe ('logic', () => {
             ).to.throw(TypeError, ' is not a string')
         })
     })
-  
-    false && describe('logoutUser', () => {
+
+    describe('logoutUser', () => {
         beforeEach(() => {
             sessionStorage.setItem('auth', JSON.stringify({
                 id: Date.now(),
@@ -484,33 +474,11 @@ describe ('logic', () => {
         })
     })
 
-    false && describe('retrieve a video', () => {
-        it('should succed on correct data', () => {
-            const video = {id: 'BaP1wDvkA6E'}
-
-            logic.getVideo(video)
-                .then( res =>
-                    expect(res).not.to.be.undefined
-                )
-                .catch(res =>
-                    expect(res).to.be.undefined
-                )
-        })
-
-        it('should fail on undefined video', () => {
-            const video = undefined
-
-            expect(() => 
-                logic.getVideo(video)
-            ).to.throw(TypeError, `${video} is not an object`)
-        })
-    })
-  
-    false && describe ('search by query', () => {
+    describe ('search by query', () => {
         it('should succed on searching videos by query', () => {
             const query = 'Madonna'
             return logic.search(query)
-                .then(res => 
+                .then(res =>
                     expect(res).not.to.be.undefined
                 )
         })
@@ -519,43 +487,68 @@ describe ('logic', () => {
             const query = undefined
             expect(() =>
                 logic.search(query)
-            ).to.throw(TypeError, `${query} is not a string`)  
+            ).to.throw(TypeError, `${query} is not a string`)
         })
 
         it('shoul fail on incorrect query(number)', () => {
             const query = 123
             expect(() =>
                 logic.search(query)
-            ).to.throw(TypeError, `${query} is not a string`) 
+            ).to.throw(TypeError, `${query} is not a string`)
         })
 
         it('shoul fail on incorrect query(object)', () => {
             const query = {}
             expect(() =>
                 logic.search(query)
-            ).to.throw(TypeError, '[object Object] is not a string')   
+            ).to.throw(TypeError, '[object Object] is not a string')
         })
 
         it('shoul fail on incorrect query(boolean)', () => {
             const query = true
             expect(() =>
                 logic.search(query)
-            ).to.throw(TypeError, `${query} is not a string`) 
+            ).to.throw(TypeError, `${query} is not a string`)
         })
 
         it('shoul fail on empty query', () => {
             const query = ''
             expect(() =>
                 logic.search(query)
-            ).to.throw(Error, 'query is blank or empty') 
+            ).to.throw(Error, 'query is blank or empty')
         })
-        
+
         it('shoul fail on blank query', () => {
             const query = '     '
             expect(() =>
                 logic.search(query)
-            ).to.throw(Error, 'query is blank or empty')  
+            ).to.throw(Error, 'query is blank or empty')
         })
     })
 
+    describe('retrieve a video', () => {
+        it('should succed on correct data', () => {
+            const video = {id: 'BaP1wDvkA6E'}
+
+            logic.getVideo(video)
+                .then(res => expect(res).not.to.be.undefined)
+                .catch(res => expect(res).to.be.undefined)
+        })
+
+        it('should fail on undefined video', () => {
+            const video = undefined
+
+            expect(() =>
+                logic.getVideo(video)
+            ).to.throw(TypeError, `${video} is not an object`)
+        })
+    })
+
+    describe('get most popular videos', () => {
+        it('should succed', () => {
+            logic.getMostPopular()
+                .then(res => expect(res).not.to.be.undefined)
+                .catch(res => expect(res).to.be.undefined)
+        })
+    })
 })
