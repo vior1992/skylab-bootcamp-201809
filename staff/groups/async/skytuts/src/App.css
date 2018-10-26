@@ -85,6 +85,7 @@ nav ul li a:hover {
   background-position: 98% 9px;
   background-size: 28px 28px;
   background-repeat: no-repeat;
+  font-size: 1.3em;
   padding-left: 20px;
   border-radius: 10px;
   border: 0;
@@ -132,6 +133,7 @@ nav ul li a:hover {
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  text-transform: capitalize;
 }
 
 .main .list-container span:hover {
@@ -578,7 +580,7 @@ nav ul li a:hover {
   bottom: 25%;
   margin: auto;
   background: white;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .popup .popup_inner h1 {
@@ -621,5 +623,29 @@ nav ul li a:hover {
   min-height: 90px;
   font-size: 1.5em;
   border-radius: 10px;
+}
+
+.mouse {
+  cursor: pointer;
+}
+
+.new {
+  color: turquoise;
+  text-transform: uppercase;
+  padding-left: 10px;
+}
+
+.scare {
+  height: 100vh;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=App.css.map */

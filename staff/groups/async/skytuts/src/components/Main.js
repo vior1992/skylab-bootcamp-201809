@@ -85,7 +85,10 @@ class Main extends Component {
 
     render() {
 
-        let card = (this.state.coursesToShow || []).map((course, index) => (<Card course={course} key={index} />))
+        let card = () => {
+            if (this.state.coursesToShow.length > 0) return (this.state.coursesToShow || []).map((course, index) => (<Card course={course} key={index} />))
+            return (<div className='card'><p>No results found :/</p></div>)
+        } 
         
         let links = (['beginner', 'intermediate', 'advanced']).map((type, index) => <span key={index} onClick={() => this.filterCoursesByLevel(type)}>{type}</span>)
 
@@ -98,11 +101,11 @@ class Main extends Component {
         return template.call(this, {  
             auth: logicAuth.isAuthenticated(), 
             error,     
-            card,
             links,
             track,
             popup,
             showPopup,
+            card: card(),
             Navbar
         });
 

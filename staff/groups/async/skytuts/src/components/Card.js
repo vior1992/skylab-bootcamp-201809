@@ -14,9 +14,10 @@ class Card extends Component {
     togglePopup = () => {
         this.setState({showPopup: !this.state.showPopup})
       } 
+
     render() {
 
-        const { course, showPopup } = this.props
+        const { course } = this.props
 
         let popup = (<Popup text='You need to be logged in to view the courses!' closePopup={this.togglePopup}/>)
 
@@ -27,7 +28,6 @@ class Card extends Component {
             course,       
             defaultData,
             popup,
-            showPopup,
             buttonPopup,
             auth: logicAuth.isAuthenticated(),
             Link

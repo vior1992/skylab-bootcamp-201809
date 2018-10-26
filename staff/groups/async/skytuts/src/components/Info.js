@@ -12,20 +12,17 @@ class Info extends Component {
 
     state = {
         courses: logicUdacity._courses,
-        course: []
     }
 
     componentWillMount() {
       
        if (!logicAuth.isAuthenticated()) this.props.history.push('/')
-       let course = this.state.courses.courses.filter(course => course.slug === this.props.match.params.slug )
-       this.setState({course: course[0]})
 
     }
 
     render() {
         
-        const { course } = this.state;
+        const course = this.state.courses.courses.filter(course => course.slug === this.props.match.params.slug)[0];
 
         const instructor =  course.instructors.map((instructor, index)=> <InstructorCard instructor={instructor} key={index}/>) 
         
