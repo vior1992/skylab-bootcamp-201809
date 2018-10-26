@@ -1,12 +1,14 @@
-//comentar para testear:
-// import data from '../datalayer/user'
-// import spotifyLogic from '../services/spotifylogic'
-// require('isomorphic-fetch')
-// const {User, Track, Playlist} = data
 
-const spotifyLogic = require('../services/spotifylogic')
-const {User, Playlist, Track} = require('../datalayer/user')
-let sessionStorage = require('sessionstorage')
+// const spotifyLogic = require('../services/spotifylogic')
+// const {User, Playlist, Track} = require('../datalayer/user')
+// let sessionStorage = require('sessionstorage')
+
+
+//comentar para testear:
+import data from '../datalayer/user'
+import spotifyLogic from '../services/spotifylogic'
+require('isomorphic-fetch')
+const { User, Track, Playlist } = data
 
 
 
@@ -15,7 +17,6 @@ const userService = {
 
     createPlayList(value) {
 
-        debugger
         if (typeof value !== "string") throw TypeError(`search criteria is not a string`)
         if (typeof value !== "string") throw TypeError(`search criteria is empty`)
 
@@ -29,7 +30,6 @@ const userService = {
         })
             .then(playlist => {
 
-                debugger
                 const session = JSON.parse(sessionStorage.getItem("user"))
                 if (!session) throw Error("The session of the user has fisnihed")
                 const res = {
@@ -43,14 +43,14 @@ const userService = {
 
             })
             .then((obj) => {
-                debugger
+
                 return this.getUserInfo(obj.id, obj.token).then(res => {
                     obj.userInf = res
                     return obj
                 })
             })
             .then(res => {
-                debugger
+
                 let user = new User()
                 user.playLists = res.userInf.playLists
                 user.createPlayList(res.playlist)
@@ -59,20 +59,16 @@ const userService = {
 
             })
             .then(data => {
-                debugger
+
                 return this.updateUser(data.id, data.token, data.userInf).then(res => data.userInf.playLists)
 
-        })
-        .catch((err) => {
-            debugger
-            throw Error (err.message)
-        })
+            })
 
     },
 
     getSessionFromStorage() {
 
-        const user =  JSON.parse(sessionStorage.getItem("user"))
+        const user = JSON.parse(sessionStorage.getItem("user"))
         if (user === undefined)
             throw Error("The user has not session");
         else
@@ -86,16 +82,13 @@ const userService = {
             let track = Track.createTrackFromData(data)
             return track
         })
-        .then(track => {
-            
-            let playList = user.playLists.find(playList => playList.id === playlistId)
-            playList.tracks.push(track)
-            const session = this.getSessionFromStorage()
-            return this.updateUser(session.id, session.token, user).then(res => res)
-        })
-        .catch((err) => {
-            throw Error (err.message)
-        })
+            .then(track => {
+
+                let playList = user.playLists.find(playList => playList.id === playlistId)
+                playList.tracks.push(track)
+                const session = this.getSessionFromStorage()
+                return this.updateUser(session.id, session.token, user).then(res => res)
+            })
 
     },
 
@@ -259,8 +252,7 @@ const userService = {
 }
 
 // descomentar para la aplicacion
-// export default userService
+export default userService
 
 //descomentar para test
-module.exports = userService
-
+// module.exports = userService

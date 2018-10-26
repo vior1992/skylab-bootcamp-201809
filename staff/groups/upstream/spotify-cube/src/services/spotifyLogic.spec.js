@@ -8,6 +8,7 @@ const logic = require('./spotifyLogic')
 // normal -> $ mocha src/logic.spec.js --timeout 10000
 // debug -> $ mocha debug src/logic.spec.js --timeout 10000
 
+
 describe('spotifyLogic', () => {
     describe('getArtistById', () => {
 
@@ -200,6 +201,78 @@ describe('spotifyLogic', () => {
                     expect(res.href).to.equal('https://api.spotify.com/v1/playlists/0AUisiV8Q5KcZ41nPOhrIr/tracks?offset=0&limit=100')
                 })
         })
+
+        it('should throw correct error on non-string id (object)', () => {
+
+            let id = {}
+            try {
+                logic.getPlaylistsTracks(id)
+            }
+            catch (err) {
+                expect(err.message).to.equal(`${id} is not a a string`)
+            }
+        })
+
+        it('should throw correct error on non-string id (array)', () => {
+            let id = []
+            try {
+                logic.getPlaylistsTracks(id)
+            }
+            catch (err) {
+                expect(err.message).to.equal(`${id} is not a a string`)
+            }
+        })
+
+        it('should throw correct error on non-string id (boolean)', () => {
+            let id = true
+            try {
+                logic.getPlaylistsTracks(id)
+            }
+            catch (err) {
+                expect(err.message).to.equal(`${id} is not a a string`)
+            }
+        })
+
+        it('should throw correct error on non-string id (number)', () => {
+            let id = 123
+            try {
+                logic.getPlaylistsTracks(id)
+            }
+            catch (err) {
+                expect(err.message).to.equal(`${id} is not a a string`)
+            }
+        })
+
+        it('should throw correct error on non-string id (undefined)', () => {
+            let id = undefined
+            try {
+                logic.getPlaylistsTracks(id)
+            }
+            catch (err) {
+                expect(err.message).to.equal(`${id} is not a a string`)
+            }
+        })
+
+        it('should throw correct error on non-string id (null)', () => {
+            let id = null
+            try {
+                logic.getPlaylistsTracks(id)
+            }
+            catch (err) {
+                expect(err.message).to.equal(`${id} is not a a string`)
+            }
+        })
+
+        it('should throw correct error on empty id', () => {
+            let id = '';
+            try {
+                logic.getPlaylistsTracks(id)
+            }
+            catch (err) {
+                expect(err.message).to.equal(`${id} is empty or blank`)
+            }
+        })
+
     })
 
     describe('getAlbumsByArtistId', () => {

@@ -261,7 +261,7 @@ class User {
 
     }
 
-    existsTrackInPlayLis(trackId) {
+    existsTrackInPlayList = (trackId) => {
 
         if ( typeof trackId !== 'string') throw TypeError(`trackId is not a string`)
         if (!trackId.trim().length) throw Error(`trackId is empty or blank`)
@@ -289,7 +289,7 @@ class User {
     }
 
 
-    searchTrackInPlayLists(trackId) {
+    searchTrackInPlayLists = (trackId) => {
 
         if ( typeof trackId !== 'string') throw TypeError(`trackId is not a string`)
         if (!trackId.trim().length) throw Error(`trackId is empty or blank`)
@@ -331,7 +331,6 @@ class User {
     }
 }
 
-//Descomentar para testear
 // export default {
 //     User,
 //     Track,
