@@ -35,7 +35,7 @@ class Carousel extends Component {
       this.$el = $(this.el);
       this.$el.slick({
         infinite: true,
-        arrows: false,
+        arrows: true,
         dots: false,
         centerMode: true,
         slidesToShow: 4,
@@ -77,10 +77,8 @@ class Carousel extends Component {
             { this.state.movies && this.state.movies.map(movie => {
               return (
                 <div className="carousel-img" key={movie.id}>
-                  <Link to={`/movie/${movie.id}`}>
-                    { movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} /></Link> }
-                    { !movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src="https://dummyimage.com/240x360/707070&text=+" /></Link> }
-                  </Link>
+                  { movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} /></Link> }
+                  { !movie.poster_path && <Link to={`/movie/${movie.id}`}><img className="img-fluid img-medium-rounded" src="https://dummyimage.com/240x360/707070&text=+" /></Link> }
                 </div>
               )
             }) }

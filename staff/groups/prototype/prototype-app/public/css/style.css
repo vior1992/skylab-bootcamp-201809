@@ -196,7 +196,7 @@ body {
 }
 
 .footer {
-  line-height: 60px;
+  line-height: 50px;
   text-align: center;
 }
 
@@ -206,7 +206,8 @@ body {
 }
 
 .backdrop {
-  border-radius: 25px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .title-poster {
@@ -291,6 +292,39 @@ body {
 
 .data-profile {
   max-width: 500px;
+}
+
+.tmdb img {
+  margin-left: 8px;
+  max-width: 35px;
+}
+
+.copy span {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.slide img {
+  border-bottom-right-radius: 18px;
+  border-bottom-left-radius: 18px;
+}
+
+.slick-prev, .slick-next {
+  width: 30px;
+  height: 30px;
+}
+
+.slick-prev {
+  left: -35px;
+}
+
+.slick-next {
+  right: -35px;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 28px;
+  color: #707070;
 }
 
 /*# sourceMappingURL=style.css.map */

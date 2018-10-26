@@ -6,6 +6,17 @@ const logic = {
   _inTheatreMovies: [],
   _popularMovies: [],
 
+  /**
+   * Create an user
+   * 
+   * @param {string} username 
+   * @param {string} email 
+   * @param {string} name 
+   * @param {string} surname 
+   * @param {string} password
+   * 
+   * @returns {Promise}
+   */
   signIn(username, email, name, surname, password) {
     if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
     if (typeof email !== 'string') throw TypeError(`${email} is not a string`)
@@ -35,6 +46,12 @@ const logic = {
       })
   },
 
+  /**
+   * Authenticate an user
+   * 
+   * @param {string} username 
+   * @param {string} password 
+   */
   logIn(username, password) {
     if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
     if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
@@ -70,6 +87,9 @@ const logic = {
     else return false
   },
 
+  /**
+   * Close an user session
+   */
   logout() {
     this._user = {}
     this._trendingMovies = []
@@ -79,6 +99,13 @@ const logic = {
     sessionStorage.removeItem('user')
   },
 
+  /**
+   * Retrieve the trending movies
+   * 
+   * @param {string|number} page
+   * 
+   * @returns {Promise}
+   */
   retrieveTrending(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/trending/movie/week'
     return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
@@ -94,6 +121,13 @@ const logic = {
       })
   },
 
+  /**
+   * Retrieve now playing movies
+   * 
+   * @param {string|number} page
+   * 
+   * @returns {Promise}
+   */
   retrieveInTheatre(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/movie/now_playing'
     return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
@@ -109,6 +143,13 @@ const logic = {
       })
   },
 
+  /**
+   * Retrieve popular movies
+   * 
+   * @param {string|number} page
+   * 
+   * @returns {Promise}
+   */
   retrievePopular(page = 1) {
     const basePath = 'https://api.themoviedb.org/3/movie/popular'
 
