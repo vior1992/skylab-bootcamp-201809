@@ -51,15 +51,13 @@ class Favourites extends Component {
         
         <div className="favourite-title"><h1>{!this.state.favouritesList.length?  <span>Your favourites list is empty</span> : ''}</h1></div>
         
-        <div className="favouriteList-container">
-        
-            <ul>
 
+        
+        <div className="favouriteList-container">
             {this.state.favouritesList.map(item => <FavouriteEvents key={item.id} id={item.id} img={item.images[this.findBestImage(item)].url} name={item.name} city={item._embedded.venues[0].city.name} date={item.dates.start.localDate} deleteFavourite={this.handleDeleteFavourites} eventUrl={item.url}/>)}
 
-            </ul>
-
         </div>
+    
         </section>
 
     }

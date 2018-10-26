@@ -8,9 +8,7 @@ class FavouriteEvents extends Component {
 
     render() {
         
-    return <li className="favourites-list">
-
-    <img src={this.props.img} alt="poster of event"></img>
+    return    <div className="card">
 
         <p>{this.props.name}</p>
 
@@ -22,7 +20,8 @@ class FavouriteEvents extends Component {
 
         <button className="delete-button" href="#" onClick={this.onClickDelete}>X</button>
  
-    </li>
+    </div>
+
     }
 }
 
