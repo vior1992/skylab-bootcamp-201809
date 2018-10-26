@@ -283,7 +283,10 @@ describe('logic', () => {
                 it('should succeed on correct id', () => {
                     const id = 'vvG1fZ411N-A7B'
                     return logic.searchEventInfo(id)
-                        .then(() => expect(true).to.be.true)
+                    .then(res => {
+                        expect(res).not.to.be.undefined
+                        expect(res.length).to.be.above(0)
+                    })
                 })
 
                 it('should fail on undefined id', () => {
