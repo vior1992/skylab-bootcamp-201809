@@ -25,10 +25,11 @@ export default class BackSide extends Component {
       
         res.items.map(item => {
 
-          songs.push({ id: item.id, name: item.name, preview_url: item.preview_url, albumImage: this.state.albums.find(x => x.id === id).image })
+          songs.push({ id: item.id, name: item.name, preview_url: item.preview_url, image: this.state.albums.find(x => x.id === id).image })
 
         })
         this.props.onTracks(songs)
+        this.props.setBackGround(this.state.albums.find(x => x.id === id).image)
 
       })
       .catch(err => alert(err.message))// mostrar modal

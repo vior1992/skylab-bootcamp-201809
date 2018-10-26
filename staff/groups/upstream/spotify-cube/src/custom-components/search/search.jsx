@@ -28,7 +28,7 @@ export default class Search extends Component{
     }
 
     handleClearSearch = () =>{
-
+        this.setState({search:""})
         this.props.onClearSearch();
 
     }

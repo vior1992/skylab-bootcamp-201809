@@ -6,17 +6,29 @@ import Landing from '../landing/landing'
 
 class App extends Component{
 
-    state = {}
+    state = {image:"", blur:"0px"}
 
     handleClickEnter = () => {
      
         this.props.history.push('/cube')
     }
 
+    setBackGround = (image) =>{
+
+        this.setState({image, blur:"6px"})
+    }
+
+    handleClearSearch = () =>{
+        this.setState({image:"",blur:"0px"})
+
+    }
+
     render(){
     return <div>
-            <Route exact path="/" render={() => <Landing onClickEnter = {this.handleClickEnter}></Landing>} />
-            <Route path="/cube" render={() =><div className='bg-app'><div className='bg-albumCover'><Cube></Cube></div></div> } /></div>
+            <div className="back-image" style={{"filter":`blur(${this.state.blur})`,"background-image":`url(${this.state.image})`}}></div>
+                <Route exact path="/" render={() => <Landing onClickEnter = {this.handleClickEnter}></Landing>} />
+                <Route path="/cube" render={() =><Cube onClearSearch={this.handleClearSearch} setBackGround={this.setBackGround} ></Cube> } />
+            </div>
     }
 }
 

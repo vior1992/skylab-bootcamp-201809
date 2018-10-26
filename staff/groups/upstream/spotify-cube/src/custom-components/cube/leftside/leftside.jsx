@@ -11,7 +11,7 @@ export default class LeftSide extends Component {
   state = { isLogged: false, logo: "", tracks: this.props.tracks, track: '' }
 
   componentWillReceiveProps(props) {
-    let tracks = props.tracks.map(el => {el.image = !el.albumImage ? require("../../../assets/img/playlist.png") : el.albumImage; return el})
+    let tracks = props.tracks.map(el => {el.image = !el.image ? require("../../../assets/img/playlist.png") : el.image; return el})
     let back = !tracks.length ? "" : tracks[0].image
     this.setState({ isLogged: props.isLogged, logo: back, tracks: tracks })
 

@@ -1,21 +1,10 @@
-.bg-app {
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+.back-image{
+    background-size: contain;
     background-color: black;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bg-albumCover {
-    position: absolute;
-    background-color: blue;
-    left: auto;
-    width: 80vw;
-    height: 100vh;
-    background: url();
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(6px);
 }
