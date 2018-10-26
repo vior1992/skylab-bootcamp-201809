@@ -29,7 +29,7 @@ class Home extends Component {
     }
 
     handleSubmit = query => {
-        debugger
+
         this.setState({ error: false, searchFlag: false}, () => this.props.history.push(`/home/search/${query}`))
     }
 
@@ -55,9 +55,9 @@ class Home extends Component {
 
             {error && <Error message={error} />}
 
-            <Route path="/home/search/:query" render={props => <SearchResults filter={this.state.dropwdown} query={props.match.params.query} />} /> 
+            <Route path="/home/search/:query" render={props => <SearchResults error={error} filter={this.state.dropwdown} query={props.match.params.query} />} /> 
 
-
+           {this.state.searchFlag && <div className="favourite-title"><h1>Recommended Events</h1></div>}
             {this.state.searchFlag && <section>
 
                 <div className="index-content">

@@ -34,13 +34,16 @@ class EventInfo extends Component {
 
         const { eventInfoArray } = this.state
 
-    return <div class="eventInfo-container">
-            <h1 class="eventInfo-title">{eventInfoArray.name}</h1>
+    return <div className="eventInfo-container">
+
+            <h1 className="eventInfo-title">{eventInfoArray.name}</h1>
 
             <img className="eventInfo-image" src={eventInfoArray.images && eventInfoArray.images[this.findBestImage(eventInfoArray)].url} alt="Card cap" />
 
                 <div className="eventInfo-body">
+
                     <div className="eventInfo-body__eventInfo">
+                    
                     <h4 className="eventInfo-title"> {eventInfoArray.name }</h4>
 
                     <p> {eventInfoArray.dates && (eventInfoArray.dates.start.localTime ? eventInfoArray.dates.start.localTime : 'Event time to be announced') } </p>

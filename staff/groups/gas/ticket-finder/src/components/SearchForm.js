@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { Button, Input } from "mdbreact"
-import All from '../images/all.jpg'
+
 
 
 
 class SearchForm extends Component {
+
    state = { query: '', dropwdown: 'all' }
 
    handleInput = event => {
+
        const query = event.target.value
 
        this.setState({ query })
    }
 
    handleSubmit = event => {
+
        event.preventDefault()
     
        this.props.onSubmit(this.state.query)
@@ -22,14 +25,13 @@ class SearchForm extends Component {
    }
 
    dropDownHandle = (e) => {
-    this.setState({dropwdown : e.target.value}, () => this.props.onDropDownChange(this.state.dropwdown))
 
+    this.setState({dropwdown : e.target.value}, () => this.props.onDropDownChange(this.state.dropwdown))
 
    }
 
    render() {
 
-    let backgroundClass  
        return <div className='searchForm-container-music'>
        <form onSubmit={this.handleSubmit}>
 
