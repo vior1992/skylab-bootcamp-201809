@@ -19,14 +19,11 @@ handleSubmit = event => {
 
     const query = this.state.query
     
-    console.log(query)
-
     if (query!='') this.props.history.push(`/categories/${query}`)
 }
 
 verResultados = event => {
     event.preventDefault()
-    console.log(this.state.movies)
 }
 
 render() {

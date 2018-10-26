@@ -9,8 +9,6 @@ class Login extends Component {
         const username = event.target.value
 
         this.setState({ username })
-
-        console.log(this.state.username)
     }
 
     handlePasswordChange = event => {
@@ -18,19 +16,14 @@ class Login extends Component {
 
         this.setState({ password })
 
-        console.log(this.state.password)
-
     }
 
     handleSubmit = this.handleSubmit.bind(this)
     handleSubmit(event) {
         event.preventDefault()
 
-        console.log('iniciando login')
-
         const { username, password } = this.state
 
-        console.log('username y password: ' + username + password)
         try {
             logic.loginUser(username, password)
                 .then(() => this.setState({ error: "" }))
@@ -41,12 +34,10 @@ class Login extends Component {
         } catch (err) {
             this.setState({ error: err.message })
         }
-        console.log(this.props.isLoggedIn)
     }
 
     verResultados = event => {
         event.preventDefault()
-        console.log(this.state.error)
     }
 
     render() {

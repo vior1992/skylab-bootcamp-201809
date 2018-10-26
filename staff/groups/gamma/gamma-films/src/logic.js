@@ -11,6 +11,18 @@ const logic = {
     results: "",
     _fav: [],
 
+ /**
+     * 
+     * @param {string} name // the name of the user
+     * @param {string} surname // then surname of the user
+     * @param {string} username // the username for the aplication
+     * @param {string} password // the password
+     * 
+     * @throws {Error} if incorrect or blank params
+     * 
+     * @throws {Error} if bad status on response
+     * 
+     */
 
     registUser(name, surname, username, password) {
 
@@ -25,10 +37,8 @@ const logic = {
         if (!password.trim()) throw Error('password is empty or blank')
 
         const user = new User(name, surname, username, password)
-        console.log(name, surname, username, password)
 
         this._user = user
-        console.log(this._user)
 
         return fetch('https://skylabcoders.herokuapp.com/api/user', {
             method: 'POST',
@@ -42,7 +52,14 @@ const logic = {
                 if (res.error) throw Error(res.error)
             })
     },
-
+    /**
+     * 
+     * @param {string} username 
+     * @param {string} password 
+     * 
+     * @throws {Error} if incorrect or blank params
+     * 
+     */
     loginUser(username, password) {
 
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
@@ -71,6 +88,11 @@ const logic = {
             })
     },
 
+
+    /**
+     * 
+     */
+
     logout() {
         this._user = ''
         this._userId = ''
@@ -81,6 +103,11 @@ const logic = {
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('user.name')
     },
+
+
+    /**
+     * @returns {Response} userId and token
+     */
 
     retrieveUser() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
@@ -93,19 +120,37 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
 
-                console.log('respuesta retrieve: ' + res)
                 return this._user = res.data || []
             })
     },
+
+    /**
+     * @returns {Response} this._userId
+     */
 
     get loggedIn() {
         return !!this._userId
     },
 
+    /**
+     * @returns {Response} this._user
+     */
+
     get user() {
         return this._user
 
     },
+
+    /**
+     * 
+     * @param {string} query // string name of the movie search
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array of data films
+     * 
+     */
 
     searchMovies(query) {
 
@@ -129,6 +174,16 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} id //
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array of movie info
+     */
+
     searchMovie(id) {
 
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
@@ -151,6 +206,14 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array of films playing now
+     * 
+     */
+
     searcNowPlaying() {
 
         return fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=e187746b7167e4886a5d0a2f1ead5a18', {
@@ -167,6 +230,16 @@ const logic = {
                 return res.results;
             })
     },
+
+    /**
+     * 
+     * @param {string} genres /action, drama...
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array movies by genre
+     */
 
     searchMoviesByCategories(genres) {
 
@@ -190,6 +263,17 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} date // week, month (popular movies in that time)
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array movies by date
+     * 
+     */
+
     searchPopularMovies(date) {
 
         if (typeof date !== 'string') throw TypeError(`${date} is not a string`)
@@ -212,6 +296,13 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array favourites of user
+     */
+
     listFavourites() {
         return fetch(`https://skylabcoders.herokuapp.com/api/user/${this._userId}`, {
             method: 'GET',
@@ -226,6 +317,18 @@ const logic = {
                 return this._fav = res.data.Fav || []
             })
     },
+
+    /**
+     * 
+     * @param {array} fav //array of favourites of a user
+     * @param {string} id  // id of the film
+     * @param {string} image // rout image film
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} true
+     */
 
     updateFavourites(fav, id, image) {
 
@@ -256,6 +359,18 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {array} fav //array of favourites of a user
+     * @param {string} id  // id of the film
+     * @param {string} image // rout image film
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} true
+     */
+
     removeFavourites(fav, id, image) {
 
         if(!(fav instanceof Array)) throw TypeError(`${fav} is not a array`)
@@ -283,6 +398,16 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} id // id of the film
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array of trailers
+     */
+
     searchTrailer(id) {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
@@ -304,6 +429,16 @@ const logic = {
             })
 
     },
+
+    /**
+     * 
+     * @param {*} id // id of the film
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array of Characters
+     */
 
     searchCharacters(id) {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
@@ -328,7 +463,18 @@ const logic = {
             
     },
 
+    /**
+     * 
+     * @param {string} id // id of the film
+     * 
+     * @throws {Error} if incorrect or blank params
+     * @throws {Error} if bad status on response
+     * 
+     * @returns {Response} array of reviews
+     */
+
     getReviews(id) {
+        
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
         
         if (!id.trim()) throw Error('id is empty or blank')
@@ -345,8 +491,9 @@ const logic = {
             
             
                 if (res === 'undefined') throw Error(res.error)
+                const results = res.results
 
-                return res;
+                return results
             })
     }
 
