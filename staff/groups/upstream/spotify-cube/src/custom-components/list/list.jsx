@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 export default class List extends Component {
 
-    state = { hiddePlayListDiv:"", isLogged: false, trackFoundInPlayListMessage: "", playLists: [], list: this.props.list, type: this.props.type }
+    state = { isLogged: false, trackFoundInPlayListMessage: "", playLists: [], list: this.props.list, type: this.props.type }
 
 
     componentWillReceiveProps(props) {
