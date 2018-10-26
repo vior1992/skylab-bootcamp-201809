@@ -407,7 +407,7 @@ describe('logic', () => {
 
         })
 
-         describe('delete favourites from user array', () => {
+        false && describe('delete favourites from user array', () => {
             describe('with existing user', () => {
                 let username, password, itemId
 
@@ -506,15 +506,6 @@ describe('logic', () => {
                     })
             })
 
-            it('should return no favourites when empty', () => {
-
-                return logic.deleteFavourite('vvG1fZ411N-A7B')
-                    .then(logic.retrieveFavouriteEvents()
-                        .then(expect(true).to.be.true)
-                        .then(res => {
-                            expect(res.length).to.equal(0)
-                        })) //REVIEW
-            })
 
         })
 

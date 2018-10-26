@@ -157,10 +157,10 @@ ul {
         align-items: center;
     }
 
-    .fav-container {
+    /* .fav-container {
         display: flex;
         flex-direction: column;
-    }
+    } */
 
 
 
@@ -290,26 +290,10 @@ ul {
 }
 
 .favouriteList-container {
-    margin-top: 80px;
+    text-align: center;
+    margin: 80px auto;
 }
 
-.favourites-list {
-    /* text-align: left; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin-top: 15px;
-}
-
-.favourites-list img {
-    width: 20%;
-    height: 20%;
-}
-
-.favourites-list p {
-    font-weight: bold;
-}
 
 .card-link {
     color: #880e4f;
@@ -388,6 +372,17 @@ ul {
     font-weight: bold;
 }
 
-.fav-container {
+/* .fav-container {
     display: flex;
+} */
+
+.favourites-card img {
+    height: 200px;
+
+}
+
+
+.favouriteList-container { 
+    text-align: center;
+    margin: 80px auto;
 }
