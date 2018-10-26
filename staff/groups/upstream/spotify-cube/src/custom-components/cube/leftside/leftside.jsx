@@ -8,7 +8,7 @@ import $ from 'jquery'
 export default class LeftSide extends Component {
 
 
-  state = { isLogged: false, logo: "", tracks: this.props.tracks, track: '' }
+  state = { playLists:[], isLogged: false, logo: "", tracks: this.props.tracks, track: '', trackFoundInPlayListMessage:""}
 
   componentWillReceiveProps(props) {
     let tracks = props.tracks.map(el => {el.image = !el.image ? require("../../../assets/img/playlist.png") : el.image; return el})
@@ -112,7 +112,7 @@ export default class LeftSide extends Component {
         <div className="rotateY--180" >
           <Header track={this.state.track} showPlayer={true}></Header>
           <SideTitle logo={this.state.logo} image="metallica.png" title="Track List"></SideTitle>
-          <List onClickAddTrackToList={this.handleAddTrackToListClickButton} onPlayListClick = {this.handlePlaylistClick} isLogged={this.state.isLogged} onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list={this.state.tracks}></List>
+          <List trackFoundInPlayListMessage = {this.state.trackFoundInPlayListMessage} playLists={this.state.playLists} onClickAddTrackToList={this.handleAddTrackToListClickButton} onPlayListClick = {this.handlePlaylistClick} isLogged={this.state.isLogged} onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list={this.state.tracks}></List>
         </div>
 
       </section>

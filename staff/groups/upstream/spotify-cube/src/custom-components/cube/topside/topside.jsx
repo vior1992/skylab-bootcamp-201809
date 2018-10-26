@@ -7,6 +7,10 @@ export default class TopSide extends Component{
 
     state = {isLogged:false, message:""}
 
+    componentWillMount(){
+        
+    }
+
     handleLogin = ({ username, password }) => {
         
         try {

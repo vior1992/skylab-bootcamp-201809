@@ -7,7 +7,7 @@ export default class List extends Component {
 
 
     componentWillReceiveProps(props) {
-        this.setState({ isLogged: props.isLogged, list: props.list })
+        this.setState({ isLogged: props.isLogged, list: props.list ,playLists:props.playLists, trackFoundInPlayListMessage:props.trackFoundInPlayListMessage})
 
     }
 
