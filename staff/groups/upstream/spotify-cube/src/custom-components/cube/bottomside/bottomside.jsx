@@ -36,9 +36,9 @@ export default class BottomSide extends Component {
                     el.image = require('../../../assets/img/playlist.png')
                 })
 
-                this.setState({ messageButton: "Add PlayList", registerPlaylistMessage: "The playlist has been created", showFormAddPlayList: false, playlists: res }, () => {
+                this.setState({ messageButton: "Add PlayList", registerPlaylistMessage: "The playlist has been created", showFormAddPlayList: false }, () => {
 
-
+                    this.props.OnCreatedPlayList()
                 })
 
             })
@@ -73,7 +73,8 @@ export default class BottomSide extends Component {
                 el.image = require('../../../assets/img/playlist.png')
             })
 
-            this.setState({ playlists: res.playLists })
+            //this.setState({ playlists: res.playLists })
+            this.props.OnCreatedPlayList()
 
         }).catch(err => {
 
