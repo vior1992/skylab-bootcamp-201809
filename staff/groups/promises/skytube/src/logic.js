@@ -13,6 +13,21 @@ const logic = {
     video_search: JSON.parse(sessionStorage.getItem('video_search')) || [],
     current_video: JSON.parse(sessionStorage.getItem('current_video')) || {},
 
+    /**
+     * 
+     * @param {string} name user name 
+     * @param {string} surname user surname
+     * @param {string} username user username
+     * @param {string} email user email
+     * @param {string} password user password
+     * @param {string} repPassword repeated password to confirm first password
+     * 
+     * @throws {Error in case of non-string, empty or blank parameters}
+     * @throws {Error in case confirmation password does not match password}
+     * @throws {Error in case API detects repeated username} 
+     * 
+     * @returns {Promise}
+    */
     registerUser(name, surname, username, email, password, repPassword) {
         if(typeof name !=='string') throw TypeError (`${name} is not a string`)
         if (!name.trim()) throw Error ('name is blank or empty')
@@ -47,6 +62,16 @@ const logic = {
         }
     },
 
+    /**
+     * 
+     * @param {string} username user username
+     * @param {string} password user password
+     * 
+     * @throws {Error in case of non-string, blank or empty parameters}
+     * @throws {Error in case of incorrect credentials}
+     * 
+     * @return {Promise}
+     */
     loginUser(username, password) {
         if(typeof username !=='string') throw TypeError (`${username} is not a string`)
         if (!username.trim()) throw Error ('username is blank or empty')
@@ -88,6 +113,9 @@ const logic = {
             })
     },
 
+    /**
+     * Log out the user by deleting the user information from session Storage
+     */
     logoutUser() {
         sessionStorage.removeItem('auth')
         sessionStorage.removeItem('auth_info')
@@ -100,10 +128,22 @@ const logic = {
         this.auth = {}
     },
 
+    /**
+     * @returns {boolean}
+     */
     isAuthenticated() {
         return this.auth && Object.keys(this.auth).length > 0
     },
 
+    /**
+     * 
+     * @param {string} query 
+     * 
+     * @throws {Error on non-string, empty or blank parameters}
+     * @throws {Error on non-string, empty or blank parameters}
+     * 
+     * @returns {Promise} 
+     */
     search(query) {
         if(typeof query !== 'string') throw TypeError(`${query} is not a string`)
         if(!query.trim()) throw Error ('query is blank or empty')
@@ -124,6 +164,15 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {object} video 
+     * 
+     * @throws {Error on non-object parameter}
+     * @throws {Error if error occurs when retrieving music video from the youtube api}
+     * 
+     * @returns {Promise}
+     */
     getVideo(video) {
         if (typeof video !== 'object') throw TypeError(`${video} is not an object`)
 
@@ -138,7 +187,7 @@ const logic = {
                 throw Error(error)
             })
     },
-
+    
     addFavourite(video) {
         const favouritesTable = new Favourites()
         favouritesTable.newEntity({
@@ -148,7 +197,7 @@ const logic = {
         }).save()
         this.skylab.update({favourites: favouritesTable.all()}, this.auth.id, this.auth.token)
     },
-
+   
     removeFavourite(video_id) {
         const favouritesTable = new Favourites()
         let video = favouritesTable.get(video_id)
