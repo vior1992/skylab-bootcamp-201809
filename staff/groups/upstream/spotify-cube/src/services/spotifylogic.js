@@ -2,7 +2,7 @@
 const spotifyLogic = {
 
 
-    token: 'BQA2YTpgUthiUt_rRXZ-OydcAI4XpbMuMEhXr2qBtbd65-kAVI7eMs1bbZwHALcgClyo6KPpZmCKuXg2zYGS8ygIl8g3x7HzlmQmgtSAJNM3GcMdhWTF0iwML7X2mZpuEMOIFlN-EotirtcFRFr5KYbYg64LdWXV3WsGBSoDoG969Lvy3gvkovhCOVmNMhrtbbCX-MNoeZwwYNYsLIqnwx6mJxcEVxjuWwUfUBe6ZOtQ0Wra740hj6sGzQduRScAbj1G10GxzUw',
+    token: 'BQDKoXXDxRik1K8w6S8SRTqhDlpkbJg_VxWPEgVnAu_RBxeLaBZ6XitJkDsfuH019SvtSXSSMZZz_9nhTWxrp8L_3MtiUi11mcqw2KXMcMkL85nm4fFHuCpj0AkV8AzdvRbedAbFjccaqcjDol5g0hLEHmcZ',
 
 
     getArtistById(id) {
@@ -20,7 +20,7 @@ const spotifyLogic = {
         })
             .then(res => res.json())
             .then((res) => {
-                if(res.error) throw Error (res.error)
+                if(res.error) throw Error (res.error.message)
                 return res
             })
             
@@ -42,8 +42,7 @@ const spotifyLogic = {
             .then(res => res.json())
             .then(res => {
 
-                if (res.status === 401) 
-                    throw Error("The Spotify token has expired")
+                if (res.error) throw Error(res.error.message)
                 else    
                     return res
             })
@@ -60,6 +59,9 @@ const spotifyLogic = {
         })
             .then((res) => res.json())
             .then((res) => {
+                
+                if(res.error) throw Error (res.error.message)
+                
                 const track = {}
                 track.id = res.id
                 track.name = res.name
@@ -82,7 +84,7 @@ const spotifyLogic = {
             },
             // body: JSON.stringify({ name, surname, username, password })
         })
-            .then(res => res.json())
+            .then(res => res.json()).then(res => {if (res.error) throw Error (res.error.message); else return res})
     },
 
     getAlbumsByArtistId(artistId) {
@@ -95,7 +97,10 @@ const spotifyLogic = {
             // body: JSON.stringify({ name, surname, username, password })
         })
             .then(res => res.json())
-            .then(res => res)
+            .then(res => {
+                if(res.error) throw Error (res.error.message)
+                return res
+            })
     },
 
     getSongsbyAlbumId(id) {
@@ -107,7 +112,11 @@ const spotifyLogic = {
             },
         })
             .then((res) => res.json())
-            .then(res => res)
+            .then(res => {
+                if(res.error) throw Error (res.error.message)
+                return res
+
+            })
     },
 
     createPlaylist(name) {
@@ -120,7 +129,13 @@ const spotifyLogic = {
             body: JSON.stringify({name: name})
         })
             .then((res) => res.json())
-            .then(res => res)
+            .then(res => {
+
+                if (res.error) throw(res.error) 
+                else
+                    return res
+
+            })
     },
 
     //id, name, preview_url, picture
@@ -135,6 +150,8 @@ const spotifyLogic = {
         })
             .then((res) => res.json())
             .then((res) => {
+                if(res.error) throw Error (res.error.message)
+                
                 const track = {}
                 track.id = res.id
                 track.name = res.name

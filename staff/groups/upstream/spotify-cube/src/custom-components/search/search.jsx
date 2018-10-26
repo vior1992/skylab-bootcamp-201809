@@ -2,8 +2,18 @@ import React, {Component} from 'react'
 
 export default class Search extends Component{
 
-    state = {search:""}
+    state = {message:"", search:""}
 
+    componentWillReceiveProps(props){
+
+        this.setState({message:props.message}, () => {
+
+            setTimeout(() => {
+                this.setState({message:""})                
+            }, 3000)
+
+        });
+    }
 
     handleChange = (ev) =>{
 
@@ -19,7 +29,6 @@ export default class Search extends Component{
 
     handleClearSearch = () =>{
 
-        this.setState({search:""}) 
         this.props.onClearSearch();
 
     }
@@ -34,6 +43,7 @@ export default class Search extends Component{
                     </div>
                     <button type="submit" className="btn btn-primary">Search Artits</button>
                     <button onClick={this.handleClearSearch} type="button" className="btn btn-primary">Clear search</button>
+                    <h2>{this.state.message}</h2>
                 </form>
            
         );

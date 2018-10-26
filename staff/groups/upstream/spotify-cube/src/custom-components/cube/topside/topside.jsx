@@ -5,7 +5,7 @@ import userService from '../../../services/userlogic'
 
 export default class TopSide extends Component{
 
-    state = {isLogged:false}
+    state = {isLogged:false, message:""}
 
     handleLogin = ({ username, password }) => {
         
@@ -20,9 +20,9 @@ export default class TopSide extends Component{
                    })
 
                 })
-                .catch(err => alert(err.message))
+                .catch(err => this.setState({message:err.message}))
         } catch (err) {
-           
+            this.setState({message:err.message})
         }
     }
 
@@ -43,11 +43,11 @@ export default class TopSide extends Component{
         return (
             <section className="top">
                 <Header></Header>
-                {!this.state.isLogged && <Login onClickRegister = {this.props.onClickRegister} onLogin={this.handleLogin}></Login>}
+                {!this.state.isLogged && <Login message = {this.state.message} onClickRegister = {this.props.onClickRegister} onLogin={this.handleLogin}></Login>}
                {this.state.isLogged && <section className="top__seccion-button">
                     <button onClick={this.handleLogout} className="btn btn-warning">Logout</button>
                 </section>}
-           </section>
+            </section>
         );
     }
 }
