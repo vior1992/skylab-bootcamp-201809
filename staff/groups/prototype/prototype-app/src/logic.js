@@ -107,6 +107,8 @@ const logic = {
    * @returns {Promise}
    */
   retrieveTrending(page = 1) {
+    if(typeof page !== 'string' && typeof page !== 'number') throw Error(`${page} is not a string or number`)
+
     const basePath = 'https://api.themoviedb.org/3/trending/movie/week'
     return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
       method: 'GET'
@@ -129,6 +131,8 @@ const logic = {
    * @returns {Promise}
    */
   retrieveInTheatre(page = 1) {
+    if(typeof page !== 'string' && typeof page !== 'number') throw Error(`${page} is not a string or number`)
+
     const basePath = 'https://api.themoviedb.org/3/movie/now_playing'
     return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
       method: 'GET'
@@ -151,6 +155,8 @@ const logic = {
    * @returns {Promise}
    */
   retrievePopular(page = 1) {
+    if(typeof page !== 'string' && typeof page !== 'number') throw Error(`${page} is not a string or number`)
+
     const basePath = 'https://api.themoviedb.org/3/movie/popular'
 
     return fetch(`${basePath}?page=${page}&api_key=${this._apiKey}`, {
@@ -166,8 +172,17 @@ const logic = {
       })
   },
 
+  /**
+   * Retrieve movies that match with the query
+   * 
+   * @param {string} query 
+   * @param {string|number} page
+   * 
+   * @returns {Promise}
+   */
   retrieveMovies(query, page = 1) {
     if(typeof query !== 'string') throw Error(`${query} is not a valid query`)
+    if(typeof page !== 'string' && typeof page !== 'number') throw Error(`${page} is not a string or number`)
 
     const basePath = 'https://api.themoviedb.org/3/search/movie'
 
@@ -182,6 +197,13 @@ const logic = {
       })
   },
 
+  /**
+   * Retrieve movie details
+   * 
+   * @param {string} id 
+   * 
+   * @returns {Promise}
+   */
   retrieveMovie(id) {
     if(typeof id !== 'string') throw Error(`${id} is not a valid movie id`)
     if(id.trim().length === 0) throw TypeError(`${id} is blank id`)
@@ -199,6 +221,9 @@ const logic = {
       })
   },
 
+  /**
+   * Retrieve the user data
+   */
   retrieveUserData() {
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
     const params = {
@@ -224,7 +249,17 @@ const logic = {
       })
   },
 
+  /**
+   * Add a movie in the user seen list
+   * 
+   * @param {Object} movie 
+   * 
+   * @returns {Promise}
+   */
   addUserSeen(movie) {
+    if (!(movie instanceof Object)) throw TypeError(`${movie} is not an object`)
+    if (movie instanceof Array) throw TypeError(`${movie} is not an object`)
+    
     this._user.seen.push(movie)
 
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
@@ -244,6 +279,13 @@ const logic = {
       })
   },
 
+  /**
+   * Update the user seen list
+   * 
+   * @param {Array} movies 
+   * 
+   * @returns {Promise}
+   */
   updateUserSeen(movies) {
     if(!(movies instanceof Array)) throw Error(`${movies} is not an array`)
 
@@ -266,7 +308,16 @@ const logic = {
       })
   },
 
+  /**
+   * Delete a movie in the user seen list
+   * 
+   * @param {string} id
+   * 
+   * @returns {Promise} 
+   */
   deleteUserSeen(id) {
+    if(typeof id !== 'string' && typeof id !== 'number') throw Error(`${id} is not a string or number`)
+
     const seen = this._user.seen.filter(movie => movie.id != id)
     this._user.seen = seen
 
@@ -286,7 +337,17 @@ const logic = {
       })
   },
 
+  /**
+   * Add a movie in the user pending list
+   * 
+   * @param {Object} movie 
+   * 
+   * @returns {Promise}
+   */
   addUserPending(movie) {
+    if (!(movie instanceof Object)) throw TypeError(`${movie} is not an object`)
+    if (movie instanceof Array) throw TypeError(`${movie} is not an object`)
+
     this._user.pending.push(movie)
 
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
@@ -306,6 +367,13 @@ const logic = {
       })
   },
 
+  /**
+   * Update the user pending list
+   * 
+   * @param {Array} movies 
+   * 
+   * @returns {Promise}
+   */
   updateUserPending(movies) {
     if(!(movies instanceof Array)) throw Error(`${movies} is not an array`)
 
@@ -328,7 +396,16 @@ const logic = {
       })
   },
 
+  /**
+   * Delete a movie in the user pending list
+   * 
+   * @param {string|id} id 
+   * 
+   * @returns {Promise}
+   */
   deleteUserPending(id) {
+    if(typeof id !== 'string' && typeof id !== 'number') throw Error(`${id} is not a string or number`)
+
     const pending = this._user.pending.filter(movie => movie.id != id)
     this._user.pending = pending
     const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
@@ -348,24 +425,32 @@ const logic = {
       })
   },
   
-  updateUserData(data) {
-    const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
-    const params = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this._user.token}`
-      },
-      body: JSON.stringify(data)
-    }
+  // updateUserData(data) {
+  //   const endpoint = `https://skylabcoders.herokuapp.com/api/user/${this._user.id}`
+  //   const params = {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${this._user.token}`
+  //     },
+  //     body: JSON.stringify(data)
+  //   }
 
-    return fetch(endpoint, params)
-      .then(response => response.json())
-      .then(response => {
-        if (response.error) throw Error(response.error)
-      })
-  },
+  //   return fetch(endpoint, params)
+  //     .then(response => response.json())
+  //     .then(response => {
+  //       if (response.error) throw Error(response.error)
+  //     })
+  // },
 
+  /**
+   * Check if the movie is in the user lists
+   * 
+   * @param {string|number} id 
+   * @param {string} list 
+   * 
+   * @returns {number}
+   */
   checkInList(id, list) {
     if (typeof id !== 'string' && typeof id !== 'number') throw TypeError(`${id} is not a string or a number`)
     if (typeof list !== 'string') throw TypeError(`${list} is not a string`)
@@ -387,6 +472,14 @@ const logic = {
     return index
   },
 
+  /**
+   * Check the state of movie in the user seen list
+   * 
+   * @param {string} id 
+   * @param {string} state 
+   * 
+   * @returns {boolean}
+   */
   checkState(id, state) {
     if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
     if (typeof state !== 'string') throw TypeError(`${state} is not a string`)
@@ -414,6 +507,13 @@ const logic = {
     return check
   },
 
+  /**
+   * Mark or dismark a movie as seen in the user seen list
+   * 
+   * @param {Object} movie
+   * 
+   * @returns {string} 
+   */
   seenClick(movie) {
     if (!(movie instanceof Object)) throw TypeError(`${movie} is not an object`)
     if (movie instanceof Array) throw TypeError(`${movie} is not an object`)
@@ -447,6 +547,13 @@ const logic = {
     return ret
   },
 
+  /**
+   * Mark or dismark a movie as pending in the user pending list
+   * 
+   * @param {Object} movie 
+   * 
+   * @returns {string}
+   */
   pendingClick(movie) {
     if (!(movie instanceof Object)) throw TypeError(`${movie} is not an object`)
     if (movie instanceof Array) throw TypeError(`${movie} is not an object`)
@@ -479,6 +586,13 @@ const logic = {
     return ret
   },
 
+  /**
+   * Mark or dismark a movie as favourite in the user seen list
+   * 
+   * @param {string} id 
+   * 
+   * @returns {string}
+   */
   favouriteClick(id) {
     if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
     if (!id.trim()) throw Error('id is empty or blank')
@@ -517,6 +631,13 @@ const logic = {
     return ret
   },
 
+  /**
+   * Mark or dismark a movie as like in the user seen list
+   * 
+   * @param {string} id
+   * 
+   * @returns {string} 
+   */
   likeClick(id) {
     if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
     if (!id.trim()) throw Error('id is empty or blank')
@@ -556,6 +677,13 @@ const logic = {
     return ret
   },
 
+  /**
+   * Mark or dismark a movie as dislike in the user seen list
+   * 
+   * @param {string} id
+   * 
+   * @returns {string} 
+   */
   unlikeClick(id) {
     if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
     if (!id.trim()) throw Error('id is empty or blank')
@@ -595,6 +723,13 @@ const logic = {
     return ret
   },
 
+  /**
+   * Modify the space characater(+) for an empty space( ) 
+   * 
+   * @param {string} string
+   * 
+   * @returns {string} 
+   */
   beautifyQuery(string) {
     if (typeof string !== 'string') throw TypeError(`${string} is not a string`)
     if (!string.trim()) throw Error('string is empty or blank')
