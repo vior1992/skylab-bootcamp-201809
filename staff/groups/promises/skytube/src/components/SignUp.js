@@ -50,7 +50,7 @@ class SignUp extends Component {
     }
 
     render() {
-        return <div className='signup'>
+        return <div id="register" className='signup'>
             <Error error={this.props.error} />
             <form className='form' onSubmit={this.handleSubmit}>
                 <h4 className='form__label'>Name</h4>
