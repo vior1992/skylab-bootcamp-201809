@@ -856,5 +856,54 @@ describe('logic', () => {
 
         })
 
+        flag && describe('getReviews', () => {
+
+            it('should succes on correct id', () => {
+                const id = '268' //id of Batman
+                return logic.getReviews(id)
+                    .then(() => expect(true).to.be.true)
+            })
+
+            it('should return an array', () => {
+                const id = '351286'
+                return logic.getReviews(id)
+                    .then((results) => {
+                        expect(results).not.to.be.undefined
+                        expect(results).to.be.a('array')
+                        expect(results[0]).to.be.a('object')
+                    })
+            })
+
+            it('should fail on undefined id', () => {
+                const id = undefined
+                expect(() =>
+                    logic.getReviews(id)
+                ).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on null id', () => {
+                const id = null
+                expect(() =>
+                    logic.getReviews(id)
+                ).to.throw(TypeError, 'null is not a string')
+            })
+
+            it('should fail on object id', () => {
+                const id = {}
+                expect(() =>
+                    logic.getReviews(id)
+                ).to.throw(TypeError, '[object Object] is not a string')
+            })
+
+            it('should fail on empty id', () => {
+                const id = '    \t'
+                expect(() =>
+                    logic.getReviews(id)
+                ).to.throw(Error, 'id is empty or blank')
+            })
+
+
+        })
+
     })
 })

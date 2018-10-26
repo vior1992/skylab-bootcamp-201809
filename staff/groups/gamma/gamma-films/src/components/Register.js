@@ -46,7 +46,7 @@ class Register extends Component {
     handleSubmit (event){
         event.preventDefault()
         const { name, surname, username, password } = this.state
-        debugger
+
         try {
             logic.registUser(name, surname, username, password)
                 .then(() => this.setState({ error: null }))
