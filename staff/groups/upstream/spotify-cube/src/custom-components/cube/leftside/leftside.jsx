@@ -8,7 +8,7 @@ import $ from 'jquery'
 export default class LeftSide extends Component {
 
 
-  state = { playLists:[], isLogged: false, logo: "", tracks: [], track: '', trackFoundInPlayListMessage:"", hiddePlayListDiv:""}
+  state = { playLists:[], isLogged: false, logo: "", tracks: [], track: '', trackFoundInPlayListMessage:""}
 
   componentWillReceiveProps(props) {
     let tracks = props.tracks.map(el => {el.image = !el.image ? require("../../../assets/img/playlist.png") : el.image; return el})
@@ -35,9 +35,9 @@ export default class LeftSide extends Component {
 
   handlePlaylistClick = (trackId, playListId) => {
 
-    let promise = this.getUserInfo()
+    this.getUserInfo()
       .then((data) => {
-
+    
         if (userService.existsTrackInPlayList(data, trackId)) {
           this.setState({ trackFoundInPlayListMessage: "This track is already in the playList" }, () => {
 
@@ -97,6 +97,11 @@ export default class LeftSide extends Component {
                     $(`#${trackId}`).removeClass("display-none")
                     $("#button-" + trackId).text("Close")
                 })
+            else{
+
+                 alert("The user has not any playList")
+                        
+            }
 
         }).catch(err => alert(err.message))
     }
@@ -114,7 +119,7 @@ export default class LeftSide extends Component {
         <div className="rotateY--180" >
           <Header track={this.state.track} showPlayer={true}></Header>
           <SideTitle logo={this.state.logo} image="metallica.png" title="Track List"></SideTitle>
-          <List hiddePlayListDiv={this.state.hiddePlayListDiv} trackFoundInPlayListMessage = {this.state.trackFoundInPlayListMessage} playLists={this.state.playLists} onClickAddTrackToList={this.handleAddTrackToListClickButton} onPlayListClick = {this.handlePlaylistClick} isLogged={this.state.isLogged} onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list={this.state.tracks}></List>
+          <List  trackFoundInPlayListMessage = {this.state.trackFoundInPlayListMessage} playLists={this.state.playLists} onClickAddTrackToList={this.handleAddTrackToListClickButton} onPlayListClick = {this.handlePlaylistClick} isLogged={this.state.isLogged} onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list={this.state.tracks}></List>
         </div>
 
       </section>

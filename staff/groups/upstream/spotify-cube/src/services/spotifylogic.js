@@ -2,7 +2,7 @@
 const spotifyLogic = {
 
 
-    token: 'BQBEU-QfTDKNLYqTnwlTkVkY5zsjhiNx7z2yJ3PoRh81OFEXhPJFDz3tbH4qqxotP_Ygw7QBIQcGolrEhhB3-TSdvL-cvbkHXKAYKwgLsVj8xVAdoCDNOXmd_8dBXbI7ZBRAIJ0XhM2MiOkQipy1nE5vAPtaVMEWUytJKw59diNnxeXZuP3LMXL9Ei8wMloYk6KvNosLbebNvUME2BPk_vCH3Gyew-BVG0tHEZYNlboapIN_GnuyGH6yqmrH1Fv005vwBNyeqcg',
+    token: 'BQAYQRauevt4JhKL-lYyC7Pxa9pkL4dGxMfDyFDzmy2e3TY_Qcl_ElrLZGsyUsL6i5cwY-5pVPVPrEUMXy06V0X7RrkrnV6lcoo_58xwl43v3fEs-Wc11mf-2YsYsSisGOqEF4CuB3aqGqcXKb26VtCv06OZeDEftdiMiUBVEkAy41vhqKkcAWNVvj37D-tLkG1uJ0x9v9TLqInHbGX6u6wopaajKMTxnO6QlGc0lsFUOPzLPT1aWEZsm9T1eegm7fDr3cMmimQ',
 
 
     getArtistById(id) {
