@@ -44,3 +44,4 @@ $ surge
 $ mocha src/logic.spec.js
 ```
 
+[Live Demo](https://smdb.surge.sh)
