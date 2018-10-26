@@ -3,18 +3,22 @@
 
 ## Intro
 
-This application is designed for movie lovers, who can access a huge database and where they can find all kinds of information about them, create a list of favorite movies and see comments from other movie lovers.
+This application is designed for movie lovers, who can access a huge database. They can find all kinds of information about films, create a list of favorite movies and see comments from other movie lovers.
 
 
-## Functional description
+# Functional description
+
+## Use Cases Diagram
+
+![](images/Uses_case_Diagram.jpg)
+
+## Activity Diagram
+
+![](images/Activity_Diagram.jpg)
 
 
-## Technical description
-
-
-## Secuence Diagram
-
-![](images/Secuence_Diagram.jpg)
+# Technical description
+The front end of the application was built using React and React Router. As a database, we use The movie DB. A fantastic database of movies and series, completely updated and in diferents languages.
 
 ## Blocks Diagram
 
@@ -26,11 +30,16 @@ This application is designed for movie lovers, who can access a huge database an
 
 ## Sequences Diagram
 
-![](images/secuence_Diagram.jpg)
+![](images/Show_info_of_movie.jpg)
+![](images/Search_Movies.jpg)
 
 ## Data Model Diagram
 
 ![](images/Data_Model_Diagram.jpg) 
+
+## Class Diagram
+
+![](images/Class_Diagram.jpg) 
 
 ## Group components
 
