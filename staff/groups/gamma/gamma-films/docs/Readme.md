@@ -26,7 +26,7 @@ The front end of the application was built using React and React Router. As a da
 
 ## Components Diagram
 
-![](images/Component_Diagram.jpg)
+![](images/Component_diagram.jpg)
 
 ## Sequences Diagram
 
