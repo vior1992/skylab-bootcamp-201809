@@ -1,8 +1,12 @@
 //comentar para testear:
-import data from '../datalayer/user'
-import spotifyLogic from '../services/spotifylogic'
-require('isomorphic-fetch')
-const {User, Track, Playlist} = data
+// import data from '../datalayer/user'
+// import spotifyLogic from '../services/spotifylogic'
+// require('isomorphic-fetch')
+// const {User, Track, Playlist} = data
+
+const spotifyLogic = require('../services/spotifylogic')
+const {User, Playlist, Track} = require('../datalayer/user')
+let sessionStorage = require('sessionstorage')
 
 
 
@@ -85,12 +89,19 @@ const userService = {
            return  this.updateUser(data.id,data.token,data.userInf).then(res => data.userInf.playLists)
 
         })
+        .catch((err) => {
+            throw Error (err.message)
+        })
 
     },
 
     getSessionFromStorage(){
 
-        return JSON.parse(sessionStorage.getItem("user"))
+        const user =  JSON.parse(sessionStorage.getItem("user"))
+        if (user === undefined)
+            throw Error("The user has not session");
+        else
+            return user
     },
 
     addTrackToPlayList(trackId, playlistId, user){
@@ -106,6 +117,9 @@ const userService = {
             playList.tracks.push(track)
             const session = this.getSessionFromStorage()
             return this.updateUser(session.id, session.token, user).then(res => res)
+        })
+        .catch((err) => {
+            throw Error (err.message)
         })
 
     },
@@ -299,8 +313,8 @@ const userService = {
 }
 
 // descomentar para la aplicacion
-export default userService
+// export default userService
 
 //descomentar para test
-// module.exports = userService
+module.exports = userService
 
