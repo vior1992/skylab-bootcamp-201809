@@ -123,6 +123,7 @@ const spotifyLogic = {
             .then((res) => res.json())
             .then(res => {
                 if(res.error) throw Error (res.error.message)
+                //res.preview_url ? res.preview_url : require("../assets/audio/default.mp3")
                 return res
 
             })

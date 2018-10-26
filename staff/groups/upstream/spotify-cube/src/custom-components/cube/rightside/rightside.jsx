@@ -7,7 +7,7 @@ import spotifyLogic from '../../../services/spotifylogic'
 
 export default class RightSide extends Component {
 
-  state = { artists: this.props.artists }
+  state = { artists: [] }
 
 
   componentWillReceiveProps(props) {

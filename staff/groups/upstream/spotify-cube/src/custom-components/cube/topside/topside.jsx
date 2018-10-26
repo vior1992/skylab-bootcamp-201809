@@ -7,6 +7,14 @@ export default class TopSide extends Component{
 
     state = {isLogged:false, message:""}
 
+    componentWillMount(){
+        let session = userService.getSessionFromStorage();
+        if (session){
+            this.setState({isLogged:true})
+            this.props.onLogin(true)
+        }
+    }
+
     handleLogin = ({ username, password }) => {
         
         try {
