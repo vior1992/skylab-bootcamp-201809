@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 
 export default class List extends Component {
 
-    state = { isLogged: false, trackFoundInPlayListMessage: "", playLists: [], list: this.props.list, type: this.props.type }
+    state = { hiddePlayListDiv:"", isLogged: false, trackFoundInPlayListMessage: "", playLists: [], list: this.props.list, type: this.props.type }
 
 
     componentWillReceiveProps(props) {
-        this.setState({ isLogged: props.isLogged, list: props.list ,playLists:props.playLists, trackFoundInPlayListMessage:props.trackFoundInPlayListMessage})
+        this.setState({ hiddePlayListDiv:props.hiddePlayListDiv, isLogged: props.isLogged, list: props.list ,playLists:props.playLists, trackFoundInPlayListMessage:props.trackFoundInPlayListMessage})
 
     }
 
@@ -34,8 +34,6 @@ export default class List extends Component {
                 break;
         }
     }
-
-
 
 
     render() {

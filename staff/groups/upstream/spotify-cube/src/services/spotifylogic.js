@@ -2,7 +2,7 @@
 const spotifyLogic = {
 
 
-    token: 'BQAReciGkNxU4uVMV56Z6JoKfNN1-WtLlmwWk6cO8Vf3JY9xFsGDsKv9KN0sSBnFJw5j2BDr2HnDXTJivgz2bnhiIH7rjLnLrXv3QG9Q_GJV2s9Wbex2A9R8Qx2ryJZlQ8tjwwpylD5ANFK6alSJmZKuIK06iorodWCZdOYsTOnQ-V_K0-HuHiy4KJj-8ocLiswH-I2wiKtiJ2Dj',
+    token: 'BQBEU-QfTDKNLYqTnwlTkVkY5zsjhiNx7z2yJ3PoRh81OFEXhPJFDz3tbH4qqxotP_Ygw7QBIQcGolrEhhB3-TSdvL-cvbkHXKAYKwgLsVj8xVAdoCDNOXmd_8dBXbI7ZBRAIJ0XhM2MiOkQipy1nE5vAPtaVMEWUytJKw59diNnxeXZuP3LMXL9Ei8wMloYk6KvNosLbebNvUME2BPk_vCH3Gyew-BVG0tHEZYNlboapIN_GnuyGH6yqmrH1Fv005vwBNyeqcg',
 
 
     getArtistById(id) {
@@ -114,6 +114,7 @@ const spotifyLogic = {
             .then((res) => res.json())
             .then(res => {
                 if(res.error) throw Error (res.error.message)
+                //res.preview_url ? res.preview_url : require("../assets/audio/default.mp3")
                 return res
 
             })
