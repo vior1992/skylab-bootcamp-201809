@@ -131,6 +131,11 @@ export default class BottomSide extends Component {
 
     play = (preview) => {
 
+        if (!preview)
+        {
+            preview = require("../../../assets/audio/default.mp3")
+        }
+
         this.setState({ preview })
     }
 

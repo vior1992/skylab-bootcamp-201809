@@ -8,7 +8,7 @@ import $ from 'jquery'
 export default class LeftSide extends Component {
 
 
-  state = { playLists:[], isLogged: false, logo: "", tracks: this.props.tracks, track: '', trackFoundInPlayListMessage:""}
+  state = { playLists:[], isLogged: false, logo: "", tracks: [], track: '', trackFoundInPlayListMessage:"", hiddePlayListDiv:""}
 
   componentWillReceiveProps(props) {
     let tracks = props.tracks.map(el => {el.image = !el.image ? require("../../../assets/img/playlist.png") : el.image; return el})
@@ -43,7 +43,7 @@ export default class LeftSide extends Component {
 
             setTimeout(() => {
 
-              this.setState({ trackFoundInPlayListMessage: "" })
+              this.setState({ trackFoundInPlayListMessage: "" , hiddePlayListDiv:"playListId"})
 
             }, 2000)
           })
@@ -80,6 +80,8 @@ export default class LeftSide extends Component {
 
   handleAddTrackToListClickButton = (trackId) => {
 
+    //$("button[id^='button-']").
+
     const text = $("#button-" + trackId).text()
 
     if (text === "Close") {
@@ -112,7 +114,7 @@ export default class LeftSide extends Component {
         <div className="rotateY--180" >
           <Header track={this.state.track} showPlayer={true}></Header>
           <SideTitle logo={this.state.logo} image="metallica.png" title="Track List"></SideTitle>
-          <List trackFoundInPlayListMessage = {this.state.trackFoundInPlayListMessage} playLists={this.state.playLists} onClickAddTrackToList={this.handleAddTrackToListClickButton} onPlayListClick = {this.handlePlaylistClick} isLogged={this.state.isLogged} onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list={this.state.tracks}></List>
+          <List hiddePlayListDiv={this.state.hiddePlayListDiv} trackFoundInPlayListMessage = {this.state.trackFoundInPlayListMessage} playLists={this.state.playLists} onClickAddTrackToList={this.handleAddTrackToListClickButton} onPlayListClick = {this.handlePlaylistClick} isLogged={this.state.isLogged} onPlayTrack={this.handlePlayTrack} showLink={true} type="songs" list={this.state.tracks}></List>
         </div>
 
       </section>
