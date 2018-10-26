@@ -9,7 +9,7 @@ import List from '../../list/list'
 
 export default class BottomSide extends Component {
 
-    state = { preview: "", tracks: [], messageButton: "Add PlayList", registerPlaylistMessage: "", showFormAddPlayList: false, playlists: this.props.playlists, isLogged: false, playListName: "" }
+    state = { preview: "", tracks: [], messageButton: "Add PlayList", registerPlaylistMessage: "", showFormAddPlayList: false, playlists: [], isLogged: false, playListName: "" }
 
     componentWillReceiveProps(props) {
 
