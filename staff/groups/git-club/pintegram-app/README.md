@@ -47,3 +47,6 @@ User data and public data from other users is consistent across the app and as t
 ## Model Diagram
 ![sequences](./images/data-model-diagram.jpg)
 
+## Classes Diagram
+![sequences](./images/class-diagram.jpg)
+
