@@ -20,7 +20,7 @@ After the authentication, the user will be redirect to the **home** section. Her
 
 On the top of home, the user can **search** new music videos. 
 
-![retrieve](img/img/retrieve.png "retrieve")
+![retrieve](img/retrieve.png "retrieve")
 
 And then select from the **retrieved list** one video for visualitzation (the **player**).
 
