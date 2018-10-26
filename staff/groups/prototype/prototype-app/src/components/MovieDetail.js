@@ -182,10 +182,12 @@ class MovieDetail extends Component {
               </div>
               <div className='col-md-5 col-sm-8 mt-2 info-col'>
                 <div>
+                <div className='d-block mb-2'>
                 <span>{this.state.movie.release_date.slice(0, 4)}</span>  <span> | </span>
                 <span>{`${this.state.movie.runtime}'`}</span>   <span> | </span>
                 <span>{`${this.state.movie.vote_average} / 10`}</span>
-                {this.state.movie.spoken_languages.map(languages => <p>{languages.name}</p>)}
+                </div>
+                {this.state.movie.spoken_languages.map(languages => <div className='d-inline mt-5'><span>{languages.name}</span><span> | </span></div>)}
                 {this.state.movie.production_countries.map(companies => <p>{companies.origin_country}</p>)}
                 {this.state.movie.budget !== 0 && <p>{`Budget $${this.state.movie.budget}`}</p>}
                 {this.state.movie.genres.map(genres => <div className='d-inline'><span>{genres.name}</span><span> | </span></div>)}
