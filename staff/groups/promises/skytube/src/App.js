@@ -192,6 +192,20 @@ class App extends Component {
                         <img className="showcase__image" src="./img/shot-list.png" alt="shot" />
                     </div>
                 </section>
+                <section className="showcase">
+                    <div className="showcase__show">
+                        <img className="showcase__image" src="./img/shot-player.png" alt="shot" />
+                    </div>
+                    <div className="showcase__case">
+                        <h1 className="showcase__title">Player.</h1>
+                        <p className="showcase__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.</p>
+                    </div>
+                </section>
             </main>
             <Footer/>
         </div>
