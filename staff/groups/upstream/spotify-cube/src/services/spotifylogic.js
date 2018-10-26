@@ -18,7 +18,7 @@ const spotifyLogic = {
         })
             .then(res => res.json())
             .then((res) => {
-                if(res.error) throw Error (res.error)
+                if(res.error) throw Error (res.error.message)
                 return res
             })
             
@@ -38,6 +38,12 @@ const spotifyLogic = {
            
         })
             .then(res => res.json())
+            .then(res => {
+
+                if (res.error) throw Error(res.error.message)
+                else    
+                    return res
+            })
             .catch(err => {throw Error(err.message)})
     },
 
@@ -51,6 +57,9 @@ const spotifyLogic = {
         })
             .then((res) => res.json())
             .then((res) => {
+                
+                if(res.error) throw Error (res.error.message)
+                
                 const track = {}
                 track.id = res.id
                 track.name = res.name
@@ -73,7 +82,7 @@ const spotifyLogic = {
             },
             // body: JSON.stringify({ name, surname, username, password })
         })
-            .then(res => res.json())
+            .then(res => res.json()).then(res => {if (res.error) throw Error (res.error.message); else return res})
     },
 
     getAlbumsByArtistId(artistId) {
@@ -86,7 +95,10 @@ const spotifyLogic = {
             // body: JSON.stringify({ name, surname, username, password })
         })
             .then(res => res.json())
-            .then(res => res)
+            .then(res => {
+                if(res.error) throw Error (res.error.message)
+                return res
+            })
     },
 
     getSongsbyAlbumId(id) {
@@ -98,7 +110,11 @@ const spotifyLogic = {
             },
         })
             .then((res) => res.json())
-            .then(res => res)
+            .then(res => {
+                if(res.error) throw Error (res.error.message)
+                return res
+
+            })
     },
 
     createPlaylist(name) {
@@ -111,7 +127,13 @@ const spotifyLogic = {
             body: JSON.stringify({name: name})
         })
             .then((res) => res.json())
-            .then(res => res)
+            .then(res => {
+
+                if (res.error) throw(res.error) 
+                else
+                    return res
+
+            })
     },
 
     //id, name, preview_url, picture
@@ -126,6 +148,8 @@ const spotifyLogic = {
         })
             .then((res) => res.json())
             .then((res) => {
+                if(res.error) throw Error (res.error.message)
+                
                 const track = {}
                 track.id = res.id
                 track.name = res.name
@@ -136,6 +160,6 @@ const spotifyLogic = {
     }
 }
 
-// export default spotifyLogic
+ export default spotifyLogic
 
-module.exports = spotifyLogic
+//module.exports = spotifyLogic
