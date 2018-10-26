@@ -120,6 +120,25 @@ export default class Cube extends Component {
 
     }
 
+    refreshPlayLists = () =>{
+        
+        userService.getUserPlayLists().then(res => {
+            
+            if (res.length){
+                res.map(el => {
+
+                    el.image = require("../../assets/img/playlist.png")
+                })
+            }
+            this.setState({playlists: res}, () => {
+                
+
+            })
+
+        }).catch(err => alert(err.message))
+
+    }
+
     handleRegister = () => {
 
         this.state.ydeg += 180
@@ -166,7 +185,7 @@ export default class Cube extends Component {
                 <LeftSide isLogged = {this.state.isLogged} tracks={this.state.tracks}></LeftSide>
                 <RightSide onAlbums={this.handleAlbums} artists={this.state.artists}></RightSide>
                 <TopSide onLogout={this.handleLogout} onLogin={this.handleLogin} onClickRegister={this.handleRegister}></TopSide>
-                <BottomSide onRotation={this.addRotation} playlists={this.state.playlists} onClickLogin={this.handleClickRegisterLogin} isLogged={this.state.isLogged}></BottomSide>
+                <BottomSide OnCreatedPlayList={this.refreshPlayLists} onRotation={this.addRotation} playlists={this.state.playlists} onClickLogin={this.handleClickRegisterLogin} isLogged={this.state.isLogged}></BottomSide>
 
             </section>
         </section>

@@ -38,7 +38,7 @@ export default class BottomSide extends Component {
 
                 this.setState({ messageButton: "Add PlayList", registerPlaylistMessage: "The playlist has been created", showFormAddPlayList: false, playlists: res }, () => {
 
-
+                    this.props.OnCreatedPlayList()
                 })
 
             })
