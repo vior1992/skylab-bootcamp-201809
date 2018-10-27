@@ -43,6 +43,6 @@ The front end of the application was built using React and React Router. As a da
 
 ## Group components
 
-- Sergio (admin) [Sergioluz90](htttps://github.com/sergioluz90)
+- Sergio (admin) [Sergioluz90](https://github.com/sergioluz90)
 - Paco [Pacoscript](https://github.com/Pacoscript)
 - Lluís [LluisBagur](https://github.com/LluisBagur)
