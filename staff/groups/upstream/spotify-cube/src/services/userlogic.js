@@ -1,3 +1,9 @@
+
+// const spotifyLogic = require('../services/spotifylogic')
+// const {User, Playlist, Track} = require('../datalayer/user')
+// let sessionStorage = require('sessionstorage')
+
+
 //comentar para testear:
 import data from '../datalayer/user'
 import spotifyLogic from '../services/spotifylogic'
@@ -250,4 +256,3 @@ export default userService
 
 //descomentar para test
 // module.exports = userService
-

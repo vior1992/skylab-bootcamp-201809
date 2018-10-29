@@ -1,34 +1,63 @@
 require('isomorphic-fetch')
+let sessionStorage = require('sessionstorage')
+
 
 const { expect } = require('chai')
 
 const logic = require('./userlogic')
 
 describe('userlogic', () => {
-    true && describe('registerUser', () => {
+
+    beforeEach(() => {
+        let user = {
+            id: "5bd0bc55e773bb00099e1eb7",
+            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViZDBiYzU1ZTc3M2JiMDAwOTllMWViNyIsImlhdCI6MTU0MDQ4Njc1NiwiZXhwIjoxNTQwNDkwMzU2fQ.ULJzj6U8uh5_oNrY52kCf_Lwwkl4NxQJayRoj_sSxSM"
+        }
+        sessionStorage.setItem('user', JSON.stringify(user))
+    })
+
+    describe('createPlaylist', () => {
         
-        it('should succeed on registering user', () =>
-            logic.registerUser('pp', 'pp', 'pp@pp.com', `${Math.random()}`, 'pp')
-                .then((res) => expect(res.status).to.equal('OK'))
-        )
+        let name = 'test-' + Math.random().toString()
+        it('should succesfully create a playlist', () => {
+            return logic.createPlayList(name).then((res) => {
+                expect(res).not.to.be.undefined
+            })
+        })
 
-        !true && it('should fail on trying to register twice same user', () => {
-            const username = `jd-${Math.random()}`
-
-            return logic.registerUser('John', 'Doe', username, '123')
-                .then(() => logic.registerUser('John', 'Doe', username, '123'))
+        it('should fail on already existing playlist', () => {
+            return logic.createPlayList(name)
                 .catch(err => {
-                    expect(err).not.to.be.undefined
-                    expect(err.message).to.equal(`user with username "${username}" already exists`)
+                    expect(err.message).to.equal(`Exists a play list with the name: ${name}`)
                 })
         })
 
-        !true && it('should fail on undefined name', () => {
-            expect(() =>
-                logic.registerUser(undefined, 'Doe', 'jd', '123')
-            ).to.throw(TypeError, 'undefined is not a string')
+        it('should fail on empty or blank playlist name', () => {
+            return logic.createPlayList('\n')
+                .catch(err => {
+                    expect(err.message).to.equal(`name is empty or blank`)
+                })
         })
 
+        it('should fail on non-string playlist name', () => {
+            return logic.createPlayList()
+                .catch(err => {
+                    expect(err.message).to.equal(`id playlist is not a string`)
+                })
+        })
 
+    })
+
+    describe('sessionStorage', () => {
+        it('should succeed on user already in sessionStorage', ()=> {
+            const user = JSON.parse(sessionStorage.getItem('user'))
+            expect(user.id).to.be.an('string')
+            expect(user.token).to.be.an('string')
+        })
+        it('should fail if data not in sessionStorage', ()=> {
+            const user = {}
+            expect(user.id).to.be.an('string')
+            expect(user.token).to.be.an('string')
+        })
     })
 })

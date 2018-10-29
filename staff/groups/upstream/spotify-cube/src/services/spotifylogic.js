@@ -1,9 +1,18 @@
 
 const spotifyLogic = {
 
+    token: 'BQBWsN1G_QqArpMcAhJY0VNn26DqvxqNSZSVpnXC3iuBD-fNrSk-R2GBVxO9gbnAag47CbH4otJSsU7988d_ESM_hB75WR_fzuE-rX6hN1fF5gMLGODaIvKtpTKC3KBR4UOBmRfSZtwD-JM0UfD7Yuyr1m-UJa-brnW92Uia1HI6VL30xO1nx6jX4vxkwGjODdMP59myucB5dNvmknEb2w',
 
-    token: 'BQDEPWLlJL9nxb1yPDMCsOTJu1L1nYFopqh1WDKh8jXhD7q4c3RE7dRDzgxRrENjYLOP_NgCklVZBiYT31vUGKLOyqk2Yb4r58jJXBGhBnN-4h4g9S02EQWeUwlgQtUpNegCYTa4CWo6KCT56myo-DEw-qSW4GVgKgwbVTZCMMcH7R_dOH-lMmd13hUcMLY0-pjdrKU3tEsA5nFQuvM3wA',
 
+    /**
+     * 
+     * @param {*} id The artist's at Spotify
+     * 
+     * @throws {Error in case of non-string id}
+     * @throws {Error in case of empty or blank id}
+     * @throws {Error in case of wrong id}
+     * 
+     */
 
     getArtistById(id) {
 
@@ -74,7 +83,7 @@ const spotifyLogic = {
     getPlaylistsTracks(playlistId) {
 
         if(!(typeof playlistId === 'string')) throw TypeError (`${playlistId} is not a a string`)
-        if(!(playlistId.trim().length)) throw Error ('query cannot be empty')
+        if(!(playlistId.trim().length)) throw Error (`${playlistId} is empty or blank`)
         
         return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             method: 'GET',
@@ -165,4 +174,4 @@ const spotifyLogic = {
 
  export default spotifyLogic
 
-//module.exports = spotifyLogic
+// module.exports = spotifyLogic

@@ -336,3 +336,10 @@ export default {
     Track,
     Playlist
 }
+
+//Para teatear:
+// module.exports = {
+//     User,
+//     Track,
+//     Playlist
+// }
