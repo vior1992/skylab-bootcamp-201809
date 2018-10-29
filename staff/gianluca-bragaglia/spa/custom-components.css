@@ -1,0 +1,43 @@
+/* TODO implement styles from here following BEM */
+body {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.form {
+  width: 350px;
+  margin: auto;
+}
+.form input {
+  width: 100%;
+  padding: 7px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid #005792;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 72px;
+  padding: 5px 10px 5px 10px;
+  display: inline-block;
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #005792;
+  color: white;
+  border: 1px solid #005792;
+}
+
+.title, .title .title--error {
+  margin: auto;
+  font-size: 34px;
+  color: #005792;
+  padding-bottom: 30px;
+}
+.title .title--error {
+  color: #555574;
+}
+
+/*# sourceMappingURL=custom-components.css.map */
