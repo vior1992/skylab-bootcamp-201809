@@ -32,6 +32,7 @@ class Post extends Component {
     }
 
     handleLikePost = () => {
+      
         logic.addLike(this.state.postId)
         .then(() => this.handleAddLikes())
 

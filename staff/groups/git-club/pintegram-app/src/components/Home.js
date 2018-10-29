@@ -4,7 +4,7 @@ import logic from '../logic'
 import Post from './Post'
 
 class Home extends Component {
-    state = { posts: [], liked : []}
+    state = { posts: [], liked: [], results: [], nameSearch: '' }
 
     componentDidMount() {
         logic.listAllPosts()
