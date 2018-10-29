@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import logo from '../icon1.png'
 
 class Register extends Component {
     state = { name: '', surname: '', username: '', password: '' }
@@ -27,6 +28,12 @@ class Register extends Component {
         this.setState({ password })
     }
 
+    handleLogin = event => {
+        event.preventDefault()
+        this.props.onGoBack()
+
+    }
+
     handleSubmit = event => {
         event.preventDefault()
 
@@ -40,7 +47,7 @@ class Register extends Component {
             <div className="landing__page">
                 <div className="group__register">
                     <div className="login__center">  
-                    <h1 className="login__header">Register</h1>       
+                    <div className="logo-l"><img className="logo__img-l" src={logo}></img> </div>     
                         <form onSubmit={this.handleSubmit}>
                             <input type="text" placeholder="Name" onChange={this.handleNameChange} />
                             <input type="text" placeholder="Surname" onChange={this.handleSurnameChange} />
@@ -48,7 +55,7 @@ class Register extends Component {
                             <input type="password" placeholder="Password" onChange={this.handlePasswordChange} />
                             <button className="login__submit" type="submit">Register</button> 
                         </form>
-                        <a className="login__back" href="#" onClick={this.props.onGoBack}>Si ya estás logeado. Inicia sensión aquí.</a>
+                        <a className="login__back" href="#" onClick={this.handleLogin}>Si ya estás logeado. Inicia sensión aquí.</a>
                     </div>
                 </div>
             </div>

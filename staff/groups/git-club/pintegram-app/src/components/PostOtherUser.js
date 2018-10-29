@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 
-class PostUser extends Component {
+class PostOtherUser extends Component {
     state = { postId:this.props.id, url:this.props.url, text: this.props.text, likes: null}
-    
+
     componentDidMount() {
         logic.listPosts()
             .then(posts => { this.setState({ posts }) })
@@ -19,16 +19,17 @@ class PostUser extends Component {
 
     handleDelete = event => {
         event.preventDefault()
+        debugger
         this.props.onDeletePost(this.state.postId)
     }
 
     render() {
         return <section className="gallery__user">
             <div><img className="user__img" src={this.state.url}></img>
-            <div className="user__likes-user"><i className="fas fa-heart icon"></i>{this.state.likes} <i onClick={this.handleDelete} className="fas fa-trash icon__trash"></i></div>
+            <div className="user__likes"><i className="fas fa-heart icon"></i><span className="left">{this.state.likes}</span></div>
             </div>
         </section>
     }
 }
 
-export default PostUser
+export default PostOtherUser
