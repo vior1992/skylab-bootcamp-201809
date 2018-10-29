@@ -73,6 +73,7 @@ const logicAuth = {
                 this._user = res
                 if (!this._user.data.faves) this._user.data.faves = []
                 sessionStorage.setItem('user', JSON.stringify(this._user))
+                return this._user
             })
     },
 
@@ -101,6 +102,7 @@ const logicAuth = {
     logout() {
         sessionStorage.clear()
         window.location.href = '/';
+        // return 'session cleared'
     }
 
 }

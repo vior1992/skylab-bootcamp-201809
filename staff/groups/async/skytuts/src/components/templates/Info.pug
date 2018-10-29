@@ -4,15 +4,15 @@ div
     div(className='division')
     header(className='header-info')
       Favorite(@params='{slug}')
-      img(className='course-img' src='{this.state.course.image || defaultData().image}' alt='course-img')
+      img(className='course-img' src='{course.image || defaultData().image}' alt='course-img')
       div(className='text')
-        h1(className='title') {this.state.course.title || defaultData().title}
+        h1(className='title') {course.title || defaultData().title}
         h5(className='duration') 
-          | Expected duration: {this.state.course.expected_duration} {this.state.course.expected_duration_unit}
+          | Expected duration: {course.expected_duration} {course.expected_duration_unit}
       div(className='bottom-info')
           div(className='knowledge-container')
               h3 Required knowledge
               | {markdown}
-              iframe(@if='this.state.course.teaser_video.youtube_url' height='315', src="{`https://www.youtube.com/embed/${this.state.course.teaser_video.youtube_url.split('=')[1]}`}", title='teaser', frameBorder='0', allow='autoplay; encrypted-media', allowFullScreen='')
+              iframe(@if='course.teaser_video.youtube_url' height='315', src="{`https://www.youtube.com/embed/${course.teaser_video.youtube_url.split('=')[1]}`}", title='teaser', frameBorder='0', allow='autoplay; encrypted-media', allowFullScreen='')
           h1(className='instructor-title') Instructors
           | {instructor}

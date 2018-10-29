@@ -1,7 +1,6 @@
 const logicFilter = {
 
-
-        filterCourses(data = JSON.parse(sessionStorage.getItem('courses'))) {
+    filterCourses(data = JSON.parse(sessionStorage.getItem('courses'))) {
         return {
             byTrack(track) {
                 return data.courses.filter(course => Object.values(track.courses).includes(course.key))
@@ -12,7 +11,9 @@ const logicFilter = {
             },
             personalized(query) {
                 const q = query.replace(/[-\\^$*+?.()|[\]{}]/ig, '\\$&');
-                return data.courses.filter(course => course.level.match(new RegExp(q, 'i')) || course.title.match(new RegExp(q, 'i'))) 
+                let newRelease = ''
+                if (query === 'new') newRelease = 'new_release'
+                return data.courses.filter(course => course[newRelease] || course.level.match(new RegExp(q, 'i')) || course.level.match(new RegExp(q, 'i')) || course.title.match(new RegExp(q, 'i')))
             },
             all() {
                 return data
@@ -21,4 +22,5 @@ const logicFilter = {
     }
 }
 
-export default logicFilter
+// export default logicFilter
+module.exports = logicFilter

@@ -8,7 +8,7 @@ const logicUdacity = {
         }).then(data => {
             this._courses = data
             sessionStorage.setItem('courses', JSON.stringify(data))
-            return true
+            return this._courses
         })
             .catch(err => {
                 if (err) throw Error('Unable to load courses')
@@ -17,5 +17,5 @@ const logicUdacity = {
     }
 }
 
-export default logicUdacity
-// module.exports = logicUdacity
+// export default logicUdacity
+module.exports = logicUdacity
