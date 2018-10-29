@@ -38,9 +38,9 @@ class OtherProfile extends Component {
                     </div>
                 </div>
             </section>
-            {/* <div className="gallery">
+            <div className="gallery">
                 <i onClick={this.handleGallery} className="fas fa-th icon icon__profile"></i> 
-            </div> */}
+            </div>
              <section className="gallery">
                 {this.state.posts && this.state.posts.map(post => <PostOtherUser key={post.id} id={post.id} url={post.url} text={post.description} />)}
             </section>
