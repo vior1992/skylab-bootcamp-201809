@@ -309,7 +309,7 @@ const logic = {
     
     onDeleteLike(postId){
         if (typeof postId !== 'number') throw new TypeError(`${postId} is not a number`)
-        
+        debugger
         this._postLiked = this._postLiked.filter(post => post.id !== postId)
         let _likes=[]
         this._postLiked.forEach(post => _likes.push(post.id) )
