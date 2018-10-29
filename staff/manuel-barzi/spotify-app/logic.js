@@ -1,29 +1,47 @@
 const logic = {
-    searchArtists(query) {
+    token: 'NO-TOKEN',
+
+    call(path) {
         return new Promise((resolve, reject) => {
-            var xhr = new XMLHttpRequest()
+            const xhr = new XMLHttpRequest()
 
-            xhr.addEventListener('load', function () {
-                var res = JSON.parse(xhr.responseText)
+            xhr.addEventListener('load', () => {
+                const res = JSON.parse(xhr.responseText)
 
-                resolve(res.artists.items)
+                if (res.error) return reject(new Error(res.error.message))
+
+                resolve(res)
             })
 
-            xhr.addEventListener('error', function () {
-                reject() // TODO
-            })
+            xhr.addEventListener('error', () => reject())
 
-            xhr.open('get', 'https://api.spotify.com/v1/search?type=artist&query=' + query)
+            xhr.open('get', `https://api.spotify.com/v1/${path}`)
 
-            var token = 'BQDC-hqIyF8ZXfBBgoHHoBd8Nnh6AmU9jlj2hzv0GbYozZp3ElRVJrDauE_LKgGE32N80cZ_kyB-t--d3PwQQODO--3EPpoyYuaL0ffZUs_MH5XTkmxuKE4xcS3yL8p5nsdoHocRQid6ok8'
-
-            xhr.setRequestHeader('authorization', 'Bearer ' + token)
+            xhr.setRequestHeader('authorization', `Bearer ${this.token}`)
 
             xhr.send()
         })
     },
 
+    searchArtists(query) {
+        if (typeof query !== 'string') throw TypeError(`${query} is not a string`)
+
+        if (!query.trim().length) throw Error('query is empty or blank')
+
+        return this.call(`search?type=artist&query=${query}`)
+            //.then(res => res.artists.items)
+            .then(({ artists: { items } }) => items)
+    },
+
     listAlbums(id) {
-        // TODO
-    }
+        return this.call(`artists/${id}/albums`)
+            .then(({ items }) => items)
+    },
+
+    listTracks(id) {
+        return this.call(`albums/${id}/tracks`)
+            .then(({ items }) => items)
+    },
+
+    // TODO retrieveTrack(id)
 }
