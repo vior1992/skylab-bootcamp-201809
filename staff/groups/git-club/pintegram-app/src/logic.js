@@ -17,6 +17,19 @@ const logic = {
     _comments: [],
     _postsOtherUser: [],
 
+
+ /**
+     * Calls API in general way
+     * 
+     * @param {string} path  Endpoint to the user API
+     * @param {string} method Method request to the API
+     * @param {string} token User token to validate request (optional)
+     * @param {Object} data JSON text to send to API (optional)
+     * 
+     *
+     * 
+     * @returns {Promise}
+     */
     _callApi(path, method, token, data) {
         const init = {
             method,
@@ -39,6 +52,19 @@ const logic = {
             .then(res => res.json())
     },
 
+
+     /**
+     * 
+     * @param {string} name Given name of user
+     * @param {string} surname Given surname of user
+     * @param {string} username Given username of user
+     * @param {string} password Given password of user
+     * 
+     * @throws {Error in case of empty parameters}
+     * @throws {Error in case API detects repeated username} 
+     * 
+     *@returns {Promise}
+     */
     registerUser(name, surname, username, password) {
         if (typeof name !== 'string') throw TypeError(`${name} is not a string`)
         if (typeof surname !== 'string') throw TypeError(`${surname} is not a string`)
@@ -56,7 +82,19 @@ const logic = {
                 if (res.error) throw Error(res.error)
             })
     },
-
+    /**
+     * 
+     * 
+     * @param {string} username Given username of user
+     * @param {string} password Given password of user
+     * 
+     * @throws {Error in case of empty parameters}
+     * @throws {Error in case API detects wrong credentials} 
+     * 
+     * @returns {Promise}
+     * 
+     * {Sets userId and Token to SessionStorage and to logic state if correct credentials}
+     */
     login(username, password) {
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
         if (typeof password !== 'string') throw TypeError(`${password} is not a string`)
@@ -77,11 +115,19 @@ const logic = {
                 sessionStorage.setItem('token', token)
             })
     },
-
+      /**
+     * 
+     * @returns {boolean} If the user is logged in or not
+     *
+     */
     get loggedIn() {
         return !!this._userId
     },
-
+     /**
+     * 
+     * Sets the states in logic to Initialized state
+     *
+     */
     logout() {
         this._posts = []
         this._postsUser = []
@@ -98,7 +144,19 @@ const logic = {
         sessionStorage.removeItem('userId')
         sessionStorage.removeItem('token')
     },
-
+    /**
+     * 
+     * 
+     * @param {string} url  url of the ima
+     * @param {string} password Given password of user
+     * 
+     * @throws {Error in case of empty parameters}
+     * @throws {Error in case API detects wrong credentials} 
+     * 
+     * @returns {Promise}
+     * 
+     * {Sets userId and Token to SessionStorage and to logic state if correct credentials}
+     */
     createPost(url, description) {
         if (typeof url !== 'string') throw TypeError(`${url} is not a string`)
 
@@ -115,7 +173,13 @@ const logic = {
                 if (res.error) throw Error(res.error)
             })
     },
-
+    /**
+     * 
+     * 
+     * @returns {Array} of Ids the user liked giving a call to the API of user data
+     * 
+     * 
+     */
     listLikes() {
         let path = 'user/' + this._userId
         return this._callApi(path, 'GET', this._token, undefined)
@@ -125,7 +189,20 @@ const logic = {
                 return this._likes = res.data.likes || []
             })
     },
-
+     /**
+     * 
+     * 
+     * @param {number} postId  unique id of the post
+     * 
+     * 
+     * @throws {Error in case postId is not a number}
+     * 
+     * 
+     * @return {Promise}
+     * Adds the post id to the state of the user and updates to the API
+     * 
+     * 
+     */
     addLike(postId) {
 
         if (typeof postId !== 'number') throw TypeError(`${postId} is not a number`)
@@ -138,7 +215,19 @@ const logic = {
                 if (res.error) throw Error(res.error)
             })
     },
-
+    /**
+     * 
+     * 
+     * @param {number} postId  unique id of the post to check if the user liked said post
+     * 
+     * 
+     * @throws {Error in case postId is not a number}
+     * 
+     * 
+     * @returns {boolean} according to the result
+     * 
+     * 
+     */
     likedPost(postId) {
 
         if (typeof postId !== 'number') throw TypeError(`${postId} is not a number`)
@@ -155,6 +244,19 @@ const logic = {
             })
 
     },
+      /**
+     * 
+     * 
+     * @param {string} userId  unique id of the user 
+     * 
+     * 
+     * @throws {Error in case postId is not a string}
+     * 
+     * 
+     * @returns {string} string of the username given the userId
+     * 
+     * 
+     */
 
     retriveUser(userId) {
         if (typeof userId !== 'string') throw TypeError(`${userId} is not a string`)
@@ -168,7 +270,15 @@ const logic = {
                 return name || null
             })
     },
-
+    /**  
+     * 
+     *
+     * 
+     * 
+     * @returns {Array} of Post of the user 
+     * 
+     * 
+     */
     listPosts() {
 
         let path = 'user/' + this._userId
@@ -182,7 +292,21 @@ const logic = {
                 return this._postsUser = sortedUsers || []
             })
     },
-
+     /**
+     * 
+     * 
+     * @param {Object} user user in object form, as returned in the API 
+     * 
+     * 
+     * @throws {Error in case user is not an object or empty}
+     * 
+     * 
+     * 
+     * 
+     * @returns {Array} of Post 
+     * 
+     * 
+     */
     listOtherPosts(user){
 
         if(!(user instanceof Object)) throw Error(`${user} is not an object`)
@@ -196,7 +320,10 @@ const logic = {
         return this._postsOtherUser = sortedUsers || []
 
     },
-
+    /**
+     * 
+     * @returns {Array} of Post of all the Users
+     */
     listAllPosts() {
 
         let path = 'users?app=' + this._app
@@ -217,7 +344,21 @@ const logic = {
                 return this._postsAllUser = sortedUsers || []
             })
     },
-
+     /**
+     * 
+     * 
+     * @param {Array} postsId 
+     * 
+     * 
+     * @throws {Error in case user is not an object or empty}
+     * 
+     * 
+     * 
+     * 
+     * @returns {Array} of Post liked and updates state in logic
+     * 
+     * 
+     */
     retrievePosts(postsId) {
         // if ( postsId instanceof Array) throw TypeError(`${postsId} is not an Array`)
 
@@ -239,7 +380,13 @@ const logic = {
                 return this._postLiked = postsUsers || []
             })
     },
-
+    /** 
+     * 
+     * 
+     * @returns {Object} of the data of the logged in user
+     * 
+     * 
+     */
     retrieveProfile() {
         let path = 'user/' + this._userId
         return this._callApi(path, 'GET', this._token, undefined)   
@@ -249,6 +396,19 @@ const logic = {
                 return res.data || []
             })
     },
+     /**
+     * 
+     * 
+     * @param {string} url url of the image uploaded
+     * 
+     * 
+     * @throws {Error in case url is not a string}
+     * 
+     * 
+     * @returns {Promise}
+     * 
+     * 
+     */
 
     addImageProfile(url){
         if (typeof url !== 'string') throw TypeError(`${url} is not a string`)
@@ -259,7 +419,19 @@ const logic = {
                 if (res.error) throw Error(res.error)
             })
     },
-
+    /**
+     * 
+     * 
+     * @param {string} username username of the user
+     * 
+     * 
+     * @throws {Error in case username is not a string}
+     * 
+     * 
+     * @returns {Object} of the searched user
+     * 
+     * 
+     */
     searchUserByName(username) {
         if (typeof username !== 'string') throw TypeError(`${username} is not a string`)
 
@@ -272,7 +444,19 @@ const logic = {
                 return name || null
             })
     },
-
+      /**
+     * 
+     * 
+     * @param {string} text text to search
+     * 
+     * 
+     * @throws {Error in case text is not a string}
+     * 
+     * 
+     * @returns {Object} of users whose username includes text to search. Returns all users if text is empty
+     * 
+     * 
+     */
     searchUsers(text) {
         if (typeof text !== 'string') throw TypeError(`${text} is not a string`)
 
@@ -284,7 +468,19 @@ const logic = {
                 return  users || null
             })
     },
-
+    /**
+     * 
+     * 
+     * @param {number} postId Id of post to search for number of favourites
+     * 
+     * 
+     * @throws {Error in case postId is not a number}
+     * 
+     * 
+     * @returns {number} of favourites said post has
+     * 
+     * 
+     */
     likesPost(postId) {
         if (typeof postId !== 'number') throw TypeError(`${postId} is not a number`)
 
@@ -306,7 +502,20 @@ const logic = {
                 return countLikes || 0
             })
     },
-    
+        /**
+     * 
+     * 
+     * @param {number} postId Id of post to unfavourite
+     * 
+     * 
+     * @throws {Error in case postId is not a number}
+     * 
+     * 
+     * @returns {Promise} 
+     * 
+     * 
+     */
+ 
     onDeleteLike(postId){
         if (typeof postId !== 'number') throw new TypeError(`${postId} is not a number`)
         debugger
@@ -320,7 +529,13 @@ const logic = {
                 if (res.error) throw Error(res.error)
             })
     },
-
+     /**
+     * 
+     * 
+     * @returns {Array} of Comments 
+     * 
+     * 
+     */
     listComments() {
 
         let path = 'user/' + this._userId
@@ -331,7 +546,22 @@ const logic = {
                 return this._comments = res.data.comments || []
             })
     },
-
+    /**
+     * 
+     * 
+     * @param {number} postId Id of post to unfavourite
+     * @param {string} content 
+     * 
+     * 
+     * @throws {Error in case postId is not a number}
+     * @throws {Error in case content is not a string}
+     * 
+     * 
+     * 
+     * @returns {Promise} after setting state in logic
+     * 
+     * 
+     */
     addComment(postId, content) {
         if (typeof postId !== 'number') throw TypeError(`${postId} is not a number`)
         if (typeof content !== 'string') throw TypeError(`${content} is not a string`)
@@ -346,6 +576,20 @@ const logic = {
                 if (res.error) throw Error(res.error)
             })
     },
+    /**
+     * 
+     * 
+     * @param {number} postId Id of post to unfavourite
+     * 
+     * @throws {Error in case postId is not a number}
+     * 
+     * 
+     * 
+     * @returns {number} of likes the post with postId has
+     * 
+     * 
+     */
+
     commentsPost(postId) {
 
         let path = 'users?app=' + this._app
@@ -366,7 +610,19 @@ const logic = {
                 return countComments || 0
             })
     },
-
+      /**
+     * 
+     * 
+     * @param {number} postId Id of post to unfavourite
+     * 
+     * @throws {Error in case postId is not a number}
+     * 
+     * 
+     * 
+     * @returns {Array} of comments(string) said post has.
+     * 
+     * 
+     */
     retrieveComments(postId) {
 
         if (typeof postId !== 'number') throw TypeError(`${postId} is not a string`)
@@ -389,7 +645,19 @@ const logic = {
             })
 
     },
-
+     /**
+     * 
+     * 
+     * @param {number} commentId unique Id of number
+     * 
+     * @throws {Error in case commentId is not a number}
+     * 
+     * 
+     * 
+     * @returns {string} of username that wrote said comment.
+     * 
+     * 
+     */
     retrieveUserComment(commentId) {
 
         if (typeof commentId !== 'number') throw TypeError(`${commentId} is not a string`)
@@ -412,7 +680,19 @@ const logic = {
             })
 
     },
-
+    /**
+     * 
+     * 
+     * @param {number} id Id of post to delete
+     * 
+     * @throws {Error in case id is not a number}
+     * 
+     * 
+     * 
+     * @returns {Promise} 
+     * 
+     * 
+     */
     deletePost(id) {
         if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
 
