@@ -11,6 +11,7 @@ class OtherProfile extends Component {
 
     handleLiked = () => {
         this.setState({ grid: false, liked: true })
+        
     }
 
     render() {
