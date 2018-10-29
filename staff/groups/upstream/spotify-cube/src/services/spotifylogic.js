@@ -1,7 +1,6 @@
 
 const spotifyLogic = {
 
-
     token: 'BQBWsN1G_QqArpMcAhJY0VNn26DqvxqNSZSVpnXC3iuBD-fNrSk-R2GBVxO9gbnAag47CbH4otJSsU7988d_ESM_hB75WR_fzuE-rX6hN1fF5gMLGODaIvKtpTKC3KBR4UOBmRfSZtwD-JM0UfD7Yuyr1m-UJa-brnW92Uia1HI6VL30xO1nx6jX4vxkwGjODdMP59myucB5dNvmknEb2w',
 
 
@@ -14,6 +13,7 @@ const spotifyLogic = {
      * @throws {Error in case of wrong id}
      * 
      */
+
     getArtistById(id) {
 
         if(!(typeof id === 'string')) throw TypeError (`${id} is not a a string`)

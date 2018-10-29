@@ -9,7 +9,7 @@ import List from '../../list/list'
 
 export default class BottomSide extends Component {
 
-    state = { preview: "", tracks: [], messageButton: "Add PlayList", registerPlaylistMessage: "", showFormAddPlayList: false, playlists: this.props.playlists, isLogged: false, playListName: "" }
+    state = { preview: "", tracks: [], messageButton: "Add PlayList", registerPlaylistMessage: "", showFormAddPlayList: false, playlists: [], isLogged: false, playListName: "" }
 
     componentWillReceiveProps(props) {
 
@@ -36,9 +36,9 @@ export default class BottomSide extends Component {
                     el.image = require('../../../assets/img/playlist.png')
                 })
 
-                this.setState({ messageButton: "Add PlayList", registerPlaylistMessage: "The playlist has been created", showFormAddPlayList: false, playlists: res }, () => {
+                this.setState({ messageButton: "Add PlayList", registerPlaylistMessage: "The playlist has been created", showFormAddPlayList: false }, () => {
 
-
+                    this.props.OnCreatedPlayList()
                 })
 
             })
@@ -73,7 +73,8 @@ export default class BottomSide extends Component {
                 el.image = require('../../../assets/img/playlist.png')
             })
 
-            this.setState({ playlists: res.playLists })
+            //this.setState({ playlists: res.playLists })
+            this.props.OnCreatedPlayList()
 
         }).catch(err => {
 
