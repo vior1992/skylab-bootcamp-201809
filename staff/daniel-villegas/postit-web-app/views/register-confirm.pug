@@ -1,0 +1,7 @@
+extends layout
+block content
+      p Ok! user #{name} registered.
+      a(href='/') go back
+
+res.send(buildView(`<p>Ok! user ${name} registered.</p>
+                <a href="/">go back</a>`))

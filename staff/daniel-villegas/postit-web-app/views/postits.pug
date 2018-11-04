@@ -1,0 +1,28 @@
+extends layout
+block content
+    p ${user.name} Postits
+    form(action="/postit" method="POST")
+      input(type="text" name="posttext" placeholder="Write something")
+      button(type="submit") Post it
+    ul
+      | ${user.postits.map(postits => `
+      li ${postits.body}
+      | `)}
+    a(href="/home") home
+    a(href="/logout") logout
+
+
+
+//- res.send(buildView(`<p>${user.name} Postits</p>
+
+//-                         <form action="/postit" method="POST">
+//-                         <input type="text" name="posttext" placeholder="Write something">
+//-                         <button type="submit">Post it</button>
+//-                         </form>
+
+//-                         <ul>
+//-                             ${user.postits.map(postits => `<li>${postits.body}</li>`)}
+//-                         </ul>
+
+//-                         <a href="/home">home</a>
+//-                         <a href="/logout">logout</a>`))
