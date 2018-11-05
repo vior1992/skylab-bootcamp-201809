@@ -1,15 +1,1 @@
-[
-    {
-        "id": 1541409869619,
-        "name": "John",
-        "surname": "Doe",
-        "username": "jd",
-        "password": "123",
-        "postits": [
-            {
-                "id": 1541409869620,
-                "text": "text-0.7090581222128538"
-            }
-        ]
-    }
-]
+[{"id":1541416408825,"name":"John","surname":"Doe","username":"jd","password":"123","postits":[]}]

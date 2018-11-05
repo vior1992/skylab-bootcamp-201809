@@ -2,7 +2,7 @@ const fs = require('fs')
 
 class User {
     constructor(user) {
-        const { id, name, surname, username, password } = user
+        const { id, name, surname, username, password, postits } = user
 
         this.id = id || Date.now()
 
@@ -11,7 +11,7 @@ class User {
         this.username = username
         this.password = password
 
-        this.postits = []
+        this.postits = postits || []
     }
 
     save() {
@@ -38,9 +38,9 @@ class User {
     }
 
     toObject() {
-        const { name, surname, username, password } = this
+        const { name, surname, username, password, postits } = this
 
-        return { name, surname, username, password }
+        return { name, surname, username, password, postits }
     }
 
     static findByUsername(username) {

@@ -17,7 +17,7 @@ const formBodyParser = bodyParser.urlencoded({ extended: false })
 
 const mySession = session({
     secret: 'my super secret',
-    cookie: { maxAge: 60 * 60 * 24 },
+    cookie: { maxAge: 60 * 60 * 24 * 1000 },
     resave: true,
     saveUninitialized: true,
     store: new FileStore({
@@ -88,12 +88,12 @@ app.post('/login', formBodyParser, (req, res) => {
 })
 
 app.get('/home', (req, res) => {
-    const id = req.session.userId
+    const { userId, postitId, error } = req.session
 
-    if (id) {
+    if (userId) {
         try {
-            logic.retrieveUser(id)
-                .then(({ name }) => res.render('home', { name }))
+            logic.retrieveUser(userId)
+                .then(({ name, postits }) => res.render('home', { name, postits, postitId, error }))
                 .catch(({ message }) => {
                     req.session.error = message
 
@@ -113,10 +113,51 @@ app.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-app.post('/postit', bodyParser, (req, res) => {
-    const { text } = req.body
+app.post('/postits', formBodyParser, (req, res) => {
+    const { operation } = req.body
 
-    // logic.createPostit...
+    try {
+        switch (operation) {
+            case 'add':
+                const { text } = req.body
+
+                logic.addPostit(req.session.userId, text)
+                    .then(() => res.redirect('/home'))
+                    .catch(({ message }) => {
+                        req.session.error = message
+
+                        res.redirect('/home')
+                    })
+
+                break
+            case 'remove':
+                const { postitId } = req.body
+
+                logic.removePostit(req.session.userId, Number(postitId))
+                    .then(() => res.redirect('/home'))
+                    .catch(({ message }) => {
+                        req.session.error = message
+
+                        res.redirect('/home')
+                    })
+                break
+            case 'edit':
+                {
+                    const { postitId } = req.body
+
+                    req.session.postitId = postitId
+                }
+                
+                res.redirect('/home')
+                break
+            default:
+                res.redirect('/home')
+        }
+    } catch ({ message }) {
+        req.session.error = message
+
+        res.redirect('/home')
+    }
 })
 
 app.listen(port, () => console.log(`Server ${package.version} up and running on port ${port}`))

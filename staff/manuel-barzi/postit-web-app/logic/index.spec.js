@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { User } = require('../data')
+const { User, Postit } = require('../data')
 const logic = require('.')
 
 const { expect } = require('chai')
@@ -84,10 +84,11 @@ describe('logic', () => {
         })
 
         describe('retrieve', () => {
-            let user
+            let user, postit
 
             beforeEach(() => {
-                user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123' })
+                postit = new Postit('hello text')
+                user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123', postits: [postit] })
 
                 fs.writeFileSync(User._file, JSON.stringify([user]))
             })
@@ -97,7 +98,7 @@ describe('logic', () => {
                     .then(_user => {
                         expect(_user).not.to.be.instanceof(User)
 
-                        const { id, name, surname, username, password } = _user
+                        const { id, name, surname, username, password, postits } = _user
 
                         expect(id).to.exist
                         expect(id).to.equal(user.id)
@@ -105,13 +106,20 @@ describe('logic', () => {
                         expect(surname).to.equal(user.surname)
                         expect(username).to.equal(user.username)
                         expect(password).to.be.undefined
+                        expect(postits).to.exist
+                        expect(postits.length).to.equal(1)
+
+                        const [_postit] = postits
+
+                        expect(_postit.id).to.equal(postit.id)
+                        expect(_postit.text).to.equal(postit.text)
                     })
             )
         })
     })
 
     describe('postits', () => {
-        describe('create', () => {
+        describe('add', () => {
             let user, text
 
             beforeEach(() => {
@@ -123,7 +131,7 @@ describe('logic', () => {
             })
 
             it('should succeed on correct data', () =>
-                logic.createPostit(user.id, text)
+                logic.addPostit(user.id, text)
                     .then(() => {
                         const json = fs.readFileSync(User._file)
 
@@ -144,6 +152,38 @@ describe('logic', () => {
                         expect(postit.text).to.equal(text)
                     })
             )
+
+            // TODO other test cases
+        })
+
+        describe('remove', () => {
+            let user, postit
+
+            beforeEach(() => {
+                postit = new Postit('hello text')
+                user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123', postits: [postit] })
+
+                fs.writeFileSync(User._file, JSON.stringify([user]))
+            })
+
+            it('should succeed on correct data', () => {
+                logic.removePostit(user.id, postit.id)
+                    .then(() => {
+                        const json = fs.readFileSync(User._file)
+
+                        const users = JSON.parse(json)
+
+                        expect(users.length).to.equal(1)
+
+                        const [_user] = users
+
+                        expect(_user.id).to.equal(user.id)
+
+                        const { postits } = _user
+
+                        expect(postits.length).to.equal(0)
+                    })
+            })
         })
     })
 })
