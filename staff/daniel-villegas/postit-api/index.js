@@ -193,7 +193,39 @@ app.put('/api/users/:id/modify-postit/:postitId', jsonBodyParser, (req, res) => 
             status: 'KO',
             message
     })
-    }          
+    }  
+})
+
+app.get('/api/users/:id/postits', jsonBodyParser, (req, res) => {
+    const { params: { id }, headers: { authorization } } = req
+    
+    try {
+        const token = authorization.split(' ')[1]
+
+        const { sub } = jwt.verify(token, JWT_SECRET)
+
+        if (id !== sub) throw Error('token sub does not match user id')
+
+        logic.listPostit(id)
+            .then(() => {
+                res.json({
+                    status: 'OK',
+                    message: 'post successfully listed',
+                    data: postits
+                })        
+            })
+            .catch(({ message }) =>
+                res.json({
+                    status: 'KO',
+                    message
+            })
+        )
+    } catch ({ message }) {
+        res.json({
+            status: 'KO',
+            message
+    })
+    }  
 })
 
 app.post
