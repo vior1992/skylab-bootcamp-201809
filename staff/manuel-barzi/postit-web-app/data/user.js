@@ -1,9 +1,7 @@
 const fs = require('fs')
 
 class User {
-    constructor(user) {
-        const { id, name, surname, username, password, postits } = user
-
+    constructor({ id, name, surname, username, password, postits }) {
         this.id = id || Date.now()
 
         this.name = name
@@ -62,7 +60,6 @@ class User {
             fs.readFile(User._file, (err, json) => {
                 if (err) return reject(err)
 
-                debugger
                 const users = JSON.parse(json)
 
                 const user = users.find(user => user.id === id)

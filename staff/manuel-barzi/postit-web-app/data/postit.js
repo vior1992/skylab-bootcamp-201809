@@ -1,7 +1,5 @@
 class Postit {
-    constructor(postit) {
-        const { id, text } = postit
-
+    constructor({ id, text }) {
         this.id = id || Date.now()
         this.text = text
     }

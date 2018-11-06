@@ -96,7 +96,7 @@ app.get('/home', (req, res) => {
     if (userId) {
         try {
             logic.retrieveUser(userId)
-                .then(({ name, postits }) => res.render('home', { name, postits, postitId, error }))
+                .then(({ name, postits }) => res.render('home', { name, postits, postitId, error, private: true }))
                 .catch(({ message }) => {
                     req.session.error = message
 
