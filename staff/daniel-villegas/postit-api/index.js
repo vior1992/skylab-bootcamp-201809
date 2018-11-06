@@ -14,7 +14,7 @@ const app = express()
 
 const jsonBodyParser = bodyParser.json()
 
-app.post('/api/user', jsonBodyParser, (req, res) => {
+app.post('/api/users', jsonBodyParser, (req, res) => {
     const { name, surname, username, password } = req.body
 
     try {
@@ -69,12 +69,12 @@ app.post('/api/auth', jsonBodyParser, (req, res) => {
     }
 })
 
-app.get('/api/user/:id', (req, res) => {
+app.get('/api/users/:id', (req, res) => {
     const { params: { id }, headers: { authorization } } = req
 
-    const token = authorization.split(' ')[1]
-
     try {
+        const token = authorization.split(' ')[1]
+
         const { sub } = jwt.verify(token, JWT_SECRET)
 
         if (id !== sub) throw Error('token sub does not match user id')
@@ -100,13 +100,12 @@ app.get('/api/user/:id', (req, res) => {
     }
 })
 
-app.post('/api/user/postits/:id', jsonBodyParser, (req, res) => {
-    
+app.post('/api/users/:id/new-postit', jsonBodyParser, (req, res) => {
     const { body: { text }, params: { id }, headers: { authorization } } = req
     
-    const token = authorization.split(' ')[1]
-    
     try {
+        const token = authorization.split(' ')[1]
+
         const { sub } = jwt.verify(token, JWT_SECRET)
 
         if (id !== sub) throw Error('token sub does not match user id')
@@ -133,13 +132,12 @@ app.post('/api/user/postits/:id', jsonBodyParser, (req, res) => {
     }          
 })
 
-app.delete('/api/user/postits/:id', jsonBodyParser, (req, res) => {
-
-    const { body: { postitId }, params: { id }, headers: { authorization } } = req
-    
-    const token = authorization.split(' ')[1]
+app.delete('/api/users/:id/delete-postit/:postitId', jsonBodyParser, (req, res) => {
+    const { params: { id, postitId }, headers: { authorization } } = req
     
     try {
+        const token = authorization.split(' ')[1]
+
         const { sub } = jwt.verify(token, JWT_SECRET)
 
         if (id !== sub) throw Error('token sub does not match user id')
@@ -166,13 +164,12 @@ app.delete('/api/user/postits/:id', jsonBodyParser, (req, res) => {
     }          
 })
 
-app.put('/api/user/postits/:id', jsonBodyParser, (req, res) => {
-    
-    const { body: { postitId, text }, params: { id }, headers: { authorization } } = req
-    
-    const token = authorization.split(' ')[1]
+app.put('/api/users/:id/modify-postit/:postitId', jsonBodyParser, (req, res) => {
+    const { body: { text }, params: { id, postitId }, headers: { authorization } } = req
     
     try {
+        const token = authorization.split(' ')[1]
+
         const { sub } = jwt.verify(token, JWT_SECRET)
 
         if (id !== sub) throw Error('token sub does not match user id')
