@@ -66,7 +66,7 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong user id
      */
-    listPostit(id) {
+    listPostits(id) {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
         if (!id.trim().length) throw Error('id is empty or blank')
@@ -75,7 +75,7 @@ const logic = {
             .then(user => {
                 if (!user) throw Error(`user with id ${id} not found`)
 
-                return User.postits
+                return user.postits
             })
     },
 

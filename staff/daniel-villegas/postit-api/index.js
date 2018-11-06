@@ -206,8 +206,8 @@ app.get('/api/users/:id/postits', jsonBodyParser, (req, res) => {
 
         if (id !== sub) throw Error('token sub does not match user id')
 
-        logic.listPostit(id)
-            .then(() => {
+        logic.listPostits(id)
+            .then(postits => {
                 res.json({
                     status: 'OK',
                     message: 'post successfully listed',
