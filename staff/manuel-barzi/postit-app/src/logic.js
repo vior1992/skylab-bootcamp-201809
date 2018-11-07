@@ -48,8 +48,6 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
-                debugger
-
                 if (res.error) throw Error(res.error)
 
                 const { id, token } = res.data
@@ -59,9 +57,6 @@ const logic = {
 
                 sessionStorage.setItem('userId', id)
                 sessionStorage.setItem('token', token)
-            })
-            .catch(err => {
-                debugger
             })
     },
 
