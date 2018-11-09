@@ -13,10 +13,15 @@ class Postits extends Component {
         // TODO error handling!
     }
 
-    handleSubmit = text =>
-        logic.addPostit(text)
-            .then(() => logic.listPostits())
-            .then(postits => this.setState({ postits }))
+    handleSubmit = text => {
+        try {
+            logic.addPostit(text)
+                .then(() => logic.listPostits())
+                .then(postits => this.setState({ postits }))
+        } catch ({ message }) {
+            alert(message) // HORROR! FORBIDDEN! ACHTUNG!
+        }
+    }
 
     // TODO error handling!
 

@@ -17,7 +17,7 @@ class User {
         return User._collection.findOne({ id: this.id })
             .then(user => {
                 if (user) {
-                    return User._collection.updateOne({ id: this.id }, this)
+                    return User._collection.updateOne({ id: this.id }, { $set: this })
                 } else {
                     return User._collection.insertOne(this)
                 }
@@ -31,31 +31,13 @@ class User {
     }
 
     static findByUsername(username) {
-        return new Promise((resolve, reject) => {
-            fs.readFile(User._file, (err, json) => {
-                if (err) return reject(err)
-
-                const users = JSON.parse(json)
-
-                const user = users.find(user => user.username === username)
-
-                resolve(user ? new User(user) : undefined)
-            })
-        })
+        return this._collection.findOne({ username })
+            .then(user => user ? new User(user) : undefined)
     }
 
     static findById(id) {
-        return new Promise((resolve, reject) => {
-            fs.readFile(User._file, (err, json) => {
-                if (err) return reject(err)
-
-                const users = JSON.parse(json)
-
-                const user = users.find(user => user.id === id)
-
-                resolve(user ? new User(user) : undefined)
-            })
-        })
+        return this._collection.findOne({ id })
+            .then(user => user ? new User(user) : undefined)
     }
 }
 

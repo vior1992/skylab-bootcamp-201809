@@ -62,25 +62,10 @@ describe('User (model)', () => {
 
                 id = user.id
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
+                return users.insertOne(user)
             })
 
             it('should succeed on correct username', () => {
-                let json = fs.readFileSync(User._file)
-
-                let users = JSON.parse(json)
-
-                expect(users.length).to.equal(1)
-
-                let [user] = users
-
-                expect(user).to.exist
-
-                expect(user.name).to.equal(name)
-                expect(user.surname).to.equal(surname)
-                expect(user.username).to.equal(username)
-                expect(user.password).to.equal(password)
-
                 const newName = `${name}-${Math.random()}`
 
                 const _user = new User({ name: newName, surname, username, password })
@@ -88,14 +73,11 @@ describe('User (model)', () => {
                 _user.id = id
 
                 return _user.save()
-                    .then(() => {
-                        json = fs.readFileSync(User._file)
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        expect(_users.length).to.equal(1)
 
-                        users = JSON.parse(json)
-
-                        expect(users.length).to.equal(1)
-
-                        user = users[0]
+                        const [user] = _users
 
                         expect(user).to.exist
 
@@ -117,7 +99,7 @@ describe('User (model)', () => {
             username = `username-${Math.random()}`
             password = `password-${Math.random()}`
 
-            fs.writeFileSync(User._file, JSON.stringify([new User({ name, surname, username, password })]))
+            return users.insertOne(new User({ name, surname, username, password }))
         })
 
         it('should succeed on correct username', () =>
@@ -131,7 +113,39 @@ describe('User (model)', () => {
                     expect(user.username).to.equal(username)
                     expect(user.password).to.equal(password)
                 })
-
         )
     })
+
+    describe('findById', () => {
+        let name, surname, username, password, id
+
+        beforeEach(() => {
+            name = `name-${Math.random()}`
+            surname = `surname-${Math.random()}`
+            username = `username-${Math.random()}`
+            password = `password-${Math.random()}`
+
+            const user = new User({ name, surname, username, password })
+
+            id = user.id
+
+            return users.insertOne(user)
+        })
+
+        it('should succeed on correct id', () =>
+            User.findById(id)
+                .then(user => {
+                    expect(user).to.exist
+                    expect(user).to.be.instanceOf(User)
+
+                    expect(user.id).to.equal(id)
+                    expect(user.name).to.equal(name)
+                    expect(user.surname).to.equal(surname)
+                    expect(user.username).to.equal(username)
+                    expect(user.password).to.equal(password)
+                })
+        )
+    })
+
+    after(() => client.close())
 })

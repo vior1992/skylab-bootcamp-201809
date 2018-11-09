@@ -1,25 +1,38 @@
-const fs = require('fs')
+require('dotenv').config()
+
+const { MongoClient } = require('mongodb')
 const { User, Postit } = require('../data')
 const logic = require('.')
 const { AlreadyExistsError } = require('../errors')
 
 const { expect } = require('chai')
 
+const { env: { MONGO_URL } } = process
+
 // running test from CLI
 // normal -> $ mocha src/logic.spec.js --timeout 10000
 // debug -> $ mocha debug src/logic.spec.js --timeout 10000
 
 describe('logic', () => {
+    let client, users
+
     before(() => {
-        User._file = './data/users.spec.json'
+        client = new MongoClient(MONGO_URL, { useNewUrlParser: true })
+
+        return client.connect()
+            .then(() => {
+                const db = client.db('postit-test')
+
+                users = db.collection('users')
+
+                User._collection = users
+            })
     })
 
-    beforeEach(() => fs.writeFileSync(User._file, JSON.stringify([])))
-
-    // afterEach(() => fs.writeFileSync(User._file, JSON.stringify([])))
+    beforeEach(() => users.deleteMany())
 
     describe('user', () => {
-        !false && describe('register', () => {
+        describe('register', () => {
             let name, surname, username, password
 
             beforeEach(() => {
@@ -31,12 +44,11 @@ describe('logic', () => {
 
             it('should succeed on correct data', () =>
                 logic.registerUser(name, surname, username, password)
-                    .then(() => {
-                        const json = fs.readFileSync(User._file)
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        expect(_users.length).to.equal(1)
 
-                        const users = JSON.parse(json)
-
-                        const [user] = users
+                        const [user] = _users
 
                         expect(user.id).to.be.a('string')
                         expect(user.name).to.equal(name)
@@ -53,13 +65,13 @@ describe('logic', () => {
             // TODO other test cases
         })
 
-        !false && describe('authenticate', () => {
+        describe('authenticate', () => {
             let user
 
             beforeEach(() => {
                 user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123' })
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
+                return users.insertOne(user)
             })
 
             it('should authenticate on correct credentials', () => {
@@ -70,13 +82,12 @@ describe('logic', () => {
                         expect(id).to.exist
                         expect(id).to.be.a('string')
 
-                        const json = fs.readFileSync(User._file)
+                        return users.find().toArray()
+                            .then(_users => {
+                                const [_user] = _users
 
-                        const users = JSON.parse(json)
-
-                        const [_user] = users
-
-                        expect(_user.id).to.equal(id)
+                                expect(_user.id).to.equal(id)
+                            })
                     })
             })
 
@@ -87,14 +98,14 @@ describe('logic', () => {
             // TODO other test cases
         })
 
-        !false && describe('retrieve', () => {
+        describe('retrieve', () => {
             let user, postit
 
             beforeEach(() => {
                 postit = new Postit('hello text')
                 user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123', postits: [postit] })
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
+                return users.insertOne(user)
             })
 
             it('should succeed on valid id', () =>
@@ -115,13 +126,13 @@ describe('logic', () => {
             )
         })
 
-        !false && describe('update', () => {
+        describe('update', () => {
             let user
 
             beforeEach(() => {
                 user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123' })
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
+                users.insertOne(user)
             })
 
             it('should update on correct data and password', () => {
@@ -133,12 +144,9 @@ describe('logic', () => {
                 const newPassword = `${password}-${Math.random()}`
 
                 return logic.updateUser(id, newName, newSurname, newUsername, newPassword, password)
-                    .then(() => {
-                        const json = fs.readFileSync(User._file)
-
-                        const users = JSON.parse(json)
-
-                        const [_user] = users
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        const [_user] = _users
 
                         expect(_user.id).to.equal(id)
 
@@ -157,12 +165,9 @@ describe('logic', () => {
                 const newName = `${name}-${Math.random()}`
 
                 return logic.updateUser(id, newName, null, null, null, password)
-                    .then(() => {
-                        const json = fs.readFileSync(User._file)
-
-                        const users = JSON.parse(json)
-
-                        const [_user] = users
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        const [_user] = _users
 
                         expect(_user.id).to.equal(id)
 
@@ -179,12 +184,9 @@ describe('logic', () => {
                 const newSurname = `${surname}-${Math.random()}`
 
                 return logic.updateUser(id, null, newSurname, null, null, password)
-                    .then(() => {
-                        const json = fs.readFileSync(User._file)
-
-                        const users = JSON.parse(json)
-
-                        const [_user] = users
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        const [_user] = _users
 
                         expect(_user.id).to.equal(id)
 
@@ -212,7 +214,7 @@ describe('logic', () => {
                     user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123' })
                     user2 = new User({ name: 'John', surname: 'Doe', username: 'jd2', password: '123' })
 
-                    fs.writeFileSync(User._file, JSON.stringify([user, user2]))
+                    return users.insertMany([user, user2])
                 })
 
                 it('should update on correct data and password', () => {
@@ -225,12 +227,9 @@ describe('logic', () => {
                         .catch(err => {
                             expect(err).to.be.instanceof(AlreadyExistsError)
 
-                            const json = fs.readFileSync(User._file)
-
-                            const users = JSON.parse(json)
-
-                            const [, _user] = users
-
+                            return users.findOne({ id })
+                        })
+                        .then(_user => {
                             expect(_user.id).to.equal(id)
 
                             expect(_user.name).to.equal(name)
@@ -244,27 +243,22 @@ describe('logic', () => {
     })
 
     describe('postits', () => {
-        !false && describe('add', () => {
+        describe('add', () => {
             let user, text
 
             beforeEach(() => {
                 user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123' })
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
-
                 text = `text-${Math.random()}`
+
+                return users.insertOne(user)
             })
 
             it('should succeed on correct data', () =>
                 logic.addPostit(user.id, text)
-                    .then(() => {
-                        const json = fs.readFileSync(User._file)
-
-                        const users = JSON.parse(json)
-
-                        expect(users.length).to.equal(1)
-
-                        const [_user] = users
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        const [_user] = _users
 
                         expect(_user.id).to.equal(user.id)
 
@@ -281,75 +275,72 @@ describe('logic', () => {
             // TODO other test cases
         })
 
-        !false && describe('list', () => {
+        describe('list', () => {
             let user, postit, postit2
 
             beforeEach(() => {
                 postit = new Postit({ text: 'hello text' })
                 postit2 = new Postit({ text: 'hello text 2' })
+
                 user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123', postits: [postit, postit2] })
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
+                return users.insertOne(user)
             })
 
             it('should succeed on correct data', () =>
                 logic.listPostits(user.id)
                     .then(postits => {
-                        const json = fs.readFileSync(User._file)
+                        return users.find().toArray()
+                            .then(_users => {
+                                expect(_users.length).to.equal(1)
 
-                        const users = JSON.parse(json)
+                                const [_user] = _users
 
-                        expect(users.length).to.equal(1)
+                                expect(_user.id).to.equal(user.id)
 
-                        const [_user] = users
+                                const { postits: _postits } = _user
 
-                        expect(_user.id).to.equal(user.id)
+                                expect(_postits.length).to.equal(2)
 
-                        const { postits: _postits } = _user
+                                expect(postits.length).to.equal(_postits.length)
 
-                        expect(_postits.length).to.equal(2)
+                                const [_postit, _postit2] = _postits
 
-                        expect(postits.length).to.equal(_postits.length)
+                                expect(_postit.id).to.equal(postit.id)
+                                expect(_postit.text).to.equal(postit.text)
 
-                        const [_postit, _postit2] = _postits
+                                expect(_postit2.id).to.equal(postit2.id)
+                                expect(_postit2.text).to.equal(postit2.text)
 
-                        expect(_postit.id).to.equal(postit.id)
-                        expect(_postit.text).to.equal(postit.text)
+                                const [__postit, __postit2] = postits
 
-                        expect(_postit2.id).to.equal(postit2.id)
-                        expect(_postit2.text).to.equal(postit2.text)
+                                expect(_postit.id).to.equal(__postit.id)
+                                expect(_postit.text).to.equal(__postit.text)
 
-                        const [__postit, __postit2] = postits
-
-                        expect(_postit.id).to.equal(__postit.id)
-                        expect(_postit.text).to.equal(__postit.text)
-
-                        expect(_postit2.id).to.equal(__postit2.id)
-                        expect(_postit2.text).to.equal(__postit2.text)
+                                expect(_postit2.id).to.equal(__postit2.id)
+                                expect(_postit2.text).to.equal(__postit2.text)
+                            })
                     })
             )
         })
 
-        !false && describe('remove', () => {
+        describe('remove', () => {
             let user, postit
 
             beforeEach(() => {
                 postit = new Postit({ text: 'hello text' })
                 user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123', postits: [postit] })
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
+                return users.insertOne(user)
             })
 
             it('should succeed on correct data', () =>
                 logic.removePostit(user.id, postit.id)
-                    .then(() => {
-                        const json = fs.readFileSync(User._file)
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        expect(_users.length).to.equal(1)
 
-                        const users = JSON.parse(json)
-
-                        expect(users.length).to.equal(1)
-
-                        const [_user] = users
+                        const [_user] = _users
 
                         expect(_user.id).to.equal(user.id)
 
@@ -360,7 +351,7 @@ describe('logic', () => {
             )
         })
 
-        !false && describe('modify', () => {
+        describe('modify', () => {
             let user, postit, newText
 
             beforeEach(() => {
@@ -369,19 +360,16 @@ describe('logic', () => {
 
                 newText = `new-text-${Math.random()}`
 
-                fs.writeFileSync(User._file, JSON.stringify([user]))
+                return users.insertOne(user)
             })
 
             it('should succeed on correct data', () =>
                 logic.modifyPostit(user.id, postit.id, newText)
-                    .then(() => {
-                        const json = fs.readFileSync(User._file)
+                    .then(() => users.find().toArray())
+                    .then(_users => {
+                        expect(_users.length).to.equal(1)
 
-                        const users = JSON.parse(json)
-
-                        expect(users.length).to.equal(1)
-
-                        const [_user] = users
+                        const [_user] = _users
 
                         expect(_user.id).to.equal(user.id)
 
@@ -396,4 +384,6 @@ describe('logic', () => {
             )
         })
     })
+
+    after(() => client.close())
 })

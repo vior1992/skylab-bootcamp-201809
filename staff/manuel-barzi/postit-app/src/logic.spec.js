@@ -17,7 +17,7 @@ const { expect } = require('chai')
 
 describe('logic', () => {
     describe('users', () => {
-        !false && describe('register', () => {
+        describe('register', () => {
             it('should succeed on correct data', () =>
                 logic.registerUser('John', 'Doe', `jd-${Math.random()}`, '123')
                     .then(() => expect(true).to.be.true)
@@ -43,7 +43,7 @@ describe('logic', () => {
             // TODO other cases
         })
 
-        !false && describe('login', () => {
+        describe('login', () => {
             describe('with existing user', () => {
                 let username, password
 
@@ -111,7 +111,7 @@ describe('logic', () => {
     })
 
     describe('postits', () => {
-        !false && describe('add', () => {
+        describe('add', () => {
             describe('with existing user', () => {
                 let username, password, text
 
@@ -134,8 +134,8 @@ describe('logic', () => {
             })
         })
 
-        !false && describe('list', () => {
-            !false && describe('with existing user', () => {
+        describe('list', () => {
+            describe('with existing user', () => {
                 let username, password, text
 
                 beforeEach(() => {
@@ -172,7 +172,7 @@ describe('logic', () => {
             })
         })
 
-        !false && describe('remove', () => {
+        describe('remove', () => {
             describe('with existing user', () => {
                 let username, password, text, postitId
 
@@ -203,7 +203,7 @@ describe('logic', () => {
             })
         })
 
-        !false && describe('modify', () => {
+        describe('modify', () => {
             describe('with existing user', () => {
                 let username, password, text, postitId
 
