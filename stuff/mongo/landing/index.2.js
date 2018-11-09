@@ -9,22 +9,23 @@ client.connect(err => {
 
     const db = client.db('skylab')
 
-    const users = db.collection('users');
+    const users = db.collection('users')
 
-    (async () => {
-        await deleteAll(users)
-        await insertUser(users, 'Jack', 'Stripper')
-        await insertUser(users, 'John', 'Doe')
-        await insertUser(users, 'Mariah', 'Carey')
-        let _users = await findAll(users)
-        console.log(_users)
-        await updateUser(users, 'Mariah', 'Carey', 'Anna', 'Torroja')
-        _users = await findAll(users)
-        console.log(_users)
-        await deleteAll() // forced error!
-    })()
-        .catch(({ message }) => console.error(message))
-        .then(() => console.log('ok, done!'))
+    deleteAll(users)
+        .then(() => {
+            const insertions = [
+                insertUser(users, 'Jack', 'Stripper'),
+                insertUser(users, 'John', 'Doe'),
+                insertUser(users, 'Mariah', 'Carey')
+            ]
+
+            return Promise.all(insertions)
+        })
+        .then(() => findAll(users))
+        .then(console.log)
+        .then(() => updateUser(users, 'Mariah', 'Carey', 'Anna', 'Torroja'))
+        .then(() => findAll(users))
+        .then(console.log)
 })
 
 function findAll(collection) {
