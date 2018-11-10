@@ -56,8 +56,10 @@ class App extends Component {
             {error && <Error message={error} />}
 
             <Route path="/postits" render={() => logic.loggedIn ? <div>
-                <section><button onClick={this.handleLogoutClick}>Logout</button></section>
-                <Postits />
+                <div className="postits">
+                    <section className="logout__button"><button onClick={this.handleLogoutClick}>Logout</button></section>
+                    <Postits />
+                </div>
             </div> : <Redirect to="/" />} />
 
         </div>
