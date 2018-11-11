@@ -91,35 +91,35 @@ class Postits extends Component {
     render() {
         return <div>
             <div className="header">
-                <h1>Post-It App <i className="fas fa-sticky-note"></i></h1>
-            
-            <InputForm onSubmit={this.handleSubmit} />
+                <h1 className="header__title">Post-It App <i className="fas fa-sticky-note"></i></h1>
+
+                <InputForm className="header__input" onSubmit={this.handleSubmit} />
             </div>
 
             <div className="kanban">
                 <section className="column">
-                    <h2 className="todo__title">TO DO</h2>
+                    <h2 className="column__title">TO DO</h2>
                     <section>
                         {this.state.todo.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} status={postit.status} onDeletePost={this.handleRemovePostit} onChangeStatus={this.handleChangeStatus} onUpdatePost={this.handleModifyPostit} />)}
                         </section>
                 </section>
 
                 <section className="column">
-                    <h2>DOING</h2>
+                    <h2 className="column__title">DOING</h2>
                     <section>
                         {this.state.doing.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} status={postit.status} onDeletePost={this.handleRemovePostit} onChangeStatus={this.handleChangeStatus} onUpdatePost={this.handleModifyPostit} />)}
                     </section>
                 </section>
 
                 <section className="column">
-                    <h2>REVIEW</h2>
+                    <h2 className="column__title">REVIEW</h2>
                     <section>
                         {this.state.review.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} status={postit.status} onDeletePost={this.handleRemovePostit} onChangeStatus={this.handleChangeStatus} onUpdatePost={this.handleModifyPostit} />)}
                     </section>
                 </section>
 
                 <section className="column">
-                    <h2>DONE</h2>
+                    <h2 className="column__title">DONE</h2>
                     <section>
                         {this.state.done.map(postit => <Post key={postit.id} text={postit.text} id={postit.id} status={postit.status} onDeletePost={this.handleRemovePostit} onChangeStatus={this.handleChangeStatus} onUpdatePost={this.handleModifyPostit} />)}
                     </section>
