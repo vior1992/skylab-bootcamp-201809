@@ -12,9 +12,18 @@ logic.url = 'http://localhost:5000/api'
 class App extends Component {
     state = { error: null }
 
-    handleRegisterClick = () => this.props.history.push('/register')
+    handleRegisterClick = () => {
+        this.props.history.push('/register')
 
-    handleLoginClick = () => this.props.history.push('/login')
+        this.setState({ error: null })
+    }
+
+    handleLoginClick = () => {
+        this.props.history.push('/login')
+
+        
+        this.setState({ error: null })
+    }
 
     handleRegister = (name, surname, username, password) => {
         try {
@@ -31,7 +40,11 @@ class App extends Component {
     handleLogin = (username, password) => {
         try {
             logic.login(username, password)
-                .then(() =>  this.props.history.push('/postits'))
+                .then(() =>  {
+                    this.props.history.push('/postits')
+
+                    this.setState({ error: null })
+                })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
@@ -42,9 +55,15 @@ class App extends Component {
         logic.logout()
 
         this.props.history.push('/')
+
+        this.setState({ error: null })
     }
 
-    handleGoBack = () => this.props.history.push('/')
+    handleGoBack = () => {
+        this.props.history.push('/')
+        
+        this.setState({ error: null })
+    }
 
     render() {
         const { error } = this.state
