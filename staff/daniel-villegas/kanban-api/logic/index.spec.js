@@ -14,7 +14,7 @@ const MONGO_URL = 'mongodb://localhost:27017/postit-test'
 // debug -> $ mocha debug src/logic.spec.js --timeout 10000
 
 describe('logic', () => {
-    before(() =>  mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true }))
+    before(() =>  mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true, useCreateIndex: true }))
 
     beforeEach(() => Promise.all([User.deleteMany(), Postit.deleteMany()]))
 
