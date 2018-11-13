@@ -135,42 +135,22 @@ const logic = {
 
         if (!id.trim().length) throw new ValueError('id is empty or blank')
 
-        return User.findById(id)
-            .lean()
-            .then(user => {
-                if (!user) throw new NotFoundError(`user with id ${id} not found`)
+        return (async () => {
+            let user = await User.findById(id).lean()
+            if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
-                return Postit.find({ user: user._id })
-                    .lean()
-                    .then(postits => postits.map(postit => {
+            let postits = await Postit.find({ user: user._id }).lean()
+                    const _postits = postits.map(postit => {
                         postit.id = postit._id.toString()
-
+                        
                         delete postit._id
 
                         postit.user = postit.user.toString()
 
                         return postit
-                    }))
-            })
-        return (async () => {
-            let user = User.findById(id)
-
-            if (!user) throw new NotFoundError(`user with id ${id} not found`)
-
-            return (async () => {
-                let postits = Postit.find({ user: user._id })
-
-                postits.map(postit => {
-                    postit.id = postit._id.toString()
-
-                    delete postit._id
-
-                    postit.user = postit.user.toString()
-
-                    return postit
-                })
+                    })
+                return _postits
             })()
-        })()
     },
 
     /**
@@ -200,7 +180,7 @@ const logic = {
 
                 return (async () => {
                     
-                return await Postit.findByIdAndDelete(postitId)
+                return Postit.findByIdAndDelete(postitId)
                 })()
         })()
     },
