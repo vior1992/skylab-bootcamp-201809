@@ -8,7 +8,8 @@ const Postit = new Schema ({
 
         status: {
                 type: String,
-                required: true
+                required: true,
+                default: "TODO"
         },
 
         user: {

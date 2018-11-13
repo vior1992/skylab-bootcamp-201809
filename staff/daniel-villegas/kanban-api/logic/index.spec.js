@@ -268,8 +268,8 @@ describe('logic', () => {
             beforeEach(() => {
                 user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123' })
 
-                postit = new Postit({ text: 'hello text', user: user.id, state: "TODO"})
-                postit2 = new Postit({ text: 'hello text 2', user: user.id, state: "TODO"})
+                postit = new Postit({ text: 'hello text', user: user.id, status: "TODO"})
+                postit2 = new Postit({ text: 'hello text 2', user: user.id, status: "TODO"})
 
                 return user.save()
                     .then(() => Promise.all([postit.save(), postit2.save()]))
@@ -361,6 +361,39 @@ describe('logic', () => {
                         const [postit] = postits
 
                         expect(postit.text).to.equal(newText)
+                    })  
+            })
+        })
+
+        describe('modify status', () => {
+            let user, postit, newStatus
+
+            beforeEach(() => {
+                postit = new Postit({ text: 'hello text', status: "TODO"})
+                user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123', postits: [postit] })
+
+                newStatus = "DOING"
+
+                return user.save()
+            })
+
+            it('should succeed on correct data', () => {
+                logic.modifyPostitStatus(user.id, postit.id, status)
+                    .then(() => User.find())
+                    .then(_users => {
+                        expect(_users.length).to.equal(1)
+
+                        const [_user] = _users
+
+                        expect(_user.id).to.equal(user.id)
+
+                        const { postits } = _user
+
+                        expect(postits.length).to.equal(1)
+
+                        const [postit] = postits
+
+                        expect(postit.status).to.equal(newStatus)
                     })  
             })
         })
