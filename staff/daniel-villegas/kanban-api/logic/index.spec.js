@@ -14,7 +14,7 @@ const MONGO_URL = 'mongodb://localhost:27017/postit-test'
 // debug -> $ mocha debug src/logic.spec.js --timeout 10000
 
 describe('logic', () => {
-    before(() =>  mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true, useCreateIndex: true }))
+    before(() =>  mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true }))
 
     beforeEach(() => Promise.all([User.deleteMany(), Postit.deleteMany()]))
 
@@ -29,21 +29,24 @@ describe('logic', () => {
                 password = `password-${Math.random()}`
             })
 
-            it('should succeed on correct data', () =>
-                logic.registerUser(name, surname, username, password)
-                    .then(() => User.find())
-                    .then(_users => {
-                        expect(_users.length).to.equal(1)
+            it('should succeed on correct data', async () => {
+                const res = await logic.registerUser(name, surname, username, password)
+                
+                expect(res).to.be.undefined
+                
+                const _users = await User.find()
+            
+                expect(_users.length).to.equal(1)
 
-                        const [user] = _users
+                const [user] = _users
 
-                        expect(user.id).to.be.a('string')
-                        expect(user.name).to.equal(name)
-                        expect(user.surname).to.equal(surname)
-                        expect(user.username).to.equal(username)
-                        expect(user.password).to.equal(password)
-                    })
-            )
+                expect(user.id).to.be.a('string')
+                expect(user.name).to.equal(name)
+                expect(user.surname).to.equal(surname)
+                expect(user.username).to.equal(username)
+                expect(user.password).to.equal(password)
+                    
+                })
 
             it('should fail on undefined name', () => {
                 expect(() => logic.registerUser(undefined, surname, username, password)).to.throw(TypeError, 'undefined is not a string')
@@ -129,7 +132,7 @@ describe('logic', () => {
 
             
                     return logic.updateUser(id, newName, newSurname, newUsername, newPassword, password)
-                        .then(() => User.find())
+                        .then(() => user.find())
                         .then(_users => {
                             const [_user] = _users
 
@@ -151,7 +154,7 @@ describe('logic', () => {
                 const newName = `${name}-${Math.random()}`
 
                     return logic.updateUser(id, newName, null, null, null, password)
-                        .then(() => User.find())
+                        .then(() => user.find())
                         .then(_users => {
                             const [_user] = _users
 
@@ -199,7 +202,7 @@ describe('logic', () => {
                 let user2
 
                 beforeEach(() => {
-                    user2 = new User({ name: 'John', surname: 'Doe', username: 'jd2', password: '123' })
+                    user2 = User.create({ name: 'John', surname: 'Doe', username: 'jd2', password: '123' })
 
                     return user2.save()
                 })
@@ -216,7 +219,7 @@ describe('logic', () => {
                         .catch(err => {
                             expect(err).to.be.instanceof(AlreadyExistsError)
 
-                            return User.findById(id)
+                            return User.findOne(id)
                         })
                         .then(_user => {
                             expect(_user.id).to.equal(id)
@@ -378,7 +381,7 @@ describe('logic', () => {
             })
 
             it('should succeed on correct data', () => {
-                logic.modifyPostitStatus(user.id, postit.id, newStatus)
+                logic.modifyPostitStatus(user.id, postit.id, status)
                     .then(() => User.find())
                     .then(_users => {
                         expect(_users.length).to.equal(1)
