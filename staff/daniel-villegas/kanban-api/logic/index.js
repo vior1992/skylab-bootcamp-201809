@@ -152,6 +152,25 @@ const logic = {
                         return postit
                     }))
             })
+        return (async () => {
+            let user = User.findById(id)
+
+            if (!user) throw new NotFoundError(`user with id ${id} not found`)
+
+            return (async () => {
+                let postits = Postit.find({ user: user._id })
+
+                postits.map(postit => {
+                    postit.id = postit._id.toString()
+
+                    delete postit._id
+
+                    postit.user = postit.user.toString()
+
+                    return postit
+                })
+            })()
+        })()
     },
 
     /**
