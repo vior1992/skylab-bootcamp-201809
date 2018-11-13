@@ -91,7 +91,7 @@ class Postits extends Component {
     render() {
         return <div>
             <div className="header">
-                <h1 className="header__title">Post-It App <i className="fas fa-sticky-note"></i></h1>
+                <h1 className="header__title">Genghis Khanban App <i className="fas fa-sticky-note"></i></h1>
 
                 <InputForm className="header__input" onSubmit={this.handleSubmit} />
             </div>

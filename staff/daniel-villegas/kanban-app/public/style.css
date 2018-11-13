@@ -85,7 +85,6 @@ body {
     cursor: pointer;
     font-weight: bold;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-
 }
 
 .logout__button {
@@ -103,7 +102,24 @@ body {
     padding: 10px;
 }
 
-.header__title, .column__title {
+.header__title {
+    opacity: 0.9;
+    background-image: url("./gk.png");
+    background-size: 140%;
+    background-position: center;
+    border: 40px solid transparent;
+    border-radius: 500px;
+    width: 200px;
+    height: 100px;
+    margin: 10px; 
+    font-size: 25px;
+    text-align: center;
+    font-family: fantasy;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.column__title {
     font-family: fantasy;
     background: rgba(255, 255, 255, 0.8);
     padding: 10px;
