@@ -174,14 +174,16 @@ const logic = {
 
         if (!postitId.trim().length) throw new ValueError('postit id is empty or blank')
 
-        return Postit.findById(postitId)
-            .lean()
-            .then(postits => {
+        return (async () => {
+                const postits = await Postit.findById(postitId)
+
                 if (!postits) throw new NotFoundError(`postit with id ${postitId} not found`)
 
-                return Postit.findByIdAndDelete(postitId)
-            })
-            .then(() => undefined)
+                return (async () => {
+                    
+                return await Postit.findByIdAndDelete(postitId)
+                })()
+        })()
     },
 
     modifyPostit(id, postitId, text) {
@@ -197,12 +199,13 @@ const logic = {
 
         if (!text.trim().length) throw new ValueError('text is empty or blank')
 
-        return Postit.findById(postitId)
-            .then(postit => {
-                postit.text = text
+        return (async () => {
+            let postit = await Postit.findById(postitId)
 
-                return postit.save()
-            })
+            postit.text = text
+
+            return postit.save()
+        })() 
     },
 
     modifyPostitStatus(id, postitId, status) { 
@@ -218,12 +221,13 @@ const logic = {
 
         if (!status.trim().length) throw new ValueError('status is empty or blank')
 
-        return Postit.findById(postitId)
-            .then(postit => {
-                postit.status = status
+        return (async () => {
+            let postit = await Postit.findById(postitId)
 
-                return postit.save()
-            })
+            postit.status = status
+
+            return postit.save()
+        })() 
     }
 }
 
