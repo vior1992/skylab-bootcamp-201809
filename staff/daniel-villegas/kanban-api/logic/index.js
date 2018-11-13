@@ -175,13 +175,14 @@ const logic = {
         return Postit.findById(postitId)
             .lean()
             .then(postits => {
-                if (!postits) throw new NotFoundError(`user with id ${id} not found`)
+                if (!postits) throw new NotFoundError(`postit with id ${postitId} not found`)
 
                 return Postit.findByIdAndDelete(postitId)
             })
+            .then(() => undefined)
     },
 
-    modifyPostit(id, postitId, text) { //TODO
+    modifyPostit(id, postitId, text) {
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
         if (!id.trim().length) throw new ValueError('id is empty or blank')
@@ -202,7 +203,7 @@ const logic = {
             })
     },
 
-    modifyPostitStatus(id, postitId, status) { //TODO
+    modifyPostitStatus(id, postitId, status) { 
         if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
 
         if (!id.trim().length) throw new ValueError('id is empty or blank')
