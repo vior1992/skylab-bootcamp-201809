@@ -60,7 +60,7 @@ router.get('/users/:id', [bearerTokenParser, jwtVerifier], (req, res) => {
     }, res)
 })
 
-router.patch('/users/:id', [bearerTokenParser, jwtVerifier, jsonBodyParser], (req, res) => {
+router.patch('/users/:id/profile', [bearerTokenParser, jwtVerifier, jsonBodyParser], (req, res) => {
     routeHandler(() => {
         const { params: { id }, sub, body: { name, surname, username, newPassword, password } } = req
 

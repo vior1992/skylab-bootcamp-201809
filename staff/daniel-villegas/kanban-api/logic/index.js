@@ -71,9 +71,10 @@ const logic = {
         if (username != null && !username.trim().length) throw new ValueError('username is empty or blank')
         if (newPassword != null && !newPassword.trim().length) throw new ValueError('newPassword is empty or blank')
         if (!password.trim().length) throw new ValueError('password is empty or blank')
-
+        
         return (async () => {
             let user = await User.findById(id)
+            if (password !== user.password) throw new ValueError('incorrect password')
 
             if (username) {
                 return (async () => {
@@ -98,6 +99,10 @@ const logic = {
             }
         })()
     },
+
+    //updateAvatar() {
+
+    //},
 
     /**
      * Adds a postit

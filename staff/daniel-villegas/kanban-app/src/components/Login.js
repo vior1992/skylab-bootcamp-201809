@@ -30,7 +30,7 @@ class Login extends Component {
                 <input className="login__input" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
             </div>
             {/* <button type="submit">Login</button> <a href="/#/">back</a> */}
-            <button className="login__button" type="submit">Login</button> <a className="register__back" href="#" onClick={this.props.onGoBack}>back</a>
+            <button className="login__button" type="submit">Login</button> <a className="login__back" href="#" onClick={this.props.onGoBack}>back</a>
         </form>
     }
 }

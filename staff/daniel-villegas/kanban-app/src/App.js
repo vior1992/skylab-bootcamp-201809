@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Register from './components/Register'
 import Login from './components/Login'
+import Profile from './components/Profile'
 import Postits from './components/Postits'
 import Error from './components/Error'
 import Landing from './components/Landing'
@@ -22,6 +23,12 @@ class App extends Component {
         this.props.history.push('/login')
 
         
+        this.setState({ error: null })
+    }
+
+    handleProfileClick = () => {
+        this.props.history.push('/profile')
+
         this.setState({ error: null })
     }
 
@@ -51,6 +58,20 @@ class App extends Component {
         }
     }
 
+    handleUpdateProfile = (name, surname, username, newPassword, repeatNewPassword, password) => {
+        try {
+            logic.updateProfile(name, surname, username, newPassword, repeatNewPassword, password)
+                .then(() => {
+                    alert("profile actualitzated")
+                    this.setState({ error: null })
+                })
+                .catch(err => this.setState({ error: err.message }))
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
+
+    }
+
     handleLogoutClick = () => {
         logic.logout()
 
@@ -72,11 +93,17 @@ class App extends Component {
             <Route exact path="/" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} /> : <Redirect to="/postits" />} />
             <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onGoBack={this.handleGoBack} /> : <Redirect to="/postits" />} />
             <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onGoBack={this.handleGoBack} /> : <Redirect to="/postits" />} />
+            <Route path="/profile" render={() => logic.loggedIn ? <Profile onUpdateProfile={this.handleUpdateProfile} onUpdateImageClick={null} /> : <Redirect to="/postits" />} />
+
             {error && <Error message={error} />}
 
             <Route path="/postits" render={() => logic.loggedIn ? <div>
+
                 <div className="postits">
-                    <section><button className="logout__button" onClick={this.handleLogoutClick}>Logout</button></section>
+                    
+                        <button className="logout__button" onClick={this.handleLogoutClick}>Logout</button>
+                        <button className="profile__button" onClick={this.handleProfileClick}>Profile</button>
+                    
                     <Postits />
                 </div>
             </div> : <Redirect to="/" />} />
