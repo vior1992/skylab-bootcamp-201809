@@ -100,9 +100,9 @@ const logic = {
         })()
     },
 
-    //updateAvatar() {
+    updateAvatar() {
 
-    //},
+    },
 
     /**
      * Adds a postit

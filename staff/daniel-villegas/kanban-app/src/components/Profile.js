@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class Profile extends Component {
-    state  = { name:'', surname:'', username:'', newPassword:'', repeatNewPassword:'', password:''}
+    state  = { name:'', surname:'', username:'', newPassword:'', repeatNewPassword:'', password:'' , picture:''}
 
     handlenewNameChange = event => {
         const name = event.target.value
@@ -39,6 +39,12 @@ class Profile extends Component {
         this.setState({ password })
     }
 
+    handleNewPictureChange = event => {
+        const picture = event.target.value
+
+        this.setState({ picture })
+    }
+
     handleSubmit = event => {
         event.preventDefault()
 
@@ -56,8 +62,8 @@ class Profile extends Component {
             <div className="profile__body">
                 <div className="profile__pictureSection">
                     <h3 className="profile__picture--title">Update your avatar</h3>
-                    <img className="profile__picture" src="https://png2.kisspng.com/sh/85d6b7f5e7cf03ca28daeaec9c714e52/L0KzQYm3VsE2N6d0iJH0aYP2gLBuTfF3aaVmip9Ac3X1PcH5jBZqdJYyhdN1ZT3vf7j2TgBzd5duhNc2aXPyfn68gsI0QJRnSKU6Y3W0R3A6UMI0Pmo2TKMAMkmzRYe7U8IzOGUziNDw/kisspng-avatar-user-profile-male-logo-profile-icon-5b238cb031ce17.302369141529056432204.png"></img>
-                    <button className="profile__button--picture" type="submit">Change picture</button>
+                    <img className="profile__picture" ></img>
+                    <button className="profile__button--picture" type="onClick" onUpdatePicture={this.handleNewPictureChange}>Change picture</button>
                 </div>
 
                 <form className="profile__formulary" onSubmit={this.handleSubmit}>
