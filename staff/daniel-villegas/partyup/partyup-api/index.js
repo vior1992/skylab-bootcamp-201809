@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('./utilities/cors')
 const package = require('./package.json')
-//const router = require('./routes')
+const router = require('./routes')
 
 const { PORT, MONGO_URL } = process.env
 
@@ -18,7 +18,7 @@ mongoose.connect(MONGO_URL, { useNewUrlParser: true, useCreateIndex: true })
 
         app.use(cors)
 
-        app.use('/api')
+        app.use('/api', router)
 
         app.listen(port, () => console.log(`${package.name} ${package.version} up and running on port ${port}`))
     })
