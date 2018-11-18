@@ -14,7 +14,7 @@ body { font-family: sans-serif; margin: 0; }
 
 .actions { margin-left: auto; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; margin-right: 10px; }
 
-.signout__link { color: #d20096; font-size: 0.8rem; margin-left: 10px; text-transform: uppercase; }
+.login__link, .logup__link, .logout__link, .create__link, .profile__link { color: #d20096; font-size: 0.8rem; margin-left: 10px; text-transform: uppercase; }
 
 .main__videosection { background: url(https://newblogs.englishsummer.com/wp-content/uploads/2017/09/disco-party.jpg) no-repeat center center; background-size: cover; position: relative; height: 300px; }
 
