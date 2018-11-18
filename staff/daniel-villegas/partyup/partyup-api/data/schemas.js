@@ -10,13 +10,12 @@ const Partyup = new Schema ({
         required: true
     },
     date: {
-        type: String,
+        type: Date,
         required: true
     },
     user: {
         type: ObjectId,
         ref: 'User',
-        unique: true,
         required: true
     },
     city: {
@@ -59,10 +58,6 @@ const User = new Schema ({
         type: String,
         required: true
     },
-    partyups: {
-        type: ObjectId,
-        ref: 'Partyup'
-    }
 })
 
 module.exports = {
