@@ -1,6 +1,6 @@
 //const { ValueError } = require('../errors')
 
-function validate(params) {
+function validateLogic(params) {
     params.forEach(({ key, value, type, optional }) => {
         switch (type) {
             case String:
@@ -25,4 +25,4 @@ function validate(params) {
     })
 }
 
-module.exports = validate
+export default validateLogic

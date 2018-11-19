@@ -1,26 +1,48 @@
-body { margin: 0; }
+html { -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-.header { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; margin-bottom: 2%; -ms-flex-line-pack: center; align-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+*, *:before, *:after { -webkit-box-sizing: inherit; box-sizing: inherit; }
 
-.header__logo { display: -webkit-box; display: -ms-flexbox; display: flex; background-color: black; }
+body { font-family: sans-serif; margin: 0; }
 
-.header__ancores { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end; -ms-flex-line-pack: justify; align-content: space-between; }
+.button, .login__button, .register__button, .create__button { text-transform: uppercase; display: block; overflow: hidden; margin: 0 auto; padding: 12px 36px; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-transition: all 150ms linear; transition: all 150ms linear; text-align: center; white-space: nowrap; text-decoration: none !important; color: #ffffff; border: 0 none; border-radius: 4px; font-size: 25px; font-weight: bold; line-height: 1.3; -webkit-appearance: none; -moz-appearance: none; appearance: none; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-flex: 0; -ms-flex: 0 0 160px; flex: 0 0 160px; background-color: #d20096; -webkit-box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15); box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15); }
 
-.footer { margin: 0%; background-color: black; color: grey; text-align: center; }
+.site__header { background: #0D1313; color: white; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
-.main__videosection { background-color: black; }
+.logo { text-decoration: none; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; padding: 10px; }
 
-.main__video { background-color: white; width: 100%; height: 100%; }
+.dropdown ul { display: none; }
 
-.main__register { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; color: white; }
+.actions { margin-left: auto; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; margin-right: 10px; }
+
+.login__link, .logup__link, .logout__link, .create__link, .profile__link { color: #d20096; font-size: 0.8rem; margin-left: 10px; text-transform: uppercase; }
+
+.main__videosection { background: url(https://newblogs.englishsummer.com/wp-content/uploads/2017/09/disco-party.jpg) no-repeat center center; background-size: cover; position: relative; height: 300px; }
+
+.main__video { background-color: white; width: 100%; height: 100%; top: 0; bottom: 0; right: 0; left: 0; }
+
+.main__register { position: absolute; text-align: center; top: 10%; bottom: 0; right: 0; left: 0; color: white; }
+
+.register__title { font-size: 2.5em; margin-bottom: 0.2em; }
+
+.register__subtitle { font-size: 1.5em; margin-top: 0; }
 
 .partyups { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
 .partyups__titles { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-pack: distribute; justify-content: space-around; }
 
-.partyups__list { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.partyups__list { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; padding: 15px; }
 
-.partyups__event { margin: 2%; padding: 2%; background-color: green; border: 2px solid black; border-radius: 10px; }
+.partyups__event { overflow: hidden; margin-bottom: 20px; background-color: white; -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); border-radius: 4px; }
+
+.partyups__picture { width: 100%; }
+
+.partyups__info { padding: 15px; }
+
+.info__date { margin: 0; font-size: 0.6em; text-transform: uppercase; }
+
+.info__title { margin-top: 0; font-size: 1.3em; margin-bottom: 3px; }
+
+.info__description, .info__host { margin: 0; color: #999; font-size: 0.9em; }
 
 .login__container, .register__container, .create__container { background-color: white; border: 2px solid black; }
 
@@ -29,8 +51,6 @@ body { margin: 0; }
 .login__formulary, .register__formulary { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; margin: 2%; }
 
 .login__input, .register__input, .create__input { width: 90%; height: 30px; border: 1px solid grey; border-radius: 5px; }
-
-.login__button, .register__button, .create__button { width: 30%; height: 30px; border: 1px solid transparent; border-radius: 5px; background-color: green; color: white; margin: 2%; }
 
 .search__searchoptions { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -ms-flex-line-pack: distribute; align-content: space-around; background-color: green; border: 2px solid black; }
 
@@ -45,3 +65,10 @@ body { margin: 0; }
 .partyup__header--info { display: -webkit-box; display: -ms-flexbox; display: flex; border-right: 2px solid black; }
 
 .partyup__infoheader--date { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-line-pack: justify; align-content: space-between; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+
+.footer { margin: 0%; background-color: black; color: grey; text-align: center; }
+
+@media (min-width: 740px) { .site__header { -ms-flex-wrap: wrap; flex-wrap: wrap; }
+  .partyup__event { width: 33%; float: left; }
+  .partyups__list { display: -webkit-flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -ms-flex-pack: distribute; justify-content: space-around; max-width: 900px; margin: 0 auto; }
+  .partyups__event { -webkit-box-ordinal-group: 0; -ms-flex-order: -1; order: -1; -webkit-box-flex: 3; -ms-flex: 3; flex: 3; margin-right: 10px; } }

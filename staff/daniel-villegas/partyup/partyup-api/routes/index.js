@@ -31,7 +31,19 @@ router.post('/authenticate', jsonBP, (req, res) => {
         })
 })
 
-router.get('/users/:id')
+router.get('/users/:id', jsonBP, (req, res) => {
+   
+    const { params: { id }, sub } = req
+    
+    //if (id !== sub) throw Error('token sub does not match user id')
+  
+    return logic.retrieveLoggedUser(id)
+            .then(user => {
+                res.status(200)
+
+                res.json({ data: user })
+            })
+})
 
 router.get('/partyups', jsonBP, (req, res) => {
     let { perPage = 10, page = 1, city, tags} = req.query
@@ -45,7 +57,7 @@ router.get('/partyups', jsonBP, (req, res) => {
             res.status(200)
 
             res.json({ partyups })
-    })
+        })
 })
 
 router.post('/user/:userId/partyups', jsonBP, (req, res) => {

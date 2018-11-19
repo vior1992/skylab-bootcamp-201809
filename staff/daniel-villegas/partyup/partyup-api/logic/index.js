@@ -42,12 +42,12 @@ const logic = {
     retrieveLoggedUser(id) {
         validateLogic([{ key: 'id', value: id, type: String }])
         return (async () => {
-            const user = await User.findById(id, { '_id': 0, password: 0, postits: 0, __v: 0 }).lean()
+            const user = await User.findById(id, { '_id': 0, password: 0,  __v: 0 }).lean()
 
             if (!user) throw TypeError(`user not found`)
 
-            user.id = user
-
+            user.id = id
+           
             return user
         })()
     },
