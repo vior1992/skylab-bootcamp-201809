@@ -15,8 +15,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha",
-    "start": "nodemon index.js"
+    "test": "mocha logic",
+    "start": "nodemon index.js",
+    "debug": "node debug logic/index.spec.js"
   },
   "author": "",
   "license": "ISC"

@@ -93,8 +93,6 @@ const logic = {
         if(city) find.city = city
         if(tags) find.tags = tags
 
-        console.log(city)
-
         const partyups = await Partyup        
             .find(find)
             .sort({ 'date': -1 })
