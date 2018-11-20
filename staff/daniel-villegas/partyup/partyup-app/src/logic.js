@@ -93,11 +93,11 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
                 
-                return res
+                return res.partyups
             })
     },
 
-    listPartyupsCreatedBy() {
+    itemListPartyupsCreatedBy() {
         return fetch(`${this.url}/users/${this._userId}/partyups`, {
             method: 'GET',
             headers: {
@@ -112,7 +112,7 @@ const logic = {
             })
     },
 
-    listPartyupsIAssist() {
+    itemListPartyupsIAssist() {
         return fetch(`${this.url}/users/${this._userId}/partyups/assistence`, {
             method: 'GET',
             headers: {
@@ -123,7 +123,7 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
                 
-                return res
+                return res.partyups
             })
     },
 
@@ -164,11 +164,10 @@ const logic = {
             { key: 'date', value: date, type: String },
             { key: 'city', value: city, type: String },
             { key: 'place', value: place, type: String },
-            { key: 'tags', value: tags, type: String },
-            { key: 'userId', value: userId, type: String }
+            { key: 'tags', value: tags, type: String }
         ])
 
-        return fetch(`${this.url}/users/${this.userId}/partyups`, {
+        return fetch(`${this.url}/users/${this._userId}/partyups`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

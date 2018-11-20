@@ -49,11 +49,11 @@ class App extends Component {
 
   handlePartyupClick = event => {
     alert("partyup page")
-    //event.preventDefault()
+    event.preventDefault()
 
-    // this.props.history.push('/partyup')
+    this.props.history.push('/partyup')
 
-    // this.setState({ error: null })
+    this.setState({ error: null })
   }
 
   handleCreatePartyUpClick = event => {
@@ -82,7 +82,7 @@ class App extends Component {
     this.setState({ error: null })
   }
 
-  handleRegister = ( name, surname, city, username, password ) => {
+  handleRegister = (name, surname, city, username, password) => {
     try {
       logic.registerUser(name, surname, city, username, password)
             .then(() => {
@@ -95,7 +95,7 @@ class App extends Component {
     }
   }
 
-  handleLogin = ( username, password ) =>  {
+  handleLogin = (username, password) =>  {
     try {
         logic.authenticateUser(username, password)
             .then(() => {
@@ -103,6 +103,20 @@ class App extends Component {
             })
             .catch(err => this.setState({ error: err.message }))
 
+    } catch (err) {
+        this.setState({ error: err.message })
+    }
+  }
+
+  handleCreatePartyup = (title, description, date, city, place, tags) => {
+    try {
+        logic.createPartyup(title, description, date, city, place, tags)
+            .then(() => {
+                this.setState({ error: null }, () => this.props.history.push('/home'))
+            })
+            .catch(err => {
+              this.setState({ error: err.message })
+            })
     } catch (err) {
         this.setState({ error: err.message })
     }
@@ -116,11 +130,9 @@ class App extends Component {
           <Route path="/home" render={() => logic.loggedIn ? <Home onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} onSearchClick={this.handleSearchClick} onPartyupClick={this.handlePartyupClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} /> : <Redirect to="/landing" />} />
           <Route path="/register" render={() => <Register onRegister={this.handleRegister} onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick}/>}/>
           <Route path="/login" render={() => <Login onLogin={this.handleLogin} onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick}/>}/>
-          <Route path="/create-partyup" render={() => <CreatePartyup />}/>
-          <Route path="/profile" render={() => <Profile />}/>
+          <Route path="/create-partyup" render={() => <CreatePartyup onCreateClick={this.handleCreateClick} onCreatePartyup={this.handleCreatePartyup} />}/>
+          <Route path="/profile" render={() => <Profile onPartyupClick={this.handlePartyupClick} />} />
           {/* 
-          
-        
           <Route path="/partyup" />
           <Route path="/search-partyups" /> */}
         </div>

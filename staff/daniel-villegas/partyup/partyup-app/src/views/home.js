@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import logic from '../logic'
+import ItemListPartyups from './itemListPartyups'
 
 class Home extends Component {
-    state = { partyups: [] }
+    state = { allPartyups: [] }
 
-    async componentDidMount() {
-        // await logic.listPartyups()
-        //     .then(partyups => { this.setState({ partyups }) })
+    componentDidMount() {
+        logic.listPartyups()
+            .then(partyups => {
+                partyups.forEach(() => {
+                    this.setState({ allPartyups: partyups })
+                })
+            })        
     }
 
     render() {
         return <div>
             <header className="site__header">
-                <a href="#0" className="logo" onClick={this.props.onLogoClick}>Logo</a>
+                <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
                 
                 <div className="actions">
-                    <a href="#0" className="create__link" onClick={this.props.onCreatePartyupClick}>Crear Partyup</a>
-                    <a href="#0" className="profile__link" onClick={this.props.onProfileClick}>Perfil</a>
-                    <a href="#0" className="logout__link" onClick={this.props.onLogoutClick}>Cerrar sesión</a>
+                    <a href="#" className="create__link" onClick={this.props.onCreatePartyupClick}>Crear Partyup</a>
+                    <a href="#" className="profile__link" onClick={this.props.onProfileClick}>Perfil</a>
+                    <a href="#" className="logout__link" onClick={this.props.onLogoutClick}>Cerrar sesión</a>
                 </div>
             </header>
 
@@ -32,19 +37,11 @@ class Home extends Component {
             <section className="partyups">
                 <div className="partyups__titles">
                     <h3>Proximos Partyups</h3>
-                    <a href="login.html" onClick={this.props.onSearchClick}>Ver todo</a>
+                    <a href="#" onClick={this.props.onSearchClick}>Ver todo</a>
                 </div>
-                <div className="partyups__list">
-                    <div className="partyups__event" onClick={this.props.onPartyupClick}>
-                        <img className="partyups__picture"src="https://media-cdn.tripadvisor.com/media/photo-s/06/21/79/4c/tiffin-mama.jpg"/>
-                        <div className="partyups__info">
-                            <p className="info__date">Sabado, 17 de noviembre 8:00</p>
-                            <h4 className="info__title">Skylabeers</h4>
-                            <p className="info__description"> Fiesta en skylab con cerveza</p>
-                            <p className="info__host">Creado por: Dani</p>
-                        </div>
-                    </div>
-                </div>  
+                    <ul>
+                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                    </ul>
             </section> 
             <footer className="footer">
                 <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>

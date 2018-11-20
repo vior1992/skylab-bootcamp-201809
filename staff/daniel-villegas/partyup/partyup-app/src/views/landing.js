@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import logic from '../logic'
-import Partyup from './createPartyup'
-
+import ItemListPartyups from './itemListPartyups'
 class Landing extends Component {
-    state = { partyups: [] }
+    state = { allPartyups: [] }
 
-    async componentDidMount() {
-        // await logic.listPartyups()
-        //     .then(partyups => { this.setState({ partyups }) })
+    componentDidMount() {
+        logic.listPartyups()
+        .then(partyups => {
+            partyups.forEach(() => {
+                this.setState({ allPartyups: partyups })
+            })
+        }) 
     }
 
     render() {
@@ -34,39 +37,9 @@ class Landing extends Component {
                     <h3>Proximos Partyups</h3>
                     <a href="#" onClick={this.props.onLoginClick} >Ver todo</a>
                 </div>
-                <div className="partyups__list">
-                {this.state.partyups.map(partyup => <Partyup title={partyup.title} description={partyup.description} place={partyup.place} date={partyup.date} city={partyup.city} tags={partyup.tags} userId={partyup.userId} />)}
-
-
-                    <div href="#" onClick={this.props.onLoginClick} className="partyups__event">
-                        <img className="partyups__picture"src="https://media-cdn.tripadvisor.com/media/photo-s/06/21/79/4c/tiffin-mama.jpg"/>
-                        <div className="partyups__info">
-                            <p className="info__date">Sabado, 17 de noviembre 8:00</p>
-                            <h4 className="info__title">Skylabeers</h4>
-                            <p className="info__description"> Fiesta en skylab con cerveza</p>
-                            <p className="info__host">Creado por: Dani</p>
-                        </div>
-                    </div>
-                
-                    <div href="#" onClick={this.props.onLoginClick} className="partyups__event">
-                        <img className="partyups__picture"src="https://media-cdn.tripadvisor.com/media/photo-s/06/21/79/4c/tiffin-mama.jpg"/>
-                        <div className="partyups__info">
-                            <p className="info__date">Sabado, 17 de noviembre 8:00</p>
-                            <h4 className="info__title">Skylabeers</h4>
-                            <p className="info__description"> Fiesta en skylab con cerveza</p>
-                            <p className="info__host">Creado por: Dani</p>
-                        </div>
-                    </div>
-                    <div href="#" onClick={this.props.onLoginClick} className="partyups__event">
-                        <img className="partyups__picture"src="https://media-cdn.tripadvisor.com/media/photo-s/06/21/79/4c/tiffin-mama.jpg"/>
-                        <div className="partyups__info">
-                            <p className="info__date">Sabado, 17 de noviembre 8:00</p>
-                            <h4 className="info__title">Skylabeers</h4>
-                            <p className="info__description"> Fiesta en skylab con cerveza</p>
-                            <p className="info__host">Creado por: Dani</p>
-                        </div>
-                    </div>
-                </div>  
+                <ul>
+                    <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                </ul>
             </section> 
 
             <footer className="footer">

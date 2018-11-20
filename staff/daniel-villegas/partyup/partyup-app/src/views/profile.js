@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic';
-import ListPartyups from './listPartyups'
+import ItemListPartyups from './itemListPartyups'
 
 class Profile extends Component {
     state = { 
@@ -13,41 +13,37 @@ class Profile extends Component {
         willAssistTo:[]
     }
 
-    componentDidMount(){
+    componentDidMount() {
         logic.retrieveLoggedUser()
             .then(user => {
                 const { name, surname, city, username, id } = user
                 this.setState({ name, surname, city, username, id })
             })
 
-        logic.listPartyupsCreatedBy()//TODO
+        logic.itemListPartyupsCreatedBy()
             .then(partyups => {
-
                 partyups.forEach(() => {
                     this.setState({ createdPartyups: partyups })
-                })             
-             
-                // const { title , description, date, place, assistants } = partyups
+                })  
+            })           
 
-        logic.listPartyupsIAssist()//TODO
-            .then(() => {
-                
-                // this.setState.willAssistTo.push( partyups )
-                
-            })
-            console.log('a')
+        logic.itemListPartyupsIAssist()
+            .then(partyups => {
+                partyups.forEach(() => {
+                    this.setState({ willAssistTo: partyups })
+                })   
             })
     }
-
+    
     render() {
         return <div>
             <header className="site__header">
-                <a href="#0" className="logo" onClick={this.props.onLogoClick}>Logo</a>
+                <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
                 
                 <div className="actions">
-                    <a href="#0" className="create__link" onClick={this.props.onCreatePartyupClick}>Crear Partyup</a>
-                    <a href="#0" className="profile__link" onClick={this.props.onProfileClick}>Perfil</a>
-                    <a href="#0" className="logout__link" onClick={this.props.onLogoutClick}>Cerrar sesión</a>
+                    <a href="#" className="create__link" onClick={this.props.onCreatePartyupClick}>Crear Partyup</a>
+                    <a href="#" className="profile__link" onClick={this.props.onProfileClick}>Perfil</a>
+                    <a href="#" className="logout__link" onClick={this.props.onLogoutClick}>Cerrar sesión</a>
                 </div>
             </header>
             <main>
@@ -61,17 +57,16 @@ class Profile extends Component {
                         <img src="" alt=""/>
                     </div>
                 </div>
-                <div>
-                    <h2>Eventos creados</h2> 
-                    {/* TODO NOT PRINT */}
+                <div className="partyups" >
+                    <h2 className="partyups__titles">Eventos creados</h2> 
                     <ul>
-                        <li> {this.state.createdPartyups.map(partyup => <ListPartyups key={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} />)} </li>
+                        <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
-                <div>
-                    <h2>Asistira a</h2>
+                <div className="partyups">
+                    <h2 className="partyups__titles">Asistira a</h2>
                     <ul>
-                        <li> {this.state.createdPartyups.map(partyup => <ListPartyups key={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} />)} </li>
+                        <li className="partyups__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
             </main>

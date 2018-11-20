@@ -20,7 +20,7 @@ class Login extends Component {
 
         const { username, password } = this.state
 
-        this.props.onLogin( username, password )
+        this.props.onLogin(username, password)
     }
 
     render() {
@@ -38,7 +38,7 @@ class Login extends Component {
             <div className="login__container">
                 <div className="login__titles">
                     <h2>Iniciar sesion</h2>
-                    <p>¿No eres miembro todavía? <a href="./register.html">Registrate</a></p>
+                    <p>¿No eres miembro todavía? <a href="#" onClick={this.props.onRegisterClick}>Registrate</a></p>
                 </div>
                 <div className="login__formulary">
                     <form action="">
