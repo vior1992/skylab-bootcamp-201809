@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic'
-import Partyup from './partyup'
+import Partyup from './createPartyup'
 
 class Landing extends Component {
     state = { partyups: [] }

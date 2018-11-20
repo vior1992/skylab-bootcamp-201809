@@ -31,7 +31,7 @@ const Partyup = new Schema ({
         required: true
     },
     assistants: {
-        type: String,
+        type: Array,
         required: true
     }
 })

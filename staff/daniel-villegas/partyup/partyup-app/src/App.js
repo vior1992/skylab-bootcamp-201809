@@ -5,7 +5,7 @@ import Landing from './views/landing'
 import Home from './views/home'
 import Register from './views/register'
 import Login from './views/login'
-import CreatePartyup from './views/partyup'
+import CreatePartyup from './views/createPartyup'
 import Profile from './views/profile'
 
 logic.url = 'http://localhost:5000/api'

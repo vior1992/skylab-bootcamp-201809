@@ -60,7 +60,51 @@ router.get('/partyups', jsonBP, (req, res) => {
         })
 })
 
-router.post('/user/:userId/partyups', jsonBP, (req, res) => {
+router.get('/users/:userId/partyups', jsonBP, (req, res) => {
+    const { params: { userId }, sub } = req
+
+    return logic.listPartyupsCreatedBy(userId)
+        .then(partyups => {
+            res.status(200)
+
+            res.json({ partyups })
+        })
+})
+
+router.get('/users/:userId/partyups/assistence', jsonBP, (req, res) => {
+    const { params: { userId }, sub } = req
+
+    return logic.listPartyupsIAssist(userId)
+        .then(partyups => {
+            res.status(200)
+
+            res.json({ partyups })
+        })
+})
+
+router.get('/users/:userId/partyups/assistence/:partyupId', jsonBP, (req, res) => {
+    const { params: { userId , partyupId }, sub } = req
+
+    return logic.assistToPartyup(userId, partyupId)
+        .then(partyup => {
+            res.status(200)
+
+            res.json({ partyup })
+        })
+})
+
+router.get('/users/:userId/partyups/noAssistence/:partyupId', jsonBP, (req, res) => {
+    const { params: { userId , partyupId }, sub } = req
+
+    return logic.notAssistToPartyup(userId, partyupId)
+        .then(partyup => {
+            res.status(200)
+
+            res.json({ partyup })
+        })
+})
+
+router.post('/users/:userId/partyups', jsonBP, (req, res) => {
     const { title, description, date, city, place, tags } = req.body
 
     const { params: { userId } } = req

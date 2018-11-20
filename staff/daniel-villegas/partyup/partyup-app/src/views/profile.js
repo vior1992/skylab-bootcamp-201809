@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import logic from '../logic';
+import ListPartyups from './listPartyups'
 
 class Profile extends Component {
-    state = { name: '', surname: '', username: '', city: '', id: '', createdPartyups: [], willAssistTo:[]}
+    state = { 
+        name: '', 
+        surname: '', 
+        username: '', 
+        city: '', 
+        id: '', 
+        createdPartyups: [], 
+        willAssistTo:[]
+    }
 
     componentDidMount(){
         logic.retrieveLoggedUser()
@@ -11,14 +20,22 @@ class Profile extends Component {
                 this.setState({ name, surname, city, username, id })
             })
 
-        logic.listPartyupsCreatedBy()
-        //Crear ruta para listar partyups de este user
-        //TODO listar party ups en general
+        logic.listPartyupsCreatedBy()//TODO
             .then(partyups => {
-                partyups.filter(this.state.id)
-                const { } = partyups
-                console.log(partyups)
 
+                partyups.forEach(() => {
+                    this.setState({ createdPartyups: partyups })
+                })             
+             
+                // const { title , description, date, place, assistants } = partyups
+
+        logic.listPartyupsIAssist()//TODO
+            .then(() => {
+                
+                // this.setState.willAssistTo.push( partyups )
+                
+            })
+            console.log('a')
             })
     }
 
@@ -45,18 +62,16 @@ class Profile extends Component {
                     </div>
                 </div>
                 <div>
-                    <h2>Eventos creados</h2>
+                    <h2>Eventos creados</h2> 
+                    {/* TODO NOT PRINT */}
                     <ul>
-                        <li>Skylabeers</li>
-                        <li>Peludos fest</li>
-                        <li>Chill resaca</li>
+                        <li> {this.state.createdPartyups.map(partyup => <ListPartyups key={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} />)} </li>
                     </ul>
                 </div>
                 <div>
                     <h2>Asistira a</h2>
                     <ul>
-                        <li>Cena fin de proyecto</li>
-                        <li>Manu's waves</li>
+                        <li> {this.state.createdPartyups.map(partyup => <ListPartyups key={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} />)} </li>
                     </ul>
                 </div>
             </main>

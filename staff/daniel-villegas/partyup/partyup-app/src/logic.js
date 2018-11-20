@@ -97,6 +97,66 @@ const logic = {
             })
     },
 
+    listPartyupsCreatedBy() {
+        return fetch(`${this.url}/users/${this._userId}/partyups`, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res.partyups
+            })
+    },
+
+    listPartyupsIAssist() {
+        return fetch(`${this.url}/users/${this._userId}/partyups/assistence`, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
+
+    assistToPartyup(partyupId) {
+        return fetch(`${this.url}/users/${this._userId}/partyups/assistence/${partyupId}`, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
+
+    notAssistToPartyup(partyupId) {
+        return fetch(`${this.url}/users/${this._userId}/partyups/notAssistence/${partyupId}`, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
+
     createPartyup(title, description, date, city, place, tags, userId) {
         validateLogic([
             { key: 'title', value: title, type: String },
@@ -108,7 +168,7 @@ const logic = {
             { key: 'userId', value: userId, type: String }
         ])
 
-        return fetch(`${this.url}/user/${this.userId}/partyups`, {
+        return fetch(`${this.url}/users/${this.userId}/partyups`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

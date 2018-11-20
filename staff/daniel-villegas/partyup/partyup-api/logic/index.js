@@ -68,7 +68,7 @@ const logic = {
 
             if (!user) throw TypeError(`user not found`)
 
-            const assistants = "1"
+            const assistants = userId
 
             const partyup = new Partyup({ title, description, date, city, place, tags, assistants, user: user.id })
 
@@ -100,7 +100,60 @@ const logic = {
             .skip(perPage * (page - 1))
 
         return partyups
-    }
+    },
+
+    async listPartyupsCreatedBy(userId) {
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+      
+        const partyups = await Partyup.find({ user: userId}, { description: 0,  user: 0, city: 0, tags: 0, "__v": 0})
+
+        return partyups
+    },
+
+    async listPartyupsIAssist(userId) {
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+      
+        const partyups = await Partyup.find({ assistants: userId}, { description: 0,  place: 0, assistants: 0, tags: 0, "__v": 0})
+
+        return partyups
+    },
+
+    async assistToPartyup(userId, partyupId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+
+
+        const partyup = await Partyup.findById(partyupId)
+
+        //TODO validation if user already assist
+
+        // const userAssist = partyup.assistants.find(() => userId)
+
+        // if (userAssist) throw TypeError ('User is on assistance list')
+
+        partyup.assistants.push(userId)
+
+        return partyup.save()
+    },
+
+    async notAssistToPartyup(userId, partyupId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+
+        //TODO not works right
+
+        const partyup = await Partyup.findById(partyupId)
+
+        const _assistance = partyup.assistants.filter(() => ([userId]))
+
+        console.log(_assistance)
+
+        return partyup.save()
+    },
 }
 
 module.exports = logic
