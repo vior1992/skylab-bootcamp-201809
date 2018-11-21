@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import ItemListPartyups from './itemListPartyups'
-import CitySelector from './citySelector';
-import TagSelector from './tagSelector';
+import CitySelector from './citySelector'
+import TagSelector from './tagSelector'
+
 
 class Home extends Component {
-    state = { allPartyups: [], city: "", tags: "" }
+    state = { error: null, allPartyups: [], searchedPartyups: [], city: "", tags: "" }
 
     componentDidMount() {
         logic.listPartyups()
@@ -33,8 +34,28 @@ class Home extends Component {
 
         let { city, tags } = this.state
 
-        this.props.onSearchPartyups(city, tags)
+        this.handleSearchPartyups(city, tags)
     } 
+
+    handleSearchPartyups = (city, tags) => {
+        //TODO
+        try {
+            logic.searchPartyups(city, tags)
+                .then(partyups => {
+                  partyups.forEach(() => {
+                    this.setState({ searchedPartyups: partyups })
+                      console.log(this.state.searchedPartyups)})
+                })
+                .then(partyups => {
+                    partyups.forEach(() => {
+                        this.setState({ allPartyups: partyups })
+                    })
+                })    
+                .catch(err => this.setState({ error: err.message }))
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
+      }
 
     render() {
         return <div>
@@ -62,12 +83,21 @@ class Home extends Component {
 
             <section className="partyups">
                 <div className="partyups__titles">
-                    <h3>Proximos Partyups</h3>
-                    <a href="#" onClick={this.props.onSearchClick}>Ver todo</a>
+                    <h1>Proximos Partyups</h1>
                 </div>
+                <div>
                     <ul>
-                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
+                </div>
+                <div className="partyups__titles">
+                    <h1>Resultados de la busqueda:</h1>
+                </div>
+                <div>
+                    <ul>
+                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                    </ul>
+                </div>
             </section> 
             <footer className="footer">
                 <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>

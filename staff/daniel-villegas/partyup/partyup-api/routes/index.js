@@ -52,7 +52,7 @@ router.get('/partyups', jsonBP, (req, res) => {
 
     page = Number(page)
 
-    return logic.listPartyups(perPage, page, city, tags)
+    return logic.listPartyups(perPage = 3, page, city, tags)
         .then(partyups => {
             res.status(200)
 
@@ -119,10 +119,14 @@ router.post('/users/:userId/partyups', jsonBP, (req, res) => {
         })
 })
 
-router.get('/users/:userId/partyups/search', jsonBP, (req, res) => {
-    const { params: { userId }, sub } = req
+router.get('/users/:userId/partyups/search/:city', jsonBP, (req, res) => {
+    let { query: { perPage = 10, page = 1 }, params: { tags, city }  } = req
 
-    return logic.listPartyups(city, tags)
+    perPage = Number(perPage)
+
+    page = Number(page)
+
+    return logic.listPartyups(perPage = 30, page = 1, city, tags)
         .then(partyups => {
             res.status(200)
 

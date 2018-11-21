@@ -181,23 +181,31 @@ const logic = {
     },
 
     searchPartyups(city, tags) {
-        validateLogic([
-            { key: 'city', value: city, type: String },
-            { key: 'tags', value: tags, type: String }
-        ])
         console.log(city, tags)
-        return fetch(`${this.url}/users/${this._userId}/partyups/search`, {
-            method: 'GET',
-            headers: {
-                // 'Authorization': `Bearer ${this._token}` 
-            },
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-                
-                return res
-            })
+        // validateLogic([
+        //     { key: 'city', value: city, type: String },
+        //     { key: 'tags', value: tags, type: String }
+        // ])
+        
+        if(city && !tags) {
+            console.log('solo city')
+            // return fetch(`${this.url}/users/${this._userId}/partyups/search/${city}`, {
+            //     method: 'GET',
+            //     headers: {
+            //         // 'Authorization': `Bearer ${this._token}` 
+            //     },
+            // })
+            //     .then(res => res.json())
+            //     .then(res => {
+            //         if (res.error) throw Error(res.error)
+                    
+            //         return res.partyups
+            //     })
+        } else if (!city && tags) {
+            console.log('solo tags')
+        } else if (city && tags) {
+            console.log('ambos')
+        }
 
     }
 }

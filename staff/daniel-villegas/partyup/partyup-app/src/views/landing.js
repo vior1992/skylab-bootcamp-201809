@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import ItemListPartyups from './itemListPartyups'
+
 class Landing extends Component {
     state = { allPartyups: [] }
 
@@ -34,8 +35,7 @@ class Landing extends Component {
 
             <section className="partyups">
                 <div className="partyups__titles">
-                    <h3>Proximos Partyups</h3>
-                    <a href="#" onClick={this.props.onLoginClick} >Ver todo</a>
+                    <h2>Proximos Partyups</h2>
                 </div>
                 <ul>
                     <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
