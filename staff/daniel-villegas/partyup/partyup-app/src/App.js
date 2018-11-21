@@ -89,7 +89,6 @@ class App extends Component {
                 this.setState({ error: null }, () => this.props.history.push('/login'))
             })
             .catch(err => this.setState({ error: err.message }))
-           
     } catch (err) {
         this.setState({ error: err.message })
     }
@@ -102,7 +101,6 @@ class App extends Component {
                 this.setState({ error: null }, () => this.props.history.push('/home'))
             })
             .catch(err => this.setState({ error: err.message }))
-
     } catch (err) {
         this.setState({ error: err.message })
     }
@@ -114,20 +112,33 @@ class App extends Component {
             .then(() => {
                 this.setState({ error: null }, () => this.props.history.push('/home'))
             })
-            .catch(err => {
-              this.setState({ error: err.message })
-            })
+            .catch(err => this.setState({ error: err.message }))
     } catch (err) {
         this.setState({ error: err.message })
     }
+  }
+
+  handleSearchPartyups = (city, tags) => {
+    //TODO
+    // try {
+    //     logic.searchPartyups(city, tags)
+    //         alert('aqui')
+    //         .then(res => {
+    //             alert(res)
+    //             this.setState({ error: null })
+    //         })
+    //         .catch(err => this.setState({ error: err.message }))
+    // } catch (err) {
+    //     this.setState({ error: err.message })
+    // }
   }
 
   render() {
         const { error } = this.state
 
         return <div>
-          <Route exact path="/landing" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} onSearchClick={this.handleSearchClick} onPartyUpClick={this.handlePartyupClick}/> : <Redirect to="/home" />} />
-          <Route path="/home" render={() => logic.loggedIn ? <Home onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} onSearchClick={this.handleSearchClick} onPartyupClick={this.handlePartyupClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} /> : <Redirect to="/landing" />} />
+          <Route exact path="/landing" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} onSearchClick={this.handleLoginClick} onPartyUpClick={this.handleLoginClick}/> : <Redirect to="/home" />} />
+          <Route path="/home" render={() => logic.loggedIn ? <Home onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} onSearchPartyups={this.handleSearchPartyups} onPartyupClick={this.handlePartyupClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} /> : <Redirect to="/landing" />} />
           <Route path="/register" render={() => <Register onRegister={this.handleRegister} onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick}/>}/>
           <Route path="/login" render={() => <Login onLogin={this.handleLogin} onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick}/>}/>
           <Route path="/create-partyup" render={() => <CreatePartyup onCreateClick={this.handleCreateClick} onCreatePartyup={this.handleCreatePartyup} />}/>

@@ -119,4 +119,15 @@ router.post('/users/:userId/partyups', jsonBP, (req, res) => {
         })
 })
 
+router.get('/users/:userId/partyups/search', jsonBP, (req, res) => {
+    const { params: { userId }, sub } = req
+
+    return logic.listPartyups(city, tags)
+        .then(partyups => {
+            res.status(200)
+
+            res.json({ partyups })
+        })
+})
+
 module.exports = router

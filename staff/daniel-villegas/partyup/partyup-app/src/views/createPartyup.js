@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import CitySelector from './citySelector'
+import TagSelector from './tagSelector'
 
 class CreatePartyup extends Component {
     state = { 
@@ -7,7 +9,7 @@ class CreatePartyup extends Component {
         date: "", 
         city: "", 
         place: "", 
-        tags: "", 
+        tags: ""
     }
 
     handleTitleChange = event => {
@@ -79,33 +81,9 @@ class CreatePartyup extends Component {
             </div>
             <div className="create__selects">
                 <h4>Ciudad</h4>
-                <select defaultValue="CHOOSE" name="city" id="" onChange={this.handleCityChange}>
-                    <option value="CHOOSE">Elige una ciudad</option>
-                    <option value="Barcelona">Barcelona</option>
-                    <option value="Madrid">Madrid</option>
-                    <option value="Bilbao">Bilbao</option>
-                    <option value="Valencia">Valencia</option>
-                    <option value="Sevilla">Sevilla</option>
-                </select>
+                <CitySelector onHandleCityChange={this.handleCityChange}/>
                 <h4>Tag</h4>
-                <select defaultValue="CHOOSE" name="tags" id="" onChange={this.handleTagsChange}>
-                    <option value="CHOOSE">Elige un tag</option>
-                    <option value="pop">Pop</option>
-                    <option value="jazz">Jazz</option>
-                    <option value="rock">Rock</option>
-                    <option value="heavy">Heavy</option>
-                    <option value="indie">Indie</option>
-                    <option value="reggae">Reggae</option>
-                    <option value="reggaeton">Reggaeton</option>
-                    <option value="blues">Blues</option>
-                    <option value="soul">Soul</option>
-                    <option value="electronica">Electronica</option>
-                    <option value="clasica">Clasica</option>
-                    <option value="desfase">Desfase</option>
-                    <option value="tranquis">De tranquis</option>
-                    <option value="otros">Otros</option>
-                    <option value="varios">Varios</option>
-                </select>
+                <TagSelector onHandleTagsChange={this.handleTagsChange}/>
             </div>
             <div>
                 <button className="create__button" onClick={this.handleSubmit}>Crear Partyup</button>

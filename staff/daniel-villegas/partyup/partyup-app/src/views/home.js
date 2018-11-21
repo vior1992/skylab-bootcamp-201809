@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import ItemListPartyups from './itemListPartyups'
+import CitySelector from './citySelector';
+import TagSelector from './tagSelector';
 
 class Home extends Component {
-    state = { allPartyups: [] }
+    state = { allPartyups: [], city: "", tags: "" }
 
     componentDidMount() {
         logic.listPartyups()
@@ -13,6 +15,26 @@ class Home extends Component {
                 })
             })        
     }
+
+    handleCityChange = event => {
+        let city = event.target.value
+
+        this.setState({ city })
+    }
+
+    handleTagsChange = event => {
+        let tags = event.target.value
+
+        this.setState({ tags })
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+
+        let { city, tags } = this.state
+
+        this.props.onSearchPartyups(city, tags)
+    } 
 
     render() {
         return <div>
@@ -30,7 +52,11 @@ class Home extends Component {
                 <div className="main__register">
                     <h2 className="register__title">¿Quieres fiesta?</h2>
                     <p className="register__subtitle">Encuentrala con Partyup</p>
-                    <button class="button" onClick={this.props.onSearchClick}>Buscar</button>
+                    <div>
+                        <CitySelector onHandleCityChange={this.handleCityChange}/>
+                        <TagSelector onHandleTagsChange={this.handleTagsChange}/>
+                        <button class="button" onClick={this.handleSubmit}>Buscar</button>
+                    </div>
                 </div>
             </section>
 

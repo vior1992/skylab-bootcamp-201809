@@ -178,6 +178,27 @@ const logic = {
             .then(res => {
                 if (res.error) throw Error(res.error)
             })
+    },
+
+    searchPartyups(city, tags) {
+        validateLogic([
+            { key: 'city', value: city, type: String },
+            { key: 'tags', value: tags, type: String }
+        ])
+        console.log(city, tags)
+        return fetch(`${this.url}/users/${this._userId}/partyups/search`, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+
     }
 }
 //TEST
