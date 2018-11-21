@@ -3,6 +3,11 @@ const router = express.Router()
 const jsonBP = require('body-parser').json()
 const logic = require('../logic')
 const routeHandler = require('./route-handler')
+const jwt = require('jsonwebtoken')
+const jwtVerifier = require('./jwt-verifier')
+const bearerTokenParser = require('../utilities/bearer-token-parser')
+
+const { env: { JWT_SECRET } } = process
 
 //falta route handler de errores
 router.post('/users', jsonBP, (req, res) => {
@@ -26,17 +31,17 @@ router.post('/authenticate', jsonBP, (req, res) => {
 
         return logic.authenticateUser(username, password)
             .then(id => {
-                res.status(201)
+                const token = jwt.sign({ sub: id }, JWT_SECRET)
 
                 res.json({
                     message: `Logged with user ${username}!`,
-                    data: { id }
+                    data: { id, token }
                 })
             })
     },res)
 })
 
-router.get('/users/:id', jsonBP, (req, res) => {
+router.get('/users/:id', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { id }, sub } = req
         
@@ -51,7 +56,7 @@ router.get('/users/:id', jsonBP, (req, res) => {
     },res)
 })
 
-router.get('/partyups', jsonBP, (req, res) => {
+router.get('/partyups', (req, res) => {
     routeHandler(() => {
         let { perPage = 10, page = 1, city, tags} = req.query
 
@@ -68,7 +73,7 @@ router.get('/partyups', jsonBP, (req, res) => {
     },res)
 })
 
-router.get('/users/:userId/partyups', jsonBP, (req, res) => {
+router.get('/users/:userId/partyups', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { userId }, sub } = req
 
@@ -81,7 +86,7 @@ router.get('/users/:userId/partyups', jsonBP, (req, res) => {
     },res)
 })
 
-router.get('/users/:userId/partyups/assistence', jsonBP, (req, res) => {
+router.get('/users/:userId/partyups/assistence', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { userId }, sub } = req
 
@@ -94,7 +99,7 @@ router.get('/users/:userId/partyups/assistence', jsonBP, (req, res) => {
     },res)
 })
 
-router.get('/users/:userId/partyups/assistence/:partyupId', jsonBP, (req, res) => {
+router.get('/users/:userId/partyups/:partyupId/assistence', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { userId , partyupId }, sub } = req
 
@@ -107,7 +112,7 @@ router.get('/users/:userId/partyups/assistence/:partyupId', jsonBP, (req, res) =
     },res)   
 })
 
-router.get('/users/:userId/partyups/noAssistence/:partyupId', jsonBP, (req, res) => {
+router.get('/users/:userId/partyups/:partyupId/noAssistence', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { userId , partyupId }, sub } = req
 
@@ -120,7 +125,7 @@ router.get('/users/:userId/partyups/noAssistence/:partyupId', jsonBP, (req, res)
     },res)
 })
 
-router.post('/users/:userId/partyups', jsonBP, (req, res) => {
+router.post('/users/:userId/partyups', [bearerTokenParser, jwtVerifier, jsonBP], (req, res) => {
     routeHandler(() => {
         const { title, description, date, city, place, tags } = req.body
 
@@ -137,14 +142,14 @@ router.post('/users/:userId/partyups', jsonBP, (req, res) => {
     },res)
 })
 
-router.get('/users/:userId/partyups/search/:city', jsonBP, (req, res) => {
+router.get('/users/:userId/partyups/search?', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
-        let { query: { perPage = 10, page = 1 }, params: { tags, city }  } = req
+        let { query: { perPage = 10, page = 1, city, tags}} = req
 
         perPage = Number(perPage)
 
         page = Number(page)
-
+        console.log(city, tags)
         return logic.listPartyups(perPage = 30, page = 1, city, tags)
             .then(partyups => {
                 res.status(200)

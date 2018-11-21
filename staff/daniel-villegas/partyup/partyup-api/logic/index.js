@@ -81,7 +81,7 @@ const logic = {
             { key: 'perPage', value: perPage, type: Number },
             { key: 'page', value: page, type: Number },
         ])
-
+        console.log(city, tags)
         if(city) validateLogic([{ key: 'city', value: city, type: String }])
 
         if(tags) validateLogic([{ key: 'tags', value: tags, type: String }])
@@ -89,8 +89,6 @@ const logic = {
         let find = {
             
         }
-
-       
 
         if(city) find.city = city
         if(tags) find.tags = tags
@@ -101,8 +99,6 @@ const logic = {
             .limit(perPage)
             .skip(perPage * (page - 1))
 
-        console.log(partyups[0]._id)
-        console.log(partyups[0].id)
         return partyups
     },
 

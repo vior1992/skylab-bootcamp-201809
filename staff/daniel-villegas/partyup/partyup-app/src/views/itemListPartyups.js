@@ -1,7 +1,6 @@
 import React from 'react'
 
 function ItemListPartyups(props) {
-    
     return <div href="#" onClick={() => props.onPartyupClick(props.id)} className="partyups__event">
         <img className="partyups__picture"src="https://media-cdn.tripadvisor.com/media/photo-s/06/21/79/4c/tiffin-mama.jpg"/>
         <div className="partyups__info">

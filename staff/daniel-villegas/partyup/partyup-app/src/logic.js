@@ -2,7 +2,7 @@ import validateLogic from './utilities/validate'
 
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
-    // _token: sessionStorage.getItem('token') || null,
+    _token: sessionStorage.getItem('token') || null,
 
     url: 'NO-URL',
 
@@ -59,7 +59,7 @@ const logic = {
         return fetch(`${this.url}/users/${this._userId}`, {
             method: 'GET',
             headers: {
-                // 'Authorization': `Bearer ${this._token}` 
+                'Authorization': `Bearer ${this._token}` 
             }
         })
         .then(res => res.json())
@@ -86,7 +86,7 @@ const logic = {
         return fetch(`${this.url}/partyups`, {
             method: 'GET',
             headers: {
-                // 'Authorization': `Bearer ${this._token}` 
+                'Authorization': `Bearer ${this._token}` 
             },
         })
             .then(res => res.json())
@@ -101,7 +101,7 @@ const logic = {
         return fetch(`${this.url}/users/${this._userId}/partyups`, {
             method: 'GET',
             headers: {
-                // 'Authorization': `Bearer ${this._token}` 
+                'Authorization': `Bearer ${this._token}` 
             },
         })
             .then(res => res.json())
@@ -116,7 +116,7 @@ const logic = {
         return fetch(`${this.url}/users/${this._userId}/partyups/assistence`, {
             method: 'GET',
             headers: {
-                // 'Authorization': `Bearer ${this._token}` 
+                'Authorization': `Bearer ${this._token}` 
             },
         })
             .then(res => res.json())
@@ -128,11 +128,12 @@ const logic = {
     },
 
     assistToPartyup(partyupId) {
-        return fetch(`${this.url}/users/${this._userId}/partyups/assistence/${partyupId}`, {
+        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/assistence`, {
             method: 'GET',
             headers: {
-                // 'Authorization': `Bearer ${this._token}` 
+                'Authorization': `Bearer ${this._token}` 
             },
+           
         })
             .then(res => res.json())
             .then(res => {
@@ -143,10 +144,10 @@ const logic = {
     },
 
     notAssistToPartyup(partyupId) {
-        return fetch(`${this.url}/users/${this._userId}/partyups/notAssistence/${partyupId}`, {
+        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/notAssistence`, {
             method: 'GET',
             headers: {
-                // 'Authorization': `Bearer ${this._token}` 
+                'Authorization': `Bearer ${this._token}` 
             },
         })
             .then(res => res.json())
@@ -170,7 +171,8 @@ const logic = {
         return fetch(`${this.url}/users/${this._userId}/partyups`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${this._token}` 
             },
             body: JSON.stringify({ title, description, date, city, place, tags, userId })
         })
@@ -181,31 +183,32 @@ const logic = {
     },
 
     searchPartyups(city, tags) {
-        console.log(city, tags)
-        // validateLogic([
-        //     { key: 'city', value: city, type: String },
-        //     { key: 'tags', value: tags, type: String }
-        // ])
+        validateLogic([
+            { key: 'city', value: city, type: String },
+            { key: 'tags', value: tags, type: String }
+        ])
         
-        if(city && !tags) {
-            console.log('solo city')
-            // return fetch(`${this.url}/users/${this._userId}/partyups/search/${city}`, {
-            //     method: 'GET',
-            //     headers: {
-            //         // 'Authorization': `Bearer ${this._token}` 
-            //     },
-            // })
-            //     .then(res => res.json())
-            //     .then(res => {
-            //         if (res.error) throw Error(res.error)
-                    
-            //         return res.partyups
-            //     })
-        } else if (!city && tags) {
-            console.log('solo tags')
-        } else if (city && tags) {
-            console.log('ambos')
-        }
+        let _url = `${this.url}/users/${this._userId}/partyups/search?`
+
+        if (city)
+            _url += `city=${city}`
+
+        if (tags)
+            _url += `${city? '&' : ''}tags=${tags}`
+
+        return fetch(`${_url}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`  
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res.partyups
+            })
+      
 
     }
 }

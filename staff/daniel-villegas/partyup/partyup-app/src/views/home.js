@@ -43,14 +43,8 @@ class Home extends Component {
             logic.searchPartyups(city, tags)
                 .then(partyups => {
                   partyups.forEach(() => {
-                    this.setState({ searchedPartyups: partyups })
-                      console.log(this.state.searchedPartyups)})
+                    this.setState({ searchedPartyups: partyups })})
                 })
-                .then(partyups => {
-                    partyups.forEach(() => {
-                        this.setState({ allPartyups: partyups })
-                    })
-                })    
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
@@ -87,7 +81,7 @@ class Home extends Component {
                 </div>
                 <div>
                     <ul>
-                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
                 <div className="partyups__titles">
@@ -95,7 +89,7 @@ class Home extends Component {
                 </div>
                 <div>
                     <ul>
-                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup._id} partyupId={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
             </section> 

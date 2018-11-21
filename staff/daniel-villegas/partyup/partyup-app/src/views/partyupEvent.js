@@ -1,7 +1,27 @@
 import React, { Component } from 'react'
+import logic from '../logic';
 
 class PartyupEvent extends Component {
-    state= { date: '', city: '', title: '', host: '', description: '', assistants: []}
+    state= { date: '', city: '', title: '', host: '', description: '', assistants: [] }
+    
+    handleYes() {
+        console.log(this.props.partyupId)
+        // TODO
+        // try {
+        //     logic.assistToPartyup(this.props.partyupId)
+        //         .then(() => {
+
+        //         })
+
+        // } catch {
+
+        // }
+    }
+
+    handleNo() {
+        console.log('no')
+    }
+
     render() {
         return <div>
             <header className="site__header">
@@ -27,8 +47,8 @@ class PartyupEvent extends Component {
                     <div>
                         <h2>Asistir</h2>
                         <div>
-                            <button>Si</button>
-                            <button>No</button>
+                            <button onClick={this.handleYes}>Si</button>
+                            <button onClick={this.handleNo}>No</button>
                         </div>
                     </div>
                 </div>
