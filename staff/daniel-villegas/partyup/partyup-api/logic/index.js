@@ -1,5 +1,6 @@
 const { User, Partyup } = require('../data')
 const validateLogic = require('../utilities/validate')
+const { AlreadyExistsError, AuthError, NotFoundError, ValueError } = require('../errors')
 const fs = require('fs')
 const path = require('path')
 
@@ -16,7 +17,7 @@ const logic = {
         return (async () => {
             let user = await User.findOne({ username })
 
-            if (user) throw TypeError(`username ${username} already exists`)
+            if (user) throw new AlreadyExistsError(`username ${username} already exists`)
 
             user = new User({ name, surname, city, username, password })
 
@@ -33,7 +34,7 @@ const logic = {
         return (async () => {
             const user = await User.findOne({ username })
 
-            if (!user || user.password !== password) throw TypeError('Wrong credentials, try again')
+            if (!user || user.password !== password) throw new AuthError('Wrong credentials, try again')
 
             return user.id
         })()
@@ -44,12 +45,20 @@ const logic = {
         return (async () => {
             const user = await User.findById(id, { '_id': 0, password: 0,  __v: 0 }).lean()
 
-            if (!user) throw TypeError(`user not found`)
+            if (!user) throw new NotFoundError(`user not found`)
 
             user.id = id
            
             return user
         })()
+    },
+
+    async searchUserById(userId) {
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+
+        const user = await User.findById(userId)
+
+        return user
     },
 
     createPartyup(title, description, date, city, place, tags, userId) {
@@ -66,7 +75,7 @@ const logic = {
         return (async () => {
             const user = await User.findById(userId)
 
-            if (!user) throw TypeError(`user not found`)
+            if (!user) throw new ValueError(`user not found`)
 
             const assistants = userId
 
@@ -76,12 +85,20 @@ const logic = {
         })()
     },
 
+    async searchPartyupById(partyupId) {
+        validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
+
+        const partyup = await Partyup.findById(partyupId)
+
+        return partyup
+    },
+
     async listPartyups(perPage, page, city, tags) {
         validateLogic([
             { key: 'perPage', value: perPage, type: Number },
             { key: 'page', value: page, type: Number },
         ])
-        console.log(city, tags)
+
         if(city) validateLogic([{ key: 'city', value: city, type: String }])
 
         if(tags) validateLogic([{ key: 'tags', value: tags, type: String }])
@@ -123,15 +140,12 @@ const logic = {
             { key: 'userId', value: userId, type: String },
             { key: 'partyupId', value: partyupId, type: String },
         ])
-
-
+        
         const partyup = await Partyup.findById(partyupId)
 
-        //TODO validation if user already assist
+        const userAssist = partyup.assistants.find(user => user === userId)  
 
-        // const userAssist = partyup.assistants.find(() => userId)
-
-        // if (userAssist) throw TypeError ('User is on assistance list')
+        if (typeof userAssist === 'string') throw new ValueError('User is on assistance list') 
 
         partyup.assistants.push(userId)
 
@@ -144,16 +158,17 @@ const logic = {
             { key: 'partyupId', value: partyupId, type: String },
         ])
 
-        //TODO not works right
-
         const partyup = await Partyup.findById(partyupId)
 
-        const _assistance = partyup.assistants.filter(() => ([userId]))
+        const userNoAssist = partyup.assistants.filter(user => {
+            user === userId
+            return user !== userId
+        })
 
-        console.log(_assistance)
+        partyup.assistants = userNoAssist
 
         return partyup.save()
-    },
+    }
 }
 
 module.exports = logic

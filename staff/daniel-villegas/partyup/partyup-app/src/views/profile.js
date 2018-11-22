@@ -14,6 +14,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
+        debugger
         logic.retrieveLoggedUser()
             .then(user => {
                 const { name, surname, city, username, id } = user
@@ -60,13 +61,13 @@ class Profile extends Component {
                 <div className="partyups" >
                     <h2 className="partyups__titles">Eventos creados</h2> 
                     <ul>
-                        <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
                 <div className="partyups">
                     <h2 className="partyups__titles">Asistira a</h2>
                     <ul>
-                        <li className="partyups__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
             </main>

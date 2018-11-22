@@ -13,7 +13,7 @@ logic.url = 'http://localhost:5000/api'
 
 
 class App extends Component {
-  state = { error: null, partyupId: ''}
+  state = { error: null, partyupId: '' }
 
   handleRegisterClick = event => {
     event.preventDefault()
@@ -38,16 +38,11 @@ class App extends Component {
   }
 
   handlePartyupClick = (id) => {
-    //TODO
     const partyupId = id 
 
-    this.setState({ partyupId })
+    this.setState({ partyupId, error: null })
 
-    this.props.history.push('/partyup')
-
-    this.setState({ error: null })
-    console.log(partyupId)
-    console.log(this.state.partyupId)
+    this.props.history.push(`/partyup/${partyupId}`)  
   }
 
   handleCreatePartyUpClick = event => {
@@ -114,7 +109,7 @@ class App extends Component {
 
   render() {
         const { error } = this.state
-
+        
         return <div>
           <Route exact path="/landing" render={() => !logic.loggedIn ? <Landing onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} onSearchClick={this.handleLoginClick} onPartyupClick={this.handleLoginClick}/> : <Redirect to="/home" />} />
           <Route path="/home" render={() => logic.loggedIn ? <Home onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} onPartyupClick={this.handlePartyupClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} /> : <Redirect to="/landing" />} />
@@ -122,8 +117,7 @@ class App extends Component {
           <Route path="/login" render={() => <Login onLogin={this.handleLogin} onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick}/>}/>
           <Route path="/create-partyup" render={() => <CreatePartyup onCreateClick={this.handleCreateClick} onCreatePartyup={this.handleCreatePartyup} />}/>
           <Route path="/profile" render={() => <Profile onPartyupClick={this.handlePartyupClick} />}/>
-          {/* TODO */}
-          <Route path="/partyup" render={() => <PartyupEvent partyupId={this.state.partyupId}/>}/> 
+          <Route path="/partyup/:partyupId" render={props => <PartyupEvent partyupId={props.match.params.partyupId}/>}/>
         </div>
   }
 }

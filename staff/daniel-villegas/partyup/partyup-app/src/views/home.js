@@ -38,18 +38,19 @@ class Home extends Component {
     } 
 
     handleSearchPartyups = (city, tags) => {
-        //TODO
+        //TODO FILTRAR POR AMBOS
         try {
             logic.searchPartyups(city, tags)
                 .then(partyups => {
-                  partyups.forEach(() => {
-                    this.setState({ searchedPartyups: partyups })})
+                    partyups.forEach(() => {
+                        this.setState({ searchedPartyups: partyups })
+                    })
                 })
                 .catch(err => this.setState({ error: err.message }))
         } catch (err) {
             this.setState({ error: err.message })
         }
-      }
+    }
 
     render() {
         return <div>
@@ -77,19 +78,19 @@ class Home extends Component {
 
             <section className="partyups">
                 <div className="partyups__titles">
+                    <h1>Resultados de la busqueda:</h1>
+                </div>
+                <div>
+                    <ul>
+                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                    </ul>
+                </div>
+                <div className="partyups__titles">
                     <h1>Proximos Partyups</h1>
                 </div>
                 <div>
                     <ul>
                         <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup._id} id={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
-                    </ul>
-                </div>
-                <div className="partyups__titles">
-                    <h1>Resultados de la busqueda:</h1>
-                </div>
-                <div>
-                    <ul>
-                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup._id} partyupId={partyup._id} title={partyup.title} place={partyup.place} date={partyup.date} assistant={null} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
             </section> 

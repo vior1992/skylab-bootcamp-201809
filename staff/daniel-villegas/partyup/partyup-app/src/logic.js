@@ -3,6 +3,7 @@ import validateLogic from './utilities/validate'
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
+    // _partyUp: sessionStorage.getItem('partyupId') || null,
 
     url: 'NO-URL',
 
@@ -70,6 +71,23 @@ const logic = {
         })
     },
 
+    searchUserById(userId) {
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+
+        return fetch(`${this.url}/users/partyup/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`  
+            },
+        })  
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
+
     get loggedIn() {
         return !!this._userId
     },
@@ -96,7 +114,7 @@ const logic = {
                 return res.partyups
             })
     },
-
+    
     itemListPartyupsCreatedBy() {
         return fetch(`${this.url}/users/${this._userId}/partyups`, {
             method: 'GET',
@@ -208,8 +226,23 @@ const logic = {
                 
                 return res.partyups
             })
-      
+    },
 
+    searchPartyupsById(partyupId) {
+        validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
+
+        return fetch(`${this.url}/partyups/${partyupId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`  
+            },
+        })  
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
     }
 }
 //TEST

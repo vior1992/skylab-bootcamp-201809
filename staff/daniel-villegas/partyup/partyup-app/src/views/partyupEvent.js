@@ -2,24 +2,65 @@ import React, { Component } from 'react'
 import logic from '../logic';
 
 class PartyupEvent extends Component {
-    state= { date: '', city: '', title: '', host: '', description: '', assistants: [] }
+    state= { error: null, date: '', city: '', title: '', user: '', username: '', description: '', assistants: [], usernameAssistants: [] }
+
+    componentDidMount() {
+        const partyupId = this.props.partyupId
+
+        logic.searchPartyupsById(partyupId)
+            .then(partyup => {
+                const { date, city, title, user, description, assistants} = partyup
+                
+                this.setState({ date, city, title, user, description, assistants })
+            })
+
+            .then(() => {
+                logic.searchUserById(this.state.user)
+                    .then(user => {
+                        const { username } = user
+                        this.setState({ username })
+                    })
+            })  
+
+            .then(() => {
+                this.state.assistants.forEach(assistant => {
+                    logic.searchUserById(assistant)
+                        .then(user => {
+                            const oldAssistants = this.state.usernameAssistants
+                            this.setState({ usernameAssistants: [...oldAssistants, user.username] })
+                    })
+                })
+            })    
+    }
     
-    handleYes() {
-        console.log(this.props.partyupId)
-        // TODO
-        // try {
-        //     logic.assistToPartyup(this.props.partyupId)
-        //         .then(() => {
+    handleYes(partyupId) {
+        try {
+            logic.assistToPartyup(partyupId)
+                .then(partyAssistants => {
+                    partyAssistants.forEach(() => {
+                        this.setState({ assistants: partyAssistants })
+                    })
+                })
+                .catch(err => this.setState({ error: err.message }))
 
-        //         })
-
-        // } catch {
-
-        // }
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
     }
 
-    handleNo() {
-        console.log('no')
+    handleNo(partyupId) {
+        try {
+            logic.notAssistToPartyup(partyupId)
+                .then(partyAssistants => {
+                    partyAssistants.forEach(() => {
+                        this.setState({ assistants: partyAssistants })
+                    })
+                })
+                .catch(err => this.setState({ error: err.message }))
+
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
     }
 
     render() {
@@ -38,28 +79,26 @@ class PartyupEvent extends Component {
                 <div class="partyup__header">
                     <div class="partyup__header--info">
                         <div class="partyup__infoheader--date">
-                            <h4>Fecha</h4>
-                            <h4>Localidad</h4>
+                            <h4>{this.state.date}</h4>
+                            <h4>{this.state.city}</h4>
                         </div>
-                        <h2>Titulo</h2>
-                        <h4>Host</h4>
+                        <h2>{this.state.title}</h2>
+                        <h4>{this.state.username}</h4>
                     </div>
                     <div>
                         <h2>Asistir</h2>
                         <div>
-                            <button onClick={this.handleYes}>Si</button>
-                            <button onClick={this.handleNo}>No</button>
+                            <button onClick={() => this.handleYes(this.props.partyupId)}>Si</button>
+                            <button onClick={() => this.handleNo(this.props.partyupId)}>No</button>
                         </div>
                     </div>
                 </div>
                 <div>
                     <h2>Descripcion</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim fugit commodi maiores laboriosam, reprehenderit consequatur eum ex neque. Fugit temporibus quo natus dolores ducimus assumenda eligendi consequuntur corrupti vero veniam!</p>
+                    <p>{this.state.description}</p>
                     <h2>Asistentes</h2>
                     <ul>
-                        <li>Dani</li>
-                        <li>Sasha</li>
-                        <li>Eustequio</li>
+                        {this.state.usernameAssistants.map(assistant => <li>{assistant}</li>)}
                     </ul>
                 </div>
             </main>

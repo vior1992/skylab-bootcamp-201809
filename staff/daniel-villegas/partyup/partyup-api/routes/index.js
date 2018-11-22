@@ -9,7 +9,6 @@ const bearerTokenParser = require('../utilities/bearer-token-parser')
 
 const { env: { JWT_SECRET } } = process
 
-//falta route handler de errores
 router.post('/users', jsonBP, (req, res) => {
     routeHandler(() => {
         const { name, surname, city, username, password} = req.body
@@ -45,7 +44,7 @@ router.get('/users/:id', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { id }, sub } = req
         
-        //if (id !== sub) throw Error('token sub does not match user id')
+        if (id !== sub) throw Error('token sub does not match user id')
     
         return logic.retrieveLoggedUser(id)
                 .then(user => {
@@ -53,6 +52,65 @@ router.get('/users/:id', [bearerTokenParser, jwtVerifier], (req, res) => {
 
                     res.json({ data: user })
                 })
+    },res)
+})
+
+router.get('/users/partyup/:userId', [bearerTokenParser, jwtVerifier], (req, res) => {
+    routeHandler(() => {
+        const { params: { userId }, sub } = req
+        
+        return logic.searchUserById(userId)
+                .then(user => {
+                    res.status(200)
+
+                    res.json(user)
+                })
+    },res)
+})
+
+router.post('/users/:userId/partyups', [bearerTokenParser, jwtVerifier, jsonBP], (req, res) => {
+    routeHandler(() => {
+        const { title, description, date, city, place, tags } = req.body
+
+        const { params: { userId } } = req
+
+        return logic.createPartyup(title, description, date, city, place, tags, userId)
+            .then(() => {
+                res.status(201)
+
+                res.json({
+                    message: `Partyup in ${city} has been created for the user ${userId}!`
+                })
+            })
+    },res)
+})
+
+router.get('/users/:userId/partyups/search?', [bearerTokenParser, jwtVerifier], (req, res) => {
+    routeHandler(() => {
+        let { query: { perPage = 10, page = 1, city, tags}} = req
+
+        perPage = Number(perPage)
+
+        page = Number(page)
+        return logic.listPartyups(perPage = 30, page = 1, city, tags)
+            .then(partyups => {
+                res.status(200)
+
+                res.json({ partyups })
+            })
+    },res)
+})
+
+router.get('/partyups/:partyupId', [bearerTokenParser, jwtVerifier], (req, res) => {
+    routeHandler(() => {
+        let { params: { partyupId }} = req
+
+        return logic.searchPartyupById(partyupId)
+            .then(partyup => {
+                res.status(200)
+
+                res.json(partyup)
+            })
     },res)
 })
 
@@ -112,7 +170,7 @@ router.get('/users/:userId/partyups/:partyupId/assistence', [bearerTokenParser, 
     },res)   
 })
 
-router.get('/users/:userId/partyups/:partyupId/noAssistence', [bearerTokenParser, jwtVerifier], (req, res) => {
+router.get('/users/:userId/partyups/:partyupId/notAssistence', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { userId , partyupId }, sub } = req
 
@@ -121,40 +179,6 @@ router.get('/users/:userId/partyups/:partyupId/noAssistence', [bearerTokenParser
                 res.status(200)
 
                 res.json({ partyup })
-            })
-    },res)
-})
-
-router.post('/users/:userId/partyups', [bearerTokenParser, jwtVerifier, jsonBP], (req, res) => {
-    routeHandler(() => {
-        const { title, description, date, city, place, tags } = req.body
-
-        const { params: { userId } } = req
-
-        return logic.createPartyup(title, description, date, city, place, tags, userId)
-            .then(() => {
-                res.status(201)
-
-                res.json({
-                    message: `Partyup in ${city} has been created for the user ${userId}!`
-                })
-            })
-    },res)
-})
-
-router.get('/users/:userId/partyups/search?', [bearerTokenParser, jwtVerifier], (req, res) => {
-    routeHandler(() => {
-        let { query: { perPage = 10, page = 1, city, tags}} = req
-
-        perPage = Number(perPage)
-
-        page = Number(page)
-        console.log(city, tags)
-        return logic.listPartyups(perPage = 30, page = 1, city, tags)
-            .then(partyups => {
-                res.status(200)
-
-                res.json({ partyups })
             })
     },res)
 })
