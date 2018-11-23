@@ -2,7 +2,7 @@ import React from 'react'
 
 function TagSelector(props) {
     return <select name="tags" id="" onChange={props.onHandleTagsChange}>
-        <option>Elige un tag</option>
+        <option disabled selected>Elige un tag</option>
         <option value="pop">Pop</option>
         <option value="jazz">Jazz</option>
         <option value="rock">Rock</option>
