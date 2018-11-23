@@ -35,12 +35,30 @@ class PartyupEvent extends Component {
     
     handleYes(partyupId) {
         try {
+            let assistants = []
+            let i = 0
+
             logic.assistToPartyup(partyupId)
                 .then(partyAssistants => {
-                    partyAssistants.forEach(() => {
-                        this.setState({ assistants: partyAssistants })
+                    partyAssistants.partyup.assistants.forEach(() => {
+                        assistants.push(partyAssistants.partyup.assistants[i])
+                        this.setState({ assistants })
+                        i ++
                     })
                 })
+                
+                .then(() => {
+                    let usernameAssistants = []
+
+                    this.state.assistants.forEach(assistant => {
+                        logic.searchUserById(assistant)
+                            .then(user => {
+                                usernameAssistants.push(user.username)
+                                this.setState({ usernameAssistants })
+                            })
+                    })  
+                }) 
+
                 .catch(err => this.setState({ error: err.message }))
 
         } catch (err) {
@@ -52,10 +70,23 @@ class PartyupEvent extends Component {
         try {
             logic.notAssistToPartyup(partyupId)
                 .then(partyAssistants => {
-                    partyAssistants.forEach(() => {
-                        this.setState({ assistants: partyAssistants })
+                    partyAssistants.assistants.forEach(() => {
+                    this.setState({ assistants: partyAssistants.assistants })
                     })
                 })
+
+                .then(() => {
+                    let usernameAssistants = []
+                    this.state.assistants.forEach(assistant => {
+                        logic.searchUserById(assistant)
+                            .then(user => {
+                                
+                                usernameAssistants.push(user.username)
+                                this.setState({ usernameAssistants })
+                            })
+                    })                 
+                })
+
                 .catch(err => this.setState({ error: err.message }))
 
         } catch (err) {

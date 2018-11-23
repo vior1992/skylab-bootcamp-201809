@@ -100,6 +100,58 @@ const logic = {
         sessionStorage.removeItem('token')
     },
 
+    createPartyup(title, description, date, city, place, tags, userId) {
+        validateLogic([
+            { key: 'title', value: title, type: String },
+            { key: 'description', value: description, type: String },
+            { key: 'date', value: date, type: String },
+            { key: 'city', value: city, type: String },
+            { key: 'place', value: place, type: String },
+            { key: 'tags', value: tags, type: String }
+        ])
+
+        return fetch(`${this.url}/users/${this._userId}/partyups`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${this._token}` 
+            },
+            body: JSON.stringify({ title, description, date, city, place, tags, userId })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+            })
+    },
+
+    searchPartyups(city, tags) {
+        validateLogic([
+            { key: 'city', value: city, type: String, optional: true},
+            { key: 'tags', value: tags, type: String, optional: true}
+        ])
+
+        let _url = `${this.url}/users/${this._userId}/partyups/search?`
+
+        if (city)
+            _url += `city=${city}`
+
+        if (tags)
+            _url += `${city? '&' : ''}tags=${tags}`
+
+        return fetch(`${_url}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`  
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res.partyups
+            })
+    },
+
     listPartyups() {
         return fetch(`${this.url}/partyups`, {
             method: 'GET',
@@ -112,6 +164,54 @@ const logic = {
                 if (res.error) throw Error(res.error)
                 
                 return res.partyups
+            })
+    },
+
+    searchPartyupsById(partyupId) {
+        validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
+
+        return fetch(`${this.url}/partyups/${partyupId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}`  
+            },
+        })  
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
+
+    assistToPartyup(partyupId) {
+        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/assistence`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}` 
+            },
+           
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
+
+    notAssistToPartyup(partyupId) {
+        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/notAssistence`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return res
             })
     },
     
@@ -142,106 +242,6 @@ const logic = {
                 if (res.error) throw Error(res.error)
                 
                 return res.partyups
-            })
-    },
-
-    assistToPartyup(partyupId) {
-        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/assistence`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${this._token}` 
-            },
-           
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-                
-                return res
-            })
-    },
-
-    notAssistToPartyup(partyupId) {
-        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/notAssistence`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${this._token}` 
-            },
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-                
-                return res
-            })
-    },
-
-    createPartyup(title, description, date, city, place, tags, userId) {
-        validateLogic([
-            { key: 'title', value: title, type: String },
-            { key: 'description', value: description, type: String },
-            { key: 'date', value: date, type: String },
-            { key: 'city', value: city, type: String },
-            { key: 'place', value: place, type: String },
-            { key: 'tags', value: tags, type: String }
-        ])
-
-        return fetch(`${this.url}/users/${this._userId}/partyups`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${this._token}` 
-            },
-            body: JSON.stringify({ title, description, date, city, place, tags, userId })
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-            })
-    },
-
-    searchPartyups(city, tags) {
-        // validateLogic([
-        //     { key: 'city', value: city, type: String || undefined },
-        //     { key: 'tags', value: tags, type: String || undefined }
-        // ])
-
-        let _url = `${this.url}/users/${this._userId}/partyups/search?`
-
-        if (city)
-            _url += `city=${city}`
-
-        if (tags)
-            _url += `${city? '&' : ''}tags=${tags}`
-
-        return fetch(`${_url}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${this._token}`  
-            },
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-                
-                return res.partyups
-            })
-    },
-
-    searchPartyupsById(partyupId) {
-        validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
-
-        return fetch(`${this.url}/partyups/${partyupId}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${this._token}`  
-            },
-        })  
-            .then(res => res.json())
-            .then(res => {
-                if (res.error) throw Error(res.error)
-                
-                return res
             })
     }
 }

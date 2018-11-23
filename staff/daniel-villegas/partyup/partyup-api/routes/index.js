@@ -178,7 +178,7 @@ router.get('/users/:userId/partyups/:partyupId/notAssistence', [bearerTokenParse
             .then(partyup => {
                 res.status(200)
 
-                res.json({ partyup })
+                res.json( partyup )
             })
     },res)
 })
