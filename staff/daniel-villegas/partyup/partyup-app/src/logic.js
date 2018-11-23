@@ -3,7 +3,6 @@ import validateLogic from './utilities/validate'
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
     _token: sessionStorage.getItem('token') || null,
-    // _partyUp: sessionStorage.getItem('partyupId') || null,
 
     url: 'NO-URL',
 

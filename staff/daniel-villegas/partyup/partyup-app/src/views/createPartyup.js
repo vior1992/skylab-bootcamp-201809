@@ -76,7 +76,7 @@ class CreatePartyup extends Component {
                     <h4>Punto de encuentro</h4>
                     <input className="create__input" placeholder="Un bar, una plaza, una calle..." type="text" onChange={this.handlePlaceChange}/>
                     <h4>Dia del Partyup</h4>
-                    <input type="date" type="date" name="partyup" onChange={this.handleDateChange}></input>
+                    <input type="date" type="date" name="partyup" m min="2018-12-06" max="2020-01-01" defaultValue="2018-12-06" onChange={this.handleDateChange}></input>
                 </form>
             </div>
             <div className="create__selects">

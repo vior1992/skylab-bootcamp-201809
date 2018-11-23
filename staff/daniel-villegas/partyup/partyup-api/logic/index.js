@@ -122,7 +122,7 @@ const logic = {
     async listPartyupsCreatedBy(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
-        const partyups = await Partyup.find({ user: userId}, { description: 0, user: 0, tags: 0, "__v": 0})
+        const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, "__v": 0})
 
         return partyups
     },
@@ -130,7 +130,7 @@ const logic = {
     async listPartyupsIAssist(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
-        const partyups = await Partyup.find({ assistants: userId}, { description: 0, place: 0, assistants: 0, tags: 0, "__v": 0})
+        const partyups = await Partyup.find({ assistants: userId }, { description: 0, place: 0, assistants: 0, tags: 0, "__v": 0})
 
         return partyups
     },

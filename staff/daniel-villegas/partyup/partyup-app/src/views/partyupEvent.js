@@ -2,11 +2,25 @@ import React, { Component } from 'react'
 import logic from '../logic';
 
 class PartyupEvent extends Component {
-    state= { error: null, date: '', city: '', title: '', user: '', username: '', description: '', assistants: [], usernameAssistants: [] }
+    state= { error: null, 
+        date: '', 
+        city: '', 
+        title: '', 
+        user: '', 
+        username: '', 
+        description: '', 
+        assistants: [], 
+        usernameAssistants: [],
+        actuallUserId: ''
+    }
 
     componentDidMount() {
         const partyupId = this.props.partyupId
 
+        const actuallUserId = this.props.actuallUserId
+
+        this.setState({ actuallUserId })
+        
         logic.searchPartyupsById(partyupId)
             .then(partyup => {
                 const { date, city, title, user, description, assistants} = partyup
@@ -49,10 +63,10 @@ class PartyupEvent extends Component {
                 
                 .then(() => {
                     let usernameAssistants = []
-
                     this.state.assistants.forEach(assistant => {
                         logic.searchUserById(assistant)
                             .then(user => {
+                                
                                 usernameAssistants.push(user.username)
                                 this.setState({ usernameAssistants })
                             })
@@ -67,9 +81,12 @@ class PartyupEvent extends Component {
     }
 
     handleNo(partyupId) {
+        if (this.state.actuallUserId !== this.state.user) 
+
         try {
             logic.notAssistToPartyup(partyupId)
                 .then(partyAssistants => {
+                    
                     partyAssistants.assistants.forEach(() => {
                     this.setState({ assistants: partyAssistants.assistants })
                     })
@@ -80,7 +97,6 @@ class PartyupEvent extends Component {
                     this.state.assistants.forEach(assistant => {
                         logic.searchUserById(assistant)
                             .then(user => {
-                                
                                 usernameAssistants.push(user.username)
                                 this.setState({ usernameAssistants })
                             })
