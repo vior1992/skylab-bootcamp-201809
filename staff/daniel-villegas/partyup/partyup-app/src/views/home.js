@@ -38,15 +38,44 @@ class Home extends Component {
     } 
 
     handleSearchPartyups = (city, tags) => {
-        //TODO FILTRAR POR AMBOS
         try {
-            logic.searchPartyups(city, tags)
-                .then(partyups => {
-                    partyups.forEach(() => {
-                        this.setState({ searchedPartyups: partyups })
+            if(city && tags){
+                logic.searchPartyups(city, tags)
+                    .then(partyups => {
+                        partyups.forEach(() => {
+                            this.setState({ searchedPartyups: partyups })
+                        })
                     })
-                })
-                .catch(err => this.setState({ error: err.message }))
+                    .catch(err => this.setState({ error: err.message }))
+
+            } else if(city && !tags){
+                logic.searchPartyups(city, undefined)
+                    .then(partyups => {
+                        partyups.forEach(() => {
+                            this.setState({ searchedPartyups: partyups })
+                        })
+                    })
+                    .catch(err => this.setState({ error: err.message }))
+
+            } else if(!city && tags){
+                logic.searchPartyups(undefined, tags)
+                    .then(partyups => {
+                        partyups.forEach(() => {
+                            this.setState({ searchedPartyups: partyups })
+                        })
+                    })
+                    .catch(err => this.setState({ error: err.message }))
+                    
+            } else if(!city && !tags){
+                logic.searchPartyups(undefined, undefined)
+                    .then(partyups => {
+                        partyups.forEach(() => {
+                            this.setState({ searchedPartyups: partyups })
+                        })
+                    })
+                    .catch(err => this.setState({ error: err.message }))
+            }
+                
         } catch (err) {
             this.setState({ error: err.message })
         }
@@ -71,7 +100,7 @@ class Home extends Component {
                     <div>
                         <CitySelector onHandleCityChange={this.handleCityChange}/>
                         <TagSelector onHandleTagsChange={this.handleTagsChange}/>
-                        <button class="button" onClick={this.handleSubmit}>Buscar</button>
+                        <button className="button" onClick={this.handleSubmit}>Buscar</button>
                     </div>
                 </div>
             </section>

@@ -201,11 +201,11 @@ const logic = {
     },
 
     searchPartyups(city, tags) {
-        validateLogic([
-            { key: 'city', value: city, type: String },
-            { key: 'tags', value: tags, type: String }
-        ])
-        
+        // validateLogic([
+        //     { key: 'city', value: city, type: String || undefined },
+        //     { key: 'tags', value: tags, type: String || undefined }
+        // ])
+
         let _url = `${this.url}/users/${this._userId}/partyups/search?`
 
         if (city)
