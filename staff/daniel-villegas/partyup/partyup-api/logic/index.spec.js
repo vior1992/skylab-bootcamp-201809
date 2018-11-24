@@ -139,7 +139,7 @@ describe('logic', () => {
         describe('authenticate', () => {
 
             beforeEach(() => {
-                user = new User({ name: 'Dani', surname: 'Prueba', city: "bcn", username: 'db', password: '1234' })
+                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
 
                 return user.save()
             })
@@ -200,77 +200,328 @@ describe('logic', () => {
 
         //FALTA EL RETRIEVE
 
+        //FIND USER BY ID
+
+
         describe('partyups', () => {
             describe('create', () => {
-                let user, title
+                let user, title, description, date, city, tags
     
                 beforeEach(() => {
-                    user = new User({ name: 'Dani', surname: 'Prueba', city: "bcn", username: 'db', password: '1234' })
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                     title = "prueba"
-                    let description = 'prueba en el test'
-                    let date = "2018-12-18T10:57:36.247Z"
-                    let city = '01'
-                    let tags = "01"
-                    debugger
+                    description = 'prueba en el test'
+                    date = new Date()
+                    city = '01'
+                    place = 'skylab'
+                    tags = "01"
+                    
                     return user.save()
                 })
     
-                it('should succeed on correct data', () => {
-                        logic.createPartyup(title, description, date, city, place, tags, user.id)
-                        debugger
-                            
-                        
-                    
+                it('should succeed on correct data', async () => {
+                        const res = await logic.createPartyup(title, description, date, city, place, tags, user.id)
+
+                                expect(res).to.be.undefined
+
+                                const _partyups = await Partyup.find()
+            
+                                expect(_partyups.length).to.equal(1)
+
+                                const [partyup] = _partyups
+                                                
+                                expect(partyup.title).to.equal(title)
+                                expect(partyup.title).to.be.a('string')
+
+                                expect(partyup.description).to.equal(description)
+                                expect(partyup.description).to.be.a('string')
+
+                                // expect(partyup.date).to.equal(date)
+                                // expect(partyup.date).to.be.a('date')
+                                
+                                expect(partyup.city).to.equal(city)
+                                expect(partyup.city).to.be.a('string')
+
+                                expect(partyup.place).to.equal(place)
+                                expect(partyup.place).to.be.a('string')
+
+                                expect(partyup.tags).to.equal(tags)
+                                expect(partyup.tags).to.be.a('string')      
                 })
-    
-                // TODO other test cases
+
+                //TITLE FAIL TESTS//
+                it('should fail on undefined title ', () => {
+                    expect(() => logic.createPartyup(undefined, description, date, city, place, tags, user.id)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank title', () => {
+                    expect(() => logic.createPartyup('  ', description, date, city, place, tags, user.id)).to.throw(Error, 'title is empty or blank')
+                })
+
+                it('should fail on number title (not a string)', () => {
+                    expect(() => logic.createPartyup(1, description, date, city, place, tags, user.id)).to.throw(Error, '1 is not a string')
+                })
+
+                it('should fail on boolean title (not a string)', () => {
+                    expect(() => logic.createPartyup(true, description, date, city, place, tags, user.id)).to.throw(Error, 'true is not a string')
+                })
+
+                //DESCRIPTION FAIL TESTS//
+                it('should fail on undefined description ', () => {
+                    expect(() => logic.createPartyup(title, undefined, date, city, place, tags, user.id)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank description', () => {
+                    expect(() => logic.createPartyup(title, '  ', date, city, place, tags, user.id)).to.throw(Error, 'description is empty or blank')
+                })
+
+                it('should fail on number description (not a string)', () => {
+                    expect(() => logic.createPartyup(title, 1, date, city, place, tags, user.id)).to.throw(Error, '1 is not a string')
+                })
+
+                it('should fail on boolean description (not a string)', () => {
+                    expect(() => logic.createPartyup(title, true, date, city, place, tags, user.id)).to.throw(Error, 'true is not a string')
+                })
+
+                //CITY FAIL TEST
+                it('should fail on undefined city ', () => {
+                    expect(() => logic.createPartyup(title, description, date, undefined, place, tags, user.id)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank city', () => {
+                    expect(() => logic.createPartyup(title, description, date, '  ', place, tags, user.id)).to.throw(Error, 'city is empty or blank')
+                })
+
+                it('should fail on number city (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, 1, place, tags, user.id)).to.throw(Error, '1 is not a string')
+                })
+
+                it('should fail on boolean city (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, true, place, tags, user.id)).to.throw(Error, 'true is not a string')
+                })
+
+                //PLACE FAIL TEST
+                it('should fail on undefined place ', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, undefined, tags, user.id)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank place', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, '  ', tags, user.id)).to.throw(Error, 'place is empty or blank')
+                })
+
+                it('should fail on number place (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, 1, tags, user.id)).to.throw(Error, '1 is not a string')
+                })
+
+                it('should fail on boolean place (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, true, tags, user.id)).to.throw(Error, 'true is not a string')
+                })
+
+                //TAGS FAIL TEST
+                it('should fail on undefined tags ', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, undefined, user.id)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank tags', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, '  ', user.id)).to.throw(Error, 'tags is empty or blank')
+                })
+
+                it('should fail on number tags (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, 1, user.id)).to.throw(Error, '1 is not a string')
+                })
+
+                it('should fail on boolean tags (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, true, user.id)).to.throw(Error, 'true is not a string')
+                })
+
+                //USER.ID FAIL TEST
+                it('should fail on undefined userid ', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, tags, undefined)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank userid', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, tags, '  ')).to.throw(Error, 'userId is empty or blank')
+                })
+
+                it('should fail on number userid (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, tags, 1)).to.throw(Error, '1 is not a string')
+                })
+
+                it('should fail on boolean userid (not a string)', () => {
+                    expect(() => logic.createPartyup(title, description, date, city, place, tags, true)).to.throw(Error, 'true is not a string')
+                })
             })
     
-            false&&describe('list', () => {
-                let user, postit, postit2
+            describe('list', () => {
+                let user, partyup, partyup2
     
                 beforeEach(() => {
-                    user = new User({ name: 'John', surname: 'Doe', username: 'jd', password: '123' })
-    
-                    postit = new Postit({ text: 'hello text', user: user.id, status: "TODO"})
-                    postit2 = new Postit({ text: 'hello text 2', user: user.id, status: "TODO"})
-    
+
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})
+                    partyup2 = new Partyup({ title: "prueba2", description: 'prueba en el test2', date: new Date(), city: '02', place: 'skylab2', tags: "02", user: user.id})
+
+                    
                     return user.save()
-                        .then(() => Promise.all([postit.save(), postit2.save()]))
+                        .then(() => Promise.all([partyup.save(), partyup2.save()]))
+
                 })
     
                 it('should succeed on correct data', () => {
-                    logic.listPostits(user.id)
-                        .then(postits => {
-                            return Postits.find()
-                                .then(_postits => {
-                                    expect(_postits.length).to.equal(2)
+                    logic.listPartyupsCreatedBy(user.id)
+                        .then(partyup => {
+                            return partyup.find()
+                                .then(_partyups => {
+                                    expect(_partyups.length).to.equal(2)
     
-                                    expect(postits.length).to.equal(_postits.length)
+                                    expect(partyups.length).to.equal(_partyups.length)
     
-                                    const [_postit, _postit2] = _postits
+                                    const [_partyup, _partyup2] = _partyups
     
-                                    expect(_postit.id).to.equal(postit.id)
-                                    expect(_postit.text).to.equal(postit.text)
+                                    expect(_partyup.id).to.equal(partyup.id)
+                                    expect(_partyup.title).to.equal(partyup.title)
+                                    expect(_partyup.description).to.equal(partyup.description)
+                                    expect(_partyup.place).to.equal(partyup.place)
+                                    expect(_partyup.city).to.equal(partyup.city)
+                                    expect(_partyup.tags).to.equal(partyup.tags)
     
-                                    expect(_postit2.id).to.equal(postit2.id)
-                                    expect(_postit2.text).to.equal(postit2.text)
+                                    expect(_partyup2.id).to.equal(partyup2.id)
+                                    expect(_partyup2.title).to.equal(partyup2.title)
+                                    expect(_partyup2.description).to.equal(partyup2.description)
+                                    expect(_partyup2.place).to.equal(partyup2.place)
+                                    expect(_partyup2.city).to.equal(partyup2.city)
+                                    expect(_partyup2.tags).to.equal(partyup2.tags)
     
-                                    const [__postit, __postit2] = postits
+                                    const [__partyup, __partyup2] = partyups
     
-                                    expect(_postit.id).to.equal(__postit.id)
-                                    expect(_postit.text).to.equal(__postit.text)
+                                    expect(_partyup.id).to.equal(__partyup.id)
+                                    expect(_partyup.title).to.equal(__partyup.title)
+                                    expect(_partyup.description).to.equal(__partyup.description)
+                                    expect(_partyup.place).to.equal(__partyup.place)
+                                    expect(_partyup.city).to.equal(__partyup.city)
+                                    expect(_partyup.tags).to.equal(__partyup.tags)
     
-                                    expect(_postit2.id).to.equal(__postit2.id)
-                                    expect(_postit2.text).to.equal(__postit2.text)
+                                    expect(_partyup2.id).to.equal(__partyup2.id)
+                                    expect(_partyup2.title).to.equal(__partyup2.title)
+                                    expect(_partyup2.description).to.equal(__partyup2.description)
+                                    expect(_partyup2.place).to.equal(__partyup2.place)
+                                    expect(_partyup2.city).to.equal(__partyup2.city)
+                                    expect(_partyup2.tags).to.equal(__partyup2.tags)
+                                })
+                        })
+                    
+                })
+
+                it('should succeed on correct data', () => {
+                    logic.listPartyups()
+                        .then(partyup => {
+                            return partyup.find()
+                                .then(_partyups => {
+                                    expect(_partyups.length).to.equal(2)
+    
+                                    expect(partyups.length).to.equal(_partyups.length)
+    
+                                    const [_partyup, _partyup2] = _partyups
+    
+                                    expect(_partyup.id).to.equal(partyup.id)
+                                    expect(_partyup.title).to.equal(partyup.title)
+                                    expect(_partyup.description).to.equal(partyup.description)
+                                    expect(_partyup.place).to.equal(partyup.place)
+                                    expect(_partyup.city).to.equal(partyup.city)
+                                    expect(_partyup.tags).to.equal(partyup.tags)
+    
+                                    expect(_partyup2.id).to.equal(partyup2.id)
+                                    expect(_partyup2.title).to.equal(partyup2.title)
+                                    expect(_partyup2.description).to.equal(partyup2.description)
+                                    expect(_partyup2.place).to.equal(partyup2.place)
+                                    expect(_partyup2.city).to.equal(partyup2.city)
+                                    expect(_partyup2.tags).to.equal(partyup2.tags)
+    
+                                    const [__partyup, __partyup2] = partyups
+    
+                                    expect(_partyup.id).to.equal(__partyup.id)
+                                    expect(_partyup.title).to.equal(__partyup.title)
+                                    expect(_partyup.description).to.equal(__partyup.description)
+                                    expect(_partyup.place).to.equal(__partyup.place)
+                                    expect(_partyup.city).to.equal(__partyup.city)
+                                    expect(_partyup.tags).to.equal(__partyup.tags)
+    
+                                    expect(_partyup2.id).to.equal(__partyup2.id)
+                                    expect(_partyup2.title).to.equal(__partyup2.title)
+                                    expect(_partyup2.description).to.equal(__partyup2.description)
+                                    expect(_partyup2.place).to.equal(__partyup2.place)
+                                    expect(_partyup2.city).to.equal(__partyup2.city)
+                                    expect(_partyup2.tags).to.equal(__partyup2.tags)
+                                })
+                        })
+                    
+                })
+
+                //FALTA EL searchpartyupbyid(partyupid)
+                //FALTA EL listPartyupsIassist(userId)
+                //FALTA EL assisttopartyup(user y party id)
+            describe('assist to partyup', () => {
+                let user, partyup
+    
+                beforeEach(() => {
+
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})    
+                    
+                    return user.save()
+                        .then(() => Promise.all([ partyup.save() ]))
+
+                })
+            
+                it('should succeed on correct data', () => {
+                    logic.assistToPartyup(user.id, partyup._id)
+                        .then(partyup => {
+                            return partyup.find()
+                                .then(_partyups => {
+                                    expect(_partyups).to.exist()
+                                    expect(_partyups.length).to.equal(1)
+
+                                    expect(_partyup.assistants).to.equal(1)
+                                    expect(_partyups.assistants.length).to.equal(1)
+                                    expect(_partyup.assistants).to.equal(user.id)
                                 })
                         })
                     
                 })
             })
+            //FALTA EL NOTassisttopartyup(user y party id)
+            describe('NOT assist to partyup', () => {
+                let user, partyup
+    
+                beforeEach(() => {
+
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})    
+                    
+                    return user.save()
+                        .then(() => {
+                            Promise.all([ partyup.save() ])
+                            logic.assistToPartyup(user.id, partyup._id)
+                        })
+
+                })
+            
+                it('should succeed on correct data', () => {
+                    logic.notAssistToPartyup(user.id, partyup._id)
+                        .then(partyup => {
+                            return partyup.find()
+                                .then(_partyups => {
+                                    expect(_partyups).to.exist()
+                                    expect(_partyups.length).to.equal(0)
+
+                                    expect(_partyup.assistants).to.equal(0)
+                                    expect(_partyups.assistants.length).to.equal(0)
+                                })
+                        })   
+                })
+            })
+            })
         })
-
-
     })
     after(() => mongoose.disconnect())
 })

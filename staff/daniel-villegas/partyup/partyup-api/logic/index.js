@@ -65,7 +65,7 @@ const logic = {
         validateLogic([
             { key: 'title', value: title, type: String },
             { key: 'description', value: description, type: String },
-            { key: 'date', value: date, type: String },
+            { key: 'date', value: date, type: Date },
             { key: 'city', value: city, type: String },
             { key: 'place', value: place, type: String },
             { key: 'tags', value: tags, type: String },
