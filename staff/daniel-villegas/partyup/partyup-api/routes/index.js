@@ -183,4 +183,19 @@ router.get('/users/:userId/partyups/:partyupId/notAssistence', [bearerTokenParse
     },res)
 })
 
+router.get('/users/:userId/partyups/:partyupId', [bearerTokenParser, jwtVerifier], (req, res) => {
+    routeHandler(() => {
+        const { params: { userId , partyupId }, sub } = req
+
+        return logic.deletePostit(userId, partyupId)
+            .then(() => {
+                res.status(200)
+
+                res.json({
+                    message: `Partyup in ${partyupId} created for ${userId} has been deleted with success!`
+                })
+            })
+    },res)
+})
+
 module.exports = router

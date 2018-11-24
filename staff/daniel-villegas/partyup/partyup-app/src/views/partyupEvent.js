@@ -111,6 +111,22 @@ class PartyupEvent extends Component {
         }
     }
 
+    handleDelete(partyupId) {
+        if (this.state.actuallUserId === this.state.user)
+        
+        try{
+            logic.deletePartyup(partyupId)
+                .then(() => {
+                    console.log('aqui')
+                    this.props.history.push('/home')
+                })
+                .catch(err => this.setState({ error: err.message }))
+
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
+    }
+
     render() {
         return <div>
             <header className="site__header">
@@ -138,6 +154,7 @@ class PartyupEvent extends Component {
                         <div>
                             <button onClick={() => this.handleYes(this.props.partyupId)}>Si</button>
                             <button onClick={() => this.handleNo(this.props.partyupId)}>No</button>
+                            <button onClick={() => this.handleDelete(this.props.partyupId)}>Eliminar</button>
                         </div>
                     </div>
                 </div>

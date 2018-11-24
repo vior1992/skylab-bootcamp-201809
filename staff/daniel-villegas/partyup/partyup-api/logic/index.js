@@ -168,6 +168,21 @@ const logic = {
         partyup.assistants = userNoAssist
 
         return partyup.save()
+    },
+
+    async deletePostit(userId, partyupId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+
+        const partyup = await Partyup.findById(partyupId)
+
+        if (userId === partyup.user)
+
+        Partyup.findByIdAndDelete(partyupId)
+
+        const partyup2 = await Partyup.findByIdAndDelete(partyupId)
     }
 }
 

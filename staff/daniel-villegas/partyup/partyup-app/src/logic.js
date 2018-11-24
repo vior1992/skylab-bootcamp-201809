@@ -242,6 +242,22 @@ const logic = {
                 
                 return res.partyups
             })
+    },
+
+    deletePartyup(partyupId) {
+        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+
     }
 }
 //TEST
