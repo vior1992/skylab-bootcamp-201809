@@ -459,6 +459,8 @@ describe('logic', () => {
 
                 //FALTA EL searchpartyupbyid(partyupid)
                 //FALTA EL listPartyupsIassist(userId)
+
+                
                 //FALTA EL assisttopartyup(user y party id)
             describe('assist to partyup', () => {
                 let user, partyup
@@ -503,7 +505,6 @@ describe('logic', () => {
                             Promise.all([ partyup.save() ])
                             logic.assistToPartyup(user.id, partyup._id)
                         })
-
                 })
             
                 it('should succeed on correct data', () => {
