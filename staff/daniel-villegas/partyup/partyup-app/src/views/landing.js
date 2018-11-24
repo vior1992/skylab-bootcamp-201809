@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic'
 import ItemListPartyups from './itemListPartyups'
+import Footer from './footer'
 
 class Landing extends Component {
     state = { allPartyups: [] }
@@ -42,9 +43,7 @@ class Landing extends Component {
                 </ul>
             </section> 
 
-            <footer className="footer">
-                <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>
-            </footer>
+            <Footer/>
         </div>
     }
 }

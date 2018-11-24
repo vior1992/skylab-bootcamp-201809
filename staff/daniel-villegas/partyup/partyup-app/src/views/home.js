@@ -3,6 +3,8 @@ import logic from '../logic'
 import ItemListPartyups from './itemListPartyups'
 import CitySelector from './citySelector'
 import TagSelector from './tagSelector'
+import HeaderLogged from './header_logged'
+import Footer from './footer'
 
 
 class Home extends Component {
@@ -92,6 +94,7 @@ class Home extends Component {
 
     render() {
         return <div>
+                {/* <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} /> */}
             <header className="site__header">
                 <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
                 
@@ -132,9 +135,7 @@ class Home extends Component {
                     </ul>
                 </div>
             </section> 
-            <footer className="footer">
-                <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>
-            </footer>
+            <Footer/>
         </div>
     }
 }

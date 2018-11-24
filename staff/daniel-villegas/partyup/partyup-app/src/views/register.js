@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Footer from './footer'
 
 
 class Register extends Component {
@@ -79,12 +80,11 @@ class Register extends Component {
                             <input className="register__input" type="password" onChange={this.handlePasswordChange}/>
                     </div>
                 </div>
-            </div>
+                <h3 className="register__error">{this.props.error}</h3>
                 <button className="register__button" onClick={this.handleSubmit}>Registrarse</button>
+            </div>
         </form>
-        <footer className="footer">
-            <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>
-        </footer>
+        <Footer/>
     </div>
         
     }

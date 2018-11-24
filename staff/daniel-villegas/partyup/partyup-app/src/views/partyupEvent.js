@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logic from '../logic';
+import Footer from './footer'
 
 class PartyupEvent extends Component {
     state= { error: null, 
@@ -150,9 +151,7 @@ class PartyupEvent extends Component {
                 </div>
             </main>
 
-            <footer className="footer">
-                <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>
-            </footer>
+            <Footer/>
         </div>
     }
 }

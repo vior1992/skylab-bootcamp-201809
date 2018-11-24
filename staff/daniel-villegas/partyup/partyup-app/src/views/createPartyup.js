@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CitySelector from './citySelector'
 import TagSelector from './tagSelector'
+import Footer from './footer'
 
 class CreatePartyup extends Component {
     state = { 
@@ -86,11 +87,10 @@ class CreatePartyup extends Component {
                 <TagSelector onHandleTagsChange={this.handleTagsChange}/>
             </div>
             <div>
+                <h3 className="create__error">{this.props.error}</h3>
                 <button className="create__button" onClick={this.handleSubmit}>Crear Partyup</button>
             </div>
-            <footer className="footer">
-                <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>
-            </footer>
+            <Footer/>
         </div>
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Footer from './footer'
 
 class Login extends Component {
     state = { username: '', password: ''}
@@ -48,13 +49,12 @@ class Login extends Component {
                             <input className="login__input" type="password" onChange={this.handlePasswordChange}/>
                     </form>
                 </div>
+                <h3 className="login__error">{this.props.error}</h3>
                 <button className="login__button" onClick={this.handleSubmit}>Iniciar sesión</button>
             </div>
         </main>
 
-        <footer className="footer">
-            <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>
-        </footer>
+        <Footer/>
     </div>
     }
 

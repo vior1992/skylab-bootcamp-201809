@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../logic';
 import ItemListPartyups from './itemListPartyups'
+import Footer from './footer'
 
 class Profile extends Component {
     state = { 
@@ -71,9 +72,7 @@ class Profile extends Component {
                 </div>
             </main>
             
-            <footer class="footer">
-                <p>© 2018 Partyup  Partyup es una subsidiaria totalmente controlada por Dani Companies Inc.</p>
-            </footer>
+            <Footer/>
         </div>
     }
 }
