@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import logic from '../logic'
-import ItemListPartyups from './itemListPartyups'
-import Footer from './footer'
+import logic from '../../logic'
+import ItemListPartyups from '../itemListPartyups'
+import Footer from '../footer/footer'
 
 class Landing extends Component {
     state = { allPartyups: [] }
@@ -20,7 +20,7 @@ class Landing extends Component {
             <header className="site__header">
                 <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
                 
-                <div className="actions">
+                <div className="header__actions">
                     <a href="#" className="login__link" onClick={this.props.onLoginClick}>Iniciar sesión</a>
                     <a href="#" className="logup__link" onClick={this.props.onRegisterClick}>Registrarse</a>
                 </div>
@@ -30,7 +30,7 @@ class Landing extends Component {
                 <div className="main__register">
                     <h2 className="register__title">¿Quieres fiesta?</h2>
                     <p className="register__subtitle">Encuentrala con Partyup</p>
-                    <button className="button" onClick={this.props.onRegisterClick}>Registrarse</button>
+                    <button className="register__button" onClick={this.props.onRegisterClick}>Registrarse</button>
                 </div>
             </section>
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import logic from '../logic';
-import ItemListPartyups from './itemListPartyups'
-import Footer from './footer'
+import logic from '../../logic';
+import ItemListPartyups from '../itemListPartyups'
+import Footer from '../footer/footer'
 
 class Profile extends Component {
     state = { 

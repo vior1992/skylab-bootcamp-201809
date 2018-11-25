@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Footer from './footer'
+import Footer from '../footer/footer'
 
 
 class Register extends Component {
@@ -48,7 +48,7 @@ class Register extends Component {
         <header className="site__header">
             <a href="" className="logo" onClick={this.props.onLogoClick}>Logo</a>
             
-            <div className="actions">
+            <div className="header__actions">
                 <a href="#" className="login__link" onClick={this.props.onLoginClick}>Iniciar sesión</a>
                 <a href="#" className="logup__link" onClick={this.props.onRegisterClick}>Registrarse</a>
             </div>

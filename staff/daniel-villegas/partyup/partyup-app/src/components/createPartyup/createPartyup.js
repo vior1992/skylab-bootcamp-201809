@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import CitySelector from './citySelector'
-import TagSelector from './tagSelector'
-import Footer from './footer'
+import CitySelector from '../citySelector'
+import TagSelector from '../tagSelector'
+import Footer from '../footer/footer'
 
 class CreatePartyup extends Component {
     state = { 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Footer from './footer'
+import Footer from '../footer/footer'
 
 class Login extends Component {
     state = { username: '', password: ''}

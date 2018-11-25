@@ -5,7 +5,7 @@ function headerNotLogged(props){
             <header className="site__header">
                 <a href="#" className="logo" onClick={() => props.onLogoClick}>Logo</a>
                 
-                <div className="actions">
+                <div className="header__actions">
                     <a href="#" className="login__link" onClick={() => props.onLoginClick}>Iniciar sesión</a>
                     <a href="#" className="logup__link" onClick={() => props.onRegisterClick}>Registrarse</a>
                 </div>

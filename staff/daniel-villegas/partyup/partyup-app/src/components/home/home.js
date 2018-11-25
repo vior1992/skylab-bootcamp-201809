@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import logic from '../logic'
-import ItemListPartyups from './itemListPartyups'
-import CitySelector from './citySelector'
-import TagSelector from './tagSelector'
-import HeaderLogged from './header_logged'
-import Footer from './footer'
+import logic from '../../logic'
+import ItemListPartyups from '../itemListPartyups'
+import CitySelector from '../citySelector'
+import TagSelector from '../tagSelector'
+import HeaderLogged from '../headerLogged/header_logged'
+import Footer from '../footer/footer'
 
 
 class Home extends Component {
@@ -98,7 +98,7 @@ class Home extends Component {
             <header className="site__header">
                 <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
                 
-                <div className="actions">
+                <div className="header__actions">
                     <a href="#" className="create__link" onClick={this.props.onCreatePartyupClick}>Crear Partyup</a>
                     <a href="#" className="profile__link" onClick={this.props.onProfileClick}>Perfil</a>
                     <a href="#" className="logout__link" onClick={this.props.onLogoutClick}>Cerrar sesión</a>
@@ -112,7 +112,7 @@ class Home extends Component {
                     <div>
                         <CitySelector onHandleCityChange={this.handleCityChange}/>
                         <TagSelector onHandleTagsChange={this.handleTagsChange}/>
-                        <button className="button" onClick={this.handleSubmit}>Buscar</button>
+                        <button className="search__button" onClick={this.handleSubmit}>Buscar</button>
                     </div>
                 </div>
             </section>

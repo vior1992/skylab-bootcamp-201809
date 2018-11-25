@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import logic from '../logic';
-import Footer from './footer'
+import logic from '../../logic';
+import Footer from '../footer/footer'
 
 class PartyupEvent extends Component {
     state= { error: null, 
