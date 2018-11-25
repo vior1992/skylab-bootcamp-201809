@@ -47,11 +47,11 @@ router.get('/users/:id', [bearerTokenParser, jwtVerifier], (req, res) => {
         if (id !== sub) throw Error('token sub does not match user id')
     
         return logic.retrieveLoggedUser(id)
-                .then(user => {
-                    res.status(200)
+            .then(user => {
+                res.status(200)
 
-                    res.json({ data: user })
-                })
+                res.json({ data: user })
+            })
     },res)
 })
 
@@ -60,11 +60,26 @@ router.get('/users/partyup/:userId', [bearerTokenParser, jwtVerifier], (req, res
         const { params: { userId }, sub } = req
         
         return logic.searchUserById(userId)
-                .then(user => {
-                    res.status(200)
+            .then(user => {
+                res.status(200)
 
-                    res.json(user)
+                res.json(user)
+            })
+    },res)
+})
+
+router.delete('/users/:userId', [bearerTokenParser, jwtVerifier], (req, res) => {
+    routeHandler(() => {
+        const { params: { userId }, sub } = req
+
+        return logic.deleteUser(userId)
+            .then(() => {
+                res.status(200)
+
+                res.json({
+                    message: `User with id ${userId} and all his partyups has been deleted with success!`
                 })
+            })
     },res)
 })
 
@@ -183,11 +198,11 @@ router.get('/users/:userId/partyups/:partyupId/notAssistence', [bearerTokenParse
     },res)
 })
 
-router.get('/users/:userId/partyups/:partyupId', [bearerTokenParser, jwtVerifier], (req, res) => {
+router.delete('/users/:userId/partyups/:partyupId', [bearerTokenParser, jwtVerifier], (req, res) => {
     routeHandler(() => {
         const { params: { userId , partyupId }, sub } = req
 
-        return logic.deletePostit(userId, partyupId)
+        return logic.deletePartyup(userId, partyupId)
             .then(() => {
                 res.status(200)
 

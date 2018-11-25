@@ -87,6 +87,26 @@ const logic = {
             })
     },
 
+    deleteUser(){
+        const  userId = this._userId
+        
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+        
+
+        return fetch(`${this.url}/users/${this._userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${this._token}`  
+            },
+        })  
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
+
     get loggedIn() {
         return !!this._userId
     },
@@ -246,7 +266,7 @@ const logic = {
 
     deletePartyup(partyupId) {
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}`, {
-            method: 'GET',
+            method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${this._token}` 
             },
@@ -257,7 +277,6 @@ const logic = {
                 
                 return res
             })
-
     }
 }
 //TEST

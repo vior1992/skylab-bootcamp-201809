@@ -35,6 +35,18 @@ class Profile extends Component {
                 })   
             })
     }
+
+    handleDelete() {
+        try {
+            logic.deleteUser()
+                .catch(() => {
+                    
+                })
+
+        } catch (err) {
+
+        }
+    }
     
     render() {
         return <div>
@@ -55,6 +67,7 @@ class Profile extends Component {
                         <h4>{this.state.city}</h4>
                     </div>
                     <div>
+                        <button onClick={() => { this.handleDelete(); this.props.onDeleteClick() }}>Eliminar</button>
                         <img src="" alt=""/>
                     </div>
                 </div>

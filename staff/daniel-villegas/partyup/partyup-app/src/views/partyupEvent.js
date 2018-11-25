@@ -116,10 +116,6 @@ class PartyupEvent extends Component {
         
         try{
             logic.deletePartyup(partyupId)
-                .then(() => {
-                    console.log('aqui')
-                    this.props.history.push('/home')
-                })
                 .catch(err => this.setState({ error: err.message }))
 
         } catch (err) {
@@ -154,7 +150,7 @@ class PartyupEvent extends Component {
                         <div>
                             <button onClick={() => this.handleYes(this.props.partyupId)}>Si</button>
                             <button onClick={() => this.handleNo(this.props.partyupId)}>No</button>
-                            <button onClick={() => this.handleDelete(this.props.partyupId)}>Eliminar</button>
+                            <button onClick={() => { this.handleDelete(this.props.partyupId); this.props.onDeleteClick()}}>Eliminar</button>
                         </div>
                     </div>
                 </div>

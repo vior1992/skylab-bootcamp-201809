@@ -61,6 +61,30 @@ const logic = {
         return user
     },
 
+    async deleteUser(userId) {
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+
+        //SOLO ELIMINA UN PARTY
+        await Partyup.find({ user: userId })
+        console.log('b')
+        await Partyup.findOneAndDelete({ user: userId }) 
+        
+
+        //METODO ELIMINAR TODOS NOT WORKS
+        // const userPartyups = await Partyup.find({ user: userId })
+
+        // if (userPartyups)
+        //     await userPartyups.forEach(() => {
+        //         Partyup.findOneAndDelete({ user: userId })
+        //     })
+           
+        // console.log('a ')
+
+        
+        //ELIMINA USUARIO
+        // const user = await User.findByIdAndDelete(userId)
+    },
+
     createPartyup(title, description, date, city, place, tags, userId) {
         validateLogic([
             { key: 'title', value: title, type: String },
@@ -170,7 +194,7 @@ const logic = {
         return partyup.save()
     },
 
-    async deletePostit(userId, partyupId) {
+    async deletePartyup(userId, partyupId) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
             { key: 'partyupId', value: partyupId, type: String },
@@ -180,9 +204,9 @@ const logic = {
 
         if (userId === partyup.user)
 
-        Partyup.findByIdAndDelete(partyupId)
+        await Partyup.findByIdAndDelete(partyupId)
 
-        const partyup2 = await Partyup.findByIdAndDelete(partyupId)
+        const _partyup = await Partyup.findByIdAndDelete(partyupId)
     }
 }
 
