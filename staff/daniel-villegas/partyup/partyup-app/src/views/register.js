@@ -62,9 +62,9 @@ class Register extends Component {
                 <div className="register__formulary">
                     <div>
                             <h4>Nombre</h4>
-                            <input className="register__input" type="text" onChange={this.handleNameChange}/>
+                            <input className="register__input" type="text" maxlength="22" onChange={this.handleNameChange}/>
                             <h4>Apellidos</h4>
-                            <input className="register__input" type="text" onChange={this.handleSurnameChange}/>
+                            <input className="register__input" type="text" maxlength="22" onChange={this.handleSurnameChange}/>
                             <h4>Ciudad</h4>
                             <select defaultValue="CHOOSE" name="city" id="" onChange={this.handleCityChange}>
                                 <option value="CHOOSE">Elige una ciudad</option>
@@ -75,9 +75,9 @@ class Register extends Component {
                                 <option value="Sevilla">Sevilla</option>
                             </select>
                             <h4>Nombre de usuario</h4>
-                            <input className="register__input" type="text" onChange={this.handleUsernameChange}/>
+                            <input className="register__input" type="text" maxlength="22" onChange={this.handleUsernameChange}/>
                             <h4>Contraseña</h4>
-                            <input className="register__input" type="password" onChange={this.handlePasswordChange}/>
+                            <input className="register__input" type="password" maxlength="22" onChange={this.handlePasswordChange}/>
                     </div>
                 </div>
                 <h3 className="register__error">{this.props.error}</h3>

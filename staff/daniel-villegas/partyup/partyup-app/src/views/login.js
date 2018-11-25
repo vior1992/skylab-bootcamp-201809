@@ -44,9 +44,9 @@ class Login extends Component {
                 <div className="login__formulary">
                     <form action="">
                             <h4>Nombre de usuario</h4>
-                            <input className="login__input" type="text" onChange={this.handleUsernameChange}/>
+                            <input className="login__input" type="text" maxlength="22" onChange={this.handleUsernameChange}/>
                             <h4>Contraseña</h4>
-                            <input className="login__input" type="password" onChange={this.handlePasswordChange}/>
+                            <input className="login__input" type="password" maxlength="22" onChange={this.handlePasswordChange}/>
                     </form>
                 </div>
                 <h3 className="login__error">{this.props.error}</h3>
