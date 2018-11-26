@@ -112,7 +112,11 @@ const logic = {
     async searchPartyupById(partyupId) {
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
-        const partyup = await Partyup.findById(partyupId)
+        const partyup = await Partyup.findById(partyupId, { '_id': 0, password: 0, __v: 0 }).lean()
+
+        if (!partyup) throw new NotFoundError(`partyup with id ${partyupId} not found`)
+
+        partyup.id = partyupId
 
         return partyup
     },
@@ -135,10 +139,16 @@ const logic = {
         if(tags) find.tags = tags
 
         const partyups = await Partyup        
-            .find(find)
+            .find(find, { password: 0, __v: 0 }).lean()
             .sort({ 'date': -1 })
             .limit(perPage)
             .skip(perPage * (page - 1))
+
+        partyups.forEach(partyup => {
+            partyup.id = partyup._id 
+            delete partyup._id
+        })
+        
 
         return partyups
     },
@@ -146,7 +156,12 @@ const logic = {
     async listPartyupsCreatedBy(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
-        const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, "__v": 0})
+        const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, "__v": 0}).lean()
+
+        partyups.forEach(partyup => {
+            partyup.id = partyup._id 
+            delete partyup._id
+        })
 
         return partyups
     },
@@ -154,7 +169,12 @@ const logic = {
     async listPartyupsIAssist(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
-        const partyups = await Partyup.find({ assistants: userId }, { description: 0, place: 0, assistants: 0, tags: 0, "__v": 0})
+        const partyups = await Partyup.find({ assistants: userId }, { description: 0, place: 0, assistants: 0, tags: 0, "__v": 0}).lean()
+
+        partyups.forEach(partyup => {
+            partyup.id = partyup._id 
+            delete partyup._id
+        })
 
         return partyups
     },
