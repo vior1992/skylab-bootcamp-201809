@@ -1,4 +1,5 @@
 import React from 'react'
+import "./styles.css"
 
 function ItemListPartyups(props) {
     return <div href="#" onClick={() => props.onPartyupClick(props.id, props.actuallUserId)} className="partyups__event">

@@ -1,0 +1,12 @@
+.partyups__picture { width: 100%; }
+
+.partyups__info { padding: 15px; }
+
+.info__date { margin: 0; font-size: 0.6em; text-transform: uppercase; }
+
+.info__title { margin-top: 0; font-size: 1.3em; margin-bottom: 3px; }
+
+.info__description, .info__host { margin: 0; color: #999; font-size: 0.9em; }
+
+.partyups__event { overflow: hidden; margin-bottom: 20px; background-color: white; -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); border-radius: 4px; }
+

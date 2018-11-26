@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import CitySelector from '../citySelector'
 import TagSelector from '../tagSelector'
-import Footer from '../footer/footer'
+import Footer from '../Footer/footer'
+import HeaderLogged from '../HeaderLogged/header_logged'
+import './styles.css'
+
 
 class CreatePartyup extends Component {
     state = { 
@@ -59,15 +62,8 @@ class CreatePartyup extends Component {
 
     render() {
         return <div>
-            <header className="site__header">
-                <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
-                
-                <div className="actions">
-                    <a href="#" className="create__link" onClick={this.props.onCreatePartyupClick}>Crear Partyup</a>
-                    <a href="#" className="profile__link" onClick={this.props.onProfileClick}>Perfil</a>
-                    <a href="#" className="logout__link" onClick={this.props.onLogoutClick}>Cerrar sesión</a>
-                </div>
-            </header>
+            <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
+
             <div className="create__container">
                 <form className="create__formulary" action="">
                     <h4>¿Como se llamara tu PartyUp?</h4>

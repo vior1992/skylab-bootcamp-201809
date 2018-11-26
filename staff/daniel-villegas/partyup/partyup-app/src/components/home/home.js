@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import logic from '../../logic'
-import ItemListPartyups from '../itemListPartyups'
+import ItemListPartyups from '../ItemListPartyups/itemListPartyups'
 import CitySelector from '../citySelector'
 import TagSelector from '../tagSelector'
-import HeaderLogged from '../headerLogged/header_logged'
-import Footer from '../footer/footer'
+import HeaderLogged from '../HeaderLogged/header_logged'
+import Footer from '../Footer/footer'
+import './styles.css'
 
 
 class Home extends Component {
@@ -94,17 +95,8 @@ class Home extends Component {
 
     render() {
         return <div>
-                {/* <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} /> */}
-            <header className="site__header">
-                <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
-                
-                <div className="header__actions">
-                    <a href="#" className="create__link" onClick={this.props.onCreatePartyupClick}>Crear Partyup</a>
-                    <a href="#" className="profile__link" onClick={this.props.onProfileClick}>Perfil</a>
-                    <a href="#" className="logout__link" onClick={this.props.onLogoutClick}>Cerrar sesión</a>
-                </div>
-            </header>
-
+            <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
+           
             <section className="main__videosection">
                 <div className="main__register">
                     <h2 className="register__title">¿Quieres fiesta?</h2>

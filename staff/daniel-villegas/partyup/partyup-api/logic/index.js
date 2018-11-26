@@ -63,24 +63,14 @@ const logic = {
 
     async deleteUser(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
-
-        //SOLO ELIMINA UN PARTY
-        await Partyup.find({ user: userId })
-        console.log('b')
-        await Partyup.findOneAndDelete({ user: userId }) 
         
+        const userPartyups = await Partyup.find({ user: userId })
 
-        //METODO ELIMINAR TODOS NOT WORKS
-        // const userPartyups = await Partyup.find({ user: userId })
+        if (userPartyups)
+        userPartyups.map(async() => {
+           await Partyup.findOneAndDelete({ user: userId })
+        })
 
-        // if (userPartyups)
-        //     await userPartyups.forEach(() => {
-        //         Partyup.findOneAndDelete({ user: userId })
-        //     })
-           
-        // console.log('a ')
-
-        
         //ELIMINA USUARIO
         // const user = await User.findByIdAndDelete(userId)
     },

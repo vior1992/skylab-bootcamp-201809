@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import Footer from '../footer/footer'
+import Footer from '../Footer/footer'
+import HeaderNotLogged from '../HeaderNotLogged/header_notLogged'
+import './styles.css'
+
 
 class Login extends Component {
     state = { username: '', password: ''}
@@ -26,15 +29,8 @@ class Login extends Component {
 
     render() {
         return <div>
-        <header className="site__header">
-            <a href="" className="logo" onClick={this.props.onLogoClick}>Logo</a>
-            
-            <div className="actions">
-                <a href="#" className="login__link" onClick={this.props.onLoginClick}>Iniciar sesión</a>
-                <a href="#" className="logup__link" onClick={this.props.onRegisterClick}>Registrarse</a>
-            </div>
-        </header>
-
+        <HeaderNotLogged onLogoClick={this.props.onLogoClick} onLoginClick={this.props.onLoginClick} onRegisterClick={this.props.onRegisterClick}/>
+        
         <main>
             <div className="login__container">
                 <div className="login__titles">

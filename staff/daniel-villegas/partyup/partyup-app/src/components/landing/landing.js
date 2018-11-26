@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import logic from '../../logic'
-import ItemListPartyups from '../itemListPartyups'
-import Footer from '../footer/footer'
+import ItemListPartyups from '../ItemListPartyups/itemListPartyups'
+import Footer from '../Footer/footer'
+import HeaderNotLogged from '../HeaderNotLogged/header_notLogged'
+import './styles.css'
 
 class Landing extends Component {
     state = { allPartyups: [] }
@@ -17,16 +19,9 @@ class Landing extends Component {
 
     render() {
         return <div>
-            <header className="site__header">
-                <a href="#" className="logo" onClick={this.props.onLogoClick}>Logo</a>
-                
-                <div className="header__actions">
-                    <a href="#" className="login__link" onClick={this.props.onLoginClick}>Iniciar sesión</a>
-                    <a href="#" className="logup__link" onClick={this.props.onRegisterClick}>Registrarse</a>
-                </div>
-            </header>
+            <HeaderNotLogged onLogoClick={this.props.onLogoClick} onLoginClick={this.props.onLoginClick} onRegisterClick={this.props.onRegisterClick}/>
 
-            <section className="main__videosection">
+            <section className="main__gifsection">
                 <div className="main__register">
                     <h2 className="register__title">¿Quieres fiesta?</h2>
                     <p className="register__subtitle">Encuentrala con Partyup</p>
