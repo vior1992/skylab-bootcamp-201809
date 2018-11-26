@@ -3,6 +3,7 @@ import logic from '../../logic';
 import ItemListPartyups from '../ItemListPartyups'
 import Footer from '../Footer'
 import HeaderLogged from '../HeaderLogged'
+import FileBase64 from "react-file-base64"
 import './styles.css'
 
 class Profile extends Component {
@@ -12,15 +13,17 @@ class Profile extends Component {
         username: '', 
         city: '', 
         id: '', 
+        avatar:  '',
         createdPartyups: [], 
-        willAssistTo:[]
+        willAssistTo:[],
+        loading: false
     }
 
     componentDidMount() {
         logic.retrieveLoggedUser()
             .then(user => {
-                const { name, surname, city, username, id } = user
-                this.setState({ name, surname, city, username, id })
+                const { name, surname, city, username, id, avatar } = user
+                this.setState({ name, surname, city, username, id, avatar })
             })
 
         logic.itemListPartyupsCreatedBy()
@@ -39,15 +42,26 @@ class Profile extends Component {
     }
 
     handleDelete() {
-        try {
-            logic.deleteUser()
-                .catch(() => {
-                    
+        logic.deleteUser()
+    }
+
+    getFiles = files => {
+        this.setState({
+            loading: false
+        })
+        this.handleAvatarChange(files.base64)
+    }
+
+    handleAvatarChange(base64Image){
+        logic.addUserAvatar(base64Image)
+            .then(avatar => {
+                this.setState({
+                    avatar,
+                    loading: true,
+                    //TODO refresh page when upload
                 })
-
-        } catch (err) {
-
-        }
+            })
+            .catch(err => this.setState({ error: err.message }))
     }
     
     render() {
@@ -62,8 +76,15 @@ class Profile extends Component {
                         <h4>{this.state.city}</h4>
                     </div>
                     <div>
+                        <div>
+                            {this.state.avatar ? <img className="profile__avatar" src={this.state.avatar}></img> : <img className="" src="../public/profile.png"></img>}
+                        </div>
+                        <div className="container-input">
+                            <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
+                        </div>
+                    </div>
+                    <div>
                         <button className="delete__button" onClick={() => { this.handleDelete(); this.props.onDeleteClick() }}>Eliminar perfil</button>
-                        <img src="" alt=""/>
                     </div>
                 </div>
                 <div className="partyups" >

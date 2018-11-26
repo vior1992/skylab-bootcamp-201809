@@ -44,7 +44,7 @@ class PartyupEvent extends Component {
                     logic.searchUserById(assistant)
                         .then(user => {
                             const oldAssistants = this.state.usernameAssistants
-                            this.setState({ usernameAssistants: [...oldAssistants, user.username] })
+                            this.setState({ usernameAssistants: [...oldAssistants, user.avatar] })
                     })
                 })
             })    
@@ -70,7 +70,7 @@ class PartyupEvent extends Component {
                         logic.searchUserById(assistant)
                             .then(user => {
                                 
-                                usernameAssistants.push(user.username)
+                                usernameAssistants.push(user.avatar)
                                 this.setState({ usernameAssistants })
                             })
                     })  
@@ -100,7 +100,7 @@ class PartyupEvent extends Component {
                     this.state.assistants.forEach(assistant => {
                         logic.searchUserById(assistant)
                             .then(user => {
-                                usernameAssistants.push(user.username)
+                                usernameAssistants.push(user.avatar)
                                 this.setState({ usernameAssistants })
                             })
                     })                 
@@ -155,8 +155,8 @@ class PartyupEvent extends Component {
                     <h2>Descripcion</h2>
                     <p>{this.state.description}</p>
                     <h2>Asistentes</h2>
-                    <ul>
-                        {this.state.usernameAssistants.map(assistant => <li>{assistant}</li>)}
+                    <ul className="partyup__assistant--list">
+                        {this.state.usernameAssistants.map(assistant => <li> <img className="partyup__assistant--avatar" onClick={null} src={assistant}></img></li>)}
                     </ul>
                 </div>
             </main>

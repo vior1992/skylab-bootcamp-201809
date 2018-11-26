@@ -58,6 +58,11 @@ const User = new Schema ({
         type: String,
         required: true
     },
+    avatar: {
+        type: String,
+        required: false,
+        default: '#'
+    }
 })
 
 module.exports = {

@@ -87,6 +87,28 @@ const logic = {
             })
     },
 
+    addUserAvatar(base64Image){
+        debugger
+        validateLogic([{ key: 'base64Image', value: base64Image, type: String }])
+            
+        return fetch(`${this.url}/users/${this._userId}/avatar`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${this._token}`,
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({ base64Image })
+        })
+            .then(res => res.json())
+            .then(res => {
+
+                if (res.error) throw Error(res.error)
+
+                return res.avatar
+            })
+
+    },
+
     deleteUser(){
         const  userId = this._userId
         

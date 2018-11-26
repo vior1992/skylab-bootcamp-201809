@@ -6,6 +6,13 @@ const routeHandler = require('./route-handler')
 const jwt = require('jsonwebtoken')
 const jwtVerifier = require('./jwt-verifier')
 const bearerTokenParser = require('../utilities/bearer-token-parser')
+const cloudinary = require('cloudinary')
+
+cloudinary.config({
+    cloud_name: 'vior1992',
+    api_key: '193425753116639',
+    api_secret: 'xCezhtXMWcCFHWY8xB6W1m9feIs'
+})
 
 const { env: { JWT_SECRET } } = process
 
@@ -66,6 +73,19 @@ router.get('/users/partyup/:userId', [bearerTokenParser, jwtVerifier], (req, res
                 res.json(user)
             })
     },res)
+})
+
+router.patch('/users/:userId/avatar', [bearerTokenParser, jwtVerifier, jsonBP], (req, res) => {
+    routeHandler(() => {
+        const { body: { base64Image }, params: { userId }} = req
+
+        return logic.addUserAvatar(userId, base64Image)
+            .then(avatar => res.status(200).json({ status: 'OK', avatar }))
+            .catch((err) => {
+                const { message } = err
+                res.status(err instanceof LogicError ? 400 : 500).json({ message })
+            })
+    },res)   
 })
 
 router.delete('/users/:userId', [bearerTokenParser, jwtVerifier], (req, res) => {

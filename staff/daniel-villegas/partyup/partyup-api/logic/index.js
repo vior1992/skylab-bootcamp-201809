@@ -1,10 +1,35 @@
 const { User, Partyup } = require('../data')
 const validateLogic = require('../utilities/validate')
 const { AlreadyExistsError, AuthError, NotFoundError, ValueError } = require('../errors')
+const cloudinary = require('cloudinary')
 const fs = require('fs')
 const path = require('path')
 
+cloudinary.config({
+    cloud_name: 'vior1992',
+    api_key: '193425753116639',
+    api_secret: 'xCezhtXMWcCFHWY8xB6W1m9feIs'
+})
+
 const logic = {
+     /**
+     * 
+     * @param {string} base64Image 
+     */
+    _saveImage(base64Image) {
+        return Promise.resolve().then(() => {
+            if (typeof base64Image !== 'string') throw new LogicError('base64Image is not a string')
+
+            return new Promise((resolve, reject) => {
+                return cloudinary.v2.uploader.upload(base64Image, function (err, data) {
+                    if (err) return reject(err)
+
+                    resolve(data.url)
+                })
+            })
+        })
+    },
+
     registerUser(name, surname, city, username, password) {
         validateLogic([
             { key: 'name', value: name, type: String },
@@ -59,6 +84,23 @@ const logic = {
         const user = await User.findById(userId)
 
         return user
+    },
+
+    async addUserAvatar(userId, chunk) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'chunk', value: chunk, type: String }
+        ])
+
+        const user = await User.findById(userId)
+
+        if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+
+        const imageCloudinary = await logic._saveImage(chunk)
+
+        user.avatar = imageCloudinary
+
+        await user.save()
     },
 
     async deleteUser(userId) {
