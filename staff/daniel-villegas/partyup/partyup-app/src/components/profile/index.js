@@ -62,7 +62,7 @@ class Profile extends Component {
                         <h4>{this.state.city}</h4>
                     </div>
                     <div>
-                        <button onClick={() => { this.handleDelete(); this.props.onDeleteClick() }}>Eliminar</button>
+                        <button className="delete__button" onClick={() => { this.handleDelete(); this.props.onDeleteClick() }}>Eliminar perfil</button>
                         <img src="" alt=""/>
                     </div>
                 </div>

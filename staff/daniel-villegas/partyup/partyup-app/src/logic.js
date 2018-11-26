@@ -92,7 +92,6 @@ const logic = {
         
         validateLogic([{ key: 'userId', value: userId, type: String }])
         
-
         return fetch(`${this.url}/users/${this._userId}`, {
             method: 'DELETE',
             headers: {

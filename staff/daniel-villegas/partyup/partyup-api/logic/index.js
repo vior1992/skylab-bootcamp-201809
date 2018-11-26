@@ -64,6 +64,7 @@ const logic = {
     async deleteUser(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
+        //ELIMINA TODAS LAS PARTYUPS DEL USUARIO
         const userPartyups = await Partyup.find({ user: userId })
 
         if (userPartyups)
@@ -71,6 +72,14 @@ const logic = {
            await Partyup.findOneAndDelete({ user: userId })
         })
 
+        // QUITA ASISTENCIA A LAS PARTYUPS
+        logic.listPartyupsIAssist(userId)
+            .then(partyups => {
+                partyups.forEach(partyup => {
+                    logic.notAssistToPartyup(userId, partyup.id)
+                })
+            })
+        
         //ELIMINA USUARIO
         const user = await User.findByIdAndDelete(userId)
     },
@@ -106,7 +115,7 @@ const logic = {
 
         if (!partyup) throw new NotFoundError(`partyup with id ${partyupId} not found`)
 
-        partyup.id = partyupId
+        partyup.id = partyupId.toString()
 
         return partyup
     },
@@ -135,7 +144,7 @@ const logic = {
             .skip(perPage * (page - 1))
 
         partyups.forEach(partyup => {
-            partyup.id = partyup._id 
+            partyup.id = partyup._id.toString()
             delete partyup._id
         })
         
@@ -149,7 +158,7 @@ const logic = {
         const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, "__v": 0}).lean()
 
         partyups.forEach(partyup => {
-            partyup.id = partyup._id 
+            partyup.id = partyup._id.toString() 
             delete partyup._id
         })
 
@@ -162,7 +171,7 @@ const logic = {
         const partyups = await Partyup.find({ assistants: userId }, { description: 0, place: 0, assistants: 0, tags: 0, "__v": 0}).lean()
 
         partyups.forEach(partyup => {
-            partyup.id = partyup._id 
+            partyup.id = partyup._id.toString()
             delete partyup._id
         })
 
