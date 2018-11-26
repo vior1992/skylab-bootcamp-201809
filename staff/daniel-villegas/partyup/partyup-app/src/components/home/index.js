@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import logic from '../../logic'
-import ItemListPartyups from '../ItemListPartyups/itemListPartyups'
+import ItemListPartyups from '../ItemListPartyups'
 import CitySelector from '../citySelector'
 import TagSelector from '../tagSelector'
-import HeaderLogged from '../HeaderLogged/header_logged'
-import Footer from '../Footer/footer'
+import HeaderLogged from '../HeaderLogged'
+import Footer from '../Footer'
 import './styles.css'
 
 

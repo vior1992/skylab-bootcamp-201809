@@ -63,7 +63,7 @@ const logic = {
 
     async deleteUser(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
-        
+
         const userPartyups = await Partyup.find({ user: userId })
 
         if (userPartyups)
@@ -72,7 +72,7 @@ const logic = {
         })
 
         //ELIMINA USUARIO
-        // const user = await User.findByIdAndDelete(userId)
+        const user = await User.findByIdAndDelete(userId)
     },
 
     createPartyup(title, description, date, city, place, tags, userId) {

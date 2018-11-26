@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Route, Redirect, withRouter } from 'react-router'
 import logic from './logic'
-import Landing from './Components/Landing/landing'
-import Register from './Components/Register/register'
-import Login from './Components/Login/login'
-import Home from './Components/Home/home'
-import CreatePartyup from './Components/CreatePartyup/createPartyup'
-import Profile from './Components/Profile/profile'
-import PartyupEvent from './Components/PartyupEvent/partyupEvent'
+import Landing from './components/Landing'
+import Register from './components/Register'
+import Login from './components/Login'
+import Home from './components/Home'
+import CreatePartyup from './components/CreatePartyup'
+import Profile from './components/Profile'
+import PartyupEvent from './components/PartyupEvent'
 
 logic.url = 'http://localhost:5000/api'
 
@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   handleDeleteUserClick = () => {  
-    // logic.logout()
+    logic.logout()
 
     this.props.history.push('/')
 

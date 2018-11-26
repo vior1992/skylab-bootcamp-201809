@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import logic from '../../logic';
-import ItemListPartyups from '../ItemListPartyups/itemListPartyups'
-import Footer from '../Footer/footer'
-import HeaderLogged from '../HeaderLogged/header_logged'
+import ItemListPartyups from '../ItemListPartyups'
+import Footer from '../Footer'
+import HeaderLogged from '../HeaderLogged'
 import './styles.css'
 
 class Profile extends Component {

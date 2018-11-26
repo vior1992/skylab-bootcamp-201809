@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import CitySelector from '../citySelector'
 import TagSelector from '../tagSelector'
-import Footer from '../Footer/footer'
-import HeaderLogged from '../HeaderLogged/header_logged'
+import Footer from '../Footer'
+import HeaderLogged from '../HeaderLogged'
 import './styles.css'
 
 

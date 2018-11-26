@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import logic from '../../logic'
-import ItemListPartyups from '../ItemListPartyups/itemListPartyups'
-import Footer from '../Footer/footer'
-import HeaderNotLogged from '../HeaderNotLogged/header_notLogged'
+import ItemListPartyups from '../ItemListPartyups'
+import Footer from '../Footer'
+import HeaderNotLogged from '../HeaderNotLogged'
 import './styles.css'
 
 class Landing extends Component {

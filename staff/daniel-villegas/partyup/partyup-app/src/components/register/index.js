@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Footer from '../Footer/footer'
-import HeaderNotLogged from '../HeaderNotLogged/header_notLogged'
+import Footer from '../Footer'
+import HeaderNotLogged from '../HeaderNotLogged'
 import './styles.css'
 
 class Register extends Component {
