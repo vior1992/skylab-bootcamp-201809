@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Home from './components/Home'
 import CreatePartyup from './components/CreatePartyup'
 import Profile from './components/Profile'
+import PublicProfile from './components/PublicProfile'
 import PartyupEvent from './components/PartyupEvent'
 
 logic.url = 'http://localhost:5000/api'
@@ -85,6 +86,12 @@ class App extends Component {
     this.setState({ error: null })
   }
 
+  handlePublicProfileClick = (userId) => {
+    this.props.history.push(`/profile/public/${userId}`)
+
+    this.setState({ error: null })
+  }
+
   handleLogoutClick = event => {
     event.preventDefault()
 
@@ -138,8 +145,9 @@ class App extends Component {
           <Route path="/register" render={() => !logic.loggedIn ? <Register onRegister={this.handleRegister} onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} error={this.state.error}/> : <Redirect to="/home" />} />
           <Route path="/login" render={() => !logic.loggedIn ? <Login onLogin={this.handleLogin} onRegisterClick={this.handleRegisterClick} onLoginClick={this.handleLoginClick} onLogoClick={this.handleLogoClick} error={this.state.error}/> : <Redirect to="/home" />}/>
           <Route path="/create-partyup" render={() => logic.loggedIn ? <CreatePartyup onCreateClick={this.handleCreateClick} onCreatePartyup={this.handleCreatePartyup} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} error={this.state.error}/> : <Redirect to="/" />}/>
-          <Route path="/profile" render={() => logic.loggedIn ? <Profile onPartyupClick={this.handlePartyupClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} onDeleteClick={this.handleDeleteUserClick}/> : <Redirect to="/" />}/>
-          <Route path="/user/:_actuallUserId/partyup/:partyupId" render={props => logic.loggedIn ? <PartyupEvent partyupId={props.match.params.partyupId} actuallUserId={props.match.params._actuallUserId} onDeleteClick={this.handleDeletePostClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick}/> : <Redirect to="/" />}/>
+          <Route exact path="/profile" render={() => logic.loggedIn ? <Profile onPartyupClick={this.handlePartyupClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} onDeleteClick={this.handleDeleteUserClick}/> : <Redirect to="/" />}/>
+          <Route path="/profile/public/:userId" render={props => logic.loggedIn ? <PublicProfile userId={props.match.params.userId} onPartyupClick={this.handlePartyupClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} /> : <Redirect to="/" />} />
+          <Route path="/user/:_actuallUserId/partyup/:partyupId" render={props => logic.loggedIn ? <PartyupEvent partyupId={props.match.params.partyupId} actuallUserId={props.match.params._actuallUserId} onPublicProfileClick={this.handlePublicProfileClick} onDeleteClick={this.handleDeletePostClick} onCreatePartyupClick={this.handleCreatePartyUpClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick}/> : <Redirect to="/" />}/>
         </div>
   }
 }

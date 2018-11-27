@@ -275,8 +275,8 @@ const logic = {
             })
     },
     
-    itemListPartyupsCreatedBy() {
-        return fetch(`${this.url}/users/${this._userId}/partyups`, {
+    itemListPartyupsCreatedBy(userId) {
+        return fetch(`${this.url}/users/${userId}/partyups`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}` 
@@ -290,8 +290,8 @@ const logic = {
             })
     },
 
-    itemListPartyupsIAssist() {
-        return fetch(`${this.url}/users/${this._userId}/partyups/assistence`, {
+    itemListPartyupsIAssist(userId) {
+        return fetch(`${this.url}/users/${userId}/partyups/assistence`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${this._token}` 

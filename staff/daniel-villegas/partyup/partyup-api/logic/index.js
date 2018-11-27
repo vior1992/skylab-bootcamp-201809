@@ -81,7 +81,11 @@ const logic = {
     async searchUserById(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
-        const user = await User.findById(userId)
+        const user = await User.findById(userId).lean()
+
+        user.id = userId
+
+        delete user._id
 
         return user
     },

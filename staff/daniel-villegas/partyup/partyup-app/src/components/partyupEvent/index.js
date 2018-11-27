@@ -7,13 +7,14 @@ import './styles.css'
 class PartyupEvent extends Component {
     state= { error: null, 
         date: '', 
-        city: '', 
+        city: '',
+        date: '',
         title: '', 
         user: '', 
         username: '', 
         description: '', 
         assistants: [], 
-        usernameAssistants: [],
+        usesersAssistants: [],
         actuallUserId: ''
     }
 
@@ -26,9 +27,9 @@ class PartyupEvent extends Component {
         
         logic.searchPartyupsById(partyupId)
             .then(partyup => {
-                const { date, city, title, user, description, assistants} = partyup
+                const { date, city, title, place, user, description, assistants} = partyup
                 
-                this.setState({ date, city, title, user, description, assistants })
+                this.setState({ date, city, title, place, user, description, assistants })
             })
 
             .then(() => {
@@ -43,8 +44,9 @@ class PartyupEvent extends Component {
                 this.state.assistants.forEach(assistant => {
                     logic.searchUserById(assistant)
                         .then(user => {
-                            const oldAssistants = this.state.usernameAssistants
-                            this.setState({ usernameAssistants: [...oldAssistants, user.avatar] })
+                            const oldAssistants = this.state.usesersAssistants
+
+                            this.setState({ usesersAssistants: [...oldAssistants, [user.avatar, user.username, user.id]] })
                     })
                 })
             })    
@@ -65,13 +67,13 @@ class PartyupEvent extends Component {
                 })
                 
                 .then(() => {
-                    let usernameAssistants = []
+                    let usesersAssistants = []
                     this.state.assistants.forEach(assistant => {
                         logic.searchUserById(assistant)
                             .then(user => {
                                 
-                                usernameAssistants.push(user.avatar)
-                                this.setState({ usernameAssistants })
+                                usesersAssistants.push([user.avatar, user.username, user.id])
+                                this.setState({ usesersAssistants })
                             })
                     })  
                 }) 
@@ -96,12 +98,12 @@ class PartyupEvent extends Component {
                 })
 
                 .then(() => {
-                    let usernameAssistants = []
+                    let usesersAssistants = []
                     this.state.assistants.forEach(assistant => {
                         logic.searchUserById(assistant)
                             .then(user => {
-                                usernameAssistants.push(user.avatar)
-                                this.setState({ usernameAssistants })
+                                usesersAssistants.push([user.avatar, user.username, user.id])
+                                this.setState({ usesersAssistants })
                             })
                     })                 
                 })
@@ -128,6 +130,10 @@ class PartyupEvent extends Component {
         }
     }
 
+    handlePublicProfileClick(userId) {
+        alert(userId)
+    }
+
     render() {
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
@@ -136,8 +142,9 @@ class PartyupEvent extends Component {
                 <div className="partyup__header">
                     <div className="partyup__header--info">
                         <div className="partyup__infoheader--date">
-                            <h4>{this.state.date}</h4>
-                            <h4>{this.state.city}</h4>
+                            <h4>Dia: {this.state.date}</h4>
+                            <h4>Ciudad: {this.state.city}</h4>
+                            <h4>Lugar de encuentro: {this.state.place}</h4>
                         </div>
                         <h2>{this.state.title}</h2>
                         <h4>{this.state.username}</h4>
@@ -156,7 +163,7 @@ class PartyupEvent extends Component {
                     <p>{this.state.description}</p>
                     <h2>Asistentes</h2>
                     <ul className="partyup__assistant--list">
-                        {this.state.usernameAssistants.map(assistant => <li> <img className="partyup__assistant--avatar" onClick={null} src={assistant}></img></li>)}
+                        {this.state.usesersAssistants.map(assistant => <li> <img className="partyup__assistant--avatar" src={assistant[0]} onClick={() => this.props.onPublicProfileClick(assistant[2])}></img> <h3>{assistant[1]}</h3></li>)}
                     </ul>
                 </div>
             </main>
