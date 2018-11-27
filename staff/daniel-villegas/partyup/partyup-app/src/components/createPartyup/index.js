@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import logic from '../../logic'
 import CitySelector from '../citySelector'
 import TagSelector from '../tagSelector'
 import Footer from '../Footer'
 import HeaderLogged from '../HeaderLogged'
+import FileBase64 from "react-file-base64"
 import './styles.css'
-
 
 class CreatePartyup extends Component {
     state = { 
@@ -13,7 +14,9 @@ class CreatePartyup extends Component {
         date: "", 
         city: "", 
         place: "", 
-        tags: ""
+        tags: "",
+        picture: "",
+        loading: false
     }
 
     handleTitleChange = event => {
@@ -52,12 +55,42 @@ class CreatePartyup extends Component {
         this.setState({ tags })
     }
 
-    handleSubmit = event => {
+    getFiles = files => {
+        this.setState({
+            loading: false
+        })
+        this.handlePictureChange(files.base64)
+    }
+
+    handlePictureChange(base64Image){
+        logic.addPartyupPicture(base64Image)
+            .then(picture => {
+                this.setState({
+                    picture,
+                    loading: true,
+                })
+            })
+            .catch(err => this.setState({ error: err.message }))
+    }
+
+    handleSubmit = async event => {
         event.preventDefault()
 
-        const { title, description, date, city, place, tags } = this.state
+        if (!this.state.picture.trim().length && this.state.loading === false) {
 
-        this.props.onCreatePartyup(title, description, date, city, place, tags)
+            const picture = "https://cps-static.rovicorp.com/3/JPG_500/MI0003/752/MI0003752888.jpg?partner=allrovi.com"
+            
+            this.setState({ picture }, () => {
+                const { title, description, date, city, place, tags, picture } = this.state
+
+                this.props.onCreatePartyup(title, description, date, city, place, tags, picture)
+            })
+
+        } else if (this.state.loading === true) {
+            const { title, description, date, city, place, tags, picture } = this.state
+
+            this.props.onCreatePartyup(title, description, date, city, place, tags, picture)
+        }
     } 
 
     render() {
@@ -81,6 +114,8 @@ class CreatePartyup extends Component {
                 <CitySelector onHandleCityChange={this.handleCityChange}/>
                 <h4>Tag</h4>
                 <TagSelector onHandleTagsChange={this.handleTagsChange}/>
+                <h4>Foto</h4>
+                <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
             </div>
             <div>
                 <h3 className="create__error">{this.props.error}</h3>

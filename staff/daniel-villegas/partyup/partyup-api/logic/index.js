@@ -126,7 +126,7 @@ const logic = {
         const user = await User.findByIdAndDelete(userId)
     },
 
-    createPartyup(title, description, date, city, place, tags, userId) {
+    createPartyup(title, description, date, city, place, tags, userId, chunk) {
         validateLogic([
             { key: 'title', value: title, type: String },
             { key: 'description', value: description, type: String },
@@ -134,7 +134,8 @@ const logic = {
             { key: 'city', value: city, type: String },
             { key: 'place', value: place, type: String },
             { key: 'tags', value: tags, type: String },
-            { key: 'userId', value: userId, type: String }
+            { key: 'userId', value: userId, type: String },
+            { key: 'chunk', value: chunk, type: String }
         ])
 
         return (async () => {
@@ -146,8 +147,20 @@ const logic = {
 
             const partyup = new Partyup({ title, description, date, city, place, tags, assistants, user: user.id })
 
+            const imageCloudinary = await logic._saveImage(chunk)
+
+            partyup.picture = imageCloudinary
+
             await partyup.save()
         })()
+    },
+
+    async addPartyupPicture(chunk) {
+        validateLogic([{ key: 'chunk', value: chunk, type: String }])
+
+        const picture = await logic._saveImage(chunk)
+        
+        return picture
     },
 
     async searchPartyupById(partyupId) {

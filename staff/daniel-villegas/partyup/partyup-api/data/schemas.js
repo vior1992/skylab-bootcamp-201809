@@ -33,6 +33,11 @@ const Partyup = new Schema ({
     assistants: {
         type: Array,
         required: true
+    },
+    picture: {
+        type: String,
+        required: false,
+        default: "./images/partyup.jpg"
     }
 })
 

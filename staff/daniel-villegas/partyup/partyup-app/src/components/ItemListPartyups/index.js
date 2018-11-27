@@ -1,11 +1,10 @@
 import React from 'react'
-import { Redirect } from 'react-router'
 import "./styles.css"
 import logic from '../../logic';
 
 function ItemListPartyups(props) {
     return <div href="#" onClick={() => !logic.loggedIn ? props.onPartyupClickNotLogged() : props.onPartyupClick(props.id, props.actuallUserId) } className="partyups__event" a>
-        <img className="partyups__picture"src="https://media-cdn.tripadvisor.com/media/photo-s/06/21/79/4c/tiffin-mama.jpg"/>
+        {props.picture ? <img className="partyups__picture" src={props.picture}></img> : <img className="partyups__picture" src="https://cps-static.rovicorp.com/3/JPG_500/MI0003/752/MI0003752888.jpg?partner=allrovi.com"></img>}
         <div className="partyups__info">
             <p className="info__date">{props.date}</p>
             <h4 className="info__title">{props.title}</h4>

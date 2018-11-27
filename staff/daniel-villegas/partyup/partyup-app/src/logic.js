@@ -88,7 +88,6 @@ const logic = {
     },
 
     addUserAvatar(base64Image){
-        debugger
         validateLogic([{ key: 'base64Image', value: base64Image, type: String }])
             
         return fetch(`${this.url}/users/${this._userId}/avatar`, {
@@ -140,14 +139,15 @@ const logic = {
         sessionStorage.removeItem('token')
     },
 
-    createPartyup(title, description, date, city, place, tags, userId) {
+    createPartyup(title, description, date, city, place, tags, base64Image) {
         validateLogic([
             { key: 'title', value: title, type: String },
             { key: 'description', value: description, type: String },
             { key: 'date', value: date, type: String },
             { key: 'city', value: city, type: String },
             { key: 'place', value: place, type: String },
-            { key: 'tags', value: tags, type: String }
+            { key: 'tags', value: tags, type: String },
+            { key: 'base64Image', value: base64Image, type: String }
         ])
 
         return fetch(`${this.url}/users/${this._userId}/partyups`, {
@@ -156,12 +156,32 @@ const logic = {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': `Bearer ${this._token}` 
             },
-            body: JSON.stringify({ title, description, date, city, place, tags, userId })
+            body: JSON.stringify({ title, description, date, city, place, tags, base64Image })
         })
             .then(res => res.json())
             .then(res => {
                 if (res.error) throw Error(res.error)
             })
+    },
+
+    addPartyupPicture(base64Image){
+        validateLogic([{ key: 'base64Image', value: base64Image, type: String }])
+        
+        return fetch(`${this.url}/partyups/picture`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${this._token}`,
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({ base64Image })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+
+                return res.picture
+            })
+
     },
 
     searchPartyups(city, tags) {

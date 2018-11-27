@@ -119,9 +119,9 @@ class App extends Component {
     }
   }
 
-  handleCreatePartyup = (title, description, date, city, place, tags) => {
+  handleCreatePartyup = (title, description, date, city, place, tags, picture) => {
     try {
-        logic.createPartyup(title, description, date, city, place, tags)
+        logic.createPartyup(title, description, date, city, place, tags, picture)
             .then(() => {
                 this.setState({ error: null }, () => this.props.history.push('/home'))
             })

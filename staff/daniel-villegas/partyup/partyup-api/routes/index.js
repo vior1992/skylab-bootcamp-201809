@@ -105,11 +105,9 @@ router.delete('/users/:userId', [bearerTokenParser, jwtVerifier], (req, res) => 
 
 router.post('/users/:userId/partyups', [bearerTokenParser, jwtVerifier, jsonBP], (req, res) => {
     routeHandler(() => {
-        const { title, description, date, city, place, tags } = req.body
+        const { params: { userId }, body: { title, description, date, city, place, tags, base64Image} } = req
 
-        const { params: { userId } } = req
-
-        return logic.createPartyup(title, description, date, city, place, tags, userId)
+        return logic.createPartyup(title, description, date, city, place, tags, userId, base64Image)
             .then(() => {
                 res.status(201)
 
@@ -118,6 +116,19 @@ router.post('/users/:userId/partyups', [bearerTokenParser, jwtVerifier, jsonBP],
                 })
             })
     },res)
+})
+
+router.patch('/partyups/picture', [bearerTokenParser, jwtVerifier, jsonBP], (req, res) => {
+    routeHandler(() => {
+        const { body: { base64Image }, params: { userId }} = req
+
+        return logic.addPartyupPicture(base64Image)
+            .then(picture => res.status(200).json({ status: 'OK', picture }))
+            .catch((err) => {
+                const { message } = err
+                res.status(err instanceof LogicError ? 400 : 500).json({ message })
+            })
+    },res)   
 })
 
 router.get('/users/:userId/partyups/search?', [bearerTokenParser, jwtVerifier], (req, res) => {

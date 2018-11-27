@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import logic from '../../logic';
+import logic from '../../logic'
 import ItemListPartyups from '../ItemListPartyups'
 import Footer from '../Footer'
 import HeaderLogged from '../HeaderLogged'
 import FileBase64 from "react-file-base64"
 import './styles.css'
-// import avatar from '../../Public/profile.png'
-
 
 class Profile extends Component {
     state = { 
