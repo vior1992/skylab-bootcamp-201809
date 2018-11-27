@@ -61,7 +61,6 @@ const User = new Schema ({
     avatar: {
         type: String,
         required: false,
-        default: '#'
     }
 })
 

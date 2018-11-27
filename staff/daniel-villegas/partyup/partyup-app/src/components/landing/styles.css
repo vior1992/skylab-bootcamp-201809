@@ -6,7 +6,7 @@
 
 .login__link, .logup__link, .logout__link, .create__link, .profile__link { color: #d20096; font-size: 0.8rem; margin-left: 10px; text-transform: uppercase; }
 
-.main__gifsection { background: url(../../Public/landing.gif) no-repeat center center; background-size: cover; position: relative; height: 300px; }
+.main__gifsection { background: url(../../../public/images/landing.gif) no-repeat center center; background-size: cover; position: relative; height: 300px; }
 
 .main__register { position: absolute; text-align: center; top: 10%; bottom: 0; right: 0; left: 0; color: white; }
 

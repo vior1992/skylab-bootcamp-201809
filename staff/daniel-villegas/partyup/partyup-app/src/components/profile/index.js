@@ -5,6 +5,8 @@ import Footer from '../Footer'
 import HeaderLogged from '../HeaderLogged'
 import FileBase64 from "react-file-base64"
 import './styles.css'
+// import avatar from '../../Public/profile.png'
+
 
 class Profile extends Component {
     state = { 
@@ -77,7 +79,7 @@ class Profile extends Component {
                     </div>
                     <div>
                         <div>
-                            {this.state.avatar ? <img className="profile__avatar" src={this.state.avatar}></img> : <img className="" src="../public/profile.png"></img>}
+                            {this.state.avatar ? <img className="profile__avatar" src={this.state.avatar}></img> : <img className="profile__avatar" src="./images/profile.png"></img>}
                         </div>
                         <div className="container-input">
                             <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
