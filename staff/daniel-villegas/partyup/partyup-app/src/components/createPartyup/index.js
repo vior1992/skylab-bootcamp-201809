@@ -94,9 +94,16 @@ class CreatePartyup extends Component {
     } 
 
     render() {
+            let now = new Date(),
+            year = now.getFullYear(),
+            month = now.getMonth()+1,
+            day = ("0" + (now.getDay()+25)).slice(-2),
+            minDate = `${year}-${month}-${day}`,
+            maxDate = `${year+1}-${month}-${day}`
+
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
-
+    
             <div className="create__container">
                 <form className="create__formulary" action="">
                     <h4>¿Como se llamara tu PartyUp?</h4>
@@ -106,7 +113,7 @@ class CreatePartyup extends Component {
                     <h4>Punto de encuentro</h4>
                     <input className="create__input" placeholder="Un bar, una plaza, una calle..." type="text" maxlength="25" onChange={this.handlePlaceChange}/>
                     <h4>Dia del Partyup</h4>
-                    <input type="date" type="date" name="partyup" m min="2018-12-06" max="2020-01-01" defaultValue="2018-12-06" onChange={this.handleDateChange}></input>
+                    <input type="date" type="date" name="partyup" min={minDate} max={maxDate} defaultValue={minDate} onChange={this.handleDateChange}></input>
                 </form>
             </div>
             <div className="create__selects">

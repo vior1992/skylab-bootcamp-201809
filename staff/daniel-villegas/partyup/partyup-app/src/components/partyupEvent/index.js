@@ -15,7 +15,9 @@ class PartyupEvent extends Component {
         description: '', 
         assistants: [], 
         usesersAssistants: [],
-        actuallUserId: ''
+        actuallUserId: '',
+        comment: [],
+        commentaries: []
     }
 
     componentDidMount() {
@@ -50,6 +52,12 @@ class PartyupEvent extends Component {
                     })
                 })
             })    
+            .then(() => {
+                logic.retrieveComments(partyupId)
+                    .then(commentaries => {
+                        this.setState({ commentaries })     
+                    })
+            })
     }
     
     handleYes(partyupId) {
@@ -130,8 +138,30 @@ class PartyupEvent extends Component {
         }
     }
 
-    handlePublicProfileClick(userId) {
-        alert(userId)
+    handleCommentChange = event => {
+        event.preventDefault()
+
+        const comment = event.target.value
+
+        this.setState({ comment })
+    }
+
+    handleSubmit(partyupId, userId) {
+        const { comment } = this.state
+
+        try{
+            logic.commentPartyup(partyupId, userId, comment)
+                .then(() => {
+                    logic.retrieveComments(partyupId)
+                        .then(commentaries => {
+                            this.setState({ commentaries })     
+                        })
+                })
+                .catch(err => this.setState({ error: err.message }))
+
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
     }
 
     render() {
@@ -165,6 +195,16 @@ class PartyupEvent extends Component {
                     <ul className="partyup__assistant--list">
                         {this.state.usesersAssistants.map(assistant => <li> <img className="partyup__assistant--avatar" src={assistant[0]} onClick={() => this.props.onPublicProfileClick(assistant[2])}></img> <h3>{assistant[1]}</h3></li>)}
                     </ul>
+                </div>
+                <div>
+                    <h2>Comentarios</h2>
+                    <ul className="partyup__assistant--list">
+                        {this.state.commentaries.map(comment => <li className="">{comment.text}</li>  )}
+                    </ul>
+                    <form>
+                        <textarea type="text" maxlength="100" onChange={this.handleCommentChange}/>
+                        <button onClick={() => this.handleSubmit(this.props.partyupId, this.props.actuallUserId)}>Enviar</button>
+                    </form>
                 </div>
             </main>
 

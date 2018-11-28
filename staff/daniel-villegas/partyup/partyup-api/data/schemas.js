@@ -69,7 +69,26 @@ const User = new Schema ({
     }
 })
 
+const Commentary = new Schema ({
+    userId: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
+    partyupId: {
+        type: ObjectId,
+        ref: 'Partyup',
+        required: true
+
+    },
+    text: {
+        type: String,
+        required: true
+    }
+})
+
 module.exports = {
     Partyup,
-    User
+    User,
+    Commentary
 }

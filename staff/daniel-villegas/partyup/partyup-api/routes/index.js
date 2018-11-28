@@ -82,7 +82,7 @@ router.patch('/users/:userId/avatar', [bearerTokenParser, jwtVerifier, jsonBP], 
         return logic.addUserAvatar(userId, base64Image)
             .then(avatar => {
                 res.status(200)
-                
+
                 res.json(avatar)
             })
             .catch((err) => {
@@ -244,6 +244,34 @@ router.delete('/users/:userId/partyups/:partyupId', [bearerTokenParser, jwtVerif
                 res.json({
                     message: `Partyup in ${partyupId} created for ${userId} has been deleted with success!`
                 })
+            })
+    },res)
+})
+
+router.post('/users/:userId/partyups/:partyupId/commentaries', [bearerTokenParser, jwtVerifier, jsonBP], (req, res) => {
+    routeHandler(() => {
+        const { params: { userId , partyupId }, body: { comments }} = req
+
+        return logic.commentPartyup(userId, partyupId, comments)
+            .then(() => {
+                res.status(201)
+
+                res.json({
+                    message: `Comment added for user ${userId} on partyup ${partyupId}!`
+                })
+            })
+    },res)
+})
+
+router.get('/partyups/:partyupId/comments', [bearerTokenParser, jwtVerifier], (req, res) => {
+    routeHandler(() => {
+        const { params: { partyupId }, sub } = req
+            
+        return logic.retrieveComments(partyupId)
+            .then(comments => {
+                res.status(200)
+
+                res.json(comments)
             })
     },res)
 })

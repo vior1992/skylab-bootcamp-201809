@@ -1,4 +1,4 @@
-const { User, Partyup } = require('../data')
+const { User, Partyup, Commentary } = require('../data')
 const validateLogic = require('../utilities/validate')
 const { AlreadyExistsError, AuthError, NotFoundError, ValueError } = require('../errors')
 const cloudinary = require('cloudinary')
@@ -285,6 +285,33 @@ const logic = {
         await Partyup.findByIdAndDelete(partyupId)
 
         const _partyup = await Partyup.findByIdAndDelete(partyupId)
+    },
+
+    async commentPartyup(userId, partyupId, text){
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'partyupId', value: partyupId, type: String },
+            { key: 'text', value: text, type: String }
+        ])
+
+        const commentary = await new Commentary({ userId, partyupId, text })
+
+        await commentary.save()
+    },
+
+    async retrieveComments(partyupId){
+        validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
+
+        const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).lean()
+
+        if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
+        
+        comments.forEach(comment => {
+            comment.id = comment._id.toString()
+            delete comment._id
+        })
+
+        return comments
     }
 }
 

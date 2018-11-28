@@ -318,7 +318,45 @@ const logic = {
                 
                 return res
             })
-    }
+    },
+
+    commentPartyup(partyupId, userId, comments) {
+        validateLogic([
+            { key: 'partyupId', value: partyupId, type: String },
+            { key: 'userId', value: userId, type: String },
+            { key: 'comments', value: comments, type: String }
+        ])
+
+        return fetch(`${this.url}/users/${userId}/partyups/${partyupId}/commentaries`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${this._token}` 
+            },
+            body: JSON.stringify({comments})
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+            })
+    },
+
+    retrieveComments(partyupId) {
+        return fetch(`${this.url}/partyups/${partyupId}/comments`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${this._token}` 
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (res.error) throw Error(res.error)
+
+            return res
+        })
+    },
+
+
 }
 //TEST
 //module.exports = logic
