@@ -115,7 +115,7 @@ class Home extends Component {
                 </div>
                 <div>
                     <ul>
-                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
                 <div className="partyups__titles">
@@ -123,7 +123,7 @@ class Home extends Component {
                 </div>
                 <div>
                     <ul>
-                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
             </section> 

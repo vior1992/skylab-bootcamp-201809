@@ -104,7 +104,7 @@ const logic = {
 
         user.avatar = imageCloudinary
 
-        await user.save()
+        return user.save()
     },
 
     async deleteUser(userId) {
@@ -198,7 +198,7 @@ const logic = {
 
         const partyups = await Partyup        
             .find(find, { password: 0, __v: 0 }).lean()
-            .sort({ 'date': -1 })
+            .sort({ 'date': +1 })
             .limit(perPage)
             .skip(perPage * (page - 1))
 
@@ -227,7 +227,7 @@ const logic = {
     async listPartyupsIAssist(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
-        const partyups = await Partyup.find({ assistants: userId }, { description: 0, place: 0, assistants: 0, tags: 0, "__v": 0}).lean()
+        const partyups = await Partyup.find({ assistants: userId }, { description: 0, tags: 0, "__v": 0}).lean()
 
         partyups.forEach(partyup => {
             partyup.id = partyup._id.toString()

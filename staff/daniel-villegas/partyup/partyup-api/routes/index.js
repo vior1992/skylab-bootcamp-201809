@@ -80,7 +80,11 @@ router.patch('/users/:userId/avatar', [bearerTokenParser, jwtVerifier, jsonBP], 
         const { body: { base64Image }, params: { userId }} = req
 
         return logic.addUserAvatar(userId, base64Image)
-            .then(avatar => res.status(200).json({ status: 'OK', avatar }))
+            .then(avatar => {
+                res.status(200)
+                
+                res.json(avatar)
+            })
             .catch((err) => {
                 const { message } = err
                 res.status(err instanceof LogicError ? 400 : 500).json({ message })

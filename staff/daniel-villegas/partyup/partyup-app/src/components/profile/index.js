@@ -61,8 +61,7 @@ class Profile extends Component {
                 this.setState({
                     avatar,
                     loading: true,
-                    //TODO refresh page when upload
-                })
+                })                
             })
             .catch(err => this.setState({ error: err.message }))
     }
@@ -93,13 +92,13 @@ class Profile extends Component {
                 <div className="partyups" >
                     <h2 className="partyups__titles">Eventos creados</h2> 
                     <ul>
-                        <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
                 <div className="partyups">
                     <h2 className="partyups__titles">Asistira a</h2>
                     <ul>
-                        <li className="partyups__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        <li className="partyups__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
             </main>
