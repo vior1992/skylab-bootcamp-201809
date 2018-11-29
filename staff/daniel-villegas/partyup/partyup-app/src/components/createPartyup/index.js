@@ -6,6 +6,7 @@ import Footer from '../Footer'
 import HeaderLogged from '../HeaderLogged'
 import FileBase64 from 'react-file-base64'
 import * as moment from 'moment'
+import ReactLoading from 'react-loading'
 import './styles.css'
 
 class CreatePartyup extends Component {
@@ -17,7 +18,8 @@ class CreatePartyup extends Component {
         place: "", 
         tags: "",
         picture: "",
-        loading: false
+        loading: false,
+        error: null
     }
 
     handleTitleChange = event => {
@@ -70,7 +72,7 @@ class CreatePartyup extends Component {
                     loading: false,
                 })
             })
-            .catch(err => this.setState({ error: err.message }))
+            .catch(err => this.setState({ error: err.message, loading: false}))
     }
 
     handleSubmit = async event => {
@@ -103,11 +105,11 @@ class CreatePartyup extends Component {
             <div className="create__container">
                 <form className="create__formulary" action="">
                     <h4>¿Como se llamara tu PartyUp?</h4>
-                    <input className="create__input" type="text" maxlength="22" onChange={this.handleTitleChange}/>
+                    <input className="create__input" type="text" maxlength="22" placeholder="Max. 22 caracteres" onChange={this.handleTitleChange}/>
                     <h4>Describelo un poco</h4>
-                    <textarea className="create__textarea" placeholder="Donde ireis, que esperas de los asistentes, si hay que llevar algo..." maxlength="288" onChange={this.handleDescriptionChange} cols="5" rows="5"></textarea>
+                    <textarea className="create__textarea" placeholder="Donde ireis, que esperas de los asistentes, si hay que llevar algo... Max. 288 caracteres" maxlength="288" onChange={this.handleDescriptionChange} cols="5" rows="5"></textarea>
                     <h4>Punto de encuentro</h4>
-                    <input className="create__input" placeholder="Un bar, una plaza, una calle..." type="text" maxlength="25" onChange={this.handlePlaceChange}/>
+                    <input className="create__input" placeholder="Un bar, una plaza, una calle... Max. 25 caracteres" type="text" maxlength="25" onChange={this.handlePlaceChange}/>
                     <h4>Dia del Partyup</h4>
                     <input type="date" type="date" name="partyup" min={now} onChange={this.handleDateChange}></input>
                 </form>
@@ -119,6 +121,7 @@ class CreatePartyup extends Component {
                 <TagSelector onHandleTagsChange={this.handleTagsChange}/>
                 <h4>Foto</h4>
                 <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
+                {this.state.loading ? <ReactLoading type="spin" color="#d20096" className="spinner"/> : ""} 
             </div>
             <div>
                 <h3 className="create__error">{this.props.error}</h3>

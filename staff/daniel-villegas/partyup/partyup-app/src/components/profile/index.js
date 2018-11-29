@@ -3,7 +3,9 @@ import logic from '../../logic'
 import ItemListPartyups from '../ItemListPartyups'
 import Footer from '../Footer'
 import HeaderLogged from '../HeaderLogged'
-import FileBase64 from "react-file-base64"
+import FileBase64 from 'react-file-base64'
+import ReactLoading from 'react-loading'
+
 import './styles.css'
 
 class Profile extends Component {
@@ -19,8 +21,7 @@ class Profile extends Component {
         loading: false
     }
 
-    componentDidMount() {
-        
+    componentDidMount() {        
         logic.retrieveLoggedUser()
             .then(user => {
                 const { name, surname, city, username, id, avatar } = user
@@ -50,7 +51,7 @@ class Profile extends Component {
 
     getFiles = files => {
         this.setState({
-            loading: false
+            loading: true
         })
         this.handleAvatarChange(files.base64)
     }
@@ -60,10 +61,10 @@ class Profile extends Component {
             .then(avatar => {
                 this.setState({
                     avatar,
-                    loading: true,
+                    loading: false,
                 })                
             })
-            .catch(err => this.setState({ error: err.message }))
+            .catch(err => this.setState({ error: err.message, loading: false }))
     }
     
     render() {
@@ -83,6 +84,7 @@ class Profile extends Component {
                         </div>
                         <div className="container-input">
                             <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
+                            {this.state.loading ? <ReactLoading type="spin" color="#d20096" className="spinner"/> : ""}          
                         </div>
                     </div>
                     <div>

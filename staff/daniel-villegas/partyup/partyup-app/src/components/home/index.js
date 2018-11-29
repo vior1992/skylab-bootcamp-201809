@@ -54,9 +54,14 @@ class Home extends Component {
             if(city && tags){
                 logic.searchPartyups(city, tags)
                     .then(partyups => {
+                        
+                        if (partyups) 
                         partyups.forEach(() => {
                             this.setState({ searchedPartyups: partyups })
                         })
+                        //TODO MESSAGE NO RESULT ON SEARCH
+                        // else
+                        //     this.setState({ searchedPartyups: [] })
                     })
                     .catch(err => this.setState({ error: err.message }))
 
@@ -115,6 +120,7 @@ class Home extends Component {
                 </div>
                 <div>
                     <ul>
+                        {/* TODO TERNARIO IF SEARCEDPARTYUPS LISTA IF NOT NOT RESULT MESSAGE */}
                         <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
