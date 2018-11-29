@@ -4,7 +4,8 @@ import CitySelector from '../citySelector'
 import TagSelector from '../tagSelector'
 import Footer from '../Footer'
 import HeaderLogged from '../HeaderLogged'
-import FileBase64 from "react-file-base64"
+import FileBase64 from 'react-file-base64'
+import * as moment from 'moment'
 import './styles.css'
 
 class CreatePartyup extends Component {
@@ -57,9 +58,8 @@ class CreatePartyup extends Component {
 
     getFiles = files => {
         this.setState({
-            loading: false
-        })
-        this.handlePictureChange(files.base64)
+            loading: true
+        }, () => this.handlePictureChange(files.base64))
     }
 
     handlePictureChange(base64Image){
@@ -67,7 +67,7 @@ class CreatePartyup extends Component {
             .then(picture => {
                 this.setState({
                     picture,
-                    loading: true,
+                    loading: false,
                 })
             })
             .catch(err => this.setState({ error: err.message }))
@@ -75,31 +75,27 @@ class CreatePartyup extends Component {
 
     handleSubmit = async event => {
         event.preventDefault()
-
-        if (!this.state.picture.trim().length && this.state.loading === false) {
+        
+        if (!this.state.picture.trim().length) {
 
             const picture = "https://cps-static.rovicorp.com/3/JPG_500/MI0003/752/MI0003752888.jpg?partner=allrovi.com"
             
             this.setState({ picture }, () => {
-                const { title, description, date, city, place, tags, picture } = this.state
-
-                this.props.onCreatePartyup(title, description, date, city, place, tags, picture)
-            })
-
-        } else if (this.state.loading === true) {
+                
             const { title, description, date, city, place, tags, picture } = this.state
 
-            this.props.onCreatePartyup(title, description, date, city, place, tags, picture)
+            this.props.onCreatePartyup(title, description, new Date(date), city, place, tags, picture)
+            })
+
+        } else if (!this.state.loading) {
+            const { title, description, date, city, place, tags, picture } = this.state
+
+            this.props.onCreatePartyup(title, description, new Date(date), city, place, tags, picture)
         }
     } 
 
     render() {
-            let now = new Date(),
-            year = now.getFullYear(),
-            month = now.getMonth()+1,
-            day = ("0" + (now.getDay()+25)).slice(-2),
-            minDate = `${year}-${month}-${day}`,
-            maxDate = `${year+1}-${month}-${day}`
+        let now = moment().format('YYYY-MM-DD');
 
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
@@ -113,7 +109,7 @@ class CreatePartyup extends Component {
                     <h4>Punto de encuentro</h4>
                     <input className="create__input" placeholder="Un bar, una plaza, una calle..." type="text" maxlength="25" onChange={this.handlePlaceChange}/>
                     <h4>Dia del Partyup</h4>
-                    <input type="date" type="date" name="partyup" min={minDate} max={maxDate} defaultValue={minDate} onChange={this.handleDateChange}></input>
+                    <input type="date" type="date" name="partyup" min={now} onChange={this.handleDateChange}></input>
                 </form>
             </div>
             <div className="create__selects">

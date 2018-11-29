@@ -2,6 +2,7 @@ const { User, Partyup, Commentary } = require('../data')
 const validateLogic = require('../utilities/validate')
 const { AlreadyExistsError, AuthError, NotFoundError, ValueError } = require('../errors')
 const cloudinary = require('cloudinary')
+var moment = require('moment');
 const fs = require('fs')
 const path = require('path')
 
@@ -110,6 +111,14 @@ const logic = {
     async deleteUser(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
+         //ELIMINAR COMENTARIOS DEL USUARIO
+         const comments = await Commentary.find({ userId: userId })
+         if (comments) {
+             comments.map(async() => {
+                 await Commentary.findOneAndDelete({ userId: userId })
+             })
+         }
+
         //ELIMINA TODAS LAS PARTYUPS DEL USUARIO
         const userPartyups = await Partyup.find({ user: userId })
 
@@ -141,12 +150,17 @@ const logic = {
             { key: 'userId', value: userId, type: String },
             { key: 'chunk', value: chunk, type: String }
         ])
-
+        
+        const formateDate = moment(date).format('YYYY-MM-DD')
+        const formateNowDate = moment().format('YYYY-MM-DD')
+        
+        if (!(formateDate >= formateNowDate)) throw new ValueError(`Minimum date must be today`)
+        
         return (async () => {
             const user = await User.findById(userId)
 
             if (!user) throw new ValueError(`user not found`)
-
+            
             const assistants = userId
 
             const partyup = new Partyup({ title, description, date, city, place, tags, assistants, user: user.id })
@@ -278,6 +292,15 @@ const logic = {
             { key: 'partyupId', value: partyupId, type: String },
         ])
 
+        //ELIMINAR COMENTARIOS DE LA PARTYUP
+        const comments = await Commentary.find({ partyupId: partyupId })
+        if (comments) {
+            comments.map(async() => {
+                await Commentary.findOneAndDelete({ partyupId: partyupId })
+            })
+        }
+
+        //ELIMINAR PARTYUP
         const partyup = await Partyup.findById(partyupId)
 
         if (userId === partyup.user)

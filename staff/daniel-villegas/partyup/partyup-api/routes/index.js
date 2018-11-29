@@ -111,7 +111,7 @@ router.post('/users/:userId/partyups', [bearerTokenParser, jwtVerifier, jsonBP],
     routeHandler(() => {
         const { params: { userId }, body: { title, description, date, city, place, tags, base64Image} } = req
 
-        return logic.createPartyup(title, description, date, city, place, tags, userId, base64Image)
+        return logic.createPartyup(title, description, new Date(date), city, place, tags, userId, base64Image)
             .then(() => {
                 res.status(201)
 
