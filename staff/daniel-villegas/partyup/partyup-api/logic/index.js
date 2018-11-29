@@ -302,16 +302,33 @@ const logic = {
     async retrieveComments(partyupId){
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
-        const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).lean()
-
+        const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).populate("userId", {  password: 0, __v: 0 }).lean()
+       
         if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
         
         comments.forEach(comment => {
+            comment.userId.id = comment.userId._id
+            delete comment.userId._id
+
             comment.id = comment._id.toString()
             delete comment._id
         })
-
         return comments
+    },
+
+    async deleteComment(commentId, userId) {
+        validateLogic([
+            { key: 'commentId', value: commentId, type: String },
+            { key: 'userId', value: userId, type: String }
+        ])
+
+        const comment = await Commentary.findById(commentId)
+
+        if (userId == comment.userId) {
+            await Commentary.findByIdAndDelete(commentId)
+
+            const _comment = await Commentary.findByIdAndDelete(commentId)
+        }
     }
 }
 

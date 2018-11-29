@@ -356,7 +356,21 @@ const logic = {
         })
     },
 
-
+    
+    deleteComment(commentId, partyupId) {
+        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/commentaries/${commentId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${this._token}` 
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) throw Error(res.error)
+                
+                return res
+            })
+    },
 }
 //TEST
 //module.exports = logic

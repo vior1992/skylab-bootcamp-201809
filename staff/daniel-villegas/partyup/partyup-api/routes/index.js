@@ -276,4 +276,19 @@ router.get('/partyups/:partyupId/comments', [bearerTokenParser, jwtVerifier], (r
     },res)
 })
 
+router.delete('/users/:userId/partyups/:partyupId/commentaries/:commentId', [bearerTokenParser, jwtVerifier], (req, res) => {
+    routeHandler(() => {
+        const { params: { commentId, partyupId, userId }, sub } = req
+
+        return logic.deleteComment(commentId, userId)
+            .then(() => {
+                res.status(200)
+
+                res.json({
+                    message: `Comment ${commentId} on partyup ${partyupId} has been deleted with success!`
+                })
+            })
+    },res)
+})
+
 module.exports = router

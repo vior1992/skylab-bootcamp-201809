@@ -164,6 +164,22 @@ class PartyupEvent extends Component {
         }
     }
 
+    handleDeleteComment(commentId, partyupId){
+        try{
+            logic.deleteComment(commentId)
+                .then(() => {
+                    logic.retrieveComments(partyupId)
+                        .then(commentaries => {
+                            this.setState({ commentaries })     
+                        })
+                })
+                .catch(err => this.setState({ error: err.message }))
+
+        } catch (err) {
+            this.setState({ error: err.message })
+        }
+    }
+
     render() {
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
@@ -199,7 +215,7 @@ class PartyupEvent extends Component {
                 <div>
                     <h2>Comentarios</h2>
                     <ul className="partyup__assistant--list">
-                        {this.state.commentaries.map(comment => <li className="">{comment.text}</li>  )}
+                        {this.state.commentaries.map(comment => <li className=""><img className="partyup__assistant--avatar" src={comment.userId.avatar} onClick={() => this.props.onPublicProfileClick(comment.userId.id)}></img>{comment.text}<button onClick={() => this.handleDeleteComment(comment.id, comment.partyupId)}><i className="fas fa-trash-alt"></i></button></li>  )}
                     </ul>
                     <form>
                         <textarea type="text" maxlength="100" onChange={this.handleCommentChange}/>
