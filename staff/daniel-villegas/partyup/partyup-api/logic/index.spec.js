@@ -1,6 +1,5 @@
 const logic = require('.')
-const { User, Partyup } = require('../data')
-const mongoose = require('mongoose')
+const { mongoose, models: { User, Partyup, Commentary } } = require('data')
 const { expect } = require('chai')
 
 const MONGO_URL = 'mongodb://localhost:27017/kanban-test'

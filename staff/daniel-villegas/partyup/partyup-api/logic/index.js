@@ -1,4 +1,4 @@
-const { User, Partyup, Commentary } = require('../data')
+const { models: { User, Partyup, Commentary } } = require('data')
 const validateLogic = require('../utilities/validate')
 const { AlreadyExistsError, AuthError, NotFoundError, ValueError } = require('../errors')
 const cloudinary = require('cloudinary')
