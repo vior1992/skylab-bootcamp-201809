@@ -195,7 +195,7 @@ class PartyupEvent extends Component {
                 <div className="partyup__header">
                     <div className="partyup__header--info">
                         <div className="partyup__infoheader--date">
-                            <h4>Dia: {this.state.date}</h4>
+                            <h4>Dia: {this.state.date.slice(0,10)}</h4>
                             <h4>Ciudad: {this.state.city}</h4>
                             <h4>Lugar de encuentro: {this.state.place}</h4>
                         </div>

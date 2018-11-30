@@ -117,12 +117,16 @@ const logic = {
              })
          }
 
-        //ELIMINA TODAS LAS PARTYUPS DEL USUARIO
-        const userPartyups = await Partyup.find({ user: userId })
+         const userPartyups = await Partyup.find({ user: userId })
 
+        //ELIMINAR COMENTARIOS DE LA PARTYUP
         if (userPartyups)
-        userPartyups.map(async() => {
-           await Partyup.findOneAndDelete({ user: userId })
+        userPartyups.forEach(async(partyup) => {
+            const comments = await Commentary.find({ partyupId: partyup._id })
+
+            comments.forEach(async(comment) => {
+                await Commentary.findByIdAndDelete(comment._id)
+            })
         })
 
         // QUITA ASISTENCIA A LAS PARTYUPS
@@ -132,6 +136,12 @@ const logic = {
                     logic.notAssistToPartyup(userId, partyup.id)
                 })
             })
+
+        //ELIMINA TODAS LAS PARTYUPS DEL USUARIO
+        if (userPartyups)
+        userPartyups.map(async() => {
+            await Partyup.findOneAndDelete({ user: userId })
+        })
         
         //ELIMINA USUARIO
         const user = await User.findByIdAndDelete(userId)
