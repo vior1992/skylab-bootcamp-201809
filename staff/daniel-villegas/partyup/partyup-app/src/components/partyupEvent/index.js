@@ -61,6 +61,8 @@ class PartyupEvent extends Component {
     }
     
     handleYes(partyupId) {
+        if (this.state.actuallUserId !== this.state.user) 
+
         try {
             let assistants = []
             let i = 0
@@ -150,7 +152,7 @@ class PartyupEvent extends Component {
         const { comment } = this.state
 
         try{
-            logic.commentPartyup(partyupId, userId, comment)
+            logic.commentPartyup(partyupId, comment)
                 .then(() => {
                     logic.retrieveComments(partyupId)
                         .then(commentaries => {

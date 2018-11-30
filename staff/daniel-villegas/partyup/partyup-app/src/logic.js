@@ -320,14 +320,13 @@ const logic = {
             })
     },
 
-    commentPartyup(partyupId, userId, comments) {
+    commentPartyup(partyupId, comments) {
         validateLogic([
             { key: 'partyupId', value: partyupId, type: String },
-            { key: 'userId', value: userId, type: String },
             { key: 'comments', value: comments, type: String }
         ])
 
-        return fetch(`${this.url}/users/${userId}/partyups/${partyupId}/commentaries`, {
+        return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/commentaries`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',

@@ -19,6 +19,8 @@ class Home extends Component {
                 const actuallUserId = id
                 
                 this.setState({ actuallUserId })
+                
+                this.props.onUserLoggedId(id)
             })
 
         logic.listPartyups()

@@ -3,8 +3,6 @@ const validateLogic = require('../utilities/validate')
 const { AlreadyExistsError, AuthError, NotFoundError, ValueError } = require('../errors')
 const cloudinary = require('cloudinary')
 var moment = require('moment');
-const fs = require('fs')
-const path = require('path')
 
 cloudinary.config({
     cloud_name: 'vior1992',
@@ -326,12 +324,12 @@ const logic = {
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
         const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).populate("userId", {  password: 0, __v: 0 }).lean()
-       
+        
         if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
         
         comments.forEach(comment => {
             comment.userId.id = comment.userId._id
-            delete comment.userId._id
+            // delete comment.userId._id
 
             comment.id = comment._id.toString()
             delete comment._id
