@@ -1,7 +1,8 @@
 import React from 'react'
+import '../components/Home/styles.css'
 
 function CitySelector(props) {
-    return <select name="city" id="" onChange={props.onHandleCityChange}>
+    return <select className="city__selector" name="city" id="" onChange={props.onHandleCityChange}>
         <option disabled selected>Elige una ciudad</option>
         <option value="Barcelona">Barcelona</option>
         <option value="Madrid">Madrid</option>

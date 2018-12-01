@@ -106,15 +106,15 @@ class Home extends Component {
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
            
-            <section className="main__videosection">
-                <div className="main__register">
-                    <h2 className="register__title">¿Quieres fiesta?</h2>
-                    <p className="register__subtitle">Encuentrala con Partyup</p>
-                    <div>
+            <section className="main__gifsection">
+                <div className="main__titles">
+                    <h2 className="title__h2">¿Quieres fiesta?</h2>
+                    <h4 className="title__h4">Encuentrala con Partyup</h4>
+                    <div className="main__selectors">
                         <CitySelector onHandleCityChange={this.handleCityChange}/>
                         <TagSelector onHandleTagsChange={this.handleTagsChange}/>
-                        <button className="search__button" onClick={this.handleSubmit}>Buscar</button>
                     </div>
+                    <button className="search__button" onClick={this.handleSubmit}>Buscar</button>
                 </div>
             </section>
 

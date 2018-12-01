@@ -1,7 +1,9 @@
 import React from 'react'
+import '../components/Home/styles.css'
+
 
 function TagSelector(props) {
-    return <select name="tags" id="" onChange={props.onHandleTagsChange}>
+    return <select className="tags__selector" name="tags" id="" onChange={props.onHandleTagsChange}>
         <option disabled selected>Elige un tag</option>
         <option value="pop">Pop</option>
         <option value="jazz">Jazz</option>

@@ -55,12 +55,12 @@ class Register extends Component {
                     <p>¿Ya eres miembro? <a href="#" onClick={this.props.onLoginClick}>Iniciar sesión</a></p>
                 </div>
                 <div className="register__formulary">
-                    <div>
-                            <h4>Nombre</h4>
-                            <input className="register__input" type="text" maxlength="22" onChange={this.handleNameChange}/>
-                            <h4>Apellidos</h4>
-                            <input className="register__input" type="text" maxlength="22" onChange={this.handleSurnameChange}/>
-                            <h4>Ciudad</h4>
+                    <div className="formulary__container">
+                            <h3 className="formulary__titles" >Nombre</h3>
+                            <input className="formulary__input" type="text" maxlength="22" onChange={this.handleNameChange}/>
+                            <h3 className="formulary__titles" >Apellidos</h3>
+                            <input className="formulary__input" type="text" maxlength="22" onChange={this.handleSurnameChange}/>
+                            <h3 className="formulary__titles" >Ciudad</h3>
                             <select defaultValue="CHOOSE" name="city" id="" onChange={this.handleCityChange}>
                                 <option value="CHOOSE">Elige una ciudad</option>
                                 <option value="Barcelona">Barcelona</option>
@@ -69,10 +69,10 @@ class Register extends Component {
                                 <option value="Valencia">Valencia</option>
                                 <option value="Sevilla">Sevilla</option>
                             </select>
-                            <h4>Nombre de usuario</h4>
-                            <input className="register__input" type="text" maxlength="22" onChange={this.handleUsernameChange}/>
-                            <h4>Contraseña</h4>
-                            <input className="register__input" type="password" maxlength="22" onChange={this.handlePasswordChange}/>
+                            <h3 className="formulary__titles" >Nombre de usuario</h3>
+                            <input className="formulary__input" type="text" maxlength="22" onChange={this.handleUsernameChange}/>
+                            <h3 className="formulary__titles" >Contraseña</h3>
+                            <input className="formulary__input" type="password" maxlength="22" onChange={this.handlePasswordChange}/>
                     </div>
                 </div>
                 <h3 className="register__error">{this.props.error}</h3>
