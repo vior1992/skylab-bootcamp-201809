@@ -6,6 +6,22 @@ const logic = {
 
     url: 'NO-URL',
 
+     /**
+     * 
+     * @param {string} name -> The name of the user.
+     * @param {string} surname -> The surname of the user.
+     * @param {string} city -> The city of the user.
+     * @param {string} username -> The username of the user.
+     * @param {string} passowrd -> The passowrd of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     registerUser(name, surname, city, username, password) {
         validateLogic([
             { key: 'name', value: name, type: String },
@@ -28,6 +44,19 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} username -> The username of the user.
+     * @param {string} passowrd -> The passowrd of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     authenticateUser(username, password) {
         validateLogic([
             { key: 'username', value: username, type: String },
@@ -55,6 +84,18 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} id -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     retrieveLoggedUser() {
         return fetch(`${this.url}/users/${this._userId}`, {
             method: 'GET',
@@ -70,6 +111,18 @@ const logic = {
         })
     },
 
+    /**
+     * 
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     searchUserById(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
@@ -87,6 +140,18 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} base64Image -> The chunk of picture that has been upload to cloudinary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     addUserAvatar(base64Image){
         validateLogic([{ key: 'base64Image', value: base64Image, type: String }])
             
@@ -108,6 +173,18 @@ const logic = {
 
     },
 
+    /**
+     * 
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     deleteUser(){
         const  userId = this._userId
         
@@ -127,10 +204,18 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     get loggedIn() {
         return !!this._userId
     },
 
+    /**
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     logout() {
         this._userId = null
         this._token = null
@@ -139,6 +224,25 @@ const logic = {
         sessionStorage.removeItem('token')
     },
 
+    /**
+     * 
+     * @param {string} title -> The title of the partyup.
+     * @param {string} description -> The description of the partyup.
+     * @param {date} date -> The date of the partyup.
+     * @param {string} city -> The city of the partyup.
+     * @param {string} place -> The place of the partyup.
+     * @param {string} tags -> The tags of the partyup.
+     * @param {string} userId -> The userId of the partyup.
+     * @param {string} chunk -> The chunk of the partyup (Optional).
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     createPartyup(title, description, date, city, place, tags, base64Image) {
         validateLogic([
             { key: 'title', value: title, type: String },
@@ -164,6 +268,18 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} base64Image -> The base64Image of picture that has been upload to cloudinary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     addPartyupPicture(base64Image){
         validateLogic([{ key: 'base64Image', value: base64Image, type: String }])
         
@@ -184,6 +300,19 @@ const logic = {
 
     },
 
+    /**
+     * 
+     * @param {string} city -> The city of the partyup.
+     * @param {string} tags -> The partyupId of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     searchPartyups(city, tags) {
         validateLogic([
             { key: 'city', value: city, type: String, optional: true},
@@ -212,6 +341,9 @@ const logic = {
             })
     },
 
+    /**
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     listPartyups() {
         return fetch(`${this.url}/partyups`, {
             method: 'GET',
@@ -227,6 +359,18 @@ const logic = {
             })
     },
 
+    /**
+     * 
+     * @param {string} partyupId -> The partyupId of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     searchPartyupsById(partyupId) {
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
@@ -244,6 +388,18 @@ const logic = {
             })
     },
 
+    /**
+     *
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     assistToPartyup(partyupId) {
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/assistence`, {
             method: 'GET',
@@ -260,6 +416,18 @@ const logic = {
             })
     },
 
+     /**
+     *
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     notAssistToPartyup(partyupId) {
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/notAssistence`, {
             method: 'GET',
@@ -275,6 +443,18 @@ const logic = {
             })
     },
     
+     /**
+     *
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     itemListPartyupsCreatedBy(userId) {
         return fetch(`${this.url}/users/${userId}/partyups`, {
             method: 'GET',
@@ -290,6 +470,18 @@ const logic = {
             })
     },
 
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     itemListPartyupsIAssist(userId) {
         return fetch(`${this.url}/users/${userId}/partyups/assistence`, {
             method: 'GET',
@@ -305,6 +497,18 @@ const logic = {
             })
     },
 
+     /**
+     *
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     deletePartyup(partyupId) {
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}`, {
             method: 'DELETE',
@@ -320,6 +524,19 @@ const logic = {
             })
     },
 
+     /**
+     *
+     * @param {string} partyupId -> The id of the partyup.
+     * @param {string} text -> The text of the commentary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     commentPartyup(partyupId, comments) {
         validateLogic([
             { key: 'partyupId', value: partyupId, type: String },
@@ -340,6 +557,18 @@ const logic = {
             })
     },
 
+     /**
+     *
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     retrieveComments(partyupId) {
         return fetch(`${this.url}/partyups/${partyupId}/comments`, {
             method: 'GET',
@@ -355,7 +584,19 @@ const logic = {
         })
     },
 
-    
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} text -> The text of the commentary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     deleteComment(commentId, partyupId) {
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/commentaries/${commentId}`, {
             method: 'DELETE',

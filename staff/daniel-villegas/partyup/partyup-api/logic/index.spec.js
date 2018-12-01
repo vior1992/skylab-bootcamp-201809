@@ -218,6 +218,12 @@ describe('logic', () => {
             })
         })
 
+        //UPLOAD PICS
+
+
+        //DELETE USER
+    
+
     describe('partyups', () => {
         describe('create', () => {
             let user, title, description, date, city, tags
@@ -485,7 +491,7 @@ describe('logic', () => {
 
             })
 
-            it('should succeed on correct data', () => {
+            it('should succeed on correct data (Search partyup for partyupId', () => {
                 logic.searchPartyupById(partyup._id)
                     .then(partyup => {
                         return partyup.find()
@@ -501,7 +507,6 @@ describe('logic', () => {
                                 expect(_partyup.user).to.equal(partyup.user)
                             })
                     })
-                
             })
         })
 
@@ -521,7 +526,7 @@ describe('logic', () => {
 
             })
 
-            it('should succeed on correct data', () => {
+            it('should succeed on correct data(Partyup Ill assist)', () => {
                 logic.listPartyupsIAssist(user.id)
                     .then(partyup => {
                         return partyup.find()
@@ -553,7 +558,7 @@ describe('logic', () => {
 
             })
         
-            it('should succeed on correct data', () => {
+            it('should succeed on correct data (assist to partyup)', () => {
                 logic.assistToPartyup(user.id, partyup._id)
                     .then(partyup => {
                         return partyup.find()
@@ -585,7 +590,7 @@ describe('logic', () => {
                     })
             })
         
-            it('should succeed on correct data', () => {
+            it('should succeed on correct data (Not assist)', () => {
                 logic.notAssistToPartyup(user.id, partyup._id)
                     .then(partyup => {
                         return partyup.find()
@@ -598,7 +603,148 @@ describe('logic', () => {
                             })
                     })   
             })
-        })
+            
+            //ADD PARTYUP PICTURE
+
+            describe('Add picture to partyup', () => {
+                let user, partyup
+    
+                beforeEach(() => {
+    
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})    
+                    
+                    return user.save()
+                        .then(() => {
+                            Promise.all([ partyup.save() ])
+                        })
+                })
+            
+                it('should succeed on correct data (upload a picture)', () => {
+                    logic.addPartyupPicture(chunk)
+                        .then(picture => {
+                            return partyup.find()
+                                .then(_partyups => {
+                                    expect(_partyups).to.exist()
+                                    expect(_partyups.picture).to.equal(1)
+                                })
+                        })   
+                })
+            })
+            //DELETE PARTYUP
+            describe('Should delete partyup', () => {
+                let user, partyup
+    
+                beforeEach(() => {
+    
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})    
+                    
+                    return user.save()
+                        .then(() => {
+                            Promise.all([ partyup.save() ])
+                        })
+                })
+            
+                it('should succeed on correct data (delete)', () => {
+                    logic.deletePartyup(user._id, partyup._id)
+                        .then(() => {
+                            return partyup.find()
+                                .then(_partyups => {
+                                    expect(_partyups).to.be(undefined)
+                                    expect(_partyups).to.equal(0)
+                                })
+                        })   
+                })
+            })
+
+            //COMMENT
+            describe('Should create commentary', () => {
+                let user, partyup, text
+    
+                beforeEach(() => {
+    
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})    
+                    text = "Test text testing text" 
+
+                    return user.save()
+                        .then(() => {
+                            Promise.all([ partyup.save() ])
+                        })
+                })
+            
+                it('should succeed on correct data (create comment)', () => {
+                    logic.commentPartyup(user._id, partyup._id, text)
+                        .then(() => {
+                            return Commentary.findById({ partyupId: partyup._id })
+                                .then(comment => {
+                                    expect(comment).to.exist()
+                                    expect(comment.text).to.equal("Test text testing text")
+                                    expect(comment.partyupId).to.equal(partyup._id)
+                                    expect(comment.userId).to.equal(user._id)
+
+                                })
+                        })   
+                })
+            })
+
+            //RETRIEVE COMMENT
+            describe('Should retrieve commentary from partyup', () => {
+                let user, partyup, comment
+    
+                beforeEach(() => {
+    
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})    
+                    comment = new Commentary({ userId: user._id, partyupId: partyup._id, text: "Test text testing text" })
+
+                    return user.save()
+                        .then(() => {
+                            Promise.all([ partyup.save(), comment.save() ])
+                        })
+                })
+            
+                it('should succeed on correct data (create comment)', () => {
+                    logic.retrieveComments(partyup._id)
+                        .then(comment => {
+                            expect(comment).to.exist()
+                            expect(comment.text).to.equal("Test text testing text")
+                            expect(comment.partyupId).to.equal(partyup._id)
+                            expect(comment.userId).to.equal(user._id)
+                        })
+                    })   
+                })
+            })            
+            //DELETE COMMENTS
+            describe('Should delete commentary from partyup', () => {
+                let user, partyup, comment
+    
+                beforeEach(() => {
+    
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id})    
+                    comment = new Commentary({ userId: user._id, partyupId: partyup._id, text: "Test text testing text" })
+
+                    return user.save()
+                        .then(() => {
+                            Promise.all([ partyup.save(), comment.save() ])
+                        })
+                })
+            
+                it('should succeed on correct data (delete comment)', () => {
+                    logic.deleteComment(comment._id.toString(), user._id.toString())
+                        .then(res => {
+                            expect(res).to.be.undefined
+                        
+                        })
+                        .then(() => {
+                            const comments = Commentary.find()
+
+                            expect(comments.length).to.equal(0)
+                        })
+                })   
+            })
         })
     })
     })

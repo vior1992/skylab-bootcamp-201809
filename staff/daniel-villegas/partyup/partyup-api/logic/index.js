@@ -11,9 +11,14 @@ cloudinary.config({
 })
 
 const logic = {
+
      /**
      * 
      * @param {string} base64Image 
+     * 
+     * @throws {Error} On not string base64image.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     _saveImage(base64Image) {
         return Promise.resolve().then(() => {
@@ -29,6 +34,22 @@ const logic = {
         })
     },
 
+    /**
+     * 
+     * @param {string} name -> The name of the user.
+     * @param {string} surname -> The surname of the user.
+     * @param {string} city -> The city of the user.
+     * @param {string} username -> The username of the user.
+     * @param {string} passowrd -> The passowrd of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     registerUser(name, surname, city, username, password) {
         validateLogic([
             { key: 'name', value: name, type: String },
@@ -49,6 +70,19 @@ const logic = {
         })()
     },
 
+    /**
+     * 
+     * @param {string} username -> The username of the user.
+     * @param {string} passowrd -> The passowrd of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     authenticateUser(username, password) {
         validateLogic([
             { key: 'username', value: username, type: String },
@@ -64,6 +98,18 @@ const logic = {
         })()
     },
 
+    /**
+     * 
+     * @param {string} id -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     retrieveLoggedUser(id) {
         validateLogic([{ key: 'id', value: id, type: String }])
         return (async () => {
@@ -77,6 +123,18 @@ const logic = {
         })()
     },
 
+    /**
+     * 
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async searchUserById(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
@@ -89,6 +147,19 @@ const logic = {
         return user
     },
 
+    /**
+     * 
+     * @param {string} userId -> The id of the user.
+     * @param {string} chunk -> The chunk of picture that has been upload to cloudinary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async addUserAvatar(userId, chunk) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
@@ -106,6 +177,18 @@ const logic = {
         return user.save()
     },
 
+    /**
+     * 
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async deleteUser(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
@@ -147,6 +230,25 @@ const logic = {
         const user = await User.findByIdAndDelete(userId)
     },
 
+    /**
+     * 
+     * @param {string} title -> The title of the partyup.
+     * @param {string} description -> The description of the partyup.
+     * @param {date} date -> The date of the partyup.
+     * @param {string} city -> The city of the partyup.
+     * @param {string} place -> The place of the partyup.
+     * @param {string} tags -> The tags of the partyup.
+     * @param {string} userId -> The userId of the partyup.
+     * @param {string} chunk -> The chunk of the partyup (Optional).
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     createPartyup(title, description, date, city, place, tags, userId, chunk) {
         validateLogic([
             { key: 'title', value: title, type: String },
@@ -181,6 +283,18 @@ const logic = {
         })()
     },
 
+     /**
+     * 
+     * @param {string} chunk -> The chunk of picture that has been upload to cloudinary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async addPartyupPicture(chunk) {
         validateLogic([{ key: 'chunk', value: chunk, type: String }])
 
@@ -189,6 +303,18 @@ const logic = {
         return picture
     },
 
+     /**
+     * 
+     * @param {string} partyupId -> The partyupId of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async searchPartyupById(partyupId) {
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
@@ -201,6 +327,21 @@ const logic = {
         return partyup
     },
 
+    /**
+     * 
+     * @param {number} perPage -> The items per page that will be listed
+     * @param {number} page -> The pages that will be listed.
+     * @param {string} city -> The city of the partyup.
+     * @param {string} tags -> The partyupId of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async listPartyups(perPage, page, city, tags) {
         validateLogic([
             { key: 'perPage', value: perPage, type: Number },
@@ -233,6 +374,18 @@ const logic = {
         return partyups
     },
 
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async listPartyupsCreatedBy(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
@@ -246,6 +399,18 @@ const logic = {
         return partyups
     },
 
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async listPartyupsIAssist(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
@@ -259,6 +424,19 @@ const logic = {
         return partyups
     },
 
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async assistToPartyup(userId, partyupId) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
@@ -276,6 +454,19 @@ const logic = {
         return partyup.save()
     },
 
+     /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async notAssistToPartyup(userId, partyupId) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
@@ -294,6 +485,19 @@ const logic = {
         return partyup.save()
     },
 
+     /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async deletePartyup(userId, partyupId) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
@@ -318,6 +522,20 @@ const logic = {
         const _partyup = await Partyup.findByIdAndDelete(partyupId)
     },
 
+     /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} partyupId -> The id of the partyup.
+     * @param {string} text -> The text of the commentary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async commentPartyup(userId, partyupId, text){
         validateLogic([
             { key: 'userId', value: userId, type: String },
@@ -330,6 +548,18 @@ const logic = {
         await commentary.save()
     },
 
+    /**
+     *
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async retrieveComments(partyupId){
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
@@ -347,6 +577,19 @@ const logic = {
         return comments
     },
 
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} text -> The text of the commentary.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
     async deleteComment(commentId, userId) {
         validateLogic([
             { key: 'commentId', value: commentId, type: String },

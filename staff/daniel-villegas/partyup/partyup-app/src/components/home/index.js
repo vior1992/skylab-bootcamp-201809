@@ -11,7 +11,7 @@ import './styles.css'
 class Home extends Component {
     state = { error: null, allPartyups: [], searchedPartyups: [], city: "", tags: "", actuallUserId: ''}
 
-    componentDidMount() {
+    componentWillMount() {
         logic.retrieveLoggedUser()
             .then(user => {
                 const { id } = user
@@ -22,7 +22,9 @@ class Home extends Component {
                 
                 this.props.onUserLoggedId(id)
             })
+    }
 
+    componentDidMount() {
         logic.listPartyups()
             .then(partyups => {
                 partyups.forEach(() => {
