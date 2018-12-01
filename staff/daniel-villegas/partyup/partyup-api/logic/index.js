@@ -192,7 +192,7 @@ const logic = {
     async deleteUser(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
-         //ELIMINAR COMENTARIOS DEL USUARIO
+         //DELETE COMMENTARIES OF USER
          const comments = await Commentary.find({ userId: userId })
          if (comments) {
              comments.map(async() => {
@@ -202,7 +202,7 @@ const logic = {
 
          const userPartyups = await Partyup.find({ user: userId })
 
-        //ELIMINAR COMENTARIOS DE LA PARTYUP
+        //DELETE COMMENTARIES OF USER FROM PARTYUPS
         if (userPartyups)
         userPartyups.forEach(async(partyup) => {
             const comments = await Commentary.find({ partyupId: partyup._id })
@@ -212,7 +212,7 @@ const logic = {
             })
         })
 
-        // QUITA ASISTENCIA A LAS PARTYUPS
+        //DELETE ASSISTENCES OF USER FROM PARTYUPS
         logic.listPartyupsIAssist(userId)
             .then(partyups => {
                 partyups.forEach(partyup => {
@@ -220,13 +220,13 @@ const logic = {
                 })
             })
 
-        //ELIMINA TODAS LAS PARTYUPS DEL USUARIO
+        //DELETE ALL PARTYUPS OF USER
         if (userPartyups)
         userPartyups.map(async() => {
             await Partyup.findOneAndDelete({ user: userId })
         })
         
-        //ELIMINA USUARIO
+        //DELETE USER
         const user = await User.findByIdAndDelete(userId)
     },
 
@@ -370,7 +370,6 @@ const logic = {
             delete partyup._id
         })
         
-
         return partyups
     },
 
@@ -504,7 +503,7 @@ const logic = {
             { key: 'partyupId', value: partyupId, type: String },
         ])
 
-        //ELIMINAR COMENTARIOS DE LA PARTYUP
+        //DELETE COMMENTARIES FROM PARTYUP
         const comments = await Commentary.find({ partyupId: partyupId })
         if (comments) {
             comments.map(async() => {
@@ -512,7 +511,7 @@ const logic = {
             })
         }
 
-        //ELIMINAR PARTYUP
+        //DELETE PARTYUP
         const partyup = await Partyup.findById(partyupId)
 
         if (userId === partyup.user)
