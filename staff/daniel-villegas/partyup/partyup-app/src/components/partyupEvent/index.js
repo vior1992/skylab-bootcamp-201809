@@ -201,6 +201,8 @@ class PartyupEvent extends Component {
                         </div>
                         <h2>{this.state.title}</h2>
                         <h4>{this.state.username}</h4>
+                        <h2>Descripcion</h2>
+                        <p>{this.state.description}</p>
                     </div>
                     <div>
                         <h2>Asistir</h2>
@@ -211,23 +213,21 @@ class PartyupEvent extends Component {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h2>Descripcion</h2>
-                    <p>{this.state.description}</p>
+                <div className="partyup__assistants">
                     <h2>Asistentes</h2>
-                    <ul className="partyup__assistant--list">
-                        {this.state.usesersAssistants.map(assistant => <li> <img className="partyup__assistant--avatar" src={assistant[0]} onClick={() => this.props.onPublicProfileClick(assistant[2])}></img> <h3>{assistant[1]}</h3></li>)}
+                    <ul className="assistants__list">
+                        {this.state.usesersAssistants.map(assistant => <li className="assistant__info"> <img className="partyup__avatars" src={assistant[0]} onClick={() => this.props.onPublicProfileClick(assistant[2])}></img> <h3>{assistant[1]}</h3></li>)}
                     </ul>
                 </div>
-                <div>
+                <div className="partyup__commentaries">
                     <h2>Comentarios</h2>
-                    <ul className="partyup__assistant--list">
-                        {this.state.commentaries.map(comment => <li className=""><img className="partyup__assistant--avatar" src={comment.userId.avatar} onClick={() => this.props.onPublicProfileClick(comment.userId.id)}></img>{comment.text}<button onClick={() => this.handleDeleteComment(comment.id, comment.partyupId)}><i className="fas fa-trash-alt"></i></button></li>  )}
-                    </ul>
-                    <form>
-                        <textarea value={this.state.comment} type="text" placeholder="Max. 100 caracteres" maxlength="100" onChange={this.handleCommentChange}/>
-                        <button onClick={() => this.handleSubmit(this.props.partyupId, this.props.actuallUserId)}>Enviar</button>
+                    <form className="commentaries__formulary">
+                        <textarea className="formulary__text" value={this.state.comment} type="text" placeholder="Max. 100 caracteres" maxlength="100" onChange={this.handleCommentChange}/>
+                        <button className="formulary__button" onClick={() => this.handleSubmit(this.props.partyupId, this.props.actuallUserId)}>Enviar</button>
                     </form>
+                    <ul className="commentaries__list">
+                        {this.state.commentaries.map(comment => <li className="commentaries__info"><img className="partyup__avatars" src={comment.userId.avatar} onClick={() => this.props.onPublicProfileClick(comment.userId.id)}></img>{comment.text}<button className="commentaries__deleteButton" onClick={() => this.handleDeleteComment(comment.id, comment.partyupId)}>Borrar</button></li>  )}
+                    </ul>
                 </div>
             </main>
 

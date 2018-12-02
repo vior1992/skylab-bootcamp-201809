@@ -48,7 +48,7 @@ class Register extends Component {
         return <div>
         <HeaderNotLogged onLogoClick={this.props.onLogoClick} onLoginClick={this.props.onLoginClick} onRegisterClick={this.props.onRegisterClick}/>
 
-        <form>
+        <form className="register__background">
             <div className="register__container">
                 <div className="register__titles">
                     <h2>Registrarse</h2>
@@ -75,7 +75,9 @@ class Register extends Component {
                             <input className="formulary__input" type="password" maxlength="22" onChange={this.handlePasswordChange}/>
                     </div>
                 </div>
-                <h3 className="register__error">{this.props.error}</h3>
+                <div>
+                    {this.props.error ? <h3 className="register__error">{this.props.error}</h3> : "" }
+                </div>
                 <button className="register__button" onClick={this.handleSubmit}>Registrarse</button>
             </div>
         </form>

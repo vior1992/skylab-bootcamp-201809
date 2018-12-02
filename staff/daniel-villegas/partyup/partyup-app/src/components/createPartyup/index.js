@@ -124,9 +124,9 @@ class CreatePartyup extends Component {
                 {this.state.loading ? <ReactLoading type="spin" color="#d20096" className="spinner"/> : ""} 
             </div>
             <div>
-                <h3 className="create__error">{this.props.error}</h3>
-                <button className="create__button" onClick={this.handleSubmit}>Crear Partyup</button>
+                {this.props.error ? <h3 className="register__error">{this.props.error}</h3> : "" }
             </div>
+            <button className="create__button" onClick={this.handleSubmit}>Crear Partyup</button>
             <Footer/>
         </div>
     }
