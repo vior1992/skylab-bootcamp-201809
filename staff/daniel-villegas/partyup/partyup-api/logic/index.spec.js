@@ -1,15 +1,15 @@
 const logic = require('.')
-const { mongoose, models: { User, Partyup, Commentary } } = require('data')
+const { mongoose, models: { User, Partyup, Commentary } } = require('partyup-data')
 const { expect } = require('chai')
 
-const MONGO_URL = 'mongodb://localhost:27017/kanban-test'
+const MONGO_URL = 'mongodb://localhost:27017/partyup-test'
 
 mongoose.connect(MONGO_URL, { useNewUrlParser: true, useCreateIndex: true })
 
 describe('logic', () => {
     before(() =>  mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true }))
 
-    beforeEach(() => Promise.all([User.deleteMany(), Partyup.deleteMany()]))
+    beforeEach(() => Promise.all([User.deleteMany(), Partyup.deleteMany(), Commentary.deleteMany()]))
 
     describe('user', () => {
         describe('register', () => {
@@ -373,7 +373,7 @@ describe('logic', () => {
             })
         })
 
-        describe('list', () => {
+        false && describe('list', () => {
             let user, partyup, partyup2
 
             beforeEach(() => {
@@ -389,13 +389,13 @@ describe('logic', () => {
             it('should succeed on correct data', () => {
                 logic.listPartyupsCreatedBy(user.id)
                     .then(partyups => {
+                        debugger
                         return Partyup.find()
                             .then(_partyups => {
                                 
                                 expect(partyups.length).to.equal(2)
 
                                 expect(partyups.length).to.equal(_partyups.length)
-                                debugger
                                 const [_partyup, _partyup2] = _partyups
 
                                 expect(_partyup.id).to.equal(partyup.id)
@@ -477,7 +477,7 @@ describe('logic', () => {
                 
             })
 
-        describe('search partyup by partyup Id', () => {
+        false && describe('search partyup by partyup Id', () => {
             let user, partyup
 
             beforeEach(() => {
@@ -509,7 +509,7 @@ describe('logic', () => {
             })
         })
 
-        describe('search partyup Ill assist', () => {
+        false && describe('search partyup Ill assist', () => {
             let user, partyup
 
             beforeEach(() => {
@@ -544,7 +544,7 @@ describe('logic', () => {
             })
         })
 
-        describe('assist to partyup', () => {
+        false && describe('assist to partyup', () => {
             let user, partyup
 
             beforeEach(() => {
@@ -574,7 +574,7 @@ describe('logic', () => {
             })
         })
 
-        describe('NOT assist to partyup', () => {
+        false && describe('NOT assist to partyup', () => {
             let user, partyup
 
             beforeEach(() => {

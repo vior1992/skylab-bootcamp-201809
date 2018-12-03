@@ -22,7 +22,7 @@ const logic = {
      */
     _saveImage(base64Image) {
         return Promise.resolve().then(() => {
-            if (typeof base64Image !== 'string') throw new LogicError('base64Image is not a string')
+            if (typeof base64Image !== 'string') throw new TypeError('base64Image is not a string')
 
             return new Promise((resolve, reject) => {
                 return cloudinary.v2.uploader.upload(base64Image, function (err, data) {
@@ -239,7 +239,7 @@ const logic = {
      * @param {string} place -> The place of the partyup.
      * @param {string} tags -> The tags of the partyup.
      * @param {string} userId -> The userId of the partyup.
-     * @param {string} chunk -> The chunk of the partyup (Optional).
+     * @param {string} image -> The image of the partyup (Optional).
      * 
      * @throws {TypeError} On not string data.
      * @throws {Error} On empty or blank data.
@@ -249,7 +249,7 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
-    createPartyup(title, description, date, city, place, tags, userId, chunk) {
+    createPartyup(title, description, date, city, place, tags, userId, image) {
         validateLogic([
             { key: 'title', value: title, type: String },
             { key: 'description', value: description, type: String },
@@ -258,7 +258,7 @@ const logic = {
             { key: 'place', value: place, type: String },
             { key: 'tags', value: tags, type: String },
             { key: 'userId', value: userId, type: String },
-            { key: 'chunk', value: chunk, type: String }
+            { key: 'image', value: image, type: String, optional: true }
         ])
         
         const formateDate = moment(date).format('YYYY-MM-DD')
@@ -275,7 +275,7 @@ const logic = {
 
             const partyup = new Partyup({ title, description, date, city, place, tags, assistants, user: user.id })
 
-            const imageCloudinary = await logic._saveImage(chunk)
+            const imageCloudinary = await logic._saveImage(image)
 
             partyup.picture = imageCloudinary
 
