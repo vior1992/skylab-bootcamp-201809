@@ -285,7 +285,7 @@ const logic = {
 
      /**
      * 
-     * @param {string} chunk -> The chunk of picture that has been upload to cloudinary.
+     * @param {string} image -> The chunk of picture that has been upload to cloudinary.
      * 
      * @throws {TypeError} On not string data.
      * @throws {Error} On empty or blank data.
@@ -295,10 +295,10 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
-    async addPartyupPicture(chunk) {
-        validateLogic([{ key: 'chunk', value: chunk, type: String }])
+    async addPartyupPicture(image) {
+        validateLogic([{ key: 'image', value: image, type: String }])
 
-        const picture = await logic._saveImage(chunk)
+        const picture = await this._saveImage(image)
         
         return picture
     },
