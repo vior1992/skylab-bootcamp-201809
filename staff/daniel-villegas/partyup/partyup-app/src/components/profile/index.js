@@ -30,7 +30,8 @@ class Profile extends Component {
             .then(() => {
                 logic.itemListPartyupsCreatedBy(this.state.id)
                     .then(partyups => {
-                        partyups.forEach(() => {
+                        partyups.forEach(() => {   
+                            console.log(partyups)
                             this.setState({ createdPartyups: partyups })
                         })  
                     })   
@@ -71,28 +72,30 @@ class Profile extends Component {
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
 
-            <main>
+            <main className="profile">
                 <div className="profile__information">
-                    <div className="partyup__header--info">
-                        <h2>{this.state.username}</h2>
-                        <h4>{this.state.name} {this.state.surname}</h4>
-                        <h4>{this.state.city}</h4>
-                    </div>
-                    <div>
+                    <div className="information__picture">
                         <div>
                             {this.state.avatar ? <img className="profile__avatar" src={this.state.avatar}></img> : <img className="profile__avatar" src="./images/profile.png"></img>}
                         </div>
-                        <div className="container-input">
+                        <div className="picture__input">
                             <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
                             {this.state.loading ? <ReactLoading type="spin" color="#d20096" className="spinner"/> : ""}          
                         </div>
                     </div>
-                    <div>
-                        <button className="delete__button" onClick={() => { this.handleDelete(); this.props.onDeleteClick() }}>Eliminar perfil</button>
+                    <div className="information__text">
+                        <h2>{this.state.username}</h2>
+                        <h4>Nombre: {this.state.name} {this.state.surname}</h4>
+                        <h4>Ciudad: {this.state.city}</h4>
+                    </div>
+                    <div className="profile_delete">
+                        <button className="profile__delete--button" onClick={() => { this.handleDelete(); this.props.onDeleteClick() }}>Eliminar perfil</button>
                     </div>
                 </div>
                 <div className="partyups" >
+                    {!this.state.createdPartyups ? 
                     <h2 className="partyups__titles">Eventos creados</h2> 
+                    : "" }
                     <ul>
                         <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>

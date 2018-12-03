@@ -113,20 +113,27 @@ class CreatePartyup extends Component {
                     <h4>Dia del Partyup</h4>
                     <input type="date" type="date" name="partyup" min={now} onChange={this.handleDateChange}></input>
                 </form>
-            </div>
             <div className="create__selects">
-                <h4>Ciudad</h4>
-                <CitySelector onHandleCityChange={this.handleCityChange}/>
-                <h4>Tag</h4>
-                <TagSelector onHandleTagsChange={this.handleTagsChange}/>
-                <h4>Foto</h4>
-                <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
-                {this.state.loading ? <ReactLoading type="spin" color="#d20096" className="spinner"/> : ""} 
+                <div className="select__city">
+                    <h4>Ciudad</h4>
+                    <CitySelector onHandleCityChange={this.handleCityChange}/>
+                </div>
+                <div className="select__tags">
+                    <h4>Tag</h4>
+                    <TagSelector onHandleTagsChange={this.handleTagsChange}/>
+                </div>
             </div>
-            <div>
-                {this.props.error ? <h3 className="register__error">{this.props.error}</h3> : "" }
+                <div className="create__photo">
+                    <h4>Foto</h4>
+                    <FileBase64 className="input" multiple={false} onDone={this.getFiles} />
+                    {this.state.loading ? <ReactLoading type="spin" color="#d20096" className="spinner"/> : ""} 
+                </div>
+                <div>
+                    {this.props.error ? <h3 className="register__error">{this.props.error}</h3> : "" }
+                </div>
+                <button className="create__button" onClick={this.handleSubmit}>Crear Partyup</button>
             </div>
-            <button className="create__button" onClick={this.handleSubmit}>Crear Partyup</button>
+            
             <Footer/>
         </div>
     }

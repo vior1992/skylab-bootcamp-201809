@@ -105,29 +105,31 @@ class Home extends Component {
     render() {
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
-           
-            <section className="main__gifsection">
+            <section>
+                <div className="main__gifsection"/>
                 <div className="main__titles">
                     <h2 className="title__h2">¿Quieres fiesta?</h2>
                     <h4 className="title__h4">Encuentrala con Partyup</h4>
                     <div className="main__selectors">
                         <CitySelector onHandleCityChange={this.handleCityChange}/>
                         <TagSelector onHandleTagsChange={this.handleTagsChange}/>
+                        <button className="search__button" onClick={this.handleSubmit}>Buscar</button>
                     </div>
-                    <button className="search__button" onClick={this.handleSubmit}>Buscar</button>
                 </div>
             </section>
 
             <section className="partyups">
+                {this.state.searchedPartyups.length ? 
                 <div className="partyups__titles">
                     <h1>Resultados de la busqueda:</h1>
                 </div>
+                : ""}
                 <div>
                     <ul>
-                        {/* TODO TERNARIO IF SEARCEDPARTYUPS LISTA IF NOT NOT RESULT MESSAGE */}
                         <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
+                
                 <div className="partyups__titles">
                     <h1>Proximos Partyups</h1>
                 </div>

@@ -1,1 +1,1 @@
-.footer { margin-bottom: 50%; padding: 0%; background-color: #0D1313; color: #d20096; text-align: center; }
+.footer { display: flex; margin-top: 100%; padding: 0%; background-color: #0D1313; color: #d20096; font-size: 12px; text-align: center; }

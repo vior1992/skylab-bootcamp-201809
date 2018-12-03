@@ -342,7 +342,7 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
-    async listPartyups(perPage, page, city, tags) {
+    listPartyups(perPage, page, city, tags) {
         validateLogic([
             { key: 'perPage', value: perPage, type: Number },
             { key: 'page', value: page, type: Number },
@@ -352,173 +352,184 @@ const logic = {
 
         if(tags) validateLogic([{ key: 'tags', value: tags, type: String }])
 
-        let find = {
-            
-        }
-
-        if(city) find.city = city
-        if(tags) find.tags = tags
-
-        const partyups = await Partyup        
-            .find(find, { password: 0, __v: 0 }).lean()
-            .sort({ 'date': +1 })
-            .limit(perPage)
-            .skip(perPage * (page - 1))
-
-        partyups.forEach(partyup => {
-            partyup.id = partyup._id.toString()
-            delete partyup._id
-        })
-        
-        return partyups
-    },
-
-    /**
-     *
-     * @param {string} userId -> The id of the user.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
-    async listPartyupsCreatedBy(userId) {
-        validateLogic([{ key: 'userId', value: userId, type: String }])
-      
-        const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, "__v": 0}).lean()
-
-        partyups.forEach(partyup => {
-            partyup.id = partyup._id.toString() 
-            delete partyup._id
-        })
-
-        return partyups
-    },
-
-    /**
-     *
-     * @param {string} userId -> The id of the user.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
-    async listPartyupsIAssist(userId) {
-        validateLogic([{ key: 'userId', value: userId, type: String }])
-      
-        const partyups = await Partyup.find({ assistants: userId }, { description: 0, tags: 0, "__v": 0}).lean()
-
-        partyups.forEach(partyup => {
-            partyup.id = partyup._id.toString()
-            delete partyup._id
-        })
-
-        return partyups
-    },
-
-    /**
-     *
-     * @param {string} userId -> The id of the user.
-     * @param {string} partyupId -> The id of the partyup.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
-    async assistToPartyup(userId, partyupId) {
-        validateLogic([
-            { key: 'userId', value: userId, type: String },
-            { key: 'partyupId', value: partyupId, type: String },
-        ])
-        
-        const partyup = await Partyup.findById(partyupId)
-
-        const userAssist = partyup.assistants.find(user => user === userId)  
-
-        if (typeof userAssist === 'string') throw new ValueError('User is on assistance list') 
-
-        partyup.assistants.push(userId)
-
-        return partyup.save()
-    },
-
-     /**
-     *
-     * @param {string} userId -> The id of the user.
-     * @param {string} partyupId -> The id of the partyup.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
-    async notAssistToPartyup(userId, partyupId) {
-        validateLogic([
-            { key: 'userId', value: userId, type: String },
-            { key: 'partyupId', value: partyupId, type: String },
-        ])
-
-        const partyup = await Partyup.findById(partyupId)
-
-        const userNoAssist = partyup.assistants.filter(user => {
-            user === userId
-            return user !== userId
-        })
-
-        partyup.assistants = userNoAssist
-
-        return partyup.save()
-    },
-
-     /**
-     *
-     * @param {string} userId -> The id of the user.
-     * @param {string} partyupId -> The id of the partyup.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
-    async deletePartyup(userId, partyupId) {
-        validateLogic([
-            { key: 'userId', value: userId, type: String },
-            { key: 'partyupId', value: partyupId, type: String },
-        ])
-
-        //DELETE COMMENTARIES FROM PARTYUP
-        const comments = await Commentary.find({ partyupId: partyupId })
-        if (comments) {
-            comments.map(async() => {
-                await Commentary.findOneAndDelete({ partyupId: partyupId })
+        return (async () => {
+            let find = {
+                
+            }
+    
+            if(city) find.city = city
+            if(tags) find.tags = tags
+    
+            const partyups = await Partyup        
+                .find(find, { password: 0, __v: 0 }).lean()
+                .sort({ 'date': +1 })
+                .limit(perPage)
+                .skip(perPage * (page - 1))
+    
+            partyups.forEach(partyup => {
+                partyup.id = partyup._id.toString()
+                delete partyup._id
             })
-        }
+            
+            return partyups
+        })()
+    },
 
-        //DELETE PARTYUP
-        const partyup = await Partyup.findById(partyupId)
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
+    listPartyupsCreatedBy(userId) {
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+      
+        return (async () => {
+            const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, "__v": 0}).lean()
+    
+            partyups.forEach(partyup => {
+                partyup.id = partyup._id.toString() 
+                delete partyup._id
+            })
+    
+            return partyups
+        })()
+    },
 
-        if (userId === partyup.user)
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
+    listPartyupsIAssist(userId) {
+        validateLogic([{ key: 'userId', value: userId, type: String }])
+      
+        return (async () => {
+            const partyups = await Partyup.find({ assistants: userId }, { description: 0, tags: 0, "__v": 0}).lean()
+    
+            partyups.forEach(partyup => {
+                partyup.id = partyup._id.toString()
+                delete partyup._id
+            })
+    
+            return partyups
+        })()
+    },
 
-        await Partyup.findByIdAndDelete(partyupId)
+    /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
+    assistToPartyup(userId, partyupId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+        
+        return (async () => {
+            const partyup = await Partyup.findById(partyupId)
 
-        const _partyup = await Partyup.findByIdAndDelete(partyupId)
+            const userAssist = partyup.assistants.find(user => user === userId)  
+
+            if (typeof userAssist === 'string') throw new ValueError('User is on assistance list') 
+
+            partyup.assistants.push(userId)
+
+            return partyup.save()
+        })()
+    },
+
+     /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
+    notAssistToPartyup(userId, partyupId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+    
+        return (async () => {
+            const partyup = await Partyup.findById(partyupId)
+
+            const userNoAssist = partyup.assistants.filter(user => {
+                user === userId
+                return user !== userId
+            })
+
+            partyup.assistants = userNoAssist
+
+            return partyup.save()
+        })()
+    },
+
+     /**
+     *
+     * @param {string} userId -> The id of the user.
+     * @param {string} partyupId -> The id of the partyup.
+     * 
+     * @throws {TypeError} On not string data.
+     * @throws {Error} On empty or blank data.
+     * @throws {TypeError} On not boolean data.
+     * @throws {TypeError} On not number data.
+     * @throws {TypeError} On not date data.
+     * 
+     * @returns {Promise} Resolves on correct data, rejects on wrong data.
+     */
+    deletePartyup(userId, partyupId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+        return (async () => {
+            //DELETE COMMENTARIES FROM PARTYUP
+            const comments = await Commentary.find({ partyupId: partyupId })
+            if (comments) {
+                comments.map(async() => {
+                    await Commentary.findOneAndDelete({ partyupId: partyupId })
+                })
+            }
+
+            //DELETE PARTYUP
+            const partyup = await Partyup.findById(partyupId)
+
+            if (userId === partyup.user)
+
+            await Partyup.findByIdAndDelete(partyupId)
+
+            const _partyup = await Partyup.findByIdAndDelete(partyupId)
+        })()
     },
 
      /**
@@ -535,16 +546,18 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
-    async commentPartyup(userId, partyupId, text){
+    commentPartyup(userId, partyupId, text){
         validateLogic([
             { key: 'userId', value: userId, type: String },
             { key: 'partyupId', value: partyupId, type: String },
             { key: 'text', value: text, type: String }
         ])
 
-        const commentary = await new Commentary({ userId, partyupId, text })
+        return (async () => {
+            const commentary = await new Commentary({ userId, partyupId, text })
 
-        await commentary.save()
+            await commentary.save()
+        })()
     },
 
     /**
@@ -559,21 +572,23 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
-    async retrieveComments(partyupId){
+    retrieveComments(partyupId){
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
-        const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).populate("userId", {  password: 0, __v: 0 }).lean()
+        return (async () => {
+            const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).populate("userId", {  password: 0, __v: 0 }).lean()
         
-        if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
-        
-        comments.forEach(comment => {
-            comment.userId.id = comment.userId._id
-            // delete comment.userId._id
+            if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
+            
+            comments.forEach(comment => {
+                comment.userId.id = comment.userId._id
+                // delete comment.userId._id
 
-            comment.id = comment._id.toString()
-            delete comment._id
-        })
-        return comments
+                comment.id = comment._id.toString()
+                delete comment._id
+            })
+            return comments
+        })()
     },
 
     /**
@@ -589,19 +604,21 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
-    async deleteComment(commentId, userId) {
+    deleteComment(commentId, userId) {
         validateLogic([
             { key: 'commentId', value: commentId, type: String },
             { key: 'userId', value: userId, type: String }
         ])
 
-        const comment = await Commentary.findById(commentId)
+        return (async () => {
+            const comment = await Commentary.findById(commentId)
 
-        if (userId == comment.userId) {
-            await Commentary.findByIdAndDelete(commentId)
+            if (userId == comment.userId) {
+                await Commentary.findByIdAndDelete(commentId)
 
-            const _comment = await Commentary.findByIdAndDelete(commentId)
-        }
+                const _comment = await Commentary.findByIdAndDelete(commentId)
+            }
+        })()
     }
 }
 

@@ -48,17 +48,15 @@ class PublicProfile extends Component {
         return <div>
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
 
-            <main>
-                <div className="profile__information">
-                    <div className="partyup__header--info">
-                        <h2>{this.state.username}</h2>
-                        <h4>{this.state.name} {this.state.surname}</h4>
-                        <h4>{this.state.city}</h4>
+            <main className="publicProfile">
+                <div className="publicProfile__information">
+                    <div className="information__picture">
+                        {this.state.avatar ? <img className="profile__avatar" src={this.state.avatar}></img> : <img className="profile__avatar" src="./images/profile.png"></img>}
                     </div>
-                    <div>
-                        <div>
-                            {this.state.avatar ? <img className="profile__avatar" src={this.state.avatar}></img> : <img className="profile__avatar" src="./images/profile.png"></img>}
-                        </div>
+                    <div className="information__text">
+                        <h2>{this.state.username}</h2>
+                        <h4>Nombre: {this.state.name} {this.state.surname}</h4>
+                        <h4>Ciudad: {this.state.city}</h4>
                     </div>
                 </div>
                 <div className="partyups" >

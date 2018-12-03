@@ -48,39 +48,39 @@ class Register extends Component {
         return <div>
         <HeaderNotLogged onLogoClick={this.props.onLogoClick} onLoginClick={this.props.onLoginClick} onRegisterClick={this.props.onRegisterClick}/>
 
-        <form className="register__background">
-            <div className="register__container">
-                <div className="register__titles">
-                    <h2>Registrarse</h2>
-                    <p>¿Ya eres miembro? <a href="#" onClick={this.props.onLoginClick}>Iniciar sesión</a></p>
-                </div>
-                <div className="register__formulary">
-                    <div className="formulary__container">
-                            <h3 className="formulary__titles" >Nombre</h3>
-                            <input className="formulary__input" type="text" maxlength="22" onChange={this.handleNameChange}/>
-                            <h3 className="formulary__titles" >Apellidos</h3>
-                            <input className="formulary__input" type="text" maxlength="22" onChange={this.handleSurnameChange}/>
-                            <h3 className="formulary__titles" >Ciudad</h3>
-                            <select defaultValue="CHOOSE" name="city" id="" onChange={this.handleCityChange}>
-                                <option value="CHOOSE">Elige una ciudad</option>
-                                <option value="Barcelona">Barcelona</option>
-                                <option value="Madrid">Madrid</option>
-                                <option value="Bilbao">Bilbao</option>
-                                <option value="Valencia">Valencia</option>
-                                <option value="Sevilla">Sevilla</option>
-                            </select>
-                            <h3 className="formulary__titles" >Nombre de usuario</h3>
-                            <input className="formulary__input" type="text" maxlength="22" onChange={this.handleUsernameChange}/>
-                            <h3 className="formulary__titles" >Contraseña</h3>
-                            <input className="formulary__input" type="password" maxlength="22" onChange={this.handlePasswordChange}/>
-                    </div>
-                </div>
-                <div>
-                    {this.props.error ? <h3 className="register__error">{this.props.error}</h3> : "" }
-                </div>
-                <button className="register__button" onClick={this.handleSubmit}>Registrarse</button>
+        <div className="register__background"/>
+        <div className="register__container">
+            <div className="register__titles">
+                <h2>Registrarse</h2>
+                <p>¿Ya eres miembro? <a className="register__ancor" href="#" onClick={this.props.onLoginClick}>Iniciar sesión</a></p>
             </div>
-        </form>
+            <div className="register__formulary">
+                <form className="formulary__container">
+                        <h3 className="formulary__titles" >Nombre</h3>
+                        <input className="formulary__input" type="text" maxlength="22" onChange={this.handleNameChange}/>
+                        <h3 className="formulary__titles" >Apellidos</h3>
+                        <input className="formulary__input" type="text" maxlength="22" onChange={this.handleSurnameChange}/>
+                        <h3 className="formulary__titles" >Ciudad</h3>
+                        <select defaultValue="CHOOSE" name="city" id="" onChange={this.handleCityChange}>
+                            <option value="CHOOSE">Elige una ciudad</option>
+                            <option value="Barcelona">Barcelona</option>
+                            <option value="Madrid">Madrid</option>
+                            <option value="Bilbao">Bilbao</option>
+                            <option value="Valencia">Valencia</option>
+                            <option value="Sevilla">Sevilla</option>
+                        </select>
+                        <h3 className="formulary__titles" >Nombre de usuario</h3>
+                        <input className="formulary__input" type="text" maxlength="22" onChange={this.handleUsernameChange}/>
+                        <h3 className="formulary__titles" >Contraseña</h3>
+                        <input className="formulary__input" type="password" maxlength="22" onChange={this.handlePasswordChange}/>
+                </form>
+            </div>
+            <div>
+                {this.props.error ? <h3 className="register__error">{this.props.error}</h3> : "" }
+            </div>
+            <button className="register__button" onClick={this.handleSubmit}>Registrarse</button>
+        </div>
+        
         <Footer/>
     </div>
         

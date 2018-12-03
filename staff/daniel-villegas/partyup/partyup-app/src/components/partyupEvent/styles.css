@@ -1,3 +1,5 @@
+body { background-color: #f6f7f8 }
+
 .site__header { background: #0D1313; color: white; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
 .logo { text-decoration: none; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; padding: 10px; }
@@ -14,9 +16,11 @@
 
 .partyup__avatars { width: 50px; height: 50px; border: 2px solid black; border-radius: 50px; cursor: pointer;}
 
-.assistant__list, .commentaries__list { text-decoration: none; list-style-type: none; display: flex; flex-direction: column; }
+.assistant__list { text-decoration: none; list-style-type: none; display: flex; flex-direction: column; }
 
-.assistant__info {  display: flex; flex-direction: row; align-items: center }
+.commentaries__list { text-decoration: none; list-style-type: none; display: flex; flex-direction: column; }
+
+.assistant__info { margin: 5% 5% 5% 5%; padding: 5% 5% 5% 5%; font-size: 12px; display: flex; flex-direction: column; align-items: center; background-color: #ffffff; border: 1px solid black; border-radius: 10px;}
 
 .commentaries__formulary { display: flex; align-items: center; flex-direction: column; margin: 1% 1%;}
 
@@ -24,11 +28,10 @@
 
 .formulary__button { color: #018007; font-size: 28px; width: 300px; height: 50px ; padding: 1% 1% 1% 1%; border: 3px solid #018007; background-color: #4bf3538a; border-radius: 10px; }
 
-.commentaries__info { background-color: aliceblue; margin: 1% 1%; padding: 1% 1% 1% 1%; display: flex; flex-direction: row; align-items: center; border: 3px solid black; border-radius: 10px; justify-content: space-between}
+.commentaries__info { background-color: #ffffff; margin: 1% 1%; padding: 1% 1% 1% 1%; display: flex; flex-direction: row; align-items: center; border: 3px solid black; border-radius: 10px; justify-content: space-between}
 
 .commentaries__deleteButton { color: #800101; font-size: 16px; width: 50px; height: 50px; border-radius: 50px; border: 1px solid #800101; background-color: #f35555b6; src: "https://image.flaticon.com/icons/svg/58/58326.svg"; }
 
 @media (min-width: 740px) { .site__header { -ms-flex-wrap: wrap; flex-wrap: wrap; }
-  .partyup__event { width: 33%; float: left; }
-  .partyups__list { display: -webkit-flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -ms-flex-pack: distribute; justify-content: space-around; max-width: 900px; margin: 0 auto; }
-  .partyups__event { -webkit-box-ordinal-group: 0; -ms-flex-order: -1; order: -1; -webkit-box-flex: 3; -ms-flex: 3; flex: 3; margin-right: 10px; } }
+  .assistant__list { flex-direction: row; }
+}

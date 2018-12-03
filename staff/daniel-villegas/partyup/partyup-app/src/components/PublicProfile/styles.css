@@ -1,10 +1,10 @@
-.site__header { background: #0D1313; color: white; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.publicProfile { background-color: #f6f7f8a1 }
 
-.logo { text-decoration: none; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; padding: 10px; }
+.publicProfile__information { margin-top: 10% }
 
-.header__actions { margin-left: auto; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; margin-right: 10px; }
+.information__picture { display: flex; flex-direction: column; align-items: center; }
 
-.login__link, .logup__link, .logout__link, .create__link, .profile__link { color: #d20096; font-size: 0.8rem; margin-left: 10px; text-transform: uppercase; }
+.information__text { margin-bottom: 5%; display: flex; flex-direction: column; align-items: center; border-right: 2px solid black; }
 
 .partyup__header--info { display: -webkit-box; display: -ms-flexbox; display: flex; border-right: 2px solid black; }
 
