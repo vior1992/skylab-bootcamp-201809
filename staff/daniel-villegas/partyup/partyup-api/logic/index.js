@@ -275,9 +275,11 @@ const logic = {
 
             const partyup = new Partyup({ title, description, date, city, place, tags, assistants, user: user.id })
 
-            const imageCloudinary = await logic._saveImage(image)
-
-            partyup.picture = imageCloudinary
+            
+            if(image) {
+                const imageCloudinary = await logic._saveImage(image)
+                partyup.picture = imageCloudinary
+            }
 
             await partyup.save()
         })()
