@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const { mongoose } = require('data')
+const { mongoose } = require('partyup-data')
 const express = require('express')
 const cors = require('./utilities/cors')
 const package = require('./package.json')
