@@ -29,6 +29,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "partyup-data": "../partyup-data/"
+    "partyup-data": "file:../partyup-data"
   }
 }
