@@ -70,12 +70,12 @@ const User = new Schema ({
 })
 
 const Commentary = new Schema ({
-    userId: {
+    user: {
         type: ObjectId,
         ref: 'User',
         required: true
     },
-    partyupId: {
+    partyup: {
         type: ObjectId,
         ref: 'Partyup',
         required: true

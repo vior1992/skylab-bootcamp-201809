@@ -393,7 +393,7 @@ const logic = {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
         return (async () => {
-            const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, "__v": 0}).lean()
+            const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, '__v': 0}).lean()
     
             partyups.forEach(partyup => {
                 partyup.id = partyup._id.toString() 
@@ -420,7 +420,7 @@ const logic = {
         validateLogic([{ key: 'userId', value: userId, type: String }])
       
         return (async () => {
-            const partyups = await Partyup.find({ assistants: userId }, { description: 0, tags: 0, "__v": 0}).lean()
+            const partyups = await Partyup.find({ assistants: userId }, { description: 0, tags: 0, '__v': 0}).lean()
     
             partyups.forEach(partyup => {
                 partyup.id = partyup._id.toString()
@@ -578,16 +578,20 @@ const logic = {
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
         return (async () => {
-            const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).populate("userId", {  password: 0, __v: 0 }).lean()
+            const comments = await Commentary.find({ partyup: partyupId }, {  __v: 0 }).populate('user', {  password: 0, __v: 0 }).lean()
         
             if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
             
             comments.forEach(comment => {
-                comment.userId.id = comment.userId._id
-                // delete comment.userId._id
+                comment.user.id = comment.user._id.toString()
+                
+                delete comment.user._id
 
                 comment.id = comment._id.toString()
+
                 delete comment._id
+
+                comment.partyup = comment.partyup.toString()
             })
             return comments
         })()
