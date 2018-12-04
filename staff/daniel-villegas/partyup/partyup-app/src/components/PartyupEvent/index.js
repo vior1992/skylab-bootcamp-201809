@@ -21,12 +21,13 @@ class PartyupEvent extends Component {
     }
 
     componentDidMount() {
+       
         const partyupId = this.props.partyupId
 
         const actuallUserId = this.props.actuallUserId
 
         this.setState({ actuallUserId })
-        
+
         logic.searchPartyupsById(partyupId)
             .then(partyup => {
                 const { date, city, title, place, user, description, assistants} = partyup
@@ -57,7 +58,7 @@ class PartyupEvent extends Component {
                     .then(commentaries => {
                         this.setState({ commentaries })     
                     })
-            })
+            })            
     }
     
     handleYes(partyupId) {
@@ -192,24 +193,24 @@ class PartyupEvent extends Component {
             <HeaderLogged onLogoClick={this.props.onLogoClick} onCreatePartyupClick={this.props.onCreatePartyupClick} onProfileClick={this.props.onProfileClick} onLogoutClick={this.props.onLogoutClick} />
             
             <main>
-                <div className="partyup__header">
-                    <div className="partyup__header--info">
-                        <div className="partyup__infoheader--date">
-                            <h4>Dia: {this.state.date.slice(0,10)}</h4>
-                            <h4>Ciudad: {this.state.city}</h4>
-                            <h4>Lugar de encuentro: {this.state.place}</h4>
-                        </div>
+                <div className="partyup__information">
+                    <div className="information__text">
+                        <h4>Dia: {this.state.date.slice(0,10)}</h4>
+                        <h4>Ciudad: {this.state.city}</h4>
+                        <h4>Lugar de encuentro: {this.state.place}</h4>
                         <h2>{this.state.title}</h2>
                         <h4>{this.state.username}</h4>
                         <h2>Descripcion</h2>
                         <p>{this.state.description}</p>
                     </div>
-                    <div>
+                    <div className="information__buttons">
                         <h2>Asistir</h2>
-                        <div>
-                            <button onClick={() => this.handleYes(this.props.partyupId)}>Si</button>
-                            <button onClick={() => this.handleNo(this.props.partyupId)}>No</button>
-                            <button onClick={() => this.handleDelete(this.props.partyupId)}>Eliminar</button>
+                        <div className="buttons__container">
+                            <button className="buttons__assist" onClick={() => this.handleYes(this.props.partyupId)}>Si</button>
+                            <button className="buttons__notassist" onClick={() => this.handleNo(this.props.partyupId)}>No</button>
+                            {this.state.user == this.state.actuallUserId ? 
+                                <button className="buttons__delete" onClick={() => this.handleDelete(this.props.partyupId)}>Eliminar</button>
+                            : "" }
                         </div>
                     </div>
                 </div>

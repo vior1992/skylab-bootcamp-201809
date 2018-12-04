@@ -1,16 +1,18 @@
 body { background-color: #f6f7f8 }
 
-.site__header { background: #0D1313; color: white; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.partyup__information { display: flex; flex-direction: column; align-items: center; background-color: #ffffff; justify-content: space-around; border: 1px solid black; border-radius: 5px }
 
-.logo { text-decoration: none; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; padding: 10px; }
+.information__text { display: flex; flex-direction: column; }
 
-.header__actions { margin-left: auto; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; margin-right: 10px; }
+.information__buttons { display: flex; flex-direction: column; align-items: center; }
 
-.login__link, .logup__link, .logout__link, .create__link, .profile__link { color: #d20096; font-size: 0.8rem; margin-left: 10px; text-transform: uppercase; }
+.buttons__container { display: flex; margin: 2%; padding: 10%; background-color: #ffffff; justify-content: space-around; }
 
-.partyup__header--info { display: -webkit-box; display: -ms-flexbox; display: flex; border-right: 2px solid black; }
+.buttons__assist {  }
 
-.partyup__infoheader--date { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-line-pack: justify; align-content: space-between; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+.buttons__notassist {  }
+
+.buttons__delete {  }
 
 .partyup__assistants, .partyup__commentaries { display: flex; align-items: center; flex-direction: column; }
 
@@ -32,6 +34,7 @@ body { background-color: #f6f7f8 }
 
 .commentaries__deleteButton { color: #800101; font-size: 16px; width: 50px; height: 50px; border-radius: 50px; border: 1px solid #800101; background-color: #f35555b6; src: "https://image.flaticon.com/icons/svg/58/58326.svg"; }
 
-@media (min-width: 740px) { .site__header { -ms-flex-wrap: wrap; flex-wrap: wrap; }
+@media (min-width: 740px) { 
+  .partyup__information { flex-direction: row; }
   .assistant__list { flex-direction: row; }
 }

@@ -34,7 +34,7 @@ class App extends Component {
 
   handleUserLoggedId = (id) => {
     const userLoggedId = id
-    console.log(userLoggedId)
+
     this.setState({ userLoggedId })
   }
 

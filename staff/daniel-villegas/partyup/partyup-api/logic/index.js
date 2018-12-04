@@ -576,10 +576,10 @@ const logic = {
      */
     retrieveComments(partyupId){
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
-
+        
         return (async () => {
             const comments = await Commentary.find({ partyupId: partyupId }, {  __v: 0 }).populate("userId", {  password: 0, __v: 0 }).lean()
-        
+
             if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
             
             comments.forEach(comment => {

@@ -703,7 +703,7 @@ describe('logic', () => {
                 logic.retrieveComments(partyup.id)
                     .then(comment => {
                         debugger
-                        expect(comment[0].text).to.equal("Test text testing text")
+                        expect(comment[0].text).to.equal(comment.text)
                         expect(comment[0].partyupId.toString()).to.equal(partyup.id)
                         expect(comment[0].userId.toString()).to.equal(user.id)
                     })
