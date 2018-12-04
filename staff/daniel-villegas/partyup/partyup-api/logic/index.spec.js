@@ -661,21 +661,17 @@ describe('logic', () => {
                 partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
                 text = "Test text testing text"
 
-                return user.save()
-                    .then(() => {
-                        Promise.all([partyup.save()])
-
-                    })
+                return Promise.all([user.save(), partyup.save()])
             })
 
-            it('should succeed on correct data (create comment)', () => {
+            it('should create comment', () => {
                 logic.commentPartyup(user.id, partyup.id, text)
                     .then(() => {
                         return Commentary.find()
                             .then(comment => {
                                 expect(comment[0].text).to.equal("Test text testing text")
-                                expect(comment[0].partyupId.toString()).to.equal(partyup.id)
-                                expect(comment[0].userId.toString()).to.equal(user.id)
+                                expect(comment[0].partyup.toString()).to.equal(partyup.id)
+                                expect(comment[0].user.toString()).to.equal(user.id)
                             })
                     })
             })

@@ -556,7 +556,7 @@ const logic = {
         ])
 
         return (async () => {
-            const commentary = await new Commentary({ userId, partyupId, text })
+            const commentary = await new Commentary({ user: userId, partyup: partyupId, text })
 
             await commentary.save()
         })()
@@ -576,7 +576,7 @@ const logic = {
      */
     retrieveComments(partyupId){
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
-
+        
         return (async () => {
             const comments = await Commentary.find({ partyup: partyupId }, {  __v: 0 }).populate('user', {  password: 0, __v: 0 }).lean()
         
