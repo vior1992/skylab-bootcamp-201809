@@ -200,7 +200,7 @@ class PartyupEvent extends Component {
                         <h4>Ciudad: {this.state.city}</h4>
                         <h4>Lugar de encuentro: {this.state.place}</h4>
                         <h2>{this.state.title}</h2>
-                        <h4>{this.state.username}</h4>
+                        <h4>Anfitrion: {this.state.username}</h4>
                         <h2>Descripcion</h2>
                         <p>{this.state.description}</p>
                     </div>
