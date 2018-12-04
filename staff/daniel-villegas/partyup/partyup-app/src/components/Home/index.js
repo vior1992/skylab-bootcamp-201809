@@ -58,41 +58,53 @@ class Home extends Component {
             if(city && tags){
                 logic.searchPartyups(city, tags)
                     .then(partyups => {
-                        
-                        if (partyups) 
-                        partyups.forEach(() => {
-                            this.setState({ searchedPartyups: partyups })
-                        })
-                        //TODO MESSAGE NO RESULT ON SEARCH
-                        // else
-                        //     this.setState({ searchedPartyups: [] })
+                        if (partyups.length == 0) {
+                            this.setState({ searchedPartyups: '' })
+
+                        } else {
+                            partyups.forEach(() => {
+                                this.setState({ searchedPartyups: partyups })
+                            })
+                        }
                     })
                     .catch(err => this.setState({ error: err.message }))
 
             } else if(city && !tags){
                 logic.searchPartyups(city, undefined)
                     .then(partyups => {
-                        partyups.forEach(() => {
-                            this.setState({ searchedPartyups: partyups })
-                        })
+                        if (partyups.length == 0) {
+                            this.setState({ searchedPartyups: '' })
+                        } else {
+                            partyups.forEach(() => {
+                                this.setState({ searchedPartyups: partyups })
+                            })
+                        }
                     })
                     .catch(err => this.setState({ error: err.message }))
 
             } else if(!city && tags){
                 logic.searchPartyups(undefined, tags)
                     .then(partyups => {
-                        partyups.forEach(() => {
-                            this.setState({ searchedPartyups: partyups })
-                        })
+                        if (partyups.length == 0) {
+                            this.setState({ searchedPartyups: '' })
+                        } else {
+                            partyups.forEach(() => {
+                                this.setState({ searchedPartyups: partyups })
+                            })
+                        }
                     })
                     .catch(err => this.setState({ error: err.message }))
                     
             } else if(!city && !tags){
                 logic.searchPartyups(undefined, undefined)
                     .then(partyups => {
-                        partyups.forEach(() => {
-                            this.setState({ searchedPartyups: partyups })
-                        })
+                        if (partyups.length == 0) {
+                            this.setState({ searchedPartyups: '' })
+                        } else {
+                            partyups.forEach(() => {
+                                this.setState({ searchedPartyups: partyups })
+                            })
+                        }
                     })
                     .catch(err => this.setState({ error: err.message }))
             }
@@ -119,16 +131,19 @@ class Home extends Component {
             </section>
 
             <section className="partyups">
-                {this.state.searchedPartyups.length ? 
-                <div className="partyups__titles">
-                    <h1>Resultados de la busqueda:</h1>
+                {this.state.searchedPartyups.length ?
+                <div>
+                    <div className="partyups__titles">
+                        <h1>Resultados de la busqueda:</h1>
+                    </div>
+                    
+                    <div>
+                        <ul>
+                            <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
+                        </ul>
+                    </div>
                 </div>
                 : ""}
-                <div>
-                    <ul>
-                        <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
-                    </ul>
-                </div>
                 
                 <div className="partyups__titles">
                     <h1>Proximos Partyups</h1>
