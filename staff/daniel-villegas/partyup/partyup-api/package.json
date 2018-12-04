@@ -19,8 +19,9 @@
   },
   "scripts": {
     "test": "mocha logic",
-    "start": "nodemon index.js",
-    "debug": "node debug index.js",
+    "start": "node .",
+    "watch": "nodemon .",
+    "debug": "node debug .",
     "debug-test": "mocha debug logic/index.spec.js"
   },
   "author": "",

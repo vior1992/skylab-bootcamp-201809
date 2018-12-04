@@ -12,14 +12,14 @@ cloudinary.config({
 
 const logic = {
 
-     /**
-     * 
-     * @param {string} base64Image 
-     * 
-     * @throws {Error} On not string base64image.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
+    /**
+    * 
+    * @param {string} base64Image 
+    * 
+    * @throws {Error} On not string base64image.
+    * 
+    * @returns {Promise} Resolves on correct data, rejects on wrong data.
+    */
     _saveImage(base64Image) {
         return Promise.resolve().then(() => {
             if (typeof base64Image !== 'string') throw new TypeError('base64Image is not a string')
@@ -113,12 +113,12 @@ const logic = {
     retrieveLoggedUser(id) {
         validateLogic([{ key: 'id', value: id, type: String }])
         return (async () => {
-            const user = await User.findById(id, { '_id': 0, password: 0,  __v: 0 }).lean()
+            const user = await User.findById(id, { '_id': 0, password: 0, __v: 0 }).lean()
 
             if (!user) throw new NotFoundError(`user not found`)
 
             user.id = id
-           
+
             return user
         })()
     },
@@ -192,25 +192,25 @@ const logic = {
     async deleteUser(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
 
-         //DELETE COMMENTARIES OF USER
-         const comments = await Commentary.find({ userId: userId })
-         if (comments) {
-             comments.map(async() => {
-                 await Commentary.findOneAndDelete({ userId: userId })
-             })
-         }
+        //DELETE COMMENTARIES OF USER
+        const comments = await Commentary.find({ userId: userId })
+        if (comments) {
+            comments.map(async () => {
+                await Commentary.findOneAndDelete({ userId: userId })
+            })
+        }
 
-         const userPartyups = await Partyup.find({ user: userId })
+        const userPartyups = await Partyup.find({ user: userId })
 
         //DELETE COMMENTARIES OF USER FROM PARTYUPS
         if (userPartyups)
-        userPartyups.forEach(async(partyup) => {
-            const comments = await Commentary.find({ partyupId: partyup._id })
+            userPartyups.forEach(async (partyup) => {
+                const comments = await Commentary.find({ partyupId: partyup._id })
 
-            comments.forEach(async(comment) => {
-                await Commentary.findByIdAndDelete(comment._id)
+                comments.forEach(async (comment) => {
+                    await Commentary.findByIdAndDelete(comment._id)
+                })
             })
-        })
 
         //DELETE ASSISTENCES OF USER FROM PARTYUPS
         logic.listPartyupsIAssist(userId)
@@ -222,10 +222,10 @@ const logic = {
 
         //DELETE ALL PARTYUPS OF USER
         if (userPartyups)
-        userPartyups.map(async() => {
-            await Partyup.findOneAndDelete({ user: userId })
-        })
-        
+            userPartyups.map(async () => {
+                await Partyup.findOneAndDelete({ user: userId })
+            })
+
         //DELETE USER
         const user = await User.findByIdAndDelete(userId)
     },
@@ -260,23 +260,23 @@ const logic = {
             { key: 'userId', value: userId, type: String },
             { key: 'image', value: image, type: String, optional: true }
         ])
-        
+
         const formateDate = moment(date).format('YYYY-MM-DD')
         const formateNowDate = moment().format('YYYY-MM-DD')
-        
+
         if (!(formateDate >= formateNowDate)) throw new ValueError(`Minimum date must be today`)
-        
+
         return (async () => {
             const user = await User.findById(userId)
 
             if (!user) throw new ValueError(`user not found`)
-            
+
             const assistants = userId
 
             const partyup = new Partyup({ title, description, date, city, place, tags, assistants, user: user.id })
 
-            
-            if(image) {
+
+            if (image) {
                 const imageCloudinary = await logic._saveImage(image)
                 partyup.picture = imageCloudinary
             }
@@ -285,38 +285,38 @@ const logic = {
         })()
     },
 
-     /**
-     * 
-     * @param {string} image -> The chunk of picture that has been upload to cloudinary.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
+    /**
+    * 
+    * @param {string} image -> The chunk of picture that has been upload to cloudinary.
+    * 
+    * @throws {TypeError} On not string data.
+    * @throws {Error} On empty or blank data.
+    * @throws {TypeError} On not boolean data.
+    * @throws {TypeError} On not number data.
+    * @throws {TypeError} On not date data.
+    * 
+    * @returns {Promise} Resolves on correct data, rejects on wrong data.
+    */
     async addPartyupPicture(image) {
         validateLogic([{ key: 'image', value: image, type: String }])
 
         const picture = await this._saveImage(image)
-        
+
         return picture
     },
 
-     /**
-     * 
-     * @param {string} partyupId -> The partyupId of the partyup.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
+    /**
+    * 
+    * @param {string} partyupId -> The partyupId of the partyup.
+    * 
+    * @throws {TypeError} On not string data.
+    * @throws {Error} On empty or blank data.
+    * @throws {TypeError} On not boolean data.
+    * @throws {TypeError} On not number data.
+    * @throws {TypeError} On not date data.
+    * 
+    * @returns {Promise} Resolves on correct data, rejects on wrong data.
+    */
     async searchPartyupById(partyupId) {
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
 
@@ -350,29 +350,29 @@ const logic = {
             { key: 'page', value: page, type: Number },
         ])
 
-        if(city) validateLogic([{ key: 'city', value: city, type: String }])
+        if (city) validateLogic([{ key: 'city', value: city, type: String }])
 
-        if(tags) validateLogic([{ key: 'tags', value: tags, type: String }])
+        if (tags) validateLogic([{ key: 'tags', value: tags, type: String }])
 
         return (async () => {
             let find = {
-                
+
             }
-    
-            if(city) find.city = city
-            if(tags) find.tags = tags
-    
-            const partyups = await Partyup        
+
+            if (city) find.city = city
+            if (tags) find.tags = tags
+
+            const partyups = await Partyup
                 .find(find, { password: 0, __v: 0 }).lean()
                 .sort({ 'date': +1 })
                 .limit(perPage)
                 .skip(perPage * (page - 1))
-    
+
             partyups.forEach(partyup => {
                 partyup.id = partyup._id.toString()
                 delete partyup._id
             })
-            
+
             return partyups
         })()
     },
@@ -391,15 +391,15 @@ const logic = {
      */
     listPartyupsCreatedBy(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
-      
+
         return (async () => {
-            const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, '__v': 0}).lean()
-    
+            const partyups = await Partyup.find({ user: userId }, { description: 0, user: 0, tags: 0, '__v': 0 }).lean()
+
             partyups.forEach(partyup => {
-                partyup.id = partyup._id.toString() 
+                partyup.id = partyup._id.toString()
                 delete partyup._id
             })
-    
+
             return partyups
         })()
     },
@@ -418,15 +418,15 @@ const logic = {
      */
     listPartyupsIAssist(userId) {
         validateLogic([{ key: 'userId', value: userId, type: String }])
-      
+
         return (async () => {
-            const partyups = await Partyup.find({ assistants: userId }, { description: 0, tags: 0, '__v': 0}).lean()
-    
+            const partyups = await Partyup.find({ assistants: userId }, { description: 0, tags: 0, '__v': 0 }).lean()
+
             partyups.forEach(partyup => {
                 partyup.id = partyup._id.toString()
                 delete partyup._id
             })
-    
+
             return partyups
         })()
     },
@@ -449,13 +449,13 @@ const logic = {
             { key: 'userId', value: userId, type: String },
             { key: 'partyupId', value: partyupId, type: String },
         ])
-        
+
         return (async () => {
             const partyup = await Partyup.findById(partyupId)
 
-            const userAssist = partyup.assistants.find(user => user === userId)  
+            const userAssist = partyup.assistants.find(user => user === userId)
 
-            if (typeof userAssist === 'string') throw new ValueError('User is on assistance list') 
+            if (typeof userAssist === 'string') throw new ValueError('User is on assistance list')
 
             partyup.assistants.push(userId)
 
@@ -463,25 +463,25 @@ const logic = {
         })()
     },
 
-     /**
-     *
-     * @param {string} userId -> The id of the user.
-     * @param {string} partyupId -> The id of the partyup.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
+    /**
+    *
+    * @param {string} userId -> The id of the user.
+    * @param {string} partyupId -> The id of the partyup.
+    * 
+    * @throws {TypeError} On not string data.
+    * @throws {Error} On empty or blank data.
+    * @throws {TypeError} On not boolean data.
+    * @throws {TypeError} On not number data.
+    * @throws {TypeError} On not date data.
+    * 
+    * @returns {Promise} Resolves on correct data, rejects on wrong data.
+    */
     notAssistToPartyup(userId, partyupId) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
             { key: 'partyupId', value: partyupId, type: String },
         ])
-    
+
         return (async () => {
             const partyup = await Partyup.findById(partyupId)
 
@@ -496,19 +496,19 @@ const logic = {
         })()
     },
 
-     /**
-     *
-     * @param {string} userId -> The id of the user.
-     * @param {string} partyupId -> The id of the partyup.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
+    /**
+    *
+    * @param {string} userId -> The id of the user.
+    * @param {string} partyupId -> The id of the partyup.
+    * 
+    * @throws {TypeError} On not string data.
+    * @throws {Error} On empty or blank data.
+    * @throws {TypeError} On not boolean data.
+    * @throws {TypeError} On not number data.
+    * @throws {TypeError} On not date data.
+    * 
+    * @returns {Promise} Resolves on correct data, rejects on wrong data.
+    */
     deletePartyup(userId, partyupId) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
@@ -518,7 +518,7 @@ const logic = {
             //DELETE COMMENTARIES FROM PARTYUP
             const comments = await Commentary.find({ partyupId: partyupId })
             if (comments) {
-                comments.map(async() => {
+                comments.map(async () => {
                     await Commentary.findOneAndDelete({ partyupId: partyupId })
                 })
             }
@@ -528,27 +528,27 @@ const logic = {
 
             if (userId === partyup.user)
 
-            await Partyup.findByIdAndDelete(partyupId)
+                await Partyup.findByIdAndDelete(partyupId)
 
             const _partyup = await Partyup.findByIdAndDelete(partyupId)
         })()
     },
 
-     /**
-     *
-     * @param {string} userId -> The id of the user.
-     * @param {string} partyupId -> The id of the partyup.
-     * @param {string} text -> The text of the commentary.
-     * 
-     * @throws {TypeError} On not string data.
-     * @throws {Error} On empty or blank data.
-     * @throws {TypeError} On not boolean data.
-     * @throws {TypeError} On not number data.
-     * @throws {TypeError} On not date data.
-     * 
-     * @returns {Promise} Resolves on correct data, rejects on wrong data.
-     */
-    commentPartyup(userId, partyupId, text){
+    /**
+    *
+    * @param {string} userId -> The id of the user.
+    * @param {string} partyupId -> The id of the partyup.
+    * @param {string} text -> The text of the commentary.
+    * 
+    * @throws {TypeError} On not string data.
+    * @throws {Error} On empty or blank data.
+    * @throws {TypeError} On not boolean data.
+    * @throws {TypeError} On not number data.
+    * @throws {TypeError} On not date data.
+    * 
+    * @returns {Promise} Resolves on correct data, rejects on wrong data.
+    */
+    commentPartyup(userId, partyupId, text) {
         validateLogic([
             { key: 'userId', value: userId, type: String },
             { key: 'partyupId', value: partyupId, type: String },
@@ -557,7 +557,7 @@ const logic = {
 
         return (async () => {
             const commentary = await new Commentary({ user: userId, partyup: partyupId, text })
-    
+
             await commentary.save()
         })()
     },
@@ -574,26 +574,28 @@ const logic = {
      * 
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
-    retrieveComments(partyupId){
+    retrieveComments(partyupId) {
         validateLogic([{ key: 'partyupId', value: partyupId, type: String }])
-        
+
         return (async () => {
-            const comments = await Commentary.find({ partyup: partyupId }, {  __v: 0 }).populate('user', {  password: 0, __v: 0 }).lean()
-        
+            const comments = await Commentary.find({ partyup: partyupId }, { __v: 0 }).populate('user', { password: 0, __v: 0 }).lean()
+
+            debugger
+
             if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
 
             comments.forEach(comment => {
-                comment.user.id = comment.user._id.toString()
-                console.log('userID ' + comment.user.id)
-                // delete comment.user._id
+                debugger
+
+                if (comment.user._id) {
+                    comment.user.id = comment.user._id.toString()
+                    delete comment.user._id
+                }
 
                 comment.id = comment._id.toString()
-                console.log('commentID ' + comment.id)
+                delete comment._id
 
-                // delete comment._id
-
-                comment.partyup.id = comment.partyup._id.toString()
-                console.log('partyupID ' + comment.partyup.id)
+                comment.partyup = comment.partyup.toString()
             })
             return comments
         })()
@@ -613,12 +615,12 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     deleteComment(commentId, userId) {
-        
+
         validateLogic([
             { key: 'commentId', value: commentId, type: String },
             { key: 'userId', value: userId, type: String }
         ])
-        
+
         return (async () => {
             const comment = await Commentary.findById(commentId)
 
