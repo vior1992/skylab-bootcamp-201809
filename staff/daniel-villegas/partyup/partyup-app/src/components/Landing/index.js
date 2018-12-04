@@ -33,9 +33,9 @@ class Landing extends Component {
                 <div className="partyups__titles">
                     <h2>Proximos Partyups</h2>
                 </div>
-                <ul>
-                    <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} onPartyupClickNotLogged={this.props.onPartyupClickNotLogged}/>)} </li>
-                </ul>
+                <div className="partyups__container">
+                    <div className="container__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} onPartyupClickNotLogged={this.props.onPartyupClickNotLogged}/>)} </div>
+                </div>
             </section> 
             <Footer/>
         </div>

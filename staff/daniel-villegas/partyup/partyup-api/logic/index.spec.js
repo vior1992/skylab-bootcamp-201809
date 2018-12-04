@@ -367,18 +367,19 @@ describe('logic', () => {
             })
 
             describe('list', () => {
-                let user, partyup, partyup2
+                let user, partyup, partyup2, perPage, page
 
                 beforeEach(() => {
 
                     user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                     partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: "string" })
                     partyup2 = new Partyup({ title: "prueba2", description: 'prueba en el test2', date: new Date(), city: '02', place: 'skylab2', tags: "02", user: user.id, picture: "string" })
-
+                    perPage = 5
+                    page = 5
                     return Promise.all([user.save(), partyup.save(), partyup2.save()])
                 })
 
-                it('should list on correct data', () =>
+                it('should list on correct data (listPartyupsCreatedBy)', () =>
                     logic.listPartyupsCreatedBy(user.id)
                         .then(partyups => {
                             return Partyup.find()
@@ -388,42 +389,42 @@ describe('logic', () => {
                                     expect(partyups.length).to.equal(_partyups.length)
                                     const [_partyup, _partyup2] = _partyups
 
-                                    expect(_partyup.id).to.equal(partyup.id)
-                                    expect(_partyup.title).to.equal(partyup.title)
-                                    expect(_partyup.description).to.equal(partyup.description)
-                                    expect(_partyup.place).to.equal(partyup.place)
-                                    expect(_partyup.city).to.equal(partyup.city)
-                                    expect(_partyup.tags).to.equal(partyup.tags)
+                                    expect(partyup.id).to.equal(_partyup.id)
+                                    expect(partyup.title).to.equal(_partyup.title)
+                                    expect(partyup.description).to.equal(_partyup.description)
+                                    expect(partyup.place).to.equal(_partyup.place)
+                                    expect(partyup.city).to.equal(_partyup.city)
+                                    expect(partyup.tags).to.equal(_partyup.tags)
 
-                                    expect(_partyup2.id).to.equal(partyup2.id)
-                                    expect(_partyup2.title).to.equal(partyup2.title)
-                                    expect(_partyup2.description).to.equal(partyup2.description)
-                                    expect(_partyup2.place).to.equal(partyup2.place)
-                                    expect(_partyup2.city).to.equal(partyup2.city)
-                                    expect(_partyup2.tags).to.equal(partyup2.tags)
+                                    expect(partyup2.id).to.equal(_partyup2.id)
+                                    expect(partyup2.title).to.equal(_partyup2.title)
+                                    expect(partyup2.description).to.equal(_partyup2.description)
+                                    expect(partyup2.place).to.equal(_partyup2.place)
+                                    expect(partyup2.city).to.equal(_partyup2.city)
+                                    expect(partyup2.tags).to.equal(_partyup2.tags)
 
                                     const [__partyup, __partyup2] = partyups
 
-                                    expect(_partyup.id).to.equal(__partyup.id)
-                                    expect(_partyup.title).to.equal(__partyup.title)
-                                    expect(_partyup.description).to.equal(__partyup.description)
-                                    expect(_partyup.place).to.equal(__partyup.place)
-                                    expect(_partyup.city).to.equal(__partyup.city)
-                                    expect(_partyup.tags).to.equal(__partyup.tags)
+                                    expect(__partyup.id).to.equal(_partyup.id)
+                                    expect(__partyup.title).to.equal(_partyup.title)
+                                    expect(__partyup.description).to.be.undefined
+                                    expect(__partyup.place).to.equal(_partyup.place)
+                                    expect(__partyup.city).to.equal(_partyup.city)
+                                    expect(__partyup.tags).to.undefined
 
-                                    expect(_partyup2.id).to.equal(__partyup2.id)
-                                    expect(_partyup2.title).to.equal(__partyup2.title)
-                                    expect(_partyup2.description).to.equal(__partyup2.description)
-                                    expect(_partyup2.place).to.equal(__partyup2.place)
-                                    expect(_partyup2.city).to.equal(__partyup2.city)
-                                    expect(_partyup2.tags).to.equal(__partyup2.tags)
+                                    expect(__partyup2.id).to.equal(_partyup2.id)
+                                    expect(__partyup2.title).to.equal(_partyup2.title)
+                                    expect(__partyup2.description).to.undefined
+                                    expect(__partyup2.place).to.equal(_partyup2.place)
+                                    expect(__partyup2.city).to.equal(_partyup2.city)
+                                    expect(__partyup2.tags).to.undefined
                                 })
                         })
 
                 )
 
-                it('should succeed on correct data', () => {
-                    logic.listPartyups()
+                it('should list on correct data(listPartyups)', () => 
+                    logic.listPartyups(perPage, page)
                         .then(partyup => {
                             return partyup.find()
                                 .then(_partyups => {
@@ -465,7 +466,7 @@ describe('logic', () => {
                                 })
                         })
 
-                })
+                )
 
                 describe('search partyup by partyup Id', () => {
                     let user, partyup
@@ -499,7 +500,7 @@ describe('logic', () => {
                     })
                 })
 
-                false && describe('search partyup Ill assist', () => {
+                describe('search partyup Ill assist', () => {
                     let user, partyup
 
                     beforeEach(() => {
@@ -510,7 +511,7 @@ describe('logic', () => {
                         return user.save()
                             .then(() => {
                                 Promise.all([partyup.save()])
-                                logic.assistToPartyup(user.id, partyup._id)
+                                logic.assistToPartyup(user.id, partyup._id.toString())
                             })
 
                     })
@@ -534,7 +535,7 @@ describe('logic', () => {
                     })
                 })
 
-                false && describe('assist to partyup', () => {
+                describe('assist to partyup', () => {
                     let user, partyup
 
                     beforeEach(() => {
@@ -548,7 +549,7 @@ describe('logic', () => {
                     })
 
                     it('should succeed on correct data (assist to partyup)', () => {
-                        logic.assistToPartyup(user.id, partyup._id)
+                        logic.assistToPartyup(user.id, partyup._id.toString())
                             .then(partyup => {
                                 return partyup.find()
                                     .then(_partyups => {
@@ -564,23 +565,23 @@ describe('logic', () => {
                     })
                 })
 
-                false && describe('NOT assist to partyup', () => {
+                describe('NOT assist to partyup', () => {
                     let user, partyup
 
                     beforeEach(() => {
 
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                        partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                        partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2'})
 
                         return user.save()
                             .then(() => {
                                 Promise.all([partyup.save()])
-                                logic.assistToPartyup(user.id, partyup._id)
+                                logic.assistToPartyup(user.id, partyup._id.toString())
                             })
                     })
 
                     it('should succeed on correct data (Not assist)', () => {
-                        logic.notAssistToPartyup(user.id, partyup._id)
+                        logic.notAssistToPartyup(user.id, partyup._id.toString())
                             .then(partyup => {
                                 return partyup.find()
                                     .then(_partyups => {
@@ -596,13 +597,13 @@ describe('logic', () => {
                     //ADD PARTYUP PICTURE
 
                     describe('Add picture to partyup', () => {
-                        let user, partyup
+                        let user, partyup, chunk
 
                         beforeEach(() => {
 
                             user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                            partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-
+                            partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
+                            chunk = "2"
                             return user.save()
                                 .then(() => {
                                     Promise.all([partyup.save()])
@@ -627,7 +628,7 @@ describe('logic', () => {
                         beforeEach(() => {
 
                             user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                            partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                            partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
 
                             return user.save()
                                 .then(() => {
@@ -636,7 +637,7 @@ describe('logic', () => {
                         })
 
                         it('should succeed on correct data (delete)', () => {
-                            logic.deletePartyup(user._id, partyup._id)
+                            logic.deletePartyup(user._id.toString(), partyup._id.toString())
                                 .then(() => {
                                     return partyup.find()
                                         .then(_partyups => {
@@ -719,7 +720,7 @@ describe('logic', () => {
             })
 
             it('should succeed on correct data (delete comment)', () => {
-                logic.deleteComment(comment._id.toString(), user._id.toString())
+                logic.deleteComment(comment.id.toString(), user._id.toString())
                     .then(res => {
                         expect(res).to.be.undefined
 

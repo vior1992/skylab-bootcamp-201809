@@ -580,13 +580,9 @@ const logic = {
         return (async () => {
             const comments = await Commentary.find({ partyup: partyupId }, { __v: 0 }).populate('user', { password: 0, __v: 0 }).lean()
 
-            debugger
-
             if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
 
             comments.forEach(comment => {
-                debugger
-
                 if (comment.user._id) {
                     comment.user.id = comment.user._id.toString()
                     delete comment.user._id
@@ -623,7 +619,7 @@ const logic = {
 
         return (async () => {
             const comment = await Commentary.findById(commentId)
-
+            debugger
             if (userId == comment.user) {
                 await Commentary.findByIdAndDelete(comment.id)
 

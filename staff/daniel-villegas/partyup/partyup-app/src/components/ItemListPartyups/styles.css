@@ -8,7 +8,7 @@
 
 .info__description, .info__host { margin: 0; color: #999; font-size: 0.9em; }
 
-.partyups__event { overflow: hidden; margin-bottom: 20px; background-color: white; -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); border-radius: 4px; }
+.partyups__event { cursor: pointer; overflow: hidden; margin-bottom: 20px; background-color: white; -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); box-shadow: 0 3px 20px rgba(0, 0, 0, 0.14); border-radius: 4px; }
 
 
 @media (min-width: 740px) { 

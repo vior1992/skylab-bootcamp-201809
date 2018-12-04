@@ -136,11 +136,9 @@ class Home extends Component {
                     <div className="partyups__titles">
                         <h1>Resultados de la busqueda:</h1>
                     </div>
-                    
-                    <div>
-                        <ul>
-                            <li className="partyups__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
-                        </ul>
+                
+                    <div className="partyups__container">
+                        <div className="container__list"> {this.state.searchedPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </div>
                     </div>
                 </div>
                 : ""}
@@ -149,9 +147,9 @@ class Home extends Component {
                     <h1>Proximos Partyups</h1>
                 </div>
                 <div>
-                    <ul>
-                        <li className="partyups__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </li>
-                    </ul>
+                    <div className="partyups__container">
+                        <div className="container__list"> {this.state.allPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.actuallUserId} onPartyupClick={this.props.onPartyupClick}/>)} </div>
+                    </div>
                 </div>
             </section> 
             <Footer/>
