@@ -30,18 +30,25 @@ class Profile extends Component {
             .then(() => {
                 logic.itemListPartyupsCreatedBy(this.state.id)
                     .then(partyups => {
-                        partyups.forEach(() => {   
-                            console.log(partyups)
-                            this.setState({ createdPartyups: partyups })
-                        })  
+                        if (partyups.length == 0) {
+                            this.setState({ createdPartyups: '' })
+                        } else {
+                            partyups.forEach(() => {   
+                                this.setState({ createdPartyups: partyups })
+                            })  
+                        }
                     })   
             })
             .then(() => {
                 logic.itemListPartyupsIAssist(this.state.id)
                     .then(partyups => {
-                        partyups.forEach(() => {
-                            this.setState({ willAssistTo: partyups })
-                        })   
+                        if (partyups.length == 0) {
+                            this.setState({ willAssistTo: '' })
+                        } else {
+                            partyups.forEach(() => {
+                                this.setState({ willAssistTo: partyups })
+                            }) 
+                        }  
                     })
             })
     }
@@ -92,20 +99,22 @@ class Profile extends Component {
                         <button className="profile__delete--button" onClick={() => { this.handleDelete(); this.props.onDeleteClick() }}>Eliminar perfil</button>
                     </div>
                 </div>
+                {this.state.createdPartyups ? 
                 <div className="partyups" >
-                    {!this.state.createdPartyups ? 
                     <h2 className="partyups__titles">Eventos creados</h2> 
-                    : "" }
                     <ul>
                         <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
+                : "" }
+                {this.state.willAssistTo ? 
                 <div className="partyups">
                     <h2 className="partyups__titles">Asistira a</h2>
                     <ul>
                         <li className="partyups__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
                     </ul>
                 </div>
+                : '' }
             </main>
             
             <Footer/>

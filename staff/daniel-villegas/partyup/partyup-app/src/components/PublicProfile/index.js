@@ -29,17 +29,25 @@ class PublicProfile extends Component {
             .then(() => {
                 logic.itemListPartyupsCreatedBy(this.state.id)
                     .then(partyups => {
-                        partyups.forEach(() => {
-                            this.setState({ createdPartyups: partyups })
-                        })  
+                        if (partyups.length == 0) {
+                            this.setState({ createdPartyups: '' })
+                        } else {
+                            partyups.forEach(() => {
+                                this.setState({ createdPartyups: partyups })
+                            })  
+                        }
                     })   
             })
             .then(() => {
                 logic.itemListPartyupsIAssist(this.state.id)
                     .then(partyups => {
-                        partyups.forEach(() => {
-                            this.setState({ willAssistTo: partyups })
-                        })   
+                        if (partyups.length == 0) {
+                            this.setState({ searchedPartyups: '' })
+                        } else {
+                            partyups.forEach(() => {
+                                this.setState({ willAssistTo: partyups })
+                            }) 
+                        }  
                     })
             })
     }
