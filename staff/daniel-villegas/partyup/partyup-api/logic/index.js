@@ -557,7 +557,7 @@ const logic = {
 
         return (async () => {
             const commentary = await new Commentary({ user: userId, partyup: partyupId, text })
-
+    
             await commentary.save()
         })()
     },
@@ -581,17 +581,19 @@ const logic = {
             const comments = await Commentary.find({ partyup: partyupId }, {  __v: 0 }).populate('user', {  password: 0, __v: 0 }).lean()
         
             if (!comments) throw new NotFoundError(`partyup with id ${partyupId} not have comments`)
-            
+
             comments.forEach(comment => {
                 comment.user.id = comment.user._id.toString()
-                
-                delete comment.user._id
+                console.log('userID ' + comment.user.id)
+                // delete comment.user._id
 
                 comment.id = comment._id.toString()
+                console.log('commentID ' + comment.id)
 
-                delete comment._id
+                // delete comment._id
 
-                comment.partyup = comment.partyup.toString()
+                comment.partyup.id = comment.partyup._id.toString()
+                console.log('partyupID ' + comment.partyup.id)
             })
             return comments
         })()
@@ -611,18 +613,19 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     deleteComment(commentId, userId) {
+        
         validateLogic([
             { key: 'commentId', value: commentId, type: String },
             { key: 'userId', value: userId, type: String }
         ])
-
+        
         return (async () => {
             const comment = await Commentary.findById(commentId)
 
-            if (userId == comment.userId) {
-                await Commentary.findByIdAndDelete(commentId)
+            if (userId == comment.user) {
+                await Commentary.findByIdAndDelete(comment.id)
 
-                const _comment = await Commentary.findByIdAndDelete(commentId)
+                const _comment = await Commentary.findByIdAndDelete(comment.id)
             }
         })()
     }

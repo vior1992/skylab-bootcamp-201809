@@ -705,13 +705,13 @@ describe('logic', () => {
         })
 
         //DELETE COMMENTS
-        false && describe('Should delete commentary from partyup', () => {
+        describe('Should delete commentary from partyup', () => {
             let user, partyup, comment
 
             beforeEach(() => {
                 user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                 partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-                comment = new Commentary({ userId: user._id, partyupId: partyup._id, text: "Test text testing text" })
+                comment = new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
 
                 return user.save()
                     .then(() => {
