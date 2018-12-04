@@ -216,7 +216,7 @@ describe('logic', () => {
             })
         })
 
-        false && describe('partyups', () => {
+        describe('partyups', () => {
             describe('create', () => {
                 let user, title, description, date, city, tags
 
@@ -233,7 +233,7 @@ describe('logic', () => {
                     return user.save()
                 })
 
-                it('should succeed on correct data', async () => {
+                it('should create on correct data', async () => {
                     const res = await logic.createPartyup(title, description, date, city, place, tags, user.id)
 
                     expect(res).to.be.undefined
@@ -366,7 +366,7 @@ describe('logic', () => {
                 })
             })
 
-            false && describe('list', () => {
+            describe('list', () => {
                 let user, partyup, partyup2
 
                 beforeEach(() => {
@@ -375,11 +375,10 @@ describe('logic', () => {
                     partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: "string" })
                     partyup2 = new Partyup({ title: "prueba2", description: 'prueba en el test2', date: new Date(), city: '02', place: 'skylab2', tags: "02", user: user.id, picture: "string" })
 
-                    return user.save()
-                        .then(() => Promise.all([partyup.save(), partyup2.save()]))
+                    return Promise.all([user.save(), partyup.save(), partyup2.save()])
                 })
 
-                it('should succeed on correct data', () => {
+                it('should list on correct data', () =>
                     logic.listPartyupsCreatedBy(user.id)
                         .then(partyups => {
                             return Partyup.find()
@@ -421,7 +420,7 @@ describe('logic', () => {
                                 })
                         })
 
-                })
+                )
 
                 it('should succeed on correct data', () => {
                     logic.listPartyups()
