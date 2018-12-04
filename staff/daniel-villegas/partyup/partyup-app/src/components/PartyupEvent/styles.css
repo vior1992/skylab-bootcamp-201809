@@ -8,11 +8,11 @@ body { background-color: #f6f7f8 }
 
 .buttons__container { display: flex; margin: 2%; padding: 10%; background-color: #ffffff; justify-content: space-around; }
 
-.buttons__assist {  }
+.buttons__assist { color: #017880; font-size: 28px; width: 50px; height: 50px ; margin: 2%; padding: 2%; border: 3px solid #017880; background-color: #4bd1f38a; border-radius: 10px; }
 
-.buttons__notassist {  }
+.buttons__notassist, .buttons__delete { color: #800101; font-size: 28px; width: 50px; height: 50px ; margin: 2%; padding: 2%; border: 3px solid #800101; background-color: #f34b4b8a; border-radius: 10px; }
 
-.buttons__delete {  }
+.buttons__delete { color: #800101; font-size: 28px; text-align: center; width: 150px; height: 50px ; margin: 2%; padding: 2%; border: 3px solid #800101; background-color: #f34b4b8a; border-radius: 10px; }
 
 .partyup__assistants, .partyup__commentaries { display: flex; align-items: center; flex-direction: column; }
 

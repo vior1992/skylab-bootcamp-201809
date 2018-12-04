@@ -21,7 +21,7 @@ class Landing extends Component {
         return <div>
             <HeaderNotLogged onLogoClick={this.props.onLogoClick} onLoginClick={this.props.onLoginClick} onRegisterClick={this.props.onRegisterClick}/>
             <section>
-                <div className="main__gifsection">
+                <div className="main__giflanding">
                 <div className="main__titles">
                     <h2 className="title__h2">¿Quieres fiesta?</h2>
                     <h4 className="title__h4">Encuentrala con Partyup</h4>

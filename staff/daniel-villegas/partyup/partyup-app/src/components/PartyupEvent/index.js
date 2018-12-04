@@ -21,7 +21,6 @@ class PartyupEvent extends Component {
     }
 
     componentDidMount() {
-       
         const partyupId = this.props.partyupId
 
         const actuallUserId = this.props.actuallUserId
@@ -55,8 +54,10 @@ class PartyupEvent extends Component {
             })    
             .then(() => {
                 logic.retrieveComments(partyupId)
+                
                     .then(commentaries => {
-                        this.setState({ commentaries })     
+                        this.setState({ commentaries }) 
+                          
                     })
             })            
     }
@@ -157,7 +158,7 @@ class PartyupEvent extends Component {
                 .then(() => {
                     logic.retrieveComments(partyupId)
                         .then(commentaries => {
-                            this.setState({ commentaries })     
+                            this.setState({ commentaries })    
                         })
                 })
                 .then(() => {
@@ -203,16 +204,17 @@ class PartyupEvent extends Component {
                         <h2>Descripcion</h2>
                         <p>{this.state.description}</p>
                     </div>
+                    {this.state.user == this.state.actuallUserId ? 
+                        <button className="buttons__delete" onClick={() => this.handleDelete(this.props.partyupId)}>Eliminar</button> 
+                    :
                     <div className="information__buttons">
                         <h2>Asistir</h2>
                         <div className="buttons__container">
                             <button className="buttons__assist" onClick={() => this.handleYes(this.props.partyupId)}>Si</button>
                             <button className="buttons__notassist" onClick={() => this.handleNo(this.props.partyupId)}>No</button>
-                            {this.state.user == this.state.actuallUserId ? 
-                                <button className="buttons__delete" onClick={() => this.handleDelete(this.props.partyupId)}>Eliminar</button>
-                            : "" }
                         </div>
                     </div>
+                    }
                 </div>
                 <div className="partyup__assistants">
                     <h2>Asistentes</h2>
@@ -227,7 +229,7 @@ class PartyupEvent extends Component {
                         <button className="formulary__button" onClick={() => this.handleSubmit(this.props.partyupId, this.props.actuallUserId)}>Enviar</button>
                     </form>
                     <ul className="commentaries__list">
-                        {this.state.commentaries.map(comment => <li className="commentaries__info"><img className="partyup__avatars" src={comment.userId.avatar} onClick={() => this.props.onPublicProfileClick(comment.userId.id)}></img>{comment.text}<button className="commentaries__deleteButton" onClick={() => this.handleDeleteComment(comment.id, comment.partyupId)}>Borrar</button></li>  )}
+                        {this.state.commentaries.map(comment => <li className="commentaries__info"><img className="partyup__avatars" src={comment.userId.avatar} onClick={() => this.props.onPublicProfileClick(comment.user.id)}></img>{comment.text}<button className="commentaries__deleteButton" onClick={() => this.handleDeleteComment(comment.id, comment.partyup)}>Borrar</button></li>  )}
                     </ul>
                 </div>
             </main>

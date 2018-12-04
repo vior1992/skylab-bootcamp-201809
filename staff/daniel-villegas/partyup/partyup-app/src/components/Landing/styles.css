@@ -1,4 +1,4 @@
-.main__gifsection { background: url(../../Public/landing.gif) no-repeat center center; background-size: cover; position: inherit; height: 300px; }
+.main__giflanding { background: url(../../Public/landing.gif) no-repeat center center; background-size: cover; position: inherit; height: 300px; }
 
 .main__titles { padding: 10%; position: inherit; text-align: center; color: white; }
 
