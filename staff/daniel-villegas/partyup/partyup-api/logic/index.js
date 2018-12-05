@@ -484,7 +484,7 @@ const logic = {
 
         return (async () => {
             const partyup = await Partyup.findById(partyupId)
-            debugger
+            
             const userNoAssist = partyup.assistants.filter(user => {
                 user === userId
                 return user !== userId

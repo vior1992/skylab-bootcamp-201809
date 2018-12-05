@@ -483,7 +483,7 @@ describe('logic', () => {
 
                     })
 
-                    it('should succeed on correct data (Search partyup for partyupId', () => {
+                    it('should succeed on correct data (Search partyup for partyupId', () => 
                         logic.searchPartyupById(partyup.id)
                             .then(partyup => {
                                 return Partyup.find()
@@ -499,44 +499,41 @@ describe('logic', () => {
                                         expect(_partyup[2].user.toString()).to.equal(partyup.user.toString())
                                     })
                             })
-                    })
+                    )
                 })
 
-                false && describe('search partyup Ill assist', () => {
+                describe('search partyup Ill assist', () => {
                     let user, partyup
 
                     beforeEach(() => {
 
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                         partyup = new Partyup({ title: "Ill assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-
-                        return user.save()
-                            .then(() => {
-                                Promise.all([partyup.save()])
-                                logic.assistToPartyup(user.id, partyup.id)
-                            })
-
+                        
+                        return Promise.all([user.save(), partyup.save()])
                     })
 
-                    it('should succeed on correct data(Partyup Ill assist)', () => {
-                        logic.listPartyupsIAssist(user.id)
-                            .then(partyup => {
-                                debugger
-                                return Partyup.find()
+                    it('should succeed on correct data(Partyup Ill assist)', () => 
+                        logic.assistToPartyup(user.id, partyup.id)
+                            .then(() => 
+                                logic.listPartyupsIAssist(user.id)
                                     .then(_partyup => {
-                                        debugger
-                                        expect(_partyup).to.exist
-                                        expect(_partyup.length).to.equal(3)
-                                        debugger
-                                        expect(_partyup[2].title).to.equal(partyup.title)
-                                        expect(_partyup.description).to.equal(partyup.description)
-                                        expect(_partyup.city).to.equal(partyup.city)
-                                        expect(_partyup.place).to.equal(partyup.id)
-                                        expect(_partyup.tags).to.equal(partyup.id)
-                                        expect(_partyup.user).to.equal(partyup.user)
+                                        return Partyup.find()
+                                            .then(__partyup => {
+                                                expect(_partyup).to.exist
+                                                expect(_partyup.length).to.equal(1)
+                                                
+                                                expect(__partyup[2].title).to.equal(partyup.title)
+                                                expect(__partyup[2].description).to.equal(partyup.description)
+                                                expect(__partyup[2].city).to.equal(partyup.city)
+                                                expect(__partyup[2].place).to.equal(partyup.place)
+                                                expect(__partyup[2].tags).to.equal(partyup.tags)
+                                                expect(__partyup[2].user.toString()).to.equal(partyup.user.toString())
+                                            })
                                     })
-                            })
-                    })
+                            )
+                        
+                    )
                 })
 
                 describe('assist to partyup', () => {
@@ -552,19 +549,21 @@ describe('logic', () => {
 
                     })
 
-                    it('should succeed on correct data (assist to partyup)', () => {
+                    it('should succeed on correct data (assist to partyup)', () => 
                         logic.assistToPartyup(user.id, partyup.id)
                             .then(partyup => {
                                 expect(partyup.assistants.length).to.equal(1)
 
                                 const { assistants } = partyup
 
+                                expect(assistants.length).to.equal(1)
+
                                 expect(assistants[0]).to.equal(user.id)
                             })
-                    })
+                    )
                 })
 
-                false && describe('NOT assist to partyup', () => {
+                describe('NOT assist to partyup', () => {
                     let user, partyup
 
                     beforeEach(() => {
@@ -572,32 +571,33 @@ describe('logic', () => {
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                         partyup = new Partyup({ title: "not assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
 
-                        return user.save()
-                            .then(() => {
-                                Promise.all([partyup.save()])
-                            })
+                        return Promise.all([user.save(), partyup.save()]) 
                     })
 
-                    it('should succeed on correct data (Not assist)', () => {
-                        debugger
+                    it('should succeed on correct data (Not assist)', () => 
                         logic.assistToPartyup(user.id, partyup.id)
-                            .then(() => {
-                                debugger
-                                logic.notAssistToPartyup(user.id, partyup.id)
+                            .then(partyup => {
+                               
+                                expect(partyup.assistants.length).to.equal(1)
+
+                                const { assistants } = partyup
+
+                                expect(assistants.length).to.equal(1)
+
+                                expect(assistants[0]).to.equal(user.id)
+                                
+                                return logic.notAssistToPartyup(user.id, partyup.id)
                                     .then(partyup => {
-                                        debugger
                                         return Partyup.find()
                                             .then(_partyups => {
-                                                debugger
-                                                expect(partyup).to.exist()
-                                                expect(_partyups.length).to.equal(0)
+                                                expect(partyup).to.exist
+                                                expect(_partyups.length).to.equal(3)
 
-                                                expect(_partyups.assistants).to.equal(0)
-                                                expect(_partyups.assistants.length).to.equal(0)
+                                                expect(_partyups.assistants).to.be.undefined
                                             })
                                     })
                             })
-                    })
+                    )
                 })
                 //ADD PARTYUP PICTURE
 
@@ -609,13 +609,11 @@ describe('logic', () => {
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                         partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
                         chunk = "2"
-                        return user.save()
-                            .then(() => {
-                                Promise.all([partyup.save()])
-                            })
+
+                        return Promise.all([user.save(), partyup.save()]) 
                     })
 
-                    it('should succeed on correct data (upload a picture)', () => {
+                    it('should succeed on correct data (upload a picture)', () => 
                         logic.addPartyupPicture(chunk)
                             .then(picture => {
                                 return Partyup.find()
@@ -624,7 +622,7 @@ describe('logic', () => {
                                         expect(_partyups.picture).to.equal(1)
                                     })
                             })
-                    })
+                    )
                 })
 
             })
@@ -669,7 +667,7 @@ describe('logic', () => {
                 return Promise.all([user.save(), partyup.save()])
             })
 
-            it('should create comment', () => {
+            it('should create comment', () => 
                 logic.commentPartyup(user.id, partyup.id, text)
                     .then(() => {
                         return Commentary.find()
@@ -679,7 +677,7 @@ describe('logic', () => {
                                 expect(comment[0].user.toString()).to.equal(user.id)
                             })
                     })
-            })
+            )
         })
 
         //RETRIEVE COMMENT
@@ -710,35 +708,47 @@ describe('logic', () => {
         })
 
         //DELETE COMMENTS
-        false && describe('Should delete commentary from partyup', () => {
+        describe('Should delete commentary from partyup', () => {
             let user, partyup, comment
 
             beforeEach(() => {
                 user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                 partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
                 comment = new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
-
-                return user.save()
-                    .then(() => {
-                        Promise.all([partyup.save(), comment.save()])
-                    })
+                
+                return Promise.all([user.save(), partyup.save(), comment.save() ]) 
             })
 
-            it('should succeed on correct data (delete comment)', () => {
-                logic.deleteComment(comment.id, user.id)
-                    .then(res => {
-                        expect(res).to.be.undefined
+            it('should succeed on correct data (delete comment)', () => 
 
-                    })
-                    .then(() => {
-                        const comments = Commentary.find()
+                logic.retrieveComments(partyup.id)
+                    .then(comments => {
+                        expect(comments).to.exist
+                        expect(comments.length).to.equal(1)
 
-                        expect(comments.length).to.equal(0)
-                    })
-            })
+                        const [_comment] = comments
+
+                        expect(_comment.text).to.equal("Test text testing text")
+                        expect(_comment.partyup).to.equal(partyup.id)
+                        expect(_comment.user.id).to.equal(user.id)
+
+                        return logic.deleteComment(comment.id, user.id)
+                            .then(res => {
+                                expect(res).to.be.undefined
+
+                            })
+                            .then(() => {
+                                const __comment = Commentary.find()
+
+                                expect(__comment.length).to.be.undefined
+
+                                expect(__comment.user).to.be.undefined
+                                expect(__comment.partyup).to.be.undefined
+                                expect(__comment.text).to.be.undefined
+                            })
+                })
+            )
         })
-
-
     })
     after(() => mongoose.disconnect())
 })
