@@ -162,11 +162,11 @@ body { background-color: white }
   display: flex;
   justify-content: row;
   align-items: center;
+  max-width: 80%;
 }
 
 .info_text { 
   margin: 0 20px;
-  max-width: 80%;
   overflow: auto;
 }
 
