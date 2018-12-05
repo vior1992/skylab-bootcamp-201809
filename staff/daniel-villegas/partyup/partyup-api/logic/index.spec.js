@@ -423,19 +423,19 @@ describe('logic', () => {
 
                 )
 
-                it('should list on correct data(listPartyups)', () => 
+                it('should list on correct data(listPartyups)', () =>
                     logic.listPartyups(perPage, page, undefined, undefined)
                         .then(partyup => {
-                            
+
                             return Partyup.find()
                                 .then(_partyups => {
-                                    
+
                                     expect(partyup.length).to.equal(2)
 
                                     expect(partyup.length).to.equal(_partyups.length)
 
                                     const [_partyup, _partyup2] = _partyups
-                                    
+
                                     expect(_partyup.id).to.equal(partyup[0].id)
                                     expect(_partyup.title).to.equal(partyup[0].title)
                                     expect(_partyup.description).to.equal(partyup[0].description)
@@ -477,12 +477,12 @@ describe('logic', () => {
 
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                         partyup = new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-                        
+
                         return user.save()
                             .then(() => Promise.all([partyup.save()]))
 
                     })
-                    
+
                     it('should succeed on correct data (Search partyup for partyupId', () => {
                         logic.searchPartyupById(partyup.id)
                             .then(partyup => {
@@ -509,7 +509,7 @@ describe('logic', () => {
 
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                         partyup = new Partyup({ title: "Ill assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-                       
+
                         return user.save()
                             .then(() => {
                                 Promise.all([partyup.save()])
@@ -556,9 +556,9 @@ describe('logic', () => {
                         logic.assistToPartyup(user.id, partyup.id)
                             .then(partyup => {
                                 expect(partyup.assistants.length).to.equal(1)
-                                
+
                                 const { assistants } = partyup
-                                
+
                                 expect(assistants[0]).to.equal(user.id)
                             })
                     })
@@ -570,8 +570,8 @@ describe('logic', () => {
                     beforeEach(() => {
 
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                        partyup = new Partyup({ title: "not assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2'})
-                        
+                        partyup = new Partyup({ title: "not assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
+
                         return user.save()
                             .then(() => {
                                 Promise.all([partyup.save()])
@@ -599,63 +599,61 @@ describe('logic', () => {
                             })
                     })
                 })
-                    //ADD PARTYUP PICTURE
-                
-                    false && describe('Add picture to partyup', () => {
-                        let user, partyup, chunk
+                //ADD PARTYUP PICTURE
 
-                        beforeEach(() => {
+                false && describe('Add picture to partyup', () => {
+                    let user, partyup, chunk
 
-                            user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                            partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
-                            chunk = "2"
-                            return user.save()
-                                .then(() => {
-                                    Promise.all([partyup.save()])
-                                })
-                        })
+                    beforeEach(() => {
 
-                        it('should succeed on correct data (upload a picture)', () => {
-                            logic.addPartyupPicture(chunk)
-                                .then(picture => {
-                                    return Partyup.find()
-                                        .then(_partyups => {
-                                            expect(_partyups).to.exist()
-                                            expect(_partyups.picture).to.equal(1)
-                                        })
-                                })
-                        })
+                        user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                        partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
+                        chunk = "2"
+                        return user.save()
+                            .then(() => {
+                                Promise.all([partyup.save()])
+                            })
                     })
 
+                    it('should succeed on correct data (upload a picture)', () => {
+                        logic.addPartyupPicture(chunk)
+                            .then(picture => {
+                                return Partyup.find()
+                                    .then(_partyups => {
+                                        expect(_partyups).to.exist()
+                                        expect(_partyups.picture).to.equal(1)
+                                    })
+                            })
+                    })
                 })
-                    //DELETE PARTYUP
-                    describe('Should delete partyup', () => {
-                        let user, partyup
 
-                        beforeEach(() => {
+            })
 
-                            user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                            partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
+            //DELETE PARTYUP
+            describe('Should delete partyup', () => {
+                let user, partyup
 
-                            return user.save()
-                                .then(() => {
-                                    Promise.all([partyup.save()])
+                beforeEach(() => {
+                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
+
+                    return Promise.all([user.save(), partyup.save()])
+                })
+
+                it('should delete on correct data', () =>
+                    logic.deletePartyup(user._id.toString(), partyup._id.toString())
+                        .then(() => {
+                            return Partyup.find()
+                                .then(partyups => {
+                                    expect(partyups).to.exist
+                                    expect(partyups).to.be.an('array')
+                                    expect(partyups.length).to.equal(0)
                                 })
                         })
+                )
+            })
 
-                        it('should succeed on correct data (delete)', () => {
-                            logic.deletePartyup(user._id.toString(), partyup._id.toString())
-                                .then(() => {
-                                    return Partyup.find()
-                                        .then(_partyups => {
-                                            expect(_partyups).to.exist
-                                            expect(_partyups).to.be.a([])
-                                        })
-                                })
-                        })
-                    })
-                
-            
+
         })
         //COMMENT
         describe('Should create commentary', () => {
@@ -719,7 +717,7 @@ describe('logic', () => {
                 user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                 partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
                 comment = new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
-                
+
                 return user.save()
                     .then(() => {
                         Promise.all([partyup.save(), comment.save()])
