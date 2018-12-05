@@ -1,4 +1,6 @@
-import validateLogic from './utilities/validate'
+// import validateLogic from './utilities/validate'
+const validateLogic = require('./utilities/validate')
+
 
 const logic = {
     _userId: sessionStorage.getItem('userId') || null,
@@ -613,7 +615,7 @@ const logic = {
     },
 }
 //TEST
-//module.exports = logic
+module.exports = logic
 
 //RUN
-export default logic
+// export default logic

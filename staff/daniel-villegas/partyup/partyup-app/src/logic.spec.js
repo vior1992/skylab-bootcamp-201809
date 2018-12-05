@@ -1,11 +1,14 @@
 require('isomorphic-fetch')
 global.sessionStorage = require('sessionstorage')
 
+
 const logic = require('./logic')
 const { mongoose, models: { User, Partyup, Commentary } } = require('partyup-data')
 const { expect } = require('chai')
 
 const MONGO_URL = 'mongodb://localhost:27017/partyup-test'
+
+// logic.url = process.env.REACT_APP_API_URL
 
 describe('logic', () => {
     before(() => mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true }))
@@ -576,9 +579,6 @@ describe('logic', () => {
                         await logic.authenticateUser(username, password)
 
                         partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-
-                        return user.save()
-                            .then(() => Promise.all([partyup.save()]))
                     })
 
                     it('should succeed on correct data (Search partyup by Id)', () => 
@@ -603,12 +603,18 @@ describe('logic', () => {
                 describe('search partyup Ill assist', () => {
                     let user, partyup
 
-                    beforeEach(() => {
+                    beforeEach(async () => {
+                        name = `n-${Math.random()}`
+                        surname = `s-${Math.random()}`
+                        city = `c-${Math.random()}`
+                        username = `u-${Math.random()}`
+                        password = `p-${Math.random()}`
+    
+                        user = await new User({ name, surname, city, username, password }).save()
+    
+                        await logic.authenticateUser(username, password)
 
-                        user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                        partyup = new Partyup({ title: "Ill assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-                        
-                        return Promise.all([user.save(), partyup.save()])
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
                     })
 
                     it('should succeed on correct data(Partyup Ill assist)', () => 
@@ -655,14 +661,18 @@ describe('logic', () => {
                 describe('assist to partyup', () => {
                     let user, partyup
 
-                    beforeEach(() => {
+                    beforeEach(async () => {
+                        name = `n-${Math.random()}`
+                        surname = `s-${Math.random()}`
+                        city = `c-${Math.random()}`
+                        username = `u-${Math.random()}`
+                        password = `p-${Math.random()}`
+    
+                        user = await new User({ name, surname, city, username, password }).save()
+    
+                        await logic.authenticateUser(username, password)
 
-                        user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                        partyup = new Partyup({ title: "assist to partyup", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-
-                        return user.save()
-                            .then(() => Promise.all([partyup.save()]))
-
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
                     })
 
                     it('should succeed on correct data (assist to partyup)', () => 
@@ -716,12 +726,18 @@ describe('logic', () => {
                 describe('NOT assist to partyup', () => {
                     let user, partyup
 
-                    beforeEach(() => {
+                    beforeEach(async () => {
+                        name = `n-${Math.random()}`
+                        surname = `s-${Math.random()}`
+                        city = `c-${Math.random()}`
+                        username = `u-${Math.random()}`
+                        password = `p-${Math.random()}`
+    
+                        user = await new User({ name, surname, city, username, password }).save()
+    
+                        await logic.authenticateUser(username, password)
 
-                        user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                        partyup = new Partyup({ title: "not assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
-
-                        return Promise.all([user.save(), partyup.save()]) 
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
                     })
 
                     it('should succeed on correct data (Not assist)', () => 
@@ -815,11 +831,18 @@ describe('logic', () => {
             describe('Should delete partyup', () => {
                 let user, partyup
 
-                beforeEach(() => {
-                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2' })
+                beforeEach(async () => {
+                    name = `n-${Math.random()}`
+                    surname = `s-${Math.random()}`
+                    city = `c-${Math.random()}`
+                    username = `u-${Math.random()}`
+                    password = `p-${Math.random()}`
 
-                    return Promise.all([user.save(), partyup.save()])
+                    user = await new User({ name, surname, city, username, password }).save()
+
+                    await logic.authenticateUser(username, password)
+
+                    partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
                 })
 
                 it('should delete on correct data', () =>
@@ -876,13 +899,19 @@ describe('logic', () => {
 
             let user, partyup, text
 
-            beforeEach(() => {
-
-                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+            beforeEach(async () => {
+                name = `n-${Math.random()}`
+                surname = `s-${Math.random()}`
+                city = `c-${Math.random()}`
+                username = `u-${Math.random()}`
+                password = `p-${Math.random()}`
                 text = "Test text testing text"
 
-                return Promise.all([user.save(), partyup.save()])
+                user = await new User({ name, surname, city, username, password }).save()
+
+                await logic.authenticateUser(username, password)
+
+                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
             })
 
             it('should create comment', () => 
@@ -897,69 +926,60 @@ describe('logic', () => {
                     })
             )
 
-            //USER ID TEST FAIL//
-            it('should fail on undefined user id (Create comment)', () => {
-                expect(() => logic.commentPartyup(undefined, partyup.id, text)).to.throw(TypeError, 'undefined is not a string')
-            })
-
-            it('should fail on empty or blank user id (Create comment)', () => {
-                expect(() => logic.commentPartyup(' ', partyup.id, text)).to.throw(Error, 'userId is empty or blank')
-            })
-
-            it('should fail on number user id (Create comment)', () => {
-                expect(() => logic.commentPartyup(3, partyup.id, text)).to.throw(TypeError, '3 is not a string')
-            })
-
-            it('should fail on boolean user id (Create comment)', () => {
-                expect(() => logic.commentPartyup(false, partyup.id, text)).to.throw(TypeError, 'false is not a string')
-            })
-
              //PARTYUP ID TEST FAIL//
             it('should fail on undefined partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, undefined, text)).to.throw(TypeError, 'undefined is not a string')
+                expect(() => logic.commentPartyup(undefined, text)).to.throw(TypeError, 'undefined is not a string')
             })
 
             it('should fail on empty or blank partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, ' ', text)).to.throw(Error, 'partyupId is empty or blank')
+                expect(() => logic.commentPartyup(' ', text)).to.throw(Error, 'partyupId is empty or blank')
             })
 
             it('should fail on number partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, 3, text)).to.throw(TypeError, '3 is not a string')
+                expect(() => logic.commentPartyup(3, text)).to.throw(TypeError, '3 is not a string')
             })
 
             it('should fail on boolean partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, false, text)).to.throw(TypeError, 'false is not a string')
+                expect(() => logic.commentPartyup(false, text)).to.throw(TypeError, 'false is not a string')
             })
 
              //TEXT ID TEST FAIL//
              it('should fail on undefined partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, partyup.id, undefined)).to.throw(TypeError, 'undefined is not a string')
+                expect(() => logic.commentPartyup(partyup.id, undefined)).to.throw(TypeError, 'undefined is not a string')
             })
 
             it('should fail on empty or blank partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, partyup.id, ' ')).to.throw(Error, 'text is empty or blank')
+                expect(() => logic.commentPartyup(partyup.id, ' ')).to.throw(Error, 'comments is empty or blank')
             })
 
             it('should fail on number partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, partyup.id, 3)).to.throw(TypeError, '3 is not a string')
+                expect(() => logic.commentPartyup(partyup.id, 3)).to.throw(TypeError, '3 is not a string')
             })
 
             it('should fail on boolean partyup id (Create comment)', () => {
-                expect(() => logic.commentPartyup(user.id, partyup.id, false)).to.throw(TypeError, 'false is not a string')
+                expect(() => logic.commentPartyup(partyup.id, false)).to.throw(TypeError, 'false is not a string')
             })
 
         })
 
         //RETRIEVE COMMENT
-        describe('Should retrieve commentary from partyup', () => {
+       describe('Should retrieve commentary from partyup', () => {
             let user, partyup, comment
 
-            beforeEach(() => {
-                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-                comment = new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
+            beforeEach(async () => {
+                name = `n-${Math.random()}`
+                surname = `s-${Math.random()}`
+                city = `c-${Math.random()}`
+                username = `u-${Math.random()}`
+                password = `p-${Math.random()}`
 
-                return Promise.all([user.save(), partyup.save(), comment.save()])
+                user = await new User({ name, surname, city, username, password }).save()
+
+                await logic.authenticateUser(username, password)
+
+                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+
+                comment = await new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
             })
 
             it('should retrieve comments', () =>
@@ -997,12 +1017,20 @@ describe('logic', () => {
         describe('Should delete commentary from partyup', () => {
             let user, partyup, comment
 
-            beforeEach(() => {
-                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
-                comment = new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
-                
-                return Promise.all([user.save(), partyup.save(), comment.save() ]) 
+            beforeEach(async () => {
+                name = `n-${Math.random()}`
+                surname = `s-${Math.random()}`
+                city = `c-${Math.random()}`
+                username = `u-${Math.random()}`
+                password = `p-${Math.random()}`
+
+                user = await new User({ name, surname, city, username, password }).save()
+
+                await logic.authenticateUser(username, password)
+
+                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+
+                comment = await new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
             })
 
             it('should succeed on correct data (delete comment)', () => 
@@ -1054,19 +1082,19 @@ describe('logic', () => {
 
             //COMMENT ID TEST FAIL//
             it('should fail on undefined comment id (Delete comments)', () => {
-                expect(() => logic.deleteComment(undefined, user.id)).to.throw(TypeError, 'undefined is not a string')
+                expect(() => logic.deleteComment(undefined, partyup.id)).to.throw(TypeError, 'undefined is not a string')
             })
 
             it('should fail on empty or blank comment id (Delete comments)', () => {
-                expect(() => logic.deleteComment(' ', user.id)).to.throw(Error, 'commentId is empty or blank')
+                expect(() => logic.deleteComment(' ', partyup.id)).to.throw(Error, 'commentId is empty or blank')
             })
 
             it('should fail on number comment id (Delete comments)', () => {
-                expect(() => logic.deleteComment(3, user.id)).to.throw(TypeError, '3 is not a string')
+                expect(() => logic.deleteComment(3, partyup.id)).to.throw(TypeError, '3 is not a string')
             })
 
             it('should fail on boolean comment id (Delete comments)', () => {
-                expect(() => logic.deleteComment(false, user.id)).to.throw(TypeError, 'false is not a string')
+                expect(() => logic.deleteComment(false, partyup.id)).to.throw(TypeError, 'false is not a string')
             })
 
         })

@@ -1,4 +1,4 @@
-//const { ValueError } = require('../errors')
+const { ValueError } = require('../errors')
 
 function validateLogic(params) {
     params.forEach(({ key, value, type, optional }) => {
@@ -30,4 +30,6 @@ function validateLogic(params) {
     })
 }
 
-export default validateLogic
+// export default validateLogic
+
+module.exports = validateLogic
