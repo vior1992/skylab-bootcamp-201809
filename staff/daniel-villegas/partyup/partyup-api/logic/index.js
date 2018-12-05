@@ -516,10 +516,13 @@ const logic = {
         ])
         return (async () => {
             //DELETE COMMENTARIES FROM PARTYUP
-            const comments = await Commentary.find({ partyupId: partyupId })
+            const comments = await Commentary.find({ partyup: partyupId })
+
             if (comments) {
                 comments.map(async () => {
-                    await Commentary.findOneAndDelete({ partyupId: partyupId })
+                    await Commentary.findOneAndDelete({ partyup: partyupId })
+
+                    const _comment = await Commentary.findByIdAndDelete({partyup: partyupId})
                 })
             }
 

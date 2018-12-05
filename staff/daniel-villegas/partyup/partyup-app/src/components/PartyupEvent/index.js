@@ -171,7 +171,6 @@ class PartyupEvent extends Component {
     }
 
     handleDeleteComment(commentId, partyupId){
-        console.log(this.props.partyupId, partyupId)
         try{
             logic.deleteComment(commentId)
                 .then(() => {
