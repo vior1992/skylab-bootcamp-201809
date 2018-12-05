@@ -367,7 +367,7 @@ const logic = {
                 .sort({ 'date': +1 })
                 .limit(perPage)
                 .skip(perPage * (page - 1))
-
+            
             partyups.forEach(partyup => {
                 partyup.id = partyup._id.toString()
                 delete partyup._id
@@ -452,7 +452,7 @@ const logic = {
 
         return (async () => {
             const partyup = await Partyup.findById(partyupId)
-
+            debugger
             const userAssist = partyup.assistants.find(user => user === userId)
 
             if (typeof userAssist === 'string') throw new ValueError('User is on assistance list')
@@ -619,7 +619,7 @@ const logic = {
 
         return (async () => {
             const comment = await Commentary.findById(commentId)
-            debugger
+
             if (userId == comment.user) {
                 await Commentary.findByIdAndDelete(comment.id)
 
