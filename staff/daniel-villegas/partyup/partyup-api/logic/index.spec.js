@@ -488,7 +488,7 @@ describe('logic', () => {
                             .then(partyup => {
                                 return Partyup.find()
                                     .then(_partyup => {
-                                        // expect(_partyup).to.exist()
+                                        expect(_partyup).to.exist
                                         expect(_partyup.length).to.equal(3)
 
                                         expect(_partyup[2].title).to.equal(partyup.title)
@@ -525,7 +525,7 @@ describe('logic', () => {
                                 return Partyup.find()
                                     .then(_partyup => {
                                         debugger
-                                        // expect(_partyup).to.exist()
+                                        expect(_partyup).to.exist
                                         expect(_partyup.length).to.equal(3)
                                         debugger
                                         expect(_partyup[2].title).to.equal(partyup.title)
@@ -553,7 +553,7 @@ describe('logic', () => {
                     })
 
                     it('should succeed on correct data (assist to partyup)', () => {
-                        logic.assistToPartyup(user.id, partyup._id.toString())
+                        logic.assistToPartyup(user.id, partyup.id)
                             .then(partyup => {
                                 expect(partyup.assistants.length).to.equal(1)
                                 
@@ -571,27 +571,30 @@ describe('logic', () => {
 
                         user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
                         partyup = new Partyup({ title: "not assist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: '2'})
-                        debugger
+                        
                         return user.save()
                             .then(() => {
                                 Promise.all([partyup.save()])
-                                logic.assistToPartyup(user.id, partyup.id)
                             })
                     })
 
                     it('should succeed on correct data (Not assist)', () => {
                         debugger
-                        logic.notAssistToPartyup(user.id, partyup.id)
-                            .then(partyup => {
+                        logic.assistToPartyup(user.id, partyup.id)
+                            .then(() => {
                                 debugger
-                                return Partyup.find()
-                                    .then(_partyups => {
+                                logic.notAssistToPartyup(user.id, partyup.id)
+                                    .then(partyup => {
                                         debugger
-                                        expect(partyup).to.exist()
-                                        expect(_partyups.length).to.equal(0)
+                                        return Partyup.find()
+                                            .then(_partyups => {
+                                                debugger
+                                                expect(partyup).to.exist()
+                                                expect(_partyups.length).to.equal(0)
 
-                                        expect(_partyups.assistants).to.equal(0)
-                                        expect(_partyups.assistants.length).to.equal(0)
+                                                expect(_partyups.assistants).to.equal(0)
+                                                expect(_partyups.assistants.length).to.equal(0)
+                                            })
                                     })
                             })
                     })

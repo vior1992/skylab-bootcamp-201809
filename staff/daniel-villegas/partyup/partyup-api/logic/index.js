@@ -452,7 +452,7 @@ const logic = {
 
         return (async () => {
             const partyup = await Partyup.findById(partyupId)
-            debugger
+            
             const userAssist = partyup.assistants.find(user => user === userId)
 
             if (typeof userAssist === 'string') throw new ValueError('User is on assistance list')
@@ -484,7 +484,7 @@ const logic = {
 
         return (async () => {
             const partyup = await Partyup.findById(partyupId)
-
+            debugger
             const userNoAssist = partyup.assistants.filter(user => {
                 user === userId
                 return user !== userId

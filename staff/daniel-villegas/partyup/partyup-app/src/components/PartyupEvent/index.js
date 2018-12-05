@@ -55,9 +55,7 @@ class PartyupEvent extends Component {
             .then(() => {
                 logic.retrieveComments(partyupId)
                     .then(commentaries => {
-                        debugger
                         this.setState({ commentaries }) 
-                          
                     })
             })            
     }
@@ -229,7 +227,7 @@ class PartyupEvent extends Component {
                         <button className="formulary__button" onClick={() => this.handleSubmit(this.props.partyupId, this.props.actuallUserId)}>Enviar</button>
                     </form>
                     <ul className="commentaries__list">
-                        {this.state.commentaries.map(comment => <li className="commentaries__info"><img className="partyup__avatars" src={comment.user.avatar} onClick={() => this.props.onPublicProfileClick(comment.user)}></img>{comment.text}<button className="commentaries__deleteButton" onClick={() => this.handleDeleteComment(comment.id, comment.partyup)}>Borrar</button></li>  )}
+                        {this.state.commentaries.map(comment => <li className="commentaries__info"><img className="partyup__avatars" src={comment.user.avatar} onClick={() => this.props.onPublicProfileClick(comment.user.id)}></img>{comment.text}<button className="commentaries__deleteButton" onClick={() => this.handleDeleteComment(comment.id, comment.partyup)}>Borrar</button></li>  )}
                     </ul>
                 </div>
             </main>
