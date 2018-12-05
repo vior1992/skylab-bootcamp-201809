@@ -1,5 +1,7 @@
-// import validateLogic from './utilities/validate'
-const validateLogic = require('./utilities/validate')
+//RUN APP
+import validateLogic from './utilities/validate'
+//RUN TEST
+// const validateLogic = require('./utilities/validate')
 
 
 const logic = {
@@ -614,8 +616,9 @@ const logic = {
             })
     },
 }
-//TEST
-module.exports = logic
-
 //RUN
-// export default logic
+export default logic
+//TEST
+// module.exports = logic
+
+

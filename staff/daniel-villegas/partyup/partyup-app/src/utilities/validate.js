@@ -29,7 +29,7 @@ function validateLogic(params) {
         }
     })
 }
-
-// export default validateLogic
-
-module.exports = validateLogic
+//RUN APP
+export default validateLogic
+//RUN TEST
+// module.exports = validateLogic

@@ -12,6 +12,6 @@ class AlreadyExistsError extends Error {
 }
 
 //RUN APP
-// export default AlreadyExistsError
+export default AlreadyExistsError
 //RUN TEST
-module.exports = AlreadyExistsError
+// module.exports = AlreadyExistsError
