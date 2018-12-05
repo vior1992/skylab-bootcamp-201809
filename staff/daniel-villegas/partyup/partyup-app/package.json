@@ -16,7 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "mocha src/logic.spec.js",
+    "debug-test": "mocha debug src/logic.spec.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

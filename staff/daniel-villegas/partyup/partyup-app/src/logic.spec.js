@@ -1,4 +1,7 @@
-const logic = require('.')
+require('isomorphic-fetch')
+global.sessionStorage = require('sessionstorage')
+
+const logic = require('./logic')
 const { mongoose, models: { User, Partyup, Commentary } } = require('partyup-data')
 const { expect } = require('chai')
 
@@ -196,12 +199,18 @@ describe('logic', () => {
         })
 
         describe('find user by id', () => {
-            let user
+            let user, name, surname, city, username, password
 
-            beforeEach(() => {
-                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+            beforeEach(async () => {
+                name = `n-${Math.random()}`
+                surname = `s-${Math.random()}`
+                city = `c-${Math.random()}`
+                username = `u-${Math.random()}`
+                password = `p-${Math.random()}`
 
-                return user.save()
+                user = await new User({ name, surname, city, username, password }).save()
+
+                await logic.authenticateUser(username, password)
             })
 
             it('should succeed on correct data', async () => {
@@ -220,17 +229,23 @@ describe('logic', () => {
             describe('create', () => {
                 let user, title, description, date, city, tags
 
-                beforeEach(() => {
-                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+                beforeEach(async () => {
+                    name = `n-${Math.random()}`
+                    surname = `s-${Math.random()}`
+                    city = `c-${Math.random()}`
+                    username = `u-${Math.random()}`
+                    password = `p-${Math.random()}`
+
+                    user = await new User({ name, surname, city, username, password }).save()
+
+                    await logic.authenticateUser(username, password)
+
                     title = "prueba"
                     description = 'prueba en el test'
                     date = new Date()
                     city = '01'
                     place = 'skylab'
                     tags = "01"
-
-
-                    return user.save()
                 })
 
                 it('should create on correct data', async () => {
@@ -367,15 +382,25 @@ describe('logic', () => {
             })
 
             describe('list', () => {
-                let user, partyup, partyup2, perPage, page
+                let user, partyup, partyup2, perPage, page, name, surname, city, username, password
 
-                beforeEach(() => {
+               
+                beforeEach(async () => {
+                    name = `n-${Math.random()}`
+                    surname = `s-${Math.random()}`
+                    city = `c-${Math.random()}`
+                    username = `u-${Math.random()}`
+                    password = `p-${Math.random()}`
 
-                    user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                    partyup = new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: "string" })
-                    partyup2 = new Partyup({ title: "prueba2", description: 'prueba en el test2', date: new Date(), city: '02', place: 'skylab2', tags: "02", user: user.id, picture: "string" })
+                    user = await new User({ name, surname, city, username, password }).save()
+
+                    await logic.authenticateUser(username, password)
+
+                    partyup = await new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: "string" })
+                    partyup2 = await new Partyup({ title: "prueba2", description: 'prueba en el test2', date: new Date(), city: '02', place: 'skylab2', tags: "02", user: user.id, picture: "string" })
                     perPage = 30
                     page = 1
+
                     return Promise.all([user.save(), partyup.save(), partyup2.save()])
                 })
 
@@ -537,16 +562,23 @@ describe('logic', () => {
                 })
 
                 describe('search partyup by partyup Id', () => {
-                    let user, partyup
+                    let user, partyup, name, surname, city, username, password
 
-                    beforeEach(() => {
+                    beforeEach(async () => {
+                        name = `n-${Math.random()}`
+                        surname = `s-${Math.random()}`
+                        city = `c-${Math.random()}`
+                        username = `u-${Math.random()}`
+                        password = `p-${Math.random()}`
+    
+                        user = await new User({ name, surname, city, username, password }).save()
+    
+                        await logic.authenticateUser(username, password)
 
-                        user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
-                        partyup = new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
 
                         return user.save()
                             .then(() => Promise.all([partyup.save()]))
-
                     })
 
                     it('should succeed on correct data (Search partyup by Id)', () => 
