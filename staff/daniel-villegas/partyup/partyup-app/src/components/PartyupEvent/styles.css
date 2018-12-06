@@ -1,7 +1,7 @@
 body { background-color: white }
 
 .section {
-  background: url("../Register/register.gif") no-repeat ;
+  background: url("../../Public/partyupevent.gif") no-repeat ;
   background-size: cover;
   height: 200px;
   width: 100%;
@@ -176,5 +176,16 @@ body { background-color: white }
   .partyup__information { flex-direction: row; }
   .assistants__list { flex-direction: column; align-items: center; }
   .assistant__info {  width: 70%; padding: 10px 0; margin: 10px 0; }
-
 }
+
+@media (max-width: 660px) { 
+  .formulary__text { width: 300px; }
+  .formulary__button { width: 200px; }
+  }
+
+@media (max-width: 420px) { 
+  .formulary__text { width: 200px; }
+  .formulary__button { width: 100px; }
+  }
+  
+
