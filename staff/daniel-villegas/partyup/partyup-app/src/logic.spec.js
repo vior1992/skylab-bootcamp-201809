@@ -4,6 +4,7 @@ require('isomorphic-fetch')
 
 global.sessionStorage = require('sessionstorage')
 
+const { TypeError } = require('./errors')
 const logic = require('./logic')
 const { mongoose, models: { User, Partyup, Commentary } } = require('partyup-data')
 const { expect } = require('chai')
@@ -31,8 +32,6 @@ describe('logic', () => {
 
             it('should succeed on correct data', async () => {
                 const res = await logic.registerUser(name, surname, city, username, password)
-
-                debugger
 
                 expect(res).to.be.undefined
 
@@ -145,25 +144,29 @@ describe('logic', () => {
 
         describe('authenticate', () => {
 
-            beforeEach(() => {
-                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+            beforeEach(async () => {
+                name = `n-${Math.random()}`
+                surname = `s-${Math.random()}`
+                city = `c-${Math.random()}`
+                username = `u-${Math.random()}`
+                password = `p-${Math.random()}`
 
-                return user.save()
+                user = await new User({ name, surname, city, username, password }).save()
             })
 
             it('should authenticate on correct credentials', () => {
                 const { username, password } = user
-
+                
                 return logic.authenticateUser(username, password)
                     .then(id => {
-                        expect(id).to.exist
-                        expect(id).to.be.a('string')
+                        expect(id).to.be.undefined
 
                         return User.find()
                             .then(_users => {
                                 const [_user] = _users
-
-                                expect(_user.id).to.equal(id)
+                                const session = sessionStorage.getItem('userId', id)
+                                
+                                expect(_user.id).to.equal(session)
                             })
                     })
             })
@@ -253,15 +256,16 @@ describe('logic', () => {
                     city = '01'
                     place = 'skylab'
                     tags = "01"
+                    picture = "sdasda"
                 })
 
                 it('should create on correct data', async () => {
-                    const res = await logic.createPartyup(title, description, date, city, place, tags, user.id)
-
+                    const res = await logic.createPartyup(title, description, date, city, place, tags, picture)
+                    
                     expect(res).to.be.undefined
 
                     const _partyups = await Partyup.find()
-
+                    
                     expect(_partyups.length).to.equal(1)
 
                     const [partyup] = _partyups
@@ -376,7 +380,7 @@ describe('logic', () => {
                 })
 
                 it('should fail on empty or blank userid', () => {
-                    expect(() => logic.createPartyup(title, description, date, city, place, tags, '  ')).to.throw(Error, 'userId is empty or blank')
+                    expect(() => logic.createPartyup(title, description, date, city, place, tags, '  ')).to.throw(Error, 'base64Image is empty or blank')
                 })
 
                 it('should fail on number userid (not a string)', () => {
@@ -389,9 +393,8 @@ describe('logic', () => {
             })
 
             describe('list', () => {
-                let user, partyup, partyup2, perPage, page, name, surname, city, username, password
+                let user, partyup, partyup2, _city, _tags, name, surname, city, username, password
 
-               
                 beforeEach(async () => {
                     name = `n-${Math.random()}`
                     surname = `s-${Math.random()}`
@@ -403,16 +406,14 @@ describe('logic', () => {
 
                     await logic.authenticateUser(username, password)
 
-                    partyup = await new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: "string" })
-                    partyup2 = await new Partyup({ title: "prueba2", description: 'prueba en el test2', date: new Date(), city: '02', place: 'skylab2', tags: "02", user: user.id, picture: "string" })
-                    perPage = 30
-                    page = 1
-
-                    return Promise.all([user.save(), partyup.save(), partyup2.save()])
+                    partyup = await new Partyup({ title: "prueba", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id, picture: "string" }).save()
+                    partyup2 = await new Partyup({ title: "prueba2", description: 'prueba en el test2', date: new Date(), city: '02', place: 'skylab2', tags: "02", user: user.id, picture: "string" }).save()
+                    _city = undefined
+                    _tags = undefined
                 })
 
                 it('should list on correct data (listPartyupsCreatedBy)', () =>
-                    logic.listPartyupsCreatedBy(user.id)
+                    logic.searchPartyups(_city, _tags)
                         .then(partyups => {
                             return Partyup.find()
                                 .then(_partyups => {
@@ -439,41 +440,36 @@ describe('logic', () => {
 
                                     expect(__partyup.id).to.equal(_partyup.id)
                                     expect(__partyup.title).to.equal(_partyup.title)
-                                    expect(__partyup.description).to.be.undefined
+                                    expect(__partyup.description).to.equal(_partyup.description)
                                     expect(__partyup.place).to.equal(_partyup.place)
                                     expect(__partyup.city).to.equal(_partyup.city)
-                                    expect(__partyup.tags).to.undefined
+                                    expect(__partyup.tags).to.equal(_partyup.tags)
 
                                     expect(__partyup2.id).to.equal(_partyup2.id)
                                     expect(__partyup2.title).to.equal(_partyup2.title)
-                                    expect(__partyup2.description).to.undefined
+                                    expect(__partyup2.description).to.equal(_partyup2.description)
                                     expect(__partyup2.place).to.equal(_partyup2.place)
                                     expect(__partyup2.city).to.equal(_partyup2.city)
-                                    expect(__partyup2.tags).to.undefined
+                                    expect(__partyup2.tags).to.equal(_partyup2.tags)
                                 })
                         })
                 )
 
-                it('should fail on undefined id (listPartyupsCreatedBy)', () => {
-                    expect(() => logic.listPartyupsCreatedBy(undefined)).to.throw(TypeError, 'undefined is not a string')
+                it('should fail on empty or blank city (searchPartyups)', () => {
+                    expect(() => logic.searchPartyups('   ', undefined)).to.throw(Error, 'city is empty or blank')
                 })
 
-                it('should fail on empty or blank id (listPartyupsCreatedBy)', () => {
-                    expect(() => logic.listPartyupsCreatedBy('   ')).to.throw(Error, 'userId is empty or blank')
+                it('should fail on number city (searchPartyups)', () => {
+                    expect(() => logic.searchPartyups(666, undefined)).to.throw(TypeError, '666 is not a string')
                 })
 
-                it('should fail on number id (listPartyupsCreatedBy)', () => {
-                    expect(() => logic.listPartyupsCreatedBy(666)).to.throw(TypeError, '666 is not a string')
-                })
-
-                it('should fail on boolean id (listPartyupsCreatedBy)', () => {
-                    expect(() => logic.listPartyupsCreatedBy(true)).to.throw(TypeError, 'true is not a string')
+                it('should fail on boolean city (searchPartyups)', () => {
+                    expect(() => logic.searchPartyups(true, undefined)).to.throw(TypeError, 'true is not a string')
                 })
                 
                 it('should list on correct data(listPartyups)', () =>
-                    logic.listPartyups(perPage, page, undefined, undefined)
+                    logic.listPartyups()
                         .then(partyup => {
-
                             return Partyup.find()
                                 .then(_partyups => {
 
@@ -516,57 +512,6 @@ describe('logic', () => {
                         })
 
                 )
-                //PER PAGE FAIL TEST //
-                it('should fail on undefined perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(undefined, page, undefined, undefined)).to.throw(TypeError, 'undefined is not a number')
-                })
-
-                it('should fail on string perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups('hola', page, undefined, undefined)).to.throw(TypeError, 'hola is not a number')
-                })
-
-                it('should fail on empty or blank perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups('    ', page, undefined, undefined)).to.throw(TypeError, ' is not a number')
-                })
-
-                it('should fail on bolean perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(true, page, undefined, undefined)).to.throw(TypeError, 'true is not a number')
-                })
-
-                //PAGE FAIL TEST //
-                it('should fail on undefined perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage, undefined, undefined, undefined)).to.throw(TypeError, 'undefined is not a number')
-                })
-
-                it('should fail on string perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage, 'hola', undefined, undefined)).to.throw(TypeError, 'hola is not a number')
-                })
-
-                it('should fail on empty or blank perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage, '    ', undefined, undefined)).to.throw(TypeError, ' is not a number')
-                })
-
-                it('should fail on bolean perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage,true, undefined, undefined)).to.throw(TypeError, 'true is not a number')
-                })
-
-                //CITY FAIL TEST //
-                it('should fail on empty or blank perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage, page, '    ', undefined)).to.throw(Error, 'city is empty or blank')
-                })
-
-                it('should fail on bolean perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage, page, true, undefined)).to.throw(TypeError, 'true is not a string')
-                })
-
-                //TAGS FAIL TEST //
-                it('should fail on empty or blank perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage, page, undefined, '    ')).to.throw(Error, 'tags is empty or blank')
-                })
-
-                it('should fail on bolean perPage (listPartyups)', () => {
-                    expect(() => logic.listPartyups(perPage, page, undefined, true)).to.throw(TypeError, 'true is not a string')
-                })
 
                 describe('search partyup by partyup Id', () => {
                     let user, partyup, name, surname, city, username, password
@@ -582,11 +527,11 @@ describe('logic', () => {
     
                         await logic.authenticateUser(username, password)
 
-                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
                     })
 
                     it('should succeed on correct data (Search partyup by Id)', () => 
-                        logic.searchPartyupById(partyup.id)
+                        logic.searchPartyupsById(partyup.id)
                             .then(partyup => {
                                 return Partyup.find()
                                     .then(_partyup => {
@@ -604,7 +549,7 @@ describe('logic', () => {
                     )
                 })
 
-                describe('search partyup Ill assist', () => {
+                false && describe('search partyup Ill assist', () => {
                     let user, partyup
 
                     beforeEach(async () => {
@@ -662,7 +607,7 @@ describe('logic', () => {
                
                 })
 
-                describe('assist to partyup', () => {
+                false && describe('assist to partyup', () => {
                     let user, partyup
 
                     beforeEach(async () => {
@@ -676,58 +621,43 @@ describe('logic', () => {
     
                         await logic.authenticateUser(username, password)
 
-                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                        
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
                     })
 
                     it('should succeed on correct data (assist to partyup)', () => 
-                        logic.assistToPartyup(user.id, partyup.id)
-                            .then(partyup => {
-                                expect(partyup.assistants.length).to.equal(1)
+                        logic.assistToPartyup(partyup.id)
+                            .then(res => {
+                                expect(res.partyup.assistants.length).to.equal(1)
 
-                                const { assistants } = partyup
+                                const { assistants } = res.partyup
 
                                 expect(assistants.length).to.equal(1)
-
                                 expect(assistants[0]).to.equal(user.id)
                             })
                     )
                         
-                        //USER ID TEST FAIL//
+                        //PARTYUP ID TEST FAIL//
                         it('should fail on undefined user id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(undefined, partyup.id)).to.throw(TypeError, 'undefined is not a string')
+                            expect(() => logic.assistToPartyup(undefined)).to.throw(TypeError, 'undefined is not a string')
                         })
 
                         it('should fail on empty or blank user id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(' ', partyup.id)).to.throw(Error, 'userId is empty or blank')
+                            expect(() => logic.assistToPartyup(' ')).to.throw(Error, 'partyupId is empty or blank')
                         })
 
                         it('should fail on number user id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(3, partyup.id)).to.throw(TypeError, '3 is not a string')
+                            expect(() => logic.assistToPartyup(3)).to.throw(TypeError, '3 is not a string')
                         })
 
                         it('should fail on boolean user id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(false, partyup.id)).to.throw(TypeError, 'false is not a string')
+                            expect(() => logic.assistToPartyup(false)).to.throw(TypeError, 'false is not a string')
                         })
 
-                         //PARTYUP ID TEST FAIL//
-                        it('should fail on undefined partyup id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(user.id, undefined)).to.throw(TypeError, 'undefined is not a string')
-                        })
-    
-                        it('should fail on empty or blank partyup id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(user.id, ' ')).to.throw(Error, 'partyupId is empty or blank')
-                        })
-    
-                        it('should fail on number partyup id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(user.id, 3)).to.throw(TypeError, '3 is not a string')
-                        })
-    
-                        it('should fail on boolean partyup id (assist to partyup)', () => {
-                            expect(() => logic.assistToPartyup(user.id, false)).to.throw(TypeError, 'false is not a string')
-                        })
+                         
                 })
 
-                describe('NOT assist to partyup', () => {
+                false && describe('NOT assist to partyup', () => {
                     let user, partyup
 
                     beforeEach(async () => {
@@ -741,70 +671,52 @@ describe('logic', () => {
     
                         await logic.authenticateUser(username, password)
 
-                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
                     })
 
                     it('should succeed on correct data (Not assist)', () => 
-                        logic.assistToPartyup(user.id, partyup.id)
-                            .then(partyup => {
+                        logic.assistToPartyup(partyup.id)
+                            .then(res => {
                                
-                                expect(partyup.assistants.length).to.equal(1)
+                                expect(res.partyup.assistants.length).to.equal(1)
 
-                                const { assistants } = partyup
+                                const { assistants } = res.partyup
 
                                 expect(assistants.length).to.equal(1)
 
                                 expect(assistants[0]).to.equal(user.id)
                                 
-                                return logic.notAssistToPartyup(user.id, partyup.id)
-                                    .then(partyup => {
+                                return logic.notAssistToPartyup(partyup.id)
+                                    .then(res => {
                                         return Partyup.find()
                                             .then(_partyups => {
-                                                expect(partyup).to.exist
+                                                expect(_partyups).to.exist
                                                 expect(_partyups.length).to.equal(3)
 
-                                                expect(_partyups.assistants).to.be.undefined
+                                                expect(_partyups[0].assistants).to.be.an('array')
                                             })
                                     })
                             })
                     )
-
-                    //USER ID TEST FAIL//
-                    it('should fail on undefined user id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(undefined, partyup.id)).to.throw(TypeError, 'undefined is not a string')
-                    })
-
-                    it('should fail on empty or blank user id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(' ', partyup.id)).to.throw(Error, 'userId is empty or blank')
-                    })
-
-                    it('should fail on number user id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(3, partyup.id)).to.throw(TypeError, '3 is not a string')
-                    })
-
-                    it('should fail on boolean user id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(false, partyup.id)).to.throw(TypeError, 'false is not a string')
-                    })
-
                      //PARTYUP ID TEST FAIL//
                     it('should fail on undefined partyup id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(user.id, undefined)).to.throw(TypeError, 'undefined is not a string')
+                        expect(() => logic.notAssistToPartyup(undefined)).to.throw(TypeError, 'undefined is not a string')
                     })
 
                     it('should fail on empty or blank partyup id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(user.id, ' ')).to.throw(Error, 'partyupId is empty or blank')
+                        expect(() => logic.notAssistToPartyup(' ')).to.throw(Error, 'partyupId is empty or blank')
                     })
 
                     it('should fail on number partyup id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(user.id, 3)).to.throw(TypeError, '3 is not a string')
+                        expect(() => logic.notAssistToPartyup(3)).to.throw(TypeError, '3 is not a string')
                     })
 
                     it('should fail on boolean partyup id (NOT assist to partyup)', () => {
-                        expect(() => logic.notAssistToPartyup(user.id, false)).to.throw(TypeError, 'false is not a string')
+                        expect(() => logic.notAssistToPartyup(false)).to.throw(TypeError, 'false is not a string')
                     })
                 })
-                //ADD PARTYUP PICTURE
 
+                //ADD PARTYUP PICTURE
                 false && describe('Add picture to partyup', () => {
                     let user, partyup, chunk
 
@@ -831,8 +743,8 @@ describe('logic', () => {
 
             })
 
-            //DELETE PARTYUP
-            describe('Should delete partyup', () => {
+            // itemListPartyupsCreatedBy
+            false && describe('itemListPartyupsCreatedBy', () => {
                 let user, partyup
 
                 beforeEach(async () => {
@@ -846,11 +758,114 @@ describe('logic', () => {
 
                     await logic.authenticateUser(username, password)
 
-                    partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                    partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
+                    
+                })
+
+                it('should succeed on correct data (itemListPartyupsCreatedBy)', () => 
+                    logic.itemListPartyupsCreatedBy(user.id)
+                        .then(res => {
+                        
+                            expect(res.length).to.equal(1)
+
+                            expect(res[0].title).to.equal(partyup.title)
+                            expect(res[0].description).to.be.undefined
+                            expect(res[0].city).to.equal(partyup.city)
+                            expect(res[0].tags).to.be.undefined
+                            expect(res[0].place).to.equal(partyup.place)
+                            expect(res[0].user).to.be.undefined
+                        })
+                
+                )
+                 //USER ID TEST FAIL//
+                it('should fail on undefined partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsCreatedBy(undefined)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsCreatedBy(' ')).to.throw(Error, 'userId is empty or blank')
+                })
+
+                it('should fail on number partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsCreatedBy(3)).to.throw(TypeError, '3 is not a string')
+                })
+
+                it('should fail on boolean partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsCreatedBy(false)).to.throw(TypeError, 'false is not a string')
+                })
+            })
+
+            // itemListPartyupsIAssist
+            false && describe('itemListPartyupsIAssist', () => {
+                let user, partyup
+
+                beforeEach(async () => {
+                    name = `n-${Math.random()}`
+                    surname = `s-${Math.random()}`
+                    city = `c-${Math.random()}`
+                    username = `u-${Math.random()}`
+                    password = `p-${Math.random()}`
+
+                    user = await new User({ name, surname, city, username, password }).save()
+
+                    await logic.authenticateUser(username, password)
+
+                    partyup = await new Partyup({ title: "itemListPartyupsIAssist", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
+                    
+                    await logic.assistToPartyup(partyup.id)
+                })
+
+                it('should succeed on correct data (itemListPartyupsCreatedBy)', () => 
+                    logic.itemListPartyupsIAssist(user.id)
+                        .then(res => {
+                            expect(res.length).to.equal(1)
+
+                            expect(res[0].title).to.equal(partyup.title)
+                            expect(res[0].description).to.be.undefined
+                            expect(res[0].city).to.equal(partyup.city)
+                            expect(res[0].tags).to.be.undefined
+                            expect(res[0].place).to.equal(partyup.place)
+                            expect(res[0].user).to.equal(partyup.user.toString())
+                        })
+                )
+                 //USER ID TEST FAIL//
+                it('should fail on undefined partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsIAssist(undefined)).to.throw(TypeError, 'undefined is not a string')
+                })
+
+                it('should fail on empty or blank partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsIAssist(' ')).to.throw(Error, 'userId is empty or blank')
+                })
+
+                it('should fail on number partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsIAssist(3)).to.throw(TypeError, '3 is not a string')
+                })
+
+                it('should fail on boolean partyup id (NOT assist to partyup)', () => {
+                    expect(() => logic.itemListPartyupsIAssist(false)).to.throw(TypeError, 'false is not a string')
+                })
+            })
+
+            //DELETE PARTYUP
+            false && describe('Should delete partyup', () => {
+                let user, partyup
+
+                beforeEach(async () => {
+                    name = `n-${Math.random()}`
+                    surname = `s-${Math.random()}`
+                    city = `c-${Math.random()}`
+                    username = `u-${Math.random()}`
+                    password = `p-${Math.random()}`
+
+                    user = await new User({ name, surname, city, username, password }).save()
+
+                    await logic.authenticateUser(username, password)
+
+                    partyup = await new Partyup({ title: "Should delete partyup", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
                 })
 
                 it('should delete on correct data', () =>
-                    logic.deletePartyup(user._id.toString(), partyup._id.toString())
+                    logic.deletePartyup(partyup._id.toString())
                         .then(() => {
                             return Partyup.find()
                                 .then(partyups => {
@@ -861,38 +876,21 @@ describe('logic', () => {
                         })
                 )
 
-                //USER ID TEST FAIL//
-                it('should fail on undefined user id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(undefined, partyup.id)).to.throw(TypeError, 'undefined is not a string')
-                })
-
-                it('should fail on empty or blank user id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(' ', partyup.id)).to.throw(Error, 'userId is empty or blank')
-                })
-
-                it('should fail on number user id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(3, partyup.id)).to.throw(TypeError, '3 is not a string')
-                })
-
-                it('should fail on boolean user id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(false, partyup.id)).to.throw(TypeError, 'false is not a string')
-                })
-
                  //PARTYUP ID TEST FAIL//
                 it('should fail on undefined partyup id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(user.id, undefined)).to.throw(TypeError, 'undefined is not a string')
+                    expect(() => logic.assistToPartyup(undefined)).to.throw(TypeError, 'undefined is not a string')
                 })
 
                 it('should fail on empty or blank partyup id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(user.id, ' ')).to.throw(Error, 'partyupId is empty or blank')
+                    expect(() => logic.assistToPartyup(' ')).to.throw(Error, 'partyupId is empty or blank')
                 })
 
                 it('should fail on number partyup id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(user.id, 3)).to.throw(TypeError, '3 is not a string')
+                    expect(() => logic.assistToPartyup(3)).to.throw(TypeError, '3 is not a string')
                 })
 
                 it('should fail on boolean partyup id (Delete partyup)', () => {
-                    expect(() => logic.assistToPartyup(user.id, false)).to.throw(TypeError, 'false is not a string')
+                    expect(() => logic.assistToPartyup(false)).to.throw(TypeError, 'false is not a string')
                 })
             })
 
@@ -915,17 +913,16 @@ describe('logic', () => {
 
                 await logic.authenticateUser(username, password)
 
-                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
             })
 
             it('should create comment', () => 
-                logic.commentPartyup(user.id, partyup.id, text)
+                logic.commentPartyup(partyup.id, text)
                     .then(() => {
                         return Commentary.find()
                             .then(comment => {
                                 expect(comment[0].text).to.equal("Test text testing text")
                                 expect(comment[0].partyup.toString()).to.equal(partyup.id)
-                                expect(comment[0].user.toString()).to.equal(user.id)
                             })
                     })
             )
@@ -967,7 +964,7 @@ describe('logic', () => {
         })
 
         //RETRIEVE COMMENT
-       describe('Should retrieve commentary from partyup', () => {
+        false && describe('Should retrieve commentary from partyup', () => {
             let user, partyup, comment
 
             beforeEach(async () => {
@@ -981,9 +978,9 @@ describe('logic', () => {
 
                 await logic.authenticateUser(username, password)
 
-                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
 
-                comment = await new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
+                comment = await new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" }).save()
             })
 
             it('should retrieve comments', () =>
@@ -1032,9 +1029,9 @@ describe('logic', () => {
 
                 await logic.authenticateUser(username, password)
 
-                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
 
-                comment = await new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" })
+                comment = await new Commentary({ user: user.id, partyup: partyup.id, text: "Test text testing text" }).save()
             })
 
             it('should succeed on correct data (delete comment)', () => 
@@ -1050,9 +1047,9 @@ describe('logic', () => {
                         expect(_comment.partyup).to.equal(partyup.id)
                         expect(_comment.user.id).to.equal(user.id)
 
-                        return logic.deleteComment(comment.id, user.id)
+                        return logic.deleteComment(comment.id, partyup.id)
                             .then(res => {
-                                expect(res).to.be.undefined
+                                expect(res.message).to.be.equal(`Comment ${comment.id} on partyup ${partyup.id} has been deleted with success!`)
 
                             })
                             .then(() => {
@@ -1066,23 +1063,6 @@ describe('logic', () => {
                             })
                 })
             )
-
-            //USER ID TEST FAIL//
-            it('should fail on undefined user id (Delete comments)', () => {
-                expect(() => logic.deleteComment(comment.id, undefined)).to.throw(TypeError, 'undefined is not a string')
-            })
-
-            it('should fail on empty or blank user id (Delete comments)', () => {
-                expect(() => logic.deleteComment(comment.id, ' ')).to.throw(Error, 'userId is empty or blank')
-            })
-
-            it('should fail on number user id (Delete comments)', () => {
-                expect(() => logic.deleteComment(comment.id, 3)).to.throw(TypeError, '3 is not a string')
-            })
-
-            it('should fail on boolean user id (Delete comments)', () => {
-                expect(() => logic.deleteComment(comment.id, false)).to.throw(TypeError, 'false is not a string')
-            })
 
             //COMMENT ID TEST FAIL//
             it('should fail on undefined comment id (Delete comments)', () => {
@@ -1099,6 +1079,23 @@ describe('logic', () => {
 
             it('should fail on boolean comment id (Delete comments)', () => {
                 expect(() => logic.deleteComment(false, partyup.id)).to.throw(TypeError, 'false is not a string')
+            })
+
+            //PARTYUP ID TEST FAIL//
+            it('should fail on undefined user id (Delete comments)', () => {
+                expect(() => logic.deleteComment(comment.id, undefined)).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on empty or blank user id (Delete comments)', () => {
+                expect(() => logic.deleteComment(comment.id, ' ')).to.throw(Error, 'userId is empty or blank')
+            })
+
+            it('should fail on number user id (Delete comments)', () => {
+                expect(() => logic.deleteComment(comment.id, 3)).to.throw(TypeError, '3 is not a string')
+            })
+
+            it('should fail on boolean user id (Delete comments)', () => {
+                expect(() => logic.deleteComment(comment.id, false)).to.throw(TypeError, 'false is not a string')
             })
 
         })

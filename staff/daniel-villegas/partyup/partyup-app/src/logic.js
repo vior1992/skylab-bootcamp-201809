@@ -66,7 +66,7 @@ const logic = {
             { key: 'username', value: username, type: String },
             { key: 'password', value: password, type: String }
         ])
-
+        
         return fetch(`${this.url}/authenticate`, {
             method: 'POST',
             headers: {
@@ -76,6 +76,7 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
+                
                 if (res.error) throw Error(res.error)
 
                 const { id, token } = res.data
@@ -257,7 +258,7 @@ const logic = {
             { key: 'tags', value: tags, type: String },
             { key: 'base64Image', value: base64Image, type: String }
         ])
-
+        
         return fetch(`${this.url}/users/${this._userId}/partyups`, {
             method: 'POST',
             headers: {
@@ -268,6 +269,7 @@ const logic = {
         })
             .then(res => res.json())
             .then(res => {
+                
                 if (res.error) throw Error(res.error)
             })
     },
@@ -583,7 +585,7 @@ const logic = {
         .then(res => res.json())
         .then(res => {
             if (res.error) throw Error(res.error)
-
+            
             return res
         })
     },
