@@ -43,17 +43,34 @@ For launch, in each folder (Partyup-app and Partyup-api)
 
 On the **landing**, the user can see the next 3 events that will be in the country. Can **Register** or **Login**.
 
+![alt text](./landing.png "Landing")
+
 If the user wants filter for some **city** or **tags**, you must login. After that, the user will be on the **home**. Here can find and enter inside the events that will appear. 
 
-In every **partyup**, can read the description, date, place and the host. The user can confirm the **assistance** or anulate it, **delete** the partyup (just if is the host) and can make some **commentary** about the event. 
+![alt text](./home.png "home")
+
+In every **partyup**, can read the description, date, place and the host. The user can confirm the **assistance** or anulate it, **delete** the partyup (just if is the host).
+
+![alt text](./event1.png "event")
+
+Can make some **commentary** about the event. 
+
+![alt text](./event2.png "event")
 
 Is possible see who will assist to event and check his **public profile**, where will show his information and the partyup’s created and with assist.
 
-“Por defecto” the user have a user avatar that can change in the **profile**. In the profile you can see the partyups created and will you assist, and if you desire **delete your profile**, you can do it too.
+![alt text](./profile.png "profile")
+
+“Por defecto” the user have a user avatar that can change in the **profile**. Profile is similar to Public profile, with the diference that if you desire **delete your profile**, or **upload a new avatar**, you can do it.
 
 At least, you can **create a partyup**, writing the title, description, and other information. If you desire, you can upload a image of the event.
 
 #### **USE CASES DIAGRAM**
+![alt text](./use_case_diagram.png "case diagram")
+
+#### **FLOW DIAGRAM**
+
+#### **ACTIVITY DIAGRAM**
 
 ---
 
@@ -64,11 +81,18 @@ The front-end part of the application was built using ReactJS.
 The back-end, built using NodeJS, is connected with Partyup-data for manage the information in mongoose. 
 
 #### **BLOCK DIAGRAM**
+![alt text](./block_diagram.png "block diagram")
+
 
 #### **COMPONENT DIAGRAM**
 
-#### **DATA DIAGRAM**
-Partyup-data is composed of 3 schemas: Users, Partyups and Commentaries. 
+#### **DATA MODEL**
+Partyup-data is composed of 3 schemas: User, Partyup and Commentary, relationated each other in this way: 
+![alt text](./data_model.png "data model")
+
+#### **TEST COVERAGE**
+
+![alt text](./coverage.png "Logic coverage")
 
 ---
 
