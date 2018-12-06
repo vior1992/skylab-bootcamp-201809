@@ -12,6 +12,6 @@ class AuthError extends Error {
 }
 
 //RUN APP
-export default AuthError
+// export default AuthError
 //RUN TEST
-// module.exports = AuthError
+module.exports = AuthError

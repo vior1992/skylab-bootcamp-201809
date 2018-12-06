@@ -1,18 +1,15 @@
 require('isomorphic-fetch')
 global.sessionStorage = require('sessionstorage')
 
-
 const logic = require('./logic')
 const { mongoose, models: { User, Partyup, Commentary } } = require('partyup-data')
 const { expect } = require('chai')
 
-const MONGO_URL = 'mongodb://localhost:27017/partyup-test'
-
-// logic.url = process.env.REACT_APP_API_URL
+const MONGO_URL = 'mongodb://localhost:27017/partyup-test-app'
 
 describe('logic', () => {
-    before(() => mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true }))
-
+    before(() => mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true, useCreateIndex: true }))
+    
     beforeEach(() => Promise.all([User.deleteMany(), Partyup.deleteMany(), Commentary.deleteMany()]))
 
     describe('user', () => {

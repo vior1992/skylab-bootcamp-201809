@@ -12,6 +12,6 @@ class ValueError extends Error {
 }
 
 //RUN APP
-export default ValueError
+// export default ValueError
 //RUN TEST
-// module.exports = ValueError
+module.exports = ValueError

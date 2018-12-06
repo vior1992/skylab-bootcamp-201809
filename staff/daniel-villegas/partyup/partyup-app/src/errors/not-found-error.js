@@ -12,6 +12,6 @@ class NotFoundError extends Error {
 }
 
 //RUN APP
-export default NotFoundError
+// export default NotFoundError
 //RUN TEST
-// module.exports = NotFoundError
+module.exports = NotFoundError

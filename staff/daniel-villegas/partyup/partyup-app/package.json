@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "chai": "^4.2.0",
+    "es6-promise": "^4.2.5",
+    "isomorphic-fetch": "^2.2.1",
     "moment": "^2.22.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
