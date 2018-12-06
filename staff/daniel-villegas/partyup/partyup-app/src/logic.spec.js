@@ -1,11 +1,16 @@
+require('dotenv').config()
+
 require('isomorphic-fetch')
+
 global.sessionStorage = require('sessionstorage')
 
 const logic = require('./logic')
 const { mongoose, models: { User, Partyup, Commentary } } = require('partyup-data')
 const { expect } = require('chai')
 
-const MONGO_URL = 'mongodb://localhost:27017/partyup-test-app'
+logic.url = process.env.REACT_APP_API_URL
+
+const MONGO_URL = 'mongodb://localhost:27017/partyup-test'
 
 describe('logic', () => {
     before(() => mongoose.connect(`${MONGO_URL}`, { useNewUrlParser: true, useCreateIndex: true }))
@@ -26,6 +31,8 @@ describe('logic', () => {
 
             it('should succeed on correct data', async () => {
                 const res = await logic.registerUser(name, surname, city, username, password)
+
+                debugger
 
                 expect(res).to.be.undefined
 

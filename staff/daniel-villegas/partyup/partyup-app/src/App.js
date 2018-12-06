@@ -10,7 +10,7 @@ import Profile from './components/Profile'
 import PublicProfile from './components/PublicProfile'
 import PartyupEvent from './components/PartyupEvent'
 
-logic.url = 'http://localhost:5000/api'
+logic.url = process.env.REACT_APP_API_URL
 
 
 class App extends Component {
