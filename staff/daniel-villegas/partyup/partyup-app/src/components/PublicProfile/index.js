@@ -70,17 +70,17 @@ class PublicProfile extends Component {
                 {this.state.createdPartyups ? 
                 <div className="partyups" >
                     <h2 className="partyups__titles">Eventos creados</h2> 
-                    <ul>
-                        <li className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
-                    </ul>
+                    <div>
+                        <div className="partyups__list"> {this.state.createdPartyups.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </div>
+                    </div>
                 </div>
                 : ""}
                 {this.state.willAssistTo ? 
                 <div className="partyups">
                     <h2 className="partyups__titles">Asistira a</h2>
-                    <ul>
-                        <li className="partyups__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </li>
-                    </ul>
+                    <div>
+                        <div className="container__list"> {this.state.willAssistTo.map(partyup => <ItemListPartyups key={partyup.id} id={partyup.id} title={partyup.title} place={partyup.place} date={partyup.date} assistants={partyup.assistants} picture={partyup.picture} actuallUserId={this.state.id} onPartyupClick={this.props.onPartyupClick}/>)} </div>
+                    </div>
                 </div>
                 : ""}
             </main>

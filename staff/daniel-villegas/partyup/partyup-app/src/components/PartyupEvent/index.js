@@ -172,7 +172,7 @@ class PartyupEvent extends Component {
 
     handleDeleteComment(commentId, partyupId){
         try{
-            logic.deleteComment(commentId)
+            logic.deleteComment(commentId, partyupId)
                 .then(() => {
                     logic.retrieveComments(partyupId)
                         .then(commentaries => {
