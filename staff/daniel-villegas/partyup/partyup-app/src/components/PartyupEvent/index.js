@@ -237,7 +237,7 @@ class PartyupEvent extends Component {
                             <button className="formulary__button" onClick={() => this.handleSubmit(this.props.partyupId, this.props.actuallUserId)}>Enviar</button>
                         </form>
                         <ul className="commentaries__list">
-                            {this.state.commentaries.map(comment => <li className="commentaries__info"><div className="comment__info"><img className="partyup__avatars" src={comment.user.avatar} onClick={() => this.props.onPublicProfileClick(comment.user.id)}></img><p className="info_text">{comment.text}</p></div><button className="commentaries__deleteButton" onClick={() => this.handleDeleteComment(comment.id, comment.partyup)}>Borrar</button></li>  )}
+                                {this.state.commentaries.map(comment => <li className="commentaries__info"><div className="comment__info"><img className="partyup__avatars" src={comment.user.avatar} onClick={() => this.props.onPublicProfileClick(comment.user.id)}></img><p className="info_text">{comment.text}</p></div> {comment.user.id == this.props.actuallUserId ? <button className="commentaries__deleteButton" onClick={() => this.handleDeleteComment(comment.id, comment.partyup)}>Borrar</button> : "" }</li>  )}
                         </ul>
                     </div>
                 </div>
