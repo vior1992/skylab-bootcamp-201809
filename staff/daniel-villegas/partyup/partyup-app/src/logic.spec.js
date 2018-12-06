@@ -259,7 +259,7 @@ describe('logic', () => {
                     picture = "sdasda"
                 })
 
-                it('should create on correct data', async () => {
+                false && it('should create on correct data', async () => {
                     const res = await logic.createPartyup(title, description, date, city, place, tags, picture)
                     
                     expect(res).to.be.undefined
@@ -549,7 +549,7 @@ describe('logic', () => {
                     )
                 })
 
-                false && describe('search partyup Ill assist', () => {
+                describe('search partyup Ill assist', () => {
                     let user, partyup
 
                     beforeEach(async () => {
@@ -563,18 +563,19 @@ describe('logic', () => {
     
                         await logic.authenticateUser(username, password)
 
-                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id })
+                        partyup = await new Partyup({ title: "Search partyup by id", description: 'prueba en el test', date: new Date(), city: '01', place: 'skylab', tags: "01", user: user.id }).save()
                     })
 
                     it('should succeed on correct data(Partyup Ill assist)', () => 
-                        logic.assistToPartyup(user.id, partyup.id)
+                        logic.assistToPartyup(partyup.id)
                             .then(() => 
-                                logic.listPartyupsIAssist(user.id)
-                                    .then(_partyup => {
+                                logic.itemListPartyupsIAssist(user.id)
+                                    .then(partyups => {
+                                        debugger
                                         return Partyup.find()
                                             .then(__partyup => {
-                                                expect(_partyup).to.exist
-                                                expect(_partyup.length).to.equal(1)
+                                                expect(partyups).to.exist
+                                                expect(partyups.length).to.equal(1)
                                                 
                                                 expect(__partyup[2].title).to.equal(partyup.title)
                                                 expect(__partyup[2].description).to.equal(partyup.description)
@@ -589,25 +590,25 @@ describe('logic', () => {
                     )
                     //USER ID TEST FAIL//
                     it('should fail on undefined user id (Partyup Ill assist)', () => {
-                        expect(() => logic.listPartyupsIAssist(undefined)).to.throw(TypeError, 'undefined is not a string')
+                        expect(() => logic.itemListPartyupsIAssist(undefined)).to.throw(TypeError, 'undefined is not a string')
                     })
 
                     it('should fail on empty or blank user id (Partyup Ill assist)', () => {
-                        expect(() => logic.listPartyupsIAssist(' ')).to.throw(Error, 'userId is empty or blank')
+                        expect(() => logic.itemListPartyupsIAssist(' ')).to.throw(Error, 'userId is empty or blank')
                     })
 
                     it('should fail on number user id (Partyup Ill assist)', () => {
-                        expect(() => logic.listPartyupsIAssist(3)).to.throw(TypeError, '3 is not a string')
+                        expect(() => logic.itemListPartyupsIAssist(3)).to.throw(TypeError, '3 is not a string')
                     })
 
                     it('should fail on boolean user id (Partyup Ill assist)', () => {
-                        expect(() => logic.listPartyupsIAssist(false)).to.throw(TypeError, 'false is not a string')
+                        expect(() => logic.itemListPartyupsIAssist(false)).to.throw(TypeError, 'false is not a string')
                     })
 
                
                 })
 
-                false && describe('assist to partyup', () => {
+                describe('assist to partyup', () => {
                     let user, partyup
 
                     beforeEach(async () => {
@@ -657,7 +658,7 @@ describe('logic', () => {
                          
                 })
 
-                false && describe('NOT assist to partyup', () => {
+                describe('NOT assist to partyup', () => {
                     let user, partyup
 
                     beforeEach(async () => {
@@ -744,7 +745,7 @@ describe('logic', () => {
             })
 
             // itemListPartyupsCreatedBy
-            false && describe('itemListPartyupsCreatedBy', () => {
+            describe('itemListPartyupsCreatedBy', () => {
                 let user, partyup
 
                 beforeEach(async () => {
@@ -796,7 +797,7 @@ describe('logic', () => {
             })
 
             // itemListPartyupsIAssist
-            false && describe('itemListPartyupsIAssist', () => {
+            describe('itemListPartyupsIAssist', () => {
                 let user, partyup
 
                 beforeEach(async () => {
@@ -847,7 +848,7 @@ describe('logic', () => {
             })
 
             //DELETE PARTYUP
-            false && describe('Should delete partyup', () => {
+            describe('Should delete partyup', () => {
                 let user, partyup
 
                 beforeEach(async () => {
@@ -964,7 +965,7 @@ describe('logic', () => {
         })
 
         //RETRIEVE COMMENT
-        false && describe('Should retrieve commentary from partyup', () => {
+        describe('Should retrieve commentary from partyup', () => {
             let user, partyup, comment
 
             beforeEach(async () => {
@@ -1087,7 +1088,7 @@ describe('logic', () => {
             })
 
             it('should fail on empty or blank user id (Delete comments)', () => {
-                expect(() => logic.deleteComment(comment.id, ' ')).to.throw(Error, 'userId is empty or blank')
+                expect(() => logic.deleteComment(comment.id, ' ')).to.throw(Error, 'partyupId is empty or blank')
             })
 
             it('should fail on number user id (Delete comments)', () => {

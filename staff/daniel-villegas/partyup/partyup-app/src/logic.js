@@ -1,7 +1,7 @@
 //RUN APP
-// import validateLogic from './utilities/validate'
+import validateLogic from './utilities/validate'
 //RUN TEST
-const validateLogic = require('./utilities/validate')
+// const validateLogic = require('./utilities/validate')
 
 
 const logic = {
@@ -407,6 +407,10 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     assistToPartyup(partyupId) {
+        validateLogic([
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/assistence`, {
             method: 'GET',
             headers: {
@@ -435,6 +439,10 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     notAssistToPartyup(partyupId) {
+        validateLogic([
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/notAssistence`, {
             method: 'GET',
             headers: {
@@ -462,6 +470,10 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     itemListPartyupsCreatedBy(userId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+        ])
+
         return fetch(`${this.url}/users/${userId}/partyups`, {
             method: 'GET',
             headers: {
@@ -489,6 +501,10 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     itemListPartyupsIAssist(userId) {
+        validateLogic([
+            { key: 'userId', value: userId, type: String },
+        ])
+
         return fetch(`${this.url}/users/${userId}/partyups/assistence`, {
             method: 'GET',
             headers: {
@@ -516,6 +532,10 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     deletePartyup(partyupId) {
+        validateLogic([
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}`, {
             method: 'DELETE',
             headers: {
@@ -576,6 +596,10 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     retrieveComments(partyupId) {
+        validateLogic([
+            { key: 'partyupId', value: partyupId, type: String },
+        ])
+
         return fetch(`${this.url}/partyups/${partyupId}/comments`, {
             method: 'GET',
             headers: {
@@ -604,6 +628,11 @@ const logic = {
      * @returns {Promise} Resolves on correct data, rejects on wrong data.
      */
     deleteComment(commentId, partyupId) {
+        validateLogic([
+            { key: 'commentId', value: commentId, type: String },
+            { key: 'partyupId', value: partyupId, type: String }
+        ])
+
         return fetch(`${this.url}/users/${this._userId}/partyups/${partyupId}/commentaries/${commentId}`, {
             method: 'DELETE',
             headers: {
@@ -619,8 +648,8 @@ const logic = {
     },
 }
 //RUN
-// export default logic
+export default logic
 //TEST
-module.exports = logic
+// module.exports = logic
 
 
