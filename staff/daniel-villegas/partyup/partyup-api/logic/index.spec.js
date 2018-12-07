@@ -1,6 +1,8 @@
 const logic = require('.')
 const { mongoose, models: { User, Partyup, Commentary } } = require('partyup-data')
 const { expect } = require('chai')
+const Image = require('./image')
+
 
 const MONGO_URL = 'mongodb://localhost:27017/partyup-test'
 
@@ -258,6 +260,58 @@ describe('logic', () => {
                 expect(_user.city).to.equal(user.city)
                 expect(_user.username).to.equal(user.username)
                 expect(_user.password).to.equal(user.password)
+            })
+        })
+
+        describe('addUserAvatar', () => {
+            let user
+
+            beforeEach(() => {
+                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+
+                return user.save()
+            })
+
+            it('should succeed on correct data', async () => {
+                const _user = await logic.addUserAvatar(user.id, Image)
+
+                expect(_user.id).to.be.a('string')
+                expect(_user.name).to.equal(user.name)
+                expect(_user.surname).to.equal(user.surname)
+                expect(_user.city).to.equal(user.city)
+                expect(_user.username).to.equal(user.username)
+                expect(_user.password).to.equal(user.password)
+                expect(_user.avatar).not.to.be.undefined
+            })
+        })
+
+        describe('delete user', () => {
+            let user
+
+            beforeEach(() => {
+                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+
+                return user.save()
+            })
+
+            it('should succeed on correct data', async () => {
+                const _user = await logic.searchUserById(user.id)
+                
+                expect(_user).to.exist
+                expect(_user.id).to.equal(user.id)
+                expect(_user.name).to.equal(user.name)
+                expect(_user.surname).to.equal(user.surname)
+                expect(_user.city).to.equal(user.city)
+                expect(_user.username).equal(user.username)
+                expect(_user.password).equal(user.password)
+                
+                const __user = await logic.deleteUser(user.id)
+                
+                expect(__user).to.be.undefined
+
+                const ___user = await User.find()
+
+                expect(___user).to.be.an('array')
             })
         })
 
