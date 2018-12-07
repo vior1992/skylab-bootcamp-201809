@@ -9,13 +9,15 @@ This full-stack project was developed for the Skylab Coders bootcamp with the go
 + Javascript (ECMAScript2016)
 + ReactJS
 + React Router
-+ NodeJS
++ NodeJS 
 + CSS
 + Sass
 + BEM
 + Mongo
 + Mongoose
 + Claudinary
+
+![alt text](https://github.com/manuelbarzi/skylab-bootcamp-201807/raw/develop/staff/gerard-baste/jelzi/docs/images/slidesLogos.png "technologies")
 
 ---
 
@@ -66,7 +68,7 @@ By default the user has a user avatar that can change in the **profile**. Profil
 Finally, you can **create a partyup**, write the title, description, and other information. If you desire, you can upload an image of the event.
 
 #### **USE CASES DIAGRAM**
-![alt text](./use_case_diagram.png "case diagram")
+![alt text](./use_diagram.png "case diagram")
 
 ---
 
@@ -93,9 +95,9 @@ Partyup-data is composed of 3 schemas: User, Partyup and Commentary, linked to e
 
 ---
 
-### **LIVE DEMOS**
+### **LIVE DEMO**
 
-[Partyup responsive web](URL "Título del enlace")
+[Partyup responsive web](http://localhost:3000/#/ "Partyup")
 
 ---
 
