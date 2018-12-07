@@ -4,7 +4,7 @@
 
 ####  **The project.**
 
-This full-stack project was developed for the Skylab Coders bootcamp with the objective of apply the following technologies and methodologies in a real life application:
+This full-stack project was developed for the Skylab Coders bootcamp with the goal of applying the following technologies and methodologies in a real life application:
 
 + Javascript (ECMAScript2016)
 + ReactJS
@@ -23,7 +23,7 @@ This full-stack project was developed for the Skylab Coders bootcamp with the ob
 
 Friday night at home and without plans? **Partyup is the solution.**
 
-*Looking for city or tag, you can find events or plans of your interest, see where and who will assist and comment some doubt about the event.*
+*Looking for city or tag, you can find events or plans of your interest, see where and who will attend and comment some doubts about the event.*
 
 *But if you have the plan but not the people, you can post your event and people interested in it can join you!*
 
@@ -45,32 +45,28 @@ On the **landing**, the user can see the next 3 events that will be in the count
 
 ![alt text](./landing.png "Landing")
 
-If the user wants filter for some **city** or **tags**, you must login. After that, the user will be on the **home**. Here can find and enter inside the events that will appear. 
+If the user wants to filter some **city** or **tags**, you must login. After that, the user will be on the **home**. Here they can find and enter the events that will appear. 
 
 ![alt text](./home.png "home")
 
-In every **partyup**, can read the description, date, place and the host. The user can confirm the **assistance** or anulate it, **delete** the partyup (just if is the host).
+In every **partyup**, the user can read the information like the description, date, host's name, etc. The user can confirm **assistance** or cancelate it, **delete** the partyup (only if the user is the host).
 
 ![alt text](./event1.png "event")
 
-Can make some **commentary** about the event. 
+The user can make some **commentary** about the event. 
 
 ![alt text](./event2.png "event")
 
-Is possible see who will assist to event and check his **public profile**, where will show his information and the partyup’s created and with assist.
+It is possible to see who will attend the event and check the **public profile**, which shows the information about the partyup the user created and will attend.
 
 ![alt text](./profile.png "profile")
 
-“Por defecto” the user have a user avatar that can change in the **profile**. Profile is similar to Public profile, with the diference that if you desire **delete your profile**, or **upload a new avatar**, you can do it.
+By default the user has a user avatar that can change in the **profile**. Profile is similar to Public profile, with the diference that if you wish to **delete your profile**, or **upload a new avatar**, you can.
 
-At least, you can **create a partyup**, writing the title, description, and other information. If you desire, you can upload a image of the event.
+Finally, you can **create a partyup**, write the title, description, and other information. If you desire, you can upload an image of the event.
 
 #### **USE CASES DIAGRAM**
 ![alt text](./use_case_diagram.png "case diagram")
-
-#### **FLOW DIAGRAM**
-
-#### **ACTIVITY DIAGRAM**
 
 ---
 
@@ -78,16 +74,17 @@ At least, you can **create a partyup**, writing the title, description, and othe
 
 The front-end part of the application was built using ReactJS. 
 
-The back-end, built using NodeJS, is connected with Partyup-data for manage the information in mongoose. 
+The back-end, built using NodeJS, is connected to  Partyup-data to manage the information in mongoose. 
 
 #### **BLOCK DIAGRAM**
 ![alt text](./block_diagram.png "block diagram")
 
 
 #### **COMPONENT DIAGRAM**
+![alt text](./component_diagram.png "block diagram")
 
 #### **DATA MODEL**
-Partyup-data is composed of 3 schemas: User, Partyup and Commentary, relationated each other in this way: 
+Partyup-data is composed of 3 schemas: User, Partyup and Commentary, linked to each other the following way: 
 ![alt text](./data_model.png "data model")
 
 #### **TEST COVERAGE**
