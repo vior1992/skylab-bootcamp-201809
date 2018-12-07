@@ -195,6 +195,51 @@ describe('logic', () => {
             })
         })
 
+        describe('retrieveLoggedUser', () => {
+
+            beforeEach(() => {
+                user = new User({ name: `Dani-${Math.random()}`, surname: `ville-${Math.random()}`, city: `bcn-${Math.random()}`, username: `db-${Math.random()}`, password: `1-${Math.random()}` })
+
+                return user.save()
+            })
+
+            it('should authenticate on correct credentials', () => {
+                const { id } = user
+
+                return logic.retrieveLoggedUser(id)
+                    .then(userId => {
+                        expect(userId).to.exist
+                        expect(userId.toString()).to.be.a('string')
+
+                        return User.find()
+                            .then(_users => {
+                                const [_user] = _users
+
+                                expect(_user.id).to.equal(userId.id.toString())
+                            })
+                    })
+            })
+
+            //ID FAIL TESTS//
+
+            it('should fail on undefined id', () => {
+                expect(() => logic.retrieveLoggedUser(undefined)).to.throw(TypeError, 'undefined is not a string')
+            })
+
+            it('should fail on empty or blank id', () => {
+                expect(() => logic.retrieveLoggedUser('   ')).to.throw(Error, 'id is empty or blank')
+            })
+
+            it('should fail on number id (not a string)', () => {
+                expect(() => logic.retrieveLoggedUser(3)).to.throw(Error, '3 is not a string')
+            })
+
+            it('should fail on boolean id (not a string)', () => {
+                expect(() => logic.authenticateUser(true)).to.throw(Error, 'true is not a string')
+            })
+
+        })
+
         describe('find user by id', () => {
             let user
 
