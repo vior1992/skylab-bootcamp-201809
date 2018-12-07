@@ -97,7 +97,7 @@ Partyup-data is composed of 3 schemas: User, Partyup and Commentary, linked to e
 
 ### **LIVE DEMO**
 
-[Partyup responsive web](http://localhost:3000/#/ "Partyup")
+[Partyup responsive web](http://partyup.surge.sh/#/ "Partyup")
 
 ---
 
